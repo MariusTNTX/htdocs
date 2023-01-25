@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="album.css">
+</head>
+<body>
+  <form action="#" method="get">
+    <h1>Nuevo Álbum</h1>
+    <fieldset>
+      <legend><h2 class="wikipedia">Wikipedia</h2></legend>
+
+      <!-- Ejemplo de DataList -->
+      <datalist id="genlist">
+        <option value="Alternative">
+        <option value="Black.">
+        <option value="Black-Melodic">
+        <option value="Black-FW">
+        <option value="Black-SW">
+        <option value="Death.">
+        <option value="Death-Brutal">
+        <option value="Death-Tech">
+        <option value="Death-Melodic">
+        <option value="Death-Core">
+        <option value="Djent">
+        <option value="Doom">
+        <option value="Folk">
+        <option value="Glam">
+        <option value="Glam-FW">
+        <option value="Glam-SW">
+        <option value="Grindcore">
+        <option value="Groove">
+        <option value="Gothic">
+        <option value="Heavy">
+        <option value="Industrial">
+        <option value="Metalcore">
+        <option value="Nu">
+        <option value="NWOBHM">
+        <option value="Power">
+        <option value="Power-FW">
+        <option value="Power-SW">
+        <option value="Progressive">
+        <option value="Sludge">
+        <option value="Speed">
+        <option value="Stoner">
+        <option value="Symphonic">
+        <option value="Thrash.">
+        <option value="Thrash-Crossover">
+        <option value="Viking">
+      </datalist>
+      <!------------------------->
+
+      <div class="miniseccion">
+        <div>
+          NomBan: <input type="text" name="txtNomBan" value="">
+          NomAlb: <input type="text" name="txtNomAlb" value="">
+        </div>
+        <div>
+          TipoAlb: 
+          <select name="txtTipoAlb" id="txtTipoAlb">
+            <option value="estudio">Estudio</option>
+            <option value="ep">EP</option>
+            <option value="dvd">DVD en Vivo</option>
+            <option value="recopilacion">Recopilación</option>
+            <option value="boxset">Boxset</option>
+          </select>
+          NumAlb: <input type="number" name="txtNumAlb">
+        </div>
+        <div>
+          FechaLanz: <input type="date" name="fechaLanz" id="fechaLanz">
+          FechaLive: <input type="date" name="fechaLive" id="fechaLive">
+        </div>
+      </div>
+      
+      <div class="miniseccion">
+        <h3>Géneros</h3>
+        <button id="btnGen">Añadir</button>
+        <table><tbody id="tblGen">
+          <tr><th>Nombre</th></tr>
+          <tr>
+            <td><input list='genlist' name="nomGen[]"></td>
+            <td><button class='clean'>X</button></td>
+          </tr>
+        </tbody></table>
+      </div>
+
+      <div class="miniseccion">
+        <h3>Estudios de Grabación</h3>
+        <button id="btnEst">Añadir</button>
+        <table><tbody id="tblEst">
+          <tr><th>Nombre</th></tr>
+          <tr>
+            <td><input type="text" name="nomEst[]"></td>
+            <td><button class='clean'>X</button></td>
+          </tr>
+        </tbody></table>
+      </div>
+
+      <div class="miniseccion">
+        <h3>Productores</h3>
+        <button id="btnPro">Añadir</button>
+        <table><tbody id="tblPro">
+          <tr><th>Nombre</th><th>Sexo</th></tr>
+          <tr>
+            <td><input type="text" name="nomPro[]"></td>
+            <td><input type="text" name="sexPro[]" size="2"></td>
+            <td><button class='clean'>X</button></td>
+          </tr>
+        </tbody></table>
+      </div>
+
+      <div class="miniseccion">
+        <h3>Músicos</h3>
+        <button id="btnMus">Añadir</button>
+        <table><tbody id="tblMus">
+          <tr><th>Nombre</th><th>Sexo</th></tr>
+          <tr>
+            <td><input type="text" name="nomMus[]"></td>
+            <td><input type="text" name="sexMus[]" size="2"></td>
+            <td><button class='clean'>X</button></td>
+          </tr>
+        </tbody></table>
+      </div>
+
+      <div class="miniseccion">
+        <h3>Videoclips</h3>
+        <button id="btnVid">Añadir</button>
+        <table><tbody id="tblVid">
+          <tr><th>Canción</th></tr>
+          <tr>
+            <td><input type="text" name="nomVid[]"></td>
+            <td><button class='clean'>X</button></td>
+          </tr>
+        </tbody></table>
+      </div>
+
+      <br><br>
+      NomDiscografica: <input type="text" name="txtNomDisc" value=""><br>
+      AnioDisc: <input type="text" name="txtAnioDisc" value=""><br>
+      PaisDisc: <input type="text" name="txtPaisDisc" value=""><br>
+      EstatusDisc: <input type="text" name="txtEstatusDisc" value=""><br>
+      WebDisc: <input type="text" name="txtWebDisc" value=""><br><br>
+
+      <div class="miniseccion">
+        <h3>Fundadores Dicográfica</h3>
+        <button id="btnFun">Añadir</button>
+        <table><tbody id="tblFun">
+          <tr><th>Nombre</th><th>Sexo</th></tr>
+          <tr>
+            <td><input type="text" name="nomFun[]"></td>
+            <td><input type="text" name="sexFun[]" size="2"></td>
+            <td><button class='clean'>X</button></td>
+          </tr>
+        </tbody></table>
+      </div>
+    </fieldset><br><br>
+
+    <h2 class="google">Google</h2>
+    ImgAlb: <input type="text" name="txtImgAlb"><br>
+    ImgDisc: <input type="text" name="txtImgDisc"><br>
+    LogoDisc: <input type="text" name="txtLogoDisc"><br>
+    PaisEst
+    PaisPro
+    DirecEst
+    DirecDisc: <input type="text" name="txtDirecDisc"><br>
+    FechaNacPro
+    FechaDefPro
+
+    <h2 class="word">Word</h2>
+    EnListaAlb: <input type="text" name="txtEnListaAlb"><br>
+    NomGenAlb [o TOP]
+    EstrAlb
+    NomCan
+    EstrCan
+    EnPlaylistCan [True/False]
+
+    <h2 class="libre">Libre</h2>
+    DescripAlb: <input type="text" name="txtDescripAlb"><br>
+    ArgAlb
+    TipoEtapaDisc
+    AnioInicEtapaDisc
+    AnioFinEtapaDisc
+    DescripEtapaDisc
+    ArgDisc
+
+    <h2 class="spotify">Spotify</h2>
+    LinkSpotifyAlb: <input type="text" name="txtLinkSpotifyAlb"><br>
+
+    <h2 class="amazon">Amazon</h2>
+    LinkAmazonAlb: <input type="text" name="txtLinkAmazonAlb"><br>
+
+    <h2 class="metallum">Metallum</h2>
+    TemaAlb
+
+    <h2 class="bandpage">Web Banda (Álbum)</h2>
+    LinkWebAlb: <input type="text" name="txtLinkWebAlb"><br>
+
+    <h2 class="youtube">YouTube</h2>
+    EnlaceVidCan: <input type="text" name="txtEnlaceVidCan"><br>
+
+    <input type="submit" name="submit" value="Enviar">
+
+  </form>
+
+  <script src="album.js"></script>
+</body>
+</html>

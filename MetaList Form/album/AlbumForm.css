@@ -1,0 +1,89 @@
+* {
+  margin: 0;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  background-color: rgb(236, 236, 255);
+}
+
+h1 {
+  margin: 40px;
+  color: rgb(136, 0, 0);
+  font-size: 46px;
+  text-align: center;
+}
+
+h2 {
+  margin: 20px;
+  font-size: 24px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+h3 {
+  display: inline-block;
+  margin-right: 15px;
+  margin-bottom: 10px;
+}
+
+form {
+  margin: 10px;
+}
+
+div.fuentes{
+  width: 96%;
+  margin: 0 auto;
+  position: fixed;
+  background-color: white;
+  box-shadow: 0 3px 13px 1px rgb(0 0 0 / 9%);
+  padding: 0.5%;
+  text-align: center;
+  border-radius: 20px;
+}
+
+input[value="Wikipedia"], input[value="Google"], input[value="Word"],
+input[value="Libre"], input[value="Spotify"], input[value="Amazon"],
+input[value="Metallum"], input[value="BandPage"], input[value="YouTube"],
+input[value="Limpiar"]{
+  width: 10.6%;
+  height: 25px;
+  cursor: pointer;
+  color: white;
+  border-radius: 20px;
+}
+
+input[value="Wikipedia"] {
+  background-color: grey;
+}
+input[value="Google"] {
+  background-color: aqua;
+  color: black;
+}
+input[value="Word"] {
+  background-color: blue;
+}
+input[value="Libre"] {
+  background-color: blueviolet;
+}
+input[value="Spotify"] {
+  background-color: green;
+}
+input[value="Amazon"] {
+  background-color: deeppink;
+}
+input[value="Metallum"] {
+  background-color: brown;
+}
+input[value="BandPage"] {
+  background-color: black;
+}
+input[value="YouTube"] {
+  background-color: red;
+}
+input[value="Limpiar"] {
+  background-color: yellow;
+  color: black;
+  margin-top: 5px;
+  width: 20%;
+}
+input[disabled]{
+  background-color: grey;
+}

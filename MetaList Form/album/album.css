@@ -1,0 +1,27 @@
+form, fieldset{
+  display: inline-block;
+  width: fit-content;
+}
+
+legend{text-align: center;}
+
+h3{
+  display: inline-block;
+  margin-top: 0;
+  margin-right: 8px;
+}
+
+.hidden{display: none;}
+.clean, .remove{
+  background-color: orangered;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.miniseccion{
+  background-color: gainsboro;
+  /* display: inline-block; */
+  padding: 10px;
+  border-radius: 10px;
+  float: left;
+  margin: 5px;
+}

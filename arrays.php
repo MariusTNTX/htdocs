@@ -1,0 +1,14 @@
+<pre>
+<?
+	$vector[]="0";
+	$vector[]="1";
+	$vector[8]="8";
+	$vector[]="9";
+	$vector['uno']="uno";
+	$vector[]="10";
+	$vector[][]="11-0";
+	$vector[][]="12-0";
+	$vector[11][]="11-1";
+	print_r($vector);
+?>
+</pre>

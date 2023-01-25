@@ -1,0 +1,30 @@
+
+<--//-- E J E R C I C I O S --\\-->
+
+
+
+----- EJERCICIO 14 -----
+
+
+
+<?
+	$array=['rojo','verde','azul','amarillo'];
+	
+	function flip_flop2($array){
+		foreach($array as $i => $vlr){
+			$flip["$vlr"]=$i;
+		}
+		return $flip;
+	}
+	
+	$flip=flip_flop2($array);
+?>
+
+<html>
+<body>
+	<h1>Array original:</h1>
+	<pre><?=print_r($array)?></pre>
+	<h1>Array flip:</h1>
+	<pre><?=print_r($flip)?></pre>
+</body>
+</html>

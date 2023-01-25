@@ -1,0 +1,4 @@
+2.30: Servidor Apache Windows Angel
+2.33: Servidor Apache Windows Fran
+2.36: Servidor Apache Linux Fran ??????
+2.39: Servidor Apache Windows Server Fran
