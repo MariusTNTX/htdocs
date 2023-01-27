@@ -11,7 +11,8 @@ if(isset($_POST['pdf'])){
     $c = new mysqli($host, $user, $pass) or die("No ha podido realizarse la conexión");
     $rs=$c->query("show databases");
     $databases = $rs->fetch_all();
-    if(!in_array("alumnos", $databases)){
+    echo $databases;
+    if(!in_array("practicas", $databases)){
       $c->query("create database Practicas");
       $c->query("use Practicas");
       $createQuery = "create table alumnos(dni varchar(9) primary key,nomApes varchar(50),fechaNac varchar(10),esRepet varchar(1) check (esRepet='S' or esRepet='N'),rutaFoto varchar(100));";
