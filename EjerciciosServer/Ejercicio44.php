@@ -5,6 +5,7 @@ if(isset($_GET['pdf'])){
 } else {
   /* AÑADIR A BBDD */
 
+  
   //Si no existe la base de datos se crea junto con su tabla alumnos:
   if(isset($_GET['bbdd'])){ 
     include "../../includes/LoginMySql.php";
