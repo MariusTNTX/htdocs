@@ -19,23 +19,25 @@ if(isset($_GET['img'])){
 
   class pdfwt extends PDF_WriteTag {
     function Header(){
+      $x = 210/2+15;
       $this->SetTextColor(0);
       $this->SetFillColor(255);
       $this->SetFont("arial","B", 10);
-      $this->Image('Certificado/Logo JCCM.jpg',25,2,35);
-      $this->Setxy(210/2,10);
+      $this->Image('Certificado/Logo JCCM.jpg',15,2,35);
+      $this->Image('Certificado/logoCIFP.png',62,12,45);
+      $this->Setxy($x,10);
       $this->Cell(210/2-20, 5, utf8_decode("Consejería de Educación, Cultura y Deportes"));
       $this->SetFontSize(9);
-      $this->Setxy(210/2,15);
-      $this->Cell(210/2-20, 5, utf8_decode("IES Pedro Mercedes"));
-      $this->Setxy(210/2,20);
-      $this->Cell(210/2-20, 5, utf8_decode("Cl. Cañete, S/N"));
-      $this->Setxy(210/2,25);
-      $this->Cell(210/2-20, 5, utf8_decode("16004 Cuenca (Cuenca)"));
+      $this->Setxy($x,15);
+      $this->Cell(210/2-20, 5, utf8_decode("Centro Integrado de Formación Profesional 1"));
+      $this->Setxy($x,20);
+      $this->Cell(210/2-20, 5, utf8_decode("Calle de la Fuensanta, 3"));
+      $this->Setxy($x,25);
+      $this->Cell(210/2-20, 5, utf8_decode("16002 Cuenca (Cuenca)"));
     }
     function Footer(){
       $w=20;
-      $h=297/2;
+      $h=297/2+20;
       $this->SetFont("arial","", 12);
       $this->Setxy($w,$h);
       $this->Cell(210/2-20, 5, utf8_decode("VºBº"),0,0,"C");
@@ -80,7 +82,12 @@ if(isset($_GET['img'])){
   $p3 = "<s>Que ".$nombre." se encuentra matriculad".$oa." en ".$curso." como alumn".$oa." oficial de este centro durante el año académico 2022/2023.</s>";
   $p4 = "<s>Y para que conste, a petición de".$ela." interesad".$oa." y surta los efectos oportunos, expido el presente certificado en Cuenca (Cuenca) a ".$fecha.".</s>";
 
-  /* $pdf1->WriteTag(150, 5, $p1); */
+  $pdf1->Setxy(20,60);
+  $pdf1->WriteTag(0, 5, utf8_decode($p1.$p2), 0, 'L', 0, 20);
+  $pdf1->Sety(85);
+  $pdf1->WriteTag(0, 5, utf8_decode($p3), 0, 'L', 0, 20);
+  $pdf1->Sety(110);
+  $pdf1->WriteTag(0, 5, utf8_decode($p4), 0, 'L', 0, 20);
 
   $pdf1->output();
   /* $pdf1->Cell(210/2-20, 5, "A fecha de ".strftime("%d de %B de %Y")." ".utf8_decode(" PÃ¡g ".$this->PageNo()." de "."{nb}"),0,"J",false); */
