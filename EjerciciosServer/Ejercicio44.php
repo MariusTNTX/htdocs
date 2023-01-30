@@ -23,7 +23,7 @@ if(isset($_POST['pdf'])){
 
     function Footer(){
       $this->SetY(-15);
-      $this->SetFont('Arial','I',8);
+      $this->SetFont('Arial','I',10);
       $this->SetTextColor(128);
       $this->Cell(0,10,utf8_decode('Página '.$this->PageNo().' de {nb}'),0,0,'C');
     }
@@ -51,7 +51,7 @@ if(isset($_POST['pdf'])){
 
   //IMPRESIÓN
   $c = new mysqli($host, $user, $pass, 'practicas') or die("No ha podido realizarse la conexión");
-  $res = $c->query("select * from alumnos;");
+  $res = $c->query("select * from alumnos order by nomApes;");
   $encab = $res->fetch_fields();
   $c->close();
 
