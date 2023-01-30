@@ -41,6 +41,7 @@ if(isset($_POST['pdf'])){
     } */
   }
 
+  //BÁSICO
   $pdf1=new fpdf2('P','mm','A4');
   $pdf1->setdisplaymode('fullpage',"single");
   $pdf1->AliasNbPages();
@@ -48,39 +49,41 @@ if(isset($_POST['pdf'])){
   $pdf1->Addpage();
   $pdf1->SetTextColor(0);
   $pdf1->SetFont("arial","B", 11);
-
-  //IMPRESIÓN
-  $c = new mysqli($host, $user, $pass, 'practicas') or die("No ha podido realizarse la conexión");
-  $res = $c->query("select * from alumnos order by nomApes;");
-  $encab = $res->fetch_fields();
-  $c->close();
-
   $w=[30,68,30,15];
   $top=30;
   $h=25;
   $pdf1->setxy(15,$top);
 
+  //CONSULTA
+  $c = new mysqli($host, $user, $pass, 'practicas') or die("No ha podido realizarse la conexión");
+  $res = $c->query("select * from alumnos order by nomApes;");
+  $encab = $res->fetch_fields();
+  $c->close();
+
+  //ENCABEZADO
   $pdf1->cell(40, 20, 'Foto');
   $pdf1->setxy(15+$h+10,$top);
-
   for($i=0; $i<4; $i++){
     $pdf1->cell($w[$i], 20, utf8_decode($encab[$i]->name));
   }
-
   $pdf1->line(15,$top+15,210-15,$top+15);
 
+  //CONTENIDO
   $pdf1->SetFont("arial","", 11);
   $top+=25;
   $pdf1->setxy(15+$h+10,$top);
 
   while($fila = $res->fetch_row()){
-    $pdf1->Image($fila[4],15,$top,$h);
+    /* $pdf1->Image($fila[4],15,$pdf1->gety(),$h); */ //$top
+    $pdf1->cell(0.1, 20, $pdf1->Image($fila[4],15,$pdf1->gety(),$h));
     array_pop($fila);
     for($i=0; $i<4; $i++){
       $pdf1->cell($w[$i], 20, utf8_decode($fila[$i]));
     }
-    $top+=$h;
-    $pdf1->setxy(15+$h+10,$top);
+    $pdf1->Ln(25);
+    $pdf1->setx(15+$h+10);
+    /* $top+=$h;
+    $pdf1->setxy(15+$h+10,$top); */
   }
 
   //ENVÍO Y CIERRE
