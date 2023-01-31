@@ -27,18 +27,6 @@ if(isset($_POST['pdf'])){
       $this->SetTextColor(128);
       $this->Cell(0,10,utf8_decode('Página '.$this->PageNo().' de {nb}'),0,0,'C');
     }
-
-    /* function SetCol(){
-      $x = 15;
-      $this->SetLeftMargin($x);
-      $this->SetX($x);
-    }
-
-    function AcceptPageBreak(){
-      $this->SetCol();
-      $this->SetY($this->y0);
-      return true;
-    } */
   }
 
   //BÁSICO
