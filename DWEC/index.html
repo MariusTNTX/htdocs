@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/script.js"></script>
+</head>
+
+<body>
+  <form action="php/comprobacionGET.php" method="get" name="form" id="form"><!--Inicio formulario-->
+
+    <table align="center" border="1">
+
+      <tr><!--línea texto-->
+        <td align="center" colspan="2" bgcolor="#f0f0f0">
+          <h2>
+            Escribe un NIF<br>
+            <h6>Formato 12345678A</h6>
+          </h2>
+        </td>
+      </tr><!--Fin de la línea texto-->
+
+      <tr><!--Línea dni-->
+        <td bgcolor="#f0f0f0">NIF: </td>
+        <td align="center">
+          <input type="text" name="nif" size="9" maxlength="9">
+        </td>
+      </tr><!--Fin de la línea dni-->
+
+      <tr><!--línea de botones-->
+        <td align="center" bgcolor="#f0f0f0" colspan="2">
+          <input type="submit" value="enviar" name="Enviar" title="Enviar" />
+          &nbsp;||&nbsp;
+          <input type="reset" value="borrar" name="borrar" title="borrar" />
+          <br>
+          <input id="miEnvio" type="button" value="miEnvio" name="miEnvio" title="miEnvio" />
+        </td>
+      </tr><!--Fin línea de botones-->
+
+    </table><!--FIN de la tabla-->
+
+  </form><!--Fin del formulario-->
+
+</body>
+
+</html>
