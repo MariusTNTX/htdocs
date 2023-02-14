@@ -1,15 +1,15 @@
 async function miPeticionGET(){
   let texto;
   try {
-    let respuesta = await fetch(`http://192.168.7.181:8080/php/ajaxGET.php?nif=${document.getElementById("nif").value}&Enviar=enviar`,{ //Promesa
+    let response = await fetch(`http://192.168.7.181:8080/php/ajaxGET.php?nif=${document.getElementById("nif").value}&Enviar=enviar`,{ //Promesa
       method: "get",
       mode: "cors"
     });
-    /* let respuesta = await fetch("http://localhost/DWEC/php/comprobacionGET.php?nif=12345678A&Enviar=enviar",{ //Promesa
+    /* let response = await fetch("http://localhost/DWEC/php/comprobacionGET.php?nif=12345678A&Enviar=enviar",{ //Promesa
       method: "get",
       mode: "cors"
     }); */
-    texto = await respuesta.text(); //Promesa
+    texto = await response.text(); //Promesa
   } catch (error) {
     texto = `Error: ${error}`;
   }
@@ -22,8 +22,8 @@ async function miPeticionGET(){
 async function miPeticionGET2(){
   let json;
   try {
-    let respuesta = await fetch(`http://192.168.7.181:8080/php/jsonGET.php`);
-    json = await respuesta.json(); //Promesa
+    let response = await fetch(`http://192.168.7.181:8080/php/jsonGET.php`);
+    json = await response.json(); //Promesa
   } catch (error) {
     json = `Error: ${error}`;
   }
@@ -35,7 +35,7 @@ async function miPeticionGET2(){
 
 async function miPeticionPOST(){
   try {
-    let respuesta = await fetch("http://localhost/DWEC/php/comprobacionGET.php?nif=12345678A&Enviar=enviar",{
+    let response = await fetch("http://localhost/DWEC/php/comprobacionGET.php?nif=12345678A&Enviar=enviar",{
       method: "post",
       mode: "cors",
       headers:{
@@ -43,7 +43,7 @@ async function miPeticionPOST(){
       },
       body:`nif=${document.getElementById("nif").value}$Enviar=enviar`
     });
-    console.log(respuesta.status);
+    console.log(response.status);
   } catch (error) {
     console.log("Error: "+error);
   }
