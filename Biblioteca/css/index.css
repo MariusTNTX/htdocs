@@ -1,0 +1,17 @@
+#header2{
+  background-color: #e86b1c;
+  font-family: sans-serif;
+}
+
+#header2 a, #header1 a{
+  text-decoration: none;
+  color: white;
+}
+#header1 a{color: black;}
+
+#header2 div:hover{
+  background-color: white;
+}
+#header2 div:hover a{
+  color: #e86b1c;
+}
