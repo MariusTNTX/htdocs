@@ -39,6 +39,10 @@
   font-weight: bold;
 }
 
+#error{
+  color: red;
+}
+
 select {
   width: 150px;
 }
