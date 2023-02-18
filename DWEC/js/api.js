@@ -62,4 +62,4 @@ window.addEventListener("load",()=>{
     locs = localidades.value.split(',');
     setWeather(locs[0],locs[1]);
   });
-})
+});
