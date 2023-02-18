@@ -13,27 +13,32 @@
 		 'create'=>"create table if not exists MATRICULAS (ALUMNO VARCHAR(7), ESTUDIOS VARCHAR(100) NOT NULL, GRUPO VARCHAR(10), PRIMARY KEY(ALUMNO,GRUPO))",
 		 'insert'=>"insert into MATRICULAS values(?,?,?)",
 		 'select'=>"Select * from MATRICULAS",
-		 'bind'=>"iss"],
+		 'bind'=>"iss"
+		],
 		['csv'=>$_SERVER['DOCUMENT_ROOT']."/Biblioteca/csv/Departamentos.csv",
 		 'create'=>"create table if not exists DEPARTAMENTOS (COD_DPTO VARCHAR(2) PRIMARY KEY, NOMBRE VARCHAR(50) NOT NULL, CENTRO ENUM('CIFP1','Albaladejito','Pedro Mercedes'), DNI_JFK VARCHAR(10), PASSWORD VARCHAR(100))",
 		 'insert'=>"insert into DEPARTAMENTOS values(?,?,?,?,?)",
 		 'select'=>"Select * from DEPARTAMENTOS",
-		 'bind'=>"issss"],
+		 'bind'=>"issss"
+		],
 		['csv'=>$_SERVER['DOCUMENT_ROOT']."/Biblioteca/csv/Profesores.csv",
 		 'create'=>"create table if not exists PROFESORES (APELLIDOS VARCHAR(50), NOMBRE VARCHAR(30) NOT NULL, DNI VARCHAR(10) PRIMARY KEY, COD_DPTO VARCHAR(2) REFERENCES DEPARTAMENTOS(COD_DPTO))",
 		 'insert'=>"insert into PROFESORES values(?,?,?,?)",
 		 'select'=>"Select * from PROFESORES",
-		 'bind'=>"sssi"],
+		 'bind'=>"sssi"
+		],
 		['csv'=>$_SERVER['DOCUMENT_ROOT']."/Biblioteca/csv/Alumnos.csv",
 		 'create'=>"create table if not exists ALUMNOS (ALUMNO VARCHAR(7) REFERENCES MATRICULAS(ALUMNO), APELLIDOS VARCHAR(50), NOMBRE VARCHAR(30) NOT NULL, DNI VARCHAR(10) PRIMARY KEY, NIE VARCHAR(8) NOT NULL)",
 		 'insert'=>"insert into ALUMNOS values(?,?,?,?,?)",
 		 'select'=>"Select * from ALUMNOS",
-		 'bind'=>"isssi"],
+		 'bind'=>"isssi"
+		],
 		['csv'=>$_SERVER['DOCUMENT_ROOT']."/Biblioteca/csv/AltaLibros.csv",
 		 'create'=>"create table if not exists LIBROS (COD_LIBRO VARCHAR(16) PRIMARY KEY, TITULO VARCHAR(100) NOT NULL, AUTOR VARCHAR(100), MATERIA VARCHAR(30), EDITORIAL VARCHAR(25), A_EDICION VARCHAR(4), SOPORTE_M ENUM('SI','NO') DEFAULT 'NO', USUARIO ENUM('ALUMNO','PROFESOR','CONSULTA'), COD_DPTO VARCHAR(2) REFERENCES DEPARTAMENTOS(COD_DPTO), ESTADO ENUM('BUENO','MALO') DEFAULT 'BUENO')",
 		 'insert'=>"insert into LIBROS values(?,?,?,?,?,?,?,?,?,?)",
 		 'select'=>"Select * from LIBROS",
-		 'bind'=>"sssssissis"]
+		 'bind'=>"sssssissis"
+		]
 	];
 
 	//CREACIÓN DE BASE DE DATOS
