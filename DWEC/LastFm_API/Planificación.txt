@@ -1,0 +1,38 @@
+ELEMENTOS DE BÚSQUEDA: 
+ - Albums
+ - Artists
+ - Tags (Géneros)
+ - Tracks
+
+FILTROS: 
+ - Album: Tags/TopTags, TopTracks(Crear)
+ - Artist: TopTags, TopAlbums, TopTracks
+ - Tag: TopAlbums, TopArtists, TopTracks
+ - Track: TopTags
+ - Año (FechaLanz): TopAlbums (Crear), TopArtist (Crear), TopTags(Crear), TopTracks(Crear)
+
+ORDENACIÓN:
+ - FechaLanz: Albums
+ - Listeners/Plays: Albums, Artists, Tracks
+ - Reach/Taggings: Tags
+ - Duración: Tracks
+
+
+API DE WIKIPEDIA (https://en.wikipedia.org/w/api.php)
+- action: query (busca páginas)
+- format: json
+- origin: * (evita accesos denegados)
+- utf8: (codifiación utf8)
+- titles/pageids/revids: (titulo / id / id de revisión) (puede ser Archivo:imagen.jpg)
+- prop: (qué datos obtener)
+  - info
+  - revisions (añadir rvprop=content y rvparse)
+  - imageinfo (añadir iiprop=url|size)
+
+Obtener Imagen de una Página
+1) Almacenas la pageid de la página correcta: https://en.wikipedia.org/w/api.php?action=query&list=search&srprop=snippet&format=json&origin=*&utf8=&srsearch=coven
+2) Obtienes el contenido de su página: https://en.wikipedia.org/w/api.php?format=json&action=query&prop=revisions&rvprop=content&rvparse&pageids=20907
+3) Buscas el primer "//upload.wikimedia.org/wikipedia/commons/thumb/" hasta su primera extensión y lo almacenas
+4) A la url le eliminas "thumb/" y ya se puede mostrar
+
+Ayuda: http://itfreekzone.blogspot.com/2013/12/obtener-informacion-de-wikipedia-traves.html

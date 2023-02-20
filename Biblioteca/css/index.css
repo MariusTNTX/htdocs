@@ -1,21 +1,26 @@
+/* Header */
 #header2{
   background-color: #e86b1c;
   font-family: sans-serif;
 }
-
 #header2 a, #header1 a{
   text-decoration: none;
   color: white;
 }
 #header1 a{color: black;}
-
-#header2 div:hover{
+#header2 a{transition: .25s;}
+#header2 a:hover{
   background-color: white;
-}
-#header2 div:hover a{
   color: #e86b1c;
 }
 
+/* Input de Texto y Combos */
+.form-control:focus, .form-select:focus {
+  border-color: #e86b1c;
+  box-shadow: 0 0 0 0.25rem rgb(232 107 28 / 25%);
+}
+
+/* Botón */
 .btn-primary{
   background-color: #e86b1c;
   border: none;
@@ -24,3 +29,46 @@
 .btn-primary:hover, .btn-primary:active{
   background-color: #e75900;
 }
+
+.btn-check+.btn{
+  color: #e86b1c;
+  border-color: #e86b1c;
+}
+.btn-check+.btn:hover{
+  border-color: #e75900;
+  color: #e75900;
+}
+.btn-check+.btn:focus-visible, .btn-check+.btn:active{
+  border-color: #e75900;
+  background-color: #e75900;
+  color: white;
+}
+.btn-outline-primary:focus-visible{
+  border-color: #e75900;
+  background-color: #e75900;
+  color: white;
+}
+
+/* Paginación */
+.pagination, .page-link{color: #e86b1c;}
+.pagination:hover, .pagination:focus{color: #e75900;}
+.page-link:hover, .page-link:focus {
+  color: #e75900;
+  border-color: #ebe3de;
+  background-color: #ebe3de;
+}
+.active>.page-link, .page-link.active {
+  color: white;
+  background-color: #e86b1c;
+  border-color: #e86b1c;
+}
+
+/* Reservas/Préstamos Admin */
+.showReservas, .showPrestamos {border: 1px solid #e86b1c;}
+.navReserPrest {border-bottom: 1px solid #e86b1c;}
+.nav-link.active.orange{
+  border-color: #e86b1c;
+  border-bottom: 1px solid white;
+}
+.nav-link.active.orange h1{color: #e75900;}
+.nav-link h1{color: #212529;}

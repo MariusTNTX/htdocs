@@ -42,212 +42,250 @@
     </div>
 
     <!-- H E A D E R   2 -->
-    <div class="row px-2 py-4 justify-content-center text-uppercase fw-bold" id="header2">
-      <div class="col-auto text-center py-2 mx-3"><a href="index.html">Consultas</a></div>
-      <div class="col-auto text-center py-2 mx-3"><a href="login.html">Perfil</a></div>
-      <div class="col-auto text-center py-2 mx-3"><a href="loginAdmin.html">Administración</a></div>
+    <div class="row px-2 py-3 justify-content-center text-uppercase fw-bold" id="header2">
+      <a href="index.html"class="col-auto text-center py-2 mx-3">Consultas</a>
+      <a href="login.html"class="col-auto text-center py-2 mx-3">Perfil</a>
+      <a href="loginAdmin.html"class="col-auto text-center py-2 mx-3">Administración</a>
     </div>
     
-    <div class="row mb-5" style="min-height: 614px;">
+    <!-- F I L T R O S -->
+    <form action="" method="get">
+      <div class="row my-4"><h2 class="text-center">Filtrar Por:</h2></div>
+      <div class="row justify-content-center mb-4">
 
-      <!-- M E N U -->
-      <div class="row justify-content-center">
-        <div class="col-4">
-          <form action="" class="px-3 pt-4 pb-5">
-            <h2 class="text-center mb-4">Filtrar Por:</h2>
-            <!-- TXT Titulo -->
-            <div class="row mb-2">
-              <div class="col-3 pt-1"><label for="tituloLibro">Título:</label></div>
-              <div class="col"><input type="text" class="form-control" id="tituloLibro"></div>
-            </div>
-            <!-- TXT Autor -->
-            <div class="row mb-2">
-              <div class="col-3 pt-1"><label for="autorLibro">Autor:</label></div>
-              <div class="col"><input type="text" class="form-control" id="autorLibro"></div>
-            </div>
-            <!-- COMBO Materia -->
-            <div class="row mb-2">
-              <div class="col-3 pt-1"><label for="materiaLibro">Materia:</label></div>
-              <div class="col">
-                <select class="form-select" id="materiaLibro" aria-label="Default select example">
-                  <option selected>-- Selecciona una Materia --</option>
-                  <option value="1">Informática</option>
-                  <option value="2">Economía</option>
-                  <option value="3">Automoción</option>
-                </select>
-              </div>
-            </div>
-            
-            <!-- COMBO Departamento -->
-            <div class="row mb-2">
-              <div class="col-3 pt-1"><label for="departLibro">Departamento:</label></div>
-              <div class="col">
-                <select class="form-select" id="departLibro" aria-label="Default select example">
-                  <option selected>-- Selecciona un Departamento --</option>
-                  <option value="1">Electricidad y Electrónica</option>
-                  <option value="2">Instalación y Mantenimiento</option>
-                  <option value="3">Imagen y Sonido</option>
-                  <option value="4">Informática y Comunicaciones</option>
-                  <option value="5">Hostelería y Turismo</option>
-                  <option value="6">Agraria</option>
-                  <option value="7">Idiomas</option>
-                  <option value="8">Información y Orientación Profesional</option>
-                  <option value="9">Orientación Educativa</option>
-                </select>
-              </div>
-            </div>
-            
-            <!-- TXT ISBN -->
-            <div class="row mb-2">
-              <div class="col-3 pt-1"><label for="isbnLibro">ISBN:</label></div>
-              <div class="col"><input type="text" class="form-control" id="isbnLibro"></div>
-            </div>
-            <!-- TXT Editorial -->
-            <div class="row mb-2">
-              <div class="col-3 pt-1"><label for="editorialLibro">Editorial:</label></div>
-              <div class="col"><input type="text" class="form-control" id="editorialLibro"></div>
-            </div>
-            <!-- NUMBER Año Edición -->
-            <div class="row mb-2">
-              <div class="col-3 pt-1"><label for="anioLibro">Año:</label></div>
-              <div class="col"><input type="number" class="form-control" id="anioLibro" min="0" max="2023"></div>
-            </div>
-          </form>
+        <!-- TEXTOS -->
+        <div class="col-4 px-3">
+          <!-- TXT Titulo -->
+          <div class="row mb-2">
+            <div class="col-3 pt-1"><label for="tituloLibro">Título:</label></div>
+            <div class="col"><input type="text" class="form-control" id="tituloLibro"></div>
+          </div>
+          <!-- TXT Autor -->
+          <div class="row mb-2">
+            <div class="col-3 pt-1"><label for="autorLibro">Autor:</label></div>
+            <div class="col"><input type="text" class="form-control" id="autorLibro"></div>
+          </div>
+          <!-- TXT ISBN -->
+          <div class="row mb-2">
+            <div class="col-3 pt-1"><label for="isbnLibro">ISBN:</label></div>
+            <div class="col"><input type="text" class="form-control" id="isbnLibro"></div>
+          </div>
+          <!-- TXT Editorial -->
+          <div class="row mb-2">
+            <div class="col-3 pt-1"><label for="editorialLibro">Editorial:</label></div>
+            <div class="col"><input type="text" class="form-control" id="editorialLibro"></div>
+          </div>
+          <!-- NUMBER Año Edición -->
+          <div class="row mb-2">
+            <div class="col-3 pt-1"><label for="anioLibro">Año:</label></div>
+            <div class="col"><input type="number" class="form-control" id="anioLibro" min="0" max="2023"></div>
+          </div>
         </div>
-        <!-- Botón Buscar -->
-        <div class="col-4 d-flex align-items-center justify-content-center">
-          <a href="#resultados" class="w-50"><button type="button" class="btn btn-primary btn-lg w-100">Buscar</button></a>
-        </div>
-      </div>
 
-      <!-- M A I N -->
-      <div class="row px-4" id="resultados">
-        <table class="table table-hover">
-          <thead>
-            <tr>
-              <th>Título</th>
-              <th>ISBN</th>
-              <th>Autores</th>
-              <th>Materia</th>
-              <th>Departamento</th>
-              <th>Centro</th>
-              <th>Editorial</th>
-              <th>Año</th>
-              <th>Estado</th>
-              <th>Disponibilidad</th>
-              <th>Reserva</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="align-middle">
-              <td>CURSO DE PHP 8 Y MYSQL 8</td>
-              <td>9788441543720</td>
-              <td>LUIS MIGUEL CABEZAS GRANADO, FRANCISCO JOSE GONZALEZ LOZANO</td>
-              <td>Servidores</td>
-              <td>Informática y Comunicaciones</td>
-              <td>CIFP Nº1</td>
-              <td>ANAYA MULTIMEDIA</td>
-              <td>2021</td>
-              <td>Bueno</td>
-              <td>Alumnos y Profesores</td>
-              <td><button type="button" class="btn btn-primary">Reservar</button></td>
-            </tr>
-            <tr class="align-middle">
-              <td>CURSO DE PHP 8 Y MYSQL 8</td>
-              <td>9788441543720</td>
-              <td>LUIS MIGUEL CABEZAS GRANADO, FRANCISCO JOSE GONZALEZ LOZANO</td>
-              <td>Servidores</td>
-              <td>Informática y Comunicaciones</td>
-              <td>CIFP Nº1</td>
-              <td>ANAYA MULTIMEDIA</td>
-              <td>2021</td>
-              <td>Bueno</td>
-              <td>Alumnos y Profesores</td>
-              <td><button type="button" class="btn btn-primary">Reservar</button></td>
-            </tr>
-            <tr class="align-middle">
-              <td>CURSO DE PHP 8 Y MYSQL 8</td>
-              <td>9788441543720</td>
-              <td>LUIS MIGUEL CABEZAS GRANADO, FRANCISCO JOSE GONZALEZ LOZANO</td>
-              <td>Servidores</td>
-              <td>Informática y Comunicaciones</td>
-              <td>CIFP Nº1</td>
-              <td>ANAYA MULTIMEDIA</td>
-              <td>2021</td>
-              <td>Bueno</td>
-              <td>Alumnos y Profesores</td>
-              <td><button type="button" class="btn btn-primary">Reservar</button></td>
-            </tr>
-            <tr class="align-middle">
-              <td>CURSO DE PHP 8 Y MYSQL 8</td>
-              <td>9788441543720</td>
-              <td>LUIS MIGUEL CABEZAS GRANADO, FRANCISCO JOSE GONZALEZ LOZANO</td>
-              <td>Servidores</td>
-              <td>Informática y Comunicaciones</td>
-              <td>CIFP Nº1</td>
-              <td>ANAYA MULTIMEDIA</td>
-              <td>2021</td>
-              <td>Bueno</td>
-              <td>Alumnos y Profesores</td>
-              <td><button type="button" class="btn btn-primary">Reservar</button></td>
-            </tr>
-            <tr class="align-middle">
-              <td>CURSO DE PHP 8 Y MYSQL 8</td>
-              <td>9788441543720</td>
-              <td>LUIS MIGUEL CABEZAS GRANADO, FRANCISCO JOSE GONZALEZ LOZANO</td>
-              <td>Servidores</td>
-              <td>Informática y Comunicaciones</td>
-              <td>CIFP Nº1</td>
-              <td>ANAYA MULTIMEDIA</td>
-              <td>2021</td>
-              <td>Bueno</td>
-              <td>Alumnos y Profesores</td>
-              <td><button type="button" class="btn btn-primary">Reservar</button></td>
-            </tr>
-            <tr class="align-middle">
-              <td>CURSO DE PHP 8 Y MYSQL 8</td>
-              <td>9788441543720</td>
-              <td>LUIS MIGUEL CABEZAS GRANADO, FRANCISCO JOSE GONZALEZ LOZANO</td>
-              <td>Servidores</td>
-              <td>Informática y Comunicaciones</td>
-              <td>CIFP Nº1</td>
-              <td>ANAYA MULTIMEDIA</td>
-              <td>2021</td>
-              <td>Bueno</td>
-              <td>Alumnos y Profesores</td>
-              <td><button type="button" class="btn btn-primary">Reservar</button></td>
-            </tr>
-            <tr class="align-middle">
-              <td>CURSO DE PHP 8 Y MYSQL 8</td>
-              <td>9788441543720</td>
-              <td>LUIS MIGUEL CABEZAS GRANADO, FRANCISCO JOSE GONZALEZ LOZANO</td>
-              <td>Servidores</td>
-              <td>Informática y Comunicaciones</td>
-              <td>CIFP Nº1</td>
-              <td>ANAYA MULTIMEDIA</td>
-              <td>2021</td>
-              <td>Bueno</td>
-              <td>Alumnos y Profesores</td>
-              <td><button type="button" class="btn btn-primary">Reservar</button></td>
-            </tr>
-          </tbody>
-        </table>
+        <!-- COMBOS -->
+        <div class="col-4 px-3">
+          <!-- COMBO Materia -->
+          <div class="row mb-2">
+            <div class="col-3 pt-1"><label for="materiaLibro">Materia:</label></div>
+            <div class="col">
+              <select class="form-select" id="materiaLibro" aria-label="Default select example">
+                <option selected>-- Selecciona una Materia --</option>
+                <option value="1">Informática</option>
+                <option value="2">Economía</option>
+                <option value="3">Automoción</option>
+              </select>
+            </div>
+          </div>
+          <!-- COMBO Departamento -->
+          <div class="row mb-2">
+            <div class="col-3 pt-1"><label for="departLibro">Departamento:</label></div>
+            <div class="col">
+              <select class="form-select" id="departLibro" aria-label="Default select example">
+                <option selected>-- Selecciona un Departamento --</option>
+                <option value="1">Electricidad y Electrónica</option>
+                <option value="2">Instalación y Mantenimiento</option>
+                <option value="3">Imagen y Sonido</option>
+                <option value="4">Informática y Comunicaciones</option>
+                <option value="5">Hostelería y Turismo</option>
+                <option value="6">Agraria</option>
+                <option value="7">Idiomas</option>
+                <option value="8">Información y Orientación Profesional</option>
+                <option value="9">Orientación Educativa</option>
+              </select>
+            </div>
+          </div>
+          <!-- COMBO Centro -->
+          <div class="row mb-2">
+            <div class="col-3 pt-1"><label for="centroLibro">Centro:</label></div>
+            <div class="col">
+              <select class="form-select" id="centroLibro" aria-label="Default select example">
+                <option selected>-- Selecciona un Centro --</option>
+                <option value="1">CIFP Nº1</option>
+                <option value="2">Albaladejito</option>
+                <option value="3">Pedro Mercedes</option>
+              </select>
+            </div>
+          </div>
+          <!-- COMBO Disponibilidad -->
+          <div class="row mb-2">
+            <div class="col-3 pt-1"><label for="disponibLibro">Disponibilidad:</label></div>
+            <div class="col">
+              <select class="form-select" id="disponibLibro" aria-label="Default select example">
+                <option selected>-- Selecciona Disponibilidad --</option>
+                <option value="1">Alumnos</option>
+                <option value="2">Profesores</option>
+                <option value="3">Solo Consulta</option>
+              </select>
+            </div>
+          </div>
+          <!-- COMBO Estado -->
+          <div class="row mb-2">
+            <div class="col-3 pt-1"><label for="estadoLibro">Estado Físico:</label></div>
+            <div class="col">
+              <select class="form-select" id="estadoLibro" aria-label="Default select example">
+                <option value="1" selected>Cualquiera</option>
+                <option value="2">Solo en Buen Estado</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <!-- BOTÓN BUSCAR -->
+        <div class="col-2 d-flex align-items-center justify-content-center">
+          <a href="#resultados" class="w-75"><button type="button" class="btn btn-primary btn-lg w-100">Buscar</button></a>
+        </div>
       </div>
-      <div class="row">
-        <nav aria-label="Page navigation example">
-          <ul class="pagination justify-content-center">
-            <li class="page-item disabled">
-              <a class="page-link">&lt;&lt;</a>
-            </li>
-            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#">&gt;&gt;</a>
-            </li>
-          </ul>
-        </nav>
-      </div>
+    </form>
+
+    <hr>
+
+    <!-- M A I N -->
+    <div class="row px-4" id="resultados">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Título</th>
+            <th>ISBN</th>
+            <th>Autores</th>
+            <th>Materia</th>
+            <th>Departamento</th>
+            <th>Centro</th>
+            <th>Editorial</th>
+            <th>Año</th>
+            <th>Estado</th>
+            <th>Disponibilidad</th>
+            <th>Reserva</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="align-middle">
+            <td>CURSO DE PHP 8 Y MYSQL 8</td>
+            <td>9788441543720</td>
+            <td>LUIS MIGUEL CABEZAS GRANADO, FRANCISCO JOSE GONZALEZ LOZANO</td>
+            <td>Servidores</td>
+            <td>Informática y Comunicaciones</td>
+            <td>CIFP Nº1</td>
+            <td>ANAYA MULTIMEDIA</td>
+            <td>2021</td>
+            <td>Bueno</td>
+            <td>Alumnos y Profesores</td>
+            <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalReserva">Reservar</button></td>
+          </tr>
+          <tr class="align-middle">
+            <td>CURSO DE PHP 8 Y MYSQL 8</td>
+            <td>9788441543720</td>
+            <td>LUIS MIGUEL CABEZAS GRANADO, FRANCISCO JOSE GONZALEZ LOZANO</td>
+            <td>Servidores</td>
+            <td>Informática y Comunicaciones</td>
+            <td>CIFP Nº1</td>
+            <td>ANAYA MULTIMEDIA</td>
+            <td>2021</td>
+            <td>Bueno</td>
+            <td>Alumnos y Profesores</td>
+            <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalReserva">Reservar</button></td>
+          </tr>
+          <tr class="align-middle">
+            <td>CURSO DE PHP 8 Y MYSQL 8</td>
+            <td>9788441543720</td>
+            <td>LUIS MIGUEL CABEZAS GRANADO, FRANCISCO JOSE GONZALEZ LOZANO</td>
+            <td>Servidores</td>
+            <td>Informática y Comunicaciones</td>
+            <td>CIFP Nº1</td>
+            <td>ANAYA MULTIMEDIA</td>
+            <td>2021</td>
+            <td>Bueno</td>
+            <td>Alumnos y Profesores</td>
+            <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalReserva">Reservar</button></td>
+          </tr>
+          <tr class="align-middle">
+            <td>CURSO DE PHP 8 Y MYSQL 8</td>
+            <td>9788441543720</td>
+            <td>LUIS MIGUEL CABEZAS GRANADO, FRANCISCO JOSE GONZALEZ LOZANO</td>
+            <td>Servidores</td>
+            <td>Informática y Comunicaciones</td>
+            <td>CIFP Nº1</td>
+            <td>ANAYA MULTIMEDIA</td>
+            <td>2021</td>
+            <td>Bueno</td>
+            <td>Alumnos y Profesores</td>
+            <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalReserva">Reservar</button></td>
+          </tr>
+          <tr class="align-middle">
+            <td>CURSO DE PHP 8 Y MYSQL 8</td>
+            <td>9788441543720</td>
+            <td>LUIS MIGUEL CABEZAS GRANADO, FRANCISCO JOSE GONZALEZ LOZANO</td>
+            <td>Servidores</td>
+            <td>Informática y Comunicaciones</td>
+            <td>CIFP Nº1</td>
+            <td>ANAYA MULTIMEDIA</td>
+            <td>2021</td>
+            <td>Bueno</td>
+            <td>Alumnos y Profesores</td>
+            <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalReserva">Reservar</button></td>
+          </tr>
+          <tr class="align-middle">
+            <td>CURSO DE PHP 8 Y MYSQL 8</td>
+            <td>9788441543720</td>
+            <td>LUIS MIGUEL CABEZAS GRANADO, FRANCISCO JOSE GONZALEZ LOZANO</td>
+            <td>Servidores</td>
+            <td>Informática y Comunicaciones</td>
+            <td>CIFP Nº1</td>
+            <td>ANAYA MULTIMEDIA</td>
+            <td>2021</td>
+            <td>Bueno</td>
+            <td>Alumnos y Profesores</td>
+            <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalReserva">Reservar</button></td>
+          </tr>
+          <tr class="align-middle">
+            <td>CURSO DE PHP 8 Y MYSQL 8</td>
+            <td>9788441543720</td>
+            <td>LUIS MIGUEL CABEZAS GRANADO, FRANCISCO JOSE GONZALEZ LOZANO</td>
+            <td>Servidores</td>
+            <td>Informática y Comunicaciones</td>
+            <td>CIFP Nº1</td>
+            <td>ANAYA MULTIMEDIA</td>
+            <td>2021</td>
+            <td>Bueno</td>
+            <td>Alumnos y Profesores</td>
+            <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalReserva">Reservar</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- Paginación -->
+    <div class="row mb-4">
+      <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+          <li class="page-item disabled">
+            <a class="page-link">&lt;&lt;</a>
+          </li>
+          <li class="page-item active"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#">&gt;&gt;</a>
+          </li>
+        </ul>
+      </nav>
     </div>
     
     <!-- F O O T E R -->
@@ -267,6 +305,44 @@
       </div>
     </div>
   </div>
+
+  <!-- MODAL RESERVA -->
+  <div class="modal fade" id="modalReserva" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">RESERVAR ESTE LIBRO</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col px-3 border-end">
+              <p><b>Título</b>: CURSO DE PHP 8 Y MYSQL 8</p>
+              <p><b>Autores</b>: LUIS MIGUEL CABEZAS GRANADO, FRANCISCO JOSE GONZALEZ LOZANO</p>
+              <p><b>Materia</b>: Servidores</p>
+              <p><b>Departamento</b>: Informática y Comunicaciones</p>
+              <p><b>Centro</b>: CIFP Nº1</p>
+              <p><b>ISBN</b>: 9788441543720</p>
+              <p><b>Editorial</b>: ANAYA MULTIMEDIA</p>
+              <p><b>Año</b>: 2021</p>
+              <p><b>Estado</b>: Bueno</p>
+              <p><b>Disponibilidad</b>: Alumnos y Profesores</p>
+            </div>
+            <div class="col px-3 text-center">
+              <h3 class="mb-4">Fecha Máxima de Recogida:</h3>
+              <p class="mb-5"><b>28/02/2023</b></p>
+              <p class="mt-5"><b>Si estás seguro/a de que deseas reservar haz clic en "Reservar" y podrás recoger tu ejemplar en el centro correspondiente antes de la fecha máxima indicada.</b></p>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Reservar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>
 </html>
