@@ -9,13 +9,13 @@ FILTROS:
  - Artist: TopTags, TopAlbums, TopTracks
  - Tag: TopAlbums, TopArtists, TopTracks
  - Track: TopTags
- - Año (FechaLanz): TopAlbums (Crear), TopArtist (Crear), TopTags(Crear), TopTracks(Crear)
+ - Año (FechaLanz): TopAlbums (Crear), TopArtists (Crear), TopTags(Crear), TopTracks(Crear)
 
 ORDENACIÓN:
  - FechaLanz: Albums
  - Listeners/Plays: Albums, Artists, Tracks
  - Reach/Taggings: Tags
- - Duración: Tracks
+ - Duración: Tracks, Albums (Crear)
 
 
 API DE WIKIPEDIA (https://en.wikipedia.org/w/api.php)
@@ -35,4 +35,5 @@ Obtener Imagen de una Página
 3) Buscas el primer "//upload.wikimedia.org/wikipedia/commons/thumb/" hasta su primera extensión y lo almacenas
 4) A la url le eliminas "thumb/" y ya se puede mostrar
 
+Ayuda: https://parzibyte.me/blog/2018/03/26/consumiendo-api-wikipedia-http/
 Ayuda: http://itfreekzone.blogspot.com/2013/12/obtener-informacion-de-wikipedia-traves.html

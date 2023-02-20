@@ -28,71 +28,71 @@
       <!-- Elementos -->
       <div class="col-4 text-center">
         <h2 class="mb-4">¿Qué quieres buscar?</h2>
-        <div class="btn-group-vertical btn-group-lg" role="group" aria-label="Vertical radio toggle button group">
-          <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio1" autocomplete="off">
-          <label class="btn btn-outline-primary" for="vbtn-radio1">Álbumes</label>
-          <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio2" autocomplete="off">
-          <label class="btn btn-outline-primary" for="vbtn-radio2">Artistas</label>
-          <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio3" autocomplete="off">
-          <label class="btn btn-outline-primary" for="vbtn-radio3">Géneros</label>
-          <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio4" autocomplete="off">
-          <label class="btn btn-outline-primary" for="vbtn-radio4">Canciones</label>
+        <div class="btn-group-vertical btn-group-lg" id="elementosBusqueda" role="group" aria-label="Vertical radio toggle button group">
+          <input type="radio" class="btn-check" name="radio" id="albumes" autocomplete="off">
+          <label class="btn btn-outline-primary" for="albumes">Álbumes</label>
+          <input type="radio" class="btn-check" name="radio" id="artistas" autocomplete="off">
+          <label class="btn btn-outline-primary" for="artistas">Artistas</label>
+          <input type="radio" class="btn-check" name="radio" id="generos" autocomplete="off">
+          <label class="btn btn-outline-primary" for="generos">Géneros</label>
+          <input type="radio" class="btn-check" name="radio" id="canciones" autocomplete="off">
+          <label class="btn btn-outline-primary" for="canciones">Canciones</label>
         </div>
       </div>
       <!-- Filtros -->
       <div class="col-4 text-center">
         <h2 class="mb-4">Sólo los relacionados con:</h2>
         <div class="input-group mb-2">
-          <span class="input-group-text" id="basic-addon1">Álbum</span>
-          <input type="text" class="form-control" aria-describedby="basic-addon1">
+          <span class="input-group-text" id="filtroAlbum">Álbum</span>
+          <input type="text" class="form-control" aria-describedby="filtroAlbum">
         </div>
         <div class="input-group mb-2">
-          <span class="input-group-text" id="basic-addon2">Artista</span>
-          <input type="text" class="form-control" aria-describedby="basic-addon2">
+          <span class="input-group-text" id="filtroArtista">Artista</span>
+          <input type="text" class="form-control" aria-describedby="filtroArtista">
         </div>
         <div class="input-group mb-2">
-          <span class="input-group-text" id="basic-addon3">Género</span>
-          <input type="text" class="form-control" aria-describedby="basic-addon3">
+          <span class="input-group-text" id="filtroGenero">Género</span>
+          <input type="text" class="form-control" aria-describedby="filtroGenero">
         </div>
         <div class="input-group mb-2">
-          <span class="input-group-text" id="basic-addon4">Canción</span>
-          <input type="text" class="form-control" aria-describedby="basic-addon4">
+          <span class="input-group-text" id="filtroCancion">Canción</span>
+          <input type="text" class="form-control" aria-describedby="filtroCancion">
         </div>
         <div class="input-group mb-2">
-          <span class="input-group-text" id="basic-addon5">Año</span>
-          <input type="number" class="form-control" aria-describedby="basic-addon5" min="1920" max="2023">
+          <span class="input-group-text" id="filtroAnio">Año</span>
+          <input type="number" class="form-control" aria-describedby="filtroAnio" min="1920" max="2023">
         </div>
       </div>
       <!-- Ordenación -->
       <div class="col-4 text-center">
         <h2 class="mb-4">Ordenados por:</h2>
         <div class="btn-group-vertical" role="group" aria-label="Vertical radio toggle button group">
-          <input type="radio" class="btn-check" name="vbtn-radio2" id="vbtn-radio5" autocomplete="off">
-          <label class="btn btn-outline-primary" for="vbtn-radio5">Fecha de Lanzamiento</label>
-          <input type="radio" class="btn-check" name="vbtn-radio2" id="vbtn-radio6" autocomplete="off">
-          <label class="btn btn-outline-primary" for="vbtn-radio6">Oyentes</label>
-          <input type="radio" class="btn-check" name="vbtn-radio2" id="vbtn-radio7" autocomplete="off">
-          <label class="btn btn-outline-primary" for="vbtn-radio7">Reproducciones</label>
-          <input type="radio" class="btn-check" name="vbtn-radio2" id="vbtn-radio8" autocomplete="off">
-          <label class="btn btn-outline-primary" for="vbtn-radio8">Reach</label>
-          <input type="radio" class="btn-check" name="vbtn-radio2" id="vbtn-radio9" autocomplete="off">
-          <label class="btn btn-outline-primary" for="vbtn-radio9">Taggings</label>
-          <input type="radio" class="btn-check" name="vbtn-radio2" id="vbtn-radio10" autocomplete="off">
-          <label class="btn btn-outline-primary" for="vbtn-radio10">Duración</label>
+          <input type="radio" class="btn-check" name="ordenacion" id="fechaLanz" autocomplete="off">
+          <label class="btn btn-outline-primary" for="fechaLanz">Fecha de Lanzamiento</label>
+          <input type="radio" class="btn-check" name="ordenacion" id="oyentes" autocomplete="off">
+          <label class="btn btn-outline-primary" for="oyentes">Oyentes</label>
+          <input type="radio" class="btn-check" name="ordenacion" id="reprod" autocomplete="off">
+          <label class="btn btn-outline-primary" for="reprod">Reproducciones</label>
+          <input type="radio" class="btn-check" name="ordenacion" id="reach" autocomplete="off">
+          <label class="btn btn-outline-primary" for="reach">Reach</label>
+          <input type="radio" class="btn-check" name="ordenacion" id="taggings" autocomplete="off">
+          <label class="btn btn-outline-primary" for="taggings">Taggings</label>
+          <input type="radio" class="btn-check" name="ordenacion" id="duracion" autocomplete="off">
+          <label class="btn btn-outline-primary" for="duracion">Duración</label>
         </div>
       </div>
     </div>
 
     <!-- BOTÓN BUSCAR -->
     <div class="row justify-content-center my-5">
-      <button type="button" class="btn btn-primary btn-lg w-50">Buscar</button>
+      <button type="button" class="btn btn-primary btn-lg w-50" id="botonBuscar">Buscar</button>
     </div>
 
     <!-- RESULTADOS -->
-    <div class="row mx-5">
+    <div class="row mx-5" id="resultList">
 
       <!-- Albums -->
-      <div class="row row-cols-1 row-cols-md-3 g-4">
+      <!-- <div class="row row-cols-1 row-cols-md-3 g-4">
         <div class="col">
           <div class="card h-100 text-center">
             <img src="./AshesoftheWake.jpg" class="card-img-top" alt="...">
@@ -147,72 +147,13 @@
             </div>
           </div>
         </div>
-      </div>
-
-      <!-- Artist -->
-      <div class="row row-cols-1 row-cols-md-3 g-4">
-        <div class="col">
-          <div class="card h-100 text-center">
-            <img src="https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png#2a96cbd8b46e442fc41c2b86b821562f" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h4 class="card-title mb-3"><a href="https://www.last.fm/music/Megadeth">Megadeth</a></h4>
-              <div><b>Oyentes</b>: 1706736</div>
-              <div><b>Reproducciones</b>: 122179979</div>
-              <div class="mt-3"><b>Géneros Asociados</b>:</div>
-              <div class="row justify-content-evenly my-3">
-                <div class="col-auto"><a href="https://www.last.fm/tag/thrash+metal">thrash metal</a></div>
-                <div class="col-auto"><a href="https://www.last.fm/tag/heavy+metal">heavy metal</a></div>
-                <div class="col-auto"><a href="https://www.last.fm/tag/metal">metal</a></div>
-              </div>
-              <div><b>Descripción</b>:</div>
-              <div>
-                <p>Megadeth is an American thrash metal band formed in Los Angeles in 1983 by vocalist/guitarist Dave Mustaine. Known for their technically complex guitar work and musicianship, Megadeth is one of the \"big four\" of American thrash metal along with Metallica, Anthrax, and Slayer, responsible for the genre's development and popularization. Their music features complex arrangements and fast rhythm sections, dual lead guitars, and lyrical themes of war, politics, religion, death, and personal relationships. <a href="https://www.last.fm/music/Megadeth">Read more on Last.fm</a></p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card h-100 text-center">
-            <img src="./AshesoftheWake.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h4 class="card-title"><a href="#">Ashes of The Wake</a></h4>
-              <h5><a href="#">Lamb of God</a></h5>
-              <div class="mb-3 mt-4"><b>Lanzamiento</b>: 6 Apr 1999</div>
-              <div><b>Oyentes</b>: 47602</div>
-              <div><b>Reproducciones</b>: 212991</div>
-              <div class="my-3"><b>Géneros Asociados</b>:</div>
-              <div class="row justify-content-evenly">
-                <div class="col-auto"><a href="#">Groove Metal</a></div>
-                <div class="col-auto"><a href="#">Thrash Metal</a></div>
-                <div class="col-auto"><a href="#">Metalcore</a></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card h-100 text-center">
-            <img src="./AshesoftheWake.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h4 class="card-title"><a href="#">Ashes of The Wake</a></h4>
-              <h5><a href="#">Lamb of God</a></h5>
-              <div class="mb-3 mt-4"><b>Lanzamiento</b>: 6 Apr 1999</div>
-              <div><b>Oyentes</b>: 47602</div>
-              <div><b>Reproducciones</b>: 212991</div>
-              <div class="my-3"><b>Géneros Asociados</b>:</div>
-              <div class="row justify-content-evenly">
-                <div class="col-auto"><a href="#">Groove Metal</a></div>
-                <div class="col-auto"><a href="#">Thrash Metal</a></div>
-                <div class="col-auto"><a href="#">Metalcore</a></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      </div> -->
 
     </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-  <script src="index.js"></script>
+  <script src="js/custom.js"></script>
+  <script src="js/index.js"></script>
 </body>
 </html>
