@@ -61,9 +61,9 @@
       <div class="col-3 my-4">
         <div class="shadow rounded py-4 px-3 text-center">
           <h2>Alumnos y Matrículas</h2><hr class="my-4">
-          <div><button type="button" class="btn btn-primary btn-lg mb-3" data-bs-toggle="modal" data-bs-target="#modalAltaIndAlumno">Alta Individual</button></div>
+          <div><button type="button" class="btn btn-primary btn-lg mb-3">Alta Individual</button></div>
           <div><button type="button" class="btn btn-primary btn-lg mb-3">Alta Masiva</button></div>
-          <div><button type="button" class="btn btn-primary btn-lg mb-3">Modificar/Dar de Baja</button></div>
+          <div><button type="button" class="btn btn-primary btn-lg mb-3" data-bs-toggle="modal" data-bs-target="#modalModifBaja">Modificar/Dar de Baja</button></div>
         </div>
       </div>
       <!-- Profesores -->
@@ -274,36 +274,71 @@
     </div>
   </div>
 
-  <!-- MODAL ALTA INDIVIDUAL ALUMNO -->
-  <div class="modal fade" id="modalAltaIndAlumno" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <!-- MODAL MODIFICAR/DAR DE BAJA -->
+  <div class="modal fade" id="modalModifBaja" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content">
 
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">DAR DE ALTA A UN ALUMNO</h1>
+          <h1 class="modal-title fs-5" id="exampleModalLabel">MODIFICAR O DAR DE BAJA ALUMNOS Y MATRÍCULAS</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
         <div class="modal-body">
-          <div class="row">
-            <div class="col px-3 border-end">
-              <p><b>Título</b>: CURSO DE PHP 8 Y MYSQL 8</p>
-              <p><b>Autores</b>: LUIS MIGUEL CABEZAS GRANADO, FRANCISCO JOSE GONZALEZ LOZANO</p>
-              <p><b>Materia</b>: Servidores</p>
-              <p><b>Departamento</b>: Informática y Comunicaciones</p>
-              <p><b>Centro</b>: CIFP Nº1</p>
-              <p><b>ISBN</b>: 9788441543720</p>
-              <p><b>Editorial</b>: ANAYA MULTIMEDIA</p>
-              <p><b>Año</b>: 2021</p>
-              <p><b>Estado</b>: Bueno</p>
-              <p><b>Disponibilidad</b>: Alumnos y Profesores</p>
-            </div>
-            <div class="col px-3 text-center">
-              <h3 class="mb-4">Nueva fecha de Devolución:</h3>
-              <p class="mt-5"><b>28/02/2023</b></p>
-              <p class="mt-5"><b>Si estás seguro/a de que deseas renovar éste préstamo haz clic en "Renovar"</b></p>
+          <div class="row justify-content-center mx-4">
+            <!-- Buscador -->
+            <div class="input-group mt-4 w-75">
+              <button class="btn btn-outline-primary dropdown-toggle" id="dropModifAlum" type="button" data-bs-toggle="dropdown" aria-expanded="false">Código</button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Código</a></li>
+                <li><a class="dropdown-item" href="#">DNI</a></li>
+                <li><a class="dropdown-item" href="#">NIE</a></li>
+                <li><a class="dropdown-item" href="#">Nombre Completo</a></li>
+              </ul>
+              <input type="text" class="form-control" id="txtModifAlum" placeholder="Dato de un Alumno" aria-label="Text input with dropdown button">
+              <button class="btn btn-outline-primary" type="button" id="buscarModifAlum">Buscar</button>
             </div>
           </div>
+          <h3 class="text-center mt-5">Información del Alumno</h3>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Apellidos</th>
+                <th>Nombre</th>
+                <th>Codigo</th>
+                <th>DNI</th>
+                <th>NIE</th>
+                <th>Borrar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="align-middle">
+                <td>Molina Sánchez-Cruzado</td>
+                <td>Mario</td>
+                <td>64783</td>
+                <td>12345678M</td>
+                <td>774883</td>
+                <td><button type="button" class="btn btn-primary">Borrar</button></td>
+              </tr>
+            </tbody>
+          </table>
+          <h3 class="text-center mt-5">Matrículas del Alumno</h3>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Estudios</th>
+                <th>Grupo</th>
+                <th>Borrar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="align-middle">
+                <td>Desarollo de Aplicaciones Web 2</td>
+                <td>DAW2</td>
+                <td><button type="button" class="btn btn-primary">Borrar</button></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
         <div class="modal-footer">
@@ -316,5 +351,6 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+  <script src="./js/jfk.js"></script>
 </body>
 </html>
