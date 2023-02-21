@@ -33,7 +33,7 @@
 		 'select'=>"Select * from ALUMNOS",
 		 'bind'=>"isssi"
 		],
-		['csv'=>$_SERVER['DOCUMENT_ROOT']."/Biblioteca/csv/AltaLibros.csv",
+		['csv'=>$_SERVER['DOCUMENT_ROOT']."/Biblioteca/csv/Libros1.csv",
 		 'create'=>"create table if not exists LIBROS (COD_LIBRO VARCHAR(16) PRIMARY KEY, TITULO VARCHAR(100) NOT NULL, AUTOR VARCHAR(100), MATERIA VARCHAR(30), EDITORIAL VARCHAR(25), A_EDICION VARCHAR(4), SOPORTE_M ENUM('SI','NO') DEFAULT 'NO', USUARIO ENUM('ALUMNO','PROFESOR','CONSULTA'), COD_DPTO VARCHAR(2) REFERENCES DEPARTAMENTOS(COD_DPTO), ESTADO ENUM('BUENO','MALO') DEFAULT 'BUENO')",
 		 'insert'=>"insert into LIBROS values(?,?,?,?,?,?,?,?,?,?)",
 		 'select'=>"Select * from LIBROS",
