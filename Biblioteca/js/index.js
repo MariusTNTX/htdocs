@@ -10,6 +10,8 @@ let disponibLibro = document.getElementById("disponibLibro");
 let estadoLibro = document.getElementById("estadoLibro");
 let buscarLibros = document.getElementById("buscarLibros");
 let tbody = document.getElementById("tbody");
+let loginAlumnos = document.getElementById("loginAlumnos");
+let loginProfesores = document.getElementById("loginProfesores");
 
 //BOTÓN BUSCAR
 buscarLibros.addEventListener("click",()=>{
@@ -32,17 +34,18 @@ async function getLibros(tit,aut,isbn,edi,anio,mat,dep,cen,dis,est){
   values = values.join('|');
 
   //Se obtiene el JSON de resultados:
-  console.log(`http://192.168.2.30/Biblioteca/php/api.php?select=libros&filters=${filters}&values=${values}`)
+  /* console.log(`http://192.168.2.30/Biblioteca/php/api.php?select=libros&filters=${filters}&values=${values}`) */
   let response = await fetch(`http://localhost/Biblioteca/php/api.php?select=libros&filters=${filters}&values=${values}`,{
     method: 'GET',
     headers: {'Content-Type': 'application/json'}
   });
   response = await response.json();
-  console.log(response);
+  /* console.log(response); */
 
   //Se imprimen los resultados en la tabla
   tbody.innerHTML = "";
   for(let res of response){
+    let disabled = (res.USUARIO=='CONSULTA') ? 'disabled' : '';
     tbody.innerHTML += `
     <tr class="align-middle">
       <td>${res.TITULO}</td>
@@ -55,7 +58,26 @@ async function getLibros(tit,aut,isbn,edi,anio,mat,dep,cen,dis,est){
       <td>${res.A_EDICION}</td>
       <td>${res.ESTADO}</td>
       <td>${res.USUARIO}</td>
-      <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalLogin">Reservar</button></td>
+      <td><button type="button" class="btn btn-primary btn-Reservar" data-bs-toggle="modal" ${disabled} data-bs-target="#modalLogin">Reservar</button></td>
     </tr>`
   }
+
+  //Se personaliza el login del modal según el usuario
+  for(let btn of document.querySelectorAll(".btn-Reservar")){
+    btn.addEventListener("click",(e)=>{
+      let usuario = e.currentTarget.parentElement.previousElementSibling.textContent;
+      console.log(usuario)
+      switch(usuario){
+        case 'ALUMNO': 
+          loginAlumnos.classList.remove("d-none");
+          loginProfesores.classList.add("d-none");
+          break;
+        case 'PROFESOR': 
+          loginAlumnos.classList.add("d-none");
+          loginProfesores.classList.remove("d-none");
+          break;
+      }
+    });
+  }
 }
+

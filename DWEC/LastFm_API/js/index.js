@@ -10,14 +10,8 @@ elementos.addEventListener("click",(e)=>{
     //Se habilitan solo las opciones correspondientes al elemento seleccionado
     for(let elm of relacElementos[elemento].filtrosTrue) elm.classList.remove("d-none");
     for(let elm of relacElementos[elemento].filtrosFalse) elm.classList.add("d-none");
-    for(let elm of relacElementos[elemento].ordenTrue){
-      elm.classList.remove("d-none");
-      elm.nextElementSibling.classList.remove("d-none");
-    }
-    for(let elm of relacElementos[elemento].ordenFalse){
-      elm.classList.add("d-none");
-      elm.nextElementSibling.classList.add("d-none");
-    }
+    for(let elm of relacElementos[elemento].ordenTrue) elm.classList.remove("d-none");
+    for(let elm of relacElementos[elemento].ordenFalse) elm.classList.add("d-none");
   }
 });
 
@@ -34,11 +28,16 @@ botonBuscar.addEventListener("click",()=>{
   }
 });
 
-/* CLICK SOBRE BOTONES MÁS INFO */
-let botonesInfo = document.querySelectorAll(".btnModalartist");
-for(let btn of botonesInfo){
-  btn.addEventListener("click",()=>{
-    //Se genera el modal correspondiente
-    //Se añade un listener a los botones X y cancelar para que se 
+/* CLICK SOBRE BOTONES FILTRAR, ORDENAR Y ORDEN */
+//Se cambia el contenido del drop según la opción seleccionada
+for (let dropli of document.querySelectorAll(".dropli")){
+  dropli.addEventListener("click",(e)=>{
+    let boton = e.currentTarget.parentElement.previousElementSibling, li = e.target;
+    if(li.textContent != 'Ninguno') boton.textContent = e.target.textContent;
+    else if(boton.id=='filtrarpor') boton.textContent = 'Filtrar por';
+    else if(boton.id=='ordenarpor') boton.textContent = 'Ordenar por';
   });
 }
+
+
+

@@ -20,7 +20,7 @@
     </div>
 
     <!-- Criterios de Búsqueda -->
-    <div class="row">
+    <div class="row mx-2">
       <!-- Elementos -->
       <div class="col-4 text-center">
         <h2 class="mb-4">¿Qué quieres buscar?</h2>
@@ -35,46 +35,39 @@
           <label class="btn btn-outline-primary" for="canciones">Canciones</label>
         </div>
       </div>
-      <!-- Filtros -->
-      <div class="col-4 text-center">
-        <h2 class="mb-4">Sólo los relacionados con:</h2>
-        <div class="input-group mb-2">
-          <span class="input-group-text" id="filtroAlbum">Álbum</span>
-          <input type="text" class="form-control" aria-describedby="filtroAlbum">
+      <!-- Filtros y Ordenación-->
+      <div class="col-8 text-center px-4">
+        <h2 class="mb-4">Reduce tu búsqueda:</h2>
+        <div class="input-group mb-3 w-100">
+          <button class="btn btn-outline-primary dropdown-toggle" id="filtrarpor" type="button" data-bs-toggle="dropdown" aria-expanded="false">Filtrar por</button>
+          <ul class="dropdown-menu">
+            <li class="dropli" id="filtroAlbum"><a class="dropdown-item" href="#">Álbum</a></li>
+            <li class="dropli" id="filtroArtista"><a class="dropdown-item" href="#">Artista</a></li>
+            <li class="dropli" id="filtroGenero"><a class="dropdown-item" href="#">Género</a></li>
+            <li class="dropli" id="filtroCancion"><a class="dropdown-item" href="#">Canción</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li class="dropli"><a class="dropdown-item" href="#">Ninguno</a></li>
+          </ul>
+          <input type="text" class="form-control" aria-label="Text input with dropdown button">
         </div>
-        <div class="input-group mb-2">
-          <span class="input-group-text" id="filtroArtista">Artista</span>
-          <input type="text" class="form-control" aria-describedby="filtroArtista">
-        </div>
-        <div class="input-group mb-2">
-          <span class="input-group-text" id="filtroGenero">Género</span>
-          <input type="text" class="form-control" aria-describedby="filtroGenero">
-        </div>
-        <div class="input-group mb-2">
-          <span class="input-group-text" id="filtroCancion">Canción</span>
-          <input type="text" class="form-control" aria-describedby="filtroCancion">
-        </div>
-        <div class="input-group mb-2">
-          <span class="input-group-text" id="filtroAnio">Año</span>
-          <input type="number" class="form-control" aria-describedby="filtroAnio" min="1920" max="2023">
-        </div>
-      </div>
-      <!-- Ordenación -->
-      <div class="col-4 text-center">
-        <h2 class="mb-4">Ordenados por:</h2>
-        <div class="btn-group-vertical" role="group" aria-label="Vertical radio toggle button group">
-          <input type="radio" class="btn-check" name="ordenacion" id="fechaLanz" autocomplete="off">
-          <label class="btn btn-outline-primary" for="fechaLanz">Fecha de Lanzamiento</label>
-          <input type="radio" class="btn-check" name="ordenacion" id="oyentes" autocomplete="off">
-          <label class="btn btn-outline-primary" for="oyentes">Oyentes</label>
-          <input type="radio" class="btn-check" name="ordenacion" id="reprod" autocomplete="off">
-          <label class="btn btn-outline-primary" for="reprod">Reproducciones</label>
-          <input type="radio" class="btn-check" name="ordenacion" id="reach" autocomplete="off">
-          <label class="btn btn-outline-primary" for="reach">Reach</label>
-          <input type="radio" class="btn-check" name="ordenacion" id="taggings" autocomplete="off">
-          <label class="btn btn-outline-primary" for="taggings">Taggings</label>
-          <input type="radio" class="btn-check" name="ordenacion" id="duracion" autocomplete="off">
-          <label class="btn btn-outline-primary" for="duracion">Duración</label>
+        <div class="input-group mb-3 w-100">
+          <button class="btn btn-outline-primary dropdown-toggle" id="ordenarpor" type="button" data-bs-toggle="dropdown" aria-expanded="false">Ordenar por</button>
+          <ul class="dropdown-menu">
+            <li class="dropli" id="fechaLanz"><a class="dropdown-item" href="#">Fecha de Lanzamiento</a></li>
+            <li class="dropli" id="oyentes"><a class="dropdown-item" href="#">Oyentes</a></li>
+            <li class="dropli" id="reprod"><a class="dropdown-item" href="#">Reproducciones</a></li>
+            <li class="dropli" id="reach"><a class="dropdown-item" href="#">Reach</a></li>
+            <li class="dropli" id="taggings"><a class="dropdown-item" href="#">Taggings</a></li>
+            <li class="dropli" id="duracion"><a class="dropdown-item" href="#">Duración</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li class="dropli"><a class="dropdown-item" href="#">Ninguno</a></li>
+          </ul>
+          <input type="text" class="form-control" aria-label="Text input with dropdown button">
+          <button class="btn btn-outline-primary dropdown-toggle" id="ascdesc" type="button" data-bs-toggle="dropdown" aria-expanded="false">Descendente</button>
+          <ul class="dropdown-menu">
+            <li class="dropli" id="ascendente"><a class="dropdown-item" href="#">Ascendente</a></li>
+            <li class="dropli" id="descendente"><a class="dropdown-item" href="#">Descendente</a></li>
+          </ul>
         </div>
       </div>
     </div>
@@ -157,7 +150,34 @@
     <div class="row bg-dark mt-5 py-3"></div>
   </div>
 
+  <!-- <div class="modal fade" id="The_Weeknd" aria-hidden="true" aria-labelledby="The_WeekndLabel" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="The_WeekndLabel">The Weeknd</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-5 border-end">
+              <div class="m-4">
+                <img class="mh-75 d-none" src="..." alt="...">
+                <div class="d-flex justify-content-center align-items-center">
+                  <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div clss="col-7"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+  <script src="elementos/artistCard.js"></script>
   <script src="js/custom.js"></script>
   <script src="js/index.js"></script>
 </body>
