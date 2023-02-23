@@ -213,29 +213,31 @@
           <h1>Paso 1: Identifícate</h1>
           <div class="row justify-content-center">
 
-            <div class="col-6 py-4 px-5 my-3" id="loginAlumnos">
+            <form class="col-6 py-4 px-5 my-3" id="loginAlumnos">
               <h2 class="text-center mb-5">Alumnos</h2>
               <div class="form-floating mb-3">
-                <input type="text" class="form-control campoLogin" id="dniAlumno" placeholder="DNI">
+                <input type="text" class="form-control campoLogin" id="dniAlumno" placeholder="DNI" required minlength="9" maxlength="9">
                 <label for="dniAlumno">DNI</label>
               </div>
               <div class="form-floating mb-3">
-                <input type="text" class="form-control campoLogin" id="nieAlumno" placeholder="NIE">
+                <input type="text" class="form-control campoLogin" id="nieAlumno" placeholder="NIE" required minlength="5" maxlength="8">
                 <label for="nieAlumno">NIE</label>
               </div>
-              <div class="text-center mt-5"><button type="button" class="btn btn-primary btn-lg btn-login" data-bs-toggle="modal" data-bs-target="#modalReserva">Iniciar Sesión</button></div>
-            </div>
+              <div class="text-center mt-5"><button type="submit" class="btn btn-primary btn-lg btn-login">Iniciar Sesión</button></div>
+              <input type="hidden" data-bs-toggle="modal" data-bs-target="#modalReserva">
+            </form>
       
             <div class="col-6 py-4 px-5 my-3" id="loginProfesores">
               <h2 class="text-center mb-5">Profesores</h2>
               <div class="form-floating mb-3">
-                <input type="text" class="form-control campoLogin" id="dniProfesor" placeholder="DNI">
+                <input type="text" class="form-control campoLogin" id="dniProfesor" placeholder="DNI" required minlength="9" maxlength="9">
                 <label for="dniProfesor">DNI</label>
               </div>
               <div class="form-floating mb-3 invisible">
                 <input type="text" class="form-control">
               </div>
-              <div class="text-center mt-5"><button type="button" class="btn btn-primary btn-lg btn-login" data-bs-toggle="modal" data-bs-target="#modalReserva">Iniciar Sesión</button></div>
+              <div class="text-center mt-5"><button type="button" class="btn btn-primary btn-lg btn-login">Iniciar Sesión</button></div>
+              <input type="hidden" data-bs-toggle="modal" data-bs-target="#modalReserva">
             </div>
 
           </div>
@@ -279,7 +281,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modalLogin">Volver</button>
+          <button type="button" class="btn btn-secondary" id="volverLogin" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modalLogin">Volver</button>
           <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Reservar</button>
         </div>
       </div>
