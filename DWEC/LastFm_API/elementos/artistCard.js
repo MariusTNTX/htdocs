@@ -1,13 +1,12 @@
 /* FUNCIÓN IMPRIMIR TARJETA ARTISTA */
 var printArtist = async function(linkBand,band,oyentes,reprod){
   /* Obtención de géneros y descripción */
-  var response = await fetch(`http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=${band}&api_key=5a29d744e8273ab4a877e9b59555b81e&format=json`);
-  response = await response.json();
-  response = response.artist;
-  //let url = await getImageURL(band);
+  var responseArt = await fetch(`http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=${band}&api_key=5a29d744e8273ab4a877e9b59555b81e&format=json`);
+  responseArt = await responseArt.json();
+  responseArt = responseArt.artist;
 
-  /* Devolución del Elemento */
-  let id = band.replaceAll(" ","_");
+  /* Inserción del Elemento */
+  let id = `a${oyentes}_${reprod}`; /* band.replaceAll(" ","_"); */
   let txt = `
   <div class="col my-4">
     <div class="card h-100 text-center shadow">
@@ -19,12 +18,12 @@ var printArtist = async function(linkBand,band,oyentes,reprod){
         <div><b>Reproducciones</b>: ${reprod}</div>
         <div class="mt-3"><b>Géneros Asociados</b>:</div>
         <div class="row justify-content-evenly my-3">`;
-          for(var tag of response.tags.tag) txt += `<div class="col-auto"><a href="${tag.url}" target="_blank">${tag.name}</a></div>`;
+          for(var tag of responseArt.tags.tag) txt += `<div class="col-auto"><a href="${tag.url}" target="_blank">${tag.name}</a></div>`;
         txt += `
         </div>
         <div><b>Descripción</b>:</div>
         <div>
-          <p>${response.bio.summary}</p>
+          <p>${responseArt.bio.summary}</p>
         </div>
       </div>
       <div class="card-footer text-center bg-white m-0 p-0">
@@ -67,25 +66,29 @@ var printArtist = async function(linkBand,band,oyentes,reprod){
       </div>
     </div>
   </div>`;
-  return txt;
+  resultList.innerHTML += txt;
+  /* Creación de Eventos */
+  document.getElementById(`btn_${id}`).addEventListener("click",()=>{
+
+  });
 }
 
 /* FUNCIÓN RECUPERAR IMAGEN ARTISTA */
 var getImageURL = async function(title){
   //Obtencion de PageId
-  var response = await fetch(`https://en.wikipedia.org/w/api.php?action=query&list=search&srprop=snippet&format=json&origin=*&utf8=&srsearch=${title}`);
-  response = await response.json();
-  let pageid = response.query.search[0].pageid;
+  var responseURL = await fetch(`https://en.wikipedia.org/w/api.php?action=query&list=search&srprop=snippet&format=json&origin=*&utf8=&srsearch=${title}`);
+  responseURL = await responseURL.json();
+  let pageid = responseURL.query.search[0].pageid;
   //Obtención de SRC
-  var response = await fetch(`https://en.wikipedia.org/w/api.php?format=json&action=query&origin=*&utf8&prop=revisions&rvprop=content&rvparse&pageids=${pageid}`);
-  response = await response.json();
-  response = response.query.pages[pageid].revisions[0]['*'];
+  var responseURL = await fetch(`https://en.wikipedia.org/w/api.php?format=json&action=query&origin=*&utf8&prop=revisions&rvprop=content&rvparse&pageids=${pageid}`);
+  responseURL = await responseURL.json();
+  responseURL = responseURL.query.pages[pageid].revisions[0]['*'];
   //Obtener primera posición de //upload
-  let p1 = response.indexOf("//upload.wikimedia.org/wikipedia/commons/thumb/");
+  let p1 = responseURL.indexOf("//upload.wikimedia.org/wikipedia/commons/thumb/");
   //Obtener primera posición de " desde la posición anterior
-  let p2 = response.indexOf("\"",p1);
+  let p2 = responseURL.indexOf("\"",p1);
   //Recortar y obtener la porción de string con esas posiciones
-  let url = response.substring(p1,p2);
+  let url = responseURL.substring(p1,p2);
   //Eliminar último fragmento
   url = url.substring(0,url.lastIndexOf("/"));
   //Eliminar thumb/ y Añadir https:

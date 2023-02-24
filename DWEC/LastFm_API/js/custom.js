@@ -3,76 +3,87 @@ let result = data.filter((item,index)=>{
   return data.indexOf(item) === index;
 }) */
 
-/* ELEMENTOS DEL DOM */
-var elementos = document.getElementById("elementosBusqueda");
+/* VARIABLES BÁSICAS */
 
-var filtrarpor = document.getElementById("filtrarpor");
-var filtroAlbum = document.getElementById("filtroAlbum");
-var filtroArtista = document.getElementById("filtroArtista");
-var filtroGenero = document.getElementById("filtroGenero");
-var filtroCancion = document.getElementById("filtroCancion");
+//Elemento contenedor de los resultados
+var resultList = document.getElementById("resultList");
+//Número de resultados mostrados y número máximo a mostrar en cada tramo del scroll
+var numResults = 0, maxResults = 12;
+//Response del fetch correspondiente
+var response;
 
-var ordenarpor = document.getElementById("ordenarpor");
-var fechaLanz = document.getElementById("fechaLanz");
-var oyentes = document.getElementById("oyentes");
-var reprod = document.getElementById("reprod");
-var reach = document.getElementById("reach");
-var taggings = document.getElementById("taggings");
-var duracion = document.getElementById("duracion");
-var ascdesc = document.getElementById("ascdesc");
 
-var botonBuscar = document.getElementById("botonBuscar");
+/* FUNCIÓN IMPRIMIR TOP DE ÁLBUMES */
+// chartTopTracks -> Mostrar solo Álbums eliminando los duplicados
+var chartTopAlbums = async function(general, orden, direc){}
 
-var relacElementos = {
-  albumes: {
-    filtrosTrue: [filtroArtista,filtroGenero],
-    filtrosFalse: [filtroAlbum,filtroCancion],
-    ordenTrue: [fechaLanz,oyentes,reprod,duracion],
-    ordenFalse: [reach,taggings]
-  },
-  artistas: {
-    filtrosTrue: [filtroGenero],
-    filtrosFalse: [filtroAlbum,filtroArtista,filtroCancion],
-    ordenTrue: [oyentes,reprod],
-    ordenFalse: [fechaLanz,reach,taggings,duracion]
-  },
-  generos: {
-    filtrosTrue: [filtroAlbum,filtroArtista,filtroCancion],
-    filtrosFalse: [filtroGenero],
-    ordenTrue: [reach,taggings],
-    ordenFalse: [fechaLanz,oyentes,reprod,duracion]
-  },
-  canciones: {
-    filtrosTrue: [filtroAlbum,filtroArtista,filtroGenero],
-    filtrosFalse: [filtroCancion],
-    ordenTrue: [oyentes,reprod,duracion],
-    ordenFalse: [fechaLanz,reach,taggings]
+/* FUNCIÓN IMPRIMIR ÁLBUMES DE UN ARTISTA*/
+var artistTopAlbums = async function(artista, orden, direc){}
+
+/* FUNCIÓN IMPRIMIR ÁLBUMES DE UN GÉNERO*/
+var tagTopAlbums = async function(genero, orden, direc){}
+
+/* FUNCIÓN IMPRIMIR TOP DE ARTISTAS */
+var chartTopArtists = async function(general, orden, direc){
+  //Sólo si no hay resultados se almacenan 100 resultados
+  if(numResults==0){
+    /* Definición del ResultList */
+    resultList.innerHTML = `<div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3 g-4"></div>`;
+    resultList = resultList.firstElementChild;
+    /* Obtención del JSON */
+    response = await fetch("http://ws.audioscrobbler.com/2.0/?method=chart.gettopartists&api_key=5a29d744e8273ab4a877e9b59555b81e&format=json&limit=100");
+    response = await response.json();
+    response = response.artists.artist;
+    console.log(response)
+    /* Aplicación de criterios de ordenación (si los hay) */
+    if(orden.length>0){
+      if(direc.length>0) var ret = (direc=='Descendente') ? 1 : -1;
+      response.sort((a, b) => {
+        if(parseInt(a[orden]) > parseInt(b[orden])) return -ret;
+        if(parseInt(a[orden]) < parseInt(b[orden])) return ret;
+        return 0;
+      });
+    }
   }
-}
-
-/* FUNCIÓN IMPRIMIR ARTISTAS */
-var printArtists = async function(){
-  /* ResultList */
-  var resultList = document.getElementById("resultList");
-  resultList.innerHTML = `<div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3 g-4"></div>`;
-  resultList = resultList.firstElementChild;
-  
-  /* Obtención del JSON TopArtist */
-  var response = await fetch("http://ws.audioscrobbler.com/2.0/?method=chart.gettopartists&api_key=5a29d744e8273ab4a877e9b59555b81e&format=json&limit=9");
-  response = await response.json();
-  response = response.artists.artist;
-
   /* Inserción de Etiquetas */
-  for(let art of response){
-    resultList.innerHTML += await printArtist(art.url,art.name,art.listeners,art.playcount);
-  }
-
-  /* Creación de Eventos */
-  for(let btn of document.querySelectorAll(".btnModalArtist")){
-    btn.addEventListener("click",(e)=>{
-      let id = e.target.id;
-      id = id.substring(4).replaceAll("_"," ");
-      
-    });
+  /* for(let art of response){
+    await printArtist(art.url,art.name,art.listeners,art.playcount);
+  } */
+  if(numResults < maxResults){
+    //Se añaden las etiquetas restantes sumando numResults hasta maxResults
+    for(let i = numResults; i < maxResults; i++){
+      await printArtist(response[i].url,response[i].name,response[i].listeners,response[i].playcount);
+    }
+    //Se actualiza numResults y se aumenta maxResults a +9 o a 100
+    numResults = maxResults;
+    maxResults = (maxResults+9 > 100) ? 100 : maxResults+9;
   }
 }
+
+/* FUNCIÓN IMPRIMIR ARTISTAS DE UN GÉNERO */
+var tagTopArtists = async function(genero, orden, direc){}
+
+/* FUNCIÓN IMPRIMIR TOP DE GÉNEROS */
+var chartTopTags = async function(general, orden, direc){}
+
+/* FUNCIÓN IMPRIMIR GÉNEROS DE UN ÁLBUMS */
+var albumTags = async function(album, orden, direc){}
+
+/* FUNCIÓN IMPRIMIR GÉNEROS DE UN ARTISTA */
+var artistTags = async function(artista, orden, direc){}
+
+/* FUNCIÓN IMPRIMIR GÉNEROS DE UNA CANCIÓN */
+var trackTags = async function(cancion, orden, direc){}
+
+/* FUNCIÓN IMPRIMIR TOP DE CANCIONES */
+var chartTopTracks = async function(general, orden, direc){}
+
+/* FUNCIÓN IMPRIMIR CANCIONES DE UN ÁLBUM */
+// albumInfo -> Mostrar solo Tracks
+var albumTracks = async function(album, orden, direc){}
+
+/* FUNCIÓN IMPRIMIR CANCIONES DE UN ARTISTA */
+var artistTopTracks = async function(artista, orden, direc){}
+
+/* FUNCIÓN IMPRIMIR CANCIONES DE UN GÉNERO */
+var tagTopTracks = async function(genero, orden, direc){}
