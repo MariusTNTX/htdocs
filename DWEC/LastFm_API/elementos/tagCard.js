@@ -1,22 +1,20 @@
 /* FUNCIÓN IMPRIMIR TARJETA ARTISTA */
-var printArtist = async function(linkBand,band,listeners='',playcount='',tags='',summary=''){
+var printTag = async function(linkTag,tag,reach='',taggings=''){
   /* Obtención de géneros y descripción (si no han sido facilitados) */
-  if(listeners==''){
-    var responseArt = await fetch(`http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=${band}&api_key=5a29d744e8273ab4a877e9b59555b81e&format=json`);
-    responseArt = await responseArt.json();
-    responseArt = responseArt.artist;
-    listeners = responseArt.stats.listeners;
-    playcount = responseArt.stats.playcount;
-    tags = responseArt.tags.tag;
-    summary = responseArt.bio.summary;
-    console.log(responseArt)
+  if(reach==''){
+    var responseTag = await fetch(`http://ws.audioscrobbler.com/2.0/?method=tag.getinfo&tag=${tag}&api_key=5a29d744e8273ab4a877e9b59555b81e&format=json`);
+    responseTag = await responseTag.json();
+    responseTag = responseTag.tag;
+    reach = responseTag.reach;
+    taggings = responseTag.total;
+    console.log(responseTag)
   }
 
   /* Generación del ID */
-  let id = `a${listeners}_${playcount}`;
+  let id = `t${reach}_${taggings}`;
 
   /* Inclusión de puntos a las cifras numéricas */
-  let cifra = [listeners,playcount]
+  let cifra = [reach,taggings]
   for(let i in cifra){
     let nuevo = '';
     while(cifra[i].length>0){
@@ -30,28 +28,19 @@ var printArtist = async function(linkBand,band,listeners='',playcount='',tags=''
     }
     cifra[i]=nuevo;
   }
-  listeners = cifra[0];
-  playcount = cifra[1];
+  reach = cifra[0];
+  taggings = cifra[1];
 
   /* Inserción del Elemento */
   let txt = `
   <div class="col my-4">
     <div class="card h-100 text-center shadow">
       <div class="card-header text-center bg-dark border-bottom border-primary border-5">
-        <h4 class="card-title"><a href="${linkBand}" target="_blank" class="text-white">${band}</a></h4>
+        <h4 class="card-title"><a href="${linkTag}" target="_blank" class="text-white">${tag}</a></h4>
       </div>
-      <div class="card-body pb-0">
-        <div><b>Oyentes</b>: ${listeners}</div>
-        <div><b>Reproducciones</b>: ${playcount}</div>
-        <div class="mt-3"><b>Géneros Asociados</b>:</div>
-        <div class="row justify-content-evenly my-3">`;
-          for(var tag of tags) txt += `<div class="col-auto"><a href="${tag.url}" target="_blank">${tag.name}</a></div>`;
-        txt += `
-        </div>
-        <div><b>Descripción</b>:</div>
-        <div>
-          <p>${summary}</p>
-        </div>
+      <div class="card-body pb-3">
+        <div><b>Alcance</b>: ${reach}</div>
+        <div><b>Etiquetados</b>: ${taggings}</div>
       </div>
       <div class="card-footer text-center bg-white m-0 p-0">
         <button class="btn btn-primary w-100 rounded-0 rounded-bottom btnModalArtist" id="btn_${id}" data-bs-toggle="modal" href="#${id}" role="button">Más Información</button>
@@ -63,7 +52,7 @@ var printArtist = async function(linkBand,band,listeners='',playcount='',tags=''
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="${id}Label">${band}</h1>
+          <h1 class="modal-title fs-5" id="${id}Label">${tag}</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -101,7 +90,7 @@ var printArtist = async function(linkBand,band,listeners='',playcount='',tags=''
   });
 }
 
-/* FUNCIÓN RECUPERAR IMAGEN ARTISTA */
+/* FUNCIÓN RECUPERAR IMAGEN TAG */
 var getImageURL = async function(title){
   //Obtencion de PageId
   var responseURL = await fetch(`https://en.wikipedia.org/w/api.php?action=query&list=search&srprop=snippet&format=json&origin=*&utf8=&srsearch=${title}`);
