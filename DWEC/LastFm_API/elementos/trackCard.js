@@ -1,20 +1,26 @@
 /* FUNCIÓN IMPRIMIR TARJETA ARTISTA */
-var printTag = async function(linkTag,tag,reach='',taggings='',summary=''){
+var printTrack = async function(linkTrack,track,listeners='',playcount='',linkArtist='', artist='', duration='', linkAlbum='', album='', tags='', summary=''){
   /* Obtención de géneros y descripción (si no han sido facilitados) */
-  if(reach==''){
-    var responseTag = await fetch(`http://ws.audioscrobbler.com/2.0/?method=tag.getinfo&tag=${tag}&api_key=5a29d744e8273ab4a877e9b59555b81e&format=json`);
-    responseTag = await responseTag.json();
-    responseTag = responseTag.tag;
-    reach = responseTag.reach;
-    taggings = responseTag.total;
-    console.log(responseTag)
+  if(listeners==''){
+    var responseTrack = await fetch(`http://ws.audioscrobbler.com/2.0/?method=track.getinfo&track=${track}&api_key=5a29d744e8273ab4a877e9b59555b81e&format=json`);
+    responseTrack = await responseTrack.json();
+    responseTrack = responseTrack.track;
+    listeners = responseTrack.listeners;
+    playcount = responseTrack.playcount;
+    console.log(responseTrack)
   }
 
   /* Generación del ID */
-  let id = `t${reach}_${taggings}`;
+  let id = `t${listeners}_${playcount}`;
+
+  /* Parseo de la duración */
+  let segundos = Math.floor(duration/1000);
+  let minutos = Math.floor(segundos/60);
+  segundos = segundos - minutos*60;
+  if(segundos<10) segundos = '0'+segundos;
 
   /* Inclusión de puntos a las cifras numéricas */
-  let cifra = [reach,taggings];
+  let cifra = [listeners,playcount];
   for(let i in cifra){
     let nuevo = '';
     while(cifra[i].length>0){
@@ -28,19 +34,27 @@ var printTag = async function(linkTag,tag,reach='',taggings='',summary=''){
     }
     cifra[i]=nuevo;
   }
-  reach = cifra[0];
-  taggings = cifra[1];
+  listeners = cifra[0];
+  playcount = cifra[1];
 
   /* Inserción del Elemento */
   let txt = `
   <div class="col my-4">
     <div class="card h-100 text-center shadow">
       <div class="card-header text-center bg-dark border-bottom border-primary border-5">
-        <h4 class="card-title"><a href="${linkTag}" target="_blank" class="text-white">${tag}</a></h4>
+        <h4 class="card-title"><a href="${linkTrack}" target="_blank" class="text-white">${track}</a></h4>
       </div>
       <div class="card-body pb-3">
-        <div><b>Alcance</b>: ${reach}</div>
-        <div><b>Etiquetados</b>: ${taggings}</div>
+        <div><b>Artista</b>: <a href="${linkArtist}" target="_blank">${artist}</a></div>
+        <div><b>Álbum</b>: <a href="${linkAlbum}" target="_blank">${album}</a></div>
+        <div><b>Escuchas</b>: ${listeners}</div>
+        <div><b>Reproducciones</b>: ${playcount}</div>
+        <div><b>Duración</b>: ${minutos+':'+segundos}</div>
+        <div class="mt-3"><b>Géneros Asociados</b>:</div>
+        <div class="row justify-content-evenly my-3">`;
+          for(var tag of tags) txt += `<div class="col-auto"><a href="${tag.url}" target="_blank">${tag.name}</a></div>`;
+        txt += `
+        </div>
         <div><b>Descripción</b>:</div>
         <div><p>${summary}</p></div>
       </div>
@@ -54,7 +68,7 @@ var printTag = async function(linkTag,tag,reach='',taggings='',summary=''){
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="${id}Label">${tag}</h1>
+          <h1 class="modal-title fs-5" id="${id}Label">${track}</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -92,7 +106,7 @@ var printTag = async function(linkTag,tag,reach='',taggings='',summary=''){
   });
 }
 
-/* FUNCIÓN RECUPERAR IMAGEN TAG */
+/* FUNCIÓN RECUPERAR IMAGEN track */
 var getImageURL = async function(title){
   //Obtencion de PageId
   var responseURL = await fetch(`https://en.wikipedia.org/w/api.php?action=query&list=search&srprop=snippet&format=json&origin=*&utf8=&srsearch=${title}`);

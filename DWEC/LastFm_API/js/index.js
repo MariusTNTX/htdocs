@@ -109,12 +109,12 @@ for (let dropli of document.querySelectorAll(".dropli")){
       sessionStorage.setItem("direcOrden",li.textContent);
       boton.textContent = li.textContent;
     } else if(boton.id=='filtrarpor'){
-      sessionStorage.removeItem("claveFiltro");
-      sessionStorage.removeItem("valorFiltro");
+      sessionStorage.setItem("claveFiltro","");
+      sessionStorage.setItem("valorFiltro","");
       boton.textContent = 'Filtrar por';
     } else if(boton.id=='ordenarpor'){
-      sessionStorage.removeItem("claveOrden");
-      sessionStorage.removeItem("valorOrden");
+      sessionStorage.setItem("claveOrden","");
+      sessionStorage.setItem("valorOrden","");
       boton.textContent = 'Ordenar por';
     }
   });
