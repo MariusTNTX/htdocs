@@ -1,12 +1,37 @@
 /* FUNCIÓN IMPRIMIR TARJETA ARTISTA */
-var printArtist = async function(linkBand,band,oyentes,reprod){
-  /* Obtención de géneros y descripción */
-  var responseArt = await fetch(`http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=${band}&api_key=5a29d744e8273ab4a877e9b59555b81e&format=json`);
-  responseArt = await responseArt.json();
-  responseArt = responseArt.artist;
+var printArtist = async function(linkBand,band,listeners='',playcount='',tags='',summary=''){
+  /* Obtención de géneros y descripción (si no han sido facilitados) */
+  if(listeners==''){
+    var responseArt = await fetch(`http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=${band}&api_key=5a29d744e8273ab4a877e9b59555b81e&format=json`);
+    responseArt = await responseArt.json();
+    responseArt = responseArt.artist;
+    listeners = responseArt.stats.listeners;
+    playcount = responseArt.stats.playcount;
+    tags = responseArt.tags.tag;
+    summary = responseArt.bio.summary;
+    console.log(responseArt)
+  }
+
+  /* Generación del ID */
+  let id = `a${listeners}_${playcount}`;
+
+  /* Inclusión de puntos a las cifras numéricas */
+  let cifra = [listeners,playcount]
+  for(let i in cifra){
+    let nuevo = '';
+    while(cifra[i].length>0){
+      if(cifra[i].length>=3){
+        nuevo = '.'+cifra[i].substr(-3)+nuevo;
+        cifra[i] = cifra[i].substring(0,cifra[i].length-3);
+      } else {
+        nuevo = cifra[i]+nuevo;
+        cifra[i] = '';
+      }
+    }
+    cifra[i]=nuevo;
+  }
 
   /* Inserción del Elemento */
-  let id = `a${oyentes}_${reprod}`; /* band.replaceAll(" ","_"); */
   let txt = `
   <div class="col my-4">
     <div class="card h-100 text-center shadow">
@@ -14,16 +39,16 @@ var printArtist = async function(linkBand,band,oyentes,reprod){
         <h4 class="card-title"><a href="${linkBand}" target="_blank" class="text-white">${band}</a></h4>
       </div>
       <div class="card-body pb-0">
-        <div><b>Oyentes</b>: ${oyentes}</div>
-        <div><b>Reproducciones</b>: ${reprod}</div>
+        <div><b>Oyentes</b>: ${listeners}</div>
+        <div><b>Reproducciones</b>: ${playcount}</div>
         <div class="mt-3"><b>Géneros Asociados</b>:</div>
         <div class="row justify-content-evenly my-3">`;
-          for(var tag of responseArt.tags.tag) txt += `<div class="col-auto"><a href="${tag.url}" target="_blank">${tag.name}</a></div>`;
+          for(var tag of tags) txt += `<div class="col-auto"><a href="${tag.url}" target="_blank">${tag.name}</a></div>`;
         txt += `
         </div>
         <div><b>Descripción</b>:</div>
         <div>
-          <p>${responseArt.bio.summary}</p>
+          <p>${summary}</p>
         </div>
       </div>
       <div class="card-footer text-center bg-white m-0 p-0">
@@ -67,6 +92,7 @@ var printArtist = async function(linkBand,band,oyentes,reprod){
     </div>
   </div>`;
   resultList.innerHTML += txt;
+
   /* Creación de Eventos */
   document.getElementById(`btn_${id}`).addEventListener("click",()=>{
 

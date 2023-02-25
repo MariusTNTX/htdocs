@@ -68,18 +68,12 @@ var buscarPor = {
   }
 }
 
-/* ESTADO DE LA BÚSQUEDA */
-var estado = {
-  elemento: "",
-  filtro: {
-    clave: "",
-    valor: ""
-  },
-  orden: {
-    clave: "",
-    direc: "Descendente"
-  }
-};
+/* ESTADO DE LA BÚSQUEDA EN SESIÓN */
+sessionStorage.setItem("elemento","");
+sessionStorage.setItem("claveFiltro","");
+sessionStorage.setItem("valorFiltro","");
+sessionStorage.setItem("claveOrden","");
+sessionStorage.setItem("direcOrden","Descendente");
 
 
 /* CLICK SOBRE ELEMENTOS */
@@ -87,13 +81,12 @@ var estado = {
 elementos.addEventListener("click",(e)=>{
   if(e.target.nodeName=='INPUT'){
     //Se almacena el nombre del elemento clicado
-    estado.elemento=e.target.id;
+    sessionStorage.setItem("elemento",e.target.id);
     //Se habilitan solo las opciones correspondientes al elemento seleccionado
-    for(let elm of relacElementos[estado.elemento].filtrosTrue) elm.classList.remove("d-none");
-    for(let elm of relacElementos[estado.elemento].filtrosFalse) elm.classList.add("d-none");
-    for(let elm of relacElementos[estado.elemento].ordenTrue) elm.classList.remove("d-none");
-    for(let elm of relacElementos[estado.elemento].ordenFalse) elm.classList.add("d-none");
-    console.log(estado);
+    for(let elm of relacElementos[sessionStorage.getItem("elemento")].filtrosTrue) elm.classList.remove("d-none");
+    for(let elm of relacElementos[sessionStorage.getItem("elemento")].filtrosFalse) elm.classList.add("d-none");
+    for(let elm of relacElementos[sessionStorage.getItem("elemento")].ordenTrue) elm.classList.remove("d-none");
+    for(let elm of relacElementos[sessionStorage.getItem("elemento")].ordenFalse) elm.classList.add("d-none");
   }
 });
 
@@ -107,46 +100,52 @@ for (let dropli of document.querySelectorAll(".dropli")){
     console.log(li)
     //Según la opción y el drop correspondiente se actualiza el estado y el titulo del drop
     if(li.textContent != 'Ninguno' && boton.id=='filtrarpor'){
-      estado.filtro.clave = li.id;
+      sessionStorage.setItem("claveFiltro",li.textContent);
       boton.textContent = li.textContent;
     } else if(li.textContent != 'Ninguno' && boton.id=='ordenarpor'){
-      estado.orden.clave = li.id;
+      sessionStorage.setItem("claveOrden",li.id);
       boton.textContent = li.textContent;
     } else if(boton.id=='ascdesc'){
-      estado.orden.direc = li.textContent;
+      sessionStorage.setItem("direcOrden",li.textContent);
       boton.textContent = li.textContent;
     } else if(boton.id=='filtrarpor'){
-      estado.filtro.clave = "";
+      sessionStorage.removeItem("claveFiltro");
+      sessionStorage.removeItem("valorFiltro");
       boton.textContent = 'Filtrar por';
     } else if(boton.id=='ordenarpor'){
-      estado.orden.clave = "";
+      sessionStorage.removeItem("claveOrden");
+      sessionStorage.removeItem("valorOrden");
       boton.textContent = 'Ordenar por';
     }
-    console.log(estado);
   });
 }
 
 /* CAMBIOS EN LOS CAMPOS DE TEXTO FILTRAR */
-//Con cada letra se actualiza el estado de la búsqueda
+//Al indicar un valor de filtrado se actualiza el estado de la búsqueda
 document.getElementById("inputFiltrarpor").addEventListener("change",(e)=>{
-  estado.filtro.valor = e.target.value;
-  console.log(estado);
+  sessionStorage.setItem("valorFiltro",e.target.value);
 });
 
 /* CLICK SOBRE BOTÓN BUSCAR */
 //Se realiza la búsqueda según los parámetros introducidos al darle a buscar
 botonBuscar.addEventListener("click",()=>{
+  //Se almacenan temporalmente los valores de búsqueda de la sesión
+  let elemento = sessionStorage.getItem("elemento"),
+  claveFiltro = sessionStorage.getItem("claveFiltro"),
+  claveOrden = sessionStorage.getItem("claveOrden"),
+  valorFiltro = sessionStorage.getItem("valorFiltro"),
+  direcOrden = sessionStorage.getItem("direcOrden");
   //Resetear numResults, varResults y resultList
   numResults = 0, maxResults = 12;
   resultList = document.getElementById("resultList");
   //Si no hay filtro se cambia la clave por "General"
-  if(estado.filtro.clave=='') estado.filtro.clave = 'General';
+  if(claveFiltro=='') claveFiltro = 'General';
   //Se realiza la búsqueda imprimiendo los primeros resultados
-  buscarPor[estado.elemento][estado.filtro.clave](estado.filtro.valor, estado.orden.clave, estado.orden.direc);
+  buscarPor[elemento][claveFiltro](valorFiltro, claveOrden, direcOrden);
   /* Evento Scroll */ //Imprime más resultados al llegar al fondo de la página
   window.addEventListener("scroll",()=>{
     if(window.scrollY + window.innerHeight >= document.body.clientHeight){
-      buscarPor[estado.elemento][estado.filtro.clave](estado.filtro.valor, estado.orden.clave, estado.orden.direc);
+      buscarPor[elemento][claveFiltro](valorFiltro, claveOrden, direcOrden);
     }
   });
 });
