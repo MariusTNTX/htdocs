@@ -67,7 +67,7 @@ if(isset($_GET['select'])){
   //PROFESORES
   else if($select=='profesores'){
     //Se forma la raíz de la consulta
-    $consulta = 'SELECT APELLIDOS, P.NOMBRE, DNI, D.NOMBRE FROM PROFESORES P, DEPARTAMENTOS D WHERE P.COD_DPTO=D.COD_DPTO';
+    $consulta = 'SELECT APELLIDOS, P.NOMBRE AS NOMBRE, DNI, D.NOMBRE AS DEPARTAMENTO FROM PROFESORES P, DEPARTAMENTOS D WHERE P.COD_DPTO=D.COD_DPTO';
     //Se completa la consulta con los filtros corregidos
     foreach($filters as $i => $filt){
       if(in_array($filt,$igual)) $consulta .= ' AND '.$filt.' = "'.$values[$i].'"';
@@ -88,11 +88,10 @@ if(isset($_GET['select'])){
   //RESERVAS
   else if($select=='reservas'){
     //Se forma la raíz de la consulta
-    $consulta = 'SELECT COD_LIBRO, FECHA_FIN FROM RESERVAS';
+    $consulta = 'SELECT R.COD_LIBRO, FECHA_FIN, TITULO, AUTOR FROM RESERVAS R, LIBROS L WHERE R.COD_LIBRO=L.COD_LIBRO';
     //Se completa la consulta con los filtros corregidos
     foreach($filters as $i => $filt){
-      if($i==0) $consulta .= ' WHERE ';
-      else $consulta .= ' AND ';
+      $consulta .= ' AND ';
       if(in_array($filt,$igual)) $consulta .= $filt.' = "'.$values[$i].'"';
       else $consulta .= $filt.' LIKE "%'.$values[$i].'%"';
     }
@@ -106,16 +105,21 @@ if(isset($_GET['select'])){
     }
     //Se almacenan los datos
     $data = mysqli_fetch_all($resp, MYSQLI_ASSOC);
+    //Se corrigen las fechas
+    foreach($data as $i => $dat){
+      $fecha = explode("-",$data[$i]['FECHA_FIN']);
+      $fecha = array_reverse($fecha);
+      $data[$i]['FECHA_FIN'] = implode("/",$fecha);
+    }
   }
 
   //PRESTAMOS
   else if($select=='prestamos'){
     //Se forma la raíz de la consulta
-    $consulta = 'SELECT COD_LIBRO, FECHA_DEVOL, DEVUELTO FROM PRESTAMOS';
+    $consulta = 'SELECT P.COD_LIBRO, FECHA_DEVOL, DEVUELTO, TITULO, AUTOR, MATERIA, EDITORIAL, A_EDICION, ESTADO, USUARIO, D.NOMBRE AS DEPARTAMENTO, D.CENTRO FROM PRESTAMOS P, LIBROS L, DEPARTAMENTOS D WHERE P.COD_LIBRO=L.COD_LIBRO AND L.COD_DPTO=D.COD_DPTO';
     //Se completa la consulta con los filtros corregidos
     foreach($filters as $i => $filt){
-      if($i==0) $consulta .= ' WHERE ';
-      else $consulta .= ' AND ';
+      $consulta .= ' AND ';
       if(in_array($filt,$igual)) $consulta .= $filt.' = "'.$values[$i].'"';
       else $consulta .= $filt.' LIKE "%'.$values[$i].'%"';
     }
@@ -129,6 +133,12 @@ if(isset($_GET['select'])){
     }
     //Se almacenan los datos
     $data = mysqli_fetch_all($resp, MYSQLI_ASSOC);
+    //Se corrigen las fechas
+    foreach($data as $i => $dat){
+      $fecha = explode("-",$data[$i]['FECHA_DEVOL']);
+      $fecha = array_reverse($fecha);
+      $data[$i]['FECHA_DEVOL'] = implode("/",$fecha);
+    }
   }
 
   //LIBROS_USUARIO
