@@ -38,6 +38,18 @@
 		 'insert'=>"insert into LIBROS values(?,?,?,?,?,?,?,?,?,?)",
 		 'select'=>"Select * from LIBROS",
 		 'bind'=>"sssssissis"
+		],
+		['csv'=>$_SERVER['DOCUMENT_ROOT']."/Biblioteca/csv/Reservas.csv",
+		 'create'=>"create table if not exists RESERVAS (COD_LIBRO VARCHAR(16) PRIMARY KEY REFERENCES LIBROS(COD_LIBRO), DNI VARCHAR(10), FECHA_FIN DATE NOT NULL)",
+		 'insert'=>"insert into RESERVAS values(?,?,?)",
+		 'select'=>"Select * from RESERVAS",
+		 'bind'=>"sss"
+		],
+		['csv'=>$_SERVER['DOCUMENT_ROOT']."/Biblioteca/csv/Prestamos.csv",
+		 'create'=>"create table if not exists PRESTAMOS (NUM_PREST INT NOT NULL AUTO_INCREMENT, COD_LIBRO VARCHAR(16) REFERENCES LIBROS(COD_LIBRO), DNI VARCHAR(10), FECHA_RECOG DATE NOT NULL, FECHA_DEVOL DATE NOT NULL, DEVUELTO ENUM('Si','No') DEFAULT 'No', PRIMARY KEY(NUM_PREST))",
+		 'insert'=>"insert into PRESTAMOS values(?,?,?,?,?,?)",
+		 'select'=>"Select * from PRESTAMOS",
+		 'bind'=>"isssss"
 		]
 	];
 

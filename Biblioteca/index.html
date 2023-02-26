@@ -223,7 +223,7 @@
                 <input type="text" class="form-control campoLogin" id="nieAlumno" placeholder="NIE" required minlength="5" maxlength="8">
                 <label for="nieAlumno">NIE</label>
               </div>
-              <div class="text-center mt-5"><button type="submit" class="btn btn-primary btn-lg btn-login">Iniciar Sesión</button></div>
+              <div class="text-center mt-5"><button type="submit" class="btn btn-primary btn-lg btn-login">Continuar</button></div>
               <input type="hidden" data-bs-toggle="modal" data-bs-target="#modalReserva">
             </form>
       
@@ -236,7 +236,7 @@
               <div class="form-floating mb-3 invisible">
                 <input type="text" class="form-control">
               </div>
-              <div class="text-center mt-5"><button type="button" class="btn btn-primary btn-lg btn-login">Iniciar Sesión</button></div>
+              <div class="text-center mt-5"><button type="button" class="btn btn-primary btn-lg btn-login">Continuar</button></div>
               <input type="hidden" data-bs-toggle="modal" data-bs-target="#modalReserva">
             </div>
 
@@ -261,28 +261,28 @@
         <div class="modal-body">
           <h1>Paso 2: Formaliza la Reserva</h1>
           <div class="row mt-5">
-            <div class="col px-3 border-end">
-              <p><b>Título</b>: CURSO DE PHP 8 Y MYSQL 8</p>
-              <p><b>Autores</b>: LUIS MIGUEL CABEZAS GRANADO, FRANCISCO JOSE GONZALEZ LOZANO</p>
-              <p><b>Materia</b>: Servidores</p>
-              <p><b>Departamento</b>: Informática y Comunicaciones</p>
-              <p><b>Centro</b>: CIFP Nº1</p>
-              <p><b>ISBN</b>: 9788441543720</p>
-              <p><b>Editorial</b>: ANAYA MULTIMEDIA</p>
-              <p><b>Año</b>: 2021</p>
-              <p><b>Estado</b>: Bueno</p>
-              <p><b>Disponibilidad</b>: Alumnos</p>
+            <div class="col px-3 border-end" id="datosReserva">
+              <p><b>Título</b>: <span id="tituloReserva">CURSO DE PHP 8 Y MYSQL 8</span></p>
+              <p><b>Autores</b>: <span id="autoresReserva">LUIS MIGUEL CABEZAS GRANADO, FRANCISCO JOSE GONZALEZ LOZANO</span></p>
+              <p><b>Materia</b>: <span id="materiaReserva">Servidores</span></p>
+              <p><b>Departamento</b>: <span id="departResereva">Informática y Comunicaciones</span></p>
+              <p><b>Centro</b>: <span id="centroReserva">CIFP Nº1</span></p>
+              <p><b>ISBN</b>: <span id="isbnReserva">9788441543720</span><span class="d-none" id="idisbnReserva">0</span></p>
+              <p><b>Editorial</b>: <span id="editorialReserva">ANAYA MULTIMEDIA</span></p>
+              <p><b>Año</b>: <span id="anioReserva">2021</span></p>
+              <p><b>Estado</b>: <span id="estadoReserva">Bueno</span></p>
+              <p><b>Disponibilidad</b>: <span id="disponibReserva">Alumnos</span></p>
             </div>
             <div class="col px-3 text-center">
               <h3 class="mb-4">Fecha Máxima de Recogida:</h3>
-              <p class="mb-5"><b>28/02/2023</b></p>
+              <p class="mb-5"><b id="fechaRecog">Cargando...</b></p>
               <p class="mt-5"><b>Si estás seguro/a de que deseas reservar haz clic en "Reservar" y podrás recoger tu ejemplar en el centro correspondiente antes de la fecha máxima indicada.</b></p>
             </div>
           </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" id="volverLogin" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modalLogin">Volver</button>
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Reservar</button>
+          <button type="button" class="btn btn-primary" id="botonReservarFinal" data-bs-dismiss="modal">Reservar</button>
         </div>
       </div>
     </div>
