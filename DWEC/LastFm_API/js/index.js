@@ -63,7 +63,7 @@ var buscarPor = {
   canciones: {
     General: chartTopTracks,
     Álbum: albumTracks, // albumInfo -> Mostrar solo Tracks
-    Artsita: artistTopTracks,
+    Artista: artistTopTracks,
     Género: tagTopTracks
   }
 }
