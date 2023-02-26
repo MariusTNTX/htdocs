@@ -8,8 +8,8 @@ let result = data.filter((item,index)=>{
 
 //Elemento contenedor de los resultados
 var resultList = document.getElementById("resultList");
-//Número de resultados mostrados y número máximo a mostrar en cada tramo del scroll
-var numResults = 0, maxResults = 12;
+//Número de resultados mostrados, número máximo a mostrar en cada tramo del scroll y número máximo total
+var numResults = 0, maxResults = 12, totalResults=100;
 //Response del fetch correspondiente
 var response;
 
@@ -288,23 +288,33 @@ var trackTags = async function(cancion, orden, direc){
 
 /* FUNCIÓN IMPRIMIR TOP DE CANCIONES */
 var chartTopTracks = async function(general, orden, direc){
-  console.log(numResults)
   //Sólo si no hay resultados se almacenan 100 resultados
   if(numResults==0){
     /* Definición del Spinner */
     resultList.innerHTML = `<div class="d-flex justify-content-center" id="spinnerPrincipal"><div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div></div>`;
     /* Obtención del JSON */
-    response = await fetch("http://ws.audioscrobbler.com/2.0/?method=chart.gettoptracks&api_key=5a29d744e8273ab4a877e9b59555b81e&format=json&limit=100");
+    response = await fetch("http://ws.audioscrobbler.com/2.0/?method=chart.gettoptracks&api_key=5a29d744e8273ab4a877e9b59555b81e&format=json&limit=50");
     response = await response.json();
     response = response.tracks.track;
     console.log(response)
+    
     /* Obtención del JSON Completo */
-    for(let i in response){
+    for(let i=0; i<response.length; i++){
       response[i] = await fetch(`http://ws.audioscrobbler.com/2.0/?method=track.getinfo&track=${response[i].name}&artist=${response[i].artist.name}&api_key=5a29d744e8273ab4a877e9b59555b81e&format=json&autocorrect=1`);
       response[i] = await response[i].json();
       response[i] = response[i].track;
+      console.log("response "+i+":")
+      console.log(response[i])
+      if(response[i]==undefined || response[i].duration=='0' || response[i].album==undefined || response[i].toptags==undefined || response[i].wiki==undefined){
+        console.log("Registro incompleto encontrado en "+i)
+        response.splice(i,1);
+        i--;
+      }
     }
     console.log(response)
+    /* Se actualiza totalResults */
+    totalResults = response.length;
+
     /* Aplicación de criterios de ordenación (si los hay) */
     if(orden.length>0){
       if(direc.length>0) var ret = (direc=='Descendente') ? 1 : -1;
@@ -322,13 +332,13 @@ var chartTopTracks = async function(general, orden, direc){
   if(numResults < maxResults){
     //Se añaden las etiquetas restantes sumando numResults hasta maxResults
     for(let i = numResults; i < maxResults; i++){
-      await printTrack(response[i].url,response[i].name,response[i].listeners,response[i].playcount,response[i].artist.url,response[i].artist.name,response[i].duration,/* response[i].album.url */'',/* response[i].album.title */'',response[i].toptags.tag,/* response[i].wiki.summary */'');
+        console.log(response[i])
+        await printTrack(response[i].url,response[i].name,response[i].listeners,response[i].playcount,response[i].artist.url,response[i].artist.name,response[i].duration,response[i].album.url,response[i].album.title,response[i].toptags.tag,response[i].wiki.summary);
     }
-    //Se actualiza numResults y se aumenta maxResults a +12 o a 100
+    //Se actualiza numResults y se aumenta maxResults a +12 o a totalResults
     numResults = maxResults;
-    maxResults = (maxResults+12 > 100) ? 100 : maxResults+12;
+    maxResults = (maxResults+12 > totalResults) ? totalResults : maxResults+12;
   }
-  console.log(numResults)
 }
 
 /* FUNCIÓN IMPRIMIR CANCIONES DE UN ÁLBUM */

@@ -47,7 +47,7 @@ var printTrack = async function(linkTrack,track,listeners='',playcount='',linkAr
       <div class="card-body pb-3">
         <div><b>Artista</b>: <a href="${linkArtist}" target="_blank">${artist}</a></div>
         <div><b>Álbum</b>: <a href="${linkAlbum}" target="_blank">${album}</a></div>
-        <div><b>Escuchas</b>: ${listeners}</div>
+        <div><b>Oyentes</b>: ${listeners}</div>
         <div><b>Reproducciones</b>: ${playcount}</div>
         <div><b>Duración</b>: ${minutos+':'+segundos}</div>
         <div class="mt-3"><b>Géneros Asociados</b>:</div>
