@@ -13,6 +13,8 @@ async function getLibros(tit,aut,isbn,edi,anio,mat,dep,cen,dis,est){
   filters = filters.join('|');
   values = values.join('|');
   //Se obtiene el JSON de resultados:
+  //http://iespmercedescuenca.ddns.net:81/Informatica/MolinaM/Biblioteca/php/api.php?select=libros&filters=${filters}&values=${values}
+  //http://localhost/Biblioteca/php/api.php?select=libros&filters=${filters}&values=${values}
   let response = await fetch(`http://localhost/Biblioteca/php/api.php?select=libros&filters=${filters}&values=${values}`,{
     method: 'GET',
     headers: {'Content-Type': 'application/json'}
@@ -73,7 +75,7 @@ async function getProfesores(ape,nom,dni,cod_dpto){
 // GET_RESERVAS: FUNCIÓN OBTENER RESERVAS DE LA API
 async function getReservas(cod,dni,fecha){
   //Se seleccionan los filtros y sus valores:
-  let corresp = ['cod_libro','dni','fecha_fin'];
+  let corresp = ['r.cod_libro','dni','fecha_fin'];
   let params = [cod,dni,fecha];
   let filters = [], values = [];
   for(let i in params){
@@ -98,7 +100,7 @@ async function getReservas(cod,dni,fecha){
 // GET_PRESTAMOS: FUNCIÓN OBTENER PRESTAMOS DE LA API
 async function getPrestamos(cod,dni,fRec,fDev,dev){
   //Se seleccionan los filtros y sus valores:
-  let corresp = ['cod_libro','dni','fecha_recog','fecha_devol','devuelto'];
+  let corresp = ['p.cod_libro','dni','fecha_recog','fecha_devol','devuelto'];
   let params = [cod,dni,fRec,fDev,dev];
   let filters = [], values = [];
   for(let i in params){
@@ -173,6 +175,31 @@ async function putReserva(cod,dni,fecha){
   //Se obtiene el JSON de resultados:
   console.log(`http://192.168.2.30/Biblioteca/php/api.php?insert=reserva&elements=${filters}&values=${values}`)
   let request = await fetch(`http://localhost/Biblioteca/php/api.php?insert=reserva&elements=${filters}&values=${values}`,{
+    method: 'GET',
+    headers: {'Content-Type': 'application/json'}
+  });
+  request = await request.json();
+  console.log(request);
+  return Promise.resolve(request);
+}
+
+// DELETE_RESERVA: FUNCIÓN ELIMINAR RESERVA DESDE LA API
+async function deleteReserva(cod,dni){
+  //Se seleccionan los filtros y sus valores:
+  let corresp = ['cod_libro','dni'];
+  let params = [cod,dni];
+  let filters = [], values = [];
+  for(let i in params){
+    if(params[i].length>0){
+      filters.push(corresp[i]);
+      values.push(params[i]);
+    }
+  }
+  filters = filters.join('|');
+  values = values.join('|');
+  //Se obtiene el JSON de resultados:
+  console.log(`http://192.168.2.30/Biblioteca/php/api.php?delete=reserva&elements=${filters}&values=${values}`)
+  let request = await fetch(`http://localhost/Biblioteca/php/api.php?delete=reserva&elements=${filters}&values=${values}`,{
     method: 'GET',
     headers: {'Content-Type': 'application/json'}
   });

@@ -5,14 +5,15 @@ $dbuser="root";
 $dbpass="admin";
 $dbname="BibliotecaMolinaM";
 
+//CAMPOS QUE SE BUSCARÁN SIEMPRE CON "="
+$igual = ['alumno','dni','nie','cod_dpto','dni_jfk','a_edicion','soporte_m','usuario','estado','num_prest','fecha_recog','fecha_devol','devuelto','fecha_fin'];
+
 /* S E L E C T S ---------------------------------------------------------------------------------------------------- */
 if(isset($_GET['select'])){
   //ALMACENAMIENTO DE PARÁMETROS
   $select = $_GET['select'];
   $filters = explode("|", $_GET['filters']);
   $values = explode("|", $_GET['values']);
-  //CAMPOS QUE SE BUSCARÁN SIEMPRE CON "="
-  $igual = ['alumno','dni','nie','cod_dpto','dni_jfk','a_edicion','soporte_m','usuario','estado','num_prest','fecha_recog','fecha_devol','devuelto','fecha_fin'];
   
   //LIBROS
   if($select=='libros'){
@@ -88,7 +89,7 @@ if(isset($_GET['select'])){
   //RESERVAS
   else if($select=='reservas'){
     //Se forma la raíz de la consulta
-    $consulta = 'SELECT R.COD_LIBRO, FECHA_FIN, TITULO, AUTOR FROM RESERVAS R, LIBROS L WHERE R.COD_LIBRO=L.COD_LIBRO';
+    $consulta = 'SELECT R.COD_LIBRO, FECHA_FIN, TITULO, AUTOR, MATERIA, EDITORIAL, A_EDICION, ESTADO, USUARIO, D.NOMBRE AS DEPARTAMENTO, D.CENTRO FROM RESERVAS R, LIBROS L, DEPARTAMENTOS D WHERE R.COD_LIBRO=L.COD_LIBRO AND L.COD_DPTO=D.COD_DPTO';
     //Se completa la consulta con los filtros corregidos
     foreach($filters as $i => $filt){
       $consulta .= ' AND ';
@@ -230,6 +231,38 @@ if(isset($_GET['select'])){
     }
     //Se almacenan los datos
     $data = ['Insert Exitoso'];
+  }
+
+  mysqli_close($c1);
+  header("Content-type: application/json; charset=utf-8");
+  echo json_encode($data);
+
+  /* D E L E T E S ---------------------------------------------------------------------------------------------------- */
+} else if(isset($_GET['delete'])){
+  $delete = $_GET['delete'];
+  $elements = explode("|", $_GET['elements']);
+  $values = explode("|", $_GET['values']);
+
+  //RESERVAS
+  if($delete == 'reserva'){
+    //Se forma la raíz de la consulta
+    $query = 'DELETE FROM RESERVAS WHERE ';
+    //Se completa la consulta con los filtros corregidos
+    foreach($elements as $i => $elm){
+      if($i!=0) $query .= ' AND ';
+      if(in_array($elm,$igual)) $query .= $elm.' = "'.$values[$i].'"';
+      else $query .= $elm.' LIKE "%'.$values[$i].'%"';
+    }
+    //Se establece conexión con la BD
+    $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
+    //Se realiza la consulta
+    if (!$resp = mysqli_query($c1, $query)){
+      echo mysqli_error($c1).'<br>';
+      echo 'Consulta: '.$consulta;
+      exit(-1);
+    }
+    //Se almacenan los datos
+    $data = ['Delete Exitoso'];
   }
 
   mysqli_close($c1);

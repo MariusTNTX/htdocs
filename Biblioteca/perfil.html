@@ -60,7 +60,8 @@
             <thead>
               <tr>
                 <th>Título</th>
-                <th>Autores</th>
+                <th>Departamento</th>
+                <th>Centro</th>
                 <th>Fecha de Recogida</th>
                 <th>Anulación</th>
               </tr>
@@ -77,9 +78,10 @@
             <thead>
               <tr>
                 <th>Título</th>
-                <th>Autores</th>
+                <th>Departamento</th>
+                <th>Centro</th>
                 <th>Fecha de Devolución</th>
-                <th>Renovación</th>
+                <!-- <th>Renovación</th> -->
               </tr>
             </thead>
             <tbody id="tbodyPrestAct"></tbody>
@@ -144,17 +146,18 @@
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class="col px-3 border-end">
-              <p><b>Título</b>: CURSO DE PHP 8 Y MYSQL 8</p>
-              <p><b>Autores</b>: LUIS MIGUEL CABEZAS GRANADO, FRANCISCO JOSE GONZALEZ LOZANO</p>
-              <p><b>Materia</b>: Servidores</p>
-              <p><b>Departamento</b>: Informática y Comunicaciones</p>
-              <p><b>Centro</b>: CIFP Nº1</p>
-              <p><b>ISBN</b>: 9788441543720</p>
-              <p><b>Editorial</b>: ANAYA MULTIMEDIA</p>
-              <p><b>Año</b>: 2021</p>
-              <p><b>Estado</b>: Bueno</p>
-              <p><b>Disponibilidad</b>: Alumnos y Profesores</p>
+            <div class="col px-3 border-end" id="camposReserva">
+              <p><b>Título</b>: <span></span></p>
+              <p><b>Autores</b>: <span></span></p>
+              <p><b>Materia</b>: <span></span></p>
+              <p><b>Departamento</b>: <span></span></p>
+              <p><b>Centro</b>: <span></span></p>
+              <p><b>ISBN</b>: <span></span></p>
+              <p class="d-none"><b>Num</b>: <span></span></p>
+              <p><b>Editorial</b>: <span></span></p>
+              <p><b>Año</b>: <span></span></p>
+              <p><b>Estado</b>: <span></span></p>
+              <p><b>Disponibilidad</b>: <span></span></p>
             </div>
             <div class="col px-3 text-center">
               <h3 class="mb-4">Fecha Máxima de Recogida:</h3>
@@ -165,7 +168,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Reservar</button>
+          <button type="button" class="btn btn-primary" id="btnReservar" data-bs-dismiss="modal">Reservar</button>
         </div>
       </div>
     </div>
@@ -181,17 +184,18 @@
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class="col px-3 border-end">
-              <p><b>Título</b>: CURSO DE PHP 8 Y MYSQL 8</p>
-              <p><b>Autores</b>: LUIS MIGUEL CABEZAS GRANADO, FRANCISCO JOSE GONZALEZ LOZANO</p>
-              <p><b>Materia</b>: Servidores</p>
-              <p><b>Departamento</b>: Informática y Comunicaciones</p>
-              <p><b>Centro</b>: CIFP Nº1</p>
-              <p><b>ISBN</b>: 9788441543720</p>
-              <p><b>Editorial</b>: ANAYA MULTIMEDIA</p>
-              <p><b>Año</b>: 2021</p>
-              <p><b>Estado</b>: Bueno</p>
-              <p><b>Disponibilidad</b>: Alumnos y Profesores</p>
+            <div class="col px-3 border-end" id="camposAnular">
+              <p><b>Título</b>: <span></span></p>
+              <p><b>Autores</b>: <span></span></p>
+              <p><b>Materia</b>: <span></span></p>
+              <p><b>Departamento</b>: <span></span></p>
+              <p><b>Centro</b>: <span></span></p>
+              <p><b>ISBN</b>: <span></span></p>
+              <p class="d-none"><b>Num</b>: <span></span></p>
+              <p><b>Editorial</b>: <span></span></p>
+              <p><b>Año</b>: <span></span></p>
+              <p><b>Estado</b>: <span></span></p>
+              <p><b>Disponibilidad</b>: <span></span></p>
             </div>
             <div class="col px-3 text-center">
               <h3 class="mb-4">¿Estás seguro que deseas anular la reserva de éste ejemplar?</h3>
@@ -201,14 +205,14 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Anular</button>
+          <button type="button" class="btn btn-primary" id="btnAnular" data-bs-dismiss="modal">Anular</button>
         </div>
       </div>
     </div>
   </div>
 
   <!-- MODAL RENOVAR -->
-  <div class="modal fade" id="modalRenovar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <!-- <div class="modal fade" id="modalRenovar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content">
         <div class="modal-header">
@@ -217,7 +221,7 @@
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class="col px-3 border-end">
+            <div class="col px-3 border-end" id="camposRenovar">
               <p><b>Título</b>: CURSO DE PHP 8 Y MYSQL 8</p>
               <p><b>Autores</b>: LUIS MIGUEL CABEZAS GRANADO, FRANCISCO JOSE GONZALEZ LOZANO</p>
               <p><b>Materia</b>: Servidores</p>
@@ -238,11 +242,11 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Renovar</button>
+          <button type="button" class="btn btn-primary" id="btnRenovar" data-bs-dismiss="modal">Renovar</button>
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
   <script src="js/api.js"></script>

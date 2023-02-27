@@ -49,7 +49,12 @@
   background-color: #e75900;
   color: white;
 }
-.btn-outline-primary:focus-visible{
+.btn-outline-primary{
+  border-color: #e75900;
+  background-color: white;
+  color: #e75900;
+}
+.btn-outline-primary:focus-visible, .btn-outline-primary:focus, .btn-outline-primary:hover{
   border-color: #e75900;
   background-color: #e75900;
   color: white;
