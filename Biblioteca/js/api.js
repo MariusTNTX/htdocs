@@ -1,3 +1,6 @@
+//http://iespmercedescuenca.ddns.net:81/Informatica/MolinaM/Biblioteca/php/api.php
+//http://localhost/Biblioteca/php/api.php
+
 // GET_LIBROS: FUNCIÓN OBTENER LIBROS DE LA API
 async function getLibros(tit,aut,isbn,edi,anio,mat,dep,cen,dis,est){
   //Se seleccionan los filtros y sus valores:
@@ -13,7 +16,6 @@ async function getLibros(tit,aut,isbn,edi,anio,mat,dep,cen,dis,est){
   filters = filters.join('|');
   values = values.join('|');
   //Se obtiene el JSON de resultados:
-  //http://iespmercedescuenca.ddns.net:81/Informatica/MolinaM/Biblioteca/php/api.php?select=libros&filters=${filters}&values=${values}
   //http://localhost/Biblioteca/php/api.php?select=libros&filters=${filters}&values=${values}
   let response = await fetch(`http://localhost/Biblioteca/php/api.php?select=libros&filters=${filters}&values=${values}`,{
     method: 'GET',

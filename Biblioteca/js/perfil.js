@@ -4,10 +4,8 @@ let tbodyPrestAct = document.getElementById("tbodyPrestAct");
 let tbodyHistPrest = document.getElementById("tbodyHistPrest");
 let btnLogout = document.getElementById("btnLogout");
 let btnAnular = document.getElementById("btnAnular");
-/* let btnRenovar = document.getElementById("btnRenovar"); */
 let btnReservar = document.getElementById("btnReservar");
 let camposAnular = document.getElementById("camposAnular");
-/* let camposRenovar = document.getElementById("camposRenovar"); */
 let camposReservar = document.getElementById("camposReservar");
 
 //Si se intenta acceder a perfil sin estar logeado se redirige al login
@@ -109,16 +107,45 @@ getPrestamos('',sessionStorage.getItem("dniUsuario"),'','','Si').then(data =>{
       <td><button type="button" class="btn btn-primary btn-Reservar" data-bs-toggle="modal" data-bs-target="#modalReserva">Reservar</button></td>
     </tr>`;
   }
-});
+  //BOTONES RESERVAR TABLA
+  for(btn of document.querySelectorAll("btn-Reservar")){
+    btn.addEventListener("click",(e)=>{
+      //Se imprimen los datos del libro a reservar en el modal siguiente
+      let corresp = [0,3,4,5,6,1,2,7,8,9,10];
+      for(let i=0; i<10; i++){
+        camposReserva.children[i].children[1].textContent = btn.parentElement.parentElement.children[corresp[i]].textContent;
+      }
+      //Si hay un usuario logeado se verifica que no tenga suficientes reservas/préstamos o que no lo tenga ya
+      if(sessionStorage.getItem("tipoUsuario")){
+        getLibrosUsuario(sessionStorage.getItem("dniUsuario")).then(data => {
+          //Si al recuperar las reservas tiene menos de dos reservas se genera click y se autocompletan los campos del login
+          console.log(data)
+          if((data.reservas.length + data.prestamos.length)<2){
+            //Si tiene un libro y coincide no le dejará reservarlo
+            console.log("ISBN:")
+            console.log(btn.parentElement.parentElement.children[1].textContent)
+            if((data.reservas.length==1 && data.reservas[0].COD_LIBRO==btn.parentElement.parentElement.children[1].textContent) ||
+              (data.prestamos.length==1 && data.reservas[0].COD_LIBRO==btn.parentElement.parentElement.children[1].textContent)){
+              alert("No puedes reservar: Ya tienes una reserva o préstamo en curso con éste ejemplar");
+            } else {
+              btn.parentElement.nextElementSibling.dispatchEvent(new Event("click"));
+              if(sessionStorage.getItem("tipoUsuario")=='Alumno'){
+                dniAlumno.value = sessionStorage.getItem("dniUsuario");
+                nieAlumno.value = sessionStorage.getItem("nieUsuario");
+              } else if(sessionStorage.getItem("tipoUsuario")=='Profesor'){
+                dniProfesor.value = sessionStorage.getItem("dniUsuario");
+              }
+            }
+            //Si al recuperar las reservas tiene dos reservas no se genera click y se avisará con alert
+          } else alert("No puedes reservar: Tienes demasiadas reservas y/o préstamos en curso");
+        });
+      } else btn.parentElement.nextElementSibling.dispatchEvent(new Event("click"));
+    });
+  }
 
-//BOTONES RESERVAR TABLA
-for(btn of document.querySelectorAll("btn-Reservar")){
-  btn.addEventListener("click",()=>{
+  //BOTÓN RESERVAR MODAL
+  btnReservar.addEventListener("click",()=>{
 
   });
-}
-
-//BOTÓN RESERVAR MODAL
-btnReservar.addEventListener("click",()=>{
-
 });
+

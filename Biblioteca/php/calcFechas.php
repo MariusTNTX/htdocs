@@ -1,7 +1,7 @@
 <?
-  $dbhost="localhost"; //192.168.0.10
+  $dbhost="localhost";
 	$dbuser="root";
-	$dbpass="1234"; //admin
+	$dbpass="admin"; //1234
 	$dbname="BibliotecaMolinaM";
-	$rutaBiblio="/Informatica/MolinaM";
+	$rutaBiblio=""; ///Informatica/MolinaM
 ?>
