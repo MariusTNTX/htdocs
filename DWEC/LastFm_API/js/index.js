@@ -46,7 +46,7 @@ var relacElementos = {
 /* FUNCIONES A EJECUTAR SEGÚN LOS PARÁMETROS DE BÚSQUEDA */
 var buscarPor = {
   albumes: {
-    General: chartTopAlbums, // chartTopTracks -> Mostrar solo Álbums eliminando los duplicados
+    General: chartTopAlbums, // chartTopArtist -> Mostrar solo Álbums
     Artista: artistTopAlbums,
     Género: tagTopAlbums
   },
