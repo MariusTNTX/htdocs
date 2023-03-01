@@ -44,25 +44,21 @@ var printTag = async function(linkTag,tag,reach='',taggings='',summary=''){
         <div><b>Descripción</b>:</div>
         <div><p>${summary}</p></div>
       </div>
-      <div class="card-footer text-center bg-white m-0 p-0">
-        <button class="btn btn-primary w-100 rounded-0 rounded-bottom btnModalArtist" id="btn_${id}" data-bs-toggle="modal" href="#${id}" role="button">Más Información</button>
-      </div>
     </div>
   </div>
 
   <div class="modal fade" id="${id}" aria-hidden="true" aria-labelledby="${id}Label" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="${id}Label">${tag}</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <div class="row">
-            <div class="col-5 border-end">
+          <div class="row justify-content-center">
+            <div class="col-12">
               <!-- Imagen -->
-              <div class="m-4">
-                <img class="mh-75 d-none" src="..." alt="...">
+              <div class="m-4 text-center" id="imgWiki${id}">
                 <div class="d-flex justify-content-center align-items-center">
                   <div class="spinner-border" role="status">
                     <span class="visually-hidden">Loading...</span>
@@ -70,46 +66,10 @@ var printTag = async function(linkTag,tag,reach='',taggings='',summary=''){
                 </div>
               </div>
             </div>
-            <!-- Info -->
-            <div clss="col-7">
-              <!-- Oyentes y reproducciones
-              Descripción
-              Columna de Géneros
-              Columna de Álbumes
-              Columna de Canciones
-              Columna de Artistas Similares -->
-            </div>
           </div>
         </div>
       </div>
     </div>
   </div>`;
   resultList.innerHTML += txt;
-
-  /* Creación de Eventos */
-  document.getElementById(`btn_${id}`).addEventListener("click",()=>{
-
-  });
-}
-
-/* FUNCIÓN RECUPERAR IMAGEN TAG */
-var getImageURL = async function(title){
-  //Obtencion de PageId
-  var responseURL = await fetch(`https://en.wikipedia.org/w/api.php?action=query&list=search&srprop=snippet&format=json&origin=*&utf8=&srsearch=${title}`);
-  responseURL = await responseURL.json();
-  let pageid = responseURL.query.search[0].pageid;
-  //Obtención de SRC
-  var responseURL = await fetch(`https://en.wikipedia.org/w/api.php?format=json&action=query&origin=*&utf8&prop=revisions&rvprop=content&rvparse&pageids=${pageid}`);
-  responseURL = await responseURL.json();
-  responseURL = responseURL.query.pages[pageid].revisions[0]['*'];
-  //Obtener primera posición de //upload
-  let p1 = responseURL.indexOf("//upload.wikimedia.org/wikipedia/commons/thumb/");
-  //Obtener primera posición de " desde la posición anterior
-  let p2 = responseURL.indexOf("\"",p1);
-  //Recortar y obtener la porción de string con esas posiciones
-  let url = responseURL.substring(p1,p2);
-  //Eliminar último fragmento
-  url = url.substring(0,url.lastIndexOf("/"));
-  //Eliminar thumb/ y Añadir https:
-  return 'https:'+url.replace("thumb/","");
 }

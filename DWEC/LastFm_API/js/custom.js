@@ -1,22 +1,15 @@
-/* //ELIMINAR DUPLICADOS:
-let result = data.filter((item,index)=>{
-  return data.indexOf(item) === index;
-}) */
-
-
 /* VARIABLES BÁSICAS */
 
 //Elemento contenedor de los resultados
 var resultList = document.getElementById("resultList");
 //Número de resultados mostrados, número máximo a mostrar en cada tramo del scroll y número máximo total
 var numResults = 0, maxResults = 12, totalResults=50;
-//Response del fetch correspondiente
-var response;
 
 
 /* FUNCIÓN IMPRIMIR TOP DE ÁLBUMES */
 // chartTopTracks -> Mostrar solo Álbums eliminando los duplicados
 var chartTopAlbums = async function(general, orden, direc){
+  console.log(orden);
   //Sólo si no hay resultados se almacenan 100 resultados
   if(numResults==0){
     /* Definición del Spinner */
@@ -33,11 +26,13 @@ var chartTopAlbums = async function(general, orden, direc){
       console.log(response[i]);
       response[i] = await response[i].json();
       response[i] = response[i].topalbums.album[0];
+      let urlArtist = response[i].artist.url;
       console.log(response[i]);
       console.log(`http://ws.audioscrobbler.com/2.0/?method=album.getinfo&artist=${artista}&album=${response[i].name}&api_key=5a29d744e8273ab4a877e9b59555b81e&format=json&autocorrect=1&limit=1`)
       response[i] = await fetch(`http://ws.audioscrobbler.com/2.0/?method=album.getinfo&artist=${artista}&album=${response[i].name}&api_key=5a29d744e8273ab4a877e9b59555b81e&format=json&autocorrect=1&limit=1`);
       response[i] = await response[i].json();
       response[i] = response[i].album;
+      response[i].urlArtist = urlArtist;
       console.log(response[i]);
       /* Dar formato a la fecha o indicar que no existe */
       try {
@@ -50,16 +45,37 @@ var chartTopAlbums = async function(general, orden, direc){
       } catch (error) {
         response[i].wiki = {published: 0};
       }
+      /* Calcular la duración total del álbum */
+      let duration = 0;
+      if(response[i].tracks.track[0]!=undefined){
+        for(let track of response[i].tracks.track){
+          if(track.duration != null) duration += track.duration;
+        }
+      } else if(response[i].tracks.track.duration!=null){
+        duration = response[i].tracks.track.duration;
+      } else duration = 0;
+      response[i].duration = duration;
     }
     /* Aplicación de criterios de ordenación (si los hay) */
     if(orden.length>0){
+      console.log("EFECTUANDO ORDEN")
       if(direc.length>0) var ret = (direc=='Descendente') ? 1 : -1;
-      response.sort((a, b) => {
-        if(parseInt(a[orden]) > parseInt(b[orden])) return -ret;
-        if(parseInt(a[orden]) < parseInt(b[orden])) return ret;
-        return 0;
-      });
+      if(orden == 'releasedate'){
+        response.sort((a, b) => {
+          if(parseInt(a.wiki.published) > parseInt(b.wiki.published)) return -ret;
+          if(parseInt(a.wiki.published) < parseInt(b.wiki.published)) return ret;
+          return 0;
+        });
+      } else {
+        response.sort((a, b) => {
+          if(parseInt(a[orden]) > parseInt(b[orden])) return -ret;
+          if(parseInt(a[orden]) < parseInt(b[orden])) return ret;
+          return 0;
+        });
+      }
+      
     }
+    console.log(response)
     /* Definición del ResultList */
     resultList.innerHTML = `<div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3 g-4"></div>`;
     resultList = resultList.firstElementChild;
@@ -68,8 +84,9 @@ var chartTopAlbums = async function(general, orden, direc){
   if(numResults < maxResults){
     //Se añaden las etiquetas restantes sumando numResults hasta maxResults
     for(let i = numResults; i < maxResults; i++){
-      await printAlbum(response[i].url,response[i].name,response[i].artist,response[i].listeners,response[i].playcount,response[i].wiki.published,response[i].wiki.summary,response[i].tags.tag,response[i].tracks.track);
+      await printAlbum(response[i].url,response[i].name,response[i].urlArtist,response[i].artist,response[i].listeners,response[i].playcount,response[i].duration,response[i].wiki.published,response[i].wiki.summary,response[i].tags.tag,response[i].tracks.track);
     }
+    crearEventosModal("Album");
     //Se actualiza numResults y se aumenta maxResults a +12 o a 30
     numResults = maxResults;
     maxResults = (maxResults+12 > 30) ? 30 : maxResults+12;
@@ -77,10 +94,200 @@ var chartTopAlbums = async function(general, orden, direc){
 }
 
 /* FUNCIÓN IMPRIMIR ÁLBUMES DE UN ARTISTA*/
-var artistTopAlbums = async function(artista, orden, direc){}
+var artistTopAlbums = async function(artista, orden, direc){
+  console.log(orden);
+  //Sólo si no hay resultados se almacenan 100 resultados
+  if(numResults==0){
+    /* Definición del Spinner */
+    resultList.innerHTML = `<div class="d-flex justify-content-center" id="spinnerPrincipal"><div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div></div>`;
+    /* Obtención del JSON */
+    response = await fetch(`http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=${artista}&api_key=5a29d744e8273ab4a877e9b59555b81e&format=json&autocorrect=1&limit=30`);
+    response = await response.json();
+    response = response.topalbums.album;
+    console.log(response)
+
+    /* Obtención del JSON Completo */
+    for(let i=0; i<response.length; i++){
+      if(response[i].name=='(null)' || typeof(response[i])==='undefined'){
+        console.log("ALBUM ELIMINADO");
+        response.splice(i,1);
+        i--;
+        continue;
+      }
+      let artist = response[i].artist.name;
+      let urlArtist = response[i].artist.url;
+      console.log(`http://ws.audioscrobbler.com/2.0/?method=album.getinfo&artist=${artist}&album=${response[i].name}&api_key=5a29d744e8273ab4a877e9b59555b81e&format=json&autocorrect=1&limit=1`)
+      response[i] = await fetch(`http://ws.audioscrobbler.com/2.0/?method=album.getinfo&artist=${artist}&album=${response[i].name}&api_key=5a29d744e8273ab4a877e9b59555b81e&format=json&autocorrect=1&limit=1`);
+      response[i] = await response[i].json();
+      response[i] = response[i].album;
+      /* Filtrado del JSON */
+      if(typeof(response[i])==='undefined' || typeof(response[i].artist)!='string' || response[i].mbid==''){
+        console.log("ALBUM ELIMINADO");
+        response.splice(i,1);
+        i--;
+        continue;
+      }
+      response[i].urlArtist = urlArtist;
+      console.log(response[i]);
+      /* Dar formato a la fecha o indicar que no existe */
+      try {
+        let fecha = response[i].wiki.published.trim().substring(0,response[i].wiki.published.indexOf(","));
+        console.log(fecha);
+        fecha = fecha.split(" ");
+        fecha = fecha[1]+' '+fecha[0]+', '+fecha[2];
+        console.log(fecha);
+        response[i].wiki.published = new Date(fecha).getTime();
+      } catch (error) {
+        response[i].wiki = {published: 0};
+      }
+      /* Calcular la duración total del álbum */
+      try {
+        let duration = 0;
+        if(response[i].tracks.track[0]!=undefined){
+          for(let track of response[i].tracks.track){
+            if(track.duration != null) duration += track.duration;
+          }
+        } else if(response[i].tracks.track.duration!=null){
+          duration = response[i].tracks.track.duration;
+        } else duration = 0;
+        response[i].duration = duration;
+      } catch (error) {
+        response[i].duration = 0;
+      }
+    }
+    /* Aplicación de criterios de ordenación (si los hay) */
+    if(orden.length>0){
+      console.log("EFECTUANDO ORDEN")
+      if(direc.length>0) var ret = (direc=='Descendente') ? 1 : -1;
+      if(orden == 'releasedate'){
+        response.sort((a, b) => {
+          if(parseInt(a.wiki.published) > parseInt(b.wiki.published)) return -ret;
+          if(parseInt(a.wiki.published) < parseInt(b.wiki.published)) return ret;
+          return 0;
+        });
+      } else {
+        response.sort((a, b) => {
+          if(parseInt(a[orden]) > parseInt(b[orden])) return -ret;
+          if(parseInt(a[orden]) < parseInt(b[orden])) return ret;
+          return 0;
+        });
+      }
+    }
+    console.log(response)
+    /* Definición del ResultList */
+    resultList.innerHTML = `<div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3 g-4"></div>`;
+    resultList = resultList.firstElementChild;
+  }
+  /* Se actualiza totalResults */
+  totalResults = response.length;
+  /* Inserción de Etiquetas */
+  if(numResults < maxResults){
+    //Se añaden las etiquetas restantes sumando numResults hasta maxResults
+    for(let i = numResults; i < maxResults; i++){
+      await printAlbum(response[i].url,response[i].name,response[i].urlArtist,response[i].artist,response[i].listeners,response[i].playcount,response[i].duration,response[i].wiki.published,response[i].wiki.summary,response[i].tags.tag,response[i].tracks.track);
+    }
+    crearEventosModal("Album");
+    //Se actualiza numResults y se aumenta maxResults a +12 o a totalResults
+    numResults = maxResults;
+    maxResults = (maxResults+12 > totalResults) ? totalResults : maxResults+12;
+  }
+}
 
 /* FUNCIÓN IMPRIMIR ÁLBUMES DE UN GÉNERO*/
-var tagTopAlbums = async function(genero, orden, direc){}
+var tagTopAlbums = async function(genero, orden, direc){
+  console.log(orden);
+  //Sólo si no hay resultados se almacenan 100 resultados
+  if(numResults==0){
+    /* Definición del Spinner */
+    resultList.innerHTML = `<div class="d-flex justify-content-center" id="spinnerPrincipal"><div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div></div>`;
+    /* Obtención del JSON */
+    response = await fetch(`http://ws.audioscrobbler.com/2.0/?method=tag.gettopalbums&tag=${genero}&api_key=5a29d744e8273ab4a877e9b59555b81e&format=json&limit=30`);
+    response = await response.json();
+    response = response.albums.album;
+    console.log(response)
+
+    /* Obtención del JSON Completo */
+    for(let i=0; i<response.length; i++){
+      if(response[i].name=='(null)'){
+        console.log("ALBUM ELIMINADO");
+        response.splice(i,1);
+        i--;
+        continue;
+      }
+      let artist = response[i].artist.name;
+      let urlArtist = response[i].artist.url;
+      console.log(`http://ws.audioscrobbler.com/2.0/?method=album.getinfo&artist=${artist}&album=${response[i].name}&api_key=5a29d744e8273ab4a877e9b59555b81e&format=json&autocorrect=1&limit=1`)
+      response[i] = await fetch(`http://ws.audioscrobbler.com/2.0/?method=album.getinfo&artist=${artist}&album=${response[i].name}&api_key=5a29d744e8273ab4a877e9b59555b81e&format=json&autocorrect=1&limit=1`);
+      response[i] = await response[i].json();
+      response[i] = response[i].album;
+      response[i].urlArtist = urlArtist;
+      console.log(response[i]);
+      /* Filtrado del JSON */
+      if(typeof(response[i].artist)!='string' || response[i].mbid==''){
+        console.log("ALBUM ELIMINADO");
+        response.splice(i,1);
+        i--;
+        continue;
+      }
+      /* Dar formato a la fecha o indicar que no existe */
+      try {
+        let fecha = response[i].wiki.published.trim().substring(0,response[i].wiki.published.indexOf(","));
+        console.log(fecha);
+        fecha = fecha.split(" ");
+        fecha = fecha[1]+' '+fecha[0]+', '+fecha[2];
+        console.log(fecha);
+        response[i].wiki.published = new Date(fecha).getTime();
+      } catch (error) {
+        response[i].wiki = {published: 0};
+      }
+      /* Calcular la duración total del álbum */
+      let duration = 0;
+      if(response[i].tracks.track[0]!=undefined){
+        for(let track of response[i].tracks.track){
+          if(track.duration != null) duration += track.duration;
+        }
+      } else if(response[i].tracks.track.duration!=null){
+        duration = response[i].tracks.track.duration;
+      } else duration = 0;
+      response[i].duration = duration;
+    }
+    /* Aplicación de criterios de ordenación (si los hay) */
+    if(orden.length>0){
+      console.log("EFECTUANDO ORDEN")
+      if(direc.length>0) var ret = (direc=='Descendente') ? 1 : -1;
+      if(orden == 'releasedate'){
+        response.sort((a, b) => {
+          if(parseInt(a.wiki.published) > parseInt(b.wiki.published)) return -ret;
+          if(parseInt(a.wiki.published) < parseInt(b.wiki.published)) return ret;
+          return 0;
+        });
+      } else {
+        response.sort((a, b) => {
+          if(parseInt(a[orden]) > parseInt(b[orden])) return -ret;
+          if(parseInt(a[orden]) < parseInt(b[orden])) return ret;
+          return 0;
+        });
+      }
+    }
+    console.log(response)
+    /* Definición del ResultList */
+    resultList.innerHTML = `<div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3 g-4"></div>`;
+    resultList = resultList.firstElementChild;
+  }
+  /* Se actualiza totalResults */
+  totalResults = response.length;
+  /* Inserción de Etiquetas */
+  if(numResults < maxResults){
+    //Se añaden las etiquetas restantes sumando numResults hasta maxResults
+    for(let i = numResults; i < maxResults; i++){
+      await printAlbum(response[i].url,response[i].name,response[i].urlArtist,response[i].artist,response[i].listeners,response[i].playcount,response[i].duration,response[i].wiki.published,response[i].wiki.summary,response[i].tags.tag,response[i].tracks.track);
+    }
+    crearEventosModal("Album");
+    //Se actualiza numResults y se aumenta maxResults a +12 o a totalResults
+    numResults = maxResults;
+    maxResults = (maxResults+12 > totalResults) ? totalResults : maxResults+12;
+  }
+}
 
 /* FUNCIÓN IMPRIMIR TOP DE ARTISTAS */
 var chartTopArtists = async function(general, orden, direc){
@@ -110,6 +317,7 @@ var chartTopArtists = async function(general, orden, direc){
     for(let i = numResults; i < maxResults; i++){
       await printArtist(response[i].url,response[i].name);
     }
+    crearEventosModal("Artist");
     //Se actualiza numResults y se aumenta maxResults a +12 o a 100
     numResults = maxResults;
     maxResults = (maxResults+12 > 100) ? 100 : maxResults+12;
@@ -154,6 +362,7 @@ var tagTopArtists = async function(genero, orden, direc){
     for(let i = numResults; i < maxResults; i++){
       await printArtist(response[i].url,response[i].name,response[i].stats.listeners,response[i].stats.playcount,response[i].tags.tag,response[i].bio.summary);
     }
+    crearEventosModal("Artist");
     //Se actualiza numResults y se aumenta maxResults a +12 o a 100
     numResults = maxResults;
     maxResults = (maxResults+12 > 30) ? 30 : maxResults+12;
@@ -188,6 +397,7 @@ var chartTopTags = async function(general, orden, direc){
     for(let i = numResults; i < maxResults; i++){
       await printTag(response[i].url,response[i].name,response[i].reach,response[i].taggings);
     }
+    crearEventosModal("Tag");
     //Se actualiza numResults y se aumenta maxResults a +12 o a 100
     numResults = maxResults;
     maxResults = (maxResults+12 > 100) ? 100 : maxResults+12;
@@ -239,6 +449,7 @@ var albumTags = async function(album, orden, direc){
     for(let i = numResults; i < maxResults; i++){
       await printTag(response[i].url,response[i].name,response[i].reach+'',response[i].total+'',response[i].wiki.summary);
     }
+    crearEventosModal("Tag");
     //Se actualiza numResults y se aumenta maxResults a +12 o a 100
     numResults = maxResults;
     maxResults = (maxResults+12 > 30) ? 30 : maxResults+12;
@@ -287,6 +498,7 @@ var artistTags = async function(artist, orden, direc){
     for(let i = numResults; i < maxResults; i++){
       await printTag(response[i].url,response[i].name,response[i].reach+'',response[i].total+'',response[i].wiki.summary);
     }
+    crearEventosModal("Tag");
     //Se actualiza numResults y se aumenta maxResults a +12 o a 100
     numResults = maxResults;
     maxResults = (maxResults+12 > 30) ? 30 : maxResults+12;
@@ -338,6 +550,7 @@ var trackTags = async function(cancion, orden, direc){
     for(let i = numResults; i < maxResults; i++){
       await printTag(response[i].url,response[i].name,response[i].reach+'',response[i].total+'',response[i].wiki.summary);
     }
+    crearEventosModal("Tag");
     //Se actualiza numResults y se aumenta maxResults a +12 o a 100
     numResults = maxResults;
     maxResults = (maxResults+12 > 30) ? 30 : maxResults+12;
@@ -393,6 +606,7 @@ var chartTopTracks = async function(general, orden, direc){
         console.log(response[i])
         await printTrack(response[i].url,response[i].name,response[i].listeners,response[i].playcount,response[i].artist.url,response[i].artist.name,response[i].duration,response[i].album.url,response[i].album.title,response[i].toptags.tag,response[i].wiki.summary);
     }
+    crearEventosModal("Track");
     //Se actualiza numResults y se aumenta maxResults a +12 o a totalResults
     numResults = maxResults;
     maxResults = (maxResults+12 > totalResults) ? totalResults : maxResults+12;
@@ -447,6 +661,7 @@ var albumTracks = async function(album, orden, direc){
         console.log(response[i])
         await printTrack(response[i].url,response[i].name,response[i].listeners,response[i].playcount,response[i].artist.url,response[i].artist.name,response[i].duration,response[i].album.url,response[i].album.title,response[i].toptags.tag,response[i].wiki.summary);
     }
+    crearEventosModal("Track");
     //Se actualiza numResults y se aumenta maxResults a +12 o a totalResults
     numResults = maxResults;
     maxResults = (maxResults+12 > totalResults) ? totalResults : maxResults+12;
@@ -504,6 +719,7 @@ var artistTopTracks = async function(artist, orden, direc){
         console.log(response[i])
         await printTrack(response[i].url,response[i].name,response[i].listeners,response[i].playcount,response[i].artist.url,response[i].artist.name,response[i].duration,response[i].album.url,response[i].album.title,response[i].toptags.tag,response[i].wiki.summary);
     }
+    crearEventosModal("Track");
     //Se actualiza numResults y se aumenta maxResults a +12 o a totalResults
     numResults = maxResults;
     maxResults = (maxResults+12 > totalResults) ? totalResults : maxResults+12;
@@ -561,6 +777,7 @@ var tagTopTracks = async function(genero, orden, direc){
         console.log(response[i])
         await printTrack(response[i].url,response[i].name,response[i].listeners,response[i].playcount,response[i].artist.url,response[i].artist.name,response[i].duration,response[i].album.url,response[i].album.title,response[i].toptags.tag,response[i].wiki.summary);
     }
+    crearEventosModal("Track");
     //Se actualiza numResults y se aumenta maxResults a +12 o a totalResults
     numResults = maxResults;
     maxResults = (maxResults+12 > totalResults) ? totalResults : maxResults+12;
