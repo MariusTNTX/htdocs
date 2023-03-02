@@ -9,7 +9,6 @@ FILTROS:
  - Artist: TopTags, TopAlbums, TopTracks
  - Tag: TopAlbums, TopArtists, TopTracks
  - Track: TopTags
- - Año (FechaLanz): TopAlbums (Crear), TopArtists (Crear), TopTags(Crear), TopTracks(Crear)
 
 ORDENACIÓN:
  - FechaLanz: Albums

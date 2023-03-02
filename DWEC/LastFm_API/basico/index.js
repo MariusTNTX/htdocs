@@ -46,7 +46,7 @@ var relacElementos = {
 /* FUNCIONES A EJECUTAR SEGÚN LOS PARÁMETROS DE BÚSQUEDA */
 var buscarPor = {
   albumes: {
-    General: chartTopAlbums, // chartTopArtist -> Mostrar solo Álbums
+    General: chartTopAlbums,
     Artista: artistTopAlbums,
     Género: tagTopAlbums
   },
@@ -62,7 +62,7 @@ var buscarPor = {
   },
   canciones: {
     General: chartTopTracks,
-    Álbum: albumTracks, // albumInfo -> Mostrar solo Tracks
+    Álbum: albumTracks,
     Artista: artistTopTracks,
     Género: tagTopTracks
   }
@@ -141,10 +141,16 @@ botonBuscar.addEventListener("click",()=>{
   //Si no hay filtro se cambia la clave por "General"
   if(claveFiltro=='') claveFiltro = 'General';
   //Se realiza la búsqueda imprimiendo los primeros resultados
-  buscarPor[elemento][claveFiltro](valorFiltro, claveOrden, direcOrden);
+  try {
+    buscarPor[elemento][claveFiltro](valorFiltro, claveOrden, direcOrden);
+  } catch (error) {
+    alert("Criterios de búsqueda incorrectos");
+  }
+  
   /* Evento Scroll */ //Imprime más resultados al llegar al fondo de la página
   window.addEventListener("scroll",()=>{
     if(window.scrollY + window.innerHeight >= document.body.clientHeight){
+      console.log("Scroll detectado")
       buscarPor[elemento][claveFiltro](valorFiltro, claveOrden, direcOrden);
     }
   });

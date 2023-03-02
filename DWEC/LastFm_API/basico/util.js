@@ -1,6 +1,13 @@
+/* VARIABLES BÁSICAS */
+
+//Elemento contenedor de los resultados
+var resultList = document.getElementById("resultList");
+//Número de resultados mostrados, número máximo a mostrar en cada tramo del scroll y número máximo total
+var numResults = 0, maxResults = 12, totalResults=50;
+
 /* FUNCIÓN RECUPERAR IMAGEN */
 var getImageURL = async function(title, id, type, artist=''){
-  let filtros, ruta, pageid, plusAlbum='';
+  let filtros, ruta, pageid, plus='';
   if(type=='Artist'){
     filtros = ['band','artist'];
     ruta = '//upload.wikimedia.org/wikipedia/commons/thumb/';
@@ -8,16 +15,17 @@ var getImageURL = async function(title, id, type, artist=''){
   if(type=='Album' || type=='Track'){
     filtros = ['album',artist];
     ruta = '//upload.wikimedia.org/wikipedia/en/thumb/';
-    plusAlbum=" ("+artist+" album)"
+    plus=" (album)";
   } 
   //Obtencion de PageId
-  var responseURL = await fetch(`https://en.wikipedia.org/w/api.php?action=query&list=search&srprop=snippet&format=json&origin=*&utf8=&srsearch=${title}${plusAlbum}`);
+  console.log(`https://en.wikipedia.org/w/api.php?action=query&list=search&srprop=snippet&format=json&origin=*&utf8=&srsearch=${title}${plus}`)
+  var responseURL = await fetch(`https://en.wikipedia.org/w/api.php?action=query&list=search&srprop=snippet&format=json&origin=*&utf8=&srsearch=${title}${plus}`);
   responseURL = await responseURL.json();
   responseURL = responseURL.query.search;
   pageid = responseURL[0].pageid;
-  console.log(pageid)
   //Obtención de SRC
   //https://en.wikipedia.org/w/api.php?format=json&action=query&origin=*&utf8&prop=revisions&rvprop=type&rvparse&pageids
+  console.log(`https://en.wikipedia.org/w/api.php?format=json&action=query&origin=*&utf8&prop=revisions&rvprop=content&rvparse&pageids=${pageid}`)
   var responseURL = await fetch(`https://en.wikipedia.org/w/api.php?format=json&action=query&origin=*&utf8&prop=revisions&rvprop=content&rvparse&pageids=${pageid}`);
   responseURL = await responseURL.json();
   responseURL = responseURL.query.pages[pageid].revisions[0]['*'];
@@ -33,8 +41,8 @@ var getImageURL = async function(title, id, type, artist=''){
     p2 = responseURL.indexOf("\"",p1);
     //Recortar y obtener la porción de string con esas posiciones
     url = responseURL.substring(p1,p2);
-  } while (url.includes('Commons-logo') || url.includes('Question_book'));
-
+    //Falsas coincidencias:
+  } while (url.includes('Commons-logo') || url.includes('Question_book') || url.includes('Ambox_important') || url.includes('Disambig_gray') || url.includes('Symbol_category'));
   //Si no se encuentra la imagen se sustituye por un amistoso 404
   if(p1==-1 || url.includes('icon_edit')) url="404.jpg";
   else {

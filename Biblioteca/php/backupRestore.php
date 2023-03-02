@@ -19,7 +19,7 @@
         //R E S T O R E
         $fichero = $_GET['file'];
         $ruta = '/volume1/web/Informatica/MolinaM/Biblioteca/'.$fichero;
-        $comando = '/volume1/@appstore/MariaDB10/usr/local/mariadb10/bin/mysql -h localhost -u root --password="1234" BibliotecaMolinaM < '.$ruta;
+        $comando = '/volume1/@appstore/MariaDB10/usr/local/mariadb10/bin/mysql -h localhost -u root --password="1234" BibliotecaMolinaM < '.$ruta; //¿quitar -h localhost?
         switch(exec($comando,$output,$status)){
           case 0: echo "Importación realizada con éxito (código 0) desde la ruta: ".$ruta; break;
           case 1: echo "Error al importar (código 1)"; break;
