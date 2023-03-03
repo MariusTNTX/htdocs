@@ -44,6 +44,9 @@ var printTag = async function(linkTag,tag,reach='',taggings='',summary=''){
         <div><b>Descripción</b>:</div>
         <div><p>${summary}</p></div>
       </div>
+      <div class="card-footer text-center bg-white m-0 p-0">
+        <button class="btn btn-primary w-100 rounded-0 rounded-bottom btnTraduc">Traducir Descripción</button>
+      </div>
     </div>
   </div>
 

@@ -54,8 +54,9 @@ var printArtist = async function(linkBand,band,listeners='',playcount='',tags=''
         </div>
       </div>
       <div class="card-footer text-center bg-white m-0 p-0">
-        <button class="btn btn-primary w-100 rounded-0 rounded-bottom btnModalArtist" id="btn_${id}" data-bs-toggle="modal" href="#${id}" role="button">Imágen Wikipedia</button>
+        <button class="btn btn-primary w-100 rounded-0 mb-1 btnModalArtist" id="btn_${id}" data-bs-toggle="modal" href="#${id}" role="button">Imagen Wikipedia</button>
         <p class="d-none">${band}</p>
+        <button class="btn btn-primary w-100 rounded-0 rounded-bottom btnTraduc">Traducir Descripción</button>
       </div>
     </div>
   </div>

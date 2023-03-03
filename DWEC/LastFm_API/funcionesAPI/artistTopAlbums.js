@@ -1,7 +1,8 @@
 /* FUNCIÓN IMPRIMIR ÁLBUMES DE UN ARTISTA*/
 var artistTopAlbums = async function(artista, orden, direc){
   try{
-    console.log(orden);
+    /* Deshabilitar el botón */
+    botonBuscar.setAttribute("disabled","true");
     //Sólo si no hay resultados se almacenan 100 resultados
     if(numResults==0){
       /* Definición del Spinner */
@@ -124,5 +125,8 @@ var artistTopAlbums = async function(artista, orden, direc){
   } catch (error) {
     console.error("Error en ARTISTTOPARTIST");
     resultList.innerHTML = `<div class="row"><div class="col-12 text-center"><img style="max-width: 80px" src="died.png" alt="died"></div></div>`;
+  } finally {
+    /* Habilitar el botón */
+    botonBuscar.removeAttribute("disabled");
   }
 }

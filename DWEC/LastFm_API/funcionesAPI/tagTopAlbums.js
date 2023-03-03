@@ -1,7 +1,8 @@
 /* FUNCIÓN IMPRIMIR ÁLBUMES DE UN GÉNERO*/
 var tagTopAlbums = async function(genero, orden, direc){
   try{
-    console.log(orden);
+    /* Deshabilitar el botón */
+    botonBuscar.setAttribute("disabled","true");
     //Sólo si no hay resultados se almacenan 100 resultados
     if(numResults==0){
       /* Definición del Spinner */
@@ -119,5 +120,8 @@ var tagTopAlbums = async function(genero, orden, direc){
   } catch (error) {
     console.error("Error en TAGTOPALBUMS");
     resultList.innerHTML = `<div class="row"><div class="col-12 text-center"><img style="max-width: 80px" src="died.png" alt="died"></div></div>`;
+  } finally {
+    /* Habilitar el botón */
+    botonBuscar.removeAttribute("disabled");
   }
 }

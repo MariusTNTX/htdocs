@@ -2,6 +2,8 @@
 // albumInfo -> Mostrar solo Tracks
 var albumTracks = async function(album, orden, direc){
   try{
+    /* Deshabilitar el botón */
+    botonBuscar.setAttribute("disabled","true");
     /* Separación entre artista y álbum */
     let artist = album.split(' - ')[0];
     album = album.split(' - ')[1];
@@ -85,5 +87,8 @@ var albumTracks = async function(album, orden, direc){
   } catch (error) {
     console.error("Error en ALBUMTRACKS");
     resultList.innerHTML = `<div class="row"><div class="col-12 text-center"><img style="max-width: 80px" src="died.png" alt="died"></div></div>`;
+  } finally {
+    /* Habilitar el botón */
+    botonBuscar.removeAttribute("disabled");
   }
 }

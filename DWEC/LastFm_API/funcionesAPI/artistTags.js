@@ -1,6 +1,8 @@
 /* FUNCIÓN IMPRIMIR GÉNEROS DE UN ARTISTA */
 var artistTags = async function(artist, orden, direc){
   try{
+    /* Deshabilitar el botón */
+    botonBuscar.setAttribute("disabled","true");
     /* Corrección de Taggings */
     if(orden=='taggings') orden='total';
     //Sólo si no hay resultados se almacenan 100 resultados
@@ -73,7 +75,7 @@ var artistTags = async function(artist, orden, direc){
         }
       }
       /* Se crean los eventos de los botones */
-      crearEventosModal("Tag");
+      crearEventosModal("Artist");
       //Se actualiza numResults y se aumenta maxResults a +12 o a 100
       numResults = maxResults;
       maxResults = (maxResults+12 > totalResults) ? totalResults : maxResults+12;
@@ -81,5 +83,8 @@ var artistTags = async function(artist, orden, direc){
   } catch (error) {
     console.error("Error en ARTISTTAGS");
     resultList.innerHTML = `<div class="row"><div class="col-12 text-center"><img style="max-width: 80px" src="died.png" alt="died"></div></div>`;
+  } finally {
+    /* Habilitar el botón */
+    botonBuscar.removeAttribute("disabled");
   }
 }

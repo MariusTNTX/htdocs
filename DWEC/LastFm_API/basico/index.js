@@ -140,12 +140,15 @@ botonBuscar.addEventListener("click",()=>{
   resultList = document.getElementById("resultList");
   //Si no hay filtro se cambia la clave por "General"
   if(claveFiltro=='') claveFiltro = 'General';
-  //Se realiza la búsqueda imprimiendo los primeros resultados
-  try {
-    buscarPor[elemento][claveFiltro](valorFiltro, claveOrden, direcOrden);
-  } catch (error) {
-    alert("Criterios de búsqueda incorrectos");
-  }
+  //Se verifica que se haya seleccionado un elemento
+  if(elemento.length!=0){
+    //Se realiza la búsqueda imprimiendo los primeros resultados
+    try {
+      buscarPor[elemento][claveFiltro](valorFiltro, claveOrden, direcOrden);
+    } catch (error) {
+      alert("El filtro o la ordenación es incompatible con el elemento seleccionado");
+    }
+  } else alert("Debes seleccionar un elemento a buscar");
   
   /* Evento Scroll */ //Imprime más resultados al llegar al fondo de la página
   window.addEventListener("scroll",()=>{

@@ -1,6 +1,8 @@
 /* FUNCIÓN IMPRIMIR CANCIONES DE UN ARTISTA */
 var artistTopTracks = async function(artist, orden, direc){
   try{
+    /* Deshabilitar el botón */
+    botonBuscar.setAttribute("disabled","true");
     //Sólo si no hay resultados se almacenan 100 resultados
     if(numResults==0){
       /* Definición del Spinner */
@@ -82,5 +84,8 @@ var artistTopTracks = async function(artist, orden, direc){
   } catch (error) {
     console.error("Error en ARTISTTOPTRACKS");
     resultList.innerHTML = `<div class="row"><div class="col-12 text-center"><img style="max-width: 80px" src="died.png" alt="died"></div></div>`;
+  } finally {
+    /* Habilitar el botón */
+    botonBuscar.removeAttribute("disabled");
   }
 }

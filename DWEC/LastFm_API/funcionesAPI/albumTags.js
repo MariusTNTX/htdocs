@@ -1,6 +1,8 @@
 /* FUNCIÓN IMPRIMIR GÉNEROS DE UN ÁLBUMS */
 var albumTags = async function(album, orden, direc){
   try {
+    /* Deshabilitar el botón */
+    botonBuscar.setAttribute("disabled","true");
     /* Corrección de Taggings */
     if(orden=='taggings') orden='total';
     /* Separación entre artista y álbum */
@@ -76,7 +78,7 @@ var albumTags = async function(album, orden, direc){
         }
       }
       /* Se crean los eventos de los botones */
-      crearEventosModal("Tag");
+      crearEventosModal("Artist");
       //Se actualiza numResults y se aumenta maxResults a +12 o a totalResults
       numResults = maxResults;
       maxResults = (maxResults+12 > totalResults) ? totalResults : maxResults+12;
@@ -84,5 +86,8 @@ var albumTags = async function(album, orden, direc){
   } catch (error) {
     console.error("Error en ALBUMTAGS");
     resultList.innerHTML = `<div class="row"><div class="col-12 text-center"><img style="max-width: 80px" src="died.png" alt="died"></div></div>`;
+  } finally {
+    /* Habilitar el botón */
+    botonBuscar.removeAttribute("disabled");
   }
 }
