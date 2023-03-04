@@ -1,106 +1,99 @@
-<?
-	include("calcFechas.php");
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biblioteca</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link rel="stylesheet" href="../css/index.css">
+</head>
+<body class="bg-dark">
+  <div class="container bg-white p-4" id="inicio"><?
+		include("calcFechas.php");
 
-	//DATOS DE LAS TABLAS
+		echo '<h1 class="text-center my-4">Resumen del Proceso: <h1>';
+		
+		//CREACIÓN DE LA BASE DE DATOS
 
-	$tablas = [
-		['csv'=>$_SERVER['DOCUMENT_ROOT'].$rutaBiblio."/Biblioteca/csv/Matriculas.csv",
-		 'create'=>"create table if not exists MATRICULAS (ALUMNO VARCHAR(7), ESTUDIOS VARCHAR(100) NOT NULL, GRUPO VARCHAR(10), PRIMARY KEY(ALUMNO,GRUPO))",
-		 'insert'=>"insert into MATRICULAS values(?,?,?)",
-		 'select'=>"Select * from MATRICULAS",
-		 'bind'=>"iss"
-		],
-		['csv'=>$_SERVER['DOCUMENT_ROOT'].$rutaBiblio."/Biblioteca/csv/Departamentos.csv",
-		 'create'=>"create table if not exists DEPARTAMENTOS (COD_DPTO VARCHAR(2) PRIMARY KEY, NOMBRE VARCHAR(50) NOT NULL, CENTRO ENUM('CIFP1','Albaladejito','Pedro Mercedes'), DNI_JFK VARCHAR(10), PASSWORD VARCHAR(100))",
-		 'insert'=>"insert into DEPARTAMENTOS values(?,?,?,?,?)",
-		 'select'=>"Select * from DEPARTAMENTOS",
-		 'bind'=>"issss"
-		],
-		['csv'=>$_SERVER['DOCUMENT_ROOT'].$rutaBiblio."/Biblioteca/csv/Profesores.csv",
-		 'create'=>"create table if not exists PROFESORES (APELLIDOS VARCHAR(50), NOMBRE VARCHAR(30) NOT NULL, DNI VARCHAR(10) PRIMARY KEY, COD_DPTO VARCHAR(2) REFERENCES DEPARTAMENTOS(COD_DPTO))",
-		 'insert'=>"insert into PROFESORES values(?,?,?,?)",
-		 'select'=>"Select * from PROFESORES",
-		 'bind'=>"sssi"
-		],
-		['csv'=>$_SERVER['DOCUMENT_ROOT'].$rutaBiblio."/Biblioteca/csv/Alumnos.csv",
-		 'create'=>"create table if not exists ALUMNOS (ALUMNO VARCHAR(7) REFERENCES MATRICULAS(ALUMNO), APELLIDOS VARCHAR(50), NOMBRE VARCHAR(30) NOT NULL, DNI VARCHAR(10) PRIMARY KEY, NIE VARCHAR(8) NOT NULL)",
-		 'insert'=>"insert into ALUMNOS values(?,?,?,?,?)",
-		 'select'=>"Select * from ALUMNOS",
-		 'bind'=>"isssi"
-		],
-		['csv'=>$_SERVER['DOCUMENT_ROOT'].$rutaBiblio."/Biblioteca/csv/Libros1.csv",
-		 'create'=>"create table if not exists LIBROS (COD_LIBRO VARCHAR(16) PRIMARY KEY, TITULO VARCHAR(100) NOT NULL, AUTOR VARCHAR(100), MATERIA VARCHAR(30), EDITORIAL VARCHAR(25), A_EDICION VARCHAR(4), SOPORTE_M ENUM('SI','NO') DEFAULT 'NO', USUARIO ENUM('ALUMNO','PROFESOR','CONSULTA'), COD_DPTO VARCHAR(2) REFERENCES DEPARTAMENTOS(COD_DPTO), ESTADO ENUM('BUENO','MALO') DEFAULT 'BUENO')",
-		 'insert'=>"insert into LIBROS values(?,?,?,?,?,?,?,?,?,?)",
-		 'select'=>"Select * from LIBROS",
-		 'bind'=>"sssssissis"
-		],
-		['csv'=>$_SERVER['DOCUMENT_ROOT'].$rutaBiblio."/Biblioteca/csv/Reservas.csv",
-		 'create'=>"create table if not exists RESERVAS (COD_LIBRO VARCHAR(16) PRIMARY KEY REFERENCES LIBROS(COD_LIBRO), DNI VARCHAR(10), FECHA_FIN DATE NOT NULL)",
-		 'insert'=>"insert into RESERVAS values(?,?,?)",
-		 'select'=>"Select * from RESERVAS",
-		 'bind'=>"sss"
-		],
-		['csv'=>$_SERVER['DOCUMENT_ROOT'].$rutaBiblio."/Biblioteca/csv/Prestamos.csv",
-		 'create'=>"create table if not exists PRESTAMOS (NUM_PREST INT NOT NULL AUTO_INCREMENT, COD_LIBRO VARCHAR(16) REFERENCES LIBROS(COD_LIBRO), DNI VARCHAR(10), FECHA_RECOG DATE NOT NULL, FECHA_DEVOL DATE NOT NULL, DEVUELTO ENUM('Si','No') DEFAULT 'No', PRIMARY KEY(NUM_PREST))",
-		 'insert'=>"insert into PRESTAMOS values(?,?,?,?,?,?)",
-		 'select'=>"Select * from PRESTAMOS",
-		 'bind'=>"isssss"
-		]
-	];
-
-	//CREACIÓN DE BASE DE DATOS
-
-	$c1 = mysqli_connect($dbhost,$dbuser,$dbpass) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
-	echo utf8_encode('Conexión establecida').'<br>';
-	
-	if (!mysqli_query($c1,'create database if not exists '.$dbname)){
-		echo mysqli_error($c1).'<br>';
-		exit(-1);
-	} else echo utf8_encode('Base de datos creada').'<br>';
-
-	if (!mysqli_query($c1,'use '.$dbname)){
-		echo mysqli_error($c1).'<br>';
-		exit(-1);
-	} else echo utf8_encode('Base de datos puesta en uso').'<br>';
-
-
-	//CREACIONES E IMPORTACIONES
-
-	foreach($tablas as $tbl){
-		//Creamos la tabla destino de los datos
-		if (!mysqli_query($c1,$tbl['create'])){
-			echo mysqli_error($c1).'<br>';
+		//Se establece la conexión
+		try {
+			$c1 = mysqli_connect($dbhost,$dbuser,$dbpass);
+			echo '<span class="text-success">Conexión establecida</span>'.'<br>';
+		} catch (\Throwable $th) {
+			echo '<span class="text-danger">Error de conexion a MySQL: ' . mysqli_error($c1).'</span><br><br>';
 			exit(-1);
-		} else echo utf8_encode('Tabla creada').'<br>';
+		}
+		//Se crea la base de datos si no existe
+		if (!mysqli_query($c1,'create database if not exists '.$dbname)){
+			echo '<span class="text-danger">Error al crear la base de datos: ' . mysqli_error($c1).'</span><br><br>';
+			exit(-1);
+		} else echo '<span class="text-success">Base de datos creada</span>'.'<br>';
 
-		//Importacion de datos desde un fichero a una tabla
-		$fic = fopen($tbl['csv'],'r');
-		fgetcsv($fic,0,';');
-		while($reg = fgetcsv($fic,0,';')){
-			$stmt = mysqli_prepare($c1,$tbl['insert']);
-			switch (strlen($tbl['bind'])) {
-				case 3: $stmt->bind_param($tbl['bind'], $reg[0], $reg[1], $reg[2]);
-					break;
-				case 4: $stmt->bind_param($tbl['bind'], $reg[0], $reg[1], $reg[2], $reg[3]);
-					break;
-				case 5: $stmt->bind_param($tbl['bind'], $reg[0], $reg[1], $reg[2], $reg[3], $reg[4]);
-					break;
-				case 6: $stmt->bind_param($tbl['bind'], $reg[0], $reg[1], $reg[2], $reg[3], $reg[4], $reg[5]);
-					break;
-				case 10: $stmt->bind_param($tbl['bind'], $reg[0], $reg[1], $reg[2], $reg[3], $reg[4], $reg[5], $reg[6], $reg[7], $reg[8], $reg[9]);
-					break;
-				default: echo 'Error en Switch-Bind: No existe la opción para importar '.strlen($tbl['bind']).' columnas<br>';
-					break;
-			}
-			if (!$stmt->execute()){
-				echo 'error en insert: '.mysqli_error($c1).'<br>';
+		//Se usa la base de datos
+		if (!mysqli_query($c1,'use '.$dbname)){
+			echo '<span class="text-danger">Error al poner en uso la base de datos: ' . mysqli_error($c1).'</span><br><br>';
+			exit(-1);
+		} else echo '<span class="text-success">Base de datos puesta en uso</span>'.'<br>';
+
+		//Se vacían las tablas en caso de tenerlas
+		try {
+			foreach($tablas as $tabla) mysqli_query($c1,$tabla['drop']);
+			echo '<span class="text-success">Vaciado de tablas garantizado</span>'.'<br><br>';
+		} catch (Exception $e) {
+			echo '<span class="text-danger">Error al vaciar las tablas: ' . mysqli_error($c1).'</span><br><br>';
+			exit(-1);
+		}
+		
+		//CREACIONES E IMPORTACIONES
+
+		foreach($tablas as $tbl){
+			//Creamos la tabla destino de los datos
+			if (!mysqli_query($c1,$tbl['create'])){
+				echo '<span class="text-danger">Error al crear la tabla '.$tbl['name'].': '.mysqli_error($c1).'</span><br><br>';
+				exit(-1);
+			} else echo '<span class="text-success">Tabla '.$tbl['name'].' creada</span><br>';
+
+			//Importacion de datos desde un fichero a una tabla
+			try {
+				$fic = fopen($tbl['csv'],'r');
+				fgetcsv($fic,0,';');
+			} catch (Exception $e) {
+				echo '<span class="text-danger">Error al abrir el fichero CSV de '.$tbl['name'].'</span><br><br>';
 				exit(-1);
 			}
-			$stmt->close();
+			while($reg = fgetcsv($fic,0,';')){
+				$stmt = mysqli_prepare($c1,$tbl['insert']);
+				switch (strlen($tbl['bind'])) {
+					case 3: $stmt->bind_param($tbl['bind'], $reg[0], $reg[1], $reg[2]);
+						break;
+					case 4: $stmt->bind_param($tbl['bind'], $reg[0], $reg[1], $reg[2], $reg[3]);
+						break;
+					case 5: $stmt->bind_param($tbl['bind'], $reg[0], $reg[1], $reg[2], $reg[3], $reg[4]);
+						break;
+					case 6: $stmt->bind_param($tbl['bind'], $reg[0], $reg[1], $reg[2], $reg[3], $reg[4], $reg[5]);
+						break;
+					case 10: $stmt->bind_param($tbl['bind'], $reg[0], $reg[1], $reg[2], $reg[3], $reg[4], $reg[5], $reg[6], $reg[7], $reg[8], $reg[9]);
+						break;
+					default: echo utf8_encode('<span class="text-danger">Error en Switch-Bind (Tabla de '.$tbl['name'].'): No existe la opción para importar '.strlen($tbl['bind']).' columnas</span><br><br>');
+						exit(-1);
+						break;
+				}
+				if (!$stmt->execute()){
+					echo '<span class="text-danger">Error al insertar registros en '.$tbl['name'].': ' . mysqli_error($c1).'</span><br><br>';
+					exit(-1);
+				}
+				$stmt->close();
+			}
+			echo '<span class="text-success">Registros de la tabla '.$tbl['name'].' importados con éxito</span><br><br>';
+			fclose($fic);
 		}
-		echo utf8_encode('Importación realizada').'<br>';
-	}
-	
-	//Liberamos gestor de conexion
-	mysqli_close($c1);
-?>
+		//Liberamos gestor de conexion
+		mysqli_close($c1);
+		//Regreso a Administración
+		echo '<span class="text-success">Biblioteca Inicializada con éxito. Pulse en el siguiente botón para volver a la interfaz de administrador:</span><br><br>';
+		echo '<div class="text-center"><a href="../administracion.html"><button class="btn btn-primary btn-lg">Volver a Administración</button></a></div>';
+  ?></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+</body>
+</html>

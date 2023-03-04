@@ -6,7 +6,9 @@ let btnLogout = document.getElementById("btnLogout");
 let btnAnular = document.getElementById("btnAnular");
 let btnReservar = document.getElementById("btnReservar");
 let camposAnular = document.getElementById("camposAnular");
-let camposReservar = document.getElementById("camposReservar");
+let camposReserva = document.getElementById("camposReserva");
+
+eliminarSesionAdmin();
 
 //Si se intenta acceder a perfil sin estar logeado se redirige al login
 if(!sessionStorage.getItem("tipoUsuario")) location.href="login.html";
@@ -98,54 +100,58 @@ getPrestamos('',sessionStorage.getItem("dniUsuario"),'','','Si').then(data =>{
       <td class="d-none">${dat.COD_LIBRO.substr(-1)}</td>
       <td>${dat.AUTOR}</td>
       <td>${dat.MATERIA}</td>
-      <td>${dat.DEPARTAMENTO}s</td>
+      <td>${dat.DEPARTAMENTO}</td>
       <td>${dat.CENTRO}</td>
       <td>${dat.EDITORIAL}</td>
       <td>${dat.A_EDICION}</td>
       <td>${dat.ESTADO}</td>
       <td>${dat.USUARIO}</td>
-      <td><button type="button" class="btn btn-primary btn-Reservar" data-bs-toggle="modal" data-bs-target="#modalReserva">Reservar</button></td>
+      <td><button type="button" class="btn btn-primary btn-Reservar">Reservar</button></td>
+      <input type="hidden" data-bs-toggle="modal" data-bs-target="#modalReserva">
     </tr>`;
   }
   //BOTONES RESERVAR TABLA
-  for(btn of document.querySelectorAll("btn-Reservar")){
+  for(btn of document.querySelectorAll(".btn-Reservar")){
+    console.log("Añadiendo eventos al botón")
     btn.addEventListener("click",(e)=>{
       //Se imprimen los datos del libro a reservar en el modal siguiente
       let corresp = [0,3,4,5,6,1,2,7,8,9,10];
-      for(let i=0; i<10; i++){
+        /* console.log(camposReserva.children[i].children);
+        console.log(btn.parentElement.parentElement.children) */
+      for(let i=0; i<corresp.length; i++){
         camposReserva.children[i].children[1].textContent = btn.parentElement.parentElement.children[corresp[i]].textContent;
       }
-      //Si hay un usuario logeado se verifica que no tenga suficientes reservas/préstamos o que no lo tenga ya
-      if(sessionStorage.getItem("tipoUsuario")){
-        getLibrosUsuario(sessionStorage.getItem("dniUsuario")).then(data => {
-          //Si al recuperar las reservas tiene menos de dos reservas se genera click y se autocompletan los campos del login
-          console.log(data)
-          if((data.reservas.length + data.prestamos.length)<2){
-            //Si tiene un libro y coincide no le dejará reservarlo
-            console.log("ISBN:")
-            console.log(btn.parentElement.parentElement.children[1].textContent)
-            if((data.reservas.length==1 && data.reservas[0].COD_LIBRO==btn.parentElement.parentElement.children[1].textContent) ||
-              (data.prestamos.length==1 && data.reservas[0].COD_LIBRO==btn.parentElement.parentElement.children[1].textContent)){
-              alert("No puedes reservar: Ya tienes una reserva o préstamo en curso con éste ejemplar");
-            } else {
-              btn.parentElement.nextElementSibling.dispatchEvent(new Event("click"));
-              if(sessionStorage.getItem("tipoUsuario")=='Alumno'){
-                dniAlumno.value = sessionStorage.getItem("dniUsuario");
-                nieAlumno.value = sessionStorage.getItem("nieUsuario");
-              } else if(sessionStorage.getItem("tipoUsuario")=='Profesor'){
-                dniProfesor.value = sessionStorage.getItem("dniUsuario");
-              }
-            }
-            //Si al recuperar las reservas tiene dos reservas no se genera click y se avisará con alert
-          } else alert("No puedes reservar: Tienes demasiadas reservas y/o préstamos en curso");
-        });
-      } else btn.parentElement.nextElementSibling.dispatchEvent(new Event("click"));
+      //Se verifica que no tenga suficientes reservas/préstamos o que no lo tenga ya
+      getLibrosActUsuario(sessionStorage.getItem("dniUsuario")).then(data => {
+        //Si al recuperar las reservas tiene menos de dos reservas se genera click y se autocompletan los campos del login
+        console.log(data)
+        if((data.reservas.length + data.prestamos.length)<2){
+          //Si tiene un libro y coincide no le dejará reservarlo
+          console.log("ISBN:")
+          console.log(btn.parentElement.parentElement.children[1].textContent)
+          if((data.reservas.length==1 && data.reservas[0].COD_LIBRO==btn.parentElement.parentElement.children[1].textContent+"_"+btn.parentElement.parentElement.children[2].textContent) ||
+             (data.prestamos.length==1 && data.prestamos[0].COD_LIBRO==btn.parentElement.parentElement.children[1].textContent+"_"+btn.parentElement.parentElement.children[2].textContent)){
+            alert("No puedes reservar: Ya tienes una reserva o préstamo en curso con éste ejemplar");
+          } else btn.parentElement.nextElementSibling.dispatchEvent(new Event("click"));
+          //Si al recuperar las reservas tiene dos reservas no se genera click y se avisará con alert
+        } else alert("No puedes reservar: Tienes demasiadas reservas y/o préstamos en curso");
+      });
     });
   }
 
   //BOTÓN RESERVAR MODAL
   btnReservar.addEventListener("click",()=>{
-
+    //añadir la nueva reserva al usuario según su dni
+    let cod = camposReserva.children[5].children[1].textContent+"_"+camposReserva.children[6].children[1].textContent;
+    getFechaRecogida().then(data => {
+      let fechaRecog = data[0];
+      putReserva(cod,sessionStorage.getItem("dniUsuario"),fechaRecog).then(data =>{
+        if(data[0]){
+          alert("Tu reserva se ha efectuado con éxito");
+          location.href="perfil.html";
+        } 
+      });
+    });
   });
 });
 

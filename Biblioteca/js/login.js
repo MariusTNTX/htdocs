@@ -4,6 +4,8 @@ let btnAlumno = document.getElementById("btnAlumno");
 let dniProfesor = document.getElementById("dniProfesor");
 let btnProfesor = document.getElementById("btnProfesor");
 
+eliminarSesionAdmin();
+
 //Si hay sesión iniciada se autocompletan los campos correspondientes
 if(sessionStorage.getItem("tipoUsuario")){
   console.log("Sesión detectada")

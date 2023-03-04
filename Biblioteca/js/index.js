@@ -19,6 +19,8 @@ let fechaRecog = document.getElementById("fechaRecog");
 let botonReservarFinal = document.getElementById("botonReservarFinal");
 let datosReserva = document.getElementById("datosReserva");
 
+eliminarSesionAdmin();
+
 // BOTÓN BUSCAR
 buscarLibros.addEventListener("click",()=>{
   //Si hay algún campo con información se inicia la búsqueda
@@ -79,8 +81,8 @@ buscarLibros.addEventListener("click",()=>{
                 //Si tiene un libro y coincide no le dejará reservarlo
                 console.log("ISBN:")
                 console.log(btn.parentElement.parentElement.children[1].textContent)
-                if((data.reservas.length==1 && data.reservas[0].COD_LIBRO==btn.parentElement.parentElement.children[1].textContent) ||
-                  (data.prestamos.length==1 && data.reservas[0].COD_LIBRO==btn.parentElement.parentElement.children[1].textContent)){
+                if((data.reservas.length==1 && data.reservas[0].COD_LIBRO==btn.parentElement.parentElement.children[1].textContent+"_"+btn.parentElement.parentElement.children[2].textContent) ||
+                  (data.prestamos.length==1 && data.prestamos[0].COD_LIBRO==btn.parentElement.parentElement.children[1].textContent+"_"+btn.parentElement.parentElement.children[2].textContent)){
                   alert("No puedes reservar: Ya tienes una reserva o préstamo en curso con éste ejemplar")
                 } else {
                   btn.parentElement.nextElementSibling.dispatchEvent(new Event("click"));

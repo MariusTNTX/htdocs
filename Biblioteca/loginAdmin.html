@@ -12,21 +12,23 @@
   <div class="container-fluid" id="bglogin">
 
     <div class="row justify-content-center my-5">
-      <div class="col-4 shadow rounded py-4 px-5 mt-5 bg-white">
+      <form class="col-4 shadow rounded py-4 px-5 mt-5 bg-white">
         <h1 class="text-center mb-5">Administrador</h1>
         <div class="form-floating mb-3">
-          <input type="text" class="form-control" id="dniAdmin" placeholder="DNI">
+          <input type="text" class="form-control" id="dniAdmin" placeholder="DNI" required minlength="9" maxlength="9">
           <label for="dniAdmin">DNI</label>
         </div>
         <div class="form-floating mb-3">
-          <input type="password" class="form-control" id="passAdmin" placeholder="Contraseña">
+          <input type="password" class="form-control" id="passAdmin" placeholder="Contraseña" required>
           <label for="passAdmin">Contraseña</label>
         </div>
-        <div class="text-center mt-5"><a href="administracion.html"><button type="button" class="btn btn-primary btn-lg">Iniciar Sesión</button></a></div>
-      </div>
+        <div class="text-center mt-5"><button type="button" class="btn btn-primary btn-lg" id="btnAdmin">Iniciar Sesión</button></div>
+      </form>
     </div>
 
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+  <script src="js/api.js"></script>
+  <script src="js/loginAdmin.js"></script>
 </body>
 </html>
