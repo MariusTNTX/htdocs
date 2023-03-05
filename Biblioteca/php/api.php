@@ -9,8 +9,8 @@ try {
   if(isset($_GET['select'])){
     //ALMACENAMIENTO DE PARÁMETROS
     $select = $_GET['select'];
-    $filters = explode("|", $_GET['filters']);
-    $values = explode("|", $_GET['values']);
+    $filters = (strlen($filters)>0) ? explode("|", $_GET['filters']) : [];
+    $values = (strlen($values)>0) ? explode("|", $_GET['values']) : [];
     
     //LIBROS
     if($select=='libros'){
@@ -80,6 +80,29 @@ try {
       foreach($filters as $i => $filt){
         if(in_array($filt,$igual)) $consulta .= ' AND '.$filt.' = "'.$values[$i].'"';
         else $consulta .= ' AND '.$filt.' LIKE "%'.$values[$i].'%"';
+      }
+      //Se establece conexión con la BD
+      $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
+      //Se realiza la consulta
+      if (!$resp = mysqli_query($c1, $consulta)){
+        echo mysqli_error($c1).'<br>';
+        echo 'Consulta: '.$consulta;
+        exit(-1);
+      }
+      //Se almacenan los datos
+      $data = mysqli_fetch_all($resp, MYSQLI_ASSOC);
+    }
+
+    //DEPARTAMENTOS
+    else if($select=='departamentos'){
+      //Se forma la raíz de la consulta
+      $consulta = 'SELECT COD_DPTO AS CODIGO, NOMBRE, CENTRO, DNI_JFK AS DNI FROM DEPARTAMENTOS';
+      //Se completa la consulta con los filtros corregidos
+      foreach($filters as $i => $filt){
+        if($i==0) $consulta .= ' WHERE ';
+        else $consulta .= ' AND ';
+        if(in_array($filt,$igual)) $consulta .= $filt.' = "'.$values[$i].'"';
+        else $consulta .= $filt.' LIKE "%'.$values[$i].'%"';
       }
       //Se establece conexión con la BD
       $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');

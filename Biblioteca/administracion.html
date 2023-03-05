@@ -65,7 +65,7 @@
         <div class="shadow rounded py-4 px-3 text-center">
           <h2>Alumnos y Matrículas</h2><hr class="my-4">
           <div><button type="button" class="btn btn-primary btn-lg mb-3" id="AltaIAlum">Alta Individual</button></div>
-          <div><button type="button" class="btn btn-primary btn-lg mb-3" id="AltaMAlum">Alta Masiva</button></div>
+          <div><button type="button" class="btn btn-primary btn-lg mb-3" id="AltaMAlum" data-bs-toggle="modal" data-bs-target="#modalAltaMAlum">Alta Masiva</button></div>
           <div><button type="button" class="btn btn-primary btn-lg mb-3" id="modifAlum" data-bs-toggle="modal" data-bs-target="#modalModifAlum">Modificar/Dar de Baja</button></div>
         </div>
       </div>
@@ -74,8 +74,8 @@
         <div class="shadow rounded py-4 px-3 text-center">
           <h2>Profesores</h2><hr class="my-4">
           <div><button type="button" class="btn btn-primary btn-lg mb-3" id="AltaIProf">Alta Individual</button></div>
-          <div><button type="button" class="btn btn-primary btn-lg mb-3" id="AltaMProf">Alta Masiva</button></div>
-          <div><button type="button" class="btn btn-primary btn-lg mb-3" id="modifProf">Modificar/Dar de Baja</button></div>
+          <div><button type="button" class="btn btn-primary btn-lg mb-3" id="AltaMProf" data-bs-toggle="modal" data-bs-target="#modalAltaMProf">Alta Masiva</button></div>
+          <div><button type="button" class="btn btn-primary btn-lg mb-3" id="modifProf" data-bs-toggle="modal" data-bs-target="#modalModifProf">Modificar/Dar de Baja</button></div>
         </div>
       </div>
       <!-- Libros -->
@@ -92,7 +92,7 @@
         <div class="shadow rounded py-4 px-3 text-center">
           <h2>Departamentos</h2><hr class="my-4">
           <div><button type="button" class="btn btn-primary btn-lg mb-3" id="AltaIDepart">Alta Individual</button></div>
-          <div><button type="button" class="btn btn-primary btn-lg mb-3" id="AltaMDepart">Alta Masiva</button></div>
+          <div><button type="button" class="btn btn-primary btn-lg mb-3" id="AltaMDepart" data-bs-toggle="modal" data-bs-target="#modalAltaMDepart">Alta Masiva</button></div>
           <div><button type="button" class="btn btn-primary btn-lg mb-3" id="ModifDepart">Modificar/Dar de Baja</button></div>
         </div>
       </div>
@@ -305,16 +305,14 @@
     </div>
   </div> -->
 
-  <!-- MODAL MODIFICAR/DAR DE BAJA -->
+  <!-- MODAL MODIFICAR/DAR DE BAJA ALUMNOS-MATRÍCULAS -->
   <div class="modal fade" id="modalModifAlum" tabindex="-1" aria-labelledby="mdlModifAlumno" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content">
-
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="mdlModifAlumno">MODIFICAR O DAR DE BAJA ALUMNOS Y MATRÍCULAS</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-
         <form class="modal-body">
           <div class="row justify-content-center mx-4">
             <!-- Buscador -->
@@ -351,11 +349,109 @@
             <tbody id="tbodyModifMatr"></tbody>
           </table>
         </form>
-
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
         </div>
-        
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL MODIFICAR/DAR DE BAJA PROFESORES -->
+  <div class="modal fade" id="modalModifProf" tabindex="-1" aria-labelledby="mdlModifProfesor" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="mdlModifProfesor">MODIFICAR O DAR DE BAJA PROFESORES</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form class="modal-body">
+          <div class="row justify-content-center mx-4">
+            <!-- Buscador -->
+            <div class="input-group mt-4 w-75">
+              <input type="text" class="form-control" id="txtModifProf" placeholder="DNI del Profesor">
+              <button class="btn btn-outline-primary" type="button" id="buscarModifProf">Buscar</button>
+            </div>
+          </div>
+          <h3 class="text-center mt-5">Información del Profesor</h3>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Apellidos</th>
+                <th>Nombre</th>
+                <th>DNI</th>
+                <th>Departamento</th>
+                <th>Actualizar</th>
+                <th>Borrar</th>
+              </tr>
+            </thead>
+            <tbody id="tbodyModifProf">
+              
+            </tbody>
+          </table>
+        </form>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL ALTA MASIVA ALUMNOS/MATRÍCULAS -->
+  <div class="modal fade" id="modalAltaMAlum" tabindex="-1" aria-labelledby="mdlAltaMAlumno" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="mdlAltaMAlumno">ALTA MASIVA DE ALUMNOS Y MATRÍCULAS</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body row justify-content-center">
+          <div class="col-8" style="height: 350px">
+            <iframe src="php/altaMasiva.php?tipo=Alumnos|Matrículas" frameborder="0" style="width: 100%; height: 100%"></iframe>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL ALTA MASIVA PROFESORES -->
+  <div class="modal fade" id="modalAltaMProf" tabindex="-1" aria-labelledby="mdlAltaMProfesor" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="mdlAltaMProfesor">ALTA MASIVA DE PROFESORES</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body row justify-content-center">
+          <div class="col-8" style="height: 250px">
+            <iframe src="php/altaMasiva.php?tipo=Profesores" frameborder="0" style="width: 100%; height: 100%"></iframe>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL ALTA MASIVA DEPARTAMENTOS -->
+  <div class="modal fade" id="modalAltaMDepart" tabindex="-1" aria-labelledby="mdlAltaMDepart" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="mdlAltaMDepart">ALTA MASIVA DE DEPARTAMENTOS</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body row justify-content-center">
+          <div class="col-8" style="height: 250px">
+            <iframe src="php/altaMasiva.php?tipo=Departamentos" frameborder="0" style="width: 100%; height: 100%"></iframe>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        </div>
       </div>
     </div>
   </div>
