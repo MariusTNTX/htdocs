@@ -9,8 +9,8 @@ try {
   if(isset($_GET['select'])){
     //ALMACENAMIENTO DE PARÁMETROS
     $select = $_GET['select'];
-    $filters = (strlen($filters)>0) ? explode("|", $_GET['filters']) : [];
-    $values = (strlen($values)>0) ? explode("|", $_GET['values']) : [];
+    $filters = (strlen($_GET['filters'])>0) ? explode("|", $_GET['filters']) : [];
+    $values = (strlen($_GET['values'])>0) ? explode("|", $_GET['values']) : [];
     
     //LIBROS
     if($select=='libros'){
@@ -75,7 +75,7 @@ try {
     //PROFESORES
     else if($select=='profesores'){
       //Se forma la raíz de la consulta
-      $consulta = 'SELECT APELLIDOS, P.NOMBRE AS NOMBRE, DNI, D.NOMBRE AS DEPARTAMENTO FROM PROFESORES P, DEPARTAMENTOS D WHERE P.COD_DPTO=D.COD_DPTO';
+      $consulta = 'SELECT APELLIDOS, P.NOMBRE AS NOMBRE, DNI, D.NOMBRE AS DEPARTAMENTO, P.COD_DPTO AS CODIGO FROM PROFESORES P, DEPARTAMENTOS D WHERE P.COD_DPTO=D.COD_DPTO';
       //Se completa la consulta con los filtros corregidos
       foreach($filters as $i => $filt){
         if(in_array($filt,$igual)) $consulta .= ' AND '.$filt.' = "'.$values[$i].'"';
@@ -96,7 +96,7 @@ try {
     //DEPARTAMENTOS
     else if($select=='departamentos'){
       //Se forma la raíz de la consulta
-      $consulta = 'SELECT COD_DPTO AS CODIGO, NOMBRE, CENTRO, DNI_JFK AS DNI FROM DEPARTAMENTOS';
+      $consulta = 'SELECT COD_DPTO AS CODIGO, NOMBRE, CENTRO, DNI_JFK AS DNI, PASSWORD FROM DEPARTAMENTOS';
       //Se completa la consulta con los filtros corregidos
       foreach($filters as $i => $filt){
         if($i==0) $consulta .= ' WHERE ';
@@ -283,6 +283,119 @@ try {
       $data = ['Insert Exitoso'];
     }
 
+    //ALUMNOS
+    if($insert == 'alumno'){
+      //Se forma la raíz de la consulta
+      $insert = 'INSERT INTO ALUMNOS (';
+      $list = ' VALUES (';
+      //Se completa la consulta con los filtros
+      foreach($elements as $i => $elm){
+        if($i!=0){
+          $insert .= ',';
+          $list .= ',';
+        }
+        $insert .= $elm;
+        $list .= '"'.$values[$i].'"';
+      }
+      $consulta = $insert.')'.$list.')';
+      //Se establece conexión con la BD
+      $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
+      //Se realiza la consulta
+      if (!$resp = mysqli_query($c1, $consulta)){
+        echo mysqli_error($c1).'<br>';
+        echo 'Consulta: '.$consulta;
+        exit(-1);
+      }
+      //Se almacenan los datos
+      $data = ['Insert Exitoso'];
+    }
+
+    //MATRICULAS
+    if($insert == 'matricula'){
+      //Se forma la raíz de la consulta
+      $insert = 'INSERT INTO MATRICULAS (';
+      $list = ' VALUES (';
+      //Se completa la consulta con los filtros
+      foreach($elements as $i => $elm){
+        if($i!=0){
+          $insert .= ',';
+          $list .= ',';
+        }
+        $insert .= $elm;
+        $list .= '"'.$values[$i].'"';
+      }
+      $consulta = $insert.')'.$list.')';
+      //Se establece conexión con la BD
+      $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
+      //Se realiza la consulta
+      if (!$resp = mysqli_query($c1, $consulta)){
+        echo mysqli_error($c1).'<br>';
+        echo 'Consulta: '.$consulta;
+        exit(-1);
+      }
+      //Se almacenan los datos
+      $data = ['Insert Exitoso'];
+    }
+
+    //PROFESORES
+    if($insert == 'profesor'){
+      //Se forma la raíz de la consulta
+      $insert = 'INSERT INTO PROFESORES (';
+      $list = ' VALUES (';
+      //Se completa la consulta con los filtros
+      foreach($elements as $i => $elm){
+        if($i!=0){
+          $insert .= ',';
+          $list .= ',';
+        }
+        $insert .= $elm;
+        $list .= '"'.$values[$i].'"';
+      }
+      $consulta = $insert.')'.$list.')';
+      //Se establece conexión con la BD
+      $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
+      //Se realiza la consulta
+      if (!$resp = mysqli_query($c1, $consulta)){
+        echo mysqli_error($c1).'<br>';
+        echo 'Consulta: '.$consulta;
+        exit(-1);
+      }
+      //Se almacenan los datos
+      $data = ['Insert Exitoso'];
+    }
+
+    //DEPARTAMENTOS
+    if($insert == 'departamento'){
+      //Se establece conexión con la BD
+      $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
+      //Se obtiene el nuevo código de departamento y se añade la información
+      !$resp = mysqli_query($c1, 'SELECT * FROM DEPARTAMENTOS');
+      $cods = mysqli_fetch_all($resp, MYSQLI_ASSOC);
+      array_push($elements,'cod_dpto');
+      array_push($values,count($cods));
+      //Se forma la raíz de la consulta
+      $insert = 'INSERT INTO DEPARTAMENTOS (';
+      $list = ' VALUES (';
+      //Se completa la consulta con los filtros
+      foreach($elements as $i => $elm){
+        if($i!=0){
+          $insert .= ',';
+          $list .= ',';
+        }
+        $insert .= $elm;
+        $list .= '"'.$values[$i].'"';
+      }
+      $consulta = $insert.')'.$list.')';
+      //Se realiza la consulta
+      if (!$resp = mysqli_query($c1, $consulta)){
+        echo mysqli_error($c1).'<br>';
+        echo 'Consulta: '.$consulta;
+        exit(-1);
+      }
+      //Se almacenan los datos
+      $data = ['Insert Exitoso'];
+    }
+
     mysqli_close($c1);
     header("Content-type: application/json; charset=utf-8");
     echo json_encode($data);
@@ -298,6 +411,27 @@ try {
     if($update == 'alumno'){
       //Se forma la raíz de la consulta
       $query = 'UPDATE ALUMNOS SET ';
+      //Se completa la consulta con los filtros corregidos
+      foreach($elements as $i => $elm){
+        if($i!=0) $query .= ', ';
+        $query .= $elm.' = "'.$values[$i].'"';
+      }
+      $query .= ' WHERE DNI LIKE "'.$id.'"';
+      //Se establece conexión con la BD
+      $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
+      //Se realiza el update
+      if (!$resp = mysqli_query($c1, $query)){
+        echo mysqli_error($c1).'<br>';
+        echo 'Consulta: '.$consulta;
+        exit(-1);
+      }
+      if($resp) $data = ['Update sin Errores'];
+    }
+
+    //PROFESORES
+    if($update == 'profesor'){
+      //Se forma la raíz de la consulta
+      $query = 'UPDATE PROFESORES SET ';
       //Se completa la consulta con los filtros corregidos
       foreach($elements as $i => $elm){
         if($i!=0) $query .= ', ';
@@ -332,6 +466,27 @@ try {
       if (!$resp = mysqli_query($c1, $query)){
         echo mysqli_error($c1).'<br>';
         echo 'Consulta: '.$consulta;
+        exit(-1);
+      }
+      if($resp) $data = ['Update sin Errores'];
+    }
+
+    //DEPARTAMENTOS
+    if($update == 'departamento'){
+      //Se forma la raíz de la consulta
+      $query = 'UPDATE DEPARTAMENTOS SET ';
+      //Se completa la consulta con los filtros corregidos
+      foreach($elements as $i => $elm){
+        if($i!=0) $query .= ', ';
+        $query .= $elm.' = "'.$values[$i].'"';
+      }
+      $query .= ' WHERE COD_DPTO LIKE "'.$id.'"';
+      //Se establece conexión con la BD
+      $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
+      //Se realiza el update
+      if (!$resp = mysqli_query($c1, $query)){
+        echo mysqli_error($c1).'<br>';
+        echo 'Consulta: '.$query;
         exit(-1);
       }
       if($resp) $data = ['Update sin Errores'];
@@ -391,6 +546,28 @@ try {
       $data = ['Delete Exitoso'];
     }
 
+    //PROFESORES
+    if($delete == 'profesor'){
+      //Se forma la raíz de la consulta
+      $query = 'DELETE FROM PROFESORES WHERE ';
+      //Se completa la consulta con los filtros corregidos
+      foreach($elements as $i => $elm){
+        if($i!=0) $query .= ' AND ';
+        if(in_array($elm,$igual)) $query .= $elm.' = "'.$values[$i].'"';
+        else $query .= $elm.' LIKE "%'.$values[$i].'%"';
+      }
+      //Se establece conexión con la BD
+      $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
+      //Se realiza la consulta
+      if (!$resp = mysqli_query($c1, $query)){
+        echo mysqli_error($c1).'<br>';
+        echo 'Consulta: '.$consulta;
+        exit(-1);
+      }
+      //Se almacenan los datos
+      $data = ['Delete Exitoso'];
+    }
+
     //MATRICULAS
     if($delete == 'matricula'){
       //Se forma la raíz de la consulta
@@ -407,6 +584,28 @@ try {
       if (!$resp = mysqli_query($c1, $query)){
         echo mysqli_error($c1).'<br>';
         echo 'Consulta: '.$consulta;
+        exit(-1);
+      }
+      //Se almacenan los datos
+      $data = ['Delete Exitoso'];
+    }
+
+    //DEPARTAMENTOS
+    if($delete == 'departamento'){
+      //Se forma la raíz de la consulta
+      $query = 'DELETE FROM DEPARTAMENTOS WHERE ';
+      //Se completa la consulta con los filtros corregidos
+      foreach($elements as $i => $elm){
+        if($i!=0) $query .= ' AND ';
+        if(in_array($elm,$igual)) $query .= $elm.' = "'.$values[$i].'"';
+        else $query .= $elm.' LIKE "%'.$values[$i].'%"';
+      }
+      //Se establece conexión con la BD
+      $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
+      //Se realiza la consulta
+      if (!$resp = mysqli_query($c1, $query)){
+        echo mysqli_error($c1).'<br>';
+        echo 'Consulta: '.$query;
         exit(-1);
       }
       //Se almacenan los datos

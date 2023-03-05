@@ -64,7 +64,7 @@
       <div class="col-3 my-4">
         <div class="shadow rounded py-4 px-3 text-center">
           <h2>Alumnos y Matrículas</h2><hr class="my-4">
-          <div><button type="button" class="btn btn-primary btn-lg mb-3" id="AltaIAlum">Alta Individual</button></div>
+          <div><button type="button" class="btn btn-primary btn-lg mb-3" id="AltaIAlum" data-bs-toggle="modal" data-bs-target="#modalAltaIAlum">Alta Individual</button></div>
           <div><button type="button" class="btn btn-primary btn-lg mb-3" id="AltaMAlum" data-bs-toggle="modal" data-bs-target="#modalAltaMAlum">Alta Masiva</button></div>
           <div><button type="button" class="btn btn-primary btn-lg mb-3" id="modifAlum" data-bs-toggle="modal" data-bs-target="#modalModifAlum">Modificar/Dar de Baja</button></div>
         </div>
@@ -73,7 +73,7 @@
       <div class="col-3 my-4">
         <div class="shadow rounded py-4 px-3 text-center">
           <h2>Profesores</h2><hr class="my-4">
-          <div><button type="button" class="btn btn-primary btn-lg mb-3" id="AltaIProf">Alta Individual</button></div>
+          <div><button type="button" class="btn btn-primary btn-lg mb-3" id="AltaIProf" data-bs-toggle="modal" data-bs-target="#modalAltaIProf">Alta Individual</button></div>
           <div><button type="button" class="btn btn-primary btn-lg mb-3" id="AltaMProf" data-bs-toggle="modal" data-bs-target="#modalAltaMProf">Alta Masiva</button></div>
           <div><button type="button" class="btn btn-primary btn-lg mb-3" id="modifProf" data-bs-toggle="modal" data-bs-target="#modalModifProf">Modificar/Dar de Baja</button></div>
         </div>
@@ -91,9 +91,9 @@
       <div class="col-3 my-4">
         <div class="shadow rounded py-4 px-3 text-center">
           <h2>Departamentos</h2><hr class="my-4">
-          <div><button type="button" class="btn btn-primary btn-lg mb-3" id="AltaIDepart">Alta Individual</button></div>
+          <div><button type="button" class="btn btn-primary btn-lg mb-3" id="AltaIDepart" data-bs-toggle="modal" data-bs-target="#modalAltaIDepart">Alta Individual</button></div>
           <div><button type="button" class="btn btn-primary btn-lg mb-3" id="AltaMDepart" data-bs-toggle="modal" data-bs-target="#modalAltaMDepart">Alta Masiva</button></div>
-          <div><button type="button" class="btn btn-primary btn-lg mb-3" id="ModifDepart">Modificar/Dar de Baja</button></div>
+          <div><button type="button" class="btn btn-primary btn-lg mb-3" id="ModifDepart" data-bs-toggle="modal" data-bs-target="#modalModifDepart">Modificar/Dar de Baja</button></div>
         </div>
       </div>
       <!-- Copias de Seguridad -->
@@ -305,9 +305,157 @@
     </div>
   </div> -->
 
+  <!-- MODAL ALTA INDIVIDUAL ALUMNOS-MATRÍCULAS -->
+  <div class="modal fade" id="modalAltaIAlum" tabindex="-1" aria-labelledby="mdlAltaIAlum" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="mdlAltaIAlum">ALTA INDIVIDUAL DE ALUMNOS Y MATRÍCULAS</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form class="modal-body">
+          <div class="row justify-content-center mx-4">
+            <!-- Buscador -->
+            <div class="input-group mt-4 w-75">
+              <input type="text" class="form-control" id="txtAltaIAlum" placeholder="DNI del Alumno" aria-label="Text input with dropdown button">
+              <button class="btn btn-outline-primary" type="button" id="buscarAltaIAlum">Buscar</button>
+            </div>
+          </div>
+          <h3 class="text-center mt-5">Información del Alumno</h3>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>DNI</th>
+                <th>NIE</th>
+              </tr>
+            </thead>
+            <tbody id="tbodyAltaIAlum">
+              <tr class="align-middle">
+                <td><input type="text" class="form-control w-100" name="apellidos" value="" required></td>
+                <td class="w-50"><input type="text" class="form-control w-100" name="nombre" value="" required></td>
+                <td><input type="text" class="form-control w-100" name="dni" value="" required></td>
+                <td><input type="text" class="form-control w-100" name="nie" value="" required></td>
+              </tr>
+            </tbody>
+          </table>
+          <h3 class="text-center mt-5">Matrícula del Alumno</h3>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Código</th>
+                <th>Estudios</th>
+                <th>Grupo</th>
+              </tr>
+            </thead>
+            <tbody id="tbodyAltaIMatr">
+              <tr class="align-middle">
+                <td><input type="text" class="form-control w-100" name="codigo" value="" required></td>
+                <td class="w-50"><input type="text" class="form-control w-100" name="estudios" value="" required></td>
+                <td><input type="text" class="form-control w-100" name="grupo" value="" required></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="row justify-content-center mt-4 mb-1">
+            <div class="col text-end pe-3"><button type="button" class="btn btn-primary" id="altaAlumMatr">Insertar Alumno y Matrícula</button></div>
+            <div class="col text-start ps-3"><button type="button" class="btn btn-primary" id="altaMatrAlum">Insertar Nueva Matrícula al Alumno</button></div>
+          </div>
+        </form>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL ALTA INDIVIDUAL PROFESORES -->
+  <div class="modal fade" id="modalAltaIProf" tabindex="-1" aria-labelledby="mdlAltaIProf" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="mdlAltaIProf">ALTA INDIVIDUAL DE PROFESORES</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form class="modal-body">
+          <h3 class="text-center mt-3">Información del Profesor</h3>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>DNI</th>
+                <th>DEPARTAMENTO</th>
+              </tr>
+            </thead>
+            <tbody id="tbodyAltaIProf">
+              <tr class="align-middle">
+                <td><input type="text" class="form-control w-100" name="nombre" value=""></td>
+                <td><input type="text" class="form-control w-100" name="apellidos" value=""></td>
+                <td><input type="text" class="form-control w-100" name="dni" value=""></td>
+                <td><select class="form-select" name="slcAltaIProf" id="slcAltaIProf"></select></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="row justify-content-center mt-4 mb-1">
+            <div class="col text-center"><button type="button" class="btn btn-primary" id="altaIProf">Insertar Profesor</button></div>
+          </div>
+        </form>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL ALTA INDIVIDUAL DEPARTAMENTOS -->
+  <div class="modal fade" id="modalAltaIDepart" tabindex="-1" aria-labelledby="mdlAltaIDepart" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="mdlAltaIDepart">ALTA INDIVIDUAL DE DEPARTAMENTOS</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form class="modal-body">
+          <h3 class="text-center mt-3">Información del Departamento</h3>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Centro</th>
+                <th>DNI JFK</th>
+                <th>Password</th>
+              </tr>
+            </thead>
+            <tbody id="tbodyAltaIDepart">
+              <tr class="align-middle">
+                <td><input type="text" class="form-control w-100" name="nombre" value=""></td>
+                <td>
+                  <select class="form-select" name="slcAltaIDepart" id="slcAltaIDepart">
+                    <option value="0">CIFP1</option>
+                    <option value="0">Pedro Mercedes</option>
+                    <option value="0">Albaladejito</option>
+                  </select>
+                </td>
+                <td><input type="text" class="form-control w-100" name="dnijfk" value=""></td>
+                <td><input type="text" class="form-control w-100" name="password" value=""></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="row justify-content-center mt-4 mb-1">
+            <div class="col text-center"><button type="button" class="btn btn-primary" id="altaIDepart">Insertar Departamento</button></div>
+          </div>
+        </form>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- MODAL MODIFICAR/DAR DE BAJA ALUMNOS-MATRÍCULAS -->
   <div class="modal fade" id="modalModifAlum" tabindex="-1" aria-labelledby="mdlModifAlumno" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="mdlModifAlumno">MODIFICAR O DAR DE BAJA ALUMNOS Y MATRÍCULAS</h1>
@@ -358,7 +506,7 @@
 
   <!-- MODAL MODIFICAR/DAR DE BAJA PROFESORES -->
   <div class="modal fade" id="modalModifProf" tabindex="-1" aria-labelledby="mdlModifProfesor" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="mdlModifProfesor">MODIFICAR O DAR DE BAJA PROFESORES</h1>
@@ -384,9 +532,46 @@
                 <th>Borrar</th>
               </tr>
             </thead>
-            <tbody id="tbodyModifProf">
-              
-            </tbody>
+            <tbody id="tbodyModifProf"></tbody>
+          </table>
+        </form>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL MODIFICAR/DAR DE BAJA DEPARTAMENTOS -->
+  <div class="modal fade" id="modalModifDepart" tabindex="-1" aria-labelledby="mdlModifDepart" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="mdlModifDepart">MODIFICAR O DAR DE BAJA DEPARTAMENTOS</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form class="modal-body">
+          <div class="row justify-content-center mx-4">
+            <!-- Buscador -->
+            <div class="input-group mt-4 w-75">
+              <select class="form-select" name="slcModifDepart" id="slcModifDepart"></select>
+              <button class="btn btn-outline-primary" type="button" id="buscarModifDepart">Buscar</button>
+            </div>
+          </div>
+          <h3 class="text-center mt-5">Información del Departamento</h3>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Código</th>
+                <th>Nombre</th>
+                <th>Centro</th>
+                <th>DNI JFK</th>
+                <th>Contraseña</th>
+                <th>Actualizar</th>
+                <th>Borrar</th>
+              </tr>
+            </thead>
+            <tbody id="tbodyModifDepart"></tbody>
           </table>
         </form>
         <div class="modal-footer">
