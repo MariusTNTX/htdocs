@@ -4,6 +4,10 @@
 	$dbpass="admin"; // 1234
 	$dbname="BibliotecaMolinaM";
 	$rutaBiblio=""; // /Informatica/MolinaM
+	$rutaBackup='/volume1/web/Informatica/MolinaM/Biblioteca/';
+	$relBackup='../backups';
+	$comandoBackup='/volume1/@appstore/MariaDB10/usr/local/mariadb10/bin/mysqldump --opt -h localhost -u root --password="1234" BibliotecaMolinaM > ';
+	$comandoRestore='/volume1/@appstore/MariaDB10/usr/local/mariadb10/bin/mysql -u root --password="1234" BibliotecaMolinaM < ';
 	$indexTbl = ["Matrículas"=>0,"Departamentos"=>1,"Profesores"=>2,"Alumnos"=>3,"Libros"=>4,"Reservas"=>5,"Préstamos"=>6];
 	$tablas = [
 		['name'=>"Matrículas",

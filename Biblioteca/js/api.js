@@ -573,6 +573,23 @@ async function existsDatabase(){
   return Promise.resolve(request);
 }
 
+// DBACTION: FUNCIÓN INFO BACKUP RESTORE DESDE LA API
+async function dbaction(action,fecha='',hora=''){
+  let params='';
+  if(fecha!='') params+='&date='+fecha;
+  if(hora!='') params+='&hour='+hora;
+  //Se obtiene el JSON de resultados:
+  console.log(params)
+  console.log(`http://localhost/Biblioteca/php/api.php?dbaction=${action}${params}`)
+  let request = await fetch(`http://localhost/Biblioteca/php/api.php?dbaction=${action}${params}`,{
+    method: 'GET',
+    headers: {'Content-Type': 'application/json'}
+  });
+  request = await request.json();
+  console.log(request);
+  return Promise.resolve(request);
+}
+
 function eliminarSesionAdmin(){
   if(sessionStorage.getItem("tipoUsuario")){
     let tipo = sessionStorage.getItem("tipoUsuario");

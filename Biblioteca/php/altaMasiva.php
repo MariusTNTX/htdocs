@@ -111,9 +111,9 @@
 ?>
     <!-- <pre><?//=print_r($_FILES)?></pre> -->
     <form action="" method="post" enctype="multipart/form-data">
-      <input type="hidden" name="elemento" id="elementoAlumMatr" value="<?=$_REQUEST['tipo']?>">
-      <label class="form-label" for="csvlumnos"><h3>Fichero CSV de <?if($alumnos) echo 'Alumnos'; else echo $_REQUEST['tipo'];?>:</h3></label>
-      <input class="form-control" type="file" name="csv" id="csvlumnos" required>
+      <input type="hidden" name="elemento" value="<?=$_REQUEST['tipo']?>">
+      <label class="form-label" for="csv1"><h3>Fichero CSV de <?if($alumnos) echo 'Alumnos'; else echo $_REQUEST['tipo'];?>:</h3></label>
+      <input class="form-control" type="file" name="csv" id="csv1" required>
       <?if($alumnos){?>
       <label class="form-label mt-3" for="csvMatriculas"><h3>Fichero CSV de Matrículas:</h3></label>
       <input class="form-control" type="file" name="csvM" id="csvMatriculas" required>

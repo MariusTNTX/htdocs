@@ -1,7 +1,7 @@
 <?
   if(isset($_GET['action'])){
     if($_GET['action']=='backup'){
-      //B A C K U P
+      /* B A C K U P */
       $fecha = new DateTime();
       $fichero = 'Backup-'.$fecha->format('YmdHis').'.mysql';
       $ruta = '/volume1/web/Informatica/MolinaM/Biblioteca/'.$fichero;
@@ -16,10 +16,10 @@
       echo "<br>STATUS: ".$status;
     } else if($_GET['action']=='restore'){
       if(isset($_GET['file'])){
-        //R E S T O R E
+        /* R E S T O R E */
         $fichero = $_GET['file'];
         $ruta = '/volume1/web/Informatica/MolinaM/Biblioteca/'.$fichero;
-        $comando = '/volume1/@appstore/MariaDB10/usr/local/mariadb10/bin/mysql -h localhost -u root --password="1234" BibliotecaMolinaM < '.$ruta; //¿quitar -h localhost?
+        $comando = '/volume1/@appstore/MariaDB10/usr/local/mariadb10/bin/mysql -u root --password="1234" BibliotecaMolinaM < '.$ruta;
         switch(exec($comando,$output,$status)){
           case 0: echo "Importación realizada con éxito (código 0) desde la ruta: ".$ruta; break;
           case 1: echo "Error al importar (código 1)"; break;

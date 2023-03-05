@@ -649,6 +649,49 @@ try {
     header("Content-type: application/json; charset=utf-8");
     echo json_encode($data);
 
+    /* C O P I A S   D E   S E G U R I D A D ---------------------------------------------------------------------------------------------------- */
+  } else if(isset($_GET['dbaction'])){
+    $param = $_GET['dbaction'];
+
+    //BACKUP
+    if($param == 'backup'){
+      $fecha = new DateTime();
+      $fichero = 'Backup-'.$fecha->format('YmdHis').'.mysql';
+      $ruta = $rutaBackup.$fichero;
+      $comando = $comandoBackup.$ruta;
+      $data = [exec($comando,$output,$status)];
+    }
+
+    //RESTORE
+    else if($param == 'restore'){
+      $fecha = $_GET['date'];
+      $fecha = substr($fecha,6,4).substr($fecha,3,2).substr($fecha,0,2);
+      $hora = $_GET['hour'];
+      $hora = substr($hora,0,2).substr($hora,3,2).substr($hora,6,2);
+      $fichero = 'Backup-'.$fecha.$hora.'.mysql';
+      $ruta = $rutaBackup.$fichero;
+      $comando = $comandoRestore.$ruta;
+      $data = [exec($comando,$output,$status)];
+    }
+
+    //RESTORELIST
+    else if($param == 'restorelist'){
+      $data = scandir($relBackup);
+      array_splice($data,0,2);
+      foreach($data as $i => $b){
+        $fecha = substr($b,7,8);
+        $hora = substr($b,15,6);
+        $data[$i] = [
+          'FECHA'=>substr($fecha,6,2).'/'.substr($fecha,4,2).'/'.substr($fecha,0,4),
+          'HORA'=>substr($hora,0,2).':'.substr($hora,2,2).':'.substr($hora,4,2)
+        ];
+      }
+      $data = array_reverse($data);
+    }
+
+    header("Content-type: application/json; charset=utf-8");
+    echo json_encode($data);
+
   } else {
     $data = ["Error: Se esperaba el parámetro principal"];
     header("Content-type: application/json; charset=utf-8");

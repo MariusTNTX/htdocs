@@ -50,8 +50,8 @@
     
     <!-- Título, Usuario e Inicialización -->
     <div class="row mx-4 my-4">
-      <div class="col-4 d-flex align-items-center justify-content-start"><h1 class="">Administración</h1></div>
-      <div class="col-4 d-flex align-items-center justify-content-center"><h1 class="">Ángel Mora</h1></div>
+      <div class="col-4 d-flex align-items-center justify-content-start"><h1>Administración</h1></div>
+      <div class="col-4 d-flex align-items-center justify-content-center"><h1 id="admin"></h1></div>
       <div class="col-4 d-flex align-items-center justify-content-end">
         <button type="button" class="btn btn-outline-primary btn-lg me-3" id="btnInicBiblio">Iniciar Biblioteca</button>
         <button class="btn btn-outline-primary btn-lg" id="btnLogout">Cerrar Sesión</button>
@@ -101,7 +101,7 @@
         <div class="shadow rounded py-4 px-3 text-center">
           <h2>Copias de Seguridad</h2><hr class="my-4">
           <div><button type="button" class="btn btn-primary btn-lg mb-3" id="backup">Backup</button></div>
-          <div><button type="button" class="btn btn-primary btn-lg mb-3" id="Restore">Restore</button></div>
+          <div><button type="button" class="btn btn-primary btn-lg mb-3" id="Restore" data-bs-toggle="modal" data-bs-target="#modalRestore">Restore</button></div>
         </div>
       </div>
     </div>
@@ -634,6 +634,34 @@
             <iframe src="php/altaMasiva.php?tipo=Departamentos" frameborder="0" style="width: 100%; height: 100%"></iframe>
           </div>
         </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL RESTORE -->
+  <div class="modal fade" id="modalRestore" tabindex="-1" aria-labelledby="mdlRestore" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="mdlRestore">LISTA DE BACKUPS (RESTORE)</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form class="modal-body">
+          <h3 class="text-center mt-3">Lista de Backups</h3>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th class="w-50">Fecha</th>
+                <th class="w-50">Hora</th>
+                <th>Restaurar</th>
+              </tr>
+            </thead>
+            <tbody id="tbodyRestore"></tbody>
+          </table>
+        </form>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
         </div>

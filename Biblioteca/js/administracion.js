@@ -41,12 +41,15 @@ let tbodyModifProf= document.getElementById("tbodyModifProf");
 let modalModifDepart = document.getElementById("modalModifDepart");
 let buscarModifDepart = document.getElementById("buscarModifDepart");
 let tbodyModifDepart = document.getElementById("tbodyModifDepart");
+/* Modal Restore */
+let tbodyRestore = document.getElementById("tbodyRestore");
 
 let botones = [AltaIAlum,AltaMAlum,modifAlum,AltaIProf,AltaMProf,modifProf,AltaIDepart,AltaMDepart,ModifDepart,backup];
 let modales = document.querySelectorAll(".modal-content");
 
 //Si se intenta acceder a administración sin estar logeado se redirige al login
-if(!sessionStorage.getItem("tipoUsuario")) location.href="loginAdmin.html";
+if(!sessionStorage.getItem("tipoUsuario") || sessionStorage.getItem("tipoUsuario")!='admin') location.href="loginAdmin.html";
+else document.getElementById("admin").textContent = sessionStorage.getItem("nombreUsuario")+' '+sessionStorage.getItem("apellidosUsuario");
 
 //COMPROBAR QUE EXISTE LA BASE DE DATOS CON LA API (SINO DESHABILITAR BOTONES)
 existsDatabase().then(data=>{
@@ -561,10 +564,40 @@ buscarModifDepart.addEventListener("click",()=>{
 
 //BOTÓN BACKUP
 backup.addEventListener("click",()=>{
-
+  if(confirm("¿Quieres almacenar una nueva copia de seguridad del estado actual?")){
+    dbaction("backup").then(data=>{
+      if(data[0]=='') alert("Backup ejecutado");
+      else alert("Error al ejecutar el backup");
+    }).catch(error=>alert("Error al procesar la petición"));
+  }
 });
 
 //BOTÓN RESTORE
 restore.addEventListener("click",()=>{
-
+  tbodyRestore.innerHTML="";
+  //Se imprimen los backups anteriores
+  dbaction("restorelist").then(data=>{
+    for(let dat of data){
+      tbodyRestore.innerHTML+=`
+      <tr class="align-middle">
+        <td>${dat.FECHA}</td>
+        <td>${dat.HORA}</td>
+        <td><input type="submit" class="btn btn-primary btnRestore" value="Restaurar"></td>
+      </tr>`;
+    }
+    //Se crean los eventos de los botones Restaurar
+    for(let btn of tbodyRestore.querySelectorAll(".btnRestore")){
+      btn.addEventListener("click",()=>{
+        if(confirm("¿Quieres restaurar esta copia de seguridad? Todos los datos actuales serán sustituidos por los de la copia de seguridad")){
+          let fecha = btn.parentElement.parentElement.children[0].textContent;
+          let hora = btn.parentElement.parentElement.children[1].textContent;
+          console.log(fecha+'-'+hora);
+          dbaction("restore",fecha,hora).then(data=>{
+            if(data[0]=='') alert("Restore ejecutado");
+            else alert("Error al ejecutar el restore");
+          }).catch(error=>alert("Error al procesar la petición"));
+        }
+      });
+    }
+  }).catch(error=>alert("Error al listar los backups"));
 });
