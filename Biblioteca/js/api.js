@@ -1,5 +1,6 @@
 //http://iespmercedescuenca.ddns.net:81/Informatica/MolinaM/Biblioteca/php/api.php
 //http://localhost/Biblioteca/php/api.php
+var root = 'iespmercedescuenca.ddns.net:81/Informatica/MolinaM'; // localhost | iespmercedescuenca.ddns.net:81/Informatica/MolinaM
 
 // GET_LIBROS: FUNCIÓN OBTENER LIBROS DE LA API
 async function getLibros(tit,aut,isbn,edi,anio,mat,dep,cen,dis,est){
@@ -17,7 +18,7 @@ async function getLibros(tit,aut,isbn,edi,anio,mat,dep,cen,dis,est){
   values = values.join('|');
   //Se obtiene el JSON de resultados:
   //http://localhost/Biblioteca/php/api.php?select=libros&filters=${filters}&values=${values}
-  let response = await fetch(`http://localhost/Biblioteca/php/api.php?select=libros&filters=${filters}&values=${values}`,{
+  let response = await fetch(`http://${root}/Biblioteca/php/api.php?select=libros&filters=${filters}&values=${values}`,{
     method: 'GET',
     headers: {'Content-Type': 'application/json'}
   });
@@ -41,8 +42,8 @@ async function getAlumnos(cod,ape,nom,dni,nie){
   filters = filters.join('|');
   values = values.join('|');
   //Se obtiene el JSON de resultados:
-  console.log(`http://localhost/Biblioteca/php/api.php?select=alumnos&filters=${filters}&values=${values}`)
-  let request = await fetch(`http://localhost/Biblioteca/php/api.php?select=alumnos&filters=${filters}&values=${values}`,{
+  console.log(`http://${root}/Biblioteca/php/api.php?select=alumnos&filters=${filters}&values=${values}`)
+  let request = await fetch(`http://${root}/Biblioteca/php/api.php?select=alumnos&filters=${filters}&values=${values}`,{
     method: 'GET',
     headers: {'Content-Type': 'application/json'}
   });
@@ -65,8 +66,8 @@ async function getProfesores(ape,nom,dni,cod_dpto){
   filters = filters.join('|');
   values = values.join('|');
   //Se obtiene el JSON de resultados:
-  console.log(`http://localhost/Biblioteca/php/api.php?select=profesores&filters=${filters}&values=${values}`)
-  let request = await fetch(`http://localhost/Biblioteca/php/api.php?select=profesores&filters=${filters}&values=${values}`,{
+  console.log(`http://${root}/Biblioteca/php/api.php?select=profesores&filters=${filters}&values=${values}`)
+  let request = await fetch(`http://${root}/Biblioteca/php/api.php?select=profesores&filters=${filters}&values=${values}`,{
     method: 'GET',
     headers: {'Content-Type': 'application/json'}
   });
@@ -89,8 +90,8 @@ async function getDepartamentos(cod,nom,cen,dni){
   filters = (filters != []) ? filters.join('|') : "";
   values = (values != []) ? values.join('|') : "";
   //Se obtiene el JSON de resultados:
-  console.log(`http://localhost/Biblioteca/php/api.php?select=departamentos&filters=${filters}&values=${values}`)
-  let request = await fetch(`http://localhost/Biblioteca/php/api.php?select=departamentos&filters=${filters}&values=${values}`,{
+  console.log(`http://${root}/Biblioteca/php/api.php?select=departamentos&filters=${filters}&values=${values}`)
+  let request = await fetch(`http://${root}/Biblioteca/php/api.php?select=departamentos&filters=${filters}&values=${values}`,{
     method: 'GET',
     headers: {'Content-Type': 'application/json'}
   });
@@ -113,8 +114,8 @@ async function getReservas(cod,dni,fecha){
   filters = filters.join('|');
   values = values.join('|');
   //Se obtiene el JSON de resultados:
-  console.log(`http://localhost/Biblioteca/php/api.php?select=reservas&filters=${filters}&values=${values}`)
-  let request = await fetch(`http://localhost/Biblioteca/php/api.php?select=reservas&filters=${filters}&values=${values}`,{
+  console.log(`http://${root}/Biblioteca/php/api.php?select=reservas&filters=${filters}&values=${values}`)
+  let request = await fetch(`http://${root}/Biblioteca/php/api.php?select=reservas&filters=${filters}&values=${values}`,{
     method: 'GET',
     headers: {'Content-Type': 'application/json'}
   });
@@ -138,8 +139,8 @@ async function getPrestamos(cod,dni,fRec,fDev,dev){
   filters = filters.join('|');
   values = values.join('|');
   //Se obtiene el JSON de resultados:
-  console.log(`http://localhost/Biblioteca/php/api.php?select=prestamos&filters=${filters}&values=${values}`)
-  let request = await fetch(`http://localhost/Biblioteca/php/api.php?select=prestamos&filters=${filters}&values=${values}`,{
+  console.log(`http://${root}/Biblioteca/php/api.php?select=prestamos&filters=${filters}&values=${values}`)
+  let request = await fetch(`http://${root}/Biblioteca/php/api.php?select=prestamos&filters=${filters}&values=${values}`,{
     method: 'GET',
     headers: {'Content-Type': 'application/json'}
   });
@@ -150,7 +151,7 @@ async function getPrestamos(cod,dni,fRec,fDev,dev){
 
 // GET_FECHA_RECOGIDA: FUNCIÓN OBTENER PRESTAMOS DE LA API
 async function getFechaRecogida(){
-  let request = await fetch(`http://localhost/Biblioteca/php/api.php?calc=fechaRecogida`,{
+  let request = await fetch(`http://${root}/Biblioteca/php/api.php?calc=fechaRecogida`,{
     method: 'GET',
     headers: {'Content-Type': 'application/json'}
   });
@@ -174,8 +175,8 @@ async function getLibrosActUsuario(dni){
   filters = filters.join('|');
   values = values.join('|');
   //Se obtiene el JSON de resultados:
-  console.log(`http://localhost/Biblioteca/php/api.php?select=librosActUsuario&filters=${filters}&values=${values}`)
-  let request = await fetch(`http://localhost/Biblioteca/php/api.php?select=librosActUsuario&filters=${filters}&values=${values}`,{
+  console.log(`http://${root}/Biblioteca/php/api.php?select=librosActUsuario&filters=${filters}&values=${values}`)
+  let request = await fetch(`http://${root}/Biblioteca/php/api.php?select=librosActUsuario&filters=${filters}&values=${values}`,{
     method: 'GET',
     headers: {'Content-Type': 'application/json'}
   });
@@ -199,8 +200,8 @@ async function getAdmins(dni, pass){
   filters = filters.join('|');
   values = values.join('|');
   //Se obtiene el JSON de resultados:
-  console.log(`http://localhost/Biblioteca/php/api.php?select=admins&filters=${filters}&values=${values}`)
-  let request = await fetch(`http://localhost/Biblioteca/php/api.php?select=admins&filters=${filters}&values=${values}`,{
+  console.log(`http://${root}/Biblioteca/php/api.php?select=admins&filters=${filters}&values=${values}`)
+  let request = await fetch(`http://${root}/Biblioteca/php/api.php?select=admins&filters=${filters}&values=${values}`,{
     method: 'GET',
     headers: {'Content-Type': 'application/json'}
   });
@@ -224,8 +225,8 @@ async function putReserva(cod,dni,fecha){
   filters = filters.join('|');
   values = values.join('|');
   //Se obtiene el JSON de resultados:
-  console.log(`http://localhost/Biblioteca/php/api.php?insert=reserva&elements=${filters}&values=${values}`)
-  let request = await fetch(`http://localhost/Biblioteca/php/api.php?insert=reserva&elements=${filters}&values=${values}`,{
+  console.log(`http://${root}/Biblioteca/php/api.php?insert=reserva&elements=${filters}&values=${values}`)
+  let request = await fetch(`http://${root}/Biblioteca/php/api.php?insert=reserva&elements=${filters}&values=${values}`,{
     method: 'GET',
     headers: {'Content-Type': 'application/json'}
   });
@@ -249,8 +250,8 @@ async function putAlumno(dni,nie,cod,nom,ape){
   filters = filters.join('|');
   values = values.join('|');
   //Se obtiene el JSON de resultados:
-  console.log(`http://localhost/Biblioteca/php/api.php?insert=alumno&elements=${filters}&values=${values}`)
-  let request = await fetch(`http://localhost/Biblioteca/php/api.php?insert=alumno&elements=${filters}&values=${values}`,{
+  console.log(`http://${root}/Biblioteca/php/api.php?insert=alumno&elements=${filters}&values=${values}`)
+  let request = await fetch(`http://${root}/Biblioteca/php/api.php?insert=alumno&elements=${filters}&values=${values}`,{
     method: 'GET',
     headers: {'Content-Type': 'application/json'}
   });
@@ -274,8 +275,8 @@ async function putMatricula(cod,est,gru){
   filters = filters.join('|');
   values = values.join('|');
   //Se obtiene el JSON de resultados:
-  console.log(`http://localhost/Biblioteca/php/api.php?insert=matricula&elements=${filters}&values=${values}`)
-  let request = await fetch(`http://localhost/Biblioteca/php/api.php?insert=matricula&elements=${filters}&values=${values}`,{
+  console.log(`http://${root}/Biblioteca/php/api.php?insert=matricula&elements=${filters}&values=${values}`)
+  let request = await fetch(`http://${root}/Biblioteca/php/api.php?insert=matricula&elements=${filters}&values=${values}`,{
     method: 'GET',
     headers: {'Content-Type': 'application/json'}
   });
@@ -299,8 +300,8 @@ async function putProfesor(dni,cod,nom,ape){
   filters = filters.join('|');
   values = values.join('|');
   //Se obtiene el JSON de resultados:
-  console.log(`http://localhost/Biblioteca/php/api.php?insert=profesor&elements=${filters}&values=${values}`)
-  let request = await fetch(`http://localhost/Biblioteca/php/api.php?insert=profesor&elements=${filters}&values=${values}`,{
+  console.log(`http://${root}/Biblioteca/php/api.php?insert=profesor&elements=${filters}&values=${values}`)
+  let request = await fetch(`http://${root}/Biblioteca/php/api.php?insert=profesor&elements=${filters}&values=${values}`,{
     method: 'GET',
     headers: {'Content-Type': 'application/json'}
   });
@@ -324,8 +325,8 @@ async function putDepart(nom,cen,dni,pass){
   filters = filters.join('|');
   values = values.join('|');
   //Se obtiene el JSON de resultados:
-  console.log(`http://localhost/Biblioteca/php/api.php?insert=departamento&elements=${filters}&values=${values}`)
-  let request = await fetch(`http://localhost/Biblioteca/php/api.php?insert=departamento&elements=${filters}&values=${values}`,{
+  console.log(`http://${root}/Biblioteca/php/api.php?insert=departamento&elements=${filters}&values=${values}`)
+  let request = await fetch(`http://${root}/Biblioteca/php/api.php?insert=departamento&elements=${filters}&values=${values}`,{
     method: 'GET',
     headers: {'Content-Type': 'application/json'}
   });
@@ -349,8 +350,8 @@ async function deleteReserva(cod,dni){
   filters = filters.join('|');
   values = values.join('|');
   //Se obtiene el JSON de resultados:
-  console.log(`http://localhost/Biblioteca/php/api.php?delete=reserva&elements=${filters}&values=${values}`)
-  let request = await fetch(`http://localhost/Biblioteca/php/api.php?delete=reserva&elements=${filters}&values=${values}`,{
+  console.log(`http://${root}/Biblioteca/php/api.php?delete=reserva&elements=${filters}&values=${values}`)
+  let request = await fetch(`http://${root}/Biblioteca/php/api.php?delete=reserva&elements=${filters}&values=${values}`,{
     method: 'GET',
     headers: {'Content-Type': 'application/json'}
   });
@@ -374,8 +375,8 @@ async function deleteAlumno(dni,nie,cod,nom,ape){
   filters = filters.join('|');
   values = values.join('|');
   //Se obtiene el JSON de resultados:
-  console.log(`http://localhost/Biblioteca/php/api.php?delete=alumno&elements=${filters}&values=${values}`)
-  let request = await fetch(`http://localhost/Biblioteca/php/api.php?delete=alumno&elements=${filters}&values=${values}`,{
+  console.log(`http://${root}/Biblioteca/php/api.php?delete=alumno&elements=${filters}&values=${values}`)
+  let request = await fetch(`http://${root}/Biblioteca/php/api.php?delete=alumno&elements=${filters}&values=${values}`,{
     method: 'GET',
     headers: {'Content-Type': 'application/json'}
   });
@@ -399,8 +400,8 @@ async function deleteProfesor(dni,nom,ape,cod){
   filters = filters.join('|');
   values = values.join('|');
   //Se obtiene el JSON de resultados:
-  console.log(`http://localhost/Biblioteca/php/api.php?delete=profesor&elements=${filters}&values=${values}`)
-  let request = await fetch(`http://localhost/Biblioteca/php/api.php?delete=profesor&elements=${filters}&values=${values}`,{
+  console.log(`http://${root}/Biblioteca/php/api.php?delete=profesor&elements=${filters}&values=${values}`)
+  let request = await fetch(`http://${root}/Biblioteca/php/api.php?delete=profesor&elements=${filters}&values=${values}`,{
     method: 'GET',
     headers: {'Content-Type': 'application/json'}
   });
@@ -424,8 +425,8 @@ async function deleteMatricula(cod,est,gru){
   filters = filters.join('|');
   values = values.join('|');
   //Se obtiene el JSON de resultados:
-  console.log(`http://localhost/Biblioteca/php/api.php?delete=matricula&elements=${filters}&values=${values}`)
-  let request = await fetch(`http://localhost/Biblioteca/php/api.php?delete=matricula&elements=${filters}&values=${values}`,{
+  console.log(`http://${root}/Biblioteca/php/api.php?delete=matricula&elements=${filters}&values=${values}`)
+  let request = await fetch(`http://${root}/Biblioteca/php/api.php?delete=matricula&elements=${filters}&values=${values}`,{
     method: 'GET',
     headers: {'Content-Type': 'application/json'}
   });
@@ -449,8 +450,8 @@ async function deleteDepart(cod,nom,cen,dni){
   filters = filters.join('|');
   values = values.join('|');
   //Se obtiene el JSON de resultados:
-  console.log(`http://localhost/Biblioteca/php/api.php?delete=departamento&elements=${filters}&values=${values}`)
-  let request = await fetch(`http://localhost/Biblioteca/php/api.php?delete=departamento&elements=${filters}&values=${values}`,{
+  console.log(`http://${root}/Biblioteca/php/api.php?delete=departamento&elements=${filters}&values=${values}`)
+  let request = await fetch(`http://${root}/Biblioteca/php/api.php?delete=departamento&elements=${filters}&values=${values}`,{
     method: 'GET',
     headers: {'Content-Type': 'application/json'}
   });
@@ -474,8 +475,8 @@ async function updateAlumno(id,cod,nom,ape,dni,nie){
   filters = filters.join('|');
   values = values.join('|');
   //Se obtiene el JSON de resultados:
-  console.log(`http://localhost/Biblioteca/php/api.php?update=alumno&id=${id}&elements=${filters}&values=${values}`)
-  let request = await fetch(`http://localhost/Biblioteca/php/api.php?update=alumno&id=${id}&elements=${filters}&values=${values}`,{
+  console.log(`http://${root}/Biblioteca/php/api.php?update=alumno&id=${id}&elements=${filters}&values=${values}`)
+  let request = await fetch(`http://${root}/Biblioteca/php/api.php?update=alumno&id=${id}&elements=${filters}&values=${values}`,{
     method: 'GET',
     headers: {'Content-Type': 'application/json'}
   });
@@ -500,8 +501,8 @@ async function updateMatricula(id1,id2,alu,est,gru){
   filters = filters.join('|');
   values = values.join('|');
   //Se obtiene el JSON de resultados:
-  console.log(`http://localhost/Biblioteca/php/api.php?update=matricula&id=${id1}|${id2}&elements=${filters}&values=${values}`)
-  let request = await fetch(`http://localhost/Biblioteca/php/api.php?update=matricula&id=${id1}|${id2}&elements=${filters}&values=${values}`,{
+  console.log(`http://${root}/Biblioteca/php/api.php?update=matricula&id=${id1}|${id2}&elements=${filters}&values=${values}`)
+  let request = await fetch(`http://${root}/Biblioteca/php/api.php?update=matricula&id=${id1}|${id2}&elements=${filters}&values=${values}`,{
     method: 'GET',
     headers: {'Content-Type': 'application/json'}
   });
@@ -525,8 +526,8 @@ async function updateProfesor(id,nom,ape,dni,dep){
   filters = filters.join('|');
   values = values.join('|');
   //Se obtiene el JSON de resultados:
-  console.log(`http://localhost/Biblioteca/php/api.php?update=profesor&id=${id}&elements=${filters}&values=${values}`)
-  let request = await fetch(`http://localhost/Biblioteca/php/api.php?update=profesor&id=${id}&elements=${filters}&values=${values}`,{
+  console.log(`http://${root}/Biblioteca/php/api.php?update=profesor&id=${id}&elements=${filters}&values=${values}`)
+  let request = await fetch(`http://${root}/Biblioteca/php/api.php?update=profesor&id=${id}&elements=${filters}&values=${values}`,{
     method: 'GET',
     headers: {'Content-Type': 'application/json'}
   });
@@ -550,8 +551,8 @@ async function updateDepart(id,cod,nom,cen,dni,pass){
   filters = filters.join('|');
   values = values.join('|');
   //Se obtiene el JSON de resultados:
-  console.log(`http://localhost/Biblioteca/php/api.php?update=departamento&id=${id}&elements=${filters}&values=${values}`)
-  let request = await fetch(`http://localhost/Biblioteca/php/api.php?update=departamento&id=${id}&elements=${filters}&values=${values}`,{
+  console.log(`http://${root}/Biblioteca/php/api.php?update=departamento&id=${id}&elements=${filters}&values=${values}`)
+  let request = await fetch(`http://${root}/Biblioteca/php/api.php?update=departamento&id=${id}&elements=${filters}&values=${values}`,{
     method: 'GET',
     headers: {'Content-Type': 'application/json'}
   });
@@ -563,8 +564,8 @@ async function updateDepart(id,cod,nom,cen,dni,pass){
 // EXISTS_DATABASE: FUNCIÓN VERIFICAR EXISTENCIA DE LA BASE DE DATOS DESDE LA API
 async function existsDatabase(){
   //Se obtiene el JSON de resultados:
-  console.log(`http://localhost/Biblioteca/php/api.php?exists=bibliotecamolinam`)
-  let request = await fetch(`http://localhost/Biblioteca/php/api.php?exists=bibliotecamolinam`,{
+  console.log(`http://${root}/Biblioteca/php/api.php?exists=bibliotecamolinam`)
+  let request = await fetch(`http://${root}/Biblioteca/php/api.php?exists=bibliotecamolinam`,{
     method: 'GET',
     headers: {'Content-Type': 'application/json'}
   });
@@ -580,8 +581,8 @@ async function dbaction(action,fecha='',hora=''){
   if(hora!='') params+='&hour='+hora;
   //Se obtiene el JSON de resultados:
   console.log(params)
-  console.log(`http://localhost/Biblioteca/php/api.php?dbaction=${action}${params}`)
-  let request = await fetch(`http://localhost/Biblioteca/php/api.php?dbaction=${action}${params}`,{
+  console.log(`http://${root}/Biblioteca/php/api.php?dbaction=${action}${params}`)
+  let request = await fetch(`http://${root}/Biblioteca/php/api.php?dbaction=${action}${params}`,{
     method: 'GET',
     headers: {'Content-Type': 'application/json'}
   });
