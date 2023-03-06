@@ -566,14 +566,15 @@ buscarModifDepart.addEventListener("click",()=>{
 backup.addEventListener("click",()=>{
   if(confirm("¿Quieres almacenar una nueva copia de seguridad del estado actual?")){
     dbaction("backup").then(data=>{
-      if(data[0]=='') alert("Backup ejecutado");
+      if(data[1]=='') alert("Backup ejecutado");
       else alert("Error al ejecutar el backup");
     }).catch(error=>alert("Error al procesar la petición"));
   }
 });
 
 //BOTÓN RESTORE
-restore.addEventListener("click",()=>{
+restore.addEventListener("click",(e)=>{
+  e.preventDefault();
   tbodyRestore.innerHTML="";
   //Se imprimen los backups anteriores
   dbaction("restorelist").then(data=>{
@@ -587,13 +588,14 @@ restore.addEventListener("click",()=>{
     }
     //Se crean los eventos de los botones Restaurar
     for(let btn of tbodyRestore.querySelectorAll(".btnRestore")){
-      btn.addEventListener("click",()=>{
+      btn.addEventListener("click",(e)=>{
+        e.preventDefault();
         if(confirm("¿Quieres restaurar esta copia de seguridad? Todos los datos actuales serán sustituidos por los de la copia de seguridad")){
           let fecha = btn.parentElement.parentElement.children[0].textContent;
           let hora = btn.parentElement.parentElement.children[1].textContent;
           console.log(fecha+'-'+hora);
           dbaction("restore",fecha,hora).then(data=>{
-            if(data[0]=='') alert("Restore ejecutado");
+            if(data[1]=='') alert("Restore ejecutado");
             else alert("Error al ejecutar el restore");
           }).catch(error=>alert("Error al procesar la petición"));
         }

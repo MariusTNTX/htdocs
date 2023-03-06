@@ -1,6 +1,6 @@
 //http://iespmercedescuenca.ddns.net:81/Informatica/MolinaM/Biblioteca/php/api.php
 //http://localhost/Biblioteca/php/api.php
-var root = 'iespmercedescuenca.ddns.net:81/Informatica/MolinaM'; // localhost | iespmercedescuenca.ddns.net:81/Informatica/MolinaM
+var root = 'localhost'; // localhost | iespmercedescuenca.ddns.net:81/Informatica/MolinaM
 
 // GET_LIBROS: FUNCIÓN OBTENER LIBROS DE LA API
 async function getLibros(tit,aut,isbn,edi,anio,mat,dep,cen,dis,est){
@@ -327,6 +327,31 @@ async function putDepart(nom,cen,dni,pass){
   //Se obtiene el JSON de resultados:
   console.log(`http://${root}/Biblioteca/php/api.php?insert=departamento&elements=${filters}&values=${values}`)
   let request = await fetch(`http://${root}/Biblioteca/php/api.php?insert=departamento&elements=${filters}&values=${values}`,{
+    method: 'GET',
+    headers: {'Content-Type': 'application/json'}
+  });
+  request = await request.json();
+  console.log(request);
+  return Promise.resolve(request);
+}
+
+// PUT_LIBRO: FUNCIÓN INSERTAR LIBRO DESDE LA API
+async function putLibro(isbn,tit,aut,mat,edi,ani,sop,usu,cod,est){
+  //Se seleccionan los filtros y sus valores:
+  let corresp = ['cod_libro','titulo','autor','materia','editorial','a_edicion','soporte_m','usuario','cod_dpto','estado'];
+  let params = [isbn,tit,aut,mat,edi,ani,sop,usu,cod,est];
+  let filters = [], values = [];
+  for(let i in params){
+    if(params[i].length>0){
+      filters.push(corresp[i]);
+      values.push(params[i]);
+    }
+  }
+  filters = filters.join('|');
+  values = values.join('|');
+  //Se obtiene el JSON de resultados:
+  console.log(`http://${root}/Biblioteca/php/api.php?insert=libro&elements=${filters}&values=${values}`)
+  let request = await fetch(`http://${root}/Biblioteca/php/api.php?insert=libro&elements=${filters}&values=${values}`,{
     method: 'GET',
     headers: {'Content-Type': 'application/json'}
   });

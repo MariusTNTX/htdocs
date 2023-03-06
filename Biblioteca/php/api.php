@@ -33,10 +33,9 @@ try {
       //Se almacenan los datos
       $data = mysqli_fetch_all($resp, MYSQLI_ASSOC);
       //Correcciones sobre el array final: Corregir ISBN y Quitar Cod_DPTO
-      foreach($data as $i => $d){
-        /* $data[$i]['COD_LIBRO'] = substr($data[$i]['COD_LIBRO'], 0, strlen($data[$i]['COD_LIBRO'])-2); */
+      /* foreach($data as $i => $d){
         array_pop($data[$i]);
-      }
+      } */
     }
 
     //ALUMNOS
@@ -396,6 +395,37 @@ try {
       $data = ['Insert Exitoso'];
     }
 
+    //LIBROS
+    if($insert == 'libro'){
+      //Se establece conexión con la BD
+      $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
+      //Se obtiene el nuevo código de departamento y se añade la información
+      $resp = mysqli_query($c1, 'SELECT COD_LIBRO FROM LIBROS WHERE COD_LIBRO LIKE "'.$values[0].'__"');
+      $cods = mysqli_fetch_all($resp, MYSQLI_ASSOC);
+      $values[0] = $values[0].'_'.(count($cods)+1);
+      //Se forma la raíz de la consulta
+      $insert = 'INSERT INTO LIBROS (';
+      $list = ' VALUES (';
+      //Se completa la consulta con los filtros
+      foreach($elements as $i => $elm){
+        if($i!=0){
+          $insert .= ',';
+          $list .= ',';
+        }
+        $insert .= $elm;
+        $list .= '"'.$values[$i].'"';
+      }
+      $consulta = $insert.')'.$list.')';
+      //Se realiza la consulta
+      if (!$resp = mysqli_query($c1, $consulta)){
+        echo mysqli_error($c1).'<br>';
+        echo 'Consulta: '.$consulta;
+        exit(-1);
+      }
+      //Se almacenan los datos
+      $data = ['Insert Exitoso'];
+    }
+
     mysqli_close($c1);
     header("Content-type: application/json; charset=utf-8");
     echo json_encode($data);
@@ -656,10 +686,11 @@ try {
     //BACKUP
     if($param == 'backup'){
       $fecha = new DateTime();
-      $fichero = 'Backup-'.$fecha->format('YmdHis').'.mysql';
+      $fichero = 'Backup-'.$fecha->format('YmdHis').'.sql';
       $ruta = $rutaBackup.$fichero;
       $comando = $comandoBackup.$ruta;
-      $data = [exec($comando,$output,$status)];
+      //echo $comando;
+      $data = [$comando,exec($comando)];
     }
 
     //RESTORE
@@ -668,10 +699,11 @@ try {
       $fecha = substr($fecha,6,4).substr($fecha,3,2).substr($fecha,0,2);
       $hora = $_GET['hour'];
       $hora = substr($hora,0,2).substr($hora,3,2).substr($hora,6,2);
-      $fichero = 'Backup-'.$fecha.$hora.'.mysql';
+      $fichero = 'Backup-'.$fecha.$hora.'.sql';
       $ruta = $rutaBackup.$fichero;
       $comando = $comandoRestore.$ruta;
-      $data = [exec($comando,$output,$status)];
+      //echo $comando;
+      $data = [$comando,exec($comando)];
     }
 
     //RESTORELIST
