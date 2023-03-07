@@ -12,6 +12,8 @@ let bodyAltaILibros = document.getElementById("bodyAltaILibros");
 let altaILibro = document.getElementById("altaILibro");
 let bodyModifLibros = document.getElementById("bodyModifLibros");
 let buscarModifLibro = document.getElementById("buscarModifLibro");
+let modifLibro = document.getElementById("modifLibro");
+let borrLibro = document.getElementById("borrLibro");
 /* Botones */
 let btnLogout = document.getElementById("btnLogout");
 let altaILibros = document.getElementById("altaILibros");
@@ -19,6 +21,8 @@ let altaMLibros = document.getElementById("altaMLibros");
 let modifLibros = document.getElementById("modifLibros");
 let recogida = document.getElementById("recogida");
 let devolucion = document.getElementById("devolucion");
+/* Otros */
+let isbn;
 
 //Si se intenta acceder a administración sin estar logeado se redirige al login
 if(!sessionStorage.getItem("tipoUsuario") || sessionStorage.getItem("tipoUsuario")!='jfk') location.href="loginAdmin.html";
@@ -106,7 +110,7 @@ modifLibros.addEventListener("click",()=>{
 
 //BOTÓN BUSCAR LIBRO (MODIF)
 buscarModifLibro.addEventListener("click",()=>{
-  let isbn = buscarModifLibro.previousElementSibling.value;
+  isbn = buscarModifLibro.previousElementSibling.value;
   //Si se introduce un DNI
   if(isbn.length>=12 && isbn.length<=16){
     getLibros('','',isbn,'','','','','','','').then(data=>{
@@ -126,4 +130,52 @@ buscarModifLibro.addEventListener("click",()=>{
       } else alert("No se encontró un libro con el ISBN "+isbn);
     });
   } else alert("Indica un ISBN válido para buscar");
+});
+
+//BOTÓN ACTUALIZAR LIBRO
+modifLibro.addEventListener("click", (e)=>{
+  vacio = false;
+  e.preventDefault();
+  //Se almacenan los valores del libro
+  let valuesL = [];
+  for(let i=0; i<bodyModifLibros.children.length; i++){
+    valuesL[i] = bodyModifLibros.children[i].lastElementChild.value;
+    if(valuesL[i]=='') vacio = true;
+  }
+  console.log(valuesL)
+  //Si no hay ningún valor sin indicar
+  if(!vacio){
+    //Si confirma la actualización
+    if(confirm("¿Quieres actualizar estos campos?")){
+      //Se actualiza el libro
+      updateLibro(isbn,isbn,valuesL[0],valuesL[1],valuesL[2],valuesL[3],valuesL[4],valuesL[5],valuesL[6],valuesL[7],valuesL[8]).then(data=>{
+        if(data.length>0) alert("Libro actualizado");
+        else alert("Error al actualizar");
+      }).catch(error => alert("Los cambios efectuados sobre el registro no son compatibles con su formato"));
+    }
+  } else alert("Todos los campos deben estar llenos");
+});
+
+//BOTÓN BORRAR LIBRO
+borrLibro.addEventListener("click", (e)=>{
+  e.preventDefault();
+  //Si confirma el borrado
+  if(confirm("¿Quieres borrar éste libro?")){
+    //Se borra el libro
+    deleteLibro(isbn,'','','','','','','','','').then(data=>{
+      if(data.length>0){
+        bodyModifLibros.children[0].lastElementChild.value = '';
+        bodyModifLibros.children[1].lastElementChild.value = '';
+        bodyModifLibros.children[2].lastElementChild.value = '';
+        bodyModifLibros.children[3].lastElementChild.value = '';
+        bodyModifLibros.children[4].lastElementChild.value = '';
+        bodyModifLibros.children[5].lastElementChild.value = 'NO';
+        bodyModifLibros.children[6].lastElementChild.value = 'ALUMNO';
+        bodyModifLibros.children[7].lastElementChild.value = '0';
+        bodyModifLibros.children[8].lastElementChild.value = 'BUENO';
+        alert("Libro borrado");
+      } 
+      else alert("Error al borrar el libro");
+    });
+  }
 });

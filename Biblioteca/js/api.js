@@ -102,7 +102,7 @@ async function getDepartamentos(cod,nom,cen,dni){
 // GET_RESERVAS: FUNCIÓN OBTENER RESERVAS DE LA API
 async function getReservas(cod,dni,fecha){
   //Se seleccionan los filtros y sus valores:
-  let corresp = ['r.cod_libro','dni','fecha_fin'];
+  let corresp = ['r.cod_libro','r.dni','fecha_fin'];
   let params = [cod,dni,fecha];
   let filters = [], values = [];
   for(let i in params){
@@ -485,6 +485,31 @@ async function deleteDepart(cod,nom,cen,dni){
   return Promise.resolve(request);
 }
 
+// DELETE_LIBRO: FUNCIÓN ACTUALIZAR LIBRO DESDE LA API
+async function deleteLibro(isbn,tit,aut,mat,edi,ani,sop,usu,cod,est){
+  //Se seleccionan los filtros y sus valores:
+  let corresp = ['cod_libro','titulo','autor','materia','editorial','a_edicion','soporte_m','usuario','cod_dpto','estado'];
+  let params = [isbn,tit,aut,mat,edi,ani,sop,usu,cod,est];
+  let filters = [], values = [];
+  for(let i in params){
+    if(params[i].length>0){
+      filters.push(corresp[i]);
+      values.push(params[i]);
+    }
+  }
+  filters = filters.join('|');
+  values = values.join('|');
+  //Se obtiene el JSON de resultados:
+  console.log(`http://${root}/Biblioteca/php/api.php?delete=libro&elements=${filters}&values=${values}`)
+  let request = await fetch(`http://${root}/Biblioteca/php/api.php?delete=libro&elements=${filters}&values=${values}`,{
+    method: 'GET',
+    headers: {'Content-Type': 'application/json'}
+  });
+  request = await request.json();
+  console.log(request);
+  return Promise.resolve(request);
+}
+
 // UPDATE_ALUMNO: FUNCIÓN ACTUALIZAR ALUMNO DESDE LA API
 async function updateAlumno(id,cod,nom,ape,dni,nie){
   //Se seleccionan los filtros y sus valores:
@@ -578,6 +603,31 @@ async function updateDepart(id,cod,nom,cen,dni,pass){
   //Se obtiene el JSON de resultados:
   console.log(`http://${root}/Biblioteca/php/api.php?update=departamento&id=${id}&elements=${filters}&values=${values}`)
   let request = await fetch(`http://${root}/Biblioteca/php/api.php?update=departamento&id=${id}&elements=${filters}&values=${values}`,{
+    method: 'GET',
+    headers: {'Content-Type': 'application/json'}
+  });
+  request = await request.json();
+  console.log(request);
+  return Promise.resolve(request);
+}
+
+// UPDATE_LIBRO: FUNCIÓN ACTUALIZAR LIBRO DESDE LA API
+async function updateLibro(id,isbn,tit,aut,mat,edi,ani,sop,usu,cod,est){
+  //Se seleccionan los filtros y sus valores:
+  let corresp = ['cod_libro','titulo','autor','materia','editorial','a_edicion','soporte_m','usuario','cod_dpto','estado'];
+  let params = [isbn,tit,aut,mat,edi,ani,sop,usu,cod,est];
+  let filters = [], values = [];
+  for(let i in params){
+    if(params[i].length>0){
+      filters.push(corresp[i]);
+      values.push(params[i]);
+    }
+  }
+  filters = filters.join('|');
+  values = values.join('|');
+  //Se obtiene el JSON de resultados:
+  console.log(`http://${root}/Biblioteca/php/api.php?update=libro&id=${id}&elements=${filters}&values=${values}`)
+  let request = await fetch(`http://${root}/Biblioteca/php/api.php?update=libro&id=${id}&elements=${filters}&values=${values}`,{
     method: 'GET',
     headers: {'Content-Type': 'application/json'}
   });
