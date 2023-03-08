@@ -15,7 +15,7 @@
 //Asignamos a Host el nombre (IP) de nuestro servidor smtp
       $mail->Host = "localhost";
 
-//Indicamos cual es nuestra dirección de correo y el nombre que
+//Indicamos cual es nuestra direcciï¿½n de correo y el nombre que
 //queremos que vea el usuario que lee nuestro correo
       $mail->From = "angelmoraj@gmail.com";
       $mail->FromName = "Angel Mora Jimenez";
@@ -30,7 +30,7 @@
 //email con formato html
       $mail->AltBody ="Mensaje de prueba mandado con phpmailer en formato texto";
 
-//Indicamos el fichero a adjuntar si el usuario seleccionó uno en el formulario
+//Indicamos el fichero a adjuntar si el usuario seleccionï¿½ uno en el formulario
       $mail->AddAttachment('Koala.jpg','Koala.jpg');
 
 //Indicamos las direcciones de destino
@@ -38,10 +38,8 @@
       $mail->AddAddress('angelmoraj@hotmail.com');
 
 //Enviamos el Correo
-    if($mail->Send())
-		echo "Mensaje con fichero adjunto enviado";
-	else
-		echo "<br/>".$email->ErrorInfo;
+    if($mail->Send()) echo "Mensaje con fichero adjunto enviado";
+    else echo "<br/>".$email->ErrorInfo;
 ?>
 
 

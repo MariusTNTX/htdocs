@@ -21,6 +21,8 @@ let datosReserva = document.getElementById("datosReserva");
 
 eliminarSesionAdmin();
 
+setAlert("Hola");
+
 // BOTÓN BUSCAR
 buscarLibros.addEventListener("click",()=>{
   //Si hay algún campo con información se inicia la búsqueda

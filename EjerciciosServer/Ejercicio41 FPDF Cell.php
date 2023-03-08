@@ -44,7 +44,7 @@
       $size--;
     }
   }
-  
+
   //VARIABLES
 	$pdf1->setdisplaymode('fullpage',"single");
 	$pdf1->setmargins(20,20);

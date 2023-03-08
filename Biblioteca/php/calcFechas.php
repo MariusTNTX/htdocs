@@ -1,9 +1,9 @@
 <?
   $dbhost="localhost";
 	$dbuser="root";
-	$dbpass="admin"; // admin | 1234
+	$dbpass="1234"; // admin | 1234
 	$dbname="BibliotecaMolinaM";
-	$rutaBiblio=""; // "" | /Informatica/MolinaM
+	$rutaBiblio="/Informatica/MolinaM"; // "" | /Informatica/MolinaM
 	$rutaBackup="/volume1/web/Informatica/MolinaM/Biblioteca/backups/";
 	$rutaBackupL="C:\\Apache24\\htdocs\\Biblioteca\\backups\\";
 	$relBackup='../backups';

@@ -13,15 +13,15 @@
 	imagecharup($hi,4,100,50,"A",$blanco);
 	
 	//Ahora escribiremos otra palabra con fuente Arial
-	imageloadfont("Ebrima.gdf"); //FuentesGD/
+	imageloadfont("C:/Apache24/htdocs/Ebrima.gdf"); //FuentesGD/
 	imagestring($hi,3,100,75,"Perro",$blanco);
 	
 	//Y por último, escribiremos una palabra utilizando una fuente True Type
-	imagettftext($hi,24,45,200,100,$blanco,"comic.ttf","Gato"); //FuentesTT/
+	imagettftext($hi,24,45,200,100,$blanco,"C:/Windows/fonts/CALIBRI.TTF","Gato"); //FuentesTT/
 	//Con imagettfbbox() podemos calcular el rectangulo que ocuparia un determinado texto
 	
 	//Enviamos imagen
-	imagejpeg($hi);
+	imagepng($hi);
 	// ... y la destruimos
 	imagedestroy($hi);
 ?>

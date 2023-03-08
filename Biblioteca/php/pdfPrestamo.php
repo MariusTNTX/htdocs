@@ -24,7 +24,7 @@ if(isset($_GET['img'])){
       $this->SetTextColor(0);
       $this->SetFillColor(255);
       $this->SetFont("arial","B", 12);
-      $this->Image('../images/logoCIFP.png',10,8,60);
+      $this->Image('../imagenes/logocifp.png',10,8,60);
       $this->Setxy($x,10);
       $this->Cell(210/2-30, 5, utf8_decode($_GET['cen']),0,0,'R');
       $this->SetFontSize(9);
@@ -45,9 +45,6 @@ if(isset($_GET['img'])){
   $isbn = strstr($_GET['isbn'],'_',true);
   $tit = $_GET['tit'];
   $fecha = strftime('%e de %B del %Y');
-  /* $fecha2 = new DateTime();
-  $fecha2 = $fecha2->createFromFormat('d/m/Y', $_GET['fec']);
-  $fecha2 = strftime('%e de %B del %Y',$fecha2->getTimestamp()); */
 
   $fecha2 = new DateTime("+30 days");
   if($fecha2->format('l')=='Saturday') $fecha2->modify("+2 days");
@@ -72,14 +69,14 @@ if(isset($_GET['img'])){
   $pdf1->SetStyle('i', 'Arial', 'I', 11, "0,0,0");
 
   //Textos
-  $p1 = "<s>".strtr(strtoupper($nomJfk),'áéíóú','ÁÉÍÓÚ').", JEFE/A DEL DE PARTAMENTO DE ".strtr(strtoupper($dep),'áéíóú','ÁÉÍÓÚ')." DEL CENTRO ".strtr(strtoupper($cen),'áéíóú','ÁÉÍÓÚ')." <b>CERTIFICA</b>:</s>";
+  $p1 = "<s>".strtr(strtoupper($nomJfk),'áéíóú','ÁÉÍÓÚ').", JEFE/A DEL DEPARTAMENTO DE ".strtr(strtoupper($dep),'áéíóú','ÁÉÍÓÚ')." DEL CENTRO ".strtr(strtoupper($cen),'áéíóú','ÁÉÍÓÚ')." <b>CERTIFICA</b>:</s>";
   $p2 = "<s><i>Que el/la usuario/a ".$nomAlu." con DNI ".$dni." ha efectuado la <b>RECOGIDA</b> del ejemplar \"".$tit."\" con ISBN ".$isbn." el día".$fecha." y se compromete a <b>devolverlo antes del".$fecha2."</b>.</i></s>";
   $pdf1->Setxy(20,40);
   $pdf1->WriteTag(0, 5, utf8_decode($p1), 0, 'L', 0, 20);
   $pdf1->Sety(60);
   $pdf1->WriteTag(0, 5, utf8_decode($p2), 0, 'L', 0, 20);
 
-  $p3 = "<s>".strtr(strtoupper($nomJfk),'áéíóú','ÁÉÍÓÚ').", JEFE/A DEL DE PARTAMENTO DE ".strtr(strtoupper($dep),'áéíóú','ÁÉÍÓÚ')." DEL CENTRO ".strtr(strtoupper($cen),'áéíóú','ÁÉÍÓÚ')." <b>CERTIFICA</b>:</s>";
+  $p3 = "<s>".strtr(strtoupper($nomJfk),'áéíóú','ÁÉÍÓÚ').", JEFE/A DEL DEPARTAMENTO DE ".strtr(strtoupper($dep),'áéíóú','ÁÉÍÓÚ')." DEL CENTRO ".strtr(strtoupper($cen),'áéíóú','ÁÉÍÓÚ')." <b>CERTIFICA</b>:</s>";
   $p4 = "<s><i>Que el/la usuario/a ".$nomAlu." con DNI ".$dni." ha efectuado la <b>DEVOLUCIÓN</b> del ejemplar \"".$tit."\" con ISBN ".$isbn." el día ___ de _______________ del _______.</i></s>";
   $pdf1->Setxy(20,160);
   $pdf1->WriteTag(0, 5, utf8_decode($p3), 0, 'L', 0, 20);

@@ -117,11 +117,12 @@ try {
 
     //RESERVAS
     else if($select=='reservas'){
+      /* echo print_r($filters).'<br>'; */
       //Se establece conexión con la BD
       $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
       //Se obtiene una consulta según sea alumno o profesor
-      $ra = mysqli_query($c1, 'SELECT DNI FROM ALUMNOS WHERE DNI="'.$values[array_search("r.dni",$filters)].'"');
-      $rp = mysqli_query($c1, 'SELECT DNI FROM PROFESORES WHERE DNI="'.$values[array_search("r.dni",$filters)].'"');
+      $ra = mysqli_query($c1, 'SELECT DNI FROM ALUMNOS WHERE DNI="'.$values[array_search("R.dni",$filters)].'"');
+      $rp = mysqli_query($c1, 'SELECT DNI FROM PROFESORES WHERE DNI="'.$values[array_search("R.dni",$filters)].'"');
       if(count(mysqli_fetch_all($ra, MYSQLI_ASSOC))>0){
         $consulta = 'SELECT R.COD_LIBRO, FECHA_FIN, R.DNI, A.NOMBRE, A.APELLIDOS, TITULO, AUTOR, MATERIA, EDITORIAL, A_EDICION, ESTADO, USUARIO, D.COD_DPTO, D.NOMBRE AS DEPARTAMENTO, D.CENTRO, M.GRUPO FROM RESERVAS R, LIBROS L, DEPARTAMENTOS D, ALUMNOS A, MATRICULAS M WHERE R.COD_LIBRO=L.COD_LIBRO AND L.COD_DPTO=D.COD_DPTO AND R.DNI=A.DNI AND A.ALUMNO=M.ALUMNO';
       } else if(count(mysqli_fetch_all($rp, MYSQLI_ASSOC))>0){
@@ -129,6 +130,7 @@ try {
       }
       /* SELECT R.COD_LIBRO, FECHA_FIN, TITULO, AUTOR, MATERIA, EDITORIAL, A_EDICION, ESTADO, USUARIO, D.NOMBRE AS DEPARTAMENTO, D.CENTRO FROM RESERVAS R, LIBROS L, DEPARTAMENTOS D WHERE R.COD_LIBRO=L.COD_LIBRO AND L.COD_DPTO=D.COD_DPTO */
       //Se completa la consulta con los filtros corregidos
+      /* echo print_r($filters).'<br>'; */
       foreach($filters as $i => $filt){
         $consulta .= ' AND ';
         if(in_array($filt,$igual)) $consulta .= $filt.' = "'.$values[$i].'"';
@@ -167,8 +169,8 @@ try {
       //Se forma la raíz de la consulta
       $consulta = 'SELECT P.COD_LIBRO, FECHA_DEVOL, DEVUELTO, TITULO, AUTOR, MATERIA, EDITORIAL, A_EDICION, ESTADO, USUARIO, D.NOMBRE AS DEPARTAMENTO, D.CENTRO FROM PRESTAMOS P, LIBROS L, DEPARTAMENTOS D WHERE P.COD_LIBRO=L.COD_LIBRO AND L.COD_DPTO=D.COD_DPTO';
       //Se obtiene una consulta según sea alumno o profesor
-      $ra = mysqli_query($c1, 'SELECT DNI FROM ALUMNOS WHERE DNI="'.$values[array_search("p.dni",$filters)].'"');
-      $rp = mysqli_query($c1, 'SELECT DNI FROM PROFESORES WHERE DNI="'.$values[array_search("p.dni",$filters)].'"');
+      $ra = mysqli_query($c1, 'SELECT DNI FROM ALUMNOS WHERE DNI="'.$values[array_search("P.dni",$filters)].'"');
+      $rp = mysqli_query($c1, 'SELECT DNI FROM PROFESORES WHERE DNI="'.$values[array_search("P.dni",$filters)].'"');
       if(count(mysqli_fetch_all($ra, MYSQLI_ASSOC))>0){
         $consulta = 'SELECT P.COD_LIBRO, FECHA_DEVOL, P.DNI, A.NOMBRE, A.APELLIDOS, TITULO, AUTOR, MATERIA, EDITORIAL, A_EDICION, ESTADO, USUARIO, D.COD_DPTO, D.NOMBRE AS DEPARTAMENTO, D.CENTRO, M.GRUPO FROM PRESTAMOS P, LIBROS L, DEPARTAMENTOS D, ALUMNOS A, MATRICULAS M WHERE P.COD_LIBRO=L.COD_LIBRO AND L.COD_DPTO=D.COD_DPTO AND P.DNI=A.DNI AND A.ALUMNO=M.ALUMNO';
       } else if(count(mysqli_fetch_all($rp, MYSQLI_ASSOC))>0){

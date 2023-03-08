@@ -4,7 +4,7 @@
     $img=imagecreate(600,300);
     $blanco=imagecolorallocate($img,255,255,255);
     $negro=imagecolorallocate($img,0,0,0);
-    $fuente="C:\Apache24\htdocs\EjerciciosServer\comic.ttf";
+    $fuente="C:/Windows/fonts/OLDENGL.TTF"; //C:\Apache24\htdocs\EjerciciosServer\comic.ttf
     $resp=unserialize(urldecode($_GET['resp']));
 
     for($i=0; $i<5; $i++){

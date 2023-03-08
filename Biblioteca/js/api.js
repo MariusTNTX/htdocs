@@ -1,6 +1,6 @@
 //http://iespmercedescuenca.ddns.net:81/Informatica/MolinaM/Biblioteca/php/api.php
 //http://localhost/Biblioteca/php/api.php
-var root = 'localhost'; // localhost | iespmercedescuenca.ddns.net:81/Informatica/MolinaM
+var root = 'iespmercedescuenca.ddns.net:81/Informatica/MolinaM'; // localhost | iespmercedescuenca.ddns.net:81/Informatica/MolinaM
 
 // GET_LIBROS: FUNCIÓN OBTENER LIBROS DE LA API
 async function getLibros(tit,aut,isbn,edi,anio,mat,dep,cen,dis,est){
@@ -102,7 +102,7 @@ async function getDepartamentos(cod,nom,cen,dni){
 // GET_RESERVAS: FUNCIÓN OBTENER RESERVAS DE LA API
 async function getReservas(cod,dni,fecha){
   //Se seleccionan los filtros y sus valores:
-  let corresp = ['r.cod_libro','r.dni','fecha_fin'];
+  let corresp = ['R.cod_libro','R.dni','fecha_fin'];
   let params = [cod,dni,fecha];
   let filters = [], values = [];
   for(let i in params){
@@ -127,7 +127,7 @@ async function getReservas(cod,dni,fecha){
 // GET_PRESTAMOS: FUNCIÓN OBTENER PRESTAMOS DE LA API
 async function getPrestamos(cod,dni,fRec,fDev,dev){
   //Se seleccionan los filtros y sus valores:
-  let corresp = ['p.cod_libro','p.dni','fecha_recog','fecha_devol','devuelto'];
+  let corresp = ['P.cod_libro','P.dni','fecha_recog','fecha_devol','devuelto'];
   let params = [cod,dni,fRec,fDev,dev];
   let filters = [], values = [];
   for(let i in params){

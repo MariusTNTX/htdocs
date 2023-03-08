@@ -58,7 +58,6 @@
       }
     }
     
-
     //Impresión de la Imagen
     imagepng($img);
 	  imagedestroy($img);
