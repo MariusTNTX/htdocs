@@ -120,9 +120,11 @@ try {
       //Se establece conexión con la BD
       $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
       //Se obtiene una consulta según sea alumno o profesor
-      if(count(mysqli_fetch_all(mysqli_query($c1, 'SELECT DNI FROM ALUMNOS WHERE DNI="'.$values[array_search("r.dni",$filters)].'"'), MYSQLI_ASSOC)>0)){
+      $ra = mysqli_query($c1, 'SELECT DNI FROM ALUMNOS WHERE DNI="'.$values[array_search("r.dni",$filters)].'"');
+      $rp = mysqli_query($c1, 'SELECT DNI FROM PROFESORES WHERE DNI="'.$values[array_search("r.dni",$filters)].'"');
+      if(count(mysqli_fetch_all($ra, MYSQLI_ASSOC))>0){
         $consulta = 'SELECT R.COD_LIBRO, FECHA_FIN, R.DNI, A.NOMBRE, A.APELLIDOS, TITULO, AUTOR, MATERIA, EDITORIAL, A_EDICION, ESTADO, USUARIO, D.COD_DPTO, D.NOMBRE AS DEPARTAMENTO, D.CENTRO, M.GRUPO FROM RESERVAS R, LIBROS L, DEPARTAMENTOS D, ALUMNOS A, MATRICULAS M WHERE R.COD_LIBRO=L.COD_LIBRO AND L.COD_DPTO=D.COD_DPTO AND R.DNI=A.DNI AND A.ALUMNO=M.ALUMNO';
-      } else if(count(mysqli_fetch_all(mysqli_query($c1, 'SELECT DNI FROM PROFESORES WHERE DNI="'.$values[array_search("r.dni",$filters)].'"'), MYSQLI_ASSOC)>0)){
+      } else if(count(mysqli_fetch_all($rp, MYSQLI_ASSOC))>0){
         $consulta = 'SELECT R.COD_LIBRO, FECHA_FIN, R.DNI, P.NOMBRE, P.APELLIDOS, TITULO, AUTOR, MATERIA, EDITORIAL, A_EDICION, ESTADO, USUARIO, D.COD_DPTO, D.NOMBRE AS DEPARTAMENTO, D.CENTRO FROM RESERVAS R, LIBROS L, DEPARTAMENTOS D, PROFESORES P WHERE R.COD_LIBRO=L.COD_LIBRO AND L.COD_DPTO=D.COD_DPTO AND R.DNI=P.DNI';
       }
       /* SELECT R.COD_LIBRO, FECHA_FIN, TITULO, AUTOR, MATERIA, EDITORIAL, A_EDICION, ESTADO, USUARIO, D.NOMBRE AS DEPARTAMENTO, D.CENTRO FROM RESERVAS R, LIBROS L, DEPARTAMENTOS D WHERE R.COD_LIBRO=L.COD_LIBRO AND L.COD_DPTO=D.COD_DPTO */
@@ -140,6 +142,16 @@ try {
       }
       //Se almacenan los datos
       $data = mysqli_fetch_all($resp, MYSQLI_ASSOC);
+      //Se fusionan resultados duplicados (alumnos con más de una matrícula)
+      if(isset($data[0]) && array_key_exists('GRUPO',$data[0])){
+        for($i=0; $i<count($data)-1;$i++){
+          if($data[$i+1]['COD_LIBRO']==$data[$i]['COD_LIBRO']){
+            $data[$i]['GRUPO'] .= '/'.$data[$i+1]['GRUPO'];
+            array_splice($data,$i+1,1);
+          }
+        }
+      }
+      
       //Se corrigen las fechas
       foreach($data as $i => $dat){
         $fecha = explode("-",$data[$i]['FECHA_FIN']);
@@ -150,16 +162,24 @@ try {
 
     //PRESTAMOS
     else if($select=='prestamos'){
+      //Se establece conexión con la BD
+      $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
       //Se forma la raíz de la consulta
       $consulta = 'SELECT P.COD_LIBRO, FECHA_DEVOL, DEVUELTO, TITULO, AUTOR, MATERIA, EDITORIAL, A_EDICION, ESTADO, USUARIO, D.NOMBRE AS DEPARTAMENTO, D.CENTRO FROM PRESTAMOS P, LIBROS L, DEPARTAMENTOS D WHERE P.COD_LIBRO=L.COD_LIBRO AND L.COD_DPTO=D.COD_DPTO';
+      //Se obtiene una consulta según sea alumno o profesor
+      $ra = mysqli_query($c1, 'SELECT DNI FROM ALUMNOS WHERE DNI="'.$values[array_search("p.dni",$filters)].'"');
+      $rp = mysqli_query($c1, 'SELECT DNI FROM PROFESORES WHERE DNI="'.$values[array_search("p.dni",$filters)].'"');
+      if(count(mysqli_fetch_all($ra, MYSQLI_ASSOC))>0){
+        $consulta = 'SELECT P.COD_LIBRO, FECHA_DEVOL, P.DNI, A.NOMBRE, A.APELLIDOS, TITULO, AUTOR, MATERIA, EDITORIAL, A_EDICION, ESTADO, USUARIO, D.COD_DPTO, D.NOMBRE AS DEPARTAMENTO, D.CENTRO, M.GRUPO FROM PRESTAMOS P, LIBROS L, DEPARTAMENTOS D, ALUMNOS A, MATRICULAS M WHERE P.COD_LIBRO=L.COD_LIBRO AND L.COD_DPTO=D.COD_DPTO AND P.DNI=A.DNI AND A.ALUMNO=M.ALUMNO';
+      } else if(count(mysqli_fetch_all($rp, MYSQLI_ASSOC))>0){
+        $consulta = 'SELECT PR.COD_LIBRO, FECHA_DEVOL, PR.DNI, P.NOMBRE, P.APELLIDOS, DEVUELTO, TITULO, AUTOR, MATERIA, EDITORIAL, A_EDICION, ESTADO, USUARIO, D.COD_DPTO, D.NOMBRE AS DEPARTAMENTO, D.CENTRO FROM PRESTAMOS PR, LIBROS L, DEPARTAMENTOS D, PROFESORES P WHERE PR.COD_LIBRO=L.COD_LIBRO AND L.COD_DPTO=D.COD_DPTO AND PR.DNI=P.DNI';
+      }
       //Se completa la consulta con los filtros corregidos
       foreach($filters as $i => $filt){
         $consulta .= ' AND ';
         if(in_array($filt,$igual)) $consulta .= $filt.' = "'.$values[$i].'"';
         else $consulta .= $filt.' LIKE "%'.$values[$i].'%"';
       }
-      //Se establece conexión con la BD
-      $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
       //Se realiza la consulta
       if (!$resp = mysqli_query($c1, $consulta)){
         echo mysqli_error($c1).'<br>';
@@ -168,6 +188,15 @@ try {
       }
       //Se almacenan los datos
       $data = mysqli_fetch_all($resp, MYSQLI_ASSOC);
+      //Se fusionan resultados duplicados (alumnos con más de una matrícula)
+      if(isset($data[0]) && array_key_exists('GRUPO',$data[0])){
+        for($i=0; $i<count($data)-1;$i++){
+          if($data[$i+1]['COD_LIBRO']==$data[$i]['COD_LIBRO']){
+            $data[$i]['GRUPO'] .= '/'.$data[$i+1]['GRUPO'];
+            array_splice($data,$i+1,1);
+          }
+        }
+      }
       //Se corrigen las fechas
       foreach($data as $i => $dat){
         $fecha = explode("-",$data[$i]['FECHA_DEVOL']);
@@ -265,6 +294,45 @@ try {
         $datos = array_reverse($datos);
         $values[$i] = implode("-",$datos);
       }
+      //Se completa la consulta con los filtros corregidos
+      foreach($elements as $i => $elm){
+        if($i!=0){
+          $insert .= ',';
+          $list .= ',';
+        }
+        $insert .= $elm;
+        $list .= '"'.$values[$i].'"';
+      }
+      $consulta = $insert.')'.$list.')';
+      //Se establece conexión con la BD
+      $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
+      //Se realiza la consulta
+      if (!$resp = mysqli_query($c1, $consulta)){
+        echo mysqli_error($c1).'<br>';
+        echo 'Consulta: '.$consulta;
+        exit(-1);
+      }
+      //Se almacenan los datos
+      $data = ['Insert Exitoso'];
+    }
+
+    //PRESTAMOS
+    if($insert == 'prestamo'){
+      //Se incluyen las fechas y devuelto
+      $fechaI = date('Y-m-d');
+      $elements[] = 'fecha_recog';
+      $values[] = $fechaI;
+      $fechaF = new DateTime("+30 days");
+      if($fechaF->format('l')=='Saturday') $fechaF->modify("+2 days");
+      else if($fechaF->format('l')=='Sunday') $fechaF->modify("+1 days");
+      $fechaF = $fechaF->format('Y-m-d');
+      $elements[] = 'fecha_devol';
+      $values[] = $fechaF;
+      $elements[] = 'devuelto';
+      $values[] = 'No';
+      //Se forma la raíz de la consulta
+      $insert = 'INSERT INTO PRESTAMOS (';
+      $list = ' VALUES (';
       //Se completa la consulta con los filtros corregidos
       foreach($elements as $i => $elm){
         if($i!=0){
@@ -527,10 +595,31 @@ try {
       if($resp) $data = ['Update sin Errores'];
     }
 
-    //DEPARTAMENTOS
+    //LIBROS
     if($update == 'libro'){
       //Se forma la raíz de la consulta
       $query = 'UPDATE LIBROS SET ';
+      //Se completa la consulta con los filtros corregidos
+      foreach($elements as $i => $elm){
+        if($i!=0) $query .= ', ';
+        $query .= $elm.' = "'.$values[$i].'"';
+      }
+      $query .= ' WHERE COD_LIBRO LIKE "'.$id.'"';
+      //Se establece conexión con la BD
+      $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
+      //Se realiza el update
+      if (!$resp = mysqli_query($c1, $query)){
+        echo mysqli_error($c1).'<br>';
+        echo 'Consulta: '.$query;
+        exit(-1);
+      }
+      if($resp) $data = ['Update sin Errores'];
+    }
+
+    //PRESTAMOS
+    if($update == 'prestamo'){
+      //Se forma la raíz de la consulta
+      $query = 'UPDATE PRESTAMOS SET ';
       //Se completa la consulta con los filtros corregidos
       foreach($elements as $i => $elm){
         if($i!=0) $query .= ', ';
@@ -700,9 +789,11 @@ try {
 
     //FECHA_RECOGIDA
     if($calc == 'fechaRecogida'){
-      $fecha = new DateTime("+7 weekdays");
-      $fecha = $fecha->format('d/m/Y');
-      $data = [$fecha];
+      $fechaF = new DateTime("+7 days");
+      if($fechaF->format('l')=='Saturday') $fechaF->modify("+2 days");
+      else if($fechaF->format('l')=='Sunday') $fechaF->modify("+1 days");
+      $fechaF = $fechaF->format('d/m/Y');
+      $data = [$fechaF];
     }
     header("Content-type: application/json; charset=utf-8");
     echo json_encode($data);

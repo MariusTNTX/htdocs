@@ -127,7 +127,7 @@ async function getReservas(cod,dni,fecha){
 // GET_PRESTAMOS: FUNCIÓN OBTENER PRESTAMOS DE LA API
 async function getPrestamos(cod,dni,fRec,fDev,dev){
   //Se seleccionan los filtros y sus valores:
-  let corresp = ['p.cod_libro','dni','fecha_recog','fecha_devol','devuelto'];
+  let corresp = ['p.cod_libro','p.dni','fecha_recog','fecha_devol','devuelto'];
   let params = [cod,dni,fRec,fDev,dev];
   let filters = [], values = [];
   for(let i in params){
@@ -227,6 +227,31 @@ async function putReserva(cod,dni,fecha){
   //Se obtiene el JSON de resultados:
   console.log(`http://${root}/Biblioteca/php/api.php?insert=reserva&elements=${filters}&values=${values}`)
   let request = await fetch(`http://${root}/Biblioteca/php/api.php?insert=reserva&elements=${filters}&values=${values}`,{
+    method: 'GET',
+    headers: {'Content-Type': 'application/json'}
+  });
+  request = await request.json();
+  console.log(request);
+  return Promise.resolve(request);
+}
+
+// PUT_PRÉSTAMO: FUNCIÓN INSERTAR PRÉSTAMO DESDE LA API
+async function putPrestamo(cod,dni){
+  //Se seleccionan los filtros y sus valores:
+  let corresp = ['cod_libro','dni'];
+  let params = [cod,dni];
+  let filters = [], values = [];
+  for(let i in params){
+    if(params[i].length>0){
+      filters.push(corresp[i]);
+      values.push(params[i]);
+    }
+  }
+  filters = filters.join('|');
+  values = values.join('|');
+  //Se obtiene el JSON de resultados:
+  console.log(`http://${root}/Biblioteca/php/api.php?insert=prestamo&elements=${filters}&values=${values}`)
+  let request = await fetch(`http://${root}/Biblioteca/php/api.php?insert=prestamo&elements=${filters}&values=${values}`,{
     method: 'GET',
     headers: {'Content-Type': 'application/json'}
   });
@@ -628,6 +653,31 @@ async function updateLibro(id,isbn,tit,aut,mat,edi,ani,sop,usu,cod,est){
   //Se obtiene el JSON de resultados:
   console.log(`http://${root}/Biblioteca/php/api.php?update=libro&id=${id}&elements=${filters}&values=${values}`)
   let request = await fetch(`http://${root}/Biblioteca/php/api.php?update=libro&id=${id}&elements=${filters}&values=${values}`,{
+    method: 'GET',
+    headers: {'Content-Type': 'application/json'}
+  });
+  request = await request.json();
+  console.log(request);
+  return Promise.resolve(request);
+}
+
+// UPDATE_PRESTAMOS: FUNCIÓN ACTUALIZAR PRESTAMO DESDE LA API
+async function updatePrestamo(id,cod,dni,dev){
+  //Se seleccionan los filtros y sus valores:
+  let corresp = ['cod_libro','dni','devuelto'];
+  let params = [cod,dni,dev];
+  let filters = [], values = [];
+  for(let i in params){
+    if(params[i].length>0){
+      filters.push(corresp[i]);
+      values.push(params[i]);
+    }
+  }
+  filters = filters.join('|');
+  values = values.join('|');
+  //Se obtiene el JSON de resultados:
+  console.log(`http://${root}/Biblioteca/php/api.php?update=prestamo&id=${id}&elements=${filters}&values=${values}`)
+  let request = await fetch(`http://${root}/Biblioteca/php/api.php?update=prestamo&id=${id}&elements=${filters}&values=${values}`,{
     method: 'GET',
     headers: {'Content-Type': 'application/json'}
   });

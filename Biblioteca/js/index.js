@@ -74,7 +74,7 @@ buscarLibros.addEventListener("click",()=>{
           }
           //Si hay un usuario logeado se verifica que no tenga suficientes reservas/préstamos o que no lo tenga ya
           if(sessionStorage.getItem("tipoUsuario")){
-            getLibrosUsuario(sessionStorage.getItem("dniUsuario")).then(data => {
+            getLibrosActUsuario(sessionStorage.getItem("dniUsuario")).then(data => {
               //Si al recuperar las reservas tiene menos de dos reservas se genera click y se autocompletan los campos del login
               console.log(data)
               if((data.reservas.length + data.prestamos.length)<2){
@@ -119,7 +119,7 @@ buscarLibros.addEventListener("click",()=>{
                 sessionStorage.setItem("nieUsuario",data[0].NIE);
                 console.log(data);
                 //Si el numero de reservas no llega a 2 se produce un click en el hidden para continuar
-                getLibrosUsuario(sessionStorage.getItem("dniUsuario")).then(data => {
+                getLibrosActUsuario(sessionStorage.getItem("dniUsuario")).then(data => {
                   if((data.reservas.length + data.prestamos.length)<2){
                     //Se introduce la fecha de recogida calculada por la API
                     getFechaRecogida().then(data => fechaRecog.textContent = data[0]);
@@ -140,7 +140,7 @@ buscarLibros.addEventListener("click",()=>{
                 sessionStorage.setItem("dniUsuario",data[0].DNI);
                 console.log(data);
                 //Si el numero de reservas no llega a 2 se produce un click en el hidden para continuar
-                getLibrosUsuario(sessionStorage.getItem("dniUsuario")).then(data => {
+                getLibrosActUsuario(sessionStorage.getItem("dniUsuario")).then(data => {
                   if((data.reservas.length + data.prestamos.length)<2){
                     //Se introduce la fecha de recogida calculada por la API
                     getFechaRecogida().then(data => fechaRecog.textContent = data[0]);

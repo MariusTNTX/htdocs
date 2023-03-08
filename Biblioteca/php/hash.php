@@ -1,1 +1,1 @@
-<?=password_hash('jfk', PASSWORD_DEFAULT);?>
+<?=password_hash($_GET['password'], PASSWORD_DEFAULT);?>
