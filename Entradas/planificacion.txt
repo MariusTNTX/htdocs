@@ -1,0 +1,18 @@
+BBDD
+- FechaCompra
+- Espacio
+- Sesion
+- Fila
+- Asiento
+
+INTERFAZ COMPRA
+- Mostrar Sesión x Espacio con Añadir (indicar no disponible)
+
+INTERFAZ CESTA
+- Cesta con Comprar/Anular (max 6, indicar descuento)
+
+PDF
+- Espacio
+- Fecha Venta
+- Sesion
+- Localidades (cantidad,fila x asiento, precio indiv, precio total)
