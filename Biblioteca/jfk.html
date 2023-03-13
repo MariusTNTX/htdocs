@@ -11,9 +11,11 @@
 <body>
   <div class="container-fluid" id="inicio">
     <!-- H E A D E R   1 -->
-    <div class="row py-4 justify-content-between" id="header1">
-      <div class="col-5 align-middle ps-4"><a href="https://www.cifpcuenca.es/"><img src="./imagenes/logocifp.png" alt="Logo CIFP"></a></div>
-      <div class="col-6 text-end">
+    <div class="row py-4 justify-content-center justify-content-sm-between text-center text-sm-start" id="header1">
+      <div class="col-12 col-sm-5 align-middle ps-4">
+        <a href="https://www.cifpcuenca.es/"><img src="./imagenes/logocifp.png" alt="Logo CIFP"></a>
+      </div>
+      <div class="col-12 col-sm-7 text-center text-sm-end mt-4 mt-sm-0">
         <div class="d-inline-block align-middle px-2 text-center">
           <a href="https://educamosclm.castillalamancha.es/">
             <div><img src="./imagenes/educajccm.png" alt="educajccm"></div>
@@ -25,7 +27,7 @@
             <div><img src="./imagenes/delphos.png" alt="educajccm"></div>
             <p>Delphos</p>
           </a>
-        </div>
+        </div> <br class="d-block d-md-none">
         <div class="d-inline-block align-middle px-2 text-center">
           <a href="https://aulasfp2223.castillalamancha.es/">
             <div><img src="./imagenes/elearning.png" alt="educajccm"></div>
@@ -50,9 +52,9 @@
     
     <!-- Título, Usuario e Inicialización -->
     <div class="row mx-4 my-4">
-      <div class="col-4 d-flex align-items-center justify-content-start"><h1 id="depart"></h1></div>
-      <div class="col-4 d-flex align-items-center justify-content-center"><h1 class="text-center" id="jfk"></h1></div>
-      <div class="col-4 d-flex align-items-center justify-content-end">
+      <div class="col-lg-5 col-xl-4 d-flex align-items-center justify-content-center justify-content-lg-start"><h1 class="text-center text-lg-start" id="depart"></h1></div>
+      <div class="col-lg-5 col-xl-4 d-flex align-items-center justify-content-center my-4 my-lg-0"><h1 class="text-center" id="jfk"></h1></div>
+      <div class="col-lg-2 col-xl-4 d-flex align-items-center justify-content-center justify-content-lg-end">
         <button class="btn btn-outline-primary btn-lg" id="btnLogout">Cerrar Sesión</button>
       </div>
     </div>
@@ -60,7 +62,7 @@
     <!-- Contenido -->
     <div class="row justify-content-evenly mb-2">
       <!-- Libros -->
-      <div class="col-3 my-3">
+      <div class="col-10 col-sm-8 col-md-5 col-lg-4 col-xl-3 my-3">
         <div class="shadow rounded py-3 px-3 text-center">
           <h2>Libros</h2><hr class="my-4">
           <div><button type="button" class="btn btn-primary btn-lg mb-3" id="altaILibros" data-bs-toggle="modal" data-bs-target="#modalAltaILibros">Alta Individual</button></div>
@@ -69,7 +71,7 @@
         </div>
       </div>
       <!-- Recogidas y Devoluciones -->
-      <div class="col-3 my-4">
+      <div class="col-10 col-sm-8 col-md-5 col-lg-4 col-xl-3 my-4">
         <div class="shadow rounded py-4 px-3 text-center">
           <h2>Recogidas y Devoluciones</h2><hr class="my-4">
           <div><button type="button" class="btn btn-primary btn-lg mb-3" id="recogida" data-bs-toggle="modal" data-bs-target="#modalRecog">Recogida</button></div>
@@ -88,7 +90,7 @@
         </div>
         <form class="modal-body">
           <h3 class="text-center mt-3 mb-4">Información del Libro</h3>
-          <div class="row row-cols-3 justify-content-center" id="bodyAltaILibros">
+          <div class="row row-cols-md-3 row-cols-sm-2 row-cols-1 justify-content-center" id="bodyAltaILibros">
             <div class="form-floating col mb-3">
               <input type="text" class="form-control" id="codAltaILibro" placeholder=".">
               <label class="ms-2" for="codLibro">ISBN</label>
@@ -128,8 +130,8 @@
               </select>
               <label class="ms-2" for="usuLibro">Usuario</label>
             </div>
-            <div class="form-floating col mb-3">
-              <select class="form-select" id="depAltaILibro" placeholder="."></select>
+            <div class="form-floating col mb-3 d-none">
+              <select class="form-select" id="depAltaILibro" placeholder="." disabled></select>
               <label class="ms-2" for="depLibro">Departamento</label>
             </div>
             <div class="form-floating col mb-3">
@@ -160,7 +162,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body row justify-content-center">
-          <div class="col-8" style="height: 250px">
+          <div class="col-md-10 col-lg-8" style="height: 250px">
             <iframe src="php/altaMasiva.php?tipo=Libros" frameborder="0" style="width: 100%; height: 100%"></iframe>
           </div>
         </div>
@@ -171,7 +173,7 @@
     </div>
   </div>
 
-  <!-- MODAL MODIFICAR/DAR DE BAJA PROFESORES -->
+  <!-- MODAL MODIFICAR/DAR DE BAJA LIBROS -->
   <div class="modal fade" id="modalModifLibros" tabindex="-1" aria-labelledby="mdlModifLibros" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl">
       <div class="modal-content">
@@ -182,41 +184,43 @@
         <form class="modal-body">
           <div class="row justify-content-center mx-4">
             <!-- Buscador -->
-            <div class="input-group my-4 w-75">
-              <input type="text" class="form-control" id="txtModifLibros" placeholder="ISBN del Libro">
-              <button class="btn btn-outline-primary" type="button" id="buscarModifLibro">Buscar</button>
+            <div class="col-11 col-sm-8 col-lg-6 col-xl-4">
+              <div class="input-group my-4">
+                <input type="text" class="form-control" id="txtModifLibros" placeholder="ISBN del Libro">
+                <button class="btn btn-outline-primary" type="button" id="buscarModifLibro">Buscar</button>
+              </div>
             </div>
           </div>
-          <h3 class="text-center my-4">Información del Libro</h3>
-          <div class="row row-cols-5 justify-content-center text-center" id="bodyModifLibros">
-            <div class="col mb-2">
+          <h3 class="text-center mt-4 mb-5">Información del Libro</h3>
+          <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1 justify-content-center text-center" id="bodyModifLibros">
+            <div class="col mb-3">
               <label class="fw-bold mb-1">Título</label>
               <input type="text" class="form-control" value="">
             </div>
-            <div class="col mb-2">
+            <div class="col mb-3">
               <label class="fw-bold mb-1">Autores</label>
               <input type="text" class="form-control" value="">
             </div>
-            <div class="col mb-2">
+            <div class="col mb-3">
               <label class="fw-bold mb-1">Materia</label>
               <input type="text" class="form-control" value="">
             </div>
-            <div class="col mb-2">
+            <div class="col mb-3">
               <label class="fw-bold mb-1">Editorial</label>
               <input type="text" class="form-control" value="">
             </div>
-            <div class="col mb-2">
+            <div class="col mb-3">
               <label class="fw-bold mb-1">Año de Edición</label>
               <input type="text" class="form-control" value="">
             </div>
-            <div class="col mb-2">
+            <div class="col mb-3">
               <label class="fw-bold mb-1">Soporte Multimedia</label>
               <select class="form-select" id="sopModifLibro" placeholder=".">
                 <option value="NO">No</option>
                 <option value="SI">Si</option>
               </select>
             </div>
-            <div class="col mb-2">
+            <div class="col mb-3">
               <label class="fw-bold mb-1">Usuario</label>
               <select class="form-select" id="usuModifLibro" placeholder=".">
                 <option value="ALUMNO">ALUMNO</option>
@@ -224,11 +228,11 @@
                 <option value="CONSULTA">CONSULTA</option>
               </select>
             </div>
-            <div class="col mb-2">
+            <div class="col mb-3 d-none">
               <label class="fw-bold mb-1">Departamento</label>
-              <select class="form-select" id="depModifLibro" placeholder="."></select>
+              <select class="form-select" id="depModifLibro" placeholder="." disabled></select>
             </div>
-            <div class="col mb-2">
+            <div class="col mb-3">
               <label class="fw-bold mb-1">Estado</label>
               <select class="form-select" id="estModifLibro" placeholder=".">
                 <option value="BUENO">Bueno</option>
@@ -259,26 +263,30 @@
         <form class="modal-body">
           <div class="row justify-content-center mx-4">
             <!-- Buscador -->
-            <div class="input-group my-4 w-75">
-              <input type="text" class="form-control" id="txtRecog" placeholder="DNI del Alumno">
-              <button class="btn btn-outline-primary" type="button" id="buscarRecog">Buscar</button>
+            <div class="col-11 col-sm-8 col-lg-6 col-xl-4">
+              <div class="input-group my-4">
+                <input type="text" class="form-control" id="txtRecog" placeholder="DNI del Alumno">
+                <button class="btn btn-outline-primary" type="button" id="buscarRecog">Buscar</button>
+              </div>
             </div>
           </div>
           <h3 class="text-center my-4">Información de la Reserva</h3>
-          <table class="table table-hover">
-            <thead>
-              <tr>
-                <th>Fecha Máxima</th>
-                <th>ISBN</th>
-                <th>Título</th>
-                <th>Usuario</th>
-                <th>Grupo</th>
-                <th>PDF</th>
-                <th>Recogida</th>
-              </tr>
-            </thead>
-            <tbody id="tbodyRecog"></tbody>
-          </table>
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>Fecha Máxima</th>
+                  <th>ISBN</th>
+                  <th>Título</th>
+                  <th>Usuario</th>
+                  <th>Grupo</th>
+                  <th>PDF</th>
+                  <th>Recogida</th>
+                </tr>
+              </thead>
+              <tbody id="tbodyRecog"></tbody>
+            </table>
+          </div>
         </form>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -298,25 +306,29 @@
         <form class="modal-body">
           <div class="row justify-content-center mx-4">
             <!-- Buscador -->
-            <div class="input-group my-4 w-75">
-              <input type="text" class="form-control" id="txtDevol" placeholder="DNI del Alumno">
-              <button class="btn btn-outline-primary" type="button" id="buscarDevol">Buscar</button>
+            <div class="col-11 col-sm-8 col-lg-6 col-xl-4">
+              <div class="input-group my-4">
+                <input type="text" class="form-control" id="txtDevol" placeholder="DNI del Alumno">
+                <button class="btn btn-outline-primary" type="button" id="buscarDevol">Buscar</button>
+              </div>
             </div>
           </div>
           <h3 class="text-center my-4">Información del Préstamo</h3>
-          <table class="table table-hover">
-            <thead>
-              <tr>
-                <th>Fecha Máxima</th>
-                <th>ISBN</th>
-                <th>Título</th>
-                <th>Usuario</th>
-                <th>Grupo</th>
-                <th>Devolución</th>
-              </tr>
-            </thead>
-            <tbody id="tbodyDevol"></tbody>
-          </table>
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>Fecha Máxima</th>
+                  <th>ISBN</th>
+                  <th>Título</th>
+                  <th>Usuario</th>
+                  <th>Grupo</th>
+                  <th>Devolución</th>
+                </tr>
+              </thead>
+              <tbody id="tbodyDevol"></tbody>
+            </table>
+          </div>
         </form>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>

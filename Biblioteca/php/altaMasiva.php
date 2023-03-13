@@ -11,6 +11,8 @@
 <body>
   <div class="container-fluid">
 <?
+  //Evitar Warnings, deprecated y enotived
+  ini_set('error_reporting', E_ALL & ~E_NOTICE & ~E_WARNING & ~E_DEPRECATED);
   //Verificar formulario doble
   if(isset($_REQUEST['tipo']) && $_REQUEST['tipo']=='Alumnos|Matrículas') $alumnos=true;
   else $alumnos=false;
@@ -24,7 +26,7 @@
        $_POST['elemento']=='Departamentos' || $_POST['elemento']=='Libros'){
       $elementos = explode("|",$_POST['elemento']);
       //PREPARACIÓN DEL ARCHIVO CSV
-      try { //Almacenar CSVs en temporal
+      try { //Almacenar CSVs en temporal (también alumnos + matrículas)
         foreach($elementos as $i => $elm){
           if($i==0) {
             $rutas[$i] = $_SERVER['DOCUMENT_ROOT'].$rutaBiblio."/Biblioteca/temp/".$_FILES['csv']['name'];
@@ -49,7 +51,7 @@
       }
       //VERIFICAR VALOR DE ACCIÓN
       if($_POST['accion']=='sustituir'){
-        //HACER DELETE TABLE
+        //SUSTITUIR: HACER DELETE TABLE
         foreach($elementos as $elm){
           if (!mysqli_query($c1,$tablas[$indexTbl[$elm]]['delete'])){
             echo '<span class="text-danger">Error al vaciar la tabla '.$tablas[$indexTbl[$elm]]['name'].': '.mysqli_error($c1).'</span><br><br>';
@@ -64,6 +66,7 @@
           $fic = fopen($rutas[$i],'r');
           fgetcsv($fic,0,';');
           echo '<span class="text-success">Archivo CSV de '.$elm.' abierto</span><br>';
+          //Formar y ejecutar las sentencias SQL
           while($reg = fgetcsv($fic,0,';')){
             $stmt = mysqli_prepare($c1,$tablas[$indexTbl[$elm]]['insert']);
             switch (strlen($tablas[$indexTbl[$elm]]['bind'])) {
@@ -89,6 +92,7 @@
           }
           echo '<span class="text-success">Registros de la tabla '.$tablas[$indexTbl[$elm]]['name'].' importados con éxito</span><br>';
           fclose($fic);
+          //Elimnado del CSV temporal
           try {
             unlink($rutas[$i]);
             echo '<span class="text-success">CSV temporal de '.$elm.' borrado con éxito</span><br><br>';
@@ -96,6 +100,7 @@
             echo '<span class="text-danger">Error al borrar el fichero CSV temporal de '.$elm.'</span><br><br>';
             exit(-1);
           }
+        //Cerrado del fichero
         } catch (Exception $e) {
           echo '<span class="text-danger">Error al abrir los ficheros CSV</span><br><br>';
           fclose($fic);
@@ -108,8 +113,7 @@
       echo '<span class="text-success">Registros insertados con éxito.</span><br><br>';
     } else echo '<span class="text-danger">Error: El valor del parámetro elemento no es compatible</span>';
   } else {
-?>
-    <!-- <pre><?//=print_r($_FILES)?></pre> -->
+  ?>
     <form action="" method="post" enctype="multipart/form-data">
       <input type="hidden" name="elemento" value="<?=$_REQUEST['tipo']?>">
       <label class="form-label" for="csv1"><h3>Fichero CSV de <?if($alumnos) echo 'Alumnos'; else echo $_REQUEST['tipo'];?>:</h3></label>
@@ -120,16 +124,16 @@
       <?}?>
       <h3 class="mt-3">Acción:</h3>
       <div class="form-check">
-        <input class="form-check-input" type="radio" name="accion" id="anadir" value="anadir" required>
+        <input class="form-check-input" type="radio" name="accion" id="anadir" value="anadir" required <?if($_GET['tipo']=='Libros') echo 'checked'?>>
         <label class="form-check-label" for="anadir">Añadir registros sin eliminar los ya existentes</label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="radio" name="accion" id="sustituir" value="sustituir">
+        <input class="form-check-input" type="radio" name="accion" id="sustituir" value="sustituir" <?if($_GET['tipo']=='Libros') echo 'disabled'?>>
         <label class="form-check-label" for="sustituir">Sustituir los antiguos registros por los nuevos</label>
       </div>
       <div class="text-center mt-4"><button type="submit" class="btn btn-primary" id="btnInsertarAltaMAlum">Insertar Registros</button></div>
     </form>
-<?}?>
+  <?}?>
 
   </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>

@@ -3,14 +3,12 @@
 	$dbuser="root";
 	$dbpass="1234"; // admin | 1234
 	$dbname="BibliotecaMolinaM";
+	$apikey="C1fpM3rcede$23mM0lin@s_15";
 	$rutaBiblio="/Informatica/MolinaM"; // "" | /Informatica/MolinaM
 	$rutaBackup="/volume1/web/Informatica/MolinaM/Biblioteca/backups/";
-	$rutaBackupL="C:\\Apache24\\htdocs\\Biblioteca\\backups\\";
 	$relBackup='../backups';
 	$comandoBackup='/volume1/@appstore/MariaDB10/usr/local/mariadb10/bin/mysqldump --opt -h localhost -u root --password="1234" BibliotecaMolinaM > ';
-	$comandoBackupL='C:\ServidorLocal\mysql\bin\mysqldump --opt -h localhost -u root --password="admin" BibliotecaMolinaM > ';
 	$comandoRestore='/volume1/@appstore/MariaDB10/usr/local/mariadb10/bin/mysql -u root --password="1234" BibliotecaMolinaM < ';
-	$comandoRestoreL='C:\ServidorLocal\mysql\bin\mysql -u root --password="admin" BibliotecaMolinaM < ';
 	$indexTbl = ["Matrículas"=>0,"Departamentos"=>1,"Profesores"=>2,"Alumnos"=>3,"Libros"=>4,"Reservas"=>5,"Préstamos"=>6];
 	$tablas = [
 		['name'=>"Matrículas",
@@ -84,4 +82,33 @@
 		 'campos'=>["NUM_PREST","COD_LIBRO","DNI","FECHA_RECOG","FECHA_DEVOL","DEVUELTO"]
 		]
 	];
+
+	//DECODIFICADOR DE API_KEY
+	function checkTime($key){
+		$local = [9,6,5,3,2,4,1,0,7,8];
+  	$corresp = ['oev','gan','fbs','ump','lza','ktr','xdh','iyj','qwc','btz'];
+		$segundos = 3;
+		$fecha = [];
+		$key = str_split($key);
+		$key = array_chunk($key,3);
+		for($i=0; $i<count($key); $i++){
+			$key[$i] = implode("",$key[$i]);
+		}
+		for($i=0; $i<count($key); $i++){
+			for($j=0; $j<count($corresp); $j++){
+				if($key[$i]==$corresp[$j] && is_string($key[$i])){
+					$key[$i]=$j;
+				}
+			}
+		}
+		for($i=0; $i<count($key); $i++){
+			$fecha[$local[$i]] = $key[$i];
+		}
+		ksort($fecha);
+		$fecha = intval(implode("",$fecha));
+		$dif = strtotime("now")-$fecha;
+		$verif = ($dif<$segundos) ? 1 : 0;
+		if($verif==1) return true;
+		return false;
+	}
 ?>

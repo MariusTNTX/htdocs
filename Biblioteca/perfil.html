@@ -11,9 +11,11 @@
 <body>
   <div class="container-fluid" id="inicio">
     <!-- H E A D E R   1 -->
-    <div class="row py-4 justify-content-between" id="header1">
-      <div class="col-5 align-middle ps-4"><a href="https://www.cifpcuenca.es/"><img src="./imagenes/logocifp.png" alt="Logo CIFP"></a></div>
-      <div class="col-6 text-end">
+    <div class="row py-4 justify-content-center justify-content-sm-between text-center text-sm-start" id="header1">
+      <div class="col-12 col-sm-5 align-middle ps-4">
+        <a href="https://www.cifpcuenca.es/"><img src="./imagenes/logocifp.png" alt="Logo CIFP"></a>
+      </div>
+      <div class="col-12 col-sm-7 text-center text-sm-end mt-4 mt-sm-0">
         <div class="d-inline-block align-middle px-2 text-center">
           <a href="https://educamosclm.castillalamancha.es/">
             <div><img src="./imagenes/educajccm.png" alt="educajccm"></div>
@@ -25,7 +27,7 @@
             <div><img src="./imagenes/delphos.png" alt="educajccm"></div>
             <p>Delphos</p>
           </a>
-        </div>
+        </div> <br class="d-block d-md-none">
         <div class="d-inline-block align-middle px-2 text-center">
           <a href="https://aulasfp2223.castillalamancha.es/">
             <div><img src="./imagenes/elearning.png" alt="educajccm"></div>
@@ -48,13 +50,13 @@
       <a href="loginAdmin.html"class="col-auto text-center py-2 mx-3">Administración</a>
     </div>
     
-    <div class="row position-relative" style="min-height: 614px;">
+    <div class="row position-relative justify-content-center" style="min-height: 614px;">
       <!-- Título -->
-      <div class="col-12 my-5"><h1 class="text-center" id="nomApes">Mario Molina Sánchez-Cruzado</h1></div>
+      <div class="col-12 my-5"><h1 class="text-center mt-5 mt-lg-0" id="nomApes"></h1></div>
       <div class="position-absolute top-0 end-0 text-end mt-4 me-4"><button class="btn btn-outline-primary" id="btnLogout">Cerrar Sesión</button></div>
       <!-- Reservas Activas -->
-      <div class="col-6">
-        <div class="py-4 px-3 mx-2 shadow rounded">
+      <div class="col-12 col-md-10 col-xl-6">
+        <div class="py-4 px-3 mx-2 shadow rounded table-responsive">
           <h2 class="text-center mb-4">Reservas Activas</h2>
           <table class="table table-hover">
             <thead>
@@ -62,7 +64,7 @@
                 <th>Título</th>
                 <th>Departamento</th>
                 <th>Centro</th>
-                <th>Fecha de Recogida</th>
+                <th>Fecha Máxima de Recogida</th>
                 <th>Anulación</th>
               </tr>
             </thead>
@@ -71,8 +73,8 @@
         </div>
       </div>
       <!-- Préstamos Activos -->
-      <div class="col-6">
-        <div class="py-4 px-3 mx-2 shadow rounded">
+      <div class="col-12 col-md-10 col-xl-6 mt-5 mt-xl-0">
+        <div class="py-4 px-3 mx-2 shadow rounded table-responsive">
           <h2 class="text-center mb-4">Préstamos Activos</h2>
           <table class="table table-hover">
             <thead>
@@ -80,7 +82,7 @@
                 <th>Título</th>
                 <th>Departamento</th>
                 <th>Centro</th>
-                <th>Fecha de Devolución</th>
+                <th>Fecha Máxima de Devolución</th>
                 <!-- <th>Renovación</th> -->
               </tr>
             </thead>
@@ -90,12 +92,8 @@
       </div>
       <!-- Historial de Préstamos -->
       <div class="col-12 my-5">
-        <div class="py-4 px-3 mx-2 shadow rounded">
+        <div class="py-4 px-3 mx-2 shadow rounded table-responsive">
           <h2 class="text-center mb-4">Historial de Préstamos</h2>
-          <!-- <div class="row justify-content-center mb-4">
-            <div class="col-2 text-center"><input type="text" class="form-control" id="buscarLibro"></div>
-            <div class="col-auto text-center"><button class="btn btn-primary">Buscar</button></div>
-          </div> -->
           <table class="table table-hover">
             <thead>
               <tr>
@@ -117,23 +115,6 @@
         </div>
       </div>
     </div>
-    
-    <!-- F O O T E R -->
-    <!-- <div class="row bg-light">
-      <div class="col-5">
-        <p class="mt-3 ms-2">© 2021 - 2022 CIFP Nº 1 | Fuensanta, 3 - 16002 - Cuenca | <a href="mailto:16010042.cifp@edu.jccm.es">16010042.cifp@edu.jccm.es</a></p>
-      </div>
-      <div class="col-6 d-flex align-items-center">
-        <div class="d-inline-block align-middle px-2"><img class="w-100" src="./imagenes/logosfooter.jpg" alt="Logos Instituciones"></div>
-      </div>
-      <div class="col-1 d-flex align-items-center">
-        <a href="#inicio">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-up" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"/>
-          </svg>
-        </a>
-      </div>
-    </div> -->
   </div>
 
   <!-- MODAL RESERVA -->
@@ -146,7 +127,7 @@
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class="col px-3 border-end" id="camposReserva">
+            <div class="col-sm-6 px-3 border-end" id="camposReserva">
               <p><b>Título</b>: <span></span></p>
               <p><b>Autores</b>: <span></span></p>
               <p><b>Materia</b>: <span></span></p>
@@ -159,7 +140,7 @@
               <p><b>Estado</b>: <span></span></p>
               <p><b>Disponibilidad</b>: <span></span></p>
             </div>
-            <div class="col px-3 text-center">
+            <div class="col-sm-6 mt-4 mt-sm-0 px-3 text-center">
               <h3 class="mb-4">Fecha Máxima de Recogida:</h3>
               <p class="mb-5"><b>28/02/2023</b></p>
               <p class="mt-5"><b>Si estás seguro/a de que deseas reservar haz clic en "Reservar" y podrás recoger tu ejemplar en el centro correspondiente antes de la fecha máxima indicada.</b></p>
@@ -184,7 +165,7 @@
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class="col px-3 border-end" id="camposAnular">
+            <div class="col-sm-6 px-3 border-end" id="camposAnular">
               <p><b>Título</b>: <span></span></p>
               <p><b>Autores</b>: <span></span></p>
               <p><b>Materia</b>: <span></span></p>
@@ -197,7 +178,7 @@
               <p><b>Estado</b>: <span></span></p>
               <p><b>Disponibilidad</b>: <span></span></p>
             </div>
-            <div class="col px-3 text-center">
+            <div class="col-sm-6 mt-4 mt-sm-0 px-3 text-center">
               <h3 class="mb-4">¿Estás seguro que deseas anular la reserva de éste ejemplar?</h3>
               <p class="mt-5"><b>Si estás seguro/a de que deseas anular tu reserva haz clic en "Anular"</b></p>
             </div>

@@ -11,6 +11,8 @@
 <body class="bg-dark">
   <div class="container bg-white p-4" id="inicio"><?
 		include("calcFechas.php");
+		//Evitar Warnings, deprecated y enotived
+		ini_set('error_reporting', E_ALL & ~E_NOTICE & ~E_WARNING & ~E_DEPRECATED);
 
 		echo '<h1 class="text-center my-4">Resumen del Proceso: <h1>';
 		
@@ -62,6 +64,8 @@
 				echo '<span class="text-danger">Error al abrir el fichero CSV de '.$tbl['name'].'</span><br><br>';
 				exit(-1);
 			}
+
+			//Preparación y ejecución de sentencias SQL
 			while($reg = fgetcsv($fic,0,';')){
 				$stmt = mysqli_prepare($c1,$tbl['insert']);
 				switch (strlen($tbl['bind'])) {

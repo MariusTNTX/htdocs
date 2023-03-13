@@ -1,23 +1,17 @@
 <?
+  //Evitar Warnings, deprecated y enotived
+  ini_set('error_reporting', E_ALL & ~E_NOTICE & ~E_WARNING & ~E_DEPRECATED);
 
-if(isset($_GET['img'])){
-  $fuente = "C:\Apache24\htdocs\EjerciciosServer\arial.ttf";
-  $img=imagecreate(25,115);
-  $blanco = imagecolorallocate($img,255,255,255);
-  $negro = imagecolorallocate($img,0,0,0);
-  imagettftext($img,8,90,15,115-5,$negro,$fuente,"Ref.Doc.: CertMatAlu");
-  header("Content-type: image/png");
-  imagepng($img);
-  imagedestroy($img);
-} else {
-
+  //Include de PDF_WriteTag (estilos)
   include("../includes/fpdf/PDF_WriteTag.php");
   define('FPDF_FONTPATH',"../includes/fpdf/font");
   include("calcFechas.php");
 
+  //Establecimiento del localismo (Español)
   date_default_timezone_set('Europe/Madrid');
-  setlocale(LC_TIME, 'esp');
+  setlocale(LC_TIME, 'es_ES.UTF-8');
 
+  //Clase PDFWT: Header
   class pdfwt extends PDF_WriteTag {
     function Header(){
       $x = 210/2+15;
@@ -37,7 +31,7 @@ if(isset($_GET['img'])){
     }
   }
 
-  //Variables
+  //Variables de la URL
   $nomAlu = $_GET['nomAlu'].' '.$_GET['apeAlu'];
   $dni = $_GET['dni'];
   $dep = $_GET['dep'];
@@ -46,6 +40,7 @@ if(isset($_GET['img'])){
   $tit = $_GET['tit'];
   $fecha = strftime('%e de %B del %Y');
 
+  //Cálculo de fecha de devolución
   $fecha2 = new DateTime("+30 days");
   if($fecha2->format('l')=='Saturday') $fecha2->modify("+2 days");
   else if($fecha2->format('l')=='Sunday') $fecha2->modify("+1 days");
@@ -58,7 +53,7 @@ if(isset($_GET['img'])){
   $nomJfk = $data[0]['NOMBRE'].' '.$data[0]['APELLIDOS'];
   mysqli_close($c1);
 
-  //Variables FPDF
+  //Variables de inicio FPDF
   $pdf1=new pdfwt('P','mm','A4');
   $pdf1->AliasNbPages();
   $pdf1->SetMargins(20,20);
@@ -68,55 +63,57 @@ if(isset($_GET['img'])){
   $pdf1->SetStyle('s', 'Arial', '', 11, "0,0,0", 15);
   $pdf1->SetStyle('i', 'Arial', 'I', 11, "0,0,0");
 
-  //Textos
-  $p1 = "<s>".strtr(strtoupper($nomJfk),'áéíóú','ÁÉÍÓÚ').", JEFE/A DEL DEPARTAMENTO DE ".strtr(strtoupper($dep),'áéíóú','ÁÉÍÓÚ')." DEL CENTRO ".strtr(strtoupper($cen),'áéíóú','ÁÉÍÓÚ')." <b>CERTIFICA</b>:</s>";
-  $p2 = "<s><i>Que el/la usuario/a ".$nomAlu." con DNI ".$dni." ha efectuado la <b>RECOGIDA</b> del ejemplar \"".$tit."\" con ISBN ".$isbn." el día".$fecha." y se compromete a <b>devolverlo antes del".$fecha2."</b>.</i></s>";
+  //TEXTOS
+
+  //Recogida
+  $p1 = "<s>".strtr(strtoupper($nomJfk),'áéíóú','ÁÉÍÓÚ').", JEFE/A DE LA FAMILIA PROFESIONAL DE ".strtr(strtoupper($dep),'áéíóú','ÁÉÍÓÚ')." DEL CENTRO ".strtr(strtoupper($cen),'áéíóú','ÁÉÍÓÚ')." <b>CERTIFICA</b>:</s>";
+  $p2 = "<s><i>Que el/la usuario/a ".$nomAlu." con DNI ".$dni." ha efectuado la <b>RECOGIDA</b> del ejemplar \"".$tit."\" con ISBN ".$isbn." el día ".$fecha." y se compromete a <b>devolverlo antes del ".$fecha2."</b>.</i></s>";
   $pdf1->Setxy(20,40);
   $pdf1->WriteTag(0, 5, utf8_decode($p1), 0, 'L', 0, 20);
   $pdf1->Sety(60);
   $pdf1->WriteTag(0, 5, utf8_decode($p2), 0, 'L', 0, 20);
-
-  $p3 = "<s>".strtr(strtoupper($nomJfk),'áéíóú','ÁÉÍÓÚ').", JEFE/A DEL DEPARTAMENTO DE ".strtr(strtoupper($dep),'áéíóú','ÁÉÍÓÚ')." DEL CENTRO ".strtr(strtoupper($cen),'áéíóú','ÁÉÍÓÚ')." <b>CERTIFICA</b>:</s>";
+  //Devolución
+  $p3 = "<s>".strtr(strtoupper($nomJfk),'áéíóú','ÁÉÍÓÚ').", JEFE/A DE LA FAMILIA PROFESIONAL DE ".strtr(strtoupper($dep),'áéíóú','ÁÉÍÓÚ')." DEL CENTRO ".strtr(strtoupper($cen),'áéíóú','ÁÉÍÓÚ')." <b>CERTIFICA</b>:</s>";
   $p4 = "<s><i>Que el/la usuario/a ".$nomAlu." con DNI ".$dni." ha efectuado la <b>DEVOLUCIÓN</b> del ejemplar \"".$tit."\" con ISBN ".$isbn." el día ___ de _______________ del _______.</i></s>";
   $pdf1->Setxy(20,160);
   $pdf1->WriteTag(0, 5, utf8_decode($p3), 0, 'L', 0, 20);
   $pdf1->Sety(180);
   $pdf1->WriteTag(0, 5, utf8_decode($p4), 0, 'L', 0, 20);
 
-  //Linea
+  //LINEA
   $pdf1->line(20,165,190,165);
 
-  //Firmas
+  //FIRMAS
+
+  //Recogida
   $w=20;
-  $h=110; //297/2+20
+  $h=115; //297/2+20
   $pdf1->SetFont("arial","", 12);
   $pdf1->Setxy($w,$h);
   $pdf1->Cell(210/2-20, 5, "EL/LA JEFE/A DE DEPARTAMENTO:",0,0,"C");
-  $pdf1->Setxy($w,$h+35);
+  $pdf1->Setxy($w,$h+30);
   $pdf1->Cell(210/2-20, 5, utf8_decode("Fdo: ".$nomJfk),0,0,"C");
   $w=210/2;
   $pdf1->Setxy($w,$h);
   $pdf1->Cell(210/2-20, 5, "EL/LA ALUMNO/A;",0,0,"C");
-  $pdf1->Setxy($w,$h+35);
+  $pdf1->Setxy($w,$h+30);
   $pdf1->Cell(210/2-20, 5, utf8_decode("Fdo: ".$nomAlu),0,0,"C");
   $pdf1->Setxy(20,60);
-
+  //Devolución
   $w=20;
-  $h=230; //297/2+20
+  $h=235; //297/2+20
   $pdf1->SetFont("arial","", 12);
   $pdf1->Setxy($w,$h);
   $pdf1->Cell(210/2-20, 5, "EL/LA JEFE/A DE DEPARTAMENTO:",0,0,"C");
-  $pdf1->Setxy($w,$h+35);
+  $pdf1->Setxy($w,$h+30);
   $pdf1->Cell(210/2-20, 5, utf8_decode("Fdo: ".$nomJfk),0,0,"C");
   $w=210/2;
   $pdf1->Setxy($w,$h);
   $pdf1->Cell(210/2-20, 5, "EL/LA ALUMNO/A;",0,0,"C");
-  $pdf1->Setxy($w,$h+35);
+  $pdf1->Setxy($w,$h+30);
   $pdf1->Cell(210/2-20, 5, utf8_decode("Fdo: ".$nomAlu),0,0,"C");
   $pdf1->Setxy(20,60);
 
+  //IMPRESIÓN
   $pdf1->output();
-  /* $pdf1->Cell(210/2-20, 5, "A fecha de ".strftime("%d de %B de %Y")." ".utf8_decode(" PÃ¡g ".$this->PageNo()." de "."{nb}"),0,"J",false); */
-}
-
 ?>
