@@ -29,6 +29,11 @@
 .btn-primary:hover, .btn-primary:active{
   background-color: #e75900;
 }
+.btn-primary:disabled {
+  background-color: #a78169;
+  border: none;
+  box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+}
 
 .btn-check+.btn{
   color: #e86b1c;
