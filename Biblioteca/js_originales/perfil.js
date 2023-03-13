@@ -36,16 +36,17 @@ btnLogout.addEventListener("click",()=>{
 getReservas('',sessionStorage.getItem("dniUsuario"),'','').then(data =>{
   tbodyReservas.innerHTML="";
   for(let dat of data){
-    let color = (dat.PENDIENTE=='Si') ? ' class="text-danger fw-bold"' : '';
-    tbodyReservas.innerHTML += `
-    <tr class="align-middle">
-      <td class="d-none">${dat.COD_LIBRO}</td>
-      <td>${dat.TITULO}</td>
-      <td>${dat.DEPARTAMENTO}</td>
-      <td>${dat.CENTRO}</td>
-      <td${color}>${dat.FECHA_FIN}</td>
-      <td><button type="button" class="btn btn-primary btn-Anular" data-bs-toggle="modal" data-bs-target="#modalAnular">Anular</button></td>
-    </tr>`;
+    if(dat.PENDIENTE=='No'){
+      tbodyReservas.innerHTML += `
+      <tr class="align-middle">
+        <td class="d-none">${dat.COD_LIBRO}</td>
+        <td>${dat.TITULO}</td>
+        <td>${dat.DEPARTAMENTO}</td>
+        <td>${dat.CENTRO}</td>
+        <td>${dat.FECHA_FIN}</td>
+        <td><button type="button" class="btn btn-primary btn-Anular" data-bs-toggle="modal" data-bs-target="#modalAnular">Anular</button></td>
+      </tr>`;
+    }
   }
   //BOTONES ANULAR TABLA
   for(let btn of document.querySelectorAll(".btn-Anular")){

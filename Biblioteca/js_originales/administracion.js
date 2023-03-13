@@ -192,19 +192,19 @@ buscarModifAlum.addEventListener("click",()=>{
         tbodyModifMatr.innerHTML = "";
         tbodyModifAlum.innerHTML += `
         <tr class="align-middle">
-          <td><input type="text" class="form-control w-100" name="apellidos" value="${data[0].APELLIDOS}" required></td>
-          <td style="width: 13%;"><input type="text" class="form-control w-100" name="nombre" value="${data[0].NOMBRE}" required></td>
-          <td style="width: 13%;"><input type="text" class="form-control w-100" name="codigo" value="${data[0].CODIGO}" required></td>
-          <td><input type="text" class="form-control w-100" name="dni" value="${data[0].DNI}" required></td>
-          <td style="width: 13%;"><input type="text" class="form-control w-100" name="nie" value="${data[0].NIE}" required></td>
+          <td><input type="text" class="form-control w-100" style="min-width: 200px" name="apellidos" value="${data[0].APELLIDOS}" required></td>
+          <td style="width: 13%;"><input type="text" class="form-control w-100" style="min-width: 110px" name="nombre" value="${data[0].NOMBRE}" required></td>
+          <td style="width: 13%;"><input type="text" class="form-control w-100" style="min-width: 85px" name="codigo" value="${data[0].CODIGO}" required></td>
+          <td><input type="text" class="form-control w-100" style="min-width: 105px" name="dni" value="${data[0].DNI}" required></td>
+          <td style="width: 13%;"><input type="text" class="form-control w-100" style="min-width: 100px" name="nie" value="${data[0].NIE}" required></td>
           <td><input type="submit" class="btn btn-primary btnActuAlumMatr" name="actualizarAlum" value="Actualizar"></td>
           <td><input type="submit" class="btn btn-primary btnBorrAlum" name="borrarAlum" value="Borrar"></td>
         </tr>`;
         for(let mat of data[0].MATRICULAS){
           tbodyModifMatr.innerHTML += `
           <tr class="align-middle">
-            <td style="width: 60%;"><input type="text" class="form-control w-100" name="estudios" value="${mat.ESTUDIOS}" required></td>
-            <td><input type="text" class="form-control w-100" name="grupo" value="${mat.GRUPO}" required></td>
+            <td style="width: 60%;"><input type="text" class="form-control w-100" style="min-width: 390px" name="estudios" value="${mat.ESTUDIOS}" required></td>
+            <td><input type="text" class="form-control w-100" style="min-width: 100px" name="grupo" value="${mat.GRUPO}" required></td>
             <td><input type="submit" class="btn btn-primary btnActuAlumMatr" name="actualizarMatr" value="Actualizar"></td>
             <td><input type="submit" class="btn btn-primary btnBorrMatr" name="borrarMatr" value="Borrar"></td>
           </tr>`;
@@ -360,10 +360,10 @@ buscarModifProf.addEventListener("click",()=>{
         tbodyModifProf.innerHTML = "";
         tbodyModifProf.innerHTML += `
         <tr class="align-middle">
-          <td><input type="text" class="form-control w-100" name="apellidos" value="${data[0].APELLIDOS}" required></td>
-          <td><input type="text" class="form-control w-100" name="nombre" value="${data[0].NOMBRE}" required></td>
-          <td><input type="text" class="form-control w-100" name="dni" value="${data[0].DNI}" required></td>
-          <td><select class="form-select" aria-label=".form-select-lg"></select></td>
+          <td><input type="text" class="form-control w-100" style="min-width: 180px" name="apellidos" value="${data[0].APELLIDOS}" required></td>
+          <td><input type="text" class="form-control w-100" style="min-width: 90px" name="nombre" value="${data[0].NOMBRE}" required></td>
+          <td><input type="text" class="form-control w-100" style="min-width: 110px" name="dni" value="${data[0].DNI}" required></td>
+          <td><select class="form-select" style="min-width: 250px" aria-label=".form-select-lg"></select></td>
           <td><input type="submit" class="btn btn-primary btnActuProf" name="actualizarProf" value="Actualizar"></td>
           <td><input type="submit" class="btn btn-primary btnBorrProf" name="borrarProf" value="Borrar"></td>
         </tr>`;
@@ -484,10 +484,10 @@ buscarModifDepart.addEventListener("click",()=>{
       tbodyModifDepart.innerHTML += `
       <tr class="align-middle">
         <td style="width:70px"><input type="text" class="form-control w-100" name="apellidos" value="${data[0].CODIGO}" required></td>
-        <td><input type="text" class="form-control w-100" name="nombre" value="${data[0].NOMBRE}" required></td>
-        <td style="max-width:155px"><input type="text" class="form-control w-100" name="dni" value="${data[0].CENTRO}" required></td>
-        <td style="max-width:120px"><input type="text" class="form-control w-100" name="nombre" value="${data[0].DNI}" required></td>
-        <td><input type="text" class="form-control w-100" name="dni" value="${data[0].PASSWORD}" required></td>
+        <td><input type="text" class="form-control w-100" style="min-width: 300px" name="nombre" value="${data[0].NOMBRE}" required></td>
+        <td style="max-width:155px"><input type="text" class="form-control w-100" style="min-width: 150px" name="dni" value="${data[0].CENTRO}" required></td>
+        <td style="max-width:120px"><input type="text" class="form-control w-100" style="min-width: 110px" name="nombre" value="${data[0].DNI}" required></td>
+        <td><input type="text" class="form-control w-100" style="min-width: 200px" name="dni" value="${data[0].PASSWORD}" required></td>
         <td><input type="submit" class="btn btn-primary btnActuDepart" name="actualizarDepart" value="Actualizar"></td>
         <td><input type="submit" class="btn btn-primary btnBorrDepart" name="borrarDepart" value="Borrar"></td>
       </tr>`;
