@@ -1,4 +1,5 @@
 COD_LIBRO;TITULO;AUTOR;MATERIA;EDITORIAL;A_EDICION;SOPORTE_M;USUARIO;COD_DPTO;ESTADO
+ISBN_EJEMPLAR;Maximo 100 caracteres;Maximo 100 caracteres. Mas de un autor separado por comas;Maximo 30 caracteres. Mas de una materia separa por comas;Maximo 30 caracteres;Año de edición, cuatro digitos;SI/NO;ALUMNO/PROFESOR/CONSULTA;Numerico;BUENO/MALO
 9780241341780_1;"Cocinología: La ciencia de la cocina";"Varios Autores";Cocina;DK;2018;SI;ALUMNO;2;BUENO
 9788413679143_1;"Formación y Orientación Laboral";"José Carlos González Acedo, Rosario Pérez Aroca";"Orientación Laboral";PARANINFO;2022;NO;ALUMNO;8;BUENO
 9788416926534_1;"Con A de animación nº 8 retorno del 2D";"Varios Autores";Animacion;"NAU LLIBRES";2018;SI;ALUMNO;3;BUENO

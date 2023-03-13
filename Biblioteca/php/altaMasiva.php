@@ -65,6 +65,7 @@
         try { //Abrir CSV
           $fic = fopen($rutas[$i],'r');
           fgetcsv($fic,0,';');
+          if($elm=='Libros') fgetcsv($fic,0,';');
           echo '<span class="text-success">Archivo CSV de '.$elm.' abierto</span><br>';
           //Formar y ejecutar las sentencias SQL
           while($reg = fgetcsv($fic,0,';')){

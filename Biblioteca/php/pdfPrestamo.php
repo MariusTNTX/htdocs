@@ -66,19 +66,19 @@
   //TEXTOS
 
   //Recogida
-  $p1 = "<s>".strtr(strtoupper($nomJfk),'áéíóú','ÁÉÍÓÚ').", JEFE/A DE LA FAMILIA PROFESIONAL DE ".strtr(strtoupper($dep),'áéíóú','ÁÉÍÓÚ')." DEL CENTRO ".strtr(strtoupper($cen),'áéíóú','ÁÉÍÓÚ')." <b>CERTIFICA</b>:</s>";
+  $p1 = "<s>".strtr(strtoupper($nomJfk),'áéíóú','ÁÉÍÓÚ').", JEFE/A DE LA FAMILIA PROFESIONAL DE ".strtr(strtoupper($dep),'áéíóú','ÁÉÍÓÚ')." DEL CENTRO ".strtr(strtoupper($cen),'áéíóú','ÁÉÍÓÚ')." <b>CONFIRMA</b>:</s>";
   $p2 = "<s><i>Que el/la usuario/a ".$nomAlu." con DNI ".$dni." ha efectuado la <b>RECOGIDA</b> del ejemplar \"".$tit."\" con ISBN ".$isbn." el día ".$fecha." y se compromete a <b>devolverlo antes del ".$fecha2."</b>.</i></s>";
   $pdf1->Setxy(20,40);
-  $pdf1->WriteTag(0, 5, utf8_decode($p1), 0, 'L', 0, 20);
+  $pdf1->WriteTag(0, 5, utf8_decode($p1), 0, 'J', 0, 20);
   $pdf1->Sety(60);
-  $pdf1->WriteTag(0, 5, utf8_decode($p2), 0, 'L', 0, 20);
+  $pdf1->WriteTag(0, 5, utf8_decode($p2), 0, 'J', 0, 20);
   //Devolución
-  $p3 = "<s>".strtr(strtoupper($nomJfk),'áéíóú','ÁÉÍÓÚ').", JEFE/A DE LA FAMILIA PROFESIONAL DE ".strtr(strtoupper($dep),'áéíóú','ÁÉÍÓÚ')." DEL CENTRO ".strtr(strtoupper($cen),'áéíóú','ÁÉÍÓÚ')." <b>CERTIFICA</b>:</s>";
+  $p3 = "<s>".strtr(strtoupper($nomJfk),'áéíóú','ÁÉÍÓÚ').", JEFE/A DE LA FAMILIA PROFESIONAL DE ".strtr(strtoupper($dep),'áéíóú','ÁÉÍÓÚ')." DEL CENTRO ".strtr(strtoupper($cen),'áéíóú','ÁÉÍÓÚ')." <b>CONFIRMA</b>:</s>";
   $p4 = "<s><i>Que el/la usuario/a ".$nomAlu." con DNI ".$dni." ha efectuado la <b>DEVOLUCIÓN</b> del ejemplar \"".$tit."\" con ISBN ".$isbn." el día ___ de _______________ del _______.</i></s>";
   $pdf1->Setxy(20,160);
-  $pdf1->WriteTag(0, 5, utf8_decode($p3), 0, 'L', 0, 20);
+  $pdf1->WriteTag(0, 5, utf8_decode($p3), 0, 'J', 0, 20);
   $pdf1->Sety(180);
-  $pdf1->WriteTag(0, 5, utf8_decode($p4), 0, 'L', 0, 20);
+  $pdf1->WriteTag(0, 5, utf8_decode($p4), 0, 'J', 0, 20);
 
   //LINEA
   $pdf1->line(20,165,190,165);

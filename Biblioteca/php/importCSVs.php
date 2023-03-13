@@ -60,6 +60,7 @@
 			try {
 				$fic = fopen($tbl['csv'],'r');
 				fgetcsv($fic,0,';');
+				if($tbl['name']=='Libros') fgetcsv($fic,0,';');
 			} catch (Exception $e) {
 				echo '<span class="text-danger">Error al abrir el fichero CSV de '.$tbl['name'].'</span><br><br>';
 				exit(-1);

@@ -222,7 +222,7 @@ buscarRecog.addEventListener("click",()=>{
         for(let btn of tbodyRecog.querySelectorAll(".btnForRecog")){
           btn.addEventListener("click",(e)=>{
             e.preventDefault();
-            if(confirm("¿Deseas efectuar la recogida? La reserva será sustituida definitivamente por su préstamo correspondiente")){
+            if(confirm("¿Deseas efectuar la recogida? Verifica que el contrato esté impreso antes de continuar")){
               //Se genera el préstamo
               putPrestamo(btn.parentElement.parentElement.children[1].textContent+'_'+btn.parentElement.parentElement.children[2].textContent,btn.parentElement.parentElement.children[5].textContent).then(data=>{
                 if(data.length>0) alert("Préstamo generado con éxito");
