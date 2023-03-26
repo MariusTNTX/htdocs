@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>MetaList</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="imagenes/basico/favicon MetaList.png" rel="icon">
+  <link href="imagenes/basico/appletouch2 MetaList.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/index.css" rel="stylesheet">
+  <link href="assets/css/custom.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Gp - v4.9.1
+  * Template URL: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top ">
+    <div class="container d-flex align-items-center justify-content-lg-between">
+
+      <h1 class="logo me-auto me-lg-0">
+        <a href="index.html">
+          <img src="imagenes/basico/logo MetaList.png" alt="Logo MetaList">
+        </a>
+      </h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo me-auto me-lg-0"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <!-- <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+          <li><a class="nav-link scrollto" href="#about">About</a></li>
+          <li><a class="nav-link scrollto" href="#services">Services</a></li>
+          <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>
+          <li><a class="nav-link scrollto" href="#team">Team</a></li> -->
+          <li class="dropdown"><a href="#"><span>Bandas</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="#">Listas Personalizadas</a></li>
+              <li><a href="#">Tier Lists</a></li>
+              <li><a href="#">Playlists Spotify</a></li>
+              <li><a href="#">Banda Aleatoria</a></li>
+            </ul>
+          </li>
+          <li class="dropdown"><a href="#"><span>Álbumes</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="./buscadorAvanzado.html">Listas Personalizadas</a></li>
+              <li><a href="#">Tier Lists</a></li>
+              <li><a href="./album.html">Álbum Aleatorio</a></li>
+            </ul>
+          </li>
+          <li class="dropdown"><a href="#"><span>Discográficas</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="#">Listas Personalizadas</a></li>
+              <li><a href="#">Playlists Spotify</a></li>
+              <li><a href="#">Discográfica Aleatoria</a></li>
+            </ul>
+          </li>
+          <li class="dropdown"><a href="#"><span>Géneros</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="#">Ranking</a></li>
+              <li><a href="#">Tier Lists</a></li>
+              <li><a href="#">Playlists Spotify</a></li>
+            </ul>
+          </li>
+          <li class="dropdown"><a href="#"><span>Historia</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="#">Cronología del Heavy Metal</a></li>
+              <li><a href="#">Playlists Spotify por Etapas</a></li>
+              <li><a href="#">Resúmenes de Años</a></li>
+            </ul>
+          </li>
+          <li class="dropdown"><a href="#"><span>Juegos</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="#">TimeLine</a></li>
+              <li><a href="#">Trivia</a></li>
+              <li><a href="#">Guitar Zero</a></li>
+            </ul>
+          </li>
+          <!-- <li><a class="nav-link scrollto" href="#contact">Donaciones</a></li>
+          <li><a class="nav-link scrollto" href="#about">Sobre Nosotros</a></li>
+          <li><a class="nav-link scrollto" href="#contact">Contacto</a></li> -->
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+      <!-- <a href="#" class="get-started-btn scrollto">Login</a> -->
+      <div class="dropdown login me-2">
+        <button type="button" class="btn text-white dropdown-toggle py-2 px-3 px-sm-4" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+          <i class="bi bi-person-fill"></i>Login
+        </button>
+        <form action="nuevaBanda.html" method="get" class="dropdown-menu dropdown-menu-end p-4 w-50" id="loginForm">
+          <div class="mb-3">
+            <label for="exampleDropdownFormEmail2" class="form-label">Email</label>
+            <input type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="email@ejemplo.com">
+          </div>
+          <div class="mb-3">
+            <label for="exampleDropdownFormPassword2" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Contraseña">
+          </div>
+          <div class="mb-3">
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="dropdownCheck2">
+              <label class="form-check-label" for="dropdownCheck2">
+                Recordarme
+              </label>
+            </div>
+          </div>
+          <div class="text-center"><button type="submit" class="btn btn-primary" id="loginButton">Iniciar Sesión</button></div>
+          <hr class="mt-4">
+          <div id="regist" class="text-center">
+            <label for="regist" class="form-label">¿No tienes cuenta?</label>
+            <div><a href="./registro.html">Regístrate</a></div>
+          </div>
+        </form>
+        <script>
+          document.getElementById("loginButton").addEventListener("click",(e)=>{
+            if(document.getElementById("exampleDropdownFormEmail2").value!='mario@admin.com' || 
+               document.getElementById("exampleDropdownFormPassword2").value!='1234'){
+              e.preventDefault();
+              alert("Login Incorrecto");
+            } 
+          });
+        </script>
+      </div>
+      
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Title Section ======= -->
+  <section id="hero" class="align-items-center justify-content-center"> <!-- d-flex -->
+    <div class="container" data-aos="fade-up">
+
+      <!-- <div class="alert alert-warning alert-dismissible fade show position-fixed pt-4" role="alert" style="z-index:1">
+        <i class="bi bi-exclamation-triangle-fill me-1"></i>
+        <strong>Página en Fase de Desarrollo</strong>: Lamentablemente la mayoría de secciones no se encuentran disponibles en estos instantes. Únicamente podrá acceder a los siguientes apartados:
+        <ul class="text-start ms-4 mt-4">
+          <li>Buscador Avanzado de Álbumes (Listas Personalizadas)</li>
+          <li>Información Específica de un Álbum</li>
+          <li>Nuevo Registro de Cuenta de Usuario</li>
+        </ul>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div> -->
+
+      <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
+        <div class="col-xl-6 col-lg-8">
+          <h1>Consulta Desde Otra Perspectiva</h1>
+          <h2>Exloración, lectura, análisis y juegos</h2>
+        </div>
+      </div>
+
+      <div class="row justify-content-center mt-4" data-aos="fade-up" data-aos-delay="150">
+        <div class="col-xl-6 col-md-8">
+          <form action="./buscadorAvanzado.html" method="post" id="mainSearch">
+            <input type="text" name="search" placeholder="Bandas, Álbumes, Noticias, etc."><input type="submit" value="Buscar">
+          </form>
+        </div>
+      </div>
+      
+      <!-- === Nav Section === -->
+      <div class="row gy-4 mt-3 justify-content-center" data-aos="zoom-in" data-aos-delay="250">
+
+        <div class="col-xl-2 col-md-4">
+          <div class="icon-box">
+            <a href="./buscadorAvanzado.html"><i class="ri-search-line"></i></a>
+            <h3><a class="nav-link scrollto mb-3" href="./buscadorAvanzado.html">Búsqueda Avanzada</a></h3>
+            <p class="text-white hid">Listas dinámicas con todos los filtros que quieras</p>
+          </div>
+        </div>
+        <div class="col-xl-2 col-md-4">
+          <div class="icon-box">
+            <a href="#"><i class="ri-menu-2-line"></i></a>
+            <h3><a class="nav-link scrollto mb-3" href="#">Tier Lists</a></h3>
+            <p class="text-white hid">Especialmente creados para los/as amantes del debate</p>
+          </div>
+        </div>
+        <div class="col-xl-2 col-md-4">
+          <div class="icon-box">
+            <a href="#"><i class="ri-timer-line"></i></a>
+            <h3><a class="nav-link scrollto mb-3" href="#">Cronología</a></h3>
+            <p class="text-white hid">Historia y actualidad juntas en una sección interminable</p>
+          </div>
+        </div>
+        <div class="col-xl-2 col-md-4">
+          <div class="icon-box">
+            <a href="#"><i class="ri-play-list-line"></i></a>
+            <h3><a class="nav-link scrollto mb-3" href="#">Playlists de Spotify</a></h3>
+            <p class="text-white hid">Las mejores canciones de nuestras categorías</p>
+          </div>
+        </div>
+        <div class="col-xl-2 col-md-4">
+          <div class="icon-box">
+            <a href="#"><i class="ri-grid-fill"></i></a>
+            <h3><a class="nav-link scrollto mb-3" href="#">Mosaico de Géneros</a></h3>
+            <p class="text-white hid">Infórmate de cualquier subgénero y dominalos todos</p>
+          </div>
+        </div>
+        <div class="col-xl-2 col-md-4">
+          <div class="icon-box">
+            <a href="#"><i class="ri-gamepad-line"></i></a>
+            <h3><a class="nav-link scrollto mb-3" href="#">Juegos</a></h3>
+            <p class="text-white hid">Pasar el rato, competir con amigos y dominar el ranking global</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section><!-- End Nav Section -->
+
+  <main id="main">
+
+
+    <!-- ======= Notices Section ======= -->
+    <section id="portfolio" class="portfolio">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Noticias</h2>
+          <p>Últimas Noticias:</p>
+        </div>
+
+        <div class="row" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-lg-12 d-flex justify-content-center">
+            <ul id="portfolio-flters">
+              <li data-filter=".filter-hoy">Hoy</li>
+              <li data-filter=".filter-3">Últimos 3 días</li>
+              <li data-filter=".filter-30">Últimos 30 días</li>
+              <li data-filter="*" class="filter-active">Últimos 365 días</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+
+          <div class="col-lg-4 col-md-6 portfolio-item">
+            <div class="portfolio-wrap">
+              <img src="imagenes/noticias/lux aeterna.webp" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4><a href="#" class="inv-a">Metallica lanza su nuevo single "Lux Aeterna"</a></h4>
+                <p>14/12/2022</p>
+                <div class="portfolio-links">
+                  <a href="imagenes/noticias/lux aeterna.webp" data-gallery="portfolioGallery" class="portfolio-lightbox" title='Metallica lanza su nuevo single "Lux Aeterna"'><i class='bx bx-expand'></i></a>
+                  <!-- <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a> -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-30">
+            <div class="portfolio-wrap">
+              <img src="imagenes/noticias/blindGuardian.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4><a href="#" class="inv-a">Blind Guardian publica un breve clip con imágenes de la grabación del disco "The God Machine"</a></h4>
+                <p>02/01/2023</p>
+                <div class="portfolio-links">
+                  <a href="imagenes/noticias/blindGuardian.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title='Blind Guardian publica un breve clip con imágenes de la grabación del disco "The God Machine"'><i class='bx bx-expand'></i></a>
+                  <!-- <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a> -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-hoy filter-3 filter-30">
+            <div class="portfolio-wrap">
+              <img src="imagenes/noticias/sebastianMarino.webp" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4><a href="#" class="inv-a">El ex-guitarrista de Liege Lord, Anvil y Overkill Sebastian Marino fallece a los 57 años</a></h4>
+                <p>01/01/2023</p>
+                <div class="portfolio-links">
+                  <a href="imagenes/noticias/sebastianMarino.webp" data-gallery="portfolioGallery" class="portfolio-lightbox" title="El ex-guitarrista de Liege Lord, Anvil y Overkill Sebastian Marino fallece repentinamente a los 57 años"><i class='bx bx-expand'></i></a>
+                  <!-- <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a> -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-3 filter-30">
+            <div class="portfolio-wrap">
+              <img src="imagenes/noticias/archEnemy.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4><a href="#" class="inv-a">El festival Leyendas del Rock añade a la banda Arch Enemy a su cartel</a></h4>
+                <p>30/12/2022</p>
+                <div class="portfolio-links">
+                  <a href="imagenes/noticias/archEnemy.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="El festival Leyendas del Rock añade a la banda Arch Enemy a su cartel"><i class='bx bx-expand'></i></a>
+                  <!-- <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a> -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-hoy filter-3 filter-30">
+            <div class="portfolio-wrap">
+              <img src="imagenes/noticias/accept.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4><a href="#" class="inv-a">Se confirman 3 conciertos en España durante la gira de Accept</a></h4>
+                <p>03/01/2023</p>
+                <div class="portfolio-links">
+                  <a href="imagenes/noticias/accept.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Se confirman 3 conciertos en España durante la gira de Accept"><i class='bx bx-expand'></i></a>
+                  <!-- <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a> -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-3 filter-30">
+            <div class="portfolio-wrap">
+              <img src="imagenes/noticias/dreamTheater.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4><a href="#" class="inv-a">Dream Theater publica su cartel de conciertos en España</a></h4>
+                <p>03/01/2023</p>
+                <div class="portfolio-links">
+                  <a href="imagenes/noticias/dreamTheater.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Dream Theater publica su cartel de conciertos en España"><i class='bx bx-expand'></i></a>
+                  <!-- <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a> -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-a filter-30">
+            <div class="portfolio-wrap">
+              <img src="imagenes/noticias/slipknot.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4><a href="#" class="inv-a">El disco inédito de Slipknot "Look Outside Your Window" podría salir este año</a></h4>
+                <p>02/01/2023</p>
+                <div class="portfolio-links">
+                  <a href="imagenes/noticias/slipknot.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title='El disco inédito de Slipknot "Look Outside Your Window" podría salir este año'><i class='bx bx-expand'></i></a>
+                  <!-- <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a> -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-a">
+            <div class="portfolio-wrap">
+              <img src="imagenes/noticias/steelHammer.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4><a href="#" class="inv-a">Steel Hammer, el nuevo proyecto de Chris Boltendahl, el vocalista de Grave Digger</a></h4>
+                <p>03/01/2023</p>
+                <div class="portfolio-links">
+                  <a href="imagenes/noticias/steelHammer.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Steel Hammer, el nuevo proyecto de Chris Boltendahl, el vocalista de Grave Digger"><i class='bx bx-expand'></i></a>
+                  <!-- <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a> -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-a filter-hoy filter-3 filter-30">
+            <div class="portfolio-wrap">
+              <img src="imagenes/noticias/helloween.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4><a href="#" class="inv-a">Helloween agota el aforo del Wizink Center de Madrid y logra ampliar su aforo</a></h4>
+                <p>03/01/2023</p>
+                <div class="portfolio-links">
+                  <a href="imagenes/noticias/helloween.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Helloween agota el aforo del Wizink Center de Madrid y logra ampliar su aforo"><i class='bx bx-expand'></i></a>
+                  <!-- <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a> -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Notices Section -->
+
+
+    <!-- ======= Today's Section ======= -->
+    <section id="testimonials" class="testimonials">
+      <div class="container" data-aos="zoom-in">
+
+        <div class="section-title">
+          <h2>Hoy</h2>
+          <p class="text-white">Sección "Hoy":</p>
+        </div>
+
+        <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
+          <div class="swiper-wrapper">
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <img src="imagenes/seccionHoy/once.jpg" class="testimonial-img" alt="">
+                <h3><a href="#" class="inv-a">18º Aniversario del álbum "Once"</a></h3>
+                <h4><a href="#" class="inv-a">Nightwish</a></h4>
+                <p>
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  Uno de los álbumes más importantes y representativos del metal sinfónico y la creación más representativa del sonido de Nightwish
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+              </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <img src="imagenes/seccionHoy/brittney.jpg" class="testimonial-img" alt="">
+                <h3><a href="#" class="inv-a">Brittney Hayes cumple 38 años</a></h3>
+                <h4><a href="#" class="inv-a">Unleash the Archers</a></h4>
+                <p>
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  Una de las vocalistas con mayor visibilidad en la actualidad y con un gran futuro por delante a las riendas de Unleash the Archers
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+              </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <img src="imagenes/seccionHoy/lemmy.jpg" class="testimonial-img" alt="">
+                <h3><a href="#" class="inv-a">Aniversario del fallecimiento de Lemmy Kilmister (1959-2015)</a></h3>
+                <h4><a href="#" class="inv-a">Motörhead</a></h4>
+                <p>
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  Una de las caras más representativas del rock y el heavy metal falleció hace 8 años
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+              </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <img src="imagenes/seccionHoy/theBig4.jpg" class="testimonial-img" alt="">
+                <h3><a href="#" class="inv-a">13º Aniversario del Concierto en Vivo "The Big Four"</a></h3>
+                <h4><a href="#" class="inv-a">Metallica | Megadeth | Slayer | Anthrax</a></h4>
+                <p>
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  Pocos conciertos en vivo se combiertieron en leyenda tan rápido como aquel que reunió a los 4 grandes del Thrash Metal en Bulgaria
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+              </div>
+            </div><!-- End testimonial item -->
+
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+      </div>
+    </section><!-- End Today's Section -->
+
+
+    <!-- ======= Last Incorporation Section ======= -->
+    <section id="team" class="team">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Incorporaciones</h2>
+          <p>Últimas Incorporaciones:</p>
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+            <div class="member" data-aos="fade-up" data-aos-delay="100">
+              <div class="member-img">
+                <img src="imagenes/incorporaciones/beyond the black.jpg" class="img-fluid" alt="">
+                <div class="social">
+                  <a href="https://twitter.com/_beyondtheblack"><i class="bi bi-twitter"></i></a>
+                  <a href="https://www.facebook.com/beyondtheblackofficial"><i class="bi bi-facebook"></i></a>
+                  <a href="https://www.instagram.com/beyondtheblack_official/"><i class="bi bi-instagram"></i></a>
+                  <a href="https://www.youtube.com/channel/UCv8qGsOBKIMaIV8_BQrb6tQ"><i class="bi bi-youtube"></i></a>
+                  <a href="https://open.spotify.com/artist/6swnqiL41Bd4gO2fnAXXrf"><i class="bi bi-spotify"></i></a>
+                </div>
+              </div>
+              <div class="member-info">
+                <h4><a href="#">Beyond the Black</a></h4>
+                <p><a href="#">Symphonic Metal</a></p>
+                <span>La nueva banda sinfónica que conquista el Wacken Open Air con su voz bella y prodigiosa y sus melodías épicas y pegadizas</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+            <div class="member" data-aos="fade-up" data-aos-delay="200">
+              <div class="member-img">
+                <img src="imagenes/incorporaciones/cavaleraConspiracy.jpg" class="img-fluid" alt="">
+                <div class="social">
+                  <a href="https://twitter.com/cavconspiracy"><i class="bi bi-twitter"></i></a>
+                  <a href="https://www.facebook.com/cavaleraconspiracy"><i class="bi bi-facebook"></i></a>
+                  <a href="https://www.instagram.com/cavaleraconspiracy/"><i class="bi bi-instagram"></i></a>
+                  <a href="https://www.youtube.com/channel/UCEGKcFSQgxGetaALFdGBZ3A"><i class="bi bi-youtube"></i></a>
+                  <a href="https://open.spotify.com/artist/7F1K4WlMshx23V2TTz4KwV"><i class="bi bi-spotify"></i></a>
+                </div>
+              </div>
+              <div class="member-info">
+                <h4><a href="#">Cavalera Conspiracy</a></h4>
+                <p><a href="#">Groove Metal</a> | <a href="#">Thrash Metal</a> | <a href="#">Death Metal</a></p>
+                <span>El proyecto de los hermanos fundadores de Sepultura llega a MetaList, continuando su legado histórico tras sus largas discusiones</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+            <div class="member" data-aos="fade-up" data-aos-delay="300">
+              <div class="member-img">
+                <img src="imagenes/incorporaciones/cultOfLuna.jpg" class="img-fluid" alt="">
+                <div class="social">
+                  <a href="https://twitter.com/Cultofluna_off"><i class="bi bi-twitter"></i></a>
+                  <a href="https://www.facebook.com/cultoflunamusic"><i class="bi bi-facebook"></i></a>
+                  <a href="https://www.instagram.com/cultofluna/"><i class="bi bi-instagram"></i></a>
+                  <a href="https://www.youtube.com/channel/UCgXfedHrL3D7uxHX9oiYBbQ"><i class="bi bi-youtube"></i></a>
+                  <a href="https://open.spotify.com/artist/7E7fJJpdVgr1F3pfAfRtHe"><i class="bi bi-spotify"></i></a>
+                </div>
+              </div>
+              <div class="member-info">
+                <h4><a href="#">Cult of Luna</a></h4>
+                <p><a href="#">Post-Metal</a> | <a href="#">Progressive Metal</a> | <a href="#">Sludge Metal</a></p>
+                <span>Una de las bandas que más han dado de qué hablar en la década del 2010. A pesar de su sonido relajado y pausado su discografía hasta la fecha ha demostrado estar a la altura</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+            <div class="member" data-aos="fade-up" data-aos-delay="400">
+              <div class="member-img">
+                <img src="imagenes/incorporaciones/girlschool.jfif" class="img-fluid" alt="">
+                <div class="social">
+                  <a href="https://twitter.com/girlschoolband"><i class="bi bi-twitter"></i></a>
+                  <a href="https://www.facebook.com/GirlschoolOfficial"><i class="bi bi-facebook"></i></a>
+                  <a href="https://www.instagram.com/girlschoolofficial/"><i class="bi bi-instagram"></i></a>
+                  <a href="https://www.youtube.com/@wackentv"><i class="bi bi-youtube"></i></a>
+                  <a href="https://open.spotify.com/artist/2TRtXTjjmyzK5oUGec1Gv8"><i class="bi bi-spotify"></i></a>
+                </div>
+              </div>
+              <div class="member-info">
+                <h4><a href="#">Girlschool</a></h4>
+                <p><a href="#">Heavy Metal</a> | <a href="#">Hard Rock</a></p>
+                <span>Posiblemente la primera banda exitosa de la historia formada únicamente por mujeres, que no solo contó con el respeto y el apoyo de Motörhead sino que se convirtió en uno de los pilares de la "New Wave of British Heavy Metal"</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="text-center more">
+          <button type="submit">Más incorporaciones</button>
+        </div>
+
+      </div>
+    </section><!-- End Last Incorporation Section -->
+
+
+    <!-- ======= About Section ======= -->
+    <section id="features" class="features">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Sobre Nosotros</h2>
+          <p>De donde venimos y hacia donde vamos:</p>
+        </div>
+
+        <div class="row">
+          <div class="image col-lg-6" style='background-image: url("imagenes/basico/idea.jpg"); background-position: inherit;' data-aos="fade-right"></div> <!-- "assets/img/features.jpg" -->
+          <div class="col-lg-6" data-aos="fade-left" data-aos-delay="100">
+            <div class="icon-box mt-5 mt-lg-0" data-aos="zoom-in" data-aos-delay="150">
+              <i class='bx bx-user'></i>
+              <h4>
+                Creador - Mario Molina
+                <span class="float-end m-2">
+                  <a href="https://es.linkedin.com/" class="inv-a" title="Perfil Profesional">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-linkedin d-block" viewBox="0 0 16 16">
+                      <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
+                    </svg>
+                  </a>
+                  <a href="https://github.com/MariusTNTX?tab=repositories" class="inv-a" title="Repositorios GitHub">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-github mt-2" viewBox="0 0 16 16">
+                      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                    </svg>
+                  </a>
+                </span>
+              </h4>
+              <p>Desarrollador de Aplicaciones Web Junior especializado en Frontend y fanático del Heavy Metal en la mayoría de sus formas desde 2011.</p>
+            </div>
+            <div class="icon-box mt-5" data-aos="zoom-in" data-aos-delay="150">
+              <i class='bx bx-bulb'></i>
+              <h4>Historia del Proyecto</h4>
+              <p>¿Opinarán igual que yo en internet? Esa fue la pregunta que inició una serie de investigaciones que alimentaron la base de datos que hoy está disponible para ti.</p>
+            </div>
+            <div class="icon-box mt-5" data-aos="zoom-in" data-aos-delay="150">
+              <i class='bx bxs-vial'></i>
+              <h4>Metodología</h4>
+              <p>Toda la información procede de varios recuentos de información de una gran variedad de fuentes, por lo que la opinión solo la pones tu.</p>
+            </div>
+            <div class="icon-box mt-5" data-aos="zoom-in" data-aos-delay="150">
+              <i class='bx bx-trending-up'></i>
+              <h4>Propósito</h4>
+              <p>Queremos ser la página número #1 en publicar las opiniones de los usuarios de internet tal y como son, lejos de cualquier interés.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><!-- End About Section -->
+
+
+    <!-- ======= Source List Section ======= -->
+    <section id="clients" class="clients">
+      <div class="container" data-aos="zoom-in">
+
+        <div class="section-title">
+          <h2>Fuentes</h2>
+          <p>Lista de Fuentes:</p>
+        </div>
+
+        <div class="clients-slider swiper">
+          <div class="swiper-wrapper align-items-center">
+            <div class="swiper-slide"><a href="https://aminoapps.com/" title="AminoApps"><img src="imagenes/fuentes/amino.png" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a href="https://www.albumoftheyear.org/" title="AlbumOfTheYear"><img src="imagenes/fuentes/aYear.png" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a href="https://digitaldreamdoor.com/" title="DigitalDreamDoor"><img src="imagenes/fuentes/ddd.png" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a href="https://www.discogs.com/es/" title="Discogs"><img src="imagenes/fuentes/discogs.png" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a href="https://www.google.es/" title="Google"><img src="imagenes/fuentes/google.png" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a href="https://www.kerrang.com/" title="Kerrang"><img src="imagenes/fuentes/kerrang.png" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a href="https://www.last.fm/" title="Last.fm"><img src="imagenes/fuentes/last.png" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a href="https://loudwire.com/" title="Loudwire"><img src="imagenes/fuentes/loudwire.png" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a href="https://www.metalkingdom.net/" title="Metal Kingdom"><img src="imagenes/fuentes/mKingdom.png" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a href="https://metalstorm.net/home/" title="MetalStorm"><img src="imagenes/fuentes/mStorm.jpg" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a href="https://www.ranker.com/" title="Ranker"><img src="imagenes/fuentes/ranker.png" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a href="https://www.reddit.com/" title="Reddit"><img src="imagenes/fuentes/reddit.png" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a href="https://rateyourmusic.com/" title="RateYourMusic"><img src="imagenes/fuentes/rym.png" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a href="https://open.spotify.com/" title="Spotify"><img src="imagenes/fuentes/spotify.png" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a href="https://www.thetoptens.com/" title="TheTopTens"><img src="imagenes/fuentes/ttt.png" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a href="https://www.youtube.com/" title="YouTube"><img src="imagenes/fuentes/yt.webp" class="img-fluid" alt=""></a></div>
+            
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+      </div>
+    </section><!-- End Source List Section -->
+
+
+    <!-- ======= Statistics Section ======= -->
+    <section id="counts" class="counts">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row no-gutters">
+          <div class="image col-xl-5 d-flex align-items-stretch justify-content-center justify-content-lg-start" data-aos="fade-right" data-aos-delay="100"></div>
+          <div class="col-xl-7 ps-2 ps-lg-5 pe-lg-1 d-flex align-items-stretch" data-aos="fade-left" data-aos-delay="100">
+            <div class="content d-flex flex-column justify-content-center">
+              <h3>Nuestras Estadísticas Actuales:</h3>
+              <div class="row">
+                <div class="col-md-6 d-md-flex align-items-md-stretch">
+                  <div class="count-box">
+                    <i class="bi bi-person-check-fill"></i>
+                    <span data-purecounter-start="0" data-purecounter-end="29" data-purecounter-duration="1" class="purecounter"></span>
+                    <p><strong>Usuarios registrados</strong> que pueden disfrutar de recomendaciones personalizadas</p>
+                  </div>
+                </div>
+
+                <div class="col-md-6 d-md-flex align-items-md-stretch">
+                  <div class="count-box">
+                    <i class="bi bi-eye-fill"></i>
+                    <span data-purecounter-start="0" data-purecounter-end="3722" data-purecounter-duration="2" class="purecounter"></span>
+                    <p><strong>Visitas totales</strong> desde el 14 de Diciembre de 2022</p>
+                  </div>
+                </div>
+
+                <div class="col-md-6 d-md-flex align-items-md-stretch">
+                  <div class="count-box">
+                    <i class="bi bi-people-fill"></i>
+                    <span data-purecounter-start="0" data-purecounter-end="289" data-purecounter-duration="3" class="purecounter"></span>
+                    <p><strong>Bandas almacenadas</strong> en la base de datos hasta la fecha</p>
+                  </div>
+                </div>
+
+                <div class="col-md-6 d-md-flex align-items-md-stretch">
+                  <div class="count-box">
+                    <i class="bi bi-bookmark-check-fill"></i>
+                    <span data-purecounter-start="0" data-purecounter-end="78" data-purecounter-duration="2" class="purecounter"></span>
+                    <p><strong>Artículos redactados</strong> actualmente desde 1968 hasta hoy</p>
+                  </div>
+                </div>
+              </div>
+            </div><!-- End .content-->
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Statistics Section -->
+
+
+    <!-- ======= Donation Section ======= -->
+    <section id="cta" class="cta">
+      <div class="container" data-aos="zoom-in">
+
+        <div class="text-center">
+          <h3>¿Te gusta nuestro contenido? Apoya al proyecto con la cantidad que desees</h3>
+          <p> Toda máquina necesita energía para funcionar a pleno rendimiento, y tú puedes contribuir con una donación 100% libre para que este proyecto siga creciendo sin parar.</p>
+          <a class="cta-btn" href="https://www.patreon.com/es-ES">Donar en Patreon</a>
+        </div>
+
+      </div>
+    </section><!-- End Donation Section -->
+
+
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Contacto</h2>
+          <p>Contacta con Nosotros:</p>
+        </div>
+
+        <div>
+          <iframe style="border:0; width: 100%; height: 270px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3053.056038843595!2d-2.145856084753278!3d40.07416207940641!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd5d6765cbcbda2f%3A0x8f8e0c4a976624e8!2sCentro%20Integrado%20de%20Formaci%C3%B3n%20Profesional%20n%C2%B01!5e0!3m2!1ses!2ses!4v1671010495553!5m2!1ses!2ses" frameborder="0" allowfullscreen></iframe>
+        </div>
+
+        <div class="row mt-5">
+
+          <div class="col-lg-4">
+            <div class="info">
+              <div class="address">
+                <i class="bi bi-geo-alt"></i>
+                <h4>Dirección:</h4>
+                <p>Calle de la Fuensanta, 3, 16002, Cuenca</p>
+              </div>
+
+              <div class="email">
+                <i class="bi bi-envelope"></i>
+                <h4>Email:</h4>
+                <p><a href="mailto:molinamario.msc@gmail.com">molinamario.msc@gmail.com</a></p>
+              </div>
+
+              <div class="phone">
+                <i class="bi bi-phone"></i>
+                <h4>Teléfono:</h4>
+                <p>+32 969 304 288</p>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="col-lg-8 mt-5 mt-lg-0">
+
+            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+              <div class="row">
+                <div class="col-md-6 form-group">
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Tu nombre" required>
+                </div>
+                <div class="col-md-6 form-group mt-3 mt-md-0">
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Tu email" required>
+                </div>
+              </div>
+              <div class="form-group mt-3">
+                <input type="text" class="form-control" name="subject" id="subject" placeholder="Asunto" required>
+              </div>
+              <div class="form-group mt-3">
+                <textarea class="form-control" name="message" rows="5" placeholder="Mensaje" required></textarea>
+              </div>
+              <div class="my-3">
+                <div class="loading">Cargando</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Tu mensaje se ha enviado correctamente. ¡Gracias por contactar!</div>
+              </div>
+              <div class="text-center"><button type="submit">Enviar Mensaje</button></div>
+            </form>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6">
+            <div class="footer-info">
+              <h1 class="logo me-auto me-lg-0 footer-h1">
+                <a href="index.html">
+                  <img src="imagenes/basico/logo MetaList-2.png" alt="Logo MetaList 2" width="200px">
+                </a>
+              </h1>
+              <p>
+                Calle de la Fuensanta, 3 <br>
+                16002, Cuenca, España<br><br>
+                <strong>Teléfono:</strong> +32 969 304 288<br>
+                <strong>Email:</strong> <a href="mailto:molinamario.msc@gmail.com" class="inv-a">molinamario.msc@gmail.com</a><br>
+              </p> <br>
+              <p>
+                <a href="privacidad.html" class="inv-a">Políticas de Privacidad y Cookies</a><br>
+                <a href="legal.html" class="inv-a">Políticas Legales y Términos de Uso</a><br>
+              </p> <br>
+              <div class="social-links mt-3">
+                <a href="https://twitter.com/?lang=es" class="twitter"><span class="d-none">.</span><div><i class="bx bxl-twitter"></div></i></a>
+                <a href="https://www.facebook.com/" class="facebook"><span class="d-none">.</span><div><i class="bx bxl-facebook"></i></div></a>
+                <a href="https://www.instagram.com/" class="instagram"><span class="d-none">.</span><div><i class="bx bxl-instagram"></i></div></a>
+                <a href="https://github.com/MariusTNTX?tab=repositories" class="google-plus"><span class="d-none">.</span><div><i class="bx bxl-github"></i></div></a>
+                <a href="https://es.linkedin.com/" class="linkedin"><span class="d-none">.</span><div><i class="bx bxl-linkedin"></i></div></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-6 footer-links">
+            <h4>Nuestros Servicios</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="./buscadorAvanzado.html">Búsquedas Avanzadas</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Tier Lists</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Cronología</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Playlists de Spotify</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Mosaico de Géneros</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Juegos</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Nuestras Secciones</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#portfolio">Noticias</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#testimonials">Sección "Hoy"</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#team">Incorporaciones</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#features">Sobre Nosotros</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#clients">Lista de Fuentes</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#counts">Estadísticas</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#cta">Donaciones</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#contact">Contacto</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-4 col-md-6 footer-newsletter">
+            <h4>¿Quieres recibir notificaciones sin registrarte?</h4>
+            <p>Podemos enviarte las últimas noticias e incorporaciones al correo que nos indiques, pero si deseas elegir qué notificaciones recibir deberás crearte una cuenta.</p>
+            <form action="" method="post">
+              <input type="email" name="email" placeholder="Correo Electrónico">
+              <input type="submit" value="Enlazar">
+            </form> <br>
+            <p>En caso de no querer recibir más notificaciones podemos desenlazar el email que indiques a continuación:</p>
+            <form action="" method="post">
+              <input type="email" name="email" placeholder="Correo Electrónico">
+              <input type="submit" value="Desenlazar">
+            </form> <br>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>MetaList</span></strong> | Todos los derechos reservados
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/ -->
+        Diseñado por <a href="https://github.com/MariusTNTX?tab=repositories">Mario Molina</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <div id="preloader"></div>
+  <a href="index.html#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

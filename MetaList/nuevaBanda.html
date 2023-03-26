@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>MetaList - Registro</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="imagenes/basico/favicon MetaList.png" rel="icon">
+  <link href="imagenes/basico/appletouch2 MetaList.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/custom.css" rel="stylesheet">
+
+  <!-- Captcha -->
+  <script async src='https://www.google.com/recaptcha/api.js?hl=es'></script>
+
+  <!-- =======================================================
+  * Template Name: Gp - v4.9.1
+  * Template URL: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top header-inner-pages">
+    <div class="container d-flex align-items-center justify-content-lg-between">
+
+      <h1 class="logo me-auto me-lg-0">
+        <a href="index.html">
+          <img src="imagenes/basico/logo MetaList.png" alt="Logo MetaList">
+        </a>
+      </h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo me-auto me-lg-0"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <!-- <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+          <li><a class="nav-link scrollto" href="#about">About</a></li>
+          <li><a class="nav-link scrollto" href="#services">Services</a></li>
+          <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>
+          <li><a class="nav-link scrollto" href="#team">Team</a></li> -->
+          <li class="dropdown"><a href="#"><span>Bandas</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="#">Listas Personalizadas</a></li>
+              <li><a href="#">Tier Lists</a></li>
+              <li><a href="#">Playlists Spotify</a></li>
+              <li><a href="#">Banda Aleatoria</a></li>
+            </ul>
+          </li>
+          <li class="dropdown"><a href="#"><span>Albumes</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="./buscadorAvanzado.html">Listas Personalizadas</a></li>
+              <li><a href="#">Tier Lists</a></li>
+              <li><a href="./album.html">Álbum Aleatorio</a></li>
+            </ul>
+          </li>
+          <li class="dropdown"><a href="#"><span>Discográficas</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="#">Listas Personalizadas</a></li>
+              <li><a href="#">Playlists Spotify</a></li>
+              <li><a href="#">Discográfica Aleatoria</a></li>
+            </ul>
+          </li>
+          <li class="dropdown"><a href="#"><span>Géneros</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="#">Ranking</a></li>
+              <li><a href="#">Tier Lists</a></li>
+              <li><a href="#">Playlists Spotify</a></li>
+            </ul>
+          </li>
+          <li class="dropdown"><a href="#"><span>Historia</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="#">Cronología del Heavy Metal</a></li>
+              <li><a href="#">Playlists Spotify por Etapas</a></li>
+              <li><a href="#">Resúmenes de Años</a></li>
+            </ul>
+          </li>
+          <li class="dropdown"><a href="#"><span>Juegos</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="#">TimeLine</a></li>
+              <li><a href="#">Trivia</a></li>
+              <li><a href="#">Guitar Zero</a></li>
+            </ul>
+          </li>
+          <!-- <li><a class="nav-link scrollto" href="#contact">Donaciones</a></li>
+          <li><a class="nav-link scrollto" href="#about">Sobre Nosotros</a></li>
+          <li><a class="nav-link scrollto" href="#contact">Contacto</a></li> -->
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+      <div class="dropdown login me-2">
+        <button type="button" class="btn text-white dropdown-toggle py-2 px-3 px-sm-4" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+          <i class="bi bi-person-fill"></i>Login
+        </button>
+        <form class="dropdown-menu dropdown-menu-end p-4 w-50">
+          <div class="mb-3">
+            <label for="exampleDropdownFormEmail2" class="form-label">Email</label>
+            <input type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="email@ejemplo.com">
+          </div>
+          <div class="mb-3">
+            <label for="exampleDropdownFormPassword2" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Contraseña">
+          </div>
+          <div class="mb-3">
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="dropdownCheck2">
+              <label class="form-check-label" for="dropdownCheck2">
+                Recordarme
+              </label>
+            </div>
+          </div>
+          <div class="text-center"><button type="submit" class="btn btn-primary">Iniciar Sesión</button></div>
+          <hr class="mt-4">
+          <div id="regist" class="text-center">
+            <label for="regist" class="form-label">¿No tienes cuenta?</label>
+            <div><a href="./registro.html">Regístrate</a></div>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Nueva Banda</h2>
+          <ol>
+            <li><a href="index.html">Administración</a></li>
+            <li>Nueva Banda</li>
+          </ol>
+        </div>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    <section class="inner-page">
+      <div class="container" data-aos="fade-up">
+        <div class="reg-container row justify-content-center">
+
+          <form action="" methos="post" class="container">
+            <!-- I N F O   B Á S I C A -->
+            <div class="row">
+
+              <!-- Busquedas y Propuestas -->
+              <div class="col-0 col-sm-2 col-md-2 col-lg-3"></div>
+              <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
+                <!-- Nombre -->
+                <div class="form-floating">
+                  <input type="text" class="form-control" list="nombreList" id="nombreBan" name="nombreBan" placeholder=".">
+                  <label for="nombreBan">Nombre de la Banda</label>
+                </div>
+              </div>
+              <!-- Búsqueda -->
+              <div class="col-12 col-sm-2 mb-3 more pt-2 text-center text-sm-start">
+                <button class="btn btn-primary">Buscar</button>
+              </div>
+              <!-- Propuesta -->
+              <div class="col-12 col-md-4 mb-3 more pt-2 text-center text-md-end">
+                <button class="btn btn-primary" id="btnGenProp" data-bs-toggle="modal" data-bs-target="#banPropModal">Generar Propuesta</button>
+              </div>
+
+              <hr class="mt-4 mb-5">
+        
+              <div class="col-12 col-md-6">
+                <!-- País -->
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control" list="paisList" id="paisBan" name="paisBan" placeholder=".">
+                  <label for="paisBan">País</label>
+                </div>
+                <!-- Origen -->
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control" list="origenList" id="origenBan" name="origenBan" placeholder=".">
+                  <label for="origenBan">Dirección de Origen</label>
+                </div>
+                <!-- Descripción -->
+                <div class="form-floating mb-3">
+                  <textarea class="form-control" placeholder="." id="descripcBan" name="descripcBan"
+                    style="height: 206px"></textarea>
+                  <label for="descripcBan">Descripción</label>
+                </div>
+              </div>
+        
+              <div class="col-12 col-md-6">
+                <!-- Estatus -->
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control" id="estatusBan" name="estatusBan" placeholder=".">
+                  <label for="estatusBan">Estatus Actual</label>
+                </div>
+                <!-- Imagen -->
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control" id="imagenBan" name="imagenBan" placeholder=".">
+                  <label for="imagenBan">Imagen</label>
+                </div>
+                <!-- Escuchas -->
+                <div class="form-floating mb-3">
+                  <input type="number" class="form-control" id="escuchasBan" name="escuchasBan" placeholder="." min="0">
+                  <label for="escuchasBan">Escuchas Spotify</label>
+                </div>
+                <!-- Link Spotify -->
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control" id="spotifyBan" name="spotifyBan" placeholder=".">
+                  <label for="spotifyBan">Enlace Spotify</label>
+                </div>
+                <!-- Link Web -->
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control" id="webBan" name="webBan" placeholder=".">
+                  <label for="webBan">Enlace Página Web</label>
+                </div>
+              </div>
+            </div>
+        
+            <!-- T A B L A S -->
+            <div class="row">
+              <!-- Etapas -->
+              <div class="col-12 col-xl-5 my-2">
+                <div class="accordion accordion-flush" id="accordionFlushEtapas">
+                  <div class="accordion-item border border-dark border-opacity-25 rounded">
+                    <h2 class="accordion-header" id="flush-etapasBan">
+                      <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                        Etapas
+                      </button>
+                    </h2>
+                    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-etapasBan"
+                      data-bs-parent="#accordionFlushEtapas">
+                      <div class="accordion-body">
+                        <table class="table table-sm">
+                          <thead>
+                            <tr>
+                              <th scope="col"><button type="button" id="addEtapaBan" class="btn btn-success addEtapaBan anadir">+</button></th>
+                              <th scope="col">Año Inicio</th>
+                              <th scope="col">Año Fin</th>
+                              <th scope="col">Tipo</th>
+                            </tr>
+                          </thead>
+                          <tbody class="table-group-divider" id="tbodyEtapas">
+                            <tr>
+                              <th><button type="button" class="btn btn-danger eliminar">x</button></th>
+                              <td><input type="number" class="form-control anioInicBan" name="anioInicEtaBan[]" min="1965" max="2023"></td>
+                              <td><input type="number" class="form-control anioFinBan" name="anioFin[]" min="1965" max="2023"></td>
+                              <td><select class="form-select" name="tipoEtaBan[]" aria-label="Default select example">
+                                  <option value="1">Activo</option>
+                                  <option value="2">Hiato</option>
+                                </select>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Géneros -->
+              <div class="col-12 col-md-7 col-xl-4 my-2">
+                <div class="accordion accordion-flush" id="accordionFlushGeneros">
+                  <div class="accordion-item border border-dark border-opacity-25 rounded">
+                    <h2 class="accordion-header" id="flush-generosBan">
+                      <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                        Géneros
+                      </button>
+                    </h2>
+                    <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-generosBan"
+                      data-bs-parent="#accordionFlushGeneros">
+                      <div class="accordion-body">
+                        <table class="table table-sm">
+                          <thead>
+                            <tr>
+                              <th scope="col"><button type="button" id="addGeneroBan" class="btn btn-success addGeneroBan anadir">+</button></th>
+                              <th scope="col">Género</th>
+                              <th scope="col">Estrellas</th>
+                            </tr>
+                          </thead>
+                          <tbody class="table-group-divider"  id="tbodyGeneros">
+                            <tr>
+                              <th><button type="button" class="btn btn-danger eliminar">x</button></th>
+                              <td><input name="nombreGenBan[]" class="form-control nombreGenBan" list="genlist"></td>
+                              <td><input name="estrellasGenBan[]" type="number" class="form-control estrellasGenBan" min="0" max="5" value="0"></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Temas de Letra -->
+              <div class="col-12 col-md-5 col-xl-3 my-2">
+                <div class="accordion accordion-flush" id="accordionFlushTemas">
+                  <div class="accordion-item border border-dark border-opacity-25 rounded">
+                    <h2 class="accordion-header" id="flush-temasBan">
+                      <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                        Temas de Letra
+                      </button>
+                    </h2>
+                    <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-temasBan"
+                      data-bs-parent="#accordionFlushTemas">
+                      <div class="accordion-body">
+                        <table class="table table-sm">
+                          <thead>
+                            <tr>
+                              <th scope="col"><button type="button" id="addTemaBan" class="btn btn-success addTemaBan anadir">+</button></th>
+                              <th scope="col">Tema de Letra</th>
+                            </tr>
+                          </thead>
+                          <tbody class="table-group-divider"  id="tbodyTemas">
+                            <tr>
+                              <th><button type="button" class="btn btn-danger eliminar">x</button></th>
+                              <td><input type="text" class="form-control temaLetra" name="temaLetra[]"></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Músicos -->
+              <div class="col-12 my-2">
+                <div class="accordion accordion-flush" id="accordionFlushMusicos">
+                  <div class="accordion-item border border-dark border-opacity-25 rounded">
+                    <h2 class="accordion-header" id="flush-musicosBan">
+                      <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                        Músicos
+                      </button>
+                    </h2>
+                    <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-musicosBan"
+                      data-bs-parent="#accordionFlushMusicos">
+                      <div class="accordion-body row">
+                        <div class="col-12 text-center mb-4">
+                          <button type="button" id="addMusicoBan" class="btn btn-success w-50 addMusicoBan anadirMus">Añadir Músico</button>
+                        </div>
+                        <div class="col-12 col-md-6 col-xl-4 my-2">
+                          <div class="card">
+                            <div class="card-body">
+                              <h5 class="card-title text-center">
+                                Nuevo Músico
+                                <button type="button" class="btn btn-danger ms-2 eliminarMus">x</button>
+                              </h5>
+                              <div class="card-text">
+                                <div class="row">
+                                  <div class="col-6 my-1">
+                                    <div class="form-floating">
+                                      <input type="text" class="form-control nombreMus" name="nombreMus[]" placeholder=".">
+                                      <label for="nombreMus">Nombre</label>
+                                    </div>
+                                  </div>
+                                  <div class="col-6 my-1">
+                                    <select class="form-select py-3" name="sexoMus[]" aria-label="Default select example">
+                                      <option value="H" selected>Hombre</option>
+                                      <option value="M">Mujer</option>
+                                    </select>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-12 my-1">
+                                    <div class="form-floating">
+                                      <input type="text" class="form-control imgMus" name="imgMus[]" placeholder=".">
+                                      <label for="imgMus">Imagen</label>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-6 my-1">
+                                    <label for="fechaNacMus">Fecha Nacim.</label>
+                                    <input type="date" class="form-control fechaNacMus" name="fechaNacMus[]">
+                                  </div>
+                                  <div class="col-6 my-1">
+                                    <label for="fechaDefMus">Fecha Defunción</label>
+                                    <input type="date" class="form-control fechaDefMus" name="fechaDefMus[]">
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-6 my-1">
+                                    <div class="form-floating">
+                                      <input type="text" class="form-control paisMus" name="paisMus[]" placeholder=".">
+                                      <label for="paisMus">País</label>
+                                    </div>
+                                  </div>
+                                  <div class="col-6 my-1">
+                                    <div class="form-floating">
+                                      <input type="text" class="form-control origenMus" name="origenMus[]" placeholder=".">
+                                      <label for="origenMus">Origen</label>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row px-3">
+                                  <table class="table table-sm">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col"><button type="button" class="btn btn-success addEtapaMusBan anadir">+</button></th>
+                                        <th scope="col">Año Inicio</th>
+                                        <th scope="col">Año Fin</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody class="table-group-divider">
+                                      <tr>
+                                        <th><button type="button" class="btn btn-danger eliminar">x</button></th>
+                                        <td><input type="number" class="form-control anioInicMus" name="anioInicMus[]" min="1965" max="2023">
+                                        </td>
+                                        <td><input type="number" class="form-control anioFinMus" name="anioFinMus[]" min="1965" max="2023">
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Discográficas -->
+              <div class="col-12 my-2">
+                <div class="accordion accordion-flush" id="accordionFlushDiscograficas">
+                  <div class="accordion-item border border-dark border-opacity-25 rounded">
+                    <h2 class="accordion-header" id="flush-discograficasBan">
+                      <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
+                        Discográficas
+                      </button>
+                    </h2>
+                    <div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-discograficasBan"
+                      data-bs-parent="#accordionFlushDiscograficas">
+                      <div class="accordion-body row">
+                        <div class="col-12 text-center mb-4">
+                          <button type="button" id="addDiscogBan" class="btn btn-success w-50 addDiscogBan anadirDisc">Añadir Discográfica</button>
+                        </div>
+                        <div class="col-12 col-md-6 col-xl-4 my-2">
+                          <div class="card">
+                            <div class="card-body">
+                              <h5 class="card-title text-center">
+                                Nueva Discográfica
+                                <button type="button" class="btn btn-danger ms-2 eliminarDisc">x</button>
+                              </h5>
+                              <div class="card-text">
+                                <div class="row">
+                                  <div class="col-6 my-1">
+                                    <div class="form-floating">
+                                      <input type="text" class="form-control nombreDisc" name="nombreDisc[]" placeholder=".">
+                                      <label for="nombreDisc">Nombre</label>
+                                    </div>
+                                  </div>
+                                  <div class="col-6 my-1">
+                                    <select class="form-select py-3" name="estatusDisc[]" aria-label="Default select example">
+                                      <option value="S" selected>En Activo</option>
+                                      <option value="N">Inactivo</option>
+                                    </select>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-12 my-1">
+                                    <div class="form-floating">
+                                      <input type="text" class="form-control imgDisc" name="imgDisc[]" placeholder=".">
+                                      <label for="imgDisc">Imagen</label>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-12 my-1">
+                                    <div class="form-floating">
+                                      <input type="text" class="form-control webDisc" name="webDisc[]" placeholder=".">
+                                      <label for="webDisc">Página Web</label>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-6 my-1">
+                                    <div class="form-floating">
+                                      <input type="text" class="form-control paisDisc" name="paisDisc[]" placeholder=".">
+                                      <label for="paisDisc">País</label>
+                                    </div>
+                                  </div>
+                                  <div class="col-6 my-1">
+                                    <div class="form-floating">
+                                      <input type="text" class="form-control direcDisc" name="direcDisc[]" placeholder=".">
+                                      <label for="direcDisc">Dirección</label>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Estudios de Grabación -->
+              <div class="col-12 my-2">
+                <div class="accordion accordion-flush" id="accordionFlushEstudios">
+                  <div class="accordion-item border border-dark border-opacity-25 rounded">
+                    <h2 class="accordion-header" id="flush-estudiosBan">
+                      <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseSeven" aria-expanded="false" aria-controls="flush-collapseSeven">
+                        Estudios de Grabación
+                      </button>
+                    </h2>
+                    <div id="flush-collapseSeven" class="accordion-collapse collapse" aria-labelledby="flush-estudiosBan"
+                      data-bs-parent="#accordionFlushEstudios">
+                      <div class="accordion-body">
+                        <table class="table table-sm">
+                          <thead>
+                            <tr>
+                              <th scope="col"><button type="button" id="addEstudioBan" class="btn btn-success addEstudioBan anadir">+</button></th>
+                              <th scope="col">Estudio</th>
+                              <th scope="col">País</th>
+                              <th scope="col">Dirección</th>
+                            </tr>
+                          </thead>
+                          <tbody class="table-group-divider"  id="tbodyEstudios">
+                            <tr>
+                              <th><button type="button" class="btn btn-danger eliminar">x</button></th>
+                              <td><input type="text" class="form-control nomEstBan" name="nomEstBan[]"></td>
+                              <td><input type="text" class="form-control paisEstBan" name="paisEstBan[]"></td>
+                              <td><input type="text" class="form-control origenEstBan" name="origenEstBan[]"></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Álbumes -->
+              <div class="col-12 my-2">
+                <div class="accordion accordion-flush" id="accordionFlushAlbumes">
+                  <div class="accordion-item border border-dark border-opacity-25 rounded">
+                    <h2 class="accordion-header" id="flush-albumesBan">
+                      <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseSix" aria-expanded="false" aria-controls="flush-collapseSix">
+                        Álbumes
+                      </button>
+                    </h2>
+                    <div id="flush-collapseSix" class="accordion-collapse collapse" aria-labelledby="flush-albumesBan"
+                      data-bs-parent="#accordionFlushAlbumes">
+                      <div class="accordion-body row">
+                        <div class="col-12 text-center mb-4">
+                          <button type="button" id="addAlbBan" class="btn btn-success w-50 addAlbBan anadirAlb">Añadir Álbum</button>
+                        </div>
+                        <div class="col-12 my-2">
+                          <div class="card">
+                            <div class="card-body">
+                              <h5 class="card-title text-center">
+                                Nuevo Álbum
+                                <button type="button" class="btn btn-danger ms-2 eliminarAlb">x</button>
+                              </h5>
+                              <div class="card-text">
+                                <div class="row">
+                                  <!-- Columna 1 -->
+                                  <div class="col-4">
+                                    <div class="row">
+                                      <div class="col-12 my-1">
+                                        <div class="form-floating">
+                                          <input type="text" class="form-control nombreAlb" name="nombreAlb[]" placeholder=".">
+                                          <label for="nombreAlb">Nombre</label>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-6 my-1">
+                                        <div class="form-floating">
+                                          <input type="text" class="form-control imgAlb" name="imgAlb[]" placeholder=".">
+                                          <label for="imgAlb">Imagen</label>
+                                        </div>
+                                      </div>
+                                      <div class="col-6 my-1">
+                                        <label for="fechaAlb">Fecha Public.</label>
+                                        <input type="date" class="form-control fechaAlb" name="fechaAlb[]">
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-6 my-1">
+                                        <select class="form-select py-3" name="tipoAlb[]" aria-label="Default select example">
+                                          <option value="ESTUDIO" selected>Estudio</option>
+                                          <option value="EP">EP</option>
+                                          <option value="LIVE">En Directo</option>
+                                          <option value="RECOPILATORIO">Recopilatorio</option>
+                                          <option value="BOXSET">Box Set</option>
+                                        </select>
+                                      </div>
+                                      <div class="col-6 my-1">
+                                        <div class="form-floating">
+                                          <input type="number" class="form-control numAlb" name="numAlb[]" placeholder=".">
+                                          <label for="numAlb">Número de Álbum</label>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-6 my-1">
+                                        <div class="form-floating">
+                                          <input type="text" class="form-control escuchAlb" name="escuchAlb[]" placeholder=".">
+                                          <label for="escuchAlb">Escuchas Spotify</label>
+                                        </div>
+                                      </div>
+                                      <div class="col-6 my-1">
+                                        <div class="form-floating">
+                                          <input type="number" class="form-control duracAlb" name="duracAlb[]" placeholder=".">
+                                          <label for="duracAlb">Duración</label>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-6 my-1">
+                                        <div class="form-floating">
+                                          <input type="text" class="form-control linkSpotAlb" name="linkSpotAlb[]" placeholder=".">
+                                          <label for="linkSpotAlb">Iframe Spotify</label>
+                                        </div>
+                                      </div>
+                                      <div class="col-6 my-1">
+                                        <div class="form-floating">
+                                          <input type="text" class="form-control amazonAlb" name="amazonAlb[]" placeholder=".">
+                                          <label for="amazonAlb">Link Amazon</label>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-12 my-1">
+                                        <div class="form-floating mb-3">
+                                          <textarea class="form-control descripAlb" placeholder="." name="descripAlb[]"
+                                            style="height: 206px"></textarea>
+                                          <label for="descripAlb">Descripción</label>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- Columna 2 -->
+                                  <div class="col-4">
+                                    <div class="row px-3">
+                                      <table class="table table-sm">
+                                        <thead>
+                                          <tr>
+                                            <th scope="col"><button type="button" class="btn btn-success addGenAlb anadir">+</button></th>
+                                            <th scope="col">Género</th>
+                                            <th scope="col">Estrellas</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody class="table-group-divider">
+                                          <tr>
+                                            <th><button type="button" class="btn btn-danger eliminar">x</button></th>
+                                            <td class="w-75"><input type="text" class="form-control genAlb" name="genAlb[]"></td>
+                                            <td><input type="number" class="form-control estrGenAlb" name="estrGenAlb[]" min="0" max="5"></td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                    <div class="row px-3">
+                                      <table class="table table-sm">
+                                        <thead>
+                                          <tr>
+                                            <th scope="col"><button type="button" class="btn btn-success addMusAlb anadir">+</button></th>
+                                            <th scope="col">Músico/Productor</th>
+                                            <th scope="col">Rol</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody class="table-group-divider">
+                                          <tr>
+                                            <th><button type="button" class="btn btn-danger eliminar">x</button></th>
+                                            <td><input type="text" class="form-control nomMusAlb" name="nomMusAlb[]"></td>
+                                            <td><input type="text" class="form-control rolMusAlb" name="rolMusAlb[]"></td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  </div>
+                                  <!-- Columna 3 -->
+                                  <div class="col-4">
+                                    <div class="row px-3">
+                                      <table class="table table-sm">
+                                        <thead>
+                                          <tr>
+                                            <th scope="col"><button type="button" class="btn btn-success addDiscAlb anadir">+</button></th>
+                                            <th scope="col">Discográfica</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody class="table-group-divider">
+                                          <tr>
+                                            <th><button type="button" class="btn btn-danger eliminar">x</button></th>
+                                            <td><input type="text" class="form-control discAlb" name="discAlb[]"></td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                    <div class="row px-3">
+                                      <table class="table table-sm">
+                                        <thead>
+                                          <tr>
+                                            <th scope="col"><button type="button" class="btn btn-success addEstAlb anadir">+</button></th>
+                                            <th scope="col">Estudio</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody class="table-group-divider">
+                                          <tr>
+                                            <th><button type="button" class="btn btn-danger eliminar">x</button></th>
+                                            <td><input type="text" class="form-control nomEstAlb" name="nomEstAlb[]"></td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                    <div class="row px-3">
+                                      <table class="table table-sm">
+                                        <thead>
+                                          <tr>
+                                            <th scope="col"><button type="button" class="btn btn-success addCanAlb anadir">+</button></th>
+                                            <th scope="col">Canción</th>
+                                            <th scope="col">Estrellas</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody class="table-group-divider">
+                                          <tr>
+                                            <th><button type="button" class="btn btn-danger eliminar">x</button></th>
+                                            <td class="w-75"><input type="text" class="form-control nomCanAlb" name="nomCanAlb[]"></td>
+                                            <td><input type="number" class="form-control estrCanAlb" name="estrCanAlb[]"></td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row py-4 px-3 more">
+              <button type="button" class="btn btn-primary">Guardar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Propuesta de Banda -->
+    <div class="modal fade" id="banPropModal" tabindex="-1" aria-labelledby="banPropModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="banPropModalLabel">Propuesta de Banda</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <!-- Enlace a Metallum -->
+            <h3 class="text-center">Enlaces:</h3>
+            <h5 class="text-center mb-4" id="enlacePropBan"><!-- <a href="https://www.metal-archives.com/bands/children_of_bodom" target="_blank">Metallum - Children of Bodom</a> --></h5>
+            <!-- Textarea -->
+            <div class="text-center">
+              <div class="form-floating mb-3">
+                <textarea class="form-control" placeholder="." id="banPropText" name="banPropText"
+                  style="height: 206px"></textarea>
+                <label for="banPropText">Contenido HTML</label>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <div class="more pt-0"><button type="button" id="btnBanProp" class="btn btn-primary">Cargar Propuesta</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6">
+            <div class="footer-info">
+              <h1 class="logo me-auto me-lg-0 footer-h1">
+                <a href="index.html">
+                  <img src="imagenes/basico/logo MetaList-2.png" alt="Logo MetaList 2" width="200px">
+                </a>
+              </h1>
+              <p>
+                Calle de la Fuensanta, 3 <br>
+                16002, Cuenca, España<br><br>
+                <strong>Teléfono:</strong> +32 969 304 288<br>
+                <strong>Email:</strong> <a href="mailto:molinamario.msc@gmail.com" class="inv-a">molinamario.msc@gmail.com</a><br>
+              </p> <br>
+              <p>
+                <a href="privacidad.html" class="inv-a">Políticas de Privacidad y Cookies</a><br>
+                <a href="legal.html" class="inv-a">Políticas Legales y Términos de Uso</a><br>
+              </p> <br>
+              <div class="social-links mt-3">
+                <a href="https://twitter.com/?lang=es" class="twitter"><span class="d-none">.</span><div><i class="bx bxl-twitter"></div></i></a>
+                <a href="https://www.facebook.com/" class="facebook"><span class="d-none">.</span><div><i class="bx bxl-facebook"></i></div></a>
+                <a href="https://www.instagram.com/" class="instagram"><span class="d-none">.</span><div><i class="bx bxl-instagram"></i></div></a>
+                <a href="https://github.com/MariusTNTX?tab=repositories" class="google-plus"><span class="d-none">.</span><div><i class="bx bxl-github"></i></div></a>
+                <a href="https://es.linkedin.com/" class="linkedin"><span class="d-none">.</span><div><i class="bx bxl-linkedin"></i></div></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-6 footer-links">
+            <h4>Nuestros Servicios</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="./buscadorAvanzado.html">Búsquedas Avanzadas</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Tier Lists</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Cronología</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Playlists de Spotify</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Mosaico de Géneros</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Juegos</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Nuestras Secciones</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="index.html#portfolio">Noticias</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="index.html#testimonials">Sección "Hoy"</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="index.html#team">Incorporaciones</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="index.html#features">Sobre Nosotros</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="index.html#clients">Lista de Fuentes</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="index.html#counts">Estadísticas</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="index.html#cta">Donaciones</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="index.html#contact">Contacto</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-4 col-md-6 footer-newsletter">
+            <h4>¿Quieres recibir notificaciones sin registrarte?</h4>
+            <p>Podemos enviarte las últimas noticias e incorporaciones al correo que nos indiques, pero si deseas elegir qué notificaciones recibir deberás crearte una cuenta.</p>
+            <form action="" method="post">
+              <input type="email" name="email" placeholder="Correo Electrónico">
+              <input type="submit" value="Enlazar">
+            </form> <br>
+            <p>En caso de no querer recibir más notificaciones podemos desenlazar el email que indiques a continuación:</p>
+            <form action="" method="post">
+              <input type="email" name="email" placeholder="Correo Electrónico">
+              <input type="submit" value="Desenlazar">
+            </form> <br>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>MetaList</span></strong> | Todos los derechos reservados
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/ -->
+        Diseñado por <a href="https://github.com/MariusTNTX?tab=repositories">Mario Molina</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <div id="preloader"></div>
+  <a href="nuevaBanda.html#" class="back-to-top d-flex align-items-center justify-content-center"><span class="d-none">.</span><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+  <!-- NuevaBanda JS File -->
+  <!-- <script src="js/nuevaBanda.js"></script> -->
+  <script src="js/propuestaBanda.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>MetaList - Registro</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="imagenes/basico/favicon MetaList.png" rel="icon">
+  <link href="imagenes/basico/appletouch2 MetaList.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/custom.css" rel="stylesheet">
+
+  <!-- Captcha -->
+  <script async src='https://www.google.com/recaptcha/api.js?hl=es'></script>
+
+  <!-- =======================================================
+  * Template Name: Gp - v4.9.1
+  * Template URL: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top header-inner-pages">
+    <div class="container d-flex align-items-center justify-content-lg-between">
+
+      <h1 class="logo me-auto me-lg-0">
+        <a href="index.html">
+          <img src="imagenes/basico/logo MetaList.png" alt="Logo rojo de MetaList" title="Logo rojo de MetaList">
+        </a>
+      </h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo me-auto me-lg-0"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <!-- <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+          <li><a class="nav-link scrollto" href="#about">About</a></li>
+          <li><a class="nav-link scrollto" href="#services">Services</a></li>
+          <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>
+          <li><a class="nav-link scrollto" href="#team">Team</a></li> -->
+          <li class="dropdown"><a href="#"><span>Bandas</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="#">Listas Personalizadas</a></li>
+              <li><a href="#">Tier Lists</a></li>
+              <li><a href="#">Playlists Spotify</a></li>
+              <li><a href="#">Banda Aleatoria</a></li>
+            </ul>
+          </li>
+          <li class="dropdown"><a href="#"><span>Albumes</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="./buscadorAvanzado.html">Listas Personalizadas</a></li>
+              <li><a href="#">Tier Lists</a></li>
+              <li><a href="./album.html">Álbum Aleatorio</a></li>
+            </ul>
+          </li>
+          <li class="dropdown"><a href="#"><span>Discográficas</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="#">Listas Personalizadas</a></li>
+              <li><a href="#">Playlists Spotify</a></li>
+              <li><a href="#">Discográfica Aleatoria</a></li>
+            </ul>
+          </li>
+          <li class="dropdown"><a href="#"><span>Géneros</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="#">Ranking</a></li>
+              <li><a href="#">Tier Lists</a></li>
+              <li><a href="#">Playlists Spotify</a></li>
+            </ul>
+          </li>
+          <li class="dropdown"><a href="#"><span>Historia</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="#">Cronología del Heavy Metal</a></li>
+              <li><a href="#">Playlists Spotify por Etapas</a></li>
+              <li><a href="#">Resúmenes de Años</a></li>
+            </ul>
+          </li>
+          <li class="dropdown"><a href="#"><span>Juegos</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="#">TimeLine</a></li>
+              <li><a href="#">Trivia</a></li>
+              <li><a href="#">Guitar Zero</a></li>
+            </ul>
+          </li>
+          <!-- <li><a class="nav-link scrollto" href="#contact">Donaciones</a></li>
+          <li><a class="nav-link scrollto" href="#about">Sobre Nosotros</a></li>
+          <li><a class="nav-link scrollto" href="#contact">Contacto</a></li> -->
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+      <div class="dropdown login me-2">
+        <button type="button" class="btn text-white dropdown-toggle py-2 px-3 px-sm-4" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+          <i class="bi bi-person-fill"></i>Login
+        </button>
+        <form class="dropdown-menu dropdown-menu-end p-4 w-50">
+          <div class="mb-3">
+            <label for="exampleDropdownFormEmail2" class="form-label">Email</label>
+            <input type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="email@ejemplo.com">
+          </div>
+          <div class="mb-3">
+            <label for="exampleDropdownFormPassword2" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Contraseña">
+          </div>
+          <div class="mb-3">
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="dropdownCheck2">
+              <label class="form-check-label" for="dropdownCheck2">
+                Recordarme
+              </label>
+            </div>
+          </div>
+          <div class="text-center"><button type="submit" class="btn btn-primary">Iniciar Sesión</button></div>
+          <hr class="mt-4">
+          <div id="regist" class="text-center">
+            <label for="regist" class="form-label">¿No tienes cuenta?</label>
+            <div><a href="./registro.html">Regístrate</a></div>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Nuevo Registro</h2>
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li>Nuevo Registro</li>
+          </ol>
+        </div>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    <section class="inner-page">
+      <div class="container" data-aos="fade-up">
+        <div class="reg-container row justify-content-center">
+
+          <!-- CONTENEDOR -->
+          <form action="forms/contact.php" method="post" role="form" class="php-email-form col-10 col-md-8 col-lg-6 col-xl-5 px-4 py-5 rounded-3 shadow-lg" data-aos="fade-up" data-aos-delay="100">
+
+            <!-- Imagen -->
+            <!-- <div class="row mb-5 mt-4">
+              <div class="col text-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-person-fill p-3 rounded-2 shadow-sm bg-gradient" viewBox="0 0 16 16">
+                  <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+                </svg>
+              </div>
+            </div> -->
+
+            <!-- Nombre de Usuario -->
+            <div class="row mb-4">
+              <div class="col-12">
+                <div class="form-floating">
+                  <input type="text" class="form-control" name="busq" id="busq" placeholder="Nombre de Usuario" maxlength="12" required>
+                  <label for="busq">Nombre de Usuario <span>*</span></label>
+                  <div class="form-text text-black-50 fst-italic ms-2">Tu nombre real o un apodo que te defina (Máximo 12 carcateres)</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Correo -->
+            <div class="row mb-4">
+              <div class="col-12">
+                <div class="form-floating">
+                  <input type="email" class="form-control" name="busq" id="busq" placeholder="Correo Electrónico" required>
+                  <label for="busq">Correo Electrónico <span>*</span></label>
+                  <div class="form-text text-black-50 fst-italic ms-2">Por ejemplo: Janedoe19@gmail.com</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Contraseña -->
+            <div class="row mb-2">
+              <div class="col-md-6 mb-2 mb-md-0">
+                <div class="form-floating">
+                  <input type="password" class="form-control" name="busq" id="busq" placeholder="Contraseña" required>
+                  <label for="busq">Contraseña <span>*</span></label>
+                  <span class="position-absolute top-50 end-0 translate-middle-y me-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                      <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                      <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                    </svg>
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-floating">
+                  <input type="password" class="form-control" name="busq" id="busq" placeholder="Repetir Contraseña" required>
+                  <label for="busq">Repetir Contraseña <span>*</span></label>
+                  <span class="position-absolute top-50 end-0 translate-middle-y me-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                      <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                      <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                    </svg>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Nota al Pie: Debe contener al menos 10 Caracteres 1 Mayus 1 Minus 1 Número 1 Caracter Especial -->
+            <div class="row mb-4 justify-content-center">
+              <div class="col-12 form-group fw-lighter">
+                <div class="text-center mb-2">La contraseña debe contener al menos:</div>
+                <ul>
+                  <li><i class="bi bi-check2-circle"></i>10 Caracteres</li>
+                  <li><i class="bi bi-check2-circle"></i>1 Mayúscula</li>
+                  <li><i class="bi bi-check2-circle"></i>1 Minúscula</li>
+                  <li><i class="bi bi-check2-circle"></i>1 Número</li>
+                  <li><i class="bi bi-check2-circle"></i>1 Caracter Especial</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Foto de Perfil -->
+            <div class="row mb-4">
+              <div class="col-12">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                  <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                </svg>
+                <label for="formFile" class="form-label">Foto de Perfil:</label>
+                <input class="form-control" type="file" id="formFile">
+                <div class="form-text text-black-50 fst-italic ms-2">Este campo es opcional</div>
+              </div>
+            </div>
+
+            <!-- Checks -->
+            <div class="row ms-2 my-2">
+              <!-- Check Acepto recibir notificaciones -->
+              <div class="col-12 form-check">
+                <input class="form-check-input" type="checkbox" value="" id="Check1">
+                <label class="form-check-label" for="Check1">
+                  Acepto recibir notificaciones a mi dirección de correo electrónico
+                </label>
+              </div>
+            </div>
+            <!-- Check Acepto las políticas de privacidad y cookies (enlace) -->
+            <div class="row ms-2 mb-2">
+              <div class="col-12 form-check">
+                <input class="form-check-input" type="checkbox" value="" id="Check2" required>
+                <label class="form-check-label" for="Check2">
+                  Acepto las <a href="privacidad.html" target="_blank">políticas de privacidad y cookies</a> <span>*</span> y las <a href="legal.html" target="_blank">políticas legales y términos de uso</a> <span>*</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Captcha -->
+            <div class="row mt-4 mb-4">
+              <span class="msg-error error"></span>
+              <div id="recaptcha" class="g-recaptcha" data-sitekey="Clave del sitio"></div>
+            </div>
+            
+            <!-- Botón Crear cuenta -->
+            <div class="row mb-4">
+              <div class="col-12 text-center more">
+                <button type="submit">Crear Cuenta</button>
+              </div>
+            </div>
+            
+            <!-- ¿Ya tienes cuenta? Iniciar Sesión -->
+            <div class="row mb-2">
+              <div class="col-12">
+                <p class="text-center">¿Ya tienes cuenta? <a href="#">Iniciar Sesión</a></p>
+              </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="row">
+              <div class="col-12">
+                <p class="text-center text-secondary">© 2022-2023</p>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6">
+            <div class="footer-info">
+              <h1 class="logo me-auto me-lg-0 footer-h1">
+                <a href="index.html">
+                  <img src="imagenes/basico/logo MetaList-2.png" alt="Logo blanco de MetaList" title="Logo blanco de MetaList" width="200px">
+                </a>
+              </h1>
+              <p>
+                Calle de la Fuensanta, 3 <br>
+                16002, Cuenca, España<br><br>
+                <strong>Teléfono:</strong> +32 969 304 288<br>
+                <strong>Email:</strong> <a href="mailto:molinamario.msc@gmail.com" class="inv-a">molinamario.msc@gmail.com</a><br>
+              </p> <br>
+              <p>
+                <a href="privacidad.html" class="inv-a">Políticas de Privacidad y Cookies</a><br>
+                <a href="legal.html" class="inv-a">Políticas Legales y Términos de Uso</a><br>
+              </p> <br>
+              <div class="social-links mt-3">
+                <a href="https://twitter.com/?lang=es" class="twitter"><span class="d-none">.</span><div><i class="bx bxl-twitter"></div></i></a>
+                <a href="https://www.facebook.com/" class="facebook"><span class="d-none">.</span><div><i class="bx bxl-facebook"></i></div></a>
+                <a href="https://www.instagram.com/" class="instagram"><span class="d-none">.</span><div><i class="bx bxl-instagram"></i></div></a>
+                <a href="https://github.com/MariusTNTX?tab=repositories" class="google-plus"><span class="d-none">.</span><div><i class="bx bxl-github"></i></div></a>
+                <a href="https://es.linkedin.com/" class="linkedin"><span class="d-none">.</span><div><i class="bx bxl-linkedin"></i></div></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-6 footer-links">
+            <h4>Nuestros Servicios</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="./buscadorAvanzado.html">Búsquedas Avanzadas</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Tier Lists</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Cronología</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Playlists de Spotify</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Mosaico de Géneros</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Juegos</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Nuestras Secciones</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="index.html#portfolio">Noticias</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="index.html#testimonials">Sección "Hoy"</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="index.html#team">Incorporaciones</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="index.html#features">Sobre Nosotros</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="index.html#clients">Lista de Fuentes</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="index.html#counts">Estadísticas</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="index.html#cta">Donaciones</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="index.html#contact">Contacto</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-4 col-md-6 footer-newsletter">
+            <h4 title="¿Quieres recibir notificaciones sin registrarte?">¿Quieres recibir notificaciones sin registrarte?</h4>
+            <p>Podemos enviarte las últimas noticias e incorporaciones al correo que nos indiques, pero si deseas elegir qué notificaciones recibir deberás crearte una cuenta.</p>
+            <form action="" method="post">
+              <label for="email1"></label><input type="email" name="email" id="email1" placeholder="Correo Electrónico">
+              <input type="submit" value="Enlazar">
+            </form> <br>
+            <p>En caso de no querer recibir más notificaciones podemos desenlazar el email que indiques a continuación:</p>
+            <form action="" method="post">
+              <label for="email2"></label><input type="email" name="email" id="email2" placeholder="Correo Electrónico">
+              <input type="submit" value="Desenlazar">
+            </form> <br>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>MetaList</span></strong> | Todos los derechos reservados
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/ -->
+        Diseñado por <a href="https://github.com/MariusTNTX?tab=repositories">Mario Molina</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <div id="preloader"></div>
+  <a href="registro.html#" class="back-to-top d-flex align-items-center justify-content-center"><span class="d-none">.</span><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

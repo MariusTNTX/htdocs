@@ -22,7 +22,7 @@
 		try {
 			$c1 = mysqli_connect($dbhost,$dbuser,$dbpass);
 			echo '<span class="text-success">Conexión establecida</span>'.'<br>';
-		} catch (\Throwable $th) {
+		} catch (Exception $e) {
 			echo '<span class="text-danger">Error de conexion a MySQL: ' . mysqli_error($c1).'</span><br><br>';
 			exit(-1);
 		}
