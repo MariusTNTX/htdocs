@@ -180,7 +180,7 @@
               </div>
               <!-- Búsqueda -->
               <div class="col-12 col-sm-2 mb-3 more pt-2 text-center text-sm-start">
-                <button class="btn btn-primary">Buscar</button>
+                <button class="btn btn-primary" id="buscarBan">Buscar</button>
               </div>
               <!-- Propuesta -->
               <div class="col-12 col-md-4 mb-3 more pt-2 text-center text-md-end">
@@ -361,7 +361,8 @@
                         <div class="col-12 text-center mb-4">
                           <button type="button" id="addMusicoBan" class="btn btn-success w-50 addMusicoBan anadirMus">Añadir Músico</button>
                         </div>
-                        <div class="col-12 col-md-6 col-xl-4 my-2">
+                        <div class="col-12 col-md-6 col-xl-4 my-2" id="tbodyMusicos">
+                          <!-- Card -->
                           <div class="card">
                             <div class="card-body">
                               <h5 class="card-title text-center">
@@ -460,7 +461,8 @@
                         <div class="col-12 text-center mb-4">
                           <button type="button" id="addDiscogBan" class="btn btn-success w-50 addDiscogBan anadirDisc">Añadir Discográfica</button>
                         </div>
-                        <div class="col-12 col-md-6 col-xl-4 my-2">
+                        <div class="col-12 col-md-6 col-xl-4 my-2" id="tbodyDiscograficas">
+                          <!-- Card -->
                           <div class="card">
                             <div class="card-body">
                               <h5 class="card-title text-center">
@@ -573,7 +575,8 @@
                         <div class="col-12 text-center mb-4">
                           <button type="button" id="addAlbBan" class="btn btn-success w-50 addAlbBan anadirAlb">Añadir Álbum</button>
                         </div>
-                        <div class="col-12 my-2">
+                        <div class="col-12 col-lg-6 col-xl-12 my-2" id="tbodyAlbumes">
+                          <!-- Card -->
                           <div class="card">
                             <div class="card-body">
                               <h5 class="card-title text-center">
@@ -583,7 +586,7 @@
                               <div class="card-text">
                                 <div class="row">
                                   <!-- Columna 1 -->
-                                  <div class="col-4">
+                                  <div class="col-12 col-xl-4">
                                     <div class="row">
                                       <div class="col-12 my-1">
                                         <div class="form-floating">
@@ -660,7 +663,7 @@
                                     </div>
                                   </div>
                                   <!-- Columna 2 -->
-                                  <div class="col-4">
+                                  <div class="col-12 col-xl-4">
                                     <div class="row px-3">
                                       <table class="table table-sm">
                                         <thead>
@@ -670,7 +673,7 @@
                                             <th scope="col">Estrellas</th>
                                           </tr>
                                         </thead>
-                                        <tbody class="table-group-divider">
+                                        <tbody class="table-group-divider tbodyGenerosAlb">
                                           <tr>
                                             <th><button type="button" class="btn btn-danger eliminar">x</button></th>
                                             <td class="w-75"><input type="text" class="form-control genAlb" name="genAlb[]"></td>
@@ -688,7 +691,7 @@
                                             <th scope="col">Rol</th>
                                           </tr>
                                         </thead>
-                                        <tbody class="table-group-divider">
+                                        <tbody class="table-group-divider tbodyRolesAlb">
                                           <tr>
                                             <th><button type="button" class="btn btn-danger eliminar">x</button></th>
                                             <td><input type="text" class="form-control nomMusAlb" name="nomMusAlb[]"></td>
@@ -699,7 +702,7 @@
                                     </div>
                                   </div>
                                   <!-- Columna 3 -->
-                                  <div class="col-4">
+                                  <div class="col-12 col-xl-4">
                                     <div class="row px-3">
                                       <table class="table table-sm">
                                         <thead>
@@ -708,7 +711,7 @@
                                             <th scope="col">Discográfica</th>
                                           </tr>
                                         </thead>
-                                        <tbody class="table-group-divider">
+                                        <tbody class="table-group-divider tbodyDiscograficasAlb">
                                           <tr>
                                             <th><button type="button" class="btn btn-danger eliminar">x</button></th>
                                             <td><input type="text" class="form-control discAlb" name="discAlb[]"></td>
@@ -724,7 +727,7 @@
                                             <th scope="col">Estudio</th>
                                           </tr>
                                         </thead>
-                                        <tbody class="table-group-divider">
+                                        <tbody class="table-group-divider tbodyEstudiosAlb">
                                           <tr>
                                             <th><button type="button" class="btn btn-danger eliminar">x</button></th>
                                             <td><input type="text" class="form-control nomEstAlb" name="nomEstAlb[]"></td>
@@ -741,7 +744,7 @@
                                             <th scope="col">Estrellas</th>
                                           </tr>
                                         </thead>
-                                        <tbody class="table-group-divider">
+                                        <tbody class="table-group-divider tbodyCancionesAlb">
                                           <tr>
                                             <th><button type="button" class="btn btn-danger eliminar">x</button></th>
                                             <td class="w-75"><input type="text" class="form-control nomCanAlb" name="nomCanAlb[]"></td>
@@ -909,7 +912,9 @@
 
   <!-- NuevaBanda JS File -->
   <!-- <script src="js/nuevaBanda.js"></script> -->
+  <script src="js/newAlbum.js"></script>
   <script src="js/propuestaBanda.js"></script>
+  <script src="js/api.js"></script>
 </body>
 
 </html>

@@ -1,10 +1,16 @@
 let btnGenProp = document.getElementById("btnGenProp");
 let btnBanProp = document.getElementById("btnBanProp");
+let buscarBan = document.getElementById("buscarBan");
 let banPropText = document.getElementById("banPropText");
 let nombreBan = document.getElementById("nombreBan");
 let tbodyEtapas = document.getElementById("tbodyEtapas");
 let tbodyGeneros = document.getElementById("tbodyGeneros");
 let tbodyTemas = document.getElementById("tbodyTemas");
+let tbodyEstudios = document.getElementById("tbodyEstudios");
+let tbodyDiscograficas = document.getElementById("tbodyDiscograficas");
+let tbodyMusicos = document.getElementById("tbodyMusicos");
+let tbodyAlbumes = document.getElementById("tbodyAlbumes");
+
 let banda = {
   info: {
     nombre: "",
@@ -181,6 +187,18 @@ function addEtapas(etapas){
   }
 }
 
+function addGeneros(generos){
+  tbodyGeneros.innerHTML="";
+  for(let genero of generos){
+    tbodyGeneros.innerHTML+=`
+    <tr>
+      <th><button type="button" class="btn btn-danger eliminar">x</button></th>
+      <td><input name="nombreGenBan[]" value="${genero.nombre}" class="form-control nombreGenBan" list="genlist"></td>
+      <td><input name="estrellasGenBan[]" value="${genero.estrellas}" type="number" class="form-control estrellasGenBan" min="0" max="5" value="0"></td>
+    </tr>`;
+  }
+}
+
 function addTemasLetra(temas){
   tbodyTemas.innerHTML="";
   for(let tema of temas){
@@ -191,6 +209,25 @@ function addTemasLetra(temas){
     </tr>`;
   }
 }
+
+function addAlbumes(albumes){
+  tbodyAlbumes.innerHTML="";
+  for(let album of albumes){
+    addNewAlbum(album);
+  }
+}
+
+//BOTÓN BUSCAR BANDA
+buscarBan.addEventListener("click",(e)=>{
+  e.preventDefault();
+  if(nombreBan.value!=""){
+    get("infoBanda",nombreBan.value).then(data => {
+      console.log(data);
+      addGeneros(data.generos);
+      addAlbumes(data.albumes);
+    }).catch(error => alert("Error al recuperar información de la banda"));
+  } else alert("Debes introducir una banda");
+});
 
 //BOTÓN PRE-MODAL GENERAR PROPUESTA BANDA
 btnGenProp.addEventListener("click",(e)=>{

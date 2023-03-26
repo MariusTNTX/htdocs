@@ -20,9 +20,9 @@ if(isset($_GET['key'])){
         if($select=='infoBanda'){
           //Se forma la raíz de la consulta
           $consultas = [
-            'info'=>'SELECT * FROM BANDAS WHERE NomBan LIKE "'.$values[0].'"',
-            'albumes'=>'SELECT * FROM ALBUMES WHERE NomBan LIKE "'.$values[0].'" ORDER BY Anio',
-            'generos'=>'SELECT * FROM GENEROS_BANDAS WHERE NomBan LIKE "'.$values[0].'"'
+            'info'=>'SELECT NomBan as nombre, pais, origen, numescuchasmes as escuchas, imagen, estatus, descrip, linkweb, linkspotify FROM BANDAS WHERE NomBan LIKE "'.$values[0].'"',
+            'albumes'=>'SELECT nomalb as nombre, descrip, imagen, tipoalb as tipo, numalb as numero, enlista, anio, mes, dia, numescuchasmax as escuchas, linkspotify, linkamazon FROM ALBUMES WHERE NomBan LIKE "'.$values[0].'" ORDER BY Anio',
+            'generos'=>'SELECT nomgen as nombre, estrellas FROM GENEROS_BANDAS WHERE NomBan LIKE "'.$values[0].'"'
           ];
           $data = ['info'=>'','albumes'=>'','generos'=>''];
           //Se establece conexión con la BD
@@ -35,30 +35,30 @@ if(isset($_GET['key'])){
               echo 'Consulta: '.$consulta;
               exit(-1);
             }
-            //Se almacenan los datos                            //RECORRER ÁLBUMES ABAJO
-            if($elm=='albumes'){
-              $album = mysqli_fetch_all($resp, MYSQLI_ASSOC);
-              echo print_r($album).'<br>';
-              echo 'SELECT * FROM CANCIONES WHERE NomBan LIKE "'.$values[0].'" AND NomAlb LIKE "'.$album['NomAlb'].'"';
-              if (!$resp = mysqli_query($c1, 'SELECT * FROM CANCIONES WHERE NomBan LIKE "'.$values[0].'" AND NomAlb LIKE "'.$album['NomAlb'].'"')){
-                echo mysqli_error($c1).'<br>';
-                echo 'Consulta: '.$consulta;
-                exit(-1);
-              } 
-              echo print_r(mysqli_fetch_all($resp, MYSQLI_ASSOC)).'<br>';
-              $album['canciones'] = mysqli_fetch_all($resp, MYSQLI_ASSOC);
-              echo print_r($album['canciones']).'<br>';
-              if (!$resp = mysqli_query($c1, 'SELECT * FROM GENEROS_ALBUMES WHERE NomBan LIKE "'.$values[0].'" AND NomAlb LIKE "'.$album['NomAlb'].'"')){
-                echo mysqli_error($c1).'<br>';
-                echo 'Consulta: '.$consulta;
-                exit(-1);
-              }
-              $album['generos'] = mysqli_fetch_all($resp, MYSQLI_ASSOC);
-              $data[$elm] = $album;
-            } else $data[$elm] = mysqli_fetch_all($resp, MYSQLI_ASSOC);
+            //Se almacenan los datos
+            if($elm=='info') $data[$elm] = mysqli_fetch_all($resp, MYSQLI_ASSOC)[0];
+            else $data[$elm] = mysqli_fetch_all($resp, MYSQLI_ASSOC);
           }
 
-
+          //RECORRER ÁLBUMES ABAJO
+          foreach($data['albumes'] as $i => $album){
+            //echo print_r($album).'<br>';
+            //echo 'SELECT * FROM CANCIONES WHERE NomBan LIKE "'.$values[0].'" AND NomAlb LIKE "'.$album['NomAlb'].'"<br>';
+            if (!$resp = mysqli_query($c1, 'SELECT nomcan as nombre, estrellas FROM CANCIONES WHERE NomBan LIKE "'.$values[0].'" AND NomAlb LIKE "'.$album['nombre'].'"')){
+              echo mysqli_error($c1).'<br>';
+              echo 'Consulta: '.$consulta;
+              exit(-1);
+            } 
+            //echo print_r(mysqli_fetch_all($resp, MYSQLI_ASSOC)).'<br>';
+            $data['albumes'][$i]['canciones'] = mysqli_fetch_all($resp, MYSQLI_ASSOC);
+            //echo print_r($album['canciones']).'<br>';
+            if (!$resp = mysqli_query($c1, 'SELECT nomgen as nombre, estrellas FROM GENEROS_ALBUMES WHERE NomBan LIKE "'.$values[0].'" AND NomAlb LIKE "'.$album['nombre'].'"')){
+              echo mysqli_error($c1).'<br>';
+              echo 'Consulta: '.$consulta;
+              exit(-1);
+            }
+            $data['albumes'][$i]['generos'] = mysqli_fetch_all($resp, MYSQLI_ASSOC);
+          }
         }
 
         //DEVOLUCIÓN DE JSON
