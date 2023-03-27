@@ -1,92 +1,33 @@
-let btnGenProp = document.getElementById("btnGenProp");
-let btnBanProp = document.getElementById("btnBanProp");
-let buscarBan = document.getElementById("buscarBan");
-let banPropText = document.getElementById("banPropText");
-let nombreBan = document.getElementById("nombreBan");
-let tbodyEtapas = document.getElementById("tbodyEtapas");
-let tbodyGeneros = document.getElementById("tbodyGeneros");
-let tbodyTemas = document.getElementById("tbodyTemas");
-let tbodyEstudios = document.getElementById("tbodyEstudios");
-let tbodyDiscograficas = document.getElementById("tbodyDiscograficas");
-let tbodyMusicos = document.getElementById("tbodyMusicos");
-let tbodyAlbumes = document.getElementById("tbodyAlbumes");
-
-let banda = {
-  info: {
-    nombre: "",
-    pais: "",
-    origen: "",
-    escuchas: "",
-    imagen: "",
-    estatus: "",
-    descrip: "",
-    linkWeb: "",
-    linkSpotify: ""
-  },
-  etapas: [{anioInic: 0, anioFin: 0, tipo: ""}],
-  generos: [{nombre: "", estrellas: 0}],
-  temasLetra: [{nombre: ""}],
-  musicos: [{nombre: "", anioInic: 0, anioFin: 0}],
-  discograficas: [{nombre: "", imagen: "", estatus: "", pais: "", direccion: "", linkWeb: ""}],
-  estudios: [{nombre: "", pais: "", direccion: ""}]
-};
-let albumes = [
-  {
-    nombre: "",
-    imagen: "",
-    tipo: "",
-    enLista: 1,
-    anio: 0,
-    mes: 0,
-    dia: 0,
-    escuchas: 0,
-    descrip: "",
-    duracion: 0,
-    linkSpotify: "",
-    linkAmazon: "",
-    generos: [{nombre: "", estrellas: 0}],
-    rolesMusicos: [{nombre: "", rol: ""}],
-    discograficas: [{nombre: ""}],
-    estudios: [{nombre: ""}],
-    canciones: [{nombre:"", estrellas: 0}]
-  }
-];
-let musicos = [{nombre: "",imagen: "",sexo: "",fechaNac: "",fechaDef: "",pais: "",origen: ""}];
-
-function generarEnlace(){
-  let banda = nombreBan.value;
-  if(banda.length>0){
-    let urlName = banda.trim().toLowerCase().replace(" ","_");
-    document.getElementById("enlacePropBan").innerHTML = `<a href="https://www.metal-archives.com/bands/${urlName}" target="_blank">Metallum - ${banda}</a>`;
-  }
+function getFechaAlbMA(txt, id){
+  let mes = {January: '01', February: '02', March: '03', April: '04', May: '05', June: '06', July: '07', August: '08', September: '09', October: '10', November: '11', December: '12'};
+  let index = txt.indexOf("Release date:");
+  index = txt.indexOf("<dd>",index)+4;
+  fecha = txt.substring(index,txt.indexOf("<",index)).trim();
+  fecha = fecha.replace("th,","").split(" ");
+  result = {dia: fecha[1], mes: mes[fecha[0]], anio: fecha[2]};
+  document.querySelector(".diaAlb.a"+id).value=result.dia;
+  document.querySelector(".mesAlb.a"+id).value=result.mes;
+  document.querySelector(".anioAlb.a"+id).value=result.anio;
+  return result;
 }
 
-function getPaisBanMA(txt){
-  let index = txt.indexOf("Country of origin:");
-  index = txt.indexOf("<dd>",index);
-  if(txt.charAt(index+4)=="<") index = txt.indexOf(">",index+5)+1;
-  else index += 4;
-  document.getElementById("paisBan").value=txt.substring(index,txt.indexOf("<",index));
-  return txt.substring(index,txt.indexOf("<",index));
-}
-
-function getOrigenBanMA(txt){
+/* function getOrigenBanMA(txt){
   let index = txt.indexOf("Location:");
   index = txt.indexOf("<dd>",index);
   if(txt.charAt(index+4)=="<") index = txt.indexOf(">",index+5)+1;
   else index += 4;
   document.getElementById("origenBan").value=txt.substring(index,txt.indexOf("<",index));
   return txt.substring(index,txt.indexOf("<",index));
-}
+} */
 
-function getImagenBanMA(txt){
-  let index = txt.indexOf("band_img");
+function getImagenAlbMA(txt, id){
+  let index = txt.indexOf("album_img");
   index = txt.indexOf('<img src="',index)+10;
-  document.getElementById("imagenBan").value=txt.substring(index,txt.indexOf('"',index));
+  document.querySelector(".imgAlb.a"+id).value=txt.substring(index,txt.indexOf('"',index));
   return txt.substring(index,txt.indexOf('"',index));
 }
 
-function getEstatusBanMA(txt){
+/* function getEstatusBanMA(txt){
   let index = txt.indexOf("Status:");
   index = txt.indexOf("<dd",index);
   index = txt.indexOf(">",index)+1;
@@ -114,16 +55,18 @@ function getEtapasBanMA(txt){ //PENDIENTE DETECTAR HIATOS
   etapas = etapas.split(",");
   etapas = etapas.filter(elm=>!elm.includes(" (as "));
   etapas = etapas.map(elm=>elm.trim().replace("\n",""));
+  console.log(etapas)
   let result = [];
   for(let i=0; i<etapas.length; i++){
     result[i]={anioInic: etapas[i].split("-")[0], anioFin: etapas[i].split("-")[1], tipo: "ACTIVO"}
     if(result[i].anioFin == 'present') result[i].anioFin = "";
   }
+  console.log(result)
   addEtapas(result);
   return result;
-}
+} */
 
-function getMusicosBanMA(txt){
+function getMusicosAlbMA(txt){
   let result = [], busq=['id="band_tab_members_current','id="band_tab_members_past'], idx=0;
   //Leer Miembros Actuales y Pasados
   for(let bus of busq){
@@ -159,7 +102,7 @@ function getMusicosBanMA(txt){
   return result;
 }
 
-function getTemasBanMA(txt){
+/* function getTemasBanMA(txt){
   let result = [], index = txt.indexOf("Themes:");
   index = txt.indexOf("<dd>",index)+4;
   let temas = txt.substring(index,txt.indexOf("</dd>",index)).split(", ");
@@ -185,7 +128,7 @@ function addEtapas(etapas){
   }
 }
 
-/* function addGeneros(generos){
+function addGeneros(generos){
   tbodyGeneros.innerHTML="";
   for(let genero of generos){
     tbodyGeneros.innerHTML+=`
@@ -195,7 +138,7 @@ function addEtapas(etapas){
       <td><input name="estrellasGenBan[]" value="${genero.estrellas}" type="number" class="form-control estrellasGenBan" min="0" max="5" value="0"></td>
     </tr>`;
   }
-} */
+}
 
 function addTemasLetra(temas){
   tbodyTemas.innerHTML="";
@@ -206,47 +149,23 @@ function addTemasLetra(temas){
       <td><input type="text" value="${tema.nombre}" class="form-control temaLetra" name="temaLetra[]"></td>
     </tr>`;
   }
-}
+} */
 
-function addAlbumes(albumes){
-  tbodyAlbumes.innerHTML="";
-  for(let i=0; i<albumes.length; i++) addNewAlbum(nombreBan.value,albumes[i],i);
-}
-
-//BOTÓN BUSCAR BANDA
-buscarBan.addEventListener("click",(e)=>{
+//BOTÓN GENERAR PROPUESTA ÁLBUM 
+btnAlbProp.addEventListener("click",(e)=>{
   e.preventDefault();
-  if(nombreBan.value!=""){
-    get("infoBanda",nombreBan.value).then(data => {
-      console.log(data);
-      //addGeneros(data.generos);
-      addAlbumes(data.albumes);
-      console.log(albumes);
-    }).catch(error => alert("Error al recuperar información de la banda"));
-  } else alert("Debes introducir una banda");
-});
-
-//BOTÓN PRE-MODAL GENERAR PROPUESTA BANDA
-btnGenProp.addEventListener("click",(e)=>{
-  e.preventDefault();
-  generarEnlace();
-});
-
-//BOTÓN GENERAR PROPUESTA BANDA
-btnBanProp.addEventListener("click",(e)=>{
-  e.preventDefault();
-  if(banPropText.value.length>0){
-      let txt = banPropText.value;
-      banda.info.nombre = nombreBan.value;
-      banda.info.pais = getPaisBanMA(txt);
-      banda.info.origen = getOrigenBanMA(txt);
-      banda.info.imagen = getImagenBanMA(txt);
-      banda.info.estatus = getEstatusBanMA(txt);
-      banda.info.linkWeb = getWebBanMA(txt);
-      banda.info.linkSpotify = getSpotifyBanMA(txt);
-      banda.etapas = getEtapasBanMA(txt);
-      banda.musicos = getMusicosBanMA(txt);
-      banda.temasLetra = getTemasBanMA(txt);
-      console.log(banda);
+  if(albPropText.value.length>0){
+      let txt = albPropText.value;
+      let id = idPropAlb.textContent;
+      albumes[id].imagen = getImagenAlbMA(txt, id); //---
+      let fecha = getFechaAlbMA(txt, id); //---
+      albumes[id].anio = fecha.anio;
+      albumes[id].mes = fecha.mes;
+      albumes[id].dia = fecha.dia;
+      /* albumes[id].tipo = getTipoAlbMA(txt); //---
+      albumes[id].duracion = getDuracionAlbMA(txt); //---
+      albumes[id].discograficas = getDiscograficasAlbMA(txt); //---
+      albumes[id].estudios = getEstudiosAlbMA(txt); //---
+      albumes[id].musicos = getMusicosAlbMA(txt); //--- */
   } else alert("Debes incluir contenido HTML");
 });

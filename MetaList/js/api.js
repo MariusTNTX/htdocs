@@ -23,7 +23,6 @@ function key(){ //Genera la key de uso único para peticiones realizadas por los
 
 // GET: FUNCIÓN OBTENER INFORMACIÓN DE LA API
 async function get(elm, ...params){
-  console.log(params);
   //Se seleccionan los filtros y sus valores:
   let elements = [], values = [];
   for(let i in elementos[elm]){

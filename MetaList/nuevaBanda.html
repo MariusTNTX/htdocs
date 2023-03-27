@@ -240,7 +240,7 @@
             <!-- T A B L A S -->
             <div class="row">
               <!-- Etapas -->
-              <div class="col-12 col-xl-5 my-2">
+              <div class="col-12 col-md-7 col-xl-4 my-2">
                 <div class="accordion accordion-flush" id="accordionFlushEtapas">
                   <div class="accordion-item border border-dark border-opacity-25 rounded">
                     <h2 class="accordion-header" id="flush-etapasBan">
@@ -280,7 +280,7 @@
                 </div>
               </div>
               <!-- Géneros -->
-              <div class="col-12 col-md-7 col-xl-4 my-2">
+              <!-- <div class="col-12 col-md-7 col-xl-4 my-2">
                 <div class="accordion accordion-flush" id="accordionFlushGeneros">
                   <div class="accordion-item border border-dark border-opacity-25 rounded">
                     <h2 class="accordion-header" id="flush-generosBan">
@@ -312,7 +312,7 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> -->
               <!-- Temas de Letra -->
               <div class="col-12 col-md-5 col-xl-3 my-2">
                 <div class="accordion accordion-flush" id="accordionFlushTemas">
@@ -345,6 +345,267 @@
                   </div>
                 </div>
               </div>
+              <!-- Estudios de Grabación -->
+              <div class="col-12 col-xl-5 my-2">
+                <div class="accordion accordion-flush" id="accordionFlushEstudios">
+                  <div class="accordion-item border border-dark border-opacity-25 rounded">
+                    <h2 class="accordion-header" id="flush-estudiosBan">
+                      <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseSeven" aria-expanded="false" aria-controls="flush-collapseSeven">
+                        Estudios de Grabación
+                      </button>
+                    </h2>
+                    <div id="flush-collapseSeven" class="accordion-collapse collapse" aria-labelledby="flush-estudiosBan"
+                      data-bs-parent="#accordionFlushEstudios">
+                      <div class="accordion-body">
+                        <table class="table table-sm">
+                          <thead>
+                            <tr>
+                              <th scope="col"><button type="button" id="addEstudioBan" class="btn btn-success addEstudioBan anadir">+</button></th>
+                              <th scope="col">Estudio</th>
+                              <th scope="col">País</th>
+                              <th scope="col">Dirección</th>
+                            </tr>
+                          </thead>
+                          <tbody class="table-group-divider"  id="tbodyEstudios">
+                            <tr>
+                              <th><button type="button" class="btn btn-danger eliminar">x</button></th>
+                              <td><input type="text" class="form-control nomEstBan" name="nomEstBan[]"></td>
+                              <td><input type="text" class="form-control paisEstBan" name="paisEstBan[]"></td>
+                              <td><input type="text" class="form-control origenEstBan" name="origenEstBan[]"></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Álbumes -->
+              <div class="col-12 my-2">
+                <div class="accordion accordion-flush" id="accordionFlushAlbumes">
+                  <div class="accordion-item border border-dark border-opacity-25 rounded">
+                    <h2 class="accordion-header" id="flush-albumesBan">
+                      <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseSix" aria-expanded="false" aria-controls="flush-collapseSix">
+                        Álbumes
+                      </button>
+                    </h2>
+                    <div id="flush-collapseSix" class="accordion-collapse collapse" aria-labelledby="flush-albumesBan"
+                      data-bs-parent="#accordionFlushAlbumes">
+                      <div class="accordion-body row">
+                        <div class="col-12 text-center mb-4">
+                          <button type="button" id="addAlbBan" class="btn btn-success w-50 addAlbBan anadirAlb">Añadir Álbum</button>
+                        </div>
+                        <div class="col-12">
+                          <div class="row" id="tbodyAlbumes">
+                            <!-- Card -->
+                            <div class="col-12 col-lg-6 col-xl-12 my-2">
+                              <div class="card mb-3">
+                                <div class="card-body">
+                                  <div class="row">
+                                    <div class="col-12 col-md-4 col-lg-0 col-xl-3"></div>
+                                    <div class="col-12 col-md-4 col-lg-12 col-xl-6 mb-2">
+                                      <h5 class="card-title text-center">
+                                        Nuevo Álbum
+                                        <button type="button" class="btn btn-danger ms-2 eliminarAlb">x</button>
+                                      </h5>
+                                    </div>
+                                    <div class="col-12 col-md-4 col-lg-12 col-xl-3 mb-2">
+                                      <div class="more p-0 text-center text-xl-end">
+                                        <button class="btn btn-primary btnGenProp" data-bs-toggle="modal" data-bs-target="#albPropModal">Generar Propuesta</button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="card-text">
+                                    <div class="row">
+                                      <!-- Columna 1 -->
+                                      <div class="col-12 col-xl-4">
+                                        <div class="row">
+                                          <div class="col-12 my-1">
+                                            <div class="form-floating">
+                                              <input type="text" class="form-control nombreAlb" name="nombreAlb[]" placeholder=".">
+                                              <label for="nombreAlb">Nombre</label>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="row">
+                                          <div class="col-12 my-1">
+                                            <div class="row">
+                                              <div class="col-4 form-floating pe-1">
+                                                <input type="number" class="form-control diaAlb" name="diaAlb[]" min="0" max="31" placeholder=".">
+                                                <label for="diaAlb" class="ps-4">Día</label>
+                                              </div>
+                                              <div class="col-4 form-floating px-1">
+                                                <input type="number" class="form-control mesAlb" name="mesAlb[]" min="1" max="12" placeholder=".">
+                                                <label for="mesAlb" class="ps-3">Mes</label>
+                                              </div>
+                                              <div class="col-4 form-floating ps-1">
+                                                <input type="number" class="form-control anioAlb" name="anioAlb[]" minlength="4" maxlength="4" placeholder=".">
+                                                <label for="anioAlb" class="ps-3">Año</label>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="row">
+                                          <div class="col-12 col-sm-6 my-1">
+                                            <select class="form-select tipoAlb py-3" name="tipoAlb[]" aria-label="Default select example">
+                                              <option value="ESTUDIO" selected>Estudio</option>
+                                              <option value="EP">EP</option>
+                                              <option value="LIVE">En Directo</option>
+                                              <option value="RECOPILATORIO">Recopilatorio</option>
+                                              <option value="BOXSET">Box Set</option>
+                                            </select>
+                                          </div>
+                                          <div class="col-12 col-sm-6 my-1">
+                                            <div class="form-floating">
+                                              <input type="text" class="form-control imgAlb" name="imgAlb[]" placeholder=".">
+                                              <label for="imgAlb">Imagen</label>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="row">
+                                          <div class="col-12 col-sm-6 my-1">
+                                            <div class="form-floating">
+                                              <input type="text" class="form-control escuchAlb" name="escuchAlb[]" placeholder=".">
+                                              <label for="escuchAlb">Escuchas Spotify</label>
+                                            </div>
+                                          </div>
+                                          <div class="col-12 col-sm-6 my-1">
+                                            <div class="form-floating">
+                                              <input type="number" class="form-control duracAlb" name="duracAlb[]" placeholder=".">
+                                              <label for="duracAlb">Duración</label>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="row">
+                                          <div class="col-12 col-sm-6 my-1">
+                                            <div class="form-floating">
+                                              <input type="text" class="form-control linkSpotAlb" name="linkSpotAlb[]" placeholder=".">
+                                              <label for="linkSpotAlb">Iframe Spotify</label>
+                                            </div>
+                                          </div>
+                                          <div class="col-12 col-sm-6 my-1">
+                                            <div class="form-floating">
+                                              <input type="text" class="form-control amazonAlb" name="amazonAlb[]" placeholder=".">
+                                              <label for="amazonAlb">Link Amazon</label>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="row">
+                                          <div class="col-12 my-1">
+                                            <div class="form-floating mb-3">
+                                              <textarea class="form-control descripAlb" placeholder="." name="descripAlb[]"
+                                                style="height: 206px"></textarea>
+                                              <label for="descripAlb">Descripción</label>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <!-- Columna 2 -->
+                                      <div class="col-12 col-xl-4">
+                                        <div class="row px-3">
+                                          <table class="table table-sm">
+                                            <thead>
+                                              <tr>
+                                                <th scope="col"><button type="button" class="btn btn-success addGenAlb anadir">+</button></th>
+                                                <th scope="col">Género</th>
+                                                <th scope="col">Estrellas</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody class="table-group-divider tbodyGenerosAlb">
+                                              <tr>
+                                                <th><button type="button" class="btn btn-danger eliminar">x</button></th>
+                                                <td class="w-75"><input type="text" class="form-control genAlb" name="genAlb[]"></td>
+                                                <td><input type="number" class="form-control estrGenAlb" name="estrGenAlb[]" min="0" max="5"></td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                        </div>
+                                        <div class="row px-3">
+                                          <table class="table table-sm">
+                                            <thead>
+                                              <tr>
+                                                <th scope="col"><button type="button" class="btn btn-success addCanAlb anadir">+</button></th>
+                                                <th scope="col">Canción</th>
+                                                <th scope="col">Estrellas</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody class="table-group-divider tbodyCancionesAlb">
+                                              <tr>
+                                                <th><button type="button" class="btn btn-danger eliminar">x</button></th>
+                                                <td class="w-75"><input type="text" class="form-control nomCanAlb" name="nomCanAlb[]"></td>
+                                                <td><input type="number" class="form-control estrCanAlb" name="estrCanAlb[]"></td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                        </div>
+                                      </div>
+                                      <!-- Columna 3 -->
+                                      <div class="col-12 col-xl-4">
+                                        <div class="row px-3">
+                                          <table class="table table-sm">
+                                            <thead>
+                                              <tr>
+                                                <th scope="col"><button type="button" class="btn btn-success addDiscAlb anadir">+</button></th>
+                                                <th scope="col" class="w-100">Discográfica</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody class="table-group-divider tbodyDiscograficasAlb">
+                                              <tr>
+                                                <th><button type="button" class="btn btn-danger eliminar">x</button></th>
+                                                <td><input type="text" class="form-control discAlb" name="discAlb[]"></td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                        </div>
+                                        <div class="row px-3">
+                                          <table class="table table-sm">
+                                            <thead>
+                                              <tr>
+                                                <th scope="col"><button type="button" class="btn btn-success addEstAlb anadir">+</button></th>
+                                                <th scope="col" class="w-100">Estudio</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody class="table-group-divider tbodyEstudiosAlb">
+                                              <tr>
+                                                <th><button type="button" class="btn btn-danger eliminar">x</button></th>
+                                                <td><input type="text" class="form-control nomEstAlb" name="nomEstAlb[]"></td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                        </div>
+                                        <div class="row px-3">
+                                          <table class="table table-sm">
+                                            <thead>
+                                              <tr>
+                                                <th scope="col"><button type="button" class="btn btn-success addMusAlb anadir">+</button></th>
+                                                <th scope="col">Músico</th>
+                                                <th scope="col">Roles</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody class="table-group-divider tbodyRolesAlb">
+                                              <tr>
+                                                <th><button type="button" class="btn btn-danger eliminar">x</button></th>
+                                                <td><input type="text" class="form-control nomMusAlb" name="nomMusAlb[]"></td>
+                                                <td><input type="text" class="form-control rolMusAlb" name="rolMusAlb[]"></td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <!-- Músicos -->
               <div class="col-12 my-2">
                 <div class="accordion accordion-flush" id="accordionFlushMusicos">
@@ -369,6 +630,9 @@
                                 Nuevo Músico
                                 <button type="button" class="btn btn-danger ms-2 eliminarMus">x</button>
                               </h5>
+                              <div class="more p-0 text-center mb-2">
+                                <button class="btn btn-primary btnGenProp" data-bs-toggle="modal" data-bs-target="#musPropModal">Generar Propuesta</button>
+                              </div>
                               <div class="card-text">
                                 <div class="row">
                                   <div class="col-6 my-1">
@@ -469,6 +733,9 @@
                                 Nueva Discográfica
                                 <button type="button" class="btn btn-danger ms-2 eliminarDisc">x</button>
                               </h5>
+                              <div class="more p-0 text-center mb-2">
+                                <button class="btn btn-primary btnGenProp" data-bs-toggle="modal" data-bs-target="#discPropModal">Generar Propuesta</button>
+                              </div>
                               <div class="card-text">
                                 <div class="row">
                                   <div class="col-6 my-1">
@@ -524,7 +791,7 @@
                 </div>
               </div>
               <!-- Estudios de Grabación -->
-              <div class="col-12 my-2">
+              <!-- <div class="col-12 my-2">
                 <div class="accordion accordion-flush" id="accordionFlushEstudios">
                   <div class="accordion-item border border-dark border-opacity-25 rounded">
                     <h2 class="accordion-header" id="flush-estudiosBan">
@@ -558,212 +825,7 @@
                     </div>
                   </div>
                 </div>
-              </div>
-              <!-- Álbumes -->
-              <div class="col-12 my-2">
-                <div class="accordion accordion-flush" id="accordionFlushAlbumes">
-                  <div class="accordion-item border border-dark border-opacity-25 rounded">
-                    <h2 class="accordion-header" id="flush-albumesBan">
-                      <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#flush-collapseSix" aria-expanded="false" aria-controls="flush-collapseSix">
-                        Álbumes
-                      </button>
-                    </h2>
-                    <div id="flush-collapseSix" class="accordion-collapse collapse" aria-labelledby="flush-albumesBan"
-                      data-bs-parent="#accordionFlushAlbumes">
-                      <div class="accordion-body row">
-                        <div class="col-12 text-center mb-4">
-                          <button type="button" id="addAlbBan" class="btn btn-success w-50 addAlbBan anadirAlb">Añadir Álbum</button>
-                        </div>
-                        <div class="col-12 col-lg-6 col-xl-12 my-2" id="tbodyAlbumes">
-                          <!-- Card -->
-                          <div class="card">
-                            <div class="card-body">
-                              <h5 class="card-title text-center">
-                                Nuevo Álbum
-                                <button type="button" class="btn btn-danger ms-2 eliminarAlb">x</button>
-                              </h5>
-                              <div class="card-text">
-                                <div class="row">
-                                  <!-- Columna 1 -->
-                                  <div class="col-12 col-xl-4">
-                                    <div class="row">
-                                      <div class="col-12 my-1">
-                                        <div class="form-floating">
-                                          <input type="text" class="form-control nombreAlb" name="nombreAlb[]" placeholder=".">
-                                          <label for="nombreAlb">Nombre</label>
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <div class="row">
-                                      <div class="col-6 my-1">
-                                        <div class="form-floating">
-                                          <input type="text" class="form-control imgAlb" name="imgAlb[]" placeholder=".">
-                                          <label for="imgAlb">Imagen</label>
-                                        </div>
-                                      </div>
-                                      <div class="col-6 my-1">
-                                        <label for="fechaAlb">Fecha Public.</label>
-                                        <input type="date" class="form-control fechaAlb" name="fechaAlb[]">
-                                      </div>
-                                    </div>
-                                    <div class="row">
-                                      <div class="col-6 my-1">
-                                        <select class="form-select py-3" name="tipoAlb[]" aria-label="Default select example">
-                                          <option value="ESTUDIO" selected>Estudio</option>
-                                          <option value="EP">EP</option>
-                                          <option value="LIVE">En Directo</option>
-                                          <option value="RECOPILATORIO">Recopilatorio</option>
-                                          <option value="BOXSET">Box Set</option>
-                                        </select>
-                                      </div>
-                                      <div class="col-6 my-1">
-                                        <div class="form-floating">
-                                          <input type="number" class="form-control numAlb" name="numAlb[]" placeholder=".">
-                                          <label for="numAlb">Número de Álbum</label>
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <div class="row">
-                                      <div class="col-6 my-1">
-                                        <div class="form-floating">
-                                          <input type="text" class="form-control escuchAlb" name="escuchAlb[]" placeholder=".">
-                                          <label for="escuchAlb">Escuchas Spotify</label>
-                                        </div>
-                                      </div>
-                                      <div class="col-6 my-1">
-                                        <div class="form-floating">
-                                          <input type="number" class="form-control duracAlb" name="duracAlb[]" placeholder=".">
-                                          <label for="duracAlb">Duración</label>
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <div class="row">
-                                      <div class="col-6 my-1">
-                                        <div class="form-floating">
-                                          <input type="text" class="form-control linkSpotAlb" name="linkSpotAlb[]" placeholder=".">
-                                          <label for="linkSpotAlb">Iframe Spotify</label>
-                                        </div>
-                                      </div>
-                                      <div class="col-6 my-1">
-                                        <div class="form-floating">
-                                          <input type="text" class="form-control amazonAlb" name="amazonAlb[]" placeholder=".">
-                                          <label for="amazonAlb">Link Amazon</label>
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <div class="row">
-                                      <div class="col-12 my-1">
-                                        <div class="form-floating mb-3">
-                                          <textarea class="form-control descripAlb" placeholder="." name="descripAlb[]"
-                                            style="height: 206px"></textarea>
-                                          <label for="descripAlb">Descripción</label>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <!-- Columna 2 -->
-                                  <div class="col-12 col-xl-4">
-                                    <div class="row px-3">
-                                      <table class="table table-sm">
-                                        <thead>
-                                          <tr>
-                                            <th scope="col"><button type="button" class="btn btn-success addGenAlb anadir">+</button></th>
-                                            <th scope="col">Género</th>
-                                            <th scope="col">Estrellas</th>
-                                          </tr>
-                                        </thead>
-                                        <tbody class="table-group-divider tbodyGenerosAlb">
-                                          <tr>
-                                            <th><button type="button" class="btn btn-danger eliminar">x</button></th>
-                                            <td class="w-75"><input type="text" class="form-control genAlb" name="genAlb[]"></td>
-                                            <td><input type="number" class="form-control estrGenAlb" name="estrGenAlb[]" min="0" max="5"></td>
-                                          </tr>
-                                        </tbody>
-                                      </table>
-                                    </div>
-                                    <div class="row px-3">
-                                      <table class="table table-sm">
-                                        <thead>
-                                          <tr>
-                                            <th scope="col"><button type="button" class="btn btn-success addMusAlb anadir">+</button></th>
-                                            <th scope="col">Músico/Productor</th>
-                                            <th scope="col">Rol</th>
-                                          </tr>
-                                        </thead>
-                                        <tbody class="table-group-divider tbodyRolesAlb">
-                                          <tr>
-                                            <th><button type="button" class="btn btn-danger eliminar">x</button></th>
-                                            <td><input type="text" class="form-control nomMusAlb" name="nomMusAlb[]"></td>
-                                            <td><input type="text" class="form-control rolMusAlb" name="rolMusAlb[]"></td>
-                                          </tr>
-                                        </tbody>
-                                      </table>
-                                    </div>
-                                  </div>
-                                  <!-- Columna 3 -->
-                                  <div class="col-12 col-xl-4">
-                                    <div class="row px-3">
-                                      <table class="table table-sm">
-                                        <thead>
-                                          <tr>
-                                            <th scope="col"><button type="button" class="btn btn-success addDiscAlb anadir">+</button></th>
-                                            <th scope="col">Discográfica</th>
-                                          </tr>
-                                        </thead>
-                                        <tbody class="table-group-divider tbodyDiscograficasAlb">
-                                          <tr>
-                                            <th><button type="button" class="btn btn-danger eliminar">x</button></th>
-                                            <td><input type="text" class="form-control discAlb" name="discAlb[]"></td>
-                                          </tr>
-                                        </tbody>
-                                      </table>
-                                    </div>
-                                    <div class="row px-3">
-                                      <table class="table table-sm">
-                                        <thead>
-                                          <tr>
-                                            <th scope="col"><button type="button" class="btn btn-success addEstAlb anadir">+</button></th>
-                                            <th scope="col">Estudio</th>
-                                          </tr>
-                                        </thead>
-                                        <tbody class="table-group-divider tbodyEstudiosAlb">
-                                          <tr>
-                                            <th><button type="button" class="btn btn-danger eliminar">x</button></th>
-                                            <td><input type="text" class="form-control nomEstAlb" name="nomEstAlb[]"></td>
-                                          </tr>
-                                        </tbody>
-                                      </table>
-                                    </div>
-                                    <div class="row px-3">
-                                      <table class="table table-sm">
-                                        <thead>
-                                          <tr>
-                                            <th scope="col"><button type="button" class="btn btn-success addCanAlb anadir">+</button></th>
-                                            <th scope="col">Canción</th>
-                                            <th scope="col">Estrellas</th>
-                                          </tr>
-                                        </thead>
-                                        <tbody class="table-group-divider tbodyCancionesAlb">
-                                          <tr>
-                                            <th><button type="button" class="btn btn-danger eliminar">x</button></th>
-                                            <td class="w-75"><input type="text" class="form-control nomCanAlb" name="nomCanAlb[]"></td>
-                                            <td><input type="number" class="form-control estrCanAlb" name="estrCanAlb[]"></td>
-                                          </tr>
-                                        </tbody>
-                                      </table>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              </div> -->
             </div>
             <div class="row py-4 px-3 more">
               <button type="button" class="btn btn-primary">Guardar</button>
@@ -784,7 +846,7 @@
           <div class="modal-body">
             <!-- Enlace a Metallum -->
             <h3 class="text-center">Enlaces:</h3>
-            <h5 class="text-center mb-4" id="enlacePropBan"><!-- <a href="https://www.metal-archives.com/bands/children_of_bodom" target="_blank">Metallum - Children of Bodom</a> --></h5>
+            <h5 class="text-center mb-4" id="enlacePropBan"></h5>
             <!-- Textarea -->
             <div class="text-center">
               <div class="form-floating mb-3">
@@ -797,6 +859,36 @@
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
             <div class="more pt-0"><button type="button" id="btnBanProp" class="btn btn-primary">Cargar Propuesta</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Propuesta de Álbum -->
+    <div class="modal fade" id="albPropModal" tabindex="-1" aria-labelledby="albPropModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="albPropModalLabel">Propuesta de Álbum</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <!-- Enlace a Metallum -->
+            <h3 class="text-center">Enlaces:</h3>
+            <h5 class="text-center mb-4" id="enlacePropAlb"></h5>
+            <div class="d-none" id="idPropAlb"></div>
+            <!-- Textarea -->
+            <div class="text-center">
+              <div class="form-floating mb-3">
+                <textarea class="form-control" placeholder="." id="albPropText" name="albPropText"
+                  style="height: 206px"></textarea>
+                <label for="albPropText">Contenido HTML</label>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <div class="more pt-0"><button type="button" id="btnAlbProp" class="btn btn-primary">Cargar Propuesta</button></div>
           </div>
         </div>
       </div>
@@ -912,9 +1004,11 @@
 
   <!-- NuevaBanda JS File -->
   <!-- <script src="js/nuevaBanda.js"></script> -->
-  <script src="js/newAlbum.js"></script>
-  <script src="js/propuestaBanda.js"></script>
   <script src="js/api.js"></script>
+  <script src="js/propuestaBanda.js"></script>
+  <script src="js/propuestaAlbum.js"></script>
+  <script src="js/newAlbum.js"></script>
+
 </body>
 
 </html>

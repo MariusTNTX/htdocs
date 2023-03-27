@@ -42,16 +42,12 @@ if(isset($_GET['key'])){
 
           //RECORRER ÁLBUMES ABAJO
           foreach($data['albumes'] as $i => $album){
-            //echo print_r($album).'<br>';
-            //echo 'SELECT * FROM CANCIONES WHERE NomBan LIKE "'.$values[0].'" AND NomAlb LIKE "'.$album['NomAlb'].'"<br>';
             if (!$resp = mysqli_query($c1, 'SELECT nomcan as nombre, estrellas FROM CANCIONES WHERE NomBan LIKE "'.$values[0].'" AND NomAlb LIKE "'.$album['nombre'].'"')){
               echo mysqli_error($c1).'<br>';
               echo 'Consulta: '.$consulta;
               exit(-1);
             } 
-            //echo print_r(mysqli_fetch_all($resp, MYSQLI_ASSOC)).'<br>';
             $data['albumes'][$i]['canciones'] = mysqli_fetch_all($resp, MYSQLI_ASSOC);
-            //echo print_r($album['canciones']).'<br>';
             if (!$resp = mysqli_query($c1, 'SELECT nomgen as nombre, estrellas FROM GENEROS_ALBUMES WHERE NomBan LIKE "'.$values[0].'" AND NomAlb LIKE "'.$album['nombre'].'"')){
               echo mysqli_error($c1).'<br>';
               echo 'Consulta: '.$consulta;
