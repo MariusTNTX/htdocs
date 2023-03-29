@@ -3,7 +3,9 @@ function getFechaAlbMA(txt, id){
   let index = txt.indexOf("Release date:");
   index = txt.indexOf("<dd>",index)+4;
   fecha = txt.substring(index,txt.indexOf("<",index)).trim();
-  fecha = fecha.replace("th,","").split(" ");
+  fecha = fecha.split(" ");
+  if(fecha.length>2) fecha[1] = fecha[1].substring(0,fecha[1].length-3);
+  if(fecha[1].length==1) fecha[1] = "0"+fecha[1];
   result = {dia: fecha[1], mes: mes[fecha[0]], anio: fecha[2]};
   document.querySelector(".diaAlb.a"+id).value=result.dia;
   document.querySelector(".mesAlb.a"+id).value=result.mes;
@@ -11,14 +13,15 @@ function getFechaAlbMA(txt, id){
   return result;
 }
 
-/* function getOrigenBanMA(txt){
-  let index = txt.indexOf("Location:");
-  index = txt.indexOf("<dd>",index);
-  if(txt.charAt(index+4)=="<") index = txt.indexOf(">",index+5)+1;
-  else index += 4;
-  document.getElementById("origenBan").value=txt.substring(index,txt.indexOf("<",index));
-  return txt.substring(index,txt.indexOf("<",index));
-} */
+function getTipoAlbMA(txt,id){
+  let tipos = {full_length: "ESTUDIO", live_album: "LIVE", demo: "DEMO", Single: "SINGLE", ep: "EP", video: "VIDEO", boxed_set: "BOXSET", split: "SPLIT", compilation: "COMPILATION", collaboration: "COLLABORATION"};
+  let index = txt.indexOf("Type:");
+  index = txt.indexOf("<dd>",index)+4;
+  let result = txt.substring(index,txt.indexOf("<",index)).trim().toLowerCase().replace(" ","_").replace("-","_");
+  result = tipos[result];
+  document.querySelector(".tipoAlb.a"+id).value=result;
+  return result;
+}
 
 function getImagenAlbMA(txt, id){
   let index = txt.indexOf("album_img");
@@ -27,131 +30,226 @@ function getImagenAlbMA(txt, id){
   return txt.substring(index,txt.indexOf('"',index));
 }
 
-/* function getEstatusBanMA(txt){
-  let index = txt.indexOf("Status:");
-  index = txt.indexOf("<dd",index);
-  index = txt.indexOf(">",index)+1;
-  document.getElementById("estatusBan").value=txt.substring(index,txt.indexOf("<",index));
-  return txt.substring(index,txt.indexOf("<",index));
+function getDuracionAlbMA(txt,id){
+  let index = txt.indexOf("display table_lyrics");
+  index = txt.indexOf('<strong>',index)+8;
+  let result = txt.substring(index,txt.indexOf('</strong>',index));
+  document.querySelector(".duracAlb.a"+id).value=result;
+  return result;
 }
 
-function getWebBanMA(txt){
-  let index = txt.search(/http.{1,50}\" title=\"Go to: Homepage\"/);
-  console.log(txt.substring(index,index+20))
-  document.getElementById("webBan").value=txt.substring(index,txt.indexOf('"',index));
-  return txt.substring(index,txt.indexOf('"',index));
+function getDiscograficaAlbMA(txt,id){
+  let index = txt.indexOf("Label:");
+  index = txt.indexOf('<dd>',index)+4;
+  let link="";
+  if(txt.charAt(index)=="<"){
+    index = txt.indexOf("http",index);
+    link = txt.substring(index,txt.indexOf('"',index));
+    index = txt.indexOf(">",index)+1;
+  } 
+  result = {nombre: txt.substring(index,txt.indexOf('<',index)), link: link};
+  addDiscograficasAlb([result], id);
+  return result;
 }
 
-function getSpotifyBanMA(txt){
-  let index = txt.search(/http.{1,100}\" title=\"Go to: Spotify\"/);
-  document.getElementById("spotifyBan").value=txt.substring(index,txt.indexOf('"',index));
-  return txt.substring(index,txt.indexOf('"',index));
-}
-
-function getEtapasBanMA(txt){ //PENDIENTE DETECTAR HIATOS
-  let index = txt.indexOf("Years active:");
-  index = txt.indexOf("<dd>",index)+4;
-  let etapas = txt.substring(index,txt.indexOf("</dd>",index));
-  etapas = etapas.split(",");
-  etapas = etapas.filter(elm=>!elm.includes(" (as "));
-  etapas = etapas.map(elm=>elm.trim().replace("\n",""));
-  console.log(etapas)
+function getMusicosAlbMA(txt,id){ //SACAR NOMBRE ORIGINAL DE LA URL
   let result = [];
-  for(let i=0; i<etapas.length; i++){
-    result[i]={anioInic: etapas[i].split("-")[0], anioFin: etapas[i].split("-")[1], tipo: "ACTIVO"}
-    if(result[i].anioFin == 'present') result[i].anioFin = "";
-  }
-  console.log(result)
-  addEtapas(result);
-  return result;
-} */
-
-function getMusicosAlbMA(txt){
-  let result = [], busq=['id="band_tab_members_current','id="band_tab_members_past'], idx=0;
-  //Leer Miembros Actuales y Pasados
-  for(let bus of busq){
-    let index = txt.lastIndexOf(bus);
-    let lIndex = txt.indexOf("</tbody>",index);
-    let txt1 = txt.substring(index,lIndex);
-    index = 0;
-    do{ //Leer lineupRows
-      let link = "";
-      index = txt1.indexOf('lineupRow',index)+11;
-      index = txt1.indexOf('>',index)+2;
-      if(txt1.substring(index,index+1)=="<"){
-        index = txt1.indexOf("http",index);
-        link = txt1.substring(index,txt1.indexOf('"',index));
-        index = txt1.indexOf(">",index)+1;
-      } 
-      let nombre = txt1.substring(index,txt1.indexOf("<",index));
-      index = txt1.indexOf('<td>',index)+4;
-      let anios = txt1.substring(index,txt1.indexOf("</td>",index)).trim().split("&nbsp;")[1];
-      anios = anios.substring(1,anios.length-1).split(", ");
-      for(let anio of anios){
-        result[idx] = {nombre: "", link: "", anioInic: 0, anioFin: 0};
-        result[idx].nombre = nombre;
-        result[idx].link = link;
-        result[idx].anioInic = anio.split("-")[0];
-        if(anio.split("-")[1]) result[idx].anioFin = anio.split("-")[1];
-        else result[idx].anioFin = anio.split("-")[0];
-        if(result[idx].anioFin == 'present') result[idx].anioFin = "";
-        idx++;
+  //MUSICOS
+  let index = txt.lastIndexOf('id="album_members_lineup');
+  let lIndex = txt.indexOf("</tbody>",index);
+  let txt1 = txt.substring(index,lIndex);
+  index = 0;
+  do{ //Leer lineupRows
+    let link = "";
+    index = txt1.indexOf('lineupRow',index)+11;
+    index = txt1.indexOf('>',index)+2;
+    let nombre=""; //Nombre
+    if(txt1.substring(index,index+1)=="<"){
+      index = txt1.indexOf("http",index);
+      link = txt1.substring(index,txt1.indexOf('"',index));
+      index = txt1.indexOf("artists/",index)+8;
+      nombre = txt1.substring(index,txt1.indexOf("/",index)).replaceAll("_"," ");
+      nombre = decodeURI(nombre);
+      index = txt1.indexOf(">",index)+1;
+    } else {
+      nombre = txt1.substring(index,txt1.indexOf("<",index));
+      if(nombre.indexOf("(R.I.P.")>0) nombre = nombre.substring(0,nombre.indexOf("(R.I.P."));
+    }
+    index = txt1.indexOf('<td>',index)+4;
+    let roles = txt1.substring(index,txt1.indexOf("</td>",index)).trim();
+    do{ //Quitar Tracks
+      if(roles.indexOf("(track")>0){
+        let i1 = roles.indexOf("(track");
+        let i2 = roles.indexOf(")",i1);
+        roles = roles.substring(0,i1-1) + roles.substring(i2+1,roles.length);
       }
-    } while(index <= txt1.lastIndexOf('lineupRow'));
-  }
+    } while(roles.indexOf("(track")>0);
+    roles = roles.split(", ");
+    roles = roles.filter(rol => (!rol.includes("Lyrics") && !rol.includes("Songwriting")));
+    result.push({nombre: nombre, roles: roles.join("; "), link: link});
+  } while(index <= txt1.lastIndexOf('lineupRow'));
+  //PRODUCTORES
+  index = txt.lastIndexOf('album_members_misc');
+  lIndex = txt.indexOf("</tbody>",index);
+  txt1 = txt.substring(index,lIndex);
+  index = 0;
+  do{ //Leer lineupRows
+    let link = "";
+    index = txt1.indexOf('lineupRow',index)+11;
+    index = txt1.indexOf('>',index)+2;
+    let nombre=""; //Nombre
+    if(txt1.substring(index,index+1)=="<"){
+      index = txt1.indexOf("http",index);
+      link = txt1.substring(index,txt1.indexOf('"',index));
+      index = txt1.indexOf("artists/",index)+8;
+      nombre = txt1.substring(index,txt1.indexOf("/",index)).replaceAll("_"," ");
+      nombre = decodeURI(nombre);
+      index = txt1.indexOf(">",index)+1;
+    } else {
+      nombre = txt1.substring(index,txt1.indexOf("<",index));
+      //Quitar RIP
+      if(nombre.indexOf("(R.I.P.")>0) nombre = nombre.substring(0,nombre.indexOf("(R.I.P."));
+      if(nombre.includes(".")){ //Se corrigen nombres con iniciales
+        nombre = nombre.substring(nombre.lastIndexOf(".")+1,nombre.length).trim();
+        result.map(mus => {if(mus.nombre.includes(nombre)) nombre = mus.nombre;});
+      } 
+    }
+    index = txt1.indexOf('<td>',index)+4;
+    let roles = txt1.substring(index,txt1.indexOf("</td>",index)).trim();
+    do{ //Quitar Tracks
+      if(roles.indexOf("(track")>0){
+        let i1 = roles.indexOf("(track");
+        let i2 = roles.indexOf(")",i1);
+        roles = roles.substring(0,i1-1) + roles.substring(i2+1,roles.length);
+      }
+    } while(roles.indexOf("(track")>0);
+    if(roles.includes("Producer")){
+      let incluido=false;
+      result.map(mus => {if(mus.nombre.includes(nombre)){
+        incluido=true;
+        mus.roles+="; Producer";
+      }});
+      if(!incluido) result.push({nombre: nombre, roles: "Producer", link: link});
+    }
+  } while(index <= txt1.lastIndexOf('lineupRow'));
+  addMusicosAlb(result, id);
   return result;
 }
 
-/* function getTemasBanMA(txt){
-  let result = [], index = txt.indexOf("Themes:");
-  index = txt.indexOf("<dd>",index)+4;
-  let temas = txt.substring(index,txt.indexOf("</dd>",index)).split(", ");
-  for(let i=0; i<temas.length; i++) result[i] = {nombre: temas[i]};
-  addTemasLetra(result);
+function getEstudiosAlbMA(txt,id){
+  let index = txt.indexOf("Recording information:");
+  index = txt.indexOf("<p",index);
+  index = txt.indexOf(">",index)+1;
+  let txt1 = txt.substring(index,txt.indexOf("</p>",index));
+  index=0;
+  let result = [];
+  while(txt1.indexOf("at",index)>0){
+    index = txt1.indexOf("at",index);
+    result.push(txt1.substring(index+3,txt1.indexOf(" ",index+3)).replace(",",""));
+    index++;
+  }
+  index=txt1.length;
+  while(txt1.lastIndexOf("studio",index)>0){
+    index = txt1.lastIndexOf("studio",index);
+    result.push(txt1.substring(txt1.lastIndexOf(" ",index-2)+1,index-1));
+    index--;
+  }
+  index=txt1.length;
+  while(txt1.lastIndexOf("Studio",index)>0){
+    index = txt1.lastIndexOf("Studio",index);
+    result.push(txt1.substring(txt1.lastIndexOf(" ",index-2)+1,index-1));
+    index--;
+  }
+  result = result.filter((item,index)=>{
+    return result.indexOf(item) === index;
+  });
+  for(let i=0; i<result.length; i++){
+    result[i]={nombre: result[i], pais: "", origen:""};
+  }
+  addEstudiosAlb(result, id);
   return result;
 }
 
-function addEtapas(etapas){
-  tbodyEtapas.innerHTML="";
-  for(let etapa of etapas){
-    tbodyEtapas.innerHTML+=`
+function addMusicosAlb(musicos,id){
+  console.log("addMusicosAlb")
+  console.log(musicos)
+  let i=0;
+  for(let mus of musicos){
+    if(mus.roles!="Producer"){
+      banda.musicos.map(musico => {if(musico.nombre==mus.nombre && !musico.aparece) addMusicoBan(musico, i);});
+    } else if(banda.musicos.every(musico => musico.nombre!=mus.nombre)){
+      banda.musicos.push({nombre: mus.nombre, link: mus.link, anioInic: "", anioFin: "", aparece: false, musico: false});
+      addMusicoBan(mus, i);
+    }
+    i++;
+  }
+  document.querySelector(".tbodyRolesAlb.a"+id).innerHTML="";
+  for(let mus of musicos){
+    document.querySelector(".tbodyRolesAlb.a"+id).innerHTML+=`
     <tr>
       <th><button type="button" class="btn btn-danger eliminar">x</button></th>
-      <td><input type="number" value="${etapa.anioInic}" class="form-control anioInicBan" name="anioInicEtaBan[]" min="1965" max="2023"></td>
-      <td><input type="number" value="${etapa.anioFin}" class="form-control anioFinBan" name="anioFin[]" min="1965" max="2023"></td>
-      <td><select class="form-select" name="tipoEtaBan[]" aria-label="Default select example">
-          <option value="1">Activo</option>
-          <option value="2">Hiato</option>
-        </select>
-      </td>
+      <td><input type="text" value="${mus.nombre}" class="form-control musAlb a${id}" name="musAlb[]"></td>
+      <td><input type="text" value="${mus.roles}" class="form-control rolesMusAlb a${id}" name="rolesMusAlb[]"></td>
     </tr>`;
   }
 }
 
-function addGeneros(generos){
-  tbodyGeneros.innerHTML="";
-  for(let genero of generos){
-    tbodyGeneros.innerHTML+=`
+function addMusicoBan(mus, id){
+  console.log("addMusicoBan")
+  console.log(mus)
+  //Imprimir Músico
+  addNewMusico(banda, mus, id);
+  banda.musicos.map(musico => {if(musico.nombre==mus.nombre) musico.aparece=true;});
+}
+
+function addDiscograficasAlb(discograficas,id){
+  console.log("addDiscograficas")
+  console.log(discograficas)
+  for(let disc of discograficas){
+    if(banda.discograficas.length==0 || banda.discograficas.every(discog => discog.nombre!=disc.nombre)){
+      addDiscograficaBan(disc);
+    }
+  }
+  document.querySelector(".tbodyDiscograficasAlb.a"+id).innerHTML="";
+  for(let disc of discograficas){
+    document.querySelector(".tbodyDiscograficasAlb.a"+id).innerHTML+=`
     <tr>
       <th><button type="button" class="btn btn-danger eliminar">x</button></th>
-      <td><input name="nombreGenBan[]" value="${genero.nombre}" class="form-control nombreGenBan" list="genlist"></td>
-      <td><input name="estrellasGenBan[]" value="${genero.estrellas}" type="number" class="form-control estrellasGenBan" min="0" max="5" value="0"></td>
+      <td><input type="text" value="${disc.nombre}" class="form-control discAlb a${id}" name="discAlb[]"></td>
     </tr>`;
   }
 }
 
-function addTemasLetra(temas){
-  tbodyTemas.innerHTML="";
-  for(let tema of temas){
-    tbodyTemas.innerHTML+=`
+function addDiscograficaBan(disc){
+  banda.discograficas.push({nombre: disc.nombre, imagen: "", estatus: "", pais: "", direccion: "", linkWeb: disc.link});
+  //Imprimir Discográfica
+
+}
+
+function addEstudiosAlb(estudios,id){
+  console.log("addEstudios")
+  console.log(estudios)
+  for(let est of estudios){
+    if(banda.estudios.length==0 || banda.estudios.every(estud => estud.nombre!=est.nombre)){
+      addEstudioBan(est);
+    }
+  }
+  document.querySelector(".tbodyEstudiosAlb.a"+id).innerHTML="";
+  for(let est of estudios){
+    document.querySelector(".tbodyEstudiosAlb.a"+id).innerHTML+=`
     <tr>
       <th><button type="button" class="btn btn-danger eliminar">x</button></th>
-      <td><input type="text" value="${tema.nombre}" class="form-control temaLetra" name="temaLetra[]"></td>
+      <td><input type="text" value="${est.nombre}" class="form-control estAlb a${id}" name="estAlb[]"></td>
     </tr>`;
   }
-} */
+}
 
-//BOTÓN GENERAR PROPUESTA ÁLBUM 
+function addEstudioBan(est){
+  banda.estudios.push({nombre: est.nombre, pais: "", direccion: ""});
+  //Imprimir Estudios
+}
+
+//BOTÓN CARGAR PROPUESTA ÁLBUM 
 btnAlbProp.addEventListener("click",(e)=>{
   e.preventDefault();
   if(albPropText.value.length>0){
@@ -162,10 +260,13 @@ btnAlbProp.addEventListener("click",(e)=>{
       albumes[id].anio = fecha.anio;
       albumes[id].mes = fecha.mes;
       albumes[id].dia = fecha.dia;
-      /* albumes[id].tipo = getTipoAlbMA(txt); //---
-      albumes[id].duracion = getDuracionAlbMA(txt); //---
-      albumes[id].discograficas = getDiscograficasAlbMA(txt); //---
-      albumes[id].estudios = getEstudiosAlbMA(txt); //---
-      albumes[id].musicos = getMusicosAlbMA(txt); //--- */
+      albumes[id].tipo = getTipoAlbMA(txt, id); //---
+      albumes[id].duracion = getDuracionAlbMA(txt, id); //---
+      albumes[id].discograficas = getDiscograficaAlbMA(txt, id); //---
+      albumes[id].musicos = getMusicosAlbMA(txt, id); //--- 
+      albumes[id].estudios = getEstudiosAlbMA(txt, id); //---
+      console.log(banda);
+      console.log(albumes);
   } else alert("Debes incluir contenido HTML");
+  albPropText.value = "";
 });

@@ -26,9 +26,9 @@ let banda = {
   etapas: [{anioInic: 0, anioFin: 0, tipo: ""}],
   generos: [{nombre: "", estrellas: 0}],
   temasLetra: [{nombre: ""}],
-  musicos: [{nombre: "", anioInic: 0, anioFin: 0}],
-  discograficas: [{nombre: "", imagen: "", estatus: "", pais: "", direccion: "", linkWeb: ""}],
-  estudios: [{nombre: "", pais: "", direccion: ""}]
+  musicos: [],
+  discograficas: [],
+  estudios: []
 };
 let albumes = [
   {
@@ -135,17 +135,20 @@ function getMusicosBanMA(txt){
       let link = "";
       index = txt1.indexOf('lineupRow',index)+11;
       index = txt1.indexOf('>',index)+2;
+      let nombre=""; //Nombre
       if(txt1.substring(index,index+1)=="<"){
         index = txt1.indexOf("http",index);
         link = txt1.substring(index,txt1.indexOf('"',index));
+        index = txt1.indexOf("artists/",index)+8;
+        nombre = txt1.substring(index,txt1.indexOf("/",index)).replaceAll("_"," ");
         index = txt1.indexOf(">",index)+1;
-      } 
-      let nombre = txt1.substring(index,txt1.indexOf("<",index));
+      } else nombre = txt1.substring(index,txt1.indexOf("<",index));
+      nombre = decodeURI(nombre);
       index = txt1.indexOf('<td>',index)+4;
       let anios = txt1.substring(index,txt1.indexOf("</td>",index)).trim().split("&nbsp;")[1];
       anios = anios.substring(1,anios.length-1).split(", ");
       for(let anio of anios){
-        result[idx] = {nombre: "", link: "", anioInic: 0, anioFin: 0};
+        result[idx] = {nombre: "", link: "", anioInic: 0, anioFin: 0, aparece: false, musico: true};
         result[idx].nombre = nombre;
         result[idx].link = link;
         result[idx].anioInic = anio.split("-")[0];
@@ -232,7 +235,7 @@ btnGenProp.addEventListener("click",(e)=>{
   generarEnlace();
 });
 
-//BOTÓN GENERAR PROPUESTA BANDA
+//BOTÓN CARGAR PROPUESTA BANDA
 btnBanProp.addEventListener("click",(e)=>{
   e.preventDefault();
   if(banPropText.value.length>0){
@@ -249,4 +252,5 @@ btnBanProp.addEventListener("click",(e)=>{
       banda.temasLetra = getTemasBanMA(txt);
       console.log(banda);
   } else alert("Debes incluir contenido HTML");
+  banPropText.value="";
 });

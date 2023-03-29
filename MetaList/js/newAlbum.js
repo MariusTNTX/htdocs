@@ -18,6 +18,7 @@ function addNewAlbum(band, album, id){
   album.linkamazon = "";
   album.descrip = "";
   albumes[id] = album;
+  console.log(band)
   //-----------------------
   let tbodyAlbumes = document.getElementById("tbodyAlbumes");
   let txt = `
@@ -34,7 +35,7 @@ function addNewAlbum(band, album, id){
           </div>
           <div class="col-12 col-md-4 col-lg-12 col-xl-3 mb-2">
             <div class="more p-0 text-center text-xl-end">
-              <button class="btn btn-primary btnGenProp a${id}" id="a${id}" data-bs-toggle="modal" data-bs-target="#albPropModal">Generar Propuesta</button>
+              <button class="btn btn-primary btnGenPropAlb a${id}" id="a${id}" data-bs-toggle="modal" data-bs-target="#albPropModal">Generar Propuesta</button>
             </div>
           </div>
         </div>
@@ -94,7 +95,7 @@ function addNewAlbum(band, album, id){
                 </div>
                 <div class="col-12 col-sm-6 my-1">
                   <div class="form-floating">
-                    <input type="number" value="${album.duracion}" class="form-control duracAlb a${id}" name="duracAlb[]" placeholder=".">
+                    <input type="text" value="${album.duracion}" class="form-control duracAlb a${id}" name="duracAlb[]" placeholder=".">
                     <label for="duracAlb">Duración</label>
                   </div>
                 </div>
@@ -107,9 +108,14 @@ function addNewAlbum(band, album, id){
                   </div>
                 </div>
                 <div class="col-12 col-sm-6 my-1">
-                  <div class="form-floating">
+                  <div class="form-floating position-relative">
                     <input type="text" value="${album.linkamazon}" class="form-control amazonAlb a${id}" name="amazonAlb[]" placeholder=".">
                     <label for="amazonAlb">Link Amazon</label>
+                    <a class="position-absolute top-50 end-0 translate-middle-y me-3" href="https://www.amazon.es/s?k=${band.replaceAll(" ","+").toLowerCase()}+${album.nombre.replaceAll(" ","+").toLowerCase()}&__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=O6YJGRJX0RNI&sprefix=${band.replaceAll(" ","+").toLowerCase()}+${album.nombre.replaceAll(" ","+").toLowerCase()}%2Caps%2C73&ref=nb_sb_noss" target="_blank">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                      </svg>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -232,7 +238,7 @@ function addNewAlbum(band, album, id){
   tbodyAlbumes.innerHTML+=txt;
 
   /* Generar Propuesta */
-  let btnGenProp = document.querySelectorAll(".card .btnGenProp");
+  let btnGenPropAlb = document.querySelectorAll(".card .btnGenPropAlb");
   let btnAlbProp = document.getElementById("btnAlbProp");
   let albPropText = document.getElementById("albPropText");
   let idPropAlb = document.getElementById("idPropAlb");
@@ -257,7 +263,7 @@ function addNewAlbum(band, album, id){
   let tbodyRolesAlb = document.querySelectorAll(".card .tbodyRolesAlb");
 
   //BOTÓN PRE-MODAL GENERAR PROPUESTA ALBUM
-  for(let btn of btnGenProp){
+  for(let btn of btnGenPropAlb){
     btn.addEventListener("click",(e)=>{
       e.preventDefault();
       let id = e.target.id[1];

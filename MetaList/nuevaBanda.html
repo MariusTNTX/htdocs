@@ -452,7 +452,7 @@
                                             <select class="form-select tipoAlb py-3" name="tipoAlb[]" aria-label="Default select example">
                                               <option value="ESTUDIO" selected>Estudio</option>
                                               <option value="EP">EP</option>
-                                              <option value="LIVE">En Directo</option>
+                                              <option value="LIVE">En Vivo</option>
                                               <option value="RECOPILATORIO">Recopilatorio</option>
                                               <option value="BOXSET">Box Set</option>
                                             </select>
@@ -473,7 +473,7 @@
                                           </div>
                                           <div class="col-12 col-sm-6 my-1">
                                             <div class="form-floating">
-                                              <input type="number" class="form-control duracAlb" name="duracAlb[]" placeholder=".">
+                                              <input type="text" class="form-control duracAlb" name="duracAlb[]" placeholder=".">
                                               <label for="duracAlb">Duración</label>
                                             </div>
                                           </div>
@@ -486,9 +486,14 @@
                                             </div>
                                           </div>
                                           <div class="col-12 col-sm-6 my-1">
-                                            <div class="form-floating">
+                                            <div class="form-floating position-relative">
                                               <input type="text" class="form-control amazonAlb" name="amazonAlb[]" placeholder=".">
                                               <label for="amazonAlb">Link Amazon</label>
+                                              <a class="position-absolute top-50 end-0 translate-middle-y me-3" href="https://www.amazon.es/" target="_blank">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                                  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                                                </svg>
+                                              </a>
                                             </div>
                                           </div>
                                         </div>
@@ -622,86 +627,118 @@
                         <div class="col-12 text-center mb-4">
                           <button type="button" id="addMusicoBan" class="btn btn-success w-50 addMusicoBan anadirMus">Añadir Músico</button>
                         </div>
-                        <div class="col-12 col-md-6 col-xl-4 my-2" id="tbodyMusicos">
-                          <!-- Card -->
-                          <div class="card">
-                            <div class="card-body">
-                              <h5 class="card-title text-center">
-                                Nuevo Músico
-                                <button type="button" class="btn btn-danger ms-2 eliminarMus">x</button>
-                              </h5>
-                              <div class="more p-0 text-center mb-2">
-                                <button class="btn btn-primary btnGenProp" data-bs-toggle="modal" data-bs-target="#musPropModal">Generar Propuesta</button>
+                        <div class="col-12">
+                          <div class="row" id="tbodyMusicos">
+                            <!-- Card -->
+                            <!-- <div class="col-12 col-md-6 col-xl-4 my-2">
+                              <div class="card">
+                                <div class="card-body">
+                                  <h5 class="card-title text-center">
+                                    Nuevo Músico
+                                    <button type="button" class="btn btn-danger ms-2 eliminarMus">x</button>
+                                  </h5>
+                                  <div class="more p-0 text-center mb-2">
+                                    <button class="btn btn-primary btnGenProp" data-bs-toggle="modal" data-bs-target="#musPropModal">Generar Propuesta</button>
+                                  </div>
+                                  <div class="card-text">
+                                    <div class="row">
+                                      <div class="col-6 my-1">
+                                        <div class="form-floating">
+                                          <input type="text" class="form-control nombreMus" name="nombreMus[]" placeholder=".">
+                                          <label for="nombreMus">Nombre</label>
+                                        </div>
+                                      </div>
+                                      <div class="col-6 my-1">
+                                        <select class="form-select py-3" name="sexoMus[]" aria-label="Default select example">
+                                          <option value="H" selected>Hombre</option>
+                                          <option value="M">Mujer</option>
+                                        </select>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-12 my-1">
+                                        <div class="form-floating">
+                                          <input type="text" class="form-control imgMus" name="imgMus[]" placeholder=".">
+                                          <label for="imgMus">Imagen</label>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-12 my-1">
+                                        <p class="text-center fw-bold bg-transparent mb-0">Fecha de Nacimiento</p>
+                                        <div class="row">
+                                          <div class="col-4 form-floating pe-1">
+                                            <input type="number" class="form-control diaNacMus" name="diaNacMus[]" min="0" max="31" placeholder=".">
+                                            <label for="diaNacMus" class="ps-4">Día</label>
+                                          </div>
+                                          <div class="col-4 form-floating px-1">
+                                            <input type="number" class="form-control mesNacMus" name="mesNacMus[]" min="1" max="12" placeholder=".">
+                                            <label for="mesNacMus" class="ps-3">Mes</label>
+                                          </div>
+                                          <div class="col-4 form-floating ps-1">
+                                            <input type="number" class="form-control anioNacMus" name="anioNacMus[]" minlength="4" maxlength="4" placeholder=".">
+                                            <label for="anioNacMus" class="ps-3">Año</label>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-12 my-1">
+                                        <p class="text-center fw-bold bg-transparent mb-0">Fecha de Defunción</p>
+                                        <div class="row">
+                                          <div class="col-4 form-floating pe-1">
+                                            <input type="number" class="form-control diaDefMus" name="diaDefMus[]" min="0" max="31" placeholder=".">
+                                            <label for="diaDefMus" class="ps-4">Día</label>
+                                          </div>
+                                          <div class="col-4 form-floating px-1">
+                                            <input type="number" class="form-control mesDefMus" name="mesDefMus[]" min="1" max="12" placeholder=".">
+                                            <label for="mesDefMus" class="ps-3">Mes</label>
+                                          </div>
+                                          <div class="col-4 form-floating ps-1">
+                                            <input type="number" class="form-control anioDefMus" name="anioDefMus[]" minlength="4" maxlength="4" placeholder=".">
+                                            <label for="anioDefMus" class="ps-3">Año</label>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-6 my-1">
+                                        <div class="form-floating">
+                                          <input type="text" class="form-control paisMus" name="paisMus[]" placeholder=".">
+                                          <label for="paisMus">País</label>
+                                        </div>
+                                      </div>
+                                      <div class="col-6 my-1">
+                                        <div class="form-floating">
+                                          <input type="text" class="form-control origenMus" name="origenMus[]" placeholder=".">
+                                          <label for="origenMus">Origen</label>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="row px-3">
+                                      <table class="table table-sm">
+                                        <thead>
+                                          <tr>
+                                            <th scope="col"><button type="button" class="btn btn-success addEtapaMusBan anadir">+</button></th>
+                                            <th scope="col">Año Inicio</th>
+                                            <th scope="col">Año Fin</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody class="table-group-divider">
+                                          <tr>
+                                            <th><button type="button" class="btn btn-danger eliminar">x</button></th>
+                                            <td><input type="number" class="form-control anioInicMus" name="anioInicMus[]" min="1965" max="2023">
+                                            </td>
+                                            <td><input type="number" class="form-control anioFinMus" name="anioFinMus[]" min="1965" max="2023">
+                                            </td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  </div>
+                                </div>
                               </div>
-                              <div class="card-text">
-                                <div class="row">
-                                  <div class="col-6 my-1">
-                                    <div class="form-floating">
-                                      <input type="text" class="form-control nombreMus" name="nombreMus[]" placeholder=".">
-                                      <label for="nombreMus">Nombre</label>
-                                    </div>
-                                  </div>
-                                  <div class="col-6 my-1">
-                                    <select class="form-select py-3" name="sexoMus[]" aria-label="Default select example">
-                                      <option value="H" selected>Hombre</option>
-                                      <option value="M">Mujer</option>
-                                    </select>
-                                  </div>
-                                </div>
-                                <div class="row">
-                                  <div class="col-12 my-1">
-                                    <div class="form-floating">
-                                      <input type="text" class="form-control imgMus" name="imgMus[]" placeholder=".">
-                                      <label for="imgMus">Imagen</label>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="row">
-                                  <div class="col-6 my-1">
-                                    <label for="fechaNacMus">Fecha Nacim.</label>
-                                    <input type="date" class="form-control fechaNacMus" name="fechaNacMus[]">
-                                  </div>
-                                  <div class="col-6 my-1">
-                                    <label for="fechaDefMus">Fecha Defunción</label>
-                                    <input type="date" class="form-control fechaDefMus" name="fechaDefMus[]">
-                                  </div>
-                                </div>
-                                <div class="row">
-                                  <div class="col-6 my-1">
-                                    <div class="form-floating">
-                                      <input type="text" class="form-control paisMus" name="paisMus[]" placeholder=".">
-                                      <label for="paisMus">País</label>
-                                    </div>
-                                  </div>
-                                  <div class="col-6 my-1">
-                                    <div class="form-floating">
-                                      <input type="text" class="form-control origenMus" name="origenMus[]" placeholder=".">
-                                      <label for="origenMus">Origen</label>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="row px-3">
-                                  <table class="table table-sm">
-                                    <thead>
-                                      <tr>
-                                        <th scope="col"><button type="button" class="btn btn-success addEtapaMusBan anadir">+</button></th>
-                                        <th scope="col">Año Inicio</th>
-                                        <th scope="col">Año Fin</th>
-                                      </tr>
-                                    </thead>
-                                    <tbody class="table-group-divider">
-                                      <tr>
-                                        <th><button type="button" class="btn btn-danger eliminar">x</button></th>
-                                        <td><input type="number" class="form-control anioInicMus" name="anioInicMus[]" min="1965" max="2023">
-                                        </td>
-                                        <td><input type="number" class="form-control anioFinMus" name="anioFinMus[]" min="1965" max="2023">
-                                        </td>
-                                      </tr>
-                                    </tbody>
-                                  </table>
-                                </div>
-                              </div>
-                            </div>
+                            </div> -->
                           </div>
                         </div>
                       </div>
@@ -725,59 +762,63 @@
                         <div class="col-12 text-center mb-4">
                           <button type="button" id="addDiscogBan" class="btn btn-success w-50 addDiscogBan anadirDisc">Añadir Discográfica</button>
                         </div>
-                        <div class="col-12 col-md-6 col-xl-4 my-2" id="tbodyDiscograficas">
-                          <!-- Card -->
-                          <div class="card">
-                            <div class="card-body">
-                              <h5 class="card-title text-center">
-                                Nueva Discográfica
-                                <button type="button" class="btn btn-danger ms-2 eliminarDisc">x</button>
-                              </h5>
-                              <div class="more p-0 text-center mb-2">
-                                <button class="btn btn-primary btnGenProp" data-bs-toggle="modal" data-bs-target="#discPropModal">Generar Propuesta</button>
-                              </div>
-                              <div class="card-text">
-                                <div class="row">
-                                  <div class="col-6 my-1">
-                                    <div class="form-floating">
-                                      <input type="text" class="form-control nombreDisc" name="nombreDisc[]" placeholder=".">
-                                      <label for="nombreDisc">Nombre</label>
+                        <div class="col-12">
+                          <div class="row" id="tbodyDiscograficas">
+                            <!-- Card -->
+                            <div class="col-12 col-md-6 col-xl-4 my-2">
+                              <div class="card">
+                                <div class="card-body">
+                                  <h5 class="card-title text-center">
+                                    Nueva Discográfica
+                                    <button type="button" class="btn btn-danger ms-2 eliminarDisc">x</button>
+                                  </h5>
+                                  <div class="more p-0 text-center mb-2">
+                                    <button class="btn btn-primary btnGenProp" data-bs-toggle="modal" data-bs-target="#discPropModal">Generar Propuesta</button>
+                                  </div>
+                                  <div class="card-text">
+                                    <div class="row">
+                                      <div class="col-6 my-1">
+                                        <div class="form-floating">
+                                          <input type="text" class="form-control nombreDisc" name="nombreDisc[]" placeholder=".">
+                                          <label for="nombreDisc">Nombre</label>
+                                        </div>
+                                      </div>
+                                      <div class="col-6 my-1">
+                                        <select class="form-select py-3" name="estatusDisc[]" aria-label="Default select example">
+                                          <option value="S" selected>En Activo</option>
+                                          <option value="N">Inactivo</option>
+                                        </select>
+                                      </div>
                                     </div>
-                                  </div>
-                                  <div class="col-6 my-1">
-                                    <select class="form-select py-3" name="estatusDisc[]" aria-label="Default select example">
-                                      <option value="S" selected>En Activo</option>
-                                      <option value="N">Inactivo</option>
-                                    </select>
-                                  </div>
-                                </div>
-                                <div class="row">
-                                  <div class="col-12 my-1">
-                                    <div class="form-floating">
-                                      <input type="text" class="form-control imgDisc" name="imgDisc[]" placeholder=".">
-                                      <label for="imgDisc">Imagen</label>
+                                    <div class="row">
+                                      <div class="col-12 my-1">
+                                        <div class="form-floating">
+                                          <input type="text" class="form-control imgDisc" name="imgDisc[]" placeholder=".">
+                                          <label for="imgDisc">Imagen</label>
+                                        </div>
+                                      </div>
                                     </div>
-                                  </div>
-                                </div>
-                                <div class="row">
-                                  <div class="col-12 my-1">
-                                    <div class="form-floating">
-                                      <input type="text" class="form-control webDisc" name="webDisc[]" placeholder=".">
-                                      <label for="webDisc">Página Web</label>
+                                    <div class="row">
+                                      <div class="col-12 my-1">
+                                        <div class="form-floating">
+                                          <input type="text" class="form-control webDisc" name="webDisc[]" placeholder=".">
+                                          <label for="webDisc">Página Web</label>
+                                        </div>
+                                      </div>
                                     </div>
-                                  </div>
-                                </div>
-                                <div class="row">
-                                  <div class="col-6 my-1">
-                                    <div class="form-floating">
-                                      <input type="text" class="form-control paisDisc" name="paisDisc[]" placeholder=".">
-                                      <label for="paisDisc">País</label>
-                                    </div>
-                                  </div>
-                                  <div class="col-6 my-1">
-                                    <div class="form-floating">
-                                      <input type="text" class="form-control direcDisc" name="direcDisc[]" placeholder=".">
-                                      <label for="direcDisc">Dirección</label>
+                                    <div class="row">
+                                      <div class="col-6 my-1">
+                                        <div class="form-floating">
+                                          <input type="text" class="form-control paisDisc" name="paisDisc[]" placeholder=".">
+                                          <label for="paisDisc">País</label>
+                                        </div>
+                                      </div>
+                                      <div class="col-6 my-1">
+                                        <div class="form-floating">
+                                          <input type="text" class="form-control direcDisc" name="direcDisc[]" placeholder=".">
+                                          <label for="direcDisc">Dirección</label>
+                                        </div>
+                                      </div>
                                     </div>
                                   </div>
                                 </div>
@@ -889,6 +930,36 @@
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
             <div class="more pt-0"><button type="button" id="btnAlbProp" class="btn btn-primary">Cargar Propuesta</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Propuesta de Músico -->
+    <div class="modal fade" id="musPropModal" tabindex="-1" aria-labelledby="musPropModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="musPropModalLabel">Propuesta de Músico</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <!-- Enlace a Metallum -->
+            <h3 class="text-center">Enlaces:</h3>
+            <h5 class="text-center mb-4" id="enlacePropMus"></h5>
+            <div class="d-none" id="idPropMus"></div>
+            <!-- Textarea -->
+            <div class="text-center">
+              <div class="form-floating mb-3">
+                <textarea class="form-control" placeholder="." id="musPropText" name="musPropText"
+                  style="height: 206px"></textarea>
+                <label for="musPropText">Contenido HTML</label>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <div class="more pt-0"><button type="button" id="btnMusProp" class="btn btn-primary">Cargar Propuesta</button></div>
           </div>
         </div>
       </div>
@@ -1008,6 +1079,9 @@
   <script src="js/propuestaBanda.js"></script>
   <script src="js/propuestaAlbum.js"></script>
   <script src="js/newAlbum.js"></script>
+  <script src="js/newMusico.js"></script>
+  <script src="js/newDiscografica.js"></script>
+  <script src="js/eliminame.js"></script>
 
 </body>
 
