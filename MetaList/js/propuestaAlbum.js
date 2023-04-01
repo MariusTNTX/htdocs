@@ -4,6 +4,7 @@ function getFechaAlbMA(txt, id){
   index = txt.indexOf("<dd>",index)+4;
   fecha = txt.substring(index,txt.indexOf("<",index)).trim();
   fecha = fecha.split(" ");
+  if(fecha.length==2) fecha.splice(1,0,"th,");
   if(fecha.length>2) fecha[1] = fecha[1].substring(0,fecha[1].length-3);
   if(fecha[1].length==1) fecha[1] = "0"+fecha[1];
   result = {dia: fecha[1], mes: mes[fecha[0]], anio: fecha[2]};
@@ -197,18 +198,19 @@ document.getElementById("btnEstExtr").addEventListener("click",(e)=>{
   } else alert("Debes incluir el nombre de un estudio");
 });
 
-function addMusicosAlb(musicos,id){
+function addMusicosAlb(musicos, id){
   console.log("addMusicosAlb")
   console.log(musicos)
-  let i=0;
+  /* let i=0;
+  banda.musicos.map(mus=>{if(mus.aparece) i++;}); */
   for(let mus of musicos){
     if(mus.roles!="Producer"){
-      banda.musicos.map(musico => {if(musico.nombre==mus.nombre && !musico.aparece) addMusicoBan(musico, i);});
+      banda.musicos.map(musico => {if(musico.nombre==mus.nombre && !musico.aparece) addMusicoBan(musico, idMusico);});
     } else if(banda.musicos.every(musico => musico.nombre!=mus.nombre)){
       banda.musicos.push({nombre: mus.nombre, link: mus.link, etapas: [], aparece: false, musico: false});
-      addMusicoBan(banda.musicos[banda.musicos.length-1], i);
+      addMusicoBan(banda.musicos[banda.musicos.length-1], idMusico);
     }
-    i++;
+    /* i++; */
   }
   document.querySelector(".tbodyRolesAlb.a"+id).innerHTML="";
   for(let mus of musicos){
@@ -224,15 +226,16 @@ function addMusicosAlb(musicos,id){
 function addMusicoBan(mus, id){
   console.log("addMusicoBan")
   console.log(mus)
+  console.log(id)
   //Imprimir Músico
   addNewMusico(banda, mus, id);
   banda.musicos.map(musico => {if(musico.nombre==mus.nombre) musico.aparece=true;});
+  idMusico++;
 }
 
 function addDiscograficasAlb(discograficas,id){
   console.log("addDiscograficas")
   console.log(discograficas)
-  console.log("length: "+discograficas.length)
   for(let i=0; i<discograficas.length; i++){
     if(banda.discograficas.length==0 || banda.discograficas.every(discog => discog.nombre!=discograficas[i].nombre)){
       console.log("addDiscograficasBan - id: "+banda.discograficas.length);

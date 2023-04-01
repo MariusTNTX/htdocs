@@ -55,7 +55,7 @@ var albumes = [
     canciones: [{nombre:"", estrellas: 0}]
   }
 ];
-let musicos = [{nombre: "",imagen: "",sexo: "",fechaNac: "",fechaDef: "",pais: "",origen: ""}];
+var musicos = [{nombre: "",imagen: "",sexo: "",fechaNac: "",fechaDef: "",pais: "",origen: ""}], idMusico=0;
 
 function generarEnlace(){
   let banda = nombreBan.value;
@@ -149,16 +149,22 @@ function getMusicosBanMA(txt){
       nombre = decodeURI(nombre);
       index = txt1.indexOf('<td>',index)+4;
       //Etapas
-      let anios = txt1.substring(index,txt1.indexOf("</td>",index)).trim().split("&nbsp;")[1];
-      anios = anios.substring(1,anios.length-1).split(", ");
-      result[idx] = {nombre: nombre, link: link, etapas: [], aparece: false, musico: true};
-      for(let anio of anios){
-        let inic = anio.split("-")[0], fin="";
-        if(anio.split("-")[1]) fin = anio.split("-")[1];
-        else fin = anio.split("-")[0];
-        if(fin == 'present') fin = "";
-        result[idx].etapas.push({anioInic: inic, anioFin: fin});
+      let roles = txt1.substring(index,txt1.indexOf("</td>",index)).trim();
+      let anios = [];
+      while(roles.search(/(\(19)|(\(20)/)!=-1){
+        let i = roles.search(/(\(19)|(\(20)/);
+        let res = roles.substring(i+1,roles.indexOf(")",i)).replaceAll("present","3000").split(", ");
+        for(let a of res) anios.push(a.split("-"));
+        roles = roles.substring(roles.indexOf(")",i)+1,roles.length);
       }
+      anios = anios.sort();
+      for(let i=0; i<anios.length; i++){
+        if(i+1<anios.length && anios[i+1][0]>=anios[i][0] && anios[i+1][0]<=anios[i][1]) anios[i]=undefined;
+        else if(anios[i][1]==3000) anios[i][1]="";
+      }
+      anios = anios.filter(a => a!=undefined);
+      result[idx] = {nombre: nombre, link: link, etapas: [], aparece: false, musico: true};
+      for(let anio of anios) result[idx].etapas.push({anioInic: anio[0], anioFin: anio[1]});
       idx++;
     } while(index <= txt1.lastIndexOf('lineupRow'));
   }
@@ -204,19 +210,46 @@ function addEtapas(etapas){
 } */
 
 function addTemasLetra(temas){
-  tbodyTemas.innerHTML="";
+  tbodyTemas.innerHTML="", i=0;
   for(let tema of temas){
     tbodyTemas.innerHTML+=`
     <tr>
       <th><button type="button" class="btn btn-danger eliminar">x</button></th>
-      <td><input type="text" value="${tema.nombre}" class="form-control temaLetra" name="temaLetra[]"></td>
+      <td><input type="text" value="${tema.nombre}" class="form-control temaLetra t${i}" name="temaLetra[]"></td>
     </tr>`;
+    i++;
   }
 }
 
 function addAlbumes(albumes){
   tbodyAlbumes.innerHTML="";
   for(let i=0; i<albumes.length; i++) addNewAlbum(nombreBan.value,albumes[i],i);
+}
+
+async function traducir(txt){
+  let response = await fetch(`https://api.mymemory.translated.net/get?q=${txt}&langpair=en|es`);
+  response = await response.json();
+  return Promise.resolve(response);
+}
+
+function traducirInfoBanda(pais, origen, temas){
+  let txt = pais+"_-_"+origen;
+  for(let tema of temas){
+    txt += "_-_"+tema.nombre;
+  }
+  console.log("Traducir:")
+  console.log(txt);
+  traducir(txt).then(data => {
+    txt = data.responseData.translatedText.split("_-_");
+    banda.info.pais = txt.shift();
+    document.getElementById("paisBan").value = banda.info.pais;
+    banda.info.origen = txt.shift();
+    document.getElementById("origenBan").value = banda.info.origen;
+    for(let i=0; i<txt.length; i++){
+      banda.temasLetra.push({nombre: txt[i]});
+      document.querySelector(".temaLetra.t"+i).value=txt[i];
+    }
+  }).catch(error => alert("Error en la tradución de información de la banda"));
 }
 
 //BOTÓN BUSCAR BANDA
@@ -244,15 +277,16 @@ btnBanProp.addEventListener("click",(e)=>{
   if(banPropText.value.length>0){
       let txt = banPropText.value;
       banda.info.nombre = nombreBan.value;
-      banda.info.pais = getPaisBanMA(txt);
-      banda.info.origen = getOrigenBanMA(txt);
+      /* banda.info.pais = getPaisBanMA(txt); //---
+      banda.info.origen = getOrigenBanMA(txt); //--- */
       banda.info.imagen = getImagenBanMA(txt);
       banda.info.estatus = getEstatusBanMA(txt);
       banda.info.linkWeb = getWebBanMA(txt);
       banda.info.linkSpotify = getSpotifyBanMA(txt);
       banda.etapas = getEtapasBanMA(txt);
       banda.musicos = getMusicosBanMA(txt);
-      banda.temasLetra = getTemasBanMA(txt);
+      /* banda.temasLetra = getTemasBanMA(txt); //--- */
+      traducirInfoBanda(getPaisBanMA(txt), getOrigenBanMA(txt), getTemasBanMA(txt));
       console.log(banda);
   } else alert("Debes incluir contenido HTML");
   banPropText.value="";

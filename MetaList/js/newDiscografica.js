@@ -1,4 +1,6 @@
-function generarEnlaceDisc(disc, link){
+function generarEnlaceDisc(disc){
+  let link = "";
+  banda.discograficas.map(dis=>{if(dis.nombre==disc) link = dis.linkWeb;});
   if(link.length>0){
     document.getElementById("enlacePropDisc").innerHTML = `<a href="${link}" target="_blank">Metallum - ${disc}</a>`;
   }
@@ -10,7 +12,6 @@ function getEstatusDiscMA(txt, id){
   index = txt.indexOf('>',index)+1;
   let estatus = txt.substring(index,txt.indexOf('<',index));
   estatus = (estatus == "active") ? "active" : "inactive";
-  console.log("getEstatusDiscMA: "+estatus);
   if(estatus=="active"){
     document.querySelector(".estatusDisc.a"+id).children[1].removeAttribute("selected");
     document.querySelector(".estatusDisc.a"+id).children[0].setAttribute("selected","true");
@@ -25,7 +26,6 @@ function getImagenDiscMA(txt, id){
   let index = txt.indexOf("label_img");
   index = txt.indexOf('<img src="',index)+10;
   document.querySelector(".imgDisc.a"+id).setAttribute("value",txt.substring(index,txt.indexOf('"',index)));
-  console.log("getImagenDiscMA: "+txt.substring(index,txt.indexOf('"',index)));
   return txt.substring(index,txt.indexOf('"',index));
 }
 
@@ -38,7 +38,6 @@ function getWebDiscMA(txt, id){
       result = txt.substring(index,txt.indexOf('"',index));
     }
   }
-  console.log("getWebDiscMA: "+result);
   document.querySelector(".webDisc.a"+id).setAttribute("value",result);
   return result;
 }
@@ -46,11 +45,9 @@ function getWebDiscMA(txt, id){
 function getPaisDiscMA(txt, id){
   let index = txt.indexOf("Country:");
   index = txt.indexOf('<dd>',index)+4;
-  console.log("getPaisDiscMA 1: "+txt.charAt(index))
   if(txt.charAt(index)=="<"){
     index = txt.indexOf(">",index)+1;
     document.querySelector(".paisDisc.a"+id).setAttribute("value",txt.substring(index,txt.indexOf('<',index)));
-    console.log("getPaisDiscMA 2: "+txt.substring(index,txt.indexOf('<',index)));
     return txt.substring(index,txt.indexOf('<',index));
   } else return "";
 }
@@ -63,7 +60,6 @@ function getOrigenDiscMA(txt, id){
     if(origen.includes("<br>")){
       origen = origen.split("<br>");
       result = origen[0].trim()+", "+origen[1].trim();
-      console.log("getOrigenDiscMA: "+result);
     } else result = origen.trim();
   }
   document.querySelector(".direcDisc.a"+id).setAttribute("value",result);
@@ -155,7 +151,7 @@ function addNewDiscografica(band, discografica, id){
       e.preventDefault();
       let id = e.target.id[1];
       idPropDisc.innerHTML = id;
-      generarEnlaceDisc(nombreDisc[id].value, discografica.link);
+      generarEnlaceDisc(nombreDisc[id].value);
     });
   }
 }
