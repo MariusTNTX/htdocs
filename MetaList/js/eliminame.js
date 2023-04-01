@@ -1814,7 +1814,7 @@ $(document).ready(function() {
 
 
 document.getElementById("albPropText").value=`<html xmlns="http://www.w3.org/1999/xhtml"><head>
-<title>Eluveitie - Evocation II - Pantheon - Encyclopaedia Metallum: The Metal Archives</title>
+<title>Eluveitie - Spirit - Encyclopaedia Metallum: The Metal Archives</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta content="width=device-width, initial-scale=1" name="viewport">
 <link rel="stylesheet" type="text/css" href="/min/index.php?g=css">
@@ -1865,7 +1865,7 @@ document.getElementById("albPropText").value=`<html xmlns="http://www.w3.org/199
 <label>Search:</label><br>
 <input name="searchString" type="text" id="searchQueryBox" size="25" value="" tabindex="1">
 <select name="type" tabindex="2">
-<option value="band_name">Band name</option>
+<option value="band_name" selected="selected">Band name</option>
 <option value="band_genre">Music genre</option>
 <option value="band_themes">Themes</option>
 <option value="album_title">Album title</option>
@@ -1876,7 +1876,7 @@ document.getElementById("albPropText").value=`<html xmlns="http://www.w3.org/199
 <option value="google">Google</option>
 </select>
 <br>
-<a href="https://www.metal-archives.com/search/advanced/?searchString=&amp;type=" class="float_left" tabindex="4">Advanced search</a>
+<a href="https://www.metal-archives.com/search/advanced/?searchString=&amp;type=band_name" class="float_left" tabindex="4">Advanced search</a>
 <button type="submit" class="btn_submit float_right" tabindex="3">Submit</button>
 </div>
 </form>
@@ -1894,8 +1894,8 @@ document.getElementById("albPropText").value=`<html xmlns="http://www.w3.org/199
 <li><a href="https://www.metal-archives.com/content/tools">Add-ons</a></li>
 </ul>
 </div>
-</div>
- <div id="left_col">
+ </div>
+<div id="left_col">
 <div id="member_box">
 <form name="login_form" id="login_form" action="https://www.metal-archives.com/authentication/login" method="post">
 <div>
@@ -1903,7 +1903,7 @@ document.getElementById("albPropText").value=`<html xmlns="http://www.w3.org/199
 <input type="text" name="loginUsername">
 <label>Password</label><br>
 <input type="password" name="loginPassword">
-<input type="hidden" name="origin" value="/albums/Eluveitie/Evocation_II_-_Pantheon/655485">
+<input type="hidden" name="origin" value="/albums/eluveitie/spirit">
 <button type="submit" class="btn_login float_right">Login</button>
 </div>
 </form>
@@ -1966,7 +1966,7 @@ Labels
 	}
 	
 	function makeChildVersion() {
-		var releaseId = 655485;
+		var releaseId = 105454;
 		var newParentId = prompt("Make a child of which album ID?");
 		
 		if(newParentId != null) {
@@ -1986,7 +1986,7 @@ Labels
 						$.post(URL_SITE + 'release/ajax-make-child/json/1', params, function(result) {
 							$('.loading').hide();
 							if(result.success) {
-								location.href = "https://www.metal-archives.com/albums/Eluveitie/Evocation_II_-_Pantheon/655485";
+								location.href = "https://www.metal-archives.com/albums/Eluveitie/Spirit/105454";
 							}
 							else {
 								alert("An error occurred: " + result.error);
@@ -2005,10 +2005,10 @@ Labels
 </script>
 <div id="album_sidebar">
 <a href="https://www.metal-archives.com/bands/Eluveitie/13991#band_tab_discography">Eluveitie</a>
-&gt; Evocation II - Pantheon
+&gt; Spirit
 
 <div class="album_img">
-<a class="image" id="cover" title="Eluveitie - Evocation II - Pantheon" href="https://www.metal-archives.com/images/6/5/5/4/655485.jpg?4347"><img src="https://www.metal-archives.com/images/6/5/5/4/655485.jpg?4347" title="Click to zoom" alt="Eluveitie - Evocation II - Pantheon" border="0"></a>
+<a class="image" id="cover" title="Eluveitie - Spirit" href="https://www.metal-archives.com/images/1/0/5/4/105454.jpg?3724"><img src="https://www.metal-archives.com/images/1/0/5/4/105454.jpg?3724" title="Click to zoom" alt="Eluveitie - Spirit" border="0"></a>
 </div>
 
 <div id="affiliation-links">
@@ -2016,22 +2016,22 @@ Labels
 <br>
 <ul id="buyLinks" class="menu_style_5">
 <li>
-<a target="_blank" href="https://www.metal-archives.com/affiliate/?pid=29&amp;rid=655485">eBay</a>
+<a target="_blank" href="https://www.metal-archives.com/affiliate/?pid=29&amp;rid=105454">eBay</a>
 more... <a href="#more" onclick="if (!window.__cfRLUnblockHandlers) return false; $('#sub29').toggle(); return false;">&gt;&gt;</a><br>
 <ul id="sub29" style="display: none; margin-top: 0px; margin-bottom: 0px;">
-<li><a target="_blank" href="https://www.metal-archives.com/affiliate/?pid=23&amp;rid=655485">eBay Canada</a></li>
-<li><a target="_blank" href="https://www.metal-archives.com/affiliate/?pid=25&amp;rid=655485">eBay UK</a></li>
-<li><a target="_blank" href="https://www.metal-archives.com/affiliate/?pid=58&amp;rid=655485">eBay Germany</a></li>
-<li><a target="_blank" href="https://www.metal-archives.com/affiliate/?pid=24&amp;rid=655485">eBay France</a></li>
-<li><a target="_blank" href="https://www.metal-archives.com/affiliate/?pid=37&amp;rid=655485">eBay Spain</a></li>
-<li><a target="_blank" href="https://www.metal-archives.com/affiliate/?pid=35&amp;rid=655485">eBay Belgium</a></li>
-<li><a target="_blank" href="https://www.metal-archives.com/affiliate/?pid=26&amp;rid=655485">eBay Netherlands</a></li>
-<li><a target="_blank" href="https://www.metal-archives.com/affiliate/?pid=27&amp;rid=655485">eBay Italy</a></li>
-<li><a target="_blank" href="https://www.metal-archives.com/affiliate/?pid=28&amp;rid=655485">eBay Australia</a></li>
+<li><a target="_blank" href="https://www.metal-archives.com/affiliate/?pid=23&amp;rid=105454">eBay Canada</a></li>
+<li><a target="_blank" href="https://www.metal-archives.com/affiliate/?pid=25&amp;rid=105454">eBay UK</a></li>
+<li><a target="_blank" href="https://www.metal-archives.com/affiliate/?pid=58&amp;rid=105454">eBay Germany</a></li>
+<li><a target="_blank" href="https://www.metal-archives.com/affiliate/?pid=24&amp;rid=105454">eBay France</a></li>
+<li><a target="_blank" href="https://www.metal-archives.com/affiliate/?pid=37&amp;rid=105454">eBay Spain</a></li>
+<li><a target="_blank" href="https://www.metal-archives.com/affiliate/?pid=35&amp;rid=105454">eBay Belgium</a></li>
+<li><a target="_blank" href="https://www.metal-archives.com/affiliate/?pid=26&amp;rid=105454">eBay Netherlands</a></li>
+<li><a target="_blank" href="https://www.metal-archives.com/affiliate/?pid=27&amp;rid=105454">eBay Italy</a></li>
+<li><a target="_blank" href="https://www.metal-archives.com/affiliate/?pid=28&amp;rid=105454">eBay Australia</a></li>
 </ul>
 </li>
 <li>
-<a target="_blank" href="https://www.metal-archives.com/affiliate/?pid=60&amp;id=1186426&amp;rid=655485">Music Megastore</a>
+<a target="_blank" href="https://www.metal-archives.com/affiliate/?pid=53&amp;id=978823&amp;rid=105454">No Remorse</a>
 </li>
 </ul>
 </div>
@@ -2046,34 +2046,33 @@ more... <a href="#more" onclick="if (!window.__cfRLUnblockHandlers) return false
 <th colspan="4"><span>Eluveitie</span> discography (main)</th>
 </tr>
 <tr class="prevNext">
-<td class="arrows"><a href="https://www.metal-archives.com/albums/Eluveitie/Origins/411515" title="Origins (Full-length)">&lt;</a> </td>
+<td class="arrows"> </td>
 <td class="prev">
-<a href="https://www.metal-archives.com/albums/Eluveitie/Origins/411515" title="Origins (Full-length)">Origins</a><br>(2014)
 </td>
 <td class="next">
-<a href="https://www.metal-archives.com/albums/Eluveitie/Ategnatos/759829" title="Ategnatos (Full-length)">Ategnatos</a><br>(2019)
+<a href="https://www.metal-archives.com/albums/Eluveitie/Slania/176461" title="Slania (Full-length)">Slania</a><br>(2008)
 </td>
-<td class="arrows"><a href="https://www.metal-archives.com/albums/Eluveitie/Ategnatos/759829" title="Ategnatos (Full-length)">&gt;</a> </td>
+<td class="arrows"><a href="https://www.metal-archives.com/albums/Eluveitie/Slania/176461" title="Slania (Full-length)">&gt;</a> </td>
 </tr>
 <tr>
 <th colspan="4"><span>Eluveitie</span> discography (all)</th>
 </tr>
 <tr class="prevNext">
-<td class="arrows"><a href="https://www.metal-archives.com/albums/Eluveitie/Lvgvs/663199" title="Lvgvs (Single)">&lt;</a> </td>
+<td class="arrows"><a href="https://www.metal-archives.com/albums/Eluveitie/V%C3%AAn/62633" title="Vên (EP)">&lt;</a> </td>
 <td class="prev">
-<a href="https://www.metal-archives.com/albums/Eluveitie/Lvgvs/663199" title="Lvgvs (Single)">Lvgvs</a><br>(2017)
+<a href="https://www.metal-archives.com/albums/Eluveitie/V%C3%AAn/62633" title="Vên (EP)">Vên</a><br>(2004)
 </td>
 <td class="next">
-<a href="https://www.metal-archives.com/albums/Eluveitie/Rebirth/677937" title="Rebirth (Single)">Rebirth</a><br>(2017)
+<a href="https://www.metal-archives.com/albums/Eluveitie/Slania/176461" title="Slania (Full-length)">Slania</a><br>(2008)
 </td>
-<td class="arrows"><a href="https://www.metal-archives.com/albums/Eluveitie/Rebirth/677937" title="Rebirth (Single)">&gt;</a> </td>
+<td class="arrows"><a href="https://www.metal-archives.com/albums/Eluveitie/Slania/176461" title="Slania (Full-length)">&gt;</a> </td>
 </tr>
 </tbody></table>
 </div>
 <div id="album_content">
 <div class="tool_strip right">
 <ul>
-<li><a title="Report a mistake or additional information for this page" href="javascript:popupReportDialog(4, 655485);" class="btn_report_error writeAction"> </a></li>
+<li><a title="Report a mistake or additional information for this page" href="javascript:popupReportDialog(4, 105454);" class="btn_report_error writeAction"> </a></li>
 <li>
 <a href="https://www.metal-archives.com/bands/Eluveitie/13991" title="Back to Eluveitie" class="btn_back"> </a>
 </li>
@@ -2082,7 +2081,7 @@ more... <a href="#more" onclick="if (!window.__cfRLUnblockHandlers) return false
 
 <div id="album_info">
 
-<h1 class="album_name"><a href="https://www.metal-archives.com/albums/Eluveitie/Evocation_II_-_Pantheon/655485">Evocation II - Pantheon</a></h1>
+<h1 class="album_name"><a href="https://www.metal-archives.com/albums/Eluveitie/Spirit/105454">Spirit</a></h1>
 <h2 class="band_name">
 <a href="https://www.metal-archives.com/bands/Eluveitie/13991">Eluveitie</a>
 </h2>
@@ -2095,18 +2094,20 @@ more... <a href="#more" onclick="if (!window.__cfRLUnblockHandlers) return false
 <dt>Type:</dt>
 <dd>Full-length</dd>
 <dt>Release date:</dt>
-<dd>August 18th, 2017</dd>
+<dd>June 1st, 2006</dd>
 <dt>Catalog ID:</dt>
-<dd>NB 3860-2 / 27361 38602</dd>
+<dd>FD023</dd>
+<dt>Version desc.:</dt>
+<dd>Slipcase</dd>
 </dl>
 <dl class="float_right">
 <dt>Label:</dt>
-<dd><a href="https://www.metal-archives.com/labels/Nuclear_Blast/2#label_tabs_albums">Nuclear Blast</a></dd>
+<dd><a href="https://www.metal-archives.com/labels/Fear_Dark_Records/526#label_tabs_albums">Fear Dark Records</a></dd>
 <dt>Format:</dt>
 <dd>CD</dd>
 <dt>Reviews:</dt>
 <dd>
-1 <a href="https://www.metal-archives.com/reviews/Eluveitie/Evocation_II_-_Pantheon/655485/">review</a> (avg. 65%)
+7 <a href="https://www.metal-archives.com/reviews/Eluveitie/Spirit/105454/">reviews</a> (avg. 86%)
 </dd>
 </dl>
 </div>
@@ -2114,7 +2115,7 @@ more... <a href="#more" onclick="if (!window.__cfRLUnblockHandlers) return false
 <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role="tablist">
 <li class="ui-state-default ui-corner-top ui-tabs-active ui-state-active" role="tab" tabindex="0" aria-controls="album_tabs_tracklist" aria-labelledby="ui-id-1" aria-selected="true"><a href="#album_tabs_tracklist" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-1">Songs</a></li>
 <li class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="album_tabs_lineup" aria-labelledby="ui-id-2" aria-selected="false"><a href="#album_tabs_lineup" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-2">Lineup</a></li>
-<li class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="ui-tabs-1" aria-labelledby="ui-id-3" aria-selected="false"><a href="https://www.metal-archives.com/release/ajax-versions/current/655485/parent/655485" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-3">Other versions</a></li> <li class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="album_tabs_reviews" aria-labelledby="ui-id-4" aria-selected="false"><a href="#album_tabs_reviews" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-4">Reviews</a></li> <li class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="album_tabs_notes" aria-labelledby="ui-id-5" aria-selected="false"><a href="#album_tabs_notes" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-5">Additional notes</a></li> </ul>
+<li class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="ui-tabs-1" aria-labelledby="ui-id-3" aria-selected="false"><a href="https://www.metal-archives.com/release/ajax-versions/current/105454/parent/105454" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-3">Other versions</a></li> <li class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="album_tabs_reviews" aria-labelledby="ui-id-4" aria-selected="false"><a href="#album_tabs_reviews" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-4">Reviews</a></li> <li class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="album_tabs_notes" aria-labelledby="ui-id-5" aria-selected="false"><a href="#album_tabs_notes" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-5">Additional notes</a></li> </ul>
 
 <div id="album_tabs_tracklist" class="ui-tabs-hide ui-tabs-panel ui-widget-content ui-corner-bottom" aria-labelledby="ui-id-1" role="tabpanel" aria-expanded="true" aria-hidden="false">
 <div id="album_songs" class="tabs2lvl">
@@ -2143,260 +2144,163 @@ function toggleLyrics(songId) {
 <table class="display table_lyrics" cellpadding="0" cellspacing="0">
 <tbody>
 <tr class="even">
-<td width="20"><a name="4258797" class="anchor"> </a>1.</td>
+<td width="20"><a name="762835" class="anchor"> </a>1.</td>
 <td class="wrapWords">
-Dvreððv
+Spirit
 </td>
-<td align="right">01:23</td>
+<td align="right">02:32</td>
 <td nowrap="nowrap">&nbsp;
-<a id="lyricsButton4258797" href="#4258797" onclick="if (!window.__cfRLUnblockHandlers) return false; toggleLyrics('4258797'); return false;">Show lyrics</a>
+<a id="lyricsButton762835" href="#762835" onclick="if (!window.__cfRLUnblockHandlers) return false; toggleLyrics('762835'); return false;">Show lyrics</a>
 </td>
 </tr>
-<tr id="song4258797" class="displayNone" height="0">
+<tr id="song762835" class="displayNone" height="0">
 <td>&nbsp;</td>
-<td colspan="3" id="lyrics_4258797">(loading lyrics...)</td>
+<td colspan="3" id="lyrics_762835">(loading lyrics...)</td>
 </tr>
 <tr class="odd">
-<td width="20"><a name="4258798" class="anchor"> </a>2.</td>
+<td width="20"><a name="762836" class="anchor"> </a>2.</td>
 <td class="wrapWords">
-Epona
+Uis Elveti
 </td>
-<td align="right">03:47</td>
+<td align="right">04:24</td>
 <td nowrap="nowrap">&nbsp;
-<a id="lyricsButton4258798" href="#4258798" onclick="if (!window.__cfRLUnblockHandlers) return false; toggleLyrics('4258798'); return false;">Show lyrics</a>
+<a id="lyricsButton762836" href="#762836" onclick="if (!window.__cfRLUnblockHandlers) return false; toggleLyrics('762836'); return false;">Show lyrics</a>
 </td>
 </tr>
-<tr id="song4258798" class="displayNone" height="0">
+<tr id="song762836" class="displayNone" height="0">
 <td>&nbsp;</td>
-<td colspan="3" id="lyrics_4258798">(loading lyrics...)</td>
+<td colspan="3" id="lyrics_762836">(loading lyrics...)</td>
 </tr>
 <tr class="even">
-<td width="20"><a name="4258799" class="anchor"> </a>3.</td>
+<td width="20"><a name="762837" class="anchor"> </a>3.</td>
 <td class="wrapWords">
-Svcellos II (Seqvel)
-</td>
-<td align="right">01:28</td>
-<td nowrap="nowrap">&nbsp;
-<a id="lyricsButton4258799" href="#4258799" onclick="if (!window.__cfRLUnblockHandlers) return false; toggleLyrics('4258799'); return false;">Instrumental</a>
-</td>
-</tr>
-<tr id="song4258799" class="displayNone" height="0">
-<td>&nbsp;</td>
-<td colspan="3" id="lyrics_4258799">(loading lyrics...)</td>
-</tr>
-<tr class="odd">
-<td width="20"><a name="4258800" class="anchor"> </a>4.</td>
-<td class="wrapWords">
-Nantosvelta
-</td>
-<td align="right">02:45</td>
-<td nowrap="nowrap">&nbsp;
-<a id="lyricsButton4258800" href="#4258800" onclick="if (!window.__cfRLUnblockHandlers) return false; toggleLyrics('4258800'); return false;">Show lyrics</a>
-</td>
-</tr>
-<tr id="song4258800" class="displayNone" height="0">
-<td>&nbsp;</td>
-<td colspan="3" id="lyrics_4258800">(loading lyrics...)</td>
-</tr>
-<tr class="even">
-<td width="20"><a name="4258801" class="anchor"> </a>5.</td>
-<td class="wrapWords">
-Tovtatis
-</td>
-<td align="right">01:05</td>
-<td nowrap="nowrap">&nbsp;
-<a id="lyricsButton4258801" href="#4258801" onclick="if (!window.__cfRLUnblockHandlers) return false; toggleLyrics('4258801'); return false;">Show lyrics</a>
-</td>
-</tr>
-<tr id="song4258801" class="displayNone" height="0">
-<td>&nbsp;</td>
-<td colspan="3" id="lyrics_4258801">(loading lyrics...)</td>
-</tr>
-<tr class="odd">
-<td width="20"><a name="4258802" class="anchor"> </a>6.</td>
-<td class="wrapWords">
-Lvgvs
-</td>
-<td align="right">04:16</td>
-<td nowrap="nowrap">&nbsp;
-<a id="lyricsButton4258802" href="#4258802" onclick="if (!window.__cfRLUnblockHandlers) return false; toggleLyrics('4258802'); return false;">Show lyrics</a>
-</td>
-</tr>
-<tr id="song4258802" class="displayNone" height="0">
-<td>&nbsp;</td>
-<td colspan="3" id="lyrics_4258802">(loading lyrics...)</td>
-</tr>
-<tr class="even">
-<td width="20"><a name="4258803" class="anchor"> </a>7.</td>
-<td class="wrapWords">
-Grannos
-</td>
-<td align="right">03:23</td>
-<td nowrap="nowrap">&nbsp;
-<em>instrumental</em>
-</td>
-</tr>
-<tr id="song4258803" class="displayNone" height="0">
-<td>&nbsp;</td>
-<td colspan="3" id="lyrics_4258803">(loading lyrics...)</td>
-</tr>
-<tr class="odd">
-<td width="20"><a name="4258804" class="anchor"> </a>8.</td>
-<td class="wrapWords">
-Cernvnnos
-</td>
-<td align="right">02:54</td>
-<td nowrap="nowrap">&nbsp;
-<a id="lyricsButton4258804" href="#4258804" onclick="if (!window.__cfRLUnblockHandlers) return false; toggleLyrics('4258804'); return false;">Show lyrics</a>
-</td>
-</tr>
-<tr id="song4258804" class="displayNone" height="0">
-<td>&nbsp;</td>
-<td colspan="3" id="lyrics_4258804">(loading lyrics...)</td>
-</tr>
-<tr class="even">
-<td width="20"><a name="4258805" class="anchor"> </a>9.</td>
-<td class="wrapWords">
-Catvrix
-</td>
-<td align="right">02:44</td>
-<td nowrap="nowrap">&nbsp;
-<a id="lyricsButton4258805" href="#4258805" onclick="if (!window.__cfRLUnblockHandlers) return false; toggleLyrics('4258805'); return false;">Show lyrics</a>
-</td>
-</tr>
-<tr id="song4258805" class="displayNone" height="0">
-<td>&nbsp;</td>
-<td colspan="3" id="lyrics_4258805">(loading lyrics...)</td>
-</tr>
-<tr class="odd">
-<td width="20"><a name="4258806" class="anchor"> </a>10.</td>
-<td class="wrapWords">
-Artio
+Your Gaulish War
 </td>
 <td align="right">05:11</td>
 <td nowrap="nowrap">&nbsp;
-<a id="lyricsButton4258806" href="#4258806" onclick="if (!window.__cfRLUnblockHandlers) return false; toggleLyrics('4258806'); return false;">Show lyrics</a>
+<a id="lyricsButton762837" href="#762837" onclick="if (!window.__cfRLUnblockHandlers) return false; toggleLyrics('762837'); return false;">Show lyrics</a>
 </td>
 </tr>
-<tr id="song4258806" class="displayNone" height="0">
+<tr id="song762837" class="displayNone" height="0">
 <td>&nbsp;</td>
-<td colspan="3" id="lyrics_4258806">(loading lyrics...)</td>
+<td colspan="3" id="lyrics_762837">(loading lyrics...)</td>
+</tr>
+<tr class="odd">
+<td width="20"><a name="762838" class="anchor"> </a>4.</td>
+<td class="wrapWords">
+Of Fire, Wind &amp; Wisdom
+</td>
+<td align="right">03:05</td>
+<td nowrap="nowrap">&nbsp;
+<a id="lyricsButton762838" href="#762838" onclick="if (!window.__cfRLUnblockHandlers) return false; toggleLyrics('762838'); return false;">Show lyrics</a>
+</td>
+</tr>
+<tr id="song762838" class="displayNone" height="0">
+<td>&nbsp;</td>
+<td colspan="3" id="lyrics_762838">(loading lyrics...)</td>
 </tr>
 <tr class="even">
-<td width="20"><a name="4258807" class="anchor"> </a>11.</td>
+<td width="20"><a name="762839" class="anchor"> </a>5.</td>
 <td class="wrapWords">
-Aventia
+Aidû
 </td>
-<td align="right">03:30</td>
+<td align="right">03:10</td>
+<td nowrap="nowrap">&nbsp;
+<a id="lyricsButton762839" href="#762839" onclick="if (!window.__cfRLUnblockHandlers) return false; toggleLyrics('762839'); return false;">Show lyrics</a>
+</td>
+</tr>
+<tr id="song762839" class="displayNone" height="0">
+<td>&nbsp;</td>
+<td colspan="3" id="lyrics_762839">(loading lyrics...)</td>
+</tr>
+<tr class="odd">
+<td width="20"><a name="762840" class="anchor"> </a>6.</td>
+<td class="wrapWords">
+The Song of Life
+</td>
+<td align="right">04:01</td>
+<td nowrap="nowrap">&nbsp;
+<a id="lyricsButton762840" href="#762840" onclick="if (!window.__cfRLUnblockHandlers) return false; toggleLyrics('762840'); return false;">Show lyrics</a>
+</td>
+</tr>
+<tr id="song762840" class="displayNone" height="0">
+<td>&nbsp;</td>
+<td colspan="3" id="lyrics_762840">(loading lyrics...)</td>
+</tr>
+<tr class="even">
+<td width="20"><a name="762841" class="anchor"> </a>7.</td>
+<td class="wrapWords">
+Tegernakô
+</td>
+<td align="right">06:42</td>
+<td nowrap="nowrap">&nbsp;
+<a id="lyricsButton762841" href="#762841" onclick="if (!window.__cfRLUnblockHandlers) return false; toggleLyrics('762841'); return false;">Show lyrics</a>
+</td>
+</tr>
+<tr id="song762841" class="displayNone" height="0">
+<td>&nbsp;</td>
+<td colspan="3" id="lyrics_762841">(loading lyrics...)</td>
+</tr>
+<tr class="odd">
+<td width="20"><a name="762842" class="anchor"> </a>8.</td>
+<td class="wrapWords">
+Siraxta
+</td>
+<td align="right">05:39</td>
+<td nowrap="nowrap">&nbsp;
+<a id="lyricsButton762842" href="#762842" onclick="if (!window.__cfRLUnblockHandlers) return false; toggleLyrics('762842'); return false;">Show lyrics</a>
+</td>
+</tr>
+<tr id="song762842" class="displayNone" height="0">
+<td>&nbsp;</td>
+<td colspan="3" id="lyrics_762842">(loading lyrics...)</td>
+</tr>
+
+<tr class="even">
+<td width="20"><a name="762843" class="anchor"> </a>9.</td>
+<td class="wrapWords">
+The Dance of Victory
+</td>
+<td align="right">05:24</td>
+<td nowrap="nowrap">&nbsp;
+<a id="lyricsButton762843" href="#762843" onclick="if (!window.__cfRLUnblockHandlers) return false; toggleLyrics('762843'); return false;">Show lyrics</a>
+</td>
+</tr>
+<tr id="song762843" class="displayNone" height="0">
+<td>&nbsp;</td>
+<td colspan="3" id="lyrics_762843">(loading lyrics...)</td>
+</tr>
+<tr class="odd">
+<td width="20"><a name="762844" class="anchor"> </a>10.</td>
+<td class="wrapWords">
+The Endless Knot
+</td>
+<td align="right">06:58</td>
+<td nowrap="nowrap">&nbsp;
+<a id="lyricsButton762844" href="#762844" onclick="if (!window.__cfRLUnblockHandlers) return false; toggleLyrics('762844'); return false;">Show lyrics</a>
+</td>
+</tr>
+<tr id="song762844" class="displayNone" height="0">
+<td>&nbsp;</td>
+<td colspan="3" id="lyrics_762844">(loading lyrics...)</td>
+</tr>
+<tr class="even">
+<td width="20"><a name="762845" class="anchor"> </a>11.</td>
+<td class="wrapWords">
+AnDro
+</td>
+<td align="right">03:41</td>
 <td nowrap="nowrap">&nbsp;
 <em>instrumental</em>
 </td>
 </tr>
-<tr id="song4258807" class="displayNone" height="0">
+<tr id="song762845" class="displayNone" height="0">
 <td>&nbsp;</td>
-<td colspan="3" id="lyrics_4258807">(loading lyrics...)</td>
-</tr>
-<tr class="odd">
-<td width="20"><a name="4258808" class="anchor"> </a>12.</td>
-<td class="wrapWords">
-Ogmios
-</td>
-<td align="right">03:13</td>
-<td nowrap="nowrap">&nbsp;
-<a id="lyricsButton4258808" href="#4258808" onclick="if (!window.__cfRLUnblockHandlers) return false; toggleLyrics('4258808'); return false;">Show lyrics</a>
-</td>
-</tr>
-<tr id="song4258808" class="displayNone" height="0">
-<td>&nbsp;</td>
-<td colspan="3" id="lyrics_4258808">(loading lyrics...)</td>
-</tr>
-<tr class="even">
-<td width="20"><a name="4258809" class="anchor"> </a>13.</td>
-<td class="wrapWords">
-Esvs
-</td>
-<td align="right">03:48</td>
-<td nowrap="nowrap">&nbsp;
-<a id="lyricsButton4258809" href="#4258809" onclick="if (!window.__cfRLUnblockHandlers) return false; toggleLyrics('4258809'); return false;">Show lyrics</a>
-</td>
-</tr>
-<tr id="song4258809" class="displayNone" height="0">
-<td>&nbsp;</td>
-<td colspan="3" id="lyrics_4258809">(loading lyrics...)</td>
-</tr>
-<tr class="odd">
-<td width="20"><a name="4258810" class="anchor"> </a>14.</td>
-<td class="wrapWords">
-Antvmnos
-</td>
-<td align="right">03:43</td>
-<td nowrap="nowrap">&nbsp;
-<em>instrumental</em>
-</td>
-</tr>
-<tr id="song4258810" class="displayNone" height="0">
-<td>&nbsp;</td>
-<td colspan="3" id="lyrics_4258810">(loading lyrics...)</td>
-</tr>
-<tr class="even">
-<td width="20"><a name="4258811" class="anchor"> </a>15.</td>
-<td class="wrapWords">
-Tarvos II (Seqvel)
-</td>
-<td align="right">02:43</td>
-<td nowrap="nowrap">&nbsp;
-<a id="lyricsButton4258811" href="#4258811" onclick="if (!window.__cfRLUnblockHandlers) return false; toggleLyrics('4258811'); return false;">Show lyrics</a>
-</td>
-</tr>
-<tr id="song4258811" class="displayNone" height="0">
-<td>&nbsp;</td>
-<td colspan="3" id="lyrics_4258811">(loading lyrics...)</td>
-</tr>
-<tr class="odd">
-<td width="20"><a name="4258812" class="anchor"> </a>16.</td>
-<td class="wrapWords">
-Belenos
-</td>
-<td align="right">03:09</td>
-<td nowrap="nowrap">&nbsp;
-<em>instrumental</em>
-</td>
-</tr>
-<tr id="song4258812" class="displayNone" height="0">
-<td>&nbsp;</td>
-<td colspan="3" id="lyrics_4258812">(loading lyrics...)</td>
-</tr>
-<tr class="even">
-<td width="20"><a name="4258813" class="anchor"> </a>17.</td>
-<td class="wrapWords">
-Taranis
-</td>
-<td align="right">02:41</td>
-<td nowrap="nowrap">&nbsp;
-<a id="lyricsButton4258813" href="#4258813" onclick="if (!window.__cfRLUnblockHandlers) return false; toggleLyrics('4258813'); return false;">Show lyrics</a>
-</td>
-</tr>
-<tr id="song4258813" class="displayNone" height="0">
-<td>&nbsp;</td>
-<td colspan="3" id="lyrics_4258813">(loading lyrics...)</td>
-</tr>
-<tr class="odd">
-<td width="20"><a name="4258814" class="anchor"> </a>18.</td>
-<td class="wrapWords">
-Nemeton
-</td>
-<td align="right">01:23</td>
-<td nowrap="nowrap">&nbsp;
-<em>instrumental</em>
-</td>
-</tr>
-<tr id="song4258814" class="displayNone" height="0">
-<td>&nbsp;</td>
-<td colspan="3" id="lyrics_4258814">(loading lyrics...)</td>
+<td colspan="3" id="lyrics_762845">(loading lyrics...)</td>
 </tr>
 <tr>
 <td colspan="2">&nbsp;</td>
-<td align="right"><strong>53:06</strong></td>
+<td align="right"><strong>50:47</strong></td>
 <td>&nbsp;</td>
 </tr>
 </tbody>
@@ -2420,66 +2324,66 @@ Band members
 </tr>
 <tr class="lineupRow">
 <td width="300" valign="top">
-<a href="https://www.metal-archives.com/artists/Chrigel_Glanzmann/8460">Chrigel Glanzmann</a>
-</td>
-<td>
-Vocals (lead), Guitars (acoustic), Mandolin, Uilleann pipes, Gaita, Bodhrán, Whistles, Harp </td>
-</tr>
-<tr class="lineupRow">
-<td width="300" valign="top">
-<a href="https://www.metal-archives.com/artists/Kay_Brem/8452">Kay Brem</a>
-</td>
-<td>
-Bass </td>
-</tr>
-<tr class="lineupRow">
-<td width="300" valign="top">
-<a href="https://www.metal-archives.com/artists/Rafael_Salzmann/451023">Rafael Salzmann</a>
-</td>
-<td>
-Guitars (lead) </td>
-</tr>
-<tr class="lineupRow">
-<td width="300" valign="top">
-<a href="https://www.metal-archives.com/artists/Nicole_Ansperger/538680">Nicole Ansperger</a>
-</td>
-<td>
-Violin, Vocals (backing) </td>
-</tr>
-<tr class="lineupRow">
-<td width="300" valign="top">
-<a href="https://www.metal-archives.com/artists/Matteo_Sisti/208555">Matteo Sisti</a>
-</td>
-<td>
-Bagpipes, Whistles, Mandola </td>
-</tr>
-<tr class="lineupRow">
-<td width="300" valign="top">
-<a href="https://www.metal-archives.com/artists/Alain_Ackermann/416859">Alain Ackermann</a>
-</td>
-<td>
-Drums, Percussion </td>
-</tr>
-<tr class="lineupRow">
-<td width="300" valign="top">
-<a href="https://www.metal-archives.com/artists/Jonas_Wolf/666056">Jonas Wolf</a>
+<a href="https://www.metal-archives.com/artists/Ivo_Henzi/12109">Ivo Henzi</a>
 </td>
 <td>
 Guitars (rhythm) </td>
 </tr>
 <tr class="lineupRow">
 <td width="300" valign="top">
-<a href="https://www.metal-archives.com/artists/Michalina_Malisz/600655">Michalina Malisz</a>
+<a href="https://www.metal-archives.com/artists/Merlin_Sutter/8458">Merlin Sutter</a>
 </td>
 <td>
-Hurdy gurdy </td>
+Drums </td>
 </tr>
 <tr class="lineupRow">
 <td width="300" valign="top">
-<a href="https://www.metal-archives.com/artists/Fabienne_Erni/693855">Fabienne Erni</a>
+<a href="https://www.metal-archives.com/artists/Rafi_Kirder/10085">Rafi Kirder</a>
 </td>
 <td>
-Vocals (female), Celtic harp, Mandola </td>
+Bass </td>
+</tr>
+<tr class="lineupRow">
+<td width="300" valign="top">
+<a href="https://www.metal-archives.com/artists/Sevan_Kirder/10063">Sevan Kirder</a>
+</td>
+<td>
+Irish flute, Tin whistle, Bagpipes, Vocals (backing) </td>
+</tr>
+<tr class="lineupRow">
+<td width="300" valign="top">
+<a href="https://www.metal-archives.com/artists/Meri_Tadi%C4%87/8444">Meri Tadić</a>
+</td>
+<td>
+Fiddle, Vocals (female) </td>
+</tr>
+<tr class="lineupRow">
+<td width="300" valign="top">
+<a href="https://www.metal-archives.com/artists/Linda_Suter/10077">Linda Suter</a>
+</td>
+<td>
+Fiddle, Vocals (female) </td>
+</tr>
+<tr class="lineupRow">
+<td width="300" valign="top">
+<a href="https://www.metal-archives.com/artists/Sime_Koch/8468">Sime Koch</a>
+</td>
+<td>
+Guitars (lead) </td>
+</tr>
+<tr class="lineupRow">
+<td width="300" valign="top">
+<a href="https://www.metal-archives.com/artists/Chrigel_Glanzmann/8460">Chrigel Glanzmann</a>
+</td>
+<td>
+Vocals (lead), Guitars (acoustic), Mandola, Uilleann pipes, Shepard pipe, Whistles </td>
+</tr>
+<tr class="lineupRow">
+<td width="300" valign="top">
+<a href="https://www.metal-archives.com/artists/Sarah_Wauquiez/375073">Sarah Kiener</a>
+</td>
+<td>
+Hurdy gurdy, Bass-shalm, Crummhorn, Zugerörgeli, Vocals (female) </td>
 </tr>
 <tr class="lineupHeaders">
 <td colspan="2" align="right">
@@ -2488,24 +2392,31 @@ Guest/Session
 </tr>
 <tr class="lineupRow">
 <td width="300" valign="top">
-<a href="https://www.metal-archives.com/artists/Oliver_Sa_Tyr/375071">Oliver S. Tyr</a>
+<a href="https://www.metal-archives.com/artists/Guido_Rieger/385371">Guido Rieger</a>
 </td>
 <td>
-Nyckelharpa (track 2), Irish bouzouki (track 8) </td>
+Gaulish proclamation (track 1) </td>
 </tr>
 <tr class="lineupRow">
 <td width="300" valign="top">
-<a href="https://www.metal-archives.com/artists/Brendan_Wade/139949">Brendan Wade</a>
+<a href="https://www.metal-archives.com/artists/Toby_Roth/385372">Toby Roth</a>
 </td>
 <td>
-Uillean pipes (tracks 7, 12) </td>
+Accordion </td>
 </tr>
 <tr class="lineupRow">
 <td width="300" valign="top">
-<a href="https://www.metal-archives.com/artists/Netta_Skog/33101">Netta Skog</a>
+<a href="https://www.metal-archives.com/artists/Selina_Wagner/478168">Selina Wagner</a>
 </td>
 <td>
-Accordion (track 6) </td>
+Vocals (children) (track 6) </td>
+</tr>
+<tr class="lineupRow">
+<td width="300" valign="top">
+<a href="https://www.metal-archives.com/artists/Adrian_Wagner/478169">Adrian Wagner</a>
+</td>
+<td>
+Vocals (children) (track 6) </td>
 </tr>
 <tr class="lineupHeaders">
 <td colspan="2" align="right">
@@ -2514,43 +2425,35 @@ Miscellaneous staff
 </tr>
 <tr class="lineupRow">
 <td width="300" valign="top">
-<a href="https://www.metal-archives.com/artists/Tommy_T._Baron/23317">Tommy Vetterli</a>
+<a href="https://www.metal-archives.com/artists/Travis_Smith/21259">Travis Smith</a>
 </td>
 <td>
-Engineering, Recording, Mixing, Producer </td>
+Cover art </td>
 </tr>
 <tr class="lineupRow">
 <td width="300" valign="top">
-<a href="https://www.metal-archives.com/artists/Manuel_Wiget/331440">Manuel Wiget</a>
+<a href="https://www.metal-archives.com/artists/Markus_Stock/792980">Markus Stock</a>
 </td>
 <td>
-Engineering (assistant) </td>
+Engineering (drums, guitars, bass, vocals), Co-Producer, Mixing </td>
 </tr>
 <tr class="lineupRow">
 <td width="300" valign="top">
-<a href="https://www.metal-archives.com/artists/Jerome_H%C3%A4ni/759020">Jerome Häni</a>
+<a href="https://www.metal-archives.com/artists/Klaus_Grimmer/478166">Klaus Grimmer</a>
 </td>
 <td>
-Engineering (assistant), Editing </td>
+Engineering (acoustic instruments, clean vocals)  </td>
 </tr>
 <tr class="lineupRow">
 <td width="300" valign="top">
-<a href="https://www.metal-archives.com/artists/Sandro_H%C3%A4ni/759021">Sandro Häni</a>
+<a href="https://www.metal-archives.com/artists/Allen_B._Konstanz/2325">Tobias Schönemann</a>
 </td>
 <td>
-Engineering (assistant), Editing </td>
+Co-Producer </td>
 </tr>
 <tr class="lineupRow">
 <td width="300" valign="top">
-<a href="https://www.metal-archives.com/artists/%C5%81ukasz_Olejarczyk/759022">Łukasz Olejarczyk</a>
-</td>
-<td>
-Recording (hurdy-gurdy) </td>
-</tr>
-<tr class="lineupRow">
-<td width="300" valign="top">
-<a href="https://www.metal-archives.com/artists/Dan_Suter/381763">Dan Suter</a>
-
+<a href="https://www.metal-archives.com/artists/Martijn_Groeneveld/100903">Martijn van Groenveldt</a>
 </td>
 <td>
 Mastering </td>
@@ -2560,35 +2463,21 @@ Mastering </td>
 <a href="https://www.metal-archives.com/artists/Chrigel_Glanzmann/8460">Chrigel Glanzmann</a>
 </td>
 <td>
-Producer, Artwork </td>
+Artwork (booklet) </td>
 </tr>
 <tr class="lineupRow">
 <td width="300" valign="top">
-<a href="https://www.metal-archives.com/artists/Yannik_Sandhofer/759023">Yannik Sandhofer</a>
-</td>
-<td>
-Editing </td>
-</tr>
-<tr class="lineupRow">
-<td width="300" valign="top">
-<a href="https://www.metal-archives.com/artists/Matteo_Sisti/208555">Matteo Sisti</a>
-</td>
-<td>
-Design (Gaulish script) </td>
-</tr>
-<tr class="lineupRow">
-<td width="300" valign="top">
-<a href="https://www.metal-archives.com/artists/Gunter_Bitsch/759024">Gunter Bitsch</a>
+<a href="https://www.metal-archives.com/artists/Ghislaine_Ayer/478170">Ghislaine Ayer</a>
 </td>
 <td>
 Photography </td>
 </tr>
 <tr class="lineupRow">
 <td width="300" valign="top">
-<a href="https://www.metal-archives.com/artists/Edward_Hatfield/724573">Edward Hatfield</a>
+<a href="https://www.metal-archives.com/artists/Christoph_Oeschger/467024">Christoph Oeschger</a>
 </td>
 <td>
-Lyrics text consultant </td>
+Photography </td>
 </tr>
 </tbody></table>
 </div>
@@ -2599,66 +2488,66 @@ Lyrics text consultant </td>
 <table class="display lineupTable" cellpadding="0" cellspacing="0">
 <tbody><tr class="lineupRow">
 <td width="300" valign="top">
-<a href="https://www.metal-archives.com/artists/Chrigel_Glanzmann/8460">Chrigel Glanzmann</a>
-</td>
-<td>
-Vocals (lead), Guitars (acoustic), Mandolin, Uilleann pipes, Gaita, Bodhrán, Whistles, Harp </td>
-</tr>
-<tr class="lineupRow">
-<td width="300" valign="top">
-<a href="https://www.metal-archives.com/artists/Kay_Brem/8452">Kay Brem</a>
-</td>
-<td>
-Bass </td>
-</tr>
-<tr class="lineupRow">
-<td width="300" valign="top">
-<a href="https://www.metal-archives.com/artists/Rafael_Salzmann/451023">Rafael Salzmann</a>
-</td>
-<td>
-Guitars (lead) </td>
-</tr>
-<tr class="lineupRow">
-<td width="300" valign="top">
-<a href="https://www.metal-archives.com/artists/Nicole_Ansperger/538680">Nicole Ansperger</a>
-</td>
-<td>
-Violin, Vocals (backing) </td>
-</tr>
-<tr class="lineupRow">
-<td width="300" valign="top">
-<a href="https://www.metal-archives.com/artists/Matteo_Sisti/208555">Matteo Sisti</a>
-</td>
-<td>
-Bagpipes, Whistles, Mandola </td>
-</tr>
-<tr class="lineupRow">
-<td width="300" valign="top">
-<a href="https://www.metal-archives.com/artists/Alain_Ackermann/416859">Alain Ackermann</a>
-</td>
-<td>
-Drums, Percussion </td>
-</tr>
-<tr class="lineupRow">
-<td width="300" valign="top">
-<a href="https://www.metal-archives.com/artists/Jonas_Wolf/666056">Jonas Wolf</a>
+<a href="https://www.metal-archives.com/artists/Ivo_Henzi/12109">Ivo Henzi</a>
 </td>
 <td>
 Guitars (rhythm) </td>
 </tr>
 <tr class="lineupRow">
 <td width="300" valign="top">
-<a href="https://www.metal-archives.com/artists/Michalina_Malisz/600655">Michalina Malisz</a>
+<a href="https://www.metal-archives.com/artists/Merlin_Sutter/8458">Merlin Sutter</a>
 </td>
 <td>
-Hurdy gurdy </td>
+Drums </td>
 </tr>
 <tr class="lineupRow">
 <td width="300" valign="top">
-<a href="https://www.metal-archives.com/artists/Fabienne_Erni/693855">Fabienne Erni</a>
+<a href="https://www.metal-archives.com/artists/Rafi_Kirder/10085">Rafi Kirder</a>
 </td>
 <td>
-Vocals (female), Celtic harp, Mandola </td>
+Bass </td>
+</tr>
+<tr class="lineupRow">
+<td width="300" valign="top">
+<a href="https://www.metal-archives.com/artists/Sevan_Kirder/10063">Sevan Kirder</a>
+</td>
+<td>
+Irish flute, Tin whistle, Bagpipes, Vocals (backing) </td>
+</tr>
+<tr class="lineupRow">
+<td width="300" valign="top">
+<a href="https://www.metal-archives.com/artists/Meri_Tadi%C4%87/8444">Meri Tadić</a>
+</td>
+<td>
+Fiddle, Vocals (female) </td>
+</tr>
+<tr class="lineupRow">
+<td width="300" valign="top">
+<a href="https://www.metal-archives.com/artists/Linda_Suter/10077">Linda Suter</a>
+</td>
+<td>
+Fiddle, Vocals (female) </td>
+</tr>
+<tr class="lineupRow">
+<td width="300" valign="top">
+<a href="https://www.metal-archives.com/artists/Sime_Koch/8468">Sime Koch</a>
+</td>
+<td>
+Guitars (lead) </td>
+</tr>
+<tr class="lineupRow">
+<td width="300" valign="top">
+<a href="https://www.metal-archives.com/artists/Chrigel_Glanzmann/8460">Chrigel Glanzmann</a>
+ </td>
+<td>
+Vocals (lead), Guitars (acoustic), Mandola, Uilleann pipes, Shepard pipe, Whistles </td>
+</tr>
+<tr class="lineupRow">
+<td width="300" valign="top">
+<a href="https://www.metal-archives.com/artists/Sarah_Wauquiez/375073">Sarah Kiener</a>
+</td>
+<td>
+Hurdy gurdy, Bass-shalm, Crummhorn, Zugerörgeli, Vocals (female) </td>
 </tr>
 </tbody></table>
 </div>
@@ -2669,24 +2558,31 @@ Vocals (female), Celtic harp, Mandola </td>
 <table class="display lineupTable" cellpadding="0" cellspacing="0">
 <tbody><tr class="lineupRow">
 <td width="300" valign="top">
-<a href="https://www.metal-archives.com/artists/Oliver_Sa_Tyr/375071">Oliver S. Tyr</a>
+<a href="https://www.metal-archives.com/artists/Guido_Rieger/385371">Guido Rieger</a>
 </td>
 <td>
-Nyckelharpa (track 2), Irish bouzouki (track 8) </td>
+Gaulish proclamation (track 1) </td>
 </tr>
 <tr class="lineupRow">
 <td width="300" valign="top">
-<a href="https://www.metal-archives.com/artists/Brendan_Wade/139949">Brendan Wade</a>
+<a href="https://www.metal-archives.com/artists/Toby_Roth/385372">Toby Roth</a>
 </td>
 <td>
-Uillean pipes (tracks 7, 12) </td>
+Accordion </td>
 </tr>
 <tr class="lineupRow">
 <td width="300" valign="top">
-<a href="https://www.metal-archives.com/artists/Netta_Skog/33101">Netta Skog</a>
+<a href="https://www.metal-archives.com/artists/Selina_Wagner/478168">Selina Wagner</a>
 </td>
 <td>
-Accordion (track 6) </td>
+Vocals (children) (track 6) </td>
+</tr>
+<tr class="lineupRow">
+<td width="300" valign="top">
+<a href="https://www.metal-archives.com/artists/Adrian_Wagner/478169">Adrian Wagner</a>
+</td>
+<td>
+Vocals (children) (track 6) </td>
 </tr>
 </tbody></table>
 </div>
@@ -2697,42 +2593,35 @@ Accordion (track 6) </td>
 <table class="display lineupTable" cellpadding="0" cellspacing="0">
 <tbody><tr class="lineupRow">
 <td width="300" valign="top">
-<a href="https://www.metal-archives.com/artists/Tommy_T._Baron/23317">Tommy Vetterli</a>
+<a href="https://www.metal-archives.com/artists/Travis_Smith/21259">Travis Smith</a>
 </td>
 <td>
-Engineering, Recording, Mixing, Producer </td>
+Cover art </td>
 </tr>
 <tr class="lineupRow">
 <td width="300" valign="top">
-<a href="https://www.metal-archives.com/artists/Manuel_Wiget/331440">Manuel Wiget</a>
+<a href="https://www.metal-archives.com/artists/Markus_Stock/792980">Markus Stock</a>
 </td>
 <td>
-Engineering (assistant) </td>
+Engineering (drums, guitars, bass, vocals), Co-Producer, Mixing </td>
 </tr>
 <tr class="lineupRow">
 <td width="300" valign="top">
-<a href="https://www.metal-archives.com/artists/Jerome_H%C3%A4ni/759020">Jerome Häni</a>
+<a href="https://www.metal-archives.com/artists/Klaus_Grimmer/478166">Klaus Grimmer</a>
 </td>
 <td>
-Engineering (assistant), Editing </td>
+Engineering (acoustic instruments, clean vocals) </td>
 </tr>
 <tr class="lineupRow">
 <td width="300" valign="top">
-<a href="https://www.metal-archives.com/artists/Sandro_H%C3%A4ni/759021">Sandro Häni</a>
+<a href="https://www.metal-archives.com/artists/Allen_B._Konstanz/2325">Tobias Schönemann</a>
 </td>
 <td>
-Engineering (assistant), Editing </td>
+Co-Producer </td>
 </tr>
 <tr class="lineupRow">
 <td width="300" valign="top">
-<a href="https://www.metal-archives.com/artists/%C5%81ukasz_Olejarczyk/759022">Łukasz Olejarczyk</a>
-</td>
-<td>
-Recording (hurdy-gurdy) </td>
-</tr>
-<tr class="lineupRow">
-<td width="300" valign="top">
-<a href="https://www.metal-archives.com/artists/Dan_Suter/381763">Dan Suter</a>
+<a href="https://www.metal-archives.com/artists/Martijn_Groeneveld/100903">Martijn van Groenveldt</a>
 </td>
 <td>
 Mastering </td>
@@ -2742,35 +2631,21 @@ Mastering </td>
 <a href="https://www.metal-archives.com/artists/Chrigel_Glanzmann/8460">Chrigel Glanzmann</a>
 </td>
 <td>
-Producer, Artwork </td>
+Artwork (booklet) </td>
 </tr>
 <tr class="lineupRow">
 <td width="300" valign="top">
-<a href="https://www.metal-archives.com/artists/Yannik_Sandhofer/759023">Yannik Sandhofer</a>
-</td>
-<td>
-Editing </td>
-</tr>
-<tr class="lineupRow">
-<td width="300" valign="top">
-<a href="https://www.metal-archives.com/artists/Matteo_Sisti/208555">Matteo Sisti</a>
-</td>
-<td>
-Design (Gaulish script) </td>
-</tr>
-<tr class="lineupRow">
-<td width="300" valign="top">
-<a href="https://www.metal-archives.com/artists/Gunter_Bitsch/759024">Gunter Bitsch</a>
+<a href="https://www.metal-archives.com/artists/Ghislaine_Ayer/478170">Ghislaine Ayer</a>
 </td>
 <td>
 Photography </td>
 </tr>
 <tr class="lineupRow">
 <td width="300" valign="top">
-<a href="https://www.metal-archives.com/artists/Edward_Hatfield/724573">Edward Hatfield</a>
+<a href="https://www.metal-archives.com/artists/Christoph_Oeschger/467024">Christoph Oeschger</a>
 </td>
 <td>
-Lyrics text consultant </td>
+Photography </td>
 </tr>
 </tbody></table>
 </div>
@@ -2786,18 +2661,60 @@ Lyrics text consultant </td>
 <div id="album_reviews" class="tabs2lvl">
 <div class="tool_strip top right writeAction">
 <ul>
-<li><a href="https://www.metal-archives.com/review/write/releaseId/655485" class="btn_add">Add</a></li>
+<li><a href="https://www.metal-archives.com/review/write/releaseId/105454" class="btn_add">Add</a></li>
 </ul>
 </div>
 </div>
 <div class="ui-tabs-panel-content block_spacer_top_36">
 <table id="review_list" class="display" cellpadding="0" cellspacing="0">
-<tbody><tr class="even">
-<td nowrap="nowrap"><a href="https://www.metal-archives.com/reviews/Eluveitie/Evocation_II_-_Pantheon/655485/forestspirit/110775" title="Read" class="iconContainer ui-state-default ui-corner-all"><span class="ui-icon ui-icon-search">Read</span></a></td>
-<td>Eluveitie – Evocation II:...</td>
-<td>65%</td>
-<td><a href="https://www.metal-archives.com/users/forestspirit" class="profileMenu">forestspirit</a></td>
-<td>August 23rd, 2017</td>
+<tbody><tr class="odd">
+<td nowrap="nowrap"><a href="https://www.metal-archives.com/reviews/Eluveitie/Spirit/105454/andhakaraha/311862" title="Read" class="iconContainer ui-state-default ui-corner-all"><span class="ui-icon ui-icon-search">Read</span></a></td>
+<td>Their first, their best</td>
+<td>76%</td>
+<td><a href="https://www.metal-archives.com/users/andhakaraha" class="profileMenu">andhakaraha</a></td>
+<td>March 25th, 2013</td>
+</tr>
+<tr class="even">
+<td nowrap="nowrap"><a href="https://www.metal-archives.com/reviews/Eluveitie/Spirit/105454/kluseba/238242" title="Read" class="iconContainer ui-state-default ui-corner-all"><span class="ui-icon ui-icon-search">Read</span></a></td>
+<td>The Doctor Jekyll and...</td>
+<td>72%</td>
+<td><a href="https://www.metal-archives.com/users/kluseba" class="profileMenu">kluseba</a></td>
+<td>May 4th, 2011</td>
+</tr>
+<tr class="odd">
+<td nowrap="nowrap"><a href="https://www.metal-archives.com/reviews/Eluveitie/Spirit/105454/Crank_It_Up_To_666/79385" title="Read" class="iconContainer ui-state-default ui-corner-all"><span class="ui-icon ui-icon-search">Read</span></a></td>
+<td>A Pinnacle In Folk Metal...</td>
+<td>89%</td>
+<td><a href="https://www.metal-archives.com/users/Crank_It_Up_To_666" class="profileMenu">Crank_It_Up_To_666</a></td>
+<td>June 10th, 2008</td>
+</tr>
+<tr class="even">
+<td nowrap="nowrap"><a href="https://www.metal-archives.com/reviews/Eluveitie/Spirit/105454/3aboood/60025" title="Read" class="iconContainer ui-state-default ui-corner-all"><span class="ui-icon ui-icon-search">Read</span></a></td>
+<td>What is that, A tuba?</td>
+<td>95%</td>
+<td><a href="https://www.metal-archives.com/users/3aboood" class="profileMenu">3aboood</a></td>
+<td>February 13th, 2008</td>
+</tr>
+<tr class="odd">
+<td nowrap="nowrap"><a href="https://www.metal-archives.com/reviews/Eluveitie/Spirit/105454/Damnation_Terminated/119916" title="Read" class="iconContainer ui-state-default ui-corner-all"><span class="ui-icon ui-icon-search">Read</span></a></td>
+<td>Makes you want to yell...</td>
+<td>95%</td>
+<td><a href="https://www.metal-archives.com/users/Damnation_Terminated" class="profileMenu">Damnation_Terminated</a></td>
+<td>December 14th, 2007</td>
+ </tr>
+<tr class="even">
+<td nowrap="nowrap"><a href="https://www.metal-archives.com/reviews/Eluveitie/Spirit/105454/BloodIronBeer/93133" title="Read" class="iconContainer ui-state-default ui-corner-all"><span class="ui-icon ui-icon-search">Read</span></a></td>
+<td>Good Celtic folk metal</td>
+<td>75%</td>
+<td><a href="https://www.metal-archives.com/users/BloodIronBeer" class="profileMenu">BloodIronBeer</a></td>
+<td>December 14th, 2007</td>
+</tr>
+<tr class="odd">
+<td nowrap="nowrap"><a href="https://www.metal-archives.com/reviews/Eluveitie/Spirit/105454/Largos/52290" title="Read" class="iconContainer ui-state-default ui-corner-all"><span class="ui-icon ui-icon-search">Read</span></a></td>
+<td>The best Celtic Metal...</td>
+<td>97%</td>
+<td><a href="https://www.metal-archives.com/users/Largos" class="profileMenu">Largos</a></td>
+<td>December 14th, 2006</td>
 </tr>
 </tbody></table>
 </div>
@@ -2807,14 +2724,16 @@ Lyrics text consultant </td>
 <div id="album_tabs_notes" class="ui-tabs-hide ui-tabs-panel ui-widget-content ui-corner-bottom" aria-labelledby="ui-id-5" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display: none;">
 <div id="album_notes" class="tabs2lvl"></div>
 <div class="ui-tabs-panel-content  block_spacer_top_20">
-<p class="block_spacer_20">Official music videos:<br>
-• <a href="https://www.youtube.com/watch?v=TkbadvaMuXo" target="_blank">Epona</a><br>
-• <a href="https://www.youtube.com/watch?v=jMKykGYsmFY" target="_blank">Lvgvs </a><br>
+<p class="block_spacer_20">Music Video<br>
 <br>
-Official lyric video:<br>
-• <a href="https://www.youtube.com/watch?v=GO8VVJ_j7T0" target="_blank">Catvrix </a></p>
+<a href="https://www.youtube.com/watch?v=2DYKsQqQgSk">Of Fire, Wind &amp; Wisdom</a></p>
+<p class="title_comment">Recording information:</p>
+<p class="block_spacer_20">Drums, guitars, bass &amp; vocals recorded in December 2005 at Klangschmiede Studio E, Mellrichstad.<br>
+Acoustic instruments &amp; clean vocals recorded in December 2005 at Ballhorn Studio, Kyburg (CH).<br>
+Mixed in January 2006 at Klangschmiede Studio E.<br>
+Mastered in February 2006 at Mailmen Studios, Utrecht (NL).</p>
 <p class="title_comment">Identifiers:</p>
-<p>Barcode: 727361386023</p>
+<p>Barcode: 8 715511 900061</p>
 </div>
 </div>
 
@@ -2823,12 +2742,12 @@ Official lyric video:<br>
 <div id="auditTrail">
 <table>
 <tbody><tr>
-<td>Added by: <a href="https://www.metal-archives.com/users/magnus_alejo" class="profileMenu">magnus_alejo</a></td>
-<td align="right">Modified by: <a href="https://www.metal-archives.com/users/danieledvx" class="profileMenu">danieledvx</a></td>
+<td>Added by: <a href="https://www.metal-archives.com/users/NeerlandscheViking" class="profileMenu">NeerlandscheViking</a></td>
+<td align="right">Modified by: <a href="https://www.metal-archives.com/users/MeatWolf" class="profileMenu">MeatWolf</a></td>
 </tr>
 <tr>
-<td>Added on: 2017-06-10 15:21:16</td>
-<td align="right">Last modified on: 2020-08-31 06:42:37</td>
+<td>Added on: 2006-01-13 09:26:33</td>
+<td align="right">Last modified on: 2020-05-24 14:37:24</td>
 </tr>
 <tr>
 <td valign="top">

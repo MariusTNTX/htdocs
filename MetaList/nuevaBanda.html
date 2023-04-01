@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>MetaList - Registro</title>
+  <title>MetaList - Nueva Banda</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -31,6 +31,7 @@
 
   <!-- Captcha -->
   <script async src='https://www.google.com/recaptcha/api.js?hl=es'></script>
+  <script>console.log("hola mundo")</script>
 
   <!-- =======================================================
   * Template Name: Gp - v4.9.1
@@ -367,13 +368,13 @@
                               <th scope="col">Dirección</th>
                             </tr>
                           </thead>
-                          <tbody class="table-group-divider"  id="tbodyEstudios">
-                            <tr>
+                          <tbody class="table-group-divider" id="tbodyEstudios">
+                            <!-- <tr>
                               <th><button type="button" class="btn btn-danger eliminar">x</button></th>
                               <td><input type="text" class="form-control nomEstBan" name="nomEstBan[]"></td>
                               <td><input type="text" class="form-control paisEstBan" name="paisEstBan[]"></td>
                               <td><input type="text" class="form-control origenEstBan" name="origenEstBan[]"></td>
-                            </tr>
+                            </tr> -->
                           </tbody>
                         </table>
                       </div>
@@ -569,7 +570,14 @@
                                             <thead>
                                               <tr>
                                                 <th scope="col"><button type="button" class="btn btn-success addEstAlb anadir">+</button></th>
-                                                <th scope="col" class="w-100">Estudio</th>
+                                                <th scope="col" class="w-100">
+                                                  Estudio
+                                                  <a href="#" class="ms-1 btnEstExtr" data-bs-toggle="modal" data-bs-target="#estExtrModal">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                                      <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                                                    </svg>
+                                                  </a>
+                                                </th>
                                               </tr>
                                             </thead>
                                             <tbody class="table-group-divider tbodyEstudiosAlb">
@@ -765,7 +773,7 @@
                         <div class="col-12">
                           <div class="row" id="tbodyDiscograficas">
                             <!-- Card -->
-                            <div class="col-12 col-md-6 col-xl-4 my-2">
+                            <!-- <div class="col-12 col-md-6 col-xl-4 my-2">
                               <div class="card">
                                 <div class="card-body">
                                   <h5 class="card-title text-center">
@@ -823,7 +831,7 @@
                                   </div>
                                 </div>
                               </div>
-                            </div>
+                            </div> -->
                           </div>
                         </div>
                       </div>
@@ -965,6 +973,69 @@
       </div>
     </div>
 
+    <!-- Propuesta de Discográfica -->
+    <div class="modal fade" id="discPropModal" tabindex="-1" aria-labelledby="discPropModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="discPropModalLabel">Propuesta de Discográfica</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <!-- Enlace a Metallum -->
+            <h3 class="text-center">Enlaces:</h3>
+            <h5 class="text-center mb-4" id="enlacePropDisc"></h5>
+            <div class="d-none" id="idPropDisc"></div>
+            <!-- Textarea -->
+            <div class="text-center">
+              <div class="form-floating mb-3">
+                <textarea class="form-control" placeholder="." id="discPropText" name="discPropText" style="height: 206px"></textarea>
+                <label for="discPropText">Contenido HTML</label>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <div class="more pt-0"><button type="button" id="btnDiscProp" class="btn btn-primary">Cargar Propuesta</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Extracción de Estudios -->
+    <div class="modal fade" id="estExtrModal" tabindex="-1" aria-labelledby="estExtrModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="estExtrModalLabel">Extracción de Estudios</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <!-- ID -->
+            <h3 class="text-center">Texto:</h3>
+            <div class="d-none" id="idExtrEst"></div>
+            <!-- Textarea -->
+            <div class="text-center">
+              <!-- <div class="form-floating mb-3">
+                <textarea class="form-control" placeholder="." id="estExtrText" name="estExtrText" style="height: 206px"></textarea>
+                <label for="estExtrText">Contenido HTML</label>
+              </div> -->
+              <p id="estExtrText" class="my-4 p-2 border rounded"></p>
+            </div>
+            <!-- Añadir Estudio -->
+            <div class="row justify-content-center">
+              <div class="col-auto my-1">
+                <input type="text" class="form-control" id="estExtrInput" placeholder="Nombre de Estudio" style="height: 44px">
+              </div>
+              <div class="col-auto my-1">
+                <div class="more pt-0"><button type="button" id="btnEstExtr" class="btn btn-primary">Añadir Estudio</button></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
@@ -1081,7 +1152,7 @@
   <script src="js/newAlbum.js"></script>
   <script src="js/newMusico.js"></script>
   <script src="js/newDiscografica.js"></script>
-  <script src="js/eliminame.js"></script>
+  <!-- <script src="js/eliminame.js"></script> -->
 
 </body>
 

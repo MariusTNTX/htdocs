@@ -76,6 +76,7 @@ function getMusicosAlbMA(txt,id){ //SACAR NOMBRE ORIGINAL DE LA URL
       if(nombre.indexOf("(R.I.P.")>0) nombre = nombre.substring(0,nombre.indexOf("(R.I.P."));
     }
     index = txt1.indexOf('<td>',index)+4;
+    //Roles
     let roles = txt1.substring(index,txt1.indexOf("</td>",index)).trim();
     do{ //Quitar Tracks
       if(roles.indexOf("(track")>0){
@@ -115,6 +116,7 @@ function getMusicosAlbMA(txt,id){ //SACAR NOMBRE ORIGINAL DE LA URL
       } 
     }
     index = txt1.indexOf('<td>',index)+4;
+    //Roles
     let roles = txt1.substring(index,txt1.indexOf("</td>",index)).trim();
     do{ //Quitar Tracks
       if(roles.indexOf("(track")>0){
@@ -136,7 +138,7 @@ function getMusicosAlbMA(txt,id){ //SACAR NOMBRE ORIGINAL DE LA URL
   return result;
 }
 
-function getEstudiosAlbMA(txt,id){
+/* function getEstudiosAlbMA(txt,id){
   let index = txt.indexOf("Recording information:");
   index = txt.indexOf("<p",index);
   index = txt.indexOf(">",index)+1;
@@ -160,15 +162,40 @@ function getEstudiosAlbMA(txt,id){
     result.push(txt1.substring(txt1.lastIndexOf(" ",index-2)+1,index-1));
     index--;
   }
-  result = result.filter((item,index)=>{
-    return result.indexOf(item) === index;
-  });
+  result = result.filter((item,index)=>result.indexOf(item) === index);
   for(let i=0; i<result.length; i++){
     result[i]={nombre: result[i], pais: "", origen:""};
   }
-  addEstudiosAlb(result, id);
+  addEstudioAlb(result, id);
   return result;
+} */
+
+function addTxtEstudiosAlbMA(txt, id){
+  txtEst = "Éste álbum no cuenta con información sobre estudios de grabación.";
+  if(txt.indexOf("Recording information:")>=0){
+    let index = txt.indexOf("Recording information:");
+    index = txt.indexOf("<p",index);
+    index = txt.indexOf(">",index)+1;
+    txtEst = txt.substring(index,txt.indexOf("</p>",index));
+  }
+  document.querySelector(".txtEstAlb.a"+id).innerHTML = formatTxtEstudiosAlb(txtEst);
 }
+
+function formatTxtEstudiosAlb(txt){
+  txt = txt.replaceAll(" at "," <span class='text-primary fw-bold'>at</span> ");
+  txt = txt.replaceAll(" studio"," <span class='text-danger fw-bold'>studio</span>");
+  txt = txt.replaceAll(" Studio"," <span class='text-danger fw-bold'>Studio</span>");
+  return txt;
+}
+
+//Botón Modal Añadir Estudio
+document.getElementById("btnEstExtr").addEventListener("click",(e)=>{
+  e.preventDefault();
+  if(document.getElementById("estExtrInput").value.length>0){
+    addEstudioAlb({nombre: document.getElementById("estExtrInput").value.trim(), pais: "", origen: ""}, document.getElementById("idExtrEst").innerHTML);
+    document.getElementById("estExtrInput").value="";
+  } else alert("Debes incluir el nombre de un estudio");
+});
 
 function addMusicosAlb(musicos,id){
   console.log("addMusicosAlb")
@@ -178,8 +205,8 @@ function addMusicosAlb(musicos,id){
     if(mus.roles!="Producer"){
       banda.musicos.map(musico => {if(musico.nombre==mus.nombre && !musico.aparece) addMusicoBan(musico, i);});
     } else if(banda.musicos.every(musico => musico.nombre!=mus.nombre)){
-      banda.musicos.push({nombre: mus.nombre, link: mus.link, anioInic: "", anioFin: "", aparece: false, musico: false});
-      addMusicoBan(mus, i);
+      banda.musicos.push({nombre: mus.nombre, link: mus.link, etapas: [], aparece: false, musico: false});
+      addMusicoBan(banda.musicos[banda.musicos.length-1], i);
     }
     i++;
   }
@@ -205,9 +232,11 @@ function addMusicoBan(mus, id){
 function addDiscograficasAlb(discograficas,id){
   console.log("addDiscograficas")
   console.log(discograficas)
-  for(let disc of discograficas){
-    if(banda.discograficas.length==0 || banda.discograficas.every(discog => discog.nombre!=disc.nombre)){
-      addDiscograficaBan(disc);
+  console.log("length: "+discograficas.length)
+  for(let i=0; i<discograficas.length; i++){
+    if(banda.discograficas.length==0 || banda.discograficas.every(discog => discog.nombre!=discograficas[i].nombre)){
+      console.log("addDiscograficasBan - id: "+banda.discograficas.length);
+      addDiscograficaBan(discograficas[i], banda.discograficas.length);
     }
   }
   document.querySelector(".tbodyDiscograficasAlb.a"+id).innerHTML="";
@@ -220,33 +249,45 @@ function addDiscograficasAlb(discograficas,id){
   }
 }
 
-function addDiscograficaBan(disc){
-  banda.discograficas.push({nombre: disc.nombre, imagen: "", estatus: "", pais: "", direccion: "", linkWeb: disc.link});
+function addDiscograficaBan(disc, id){
+  console.log("addDiscograficaBan")
+  console.log(disc)
   //Imprimir Discográfica
-
+  addNewDiscografica(banda, disc, id);
+  banda.discograficas.push({nombre: disc.nombre, imagen: "", estatus: "", pais: "", direccion: "", linkWeb: disc.link});
 }
 
-function addEstudiosAlb(estudios,id){
-  console.log("addEstudios")
-  console.log(estudios)
-  for(let est of estudios){
-    if(banda.estudios.length==0 || banda.estudios.every(estud => estud.nombre!=est.nombre)){
-      addEstudioBan(est);
-    }
+function addEstudioAlb(estudio, id){
+  console.log("addEstudioAlb")
+  console.log(estudio)
+  //Si no está en la lista general se añade
+  if(banda.estudios.length==0 || banda.estudios.every(estud => estud.nombre!=estudio.nombre)){
+    addEstudioBan(estudio);
   }
-  document.querySelector(".tbodyEstudiosAlb.a"+id).innerHTML="";
-  for(let est of estudios){
+  //Si no está en la lista específica de su álbum se añade
+  if(albumes[id].estudios.every(estud => estud.nombre!=estudio.nombre)){
+    albumes[id].estudios.push(estudio);
     document.querySelector(".tbodyEstudiosAlb.a"+id).innerHTML+=`
     <tr>
       <th><button type="button" class="btn btn-danger eliminar">x</button></th>
-      <td><input type="text" value="${est.nombre}" class="form-control estAlb a${id}" name="estAlb[]"></td>
+      <td><input type="text" value="${estudio.nombre}" class="form-control estAlb a${id}" name="estAlb[]"></td>
     </tr>`;
+    console.log(albumes)
   }
 }
 
 function addEstudioBan(est){
-  banda.estudios.push({nombre: est.nombre, pais: "", direccion: ""});
   //Imprimir Estudios
+  console.log("addEstudioBan")
+  console.log(est)
+  document.getElementById("tbodyEstudios").innerHTML+=`
+    <tr>
+      <th><button type="button" class="btn btn-danger eliminar">x</button></th>
+      <td><input type="text" value="${est.nombre}" class="form-control nomEstBan" name="nomEstBan[]"></td>
+      <td><input type="text" value="${est.pais}" class="form-control paisEstBan" name="paisEstBan[]"></td>
+      <td><input type="text" value="${est.origen}" class="form-control origenEstBan" name="origenEstBan[]"></td>
+    </tr>`;
+  banda.estudios.push({nombre: est.nombre, pais: "", direccion: ""});
 }
 
 //BOTÓN CARGAR PROPUESTA ÁLBUM 
@@ -263,8 +304,8 @@ btnAlbProp.addEventListener("click",(e)=>{
       albumes[id].tipo = getTipoAlbMA(txt, id); //---
       albumes[id].duracion = getDuracionAlbMA(txt, id); //---
       albumes[id].discograficas = getDiscograficaAlbMA(txt, id); //---
-      albumes[id].musicos = getMusicosAlbMA(txt, id); //--- 
-      albumes[id].estudios = getEstudiosAlbMA(txt, id); //---
+      albumes[id].musicos = getMusicosAlbMA(txt, id); //---
+      addTxtEstudiosAlbMA(txt, id); //---
       console.log(banda);
       console.log(albumes);
   } else alert("Debes incluir contenido HTML");

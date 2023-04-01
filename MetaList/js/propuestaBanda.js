@@ -10,8 +10,12 @@ let tbodyEstudios = document.getElementById("tbodyEstudios");
 let tbodyDiscograficas = document.getElementById("tbodyDiscograficas");
 let tbodyMusicos = document.getElementById("tbodyMusicos");
 let tbodyAlbumes = document.getElementById("tbodyAlbumes");
+let idPropMus = document.getElementById("idPropMus");
+let idPropDisc = document.getElementById("idPropDisc");
+let btnMusProp = document.getElementById("btnMusProp");
+let btnDiscProp = document.getElementById("btnDiscProp");
 
-let banda = {
+var banda = {
   info: {
     nombre: "",
     pais: "",
@@ -30,7 +34,7 @@ let banda = {
   discograficas: [],
   estudios: []
 };
-let albumes = [
+var albumes = [
   {
     nombre: "",
     imagen: "",
@@ -96,7 +100,6 @@ function getEstatusBanMA(txt){
 
 function getWebBanMA(txt){
   let index = txt.search(/http.{1,50}\" title=\"Go to: Homepage\"/);
-  console.log(txt.substring(index,index+20))
   document.getElementById("webBan").value=txt.substring(index,txt.indexOf('"',index));
   return txt.substring(index,txt.indexOf('"',index));
 }
@@ -145,18 +148,18 @@ function getMusicosBanMA(txt){
       } else nombre = txt1.substring(index,txt1.indexOf("<",index));
       nombre = decodeURI(nombre);
       index = txt1.indexOf('<td>',index)+4;
+      //Etapas
       let anios = txt1.substring(index,txt1.indexOf("</td>",index)).trim().split("&nbsp;")[1];
       anios = anios.substring(1,anios.length-1).split(", ");
+      result[idx] = {nombre: nombre, link: link, etapas: [], aparece: false, musico: true};
       for(let anio of anios){
-        result[idx] = {nombre: "", link: "", anioInic: 0, anioFin: 0, aparece: false, musico: true};
-        result[idx].nombre = nombre;
-        result[idx].link = link;
-        result[idx].anioInic = anio.split("-")[0];
-        if(anio.split("-")[1]) result[idx].anioFin = anio.split("-")[1];
-        else result[idx].anioFin = anio.split("-")[0];
-        if(result[idx].anioFin == 'present') result[idx].anioFin = "";
-        idx++;
+        let inic = anio.split("-")[0], fin="";
+        if(anio.split("-")[1]) fin = anio.split("-")[1];
+        else fin = anio.split("-")[0];
+        if(fin == 'present') fin = "";
+        result[idx].etapas.push({anioInic: inic, anioFin: fin});
       }
+      idx++;
     } while(index <= txt1.lastIndexOf('lineupRow'));
   }
   return result;
@@ -253,4 +256,42 @@ btnBanProp.addEventListener("click",(e)=>{
       console.log(banda);
   } else alert("Debes incluir contenido HTML");
   banPropText.value="";
+});
+
+//BOTÓN CARGAR PROPUESTA MUSICO
+btnMusProp.addEventListener("click",(e)=>{
+  e.preventDefault();
+  let musPropText = document.getElementById("musPropText");
+  if(musPropText.value.length>0){
+    let txt = musPropText.value;
+    let id = idPropMus.textContent;
+    let nomMus = document.querySelector(".nombreMus.a"+id).value;
+    banda.musicos.map(mus=> {if(mus.nombre==nomMus) mus.sexo = getSexoMusMA(txt, id);}) //---
+    banda.musicos.map(mus=> {if(mus.nombre==nomMus) mus.imagen = getImagenMusMA(txt, id);}) //---
+    banda.musicos.map(mus=> {if(mus.nombre==nomMus) mus.fechaNac = getFechaNacMusMA(txt, id);}) //---
+    banda.musicos.map(mus=> {if(mus.nombre==nomMus) mus.fechaDef = getFechaDefMusMA(txt, id);}) //---
+    banda.musicos.map(mus=> {if(mus.nombre==nomMus) mus.pais = getPaisMusMA(txt, id);}) //---
+    banda.musicos.map(mus=> {if(mus.nombre==nomMus) mus.origen = getOrigenMusMA(txt, id);}) //---
+    console.log(banda);
+    console.log(albumes);
+  } else alert("Debes incluir contenido HTML");
+  musPropText.value = "";
+});
+
+//BOTÓN CARGAR PROPUESTA DISCOGRÁFICA
+btnDiscProp.addEventListener("click",(e)=>{
+  e.preventDefault();
+  let discPropText = document.getElementById("discPropText");
+  if(discPropText.value.length>0){
+    let txt = discPropText.value;
+    let id = idPropDisc.textContent;
+    banda.discograficas[id].estatus = getEstatusDiscMA(txt, id);
+    banda.discograficas[id].imagen = getImagenDiscMA(txt, id);
+    banda.discograficas[id].linkWeb = getWebDiscMA(txt, id);
+    banda.discograficas[id].pais = getPaisDiscMA(txt, id);
+    banda.discograficas[id].origen = getOrigenDiscMA(txt, id);
+    console.log(banda);
+    console.log(albumes);
+  } else alert("Debes incluir contenido HTML");
+  discPropText.value = "";
 });

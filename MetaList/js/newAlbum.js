@@ -1,7 +1,7 @@
 function generarEnlaceAlb(album, banda){
   if(album.length>0){
-    let urlAlbum = album.trim().toLowerCase().replace(" ","_");
-    let urlBand = banda.trim().toLowerCase().replace(" ","_");
+    let urlAlbum = album.trim().toLowerCase().replaceAll(" ","_").replaceAll(":","_-");
+    let urlBand = banda.trim().toLowerCase().replaceAll(" ","_");
     document.getElementById("enlacePropAlb").innerHTML = `<a href="https://www.metal-archives.com/albums/${urlBand}/${urlAlbum}" target="_blank">Metallum - ${album}</a>`;
   }
 }
@@ -196,7 +196,15 @@ function addNewAlbum(band, album, id){
                   <thead>
                     <tr>
                       <th scope="col"><button type="button" class="btn btn-success addEstAlb anadir">+</button></th>
-                      <th scope="col" class="w-100">Estudio</th>
+                      <th scope="col" class="w-100">
+                        Estudio
+                        <a href="#" class="ms-1 btnEstExtr" id="e${id}" data-bs-toggle="modal" data-bs-target="#estExtrModal">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                          </svg>
+                        </a>
+                        <p class="d-none txtEstAlb a${id}"></p>
+                      </th>
                     </tr>
                   </thead>
                   <tbody class="table-group-divider tbodyEstudiosAlb a${id}">`;
@@ -269,6 +277,16 @@ function addNewAlbum(band, album, id){
       let id = e.target.id[1];
       idPropAlb.innerHTML = id;
       generarEnlaceAlb(nombreAlb[id].value, band);
+    });
+  }
+
+  //BOTÓN PRE-MODAL EXTRAER ESTUDIOS
+  for(let btn of document.querySelectorAll(".btnEstExtr")){
+    btn.addEventListener("click",(e)=>{
+      e.preventDefault();
+      let id = e.currentTarget.id[1];
+      document.getElementById("idExtrEst").innerHTML = id;
+      document.getElementById("estExtrText").innerHTML = document.querySelector(".txtEstAlb.a"+id).innerHTML;
     });
   }
 }

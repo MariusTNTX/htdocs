@@ -1,8 +1,100 @@
-function generarEnlaceMus(musico, banda){
+function generarEnlaceMus(musico){
   if(musico.length>0){
     let urlMusico = musico.trim().toLowerCase().replace(" ","_");
     document.getElementById("enlacePropMus").innerHTML = `<a href="https://www.metal-archives.com/artists/${urlMusico}" target="_blank">Metallum - ${musico}</a>`;
   }
+}
+
+function getSexoMusMA(txt, id){
+  let index = txt.indexOf("Gender:");
+  index = txt.indexOf('<dd>',index)+4;
+  let genero = txt.substring(index,txt.indexOf('<',index));
+  genero = (genero == "Female") ? "Mujer" : "Hombre";
+  document.querySelector(".sexoMus.a"+id).setAttribute("value",genero);
+  if(genero=="Hombre"){
+    document.querySelector(".sexoMus.a"+id).children[1].removeAttribute("selected");
+    document.querySelector(".sexoMus.a"+id).children[0].setAttribute("selected","true");
+  } else {
+    document.querySelector(".sexoMus.a"+id).children[0].removeAttribute("selected");
+    document.querySelector(".sexoMus.a"+id).children[1].setAttribute("selected","true");
+  }
+  return genero;
+}
+
+function getImagenMusMA(txt, id){
+  let index = txt.indexOf("member_img");
+  index = txt.indexOf('<img src="',index)+10;
+  document.querySelector(".imgMus.a"+id).setAttribute("value",txt.substring(index,txt.indexOf('"',index)));
+  return txt.substring(index,txt.indexOf('"',index));
+}
+
+function getFechaNacMusMA(txt, id){
+  let mes = {Jan: '01', Feb: '02', Mar: '03', Apr: '04', May: '05', Jun: '06', Jul: '07', Aug: '08', Sep: '09', Oct: '10', Nov: '11', Dec: '12'};
+  let index = txt.indexOf("Age:");
+  index = txt.indexOf('<dd>',index)+4;
+  let age = txt.substring(index,txt.indexOf("<",index)).trim();
+  let result = {dia: "", mes: "", anio:""};
+  if(age.includes("born")){
+    age = age.substring(age.indexOf("(born")+6,age.lastIndexOf(")")).trim();
+    if(age.length==4) result.anio=age;
+    else {
+      age = age.split(" ");
+      if(age.length>2) age[1] = age[1].substring(0,age[1].length-3);
+      if(age[1].length==1) age[1] = "0"+age[1];
+      result = {dia: age[1], mes: mes[age[0]], anio: age[2]};
+    }
+  }
+  document.querySelector(".diaNacMus.a"+id).setAttribute("value",result.dia);
+  document.querySelector(".mesNacMus.a"+id).setAttribute("value",result.mes);
+  document.querySelector(".anioNacMus.a"+id).setAttribute("value",result.anio);
+  return result;
+}
+
+function getFechaDefMusMA(txt, id){
+  let mes = {Jan: '01', Feb: '02', Mar: '03', Apr: '04', May: '05', Jun: '06', Jul: '07', Aug: '08', Sep: '09', Oct: '10', Nov: '11', Dec: '12'};
+  let result = {dia: "", mes: "", anio:""};
+  if(txt.indexOf("R.I.P.:")!=-1){
+    let index = txt.indexOf("R.I.P.:");
+    index = txt.indexOf('<dd>',index)+4;
+    let age = txt.substring(index,txt.indexOf("<",index)).trim();
+    if(!age.includes("N/A")){
+      if(age.length==4) result.anio=age;
+      else {
+        age = age.split(" ");
+        if(age.length>2) age[1] = age[1].substring(0,age[1].length-3);
+        if(age[1].length==1) age[1] = "0"+age[1];
+        result = {dia: age[1], mes: mes[age[0]], anio: age[2]};
+      }
+    }
+  }
+  document.querySelector(".diaDefMus.a"+id).setAttribute("value",result.dia);
+  document.querySelector(".mesDefMus.a"+id).setAttribute("value",result.mes);
+  document.querySelector(".anioDefMus.a"+id).setAttribute("value",result.anio);
+  return result;
+}
+
+function getPaisMusMA(txt, id){
+  let index = txt.indexOf("Place of birth:");
+  index = txt.indexOf('<dd>',index)+4;
+  if(txt.charAt(index+1)=="<"){
+    index = txt.indexOf(">",index)+1;
+    document.querySelector(".paisMus.a"+id).setAttribute("value",txt.substring(index,txt.indexOf('<',index)));
+    return txt.substring(index,txt.indexOf('<',index));
+  } else return "";
+}
+
+function getOrigenMusMA(txt, id){
+  let index = txt.indexOf("Place of birth:");
+  index = txt.indexOf('<dd>',index)+4;
+  let result = "";
+  if(txt.charAt(index+1)=="<"){
+    index = txt.indexOf("</a>",index)+4;
+    if(txt.charAt(index+1)=='('){
+      result = txt.substring(txt.indexOf("(",index)+1,txt.indexOf(")",index));
+      document.querySelector(".origenMus.a"+id).setAttribute("value",result);
+    }
+  }
+  return result;
 }
 
 function addNewMusico(band, musico, id){
@@ -36,9 +128,9 @@ function addNewMusico(band, musico, id){
               </div>
             </div>
             <div class="col-6 my-1">
-              <select class="form-select py-3 a${id}" name="sexoMus[]" aria-label="Default select example">
-                <option value="H" ${(musico.sexo=="H") ? "selected" : ""}>Hombre</option>
-                <option value="M" ${(musico.sexo=="M") ? "selected" : ""}>Mujer</option>
+              <select class="form-select py-3 sexoMus a${id}" name="sexoMus[]" aria-label="Default select example">
+                <option value="Hombre" ${(musico.sexo=="Hombre") ? "selected" : ""}>Hombre</option>
+                <option value="Mujer" ${(musico.sexo=="Mujer") ? "selected" : ""}>Mujer</option>
               </select>
             </div>
           </div>
@@ -111,13 +203,15 @@ function addNewMusico(band, musico, id){
                   <th scope="col">Año Fin</th>
                 </tr>
               </thead>
-              <tbody class="table-group-divider tbodyEtapasMus a${id}">
-                <tr>
+              <tbody class="table-group-divider tbodyEtapasMus a${id}">`;
+        for(let etapa of musico.etapas){
+          txt+=`<tr>
                   <th><button type="button" class="btn btn-danger eliminar">x</button></th>
-                  <td><input type="number" value="${musico.anioInic}" class="form-control anioInicMus" name="anioInicMus[]" min="1965" max="${new Date().getFullYear()}"></td>
-                  <td><input type="number" value="${musico.anioFin}" class="form-control anioFinMus" name="anioFinMus[]" min="1965" max="${new Date().getFullYear()}"></td>
-                </tr>
-              </tbody>
+                  <td><input type="number" value="${etapa.anioInic}" class="form-control anioInicMus" name="anioInicMus[]" min="1965" max="${new Date().getFullYear()}"></td>
+                  <td><input type="number" value="${etapa.anioFin}" class="form-control anioFinMus" name="anioFinMus[]" min="1965" max="${new Date().getFullYear()}"></td>
+                </tr>`;
+        }
+        txt+=`</tbody>
             </table>
           </div>
         </div>
@@ -125,22 +219,6 @@ function addNewMusico(band, musico, id){
     </div>
   </div>`;
   tbodyMusicos.innerHTML+=txt;
-
-  //IMPRIMIR TODAS LAS ETAPAS DIRECTAMENTE ARRIBA RECORRIENDO CON ARRAY.FILTER A PARTIR DEL NOMBRE
-  //Si hay mas de un musico con el mismo nombre se incluyen todas sus etapas
-  if(band.musicos.filter(mus => mus.nombre==musico.nombre).length>1){ //band.musicos.some(mus => (mus.nombre==musico.nombre && mus.aparece))
-    console.log("El puto id: "+id)
-    let body = document.querySelector(".tbodyEtapasMus.a"+id);
-
-    for(let mus of band.musicos.filter(mus => mus.nombre==musico.nombre)){
-      body.innerHTML+=`
-      <tr>
-        <th><button type="button" class="btn btn-danger eliminar">x</button></th>
-        <td><input type="number" value="${mus.anioInic}" class="form-control anioInicMus" name="anioInicMus[]" min="1965" max="${new Date().getFullYear()}"></td>
-        <td><input type="number" value="${mus.anioFin}" class="form-control anioFinMus" name="anioFinMus[]" min="1965" max="${new Date().getFullYear()}"></td>
-      </tr>`;
-    }
-  }
 
   /* Generar Propuesta */
   let btnGenPropMus = document.querySelectorAll(".card .btnGenPropMus");
