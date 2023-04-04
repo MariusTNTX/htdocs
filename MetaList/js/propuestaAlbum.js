@@ -216,7 +216,7 @@ function addMusicosAlb(musicos, id){
   for(let mus of musicos){
     document.querySelector(".tbodyRolesAlb.a"+id).innerHTML+=`
     <tr>
-      <th><button type="button" class="btn btn-danger eliminar">x</button></th>
+      <th><button type="button" class="btn btn-danger eliminar eliminar-fila">x</button></th>
       <td><input type="text" value="${mus.nombre}" class="form-control musAlb a${id}" name="musAlb[]"></td>
       <td><input type="text" value="${mus.roles}" class="form-control rolesMusAlb a${id}" name="rolesMusAlb[]"></td>
     </tr>`;
@@ -246,7 +246,7 @@ function addDiscograficasAlb(discograficas,id){
   for(let disc of discograficas){
     document.querySelector(".tbodyDiscograficasAlb.a"+id).innerHTML+=`
     <tr>
-      <th><button type="button" class="btn btn-danger eliminar">x</button></th>
+      <th><button type="button" class="btn btn-danger eliminar eliminar-fila">x</button></th>
       <td><input type="text" value="${disc.nombre}" class="form-control discAlb a${id}" name="discAlb[]"></td>
     </tr>`;
   }
@@ -272,7 +272,7 @@ function addEstudioAlb(estudio, id){
     albumes[id].estudios.push(estudio);
     document.querySelector(".tbodyEstudiosAlb.a"+id).innerHTML+=`
     <tr>
-      <th><button type="button" class="btn btn-danger eliminar">x</button></th>
+      <th><button type="button" class="btn btn-danger eliminar eliminar-fila">x</button></th>
       <td><input type="text" value="${estudio.nombre}" class="form-control estAlb a${id}" name="estAlb[]"></td>
     </tr>`;
     console.log(albumes)
@@ -285,12 +285,38 @@ function addEstudioBan(est){
   console.log(est)
   document.getElementById("tbodyEstudios").innerHTML+=`
     <tr>
-      <th><button type="button" class="btn btn-danger eliminar">x</button></th>
+      <th><button type="button" class="btn btn-danger eliminar eliminar-fila">x</button></th>
       <td><input type="text" value="${est.nombre}" class="form-control nomEstBan" name="nomEstBan[]"></td>
       <td><input type="text" value="${est.pais}" class="form-control paisEstBan" name="paisEstBan[]"></td>
       <td><input type="text" value="${est.origen}" class="form-control origenEstBan" name="origenEstBan[]"></td>
     </tr>`;
   banda.estudios.push({nombre: est.nombre, pais: "", direccion: ""});
+}
+
+function traducirRolesAlbum(roles, id){
+  console.log("traducirRolesAlbum")
+  console.log(roles)
+  let txt = roles.join("_-_");
+  console.log("Traducir:")
+  console.log(txt);
+  if(tradAllowed){
+    console.log("tradAllowed")
+    traducir(txt).then(data => {
+      console.log("traducir(txt)")
+      if(!data.responseData.translatedText.includes("MYMEMORY WARNING")){
+        console.log("No incluye warning")
+        txt = data.responseData.translatedText.split("_-_");
+        console.log("Texto extraido")
+        for(let i=0; i<txt.length; i++){
+          albumes[id].musicos[i].rol = txt[i].replaceAll("(plomo)","(lider)");
+          document.querySelectorAll(".rolesMusAlb.a"+id)[i].value = txt[i].replaceAll("(plomo)","(lider)");
+        }
+      } else {
+        alert("Se ha superado el límite de traducciones diario, inténtalo de nuevo dentro de 24 horas");
+        tradAllowed = false;
+      } 
+    }).catch(error => alert("Error en la tradución de roles de músicos del álbum"));
+  }
 }
 
 //BOTÓN CARGAR PROPUESTA ÁLBUM 
@@ -309,6 +335,11 @@ btnAlbProp.addEventListener("click",(e)=>{
       albumes[id].discograficas = getDiscograficaAlbMA(txt, id); //---
       albumes[id].musicos = getMusicosAlbMA(txt, id); //---
       addTxtEstudiosAlbMA(txt, id); //---
+      traducirRolesAlbum(albumes[id].musicos.map(mus=>mus = mus.roles), id);
+      fetch(`http://ws.audioscrobbler.com/2.0/?method=album.getinfo&artist=${banda.info.nombre}&album=${albumes[id].nombre}&api_key=5a29d744e8273ab4a877e9b59555b81e&format=json`)
+        .then(data=>data.json())
+        .then(data=>traducirDescrip(data.album.wiki.content, document.querySelector(".descripAlb.a"+id)))
+        .catch(error=>alert("Error en la traducción de la descripción de la banda"));
       console.log(banda);
       console.log(albumes);
   } else alert("Debes incluir contenido HTML");

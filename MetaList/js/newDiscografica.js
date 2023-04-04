@@ -78,12 +78,12 @@ function addNewDiscografica(band, discografica, id){
   //-----------------------
   let tbodyDiscograficas = document.getElementById("tbodyDiscograficas");
   let txt = `
-  <div class="col-12 col-md-6 col-xl-4 my-2">
+  <div class="a${id} etiqueta col-12 col-md-6 col-xl-4 my-2">
     <div class="card">
       <div class="card-body">
         <h5 class="card-title text-center">
-          Nueva Discográfica
-          <button type="button" class="btn btn-danger ms-2 eliminarDisc">x</button>
+          <span class="text-dark">Nueva Discográfica</span>
+          <button type="button" class="a${id} btn btn-danger ms-2 eliminar eliminar-etiqueta eliminarDisc">x</button>
         </h5>
         <div class="more p-0 text-center mb-2">
           <button class="btn btn-primary btnGenPropDisc a${id}" id="a${id}" data-bs-toggle="modal" data-bs-target="#discPropModal">Generar Propuesta</button>

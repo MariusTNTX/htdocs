@@ -55,7 +55,7 @@ var albumes = [
     canciones: [{nombre:"", estrellas: 0}]
   }
 ];
-var musicos = [{nombre: "",imagen: "",sexo: "",fechaNac: "",fechaDef: "",pais: "",origen: ""}], idMusico=0;
+var musicos = [{nombre: "",imagen: "",sexo: "",fechaNac: "",fechaDef: "",pais: "",origen: ""}], idMusico=0, descripcion=[], tradAllowed=true; 
 
 function generarEnlace(){
   let banda = nombreBan.value;
@@ -94,8 +94,12 @@ function getEstatusBanMA(txt){
   let index = txt.indexOf("Status:");
   index = txt.indexOf("<dd",index);
   index = txt.indexOf(">",index)+1;
-  document.getElementById("estatusBan").value=txt.substring(index,txt.indexOf("<",index));
-  return txt.substring(index,txt.indexOf("<",index));
+  let estatus = txt.substring(index,txt.indexOf("<",index)).trim();
+  if(estatus == 'On hold') estatus = "En Hiato";
+  else if(estatus == 'Split-up') estatus = "Disueltos";
+  else estatus = "En Activo";
+  document.getElementById("estatusBan").value = estatus;
+  return estatus;
 }
 
 function getWebBanMA(txt){
@@ -226,9 +230,10 @@ function addAlbumes(albumes){
   for(let i=0; i<albumes.length; i++) addNewAlbum(nombreBan.value,albumes[i],i);
 }
 
-async function traducir(txt){
+async function traducir(txt, descrip=false){
   let response = await fetch(`https://api.mymemory.translated.net/get?q=${txt}&langpair=en|es`);
   response = await response.json();
+  if(descrip && !response.responseData.translatedText.includes("MAX ALLOWED QUERY")) descripcion.push(response.responseData.translatedText);
   return Promise.resolve(response);
 }
 
@@ -239,17 +244,67 @@ function traducirInfoBanda(pais, origen, temas){
   }
   console.log("Traducir:")
   console.log(txt);
-  traducir(txt).then(data => {
-    txt = data.responseData.translatedText.split("_-_");
-    banda.info.pais = txt.shift();
-    document.getElementById("paisBan").value = banda.info.pais;
-    banda.info.origen = txt.shift();
-    document.getElementById("origenBan").value = banda.info.origen;
-    for(let i=0; i<txt.length; i++){
-      banda.temasLetra.push({nombre: txt[i]});
-      document.querySelector(".temaLetra.t"+i).value=txt[i];
+  if(tradAllowed){
+    console.log("tradAllowed")
+    traducir(txt).then(data => {
+      console.log("traducir(txt)")
+      if(!data.responseData.translatedText.includes("MYMEMORY WARNING")){
+        console.log("No incluye warning")
+        txt = data.responseData.translatedText.split("_-_");
+        console.log("Texto extraido")
+        banda.info.pais = txt.shift().replaceAll("temprano","antes").replaceAll("tarde","después");
+        document.getElementById("paisBan").value = banda.info.pais;
+        console.log("pais inroducido")
+        banda.info.origen = txt.shift();
+        document.getElementById("origenBan").value = banda.info.origen;
+        console.log("origen inroducido")
+        banda.temasLetra = [];
+        for(let i=0; i<txt.length; i++){
+          banda.temasLetra.push({nombre: txt[i]});
+          document.querySelector(".temaLetra.t"+i).value=txt[i];
+        }
+        console.log("origen inroducido")
+      } else {
+        alert("Se ha superado el límite de traducciones diario, inténtalo de nuevo dentro de 24 horas");
+        tradAllowed = false;
+      } 
+    }).catch(error => alert("Error en la tradución de información básica de la banda"));
+  }
+}
+
+async function traducirDescrip(txt, target){
+  console.log("traducirDescrip")
+  console.log(txt)
+  console.log(target)
+  descripcion = [];
+  txt = txt.replaceAll("#","Nº");
+  for(let bus of ["Full Wikipedia article:","Current members:","Members:","<a href"]){
+    index = txt.indexOf(bus);
+    if(index!=-1) txt = txt.substring(0,index-1);
+  }
+  target.innerHTML = txt;
+  txt = txt.trim().split(". ").filter(t=>t.length<500);
+  console.log(txt);
+  for(let i=0; i<txt.length; i++){
+    if(i+1<txt.length && txt[i].length+txt[i+1].length<500){
+      txt[i] += ". "+txt[i+1];
+      txt.splice(i+1, 1);
+      i--;
     }
-  }).catch(error => alert("Error en la tradución de información de la banda"));
+  }
+  console.log(txt);
+  if(tradAllowed){
+    for(let i=0; i<txt.length; i++){
+      await traducir(txt[i],true);
+      console.log(txt[i])
+    }
+    console.log(descripcion)
+    descripcion = descripcion.join(" ");
+    if(descripcion.includes("MYMEMORY WARNING")){
+      alert("Se ha superado el límite de traducciones diario, inténtalo de nuevo dentro de 24 horas");
+      tradAllowed = false;
+    } else target.innerHTML = descripcion;
+  }
 }
 
 //BOTÓN BUSCAR BANDA
@@ -277,16 +332,20 @@ btnBanProp.addEventListener("click",(e)=>{
   if(banPropText.value.length>0){
       let txt = banPropText.value;
       banda.info.nombre = nombreBan.value;
-      /* banda.info.pais = getPaisBanMA(txt); //---
-      banda.info.origen = getOrigenBanMA(txt); //--- */
       banda.info.imagen = getImagenBanMA(txt);
       banda.info.estatus = getEstatusBanMA(txt);
       banda.info.linkWeb = getWebBanMA(txt);
       banda.info.linkSpotify = getSpotifyBanMA(txt);
       banda.etapas = getEtapasBanMA(txt);
       banda.musicos = getMusicosBanMA(txt);
-      /* banda.temasLetra = getTemasBanMA(txt); //--- */
+      banda.info.pais = getPaisBanMA(txt);
+      banda.info.origen = getOrigenBanMA(txt);
+      banda.temasLetra = getTemasBanMA(txt);
       traducirInfoBanda(getPaisBanMA(txt), getOrigenBanMA(txt), getTemasBanMA(txt));
+      fetch(`http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=${banda.info.nombre}&api_key=5a29d744e8273ab4a877e9b59555b81e&format=json`)
+        .then(data=>data.json())
+        .then(data=>traducirDescrip(data.artist.bio.content, document.getElementById("descripcBan")))
+        .catch(error=>alert("Error en la traducción de la descripción de la banda"));
       console.log(banda);
   } else alert("Debes incluir contenido HTML");
   banPropText.value="";

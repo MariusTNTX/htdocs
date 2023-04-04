@@ -109,12 +109,12 @@ function addNewMusico(band, musico, id){
   //-----------------------
   let tbodyMusicos = document.getElementById("tbodyMusicos");
   let txt = `
-  <div class="col-12 col-md-6 col-xl-4 my-2">
+  <div class="a${id} etiqueta col-12 col-md-6 col-xl-4 my-2">
     <div class="card mb-3">
       <div class="card-body">
         <h5 class="card-title text-center">
-          Nuevo Músico
-          <button type="button" class="btn btn-danger ms-2 eliminarMus">x</button>
+          <span class="text-dark">Nuevo Músico</span>
+          <button type="button" class="a${id} btn btn-danger ms-2 eliminar eliminar-etiqueta eliminarMus">x</button>
         </h5>
         <div class="more p-0 text-center mb-2">
           <button class="btn btn-primary btnGenPropMus a${id}" id="a${id}" data-bs-toggle="modal" data-bs-target="#musPropModal">Generar Propuesta</button>
@@ -198,15 +198,15 @@ function addNewMusico(band, musico, id){
             <table class="table table-sm">
               <thead>
                 <tr>
-                  <th scope="col"><button type="button" class="btn btn-success addEtapaMusBan anadir">+</button></th>
+                  <th scope="col"><button type="button" class="btn btn-success addEtapaMusBan anadir-fila">+</button></th>
                   <th scope="col">Año Inicio</th>
                   <th scope="col">Año Fin</th>
                 </tr>
               </thead>
-              <tbody class="table-group-divider tbodyEtapasMus a${id}">`;
+              <tbody class="table-group-divider tbodyEtapasMus a${id}" id="tbodyEtapasMus-${id}">`;
         for(let etapa of musico.etapas){
           txt+=`<tr>
-                  <th><button type="button" class="btn btn-danger eliminar">x</button></th>
+                  <th><button type="button" class="btn btn-danger eliminar-fila">x</button></th>
                   <td><input type="number" value="${etapa.anioInic}" class="form-control anioInicMus" name="anioInicMus[]" min="1965" max="${new Date().getFullYear()}"></td>
                   <td><input type="number" value="${etapa.anioFin}" class="form-control anioFinMus" name="anioFinMus[]" min="1965" max="${new Date().getFullYear()}"></td>
                 </tr>`;

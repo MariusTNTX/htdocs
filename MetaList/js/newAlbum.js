@@ -22,15 +22,15 @@ function addNewAlbum(band, album, id){
   //-----------------------
   let tbodyAlbumes = document.getElementById("tbodyAlbumes");
   let txt = `
-    <div class="col-12 col-lg-6 col-xl-12 my-2">
+    <div class="a${id} etiqueta col-12 col-lg-6 col-xl-12 my-2">
       <div class="card mb-3">
       <div class="card-body">
       <div class="row">
         <div class="col-12 col-md-4 col-lg-0 col-xl-3"></div>
           <div class="col-12 col-md-4 col-lg-12 col-xl-6 mb-2">
             <h5 class="card-title text-center">
-              Nuevo Álbum
-              <button type="button" class="btn btn-danger ms-2 eliminarAlb">x</button>
+              <span class="text-dark">Nuevo Álbum</span>
+              <button type="button" class="a${id} btn btn-danger ms-2 eliminar eliminar-etiqueta eliminarAlb">x</button>
             </h5>
           </div>
           <div class="col-12 col-md-4 col-lg-12 col-xl-3 mb-2">
@@ -134,15 +134,15 @@ function addNewAlbum(band, album, id){
                 <table class="table table-sm">
                   <thead>
                     <tr>
-                      <th scope="col"><button type="button" class="btn btn-success addGenAlb anadir">+</button></th>
+                      <th scope="col"><button type="button" class="btn btn-success addGenAlb anadir-fila">+</button></th>
                       <th scope="col">Género</th>
                       <th scope="col">Estrellas</th>
                     </tr>
                   </thead>
-                  <tbody class="table-group-divider tbodyGenerosAlb a${id}">`;
+                  <tbody class="table-group-divider tbodyGenerosAlb a${id}" id="tbodyGenerosAlb-${id}">`;
             for(let genero of album.generos){
               txt+=`<tr>
-                      <th><button type="button" class="btn btn-danger eliminar">x</button></th>
+                      <th><button type="button" class="btn btn-danger eliminar-fila">x</button></th>
                       <td class="w-75"><input type="text" value="${genero.nombre}" class="form-control genAlb" name="genAlb[]"></td>
                       <td><input type="number" value="${genero.estrellas}" class="form-control estrGenAlb" name="estrGenAlb[]" min="0" max="5"></td>
                     </tr>`;
@@ -154,15 +154,15 @@ function addNewAlbum(band, album, id){
                 <table class="table table-sm">
                   <thead>
                     <tr>
-                      <th scope="col"><button type="button" class="btn btn-success addCanAlb anadir">+</button></th>
+                      <th scope="col"><button type="button" class="btn btn-success addCanAlb anadir-fila">+</button></th>
                       <th scope="col">Canción</th>
                       <th scope="col">Estrellas</th>
                     </tr>
                   </thead>
-                  <tbody class="table-group-divider tbodyCancionesAlb a${id}">`;
+                  <tbody class="table-group-divider tbodyCancionesAlb a${id}" id="tbodyCancionesAlb-${id}">`;
             for(let cancion of album.canciones){
               txt+=`<tr>
-                      <th><button type="button" class="btn btn-danger eliminar">x</button></th>
+                      <th><button type="button" class="btn btn-danger eliminar-fila">x</button></th>
                       <td class="w-75"><input type="text" value="${cancion.nombre}" class="form-control nomCanAlb" name="nomCanAlb[]"></td>
                       <td><input type="number" value="${cancion.estrellas}" class="form-control estrCanAlb" name="estrCanAlb[]"></td>
                     </tr>`;
@@ -177,14 +177,14 @@ function addNewAlbum(band, album, id){
                 <table class="table table-sm">
                   <thead>
                     <tr>
-                      <th scope="col"><button type="button" class="btn btn-success addDiscAlb anadir">+</button></th>
+                      <th scope="col"><button type="button" class="btn btn-success addDiscAlb anadir-fila">+</button></th>
                       <th scope="col" class="w-100">Discográfica</th>
                     </tr>
                   </thead>
-                  <tbody class="table-group-divider tbodyDiscograficasAlb a${id}">`;
+                  <tbody class="table-group-divider tbodyDiscograficasAlb a${id}" id="tbodyDiscograficasAlb-${id}">`;
             for(let discografica of album.discograficas){
               txt+=`<tr>
-                      <th><button type="button" class="btn btn-danger eliminar">x</button></th>
+                      <th><button type="button" class="btn btn-danger eliminar-fila">x</button></th>
                       <td><input type="text" value="${discografica.nombre}" class="form-control discAlb" name="discAlb[]"></td>
                     </tr>`;
             }
@@ -195,7 +195,7 @@ function addNewAlbum(band, album, id){
                 <table class="table table-sm">
                   <thead>
                     <tr>
-                      <th scope="col"><button type="button" class="btn btn-success addEstAlb anadir">+</button></th>
+                      <th scope="col"><button type="button" class="btn btn-success addEstAlb anadir-fila">+</button></th>
                       <th scope="col" class="w-100">
                         Estudio
                         <a href="#" class="ms-1 btnEstExtr" id="e${id}" data-bs-toggle="modal" data-bs-target="#estExtrModal">
@@ -207,10 +207,10 @@ function addNewAlbum(band, album, id){
                       </th>
                     </tr>
                   </thead>
-                  <tbody class="table-group-divider tbodyEstudiosAlb a${id}">`;
+                  <tbody class="table-group-divider tbodyEstudiosAlb a${id}" id="tbodyEstudiosAlb-${id}">`;
             for(let estudio of album.estudios){
               txt+=`<tr>
-                      <th><button type="button" class="btn btn-danger eliminar">x</button></th>
+                      <th><button type="button" class="btn btn-danger eliminar-fila">x</button></th>
                       <td><input type="text" value="${estudio.nombre}" class="form-control nomEstAlb" name="nomEstAlb[]"></td>
                     </tr>`;
             }
@@ -221,15 +221,15 @@ function addNewAlbum(band, album, id){
                 <table class="table table-sm">
                   <thead>
                     <tr>
-                      <th scope="col"><button type="button" class="btn btn-success addMusAlb anadir">+</button></th>
+                      <th scope="col"><button type="button" class="btn btn-success addMusAlb anadir-fila">+</button></th>
                       <th scope="col">Músico</th>
                       <th scope="col">Roles</th>
                     </tr>
                   </thead>
-                  <tbody class="table-group-divider tbodyRolesAlb a${id}">`;
+                  <tbody class="table-group-divider tbodyRolesAlb a${id}" id="tbodyRolesAlb-${id}">`;
             for(let musico of album.musicos){
               txt+=`<tr>
-                      <th><button type="button" class="btn btn-danger eliminar">x</button></th>
+                      <th><button type="button" class="btn btn-danger eliminar-fila">x</button></th>
                       <td><input type="text" value="${musico.nombre}" class="form-control nomMusAlb" name="nomMusAlb[]"></td>
                       <td><input type="text" value="${musico.rol}" class="form-control rolMusAlb" name="rolMusAlb[]"></td>
                     </tr>`;
