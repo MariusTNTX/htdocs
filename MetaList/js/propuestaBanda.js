@@ -55,7 +55,7 @@ var albumes = [
     canciones: [{nombre:"", estrellas: 0}]
   }
 ];
-var musicos = [{nombre: "",imagen: "",sexo: "",fechaNac: "",fechaDef: "",pais: "",origen: ""}], idMusico=0, descripcion=[], tradAllowed=true; 
+var musicos = [{nombre: "",imagen: "",sexo: "",fechaNac: "",fechaDef: "",pais: "",origen: ""}], idMusico=0, descripcion=[], tradAllowed=false; 
 
 function generarEnlace(){
   let banda = nombreBan.value;
@@ -169,6 +169,12 @@ function getMusicosBanMA(txt){
       anios = anios.filter(a => a!=undefined);
       result[idx] = {nombre: nombre, link: link, etapas: [], aparece: false, musico: true};
       for(let anio of anios) result[idx].etapas.push({anioInic: anio[0], anioFin: anio[1]});
+      //Si es un miembro pasado con año de fin vacío sigifica que esa etapa acabó el mismo año
+      if(bus=='id="band_tab_members_past'){
+        for(let i=0; i<result[idx].etapas.length; i++){
+          if(result[idx].etapas[i].anioFin==undefined) result[idx].etapas[i].anioFin = result[idx].etapas[i].anioInic;
+        }
+      }
       idx++;
     } while(index <= txt1.lastIndexOf('lineupRow'));
   }
@@ -187,17 +193,18 @@ function getTemasBanMA(txt){
 function addEtapas(etapas){
   tbodyEtapas.innerHTML="";
   for(let etapa of etapas){
-    tbodyEtapas.innerHTML+=`
-    <tr>
-      <th><button type="button" class="btn btn-danger eliminar">x</button></th>
+    let elm = document.createElement("tr");
+    elm.innerHTML=`
+      <th><button type="button" class="btn btn-danger eliminar-fila">x</button></th>
       <td><input type="number" value="${etapa.anioInic}" class="form-control anioInicBan" name="anioInicEtaBan[]" min="1965" max="2023"></td>
       <td><input type="number" value="${etapa.anioFin}" class="form-control anioFinBan" name="anioFin[]" min="1965" max="2023"></td>
       <td><select class="form-select" name="tipoEtaBan[]" aria-label="Default select example">
           <option value="1">Activo</option>
           <option value="2">Hiato</option>
         </select>
-      </td>
-    </tr>`;
+      </td>`;
+    elm.querySelector(".eliminar-fila").addEventListener("click",(e)=>delFila(e.target));
+    tbodyEtapas.appendChild(elm);
   }
 }
 
@@ -216,12 +223,13 @@ function addEtapas(etapas){
 function addTemasLetra(temas){
   tbodyTemas.innerHTML="", i=0;
   for(let tema of temas){
-    tbodyTemas.innerHTML+=`
-    <tr>
-      <th><button type="button" class="btn btn-danger eliminar">x</button></th>
-      <td><input type="text" value="${tema.nombre}" class="form-control temaLetra t${i}" name="temaLetra[]"></td>
-    </tr>`;
+    let elm = document.createElement("tr");
+    elm.innerHTML=`
+      <th><button type="button" class="btn btn-danger eliminar-fila">x</button></th>
+      <td><input type="text" value="${tema.nombre}" class="form-control temaLetra t${i}" name="temaLetra[]"></td>`;
     i++;
+    elm.querySelector(".eliminar-fila").addEventListener("click",(e)=>delFila(e.target));
+    tbodyTemas.appendChild(elm);
   }
 }
 
@@ -307,6 +315,37 @@ async function traducirDescrip(txt, target){
   }
 }
 
+async function traducirPaisOrigen(tipo, id, pais, origen, target1, target2){
+  console.log("traducirPaisOrigen")
+  console.log(pais)
+  console.log(target1)
+  console.log(origen)
+  console.log(target2)
+  target1.value = pais;
+  target2.value = origen;
+  let txt = pais+"; "+origen;
+  if(tradAllowed){
+    await traducir(txt).then(data => data.responseData.translatedText).then(data=>{
+      if(!data.includes("MYMEMORY WARNING")){
+        pais = data.split("; ")[0];
+        target1.setAttribute("value",pais);
+        origen = data.split("; ")[1];
+        target2.setAttribute("value",origen);
+      } else {
+        alert("Se ha superado el límite de traducciones diario, inténtalo de nuevo dentro de 24 horas");
+        tradAllowed=false;
+      }
+    });
+  }
+  if(tipo=="mus") {
+    banda.musicos.map(mus=> {if(mus.nombre==id) mus.pais = pais});
+    banda.musicos.map(mus=> {if(mus.nombre==id) mus.origen = origen});
+  } else {
+    banda.discograficas[id].pais = pais;
+    banda.discograficas[id].origen = origen;
+  }
+}
+
 //BOTÓN BUSCAR BANDA
 buscarBan.addEventListener("click",(e)=>{
   e.preventDefault();
@@ -331,22 +370,28 @@ btnBanProp.addEventListener("click",(e)=>{
   e.preventDefault();
   if(banPropText.value.length>0){
       let txt = banPropText.value;
-      banda.info.nombre = nombreBan.value;
-      banda.info.imagen = getImagenBanMA(txt);
-      banda.info.estatus = getEstatusBanMA(txt);
-      banda.info.linkWeb = getWebBanMA(txt);
-      banda.info.linkSpotify = getSpotifyBanMA(txt);
-      banda.etapas = getEtapasBanMA(txt);
-      banda.musicos = getMusicosBanMA(txt);
-      banda.info.pais = getPaisBanMA(txt);
-      banda.info.origen = getOrigenBanMA(txt);
-      banda.temasLetra = getTemasBanMA(txt);
-      traducirInfoBanda(getPaisBanMA(txt), getOrigenBanMA(txt), getTemasBanMA(txt));
-      fetch(`http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=${banda.info.nombre}&api_key=5a29d744e8273ab4a877e9b59555b81e&format=json`)
-        .then(data=>data.json())
-        .then(data=>traducirDescrip(data.artist.bio.content, document.getElementById("descripcBan")))
-        .catch(error=>alert("Error en la traducción de la descripción de la banda"));
-      console.log(banda);
+      if(getWebBanMA(txt)=="<html xmlns=" && getSpotifyBanMA(txt)=="<html xmlns="){
+        document.getElementById("webBan").value="";
+        document.getElementById("spotifyBan").value="";
+        alert("Debes hacer clic en \"Related Links\" para poder obtener los links");
+      } else {
+        banda.info.nombre = nombreBan.value;
+        banda.info.imagen = getImagenBanMA(txt);
+        banda.info.estatus = getEstatusBanMA(txt);
+        banda.info.linkWeb = getWebBanMA(txt);
+        banda.info.linkSpotify = getSpotifyBanMA(txt);
+        banda.etapas = getEtapasBanMA(txt);
+        banda.musicos = getMusicosBanMA(txt);
+        banda.info.pais = getPaisBanMA(txt);
+        banda.info.origen = getOrigenBanMA(txt);
+        banda.temasLetra = getTemasBanMA(txt);
+        traducirInfoBanda(getPaisBanMA(txt), getOrigenBanMA(txt), getTemasBanMA(txt));
+        fetch(`http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=${banda.info.nombre}&api_key=5a29d744e8273ab4a877e9b59555b81e&format=json`)
+          .then(data=>data.json())
+          .then(data=>traducirDescrip(data.artist.bio.content, document.getElementById("descripcBan")))
+          .catch(error=>alert("Error en la traducción de la descripción de la banda"));
+        console.log(banda);
+      }
   } else alert("Debes incluir contenido HTML");
   banPropText.value="";
 });
@@ -363,8 +408,7 @@ btnMusProp.addEventListener("click",(e)=>{
     banda.musicos.map(mus=> {if(mus.nombre==nomMus) mus.imagen = getImagenMusMA(txt, id);}) //---
     banda.musicos.map(mus=> {if(mus.nombre==nomMus) mus.fechaNac = getFechaNacMusMA(txt, id);}) //---
     banda.musicos.map(mus=> {if(mus.nombre==nomMus) mus.fechaDef = getFechaDefMusMA(txt, id);}) //---
-    banda.musicos.map(mus=> {if(mus.nombre==nomMus) mus.pais = getPaisMusMA(txt, id);}) //---
-    banda.musicos.map(mus=> {if(mus.nombre==nomMus) mus.origen = getOrigenMusMA(txt, id);}) //---
+    traducirPaisOrigen("mus", nomMus, getPaisMusMA(txt, id), getOrigenMusMA(txt, id), document.querySelector(".paisMus.a"+id), document.querySelector(".origenMus.a"+id));
     console.log(banda);
     console.log(albumes);
   } else alert("Debes incluir contenido HTML");
@@ -381,8 +425,7 @@ btnDiscProp.addEventListener("click",(e)=>{
     banda.discograficas[id].estatus = getEstatusDiscMA(txt, id);
     banda.discograficas[id].imagen = getImagenDiscMA(txt, id);
     banda.discograficas[id].linkWeb = getWebDiscMA(txt, id);
-    banda.discograficas[id].pais = getPaisDiscMA(txt, id);
-    banda.discograficas[id].origen = getOrigenDiscMA(txt, id);
+    traducirPaisOrigen("disc", id, getPaisDiscMA(txt, id), getOrigenDiscMA(txt, id), document.querySelector(".paisDisc.a"+id), document.querySelector(".direcDisc.a"+id));
     console.log(banda);
     console.log(albumes);
   } else alert("Debes incluir contenido HTML");

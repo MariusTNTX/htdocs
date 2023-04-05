@@ -214,12 +214,13 @@ function addMusicosAlb(musicos, id){
   }
   document.querySelector(".tbodyRolesAlb.a"+id).innerHTML="";
   for(let mus of musicos){
-    document.querySelector(".tbodyRolesAlb.a"+id).innerHTML+=`
-    <tr>
+    let elm = document.createElement("tr");
+    elm.innerHTML=`
       <th><button type="button" class="btn btn-danger eliminar eliminar-fila">x</button></th>
       <td><input type="text" value="${mus.nombre}" class="form-control musAlb a${id}" name="musAlb[]"></td>
-      <td><input type="text" value="${mus.roles}" class="form-control rolesMusAlb a${id}" name="rolesMusAlb[]"></td>
-    </tr>`;
+      <td><input type="text" value="${mus.roles}" class="form-control rolesMusAlb a${id}" name="rolesMusAlb[]"></td>`;
+    elm.querySelector(".eliminar-fila").addEventListener("click",(e)=>delFila(e.target));
+    document.querySelector(".tbodyRolesAlb.a"+id).appendChild(elm);
   }
 }
 
@@ -244,11 +245,12 @@ function addDiscograficasAlb(discograficas,id){
   }
   document.querySelector(".tbodyDiscograficasAlb.a"+id).innerHTML="";
   for(let disc of discograficas){
-    document.querySelector(".tbodyDiscograficasAlb.a"+id).innerHTML+=`
-    <tr>
+    let elm = document.createElement("tr");
+    elm.innerHTML=`
       <th><button type="button" class="btn btn-danger eliminar eliminar-fila">x</button></th>
-      <td><input type="text" value="${disc.nombre}" class="form-control discAlb a${id}" name="discAlb[]"></td>
-    </tr>`;
+      <td><input type="text" value="${disc.nombre}" class="form-control discAlb a${id}" name="discAlb[]"></td>`;
+    elm.querySelector(".eliminar-fila").addEventListener("click",(e)=>delFila(e.target));
+    document.querySelector(".tbodyDiscograficasAlb.a"+id).appendChild(elm);
   }
 }
 
@@ -270,11 +272,12 @@ function addEstudioAlb(estudio, id){
   //Si no está en la lista específica de su álbum se añade
   if(albumes[id].estudios.every(estud => estud.nombre!=estudio.nombre)){
     albumes[id].estudios.push(estudio);
-    document.querySelector(".tbodyEstudiosAlb.a"+id).innerHTML+=`
-    <tr>
+    let elm = document.createElement("tr");
+    elm.innerHTML=`
       <th><button type="button" class="btn btn-danger eliminar eliminar-fila">x</button></th>
-      <td><input type="text" value="${estudio.nombre}" class="form-control estAlb a${id}" name="estAlb[]"></td>
-    </tr>`;
+      <td><input type="text" value="${estudio.nombre}" class="form-control estAlb a${id}" name="estAlb[]"></td>`;
+    elm.querySelector(".eliminar-fila").addEventListener("click",(e)=>delFila(e.target));
+    document.querySelector(".tbodyEstudiosAlb.a"+id).appendChild(elm);
     console.log(albumes)
   }
 }
@@ -283,13 +286,14 @@ function addEstudioBan(est){
   //Imprimir Estudios
   console.log("addEstudioBan")
   console.log(est)
-  document.getElementById("tbodyEstudios").innerHTML+=`
-    <tr>
-      <th><button type="button" class="btn btn-danger eliminar eliminar-fila">x</button></th>
-      <td><input type="text" value="${est.nombre}" class="form-control nomEstBan" name="nomEstBan[]"></td>
-      <td><input type="text" value="${est.pais}" class="form-control paisEstBan" name="paisEstBan[]"></td>
-      <td><input type="text" value="${est.origen}" class="form-control origenEstBan" name="origenEstBan[]"></td>
-    </tr>`;
+  let elm = document.createElement("tr");
+  elm.innerHTML=`
+    <th><button type="button" class="btn btn-danger eliminar eliminar-fila">x</button></th>
+    <td><input type="text" value="${est.nombre}" class="form-control nomEstBan" name="nomEstBan[]"></td>
+    <td><input type="text" value="${est.pais}" class="form-control paisEstBan" name="paisEstBan[]"></td>
+    <td><input type="text" value="${est.origen}" class="form-control origenEstBan" name="origenEstBan[]"></td>`;
+  elm.querySelector(".eliminar-fila").addEventListener("click",(e)=>delFila(e.target));
+  document.getElementById("tbodyEstudios").appendChild(elm);
   banda.estudios.push({nombre: est.nombre, pais: "", direccion: ""});
 }
 
@@ -323,25 +327,25 @@ function traducirRolesAlbum(roles, id){
 btnAlbProp.addEventListener("click",(e)=>{
   e.preventDefault();
   if(albPropText.value.length>0){
-      let txt = albPropText.value;
-      let id = idPropAlb.textContent;
-      albumes[id].imagen = getImagenAlbMA(txt, id); //---
-      let fecha = getFechaAlbMA(txt, id); //---
-      albumes[id].anio = fecha.anio;
-      albumes[id].mes = fecha.mes;
-      albumes[id].dia = fecha.dia;
-      albumes[id].tipo = getTipoAlbMA(txt, id); //---
-      albumes[id].duracion = getDuracionAlbMA(txt, id); //---
-      albumes[id].discograficas = getDiscograficaAlbMA(txt, id); //---
-      albumes[id].musicos = getMusicosAlbMA(txt, id); //---
-      addTxtEstudiosAlbMA(txt, id); //---
-      traducirRolesAlbum(albumes[id].musicos.map(mus=>mus = mus.roles), id);
-      fetch(`http://ws.audioscrobbler.com/2.0/?method=album.getinfo&artist=${banda.info.nombre}&album=${albumes[id].nombre}&api_key=5a29d744e8273ab4a877e9b59555b81e&format=json`)
-        .then(data=>data.json())
-        .then(data=>traducirDescrip(data.album.wiki.content, document.querySelector(".descripAlb.a"+id)))
-        .catch(error=>alert("Error en la traducción de la descripción de la banda"));
-      console.log(banda);
-      console.log(albumes);
+    let txt = albPropText.value;
+    let id = idPropAlb.textContent;
+    albumes[id].imagen = getImagenAlbMA(txt, id); //---
+    let fecha = getFechaAlbMA(txt, id); //---
+    albumes[id].anio = fecha.anio;
+    albumes[id].mes = fecha.mes;
+    albumes[id].dia = fecha.dia;
+    albumes[id].tipo = getTipoAlbMA(txt, id); //---
+    albumes[id].duracion = getDuracionAlbMA(txt, id); //---
+    albumes[id].discograficas = getDiscograficaAlbMA(txt, id); //---
+    albumes[id].musicos = getMusicosAlbMA(txt, id); //---
+    addTxtEstudiosAlbMA(txt, id); //---
+    traducirRolesAlbum(albumes[id].musicos.map(mus=>mus = mus.roles), id);
+    fetch(`http://ws.audioscrobbler.com/2.0/?method=album.getinfo&artist=${banda.info.nombre}&album=${albumes[id].nombre}&api_key=5a29d744e8273ab4a877e9b59555b81e&format=json`)
+      .then(data=>data.json())
+      .then(data=>traducirDescrip(data.album.wiki.content, document.querySelector(".descripAlb.a"+id)))
+      .catch(error=>alert("Error en la traducción de la descripción de la banda"));
+    console.log(banda);
+    console.log(albumes);
   } else alert("Debes incluir contenido HTML");
   albPropText.value = "";
 });

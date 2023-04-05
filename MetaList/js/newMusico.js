@@ -108,131 +108,131 @@ function addNewMusico(band, musico, id){
   console.log(musico)
   //-----------------------
   let tbodyMusicos = document.getElementById("tbodyMusicos");
+  let elm = document.createElement("div");
+  elm.classList.add("a"+id,"etiqueta","musico","col-12","col-md-6","col-xl-4","my-2");
   let txt = `
-  <div class="a${id} etiqueta col-12 col-md-6 col-xl-4 my-2">
-    <div class="card mb-3">
-      <div class="card-body">
-        <h5 class="card-title text-center">
-          <span class="text-dark">Nuevo Músico</span>
-          <button type="button" class="a${id} btn btn-danger ms-2 eliminar eliminar-etiqueta eliminarMus">x</button>
-        </h5>
-        <div class="more p-0 text-center mb-2">
-          <button class="btn btn-primary btnGenPropMus a${id}" id="a${id}" data-bs-toggle="modal" data-bs-target="#musPropModal">Generar Propuesta</button>
+  <div class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title text-center">
+        <span class="text-dark">Nuevo Músico</span>
+        <button type="button" class="a${id} btn btn-danger ms-2 eliminar eliminar-etiqueta eliminarMus">x</button>
+      </h5>
+      <div class="more p-0 text-center mb-2">
+        <button class="btn btn-primary btnGenPropMus a${id}" id="a${id}" data-bs-toggle="modal" data-bs-target="#musPropModal">Generar Propuesta</button>
+      </div>
+      <div class="card-text">
+        <div class="row">
+          <div class="col-6 my-1">
+            <div class="form-floating">
+              <input type="text" value="${musico.nombre}" class="form-control nombreMus a${id}" name="nombreMus[]" placeholder=".">
+              <label for="nombreMus">Nombre</label>
+            </div>
+          </div>
+          <div class="col-6 my-1">
+            <select class="form-select py-3 sexoMus a${id}" name="sexoMus[]" aria-label="Default select example">
+              <option value="Hombre" ${(musico.sexo=="Hombre") ? "selected" : ""}>Hombre</option>
+              <option value="Mujer" ${(musico.sexo=="Mujer") ? "selected" : ""}>Mujer</option>
+            </select>
+          </div>
         </div>
-        <div class="card-text">
-          <div class="row">
-            <div class="col-6 my-1">
-              <div class="form-floating">
-                <input type="text" value="${musico.nombre}" class="form-control nombreMus a${id}" name="nombreMus[]" placeholder=".">
-                <label for="nombreMus">Nombre</label>
-              </div>
-            </div>
-            <div class="col-6 my-1">
-              <select class="form-select py-3 sexoMus a${id}" name="sexoMus[]" aria-label="Default select example">
-                <option value="Hombre" ${(musico.sexo=="Hombre") ? "selected" : ""}>Hombre</option>
-                <option value="Mujer" ${(musico.sexo=="Mujer") ? "selected" : ""}>Mujer</option>
-              </select>
+        <div class="row">
+          <div class="col-12 my-1">
+            <div class="form-floating">
+              <input type="text" value="${musico.imagen}" class="form-control imgMus a${id}" name="imgMus[]" placeholder=".">
+              <label for="imgMus">Imagen</label>
             </div>
           </div>
-          <div class="row">
-            <div class="col-12 my-1">
-              <div class="form-floating">
-                <input type="text" value="${musico.imagen}" class="form-control imgMus a${id}" name="imgMus[]" placeholder=".">
-                <label for="imgMus">Imagen</label>
+        </div>
+        <div class="row">
+          <div class="col-12 my-1">
+            <p class="text-center fw-bold bg-transparent mb-0">Fecha de Nacimiento</p>
+            <div class="row">
+              <div class="col-4 form-floating pe-1">
+                <input type="number" value="${musico.fechaNac.dia}" class="form-control diaNacMus a${id}" name="diaNacMus[]" min="0" max="31" placeholder=".">
+                <label for="diaNacMus" class="ps-4">Día</label>
               </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-12 my-1">
-              <p class="text-center fw-bold bg-transparent mb-0">Fecha de Nacimiento</p>
-              <div class="row">
-                <div class="col-4 form-floating pe-1">
-                  <input type="number" value="${musico.fechaNac.dia}" class="form-control diaNacMus a${id}" name="diaNacMus[]" min="0" max="31" placeholder=".">
-                  <label for="diaNacMus" class="ps-4">Día</label>
-                </div>
-                <div class="col-4 form-floating px-1">
-                  <input type="number" value="${musico.fechaNac.mes}" class="form-control mesNacMus a${id}" name="mesNacMus[]" min="1" max="12" placeholder=".">
-                  <label for="mesNacMus" class="ps-3">Mes</label>
-                </div>
-                <div class="col-4 form-floating ps-1">
-                  <input type="number" value="${musico.fechaNac.anio}" class="form-control anioNacMus a${id}" name="anioNacMus[]" minlength="4" maxlength="4" placeholder=".">
-                  <label for="anioNacMus" class="ps-3">Año</label>
-                </div>
+              <div class="col-4 form-floating px-1">
+                <input type="number" value="${musico.fechaNac.mes}" class="form-control mesNacMus a${id}" name="mesNacMus[]" min="1" max="12" placeholder=".">
+                <label for="mesNacMus" class="ps-3">Mes</label>
+              </div>
+              <div class="col-4 form-floating ps-1">
+                <input type="number" value="${musico.fechaNac.anio}" class="form-control anioNacMus a${id}" name="anioNacMus[]" minlength="4" maxlength="4" placeholder=".">
+                <label for="anioNacMus" class="ps-3">Año</label>
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-12 my-1">
-              <p class="text-center fw-bold bg-transparent mb-0">Fecha de Defunción</p>
-              <div class="row">
-                <div class="col-4 form-floating pe-1">
-                  <input type="number" value="${musico.fechaDef.dia}" class="form-control diaDefMus a${id}" name="diaDefMus[]" min="0" max="31" placeholder=".">
-                  <label for="diaDefMus" class="ps-4">Día</label>
-                </div>
-                <div class="col-4 form-floating px-1">
-                  <input type="number" value="${musico.fechaDef.mes}" class="form-control mesDefMus a${id}" name="mesDefMus[]" min="1" max="12" placeholder=".">
-                  <label for="mesDefMus" class="ps-3">Mes</label>
-                </div>
-                <div class="col-4 form-floating ps-1">
-                  <input type="number" value="${musico.fechaDef.anio}" class="form-control anioDefMus a${id}" name="anioDefMus[]" minlength="4" maxlength="4" placeholder=".">
-                  <label for="anioDefMus" class="ps-3">Año</label>
-                </div>
+        </div>
+        <div class="row">
+          <div class="col-12 my-1">
+            <p class="text-center fw-bold bg-transparent mb-0">Fecha de Defunción</p>
+            <div class="row">
+              <div class="col-4 form-floating pe-1">
+                <input type="number" value="${musico.fechaDef.dia}" class="form-control diaDefMus a${id}" name="diaDefMus[]" min="0" max="31" placeholder=".">
+                <label for="diaDefMus" class="ps-4">Día</label>
+              </div>
+              <div class="col-4 form-floating px-1">
+                <input type="number" value="${musico.fechaDef.mes}" class="form-control mesDefMus a${id}" name="mesDefMus[]" min="1" max="12" placeholder=".">
+                <label for="mesDefMus" class="ps-3">Mes</label>
+              </div>
+              <div class="col-4 form-floating ps-1">
+                <input type="number" value="${musico.fechaDef.anio}" class="form-control anioDefMus a${id}" name="anioDefMus[]" minlength="4" maxlength="4" placeholder=".">
+                <label for="anioDefMus" class="ps-3">Año</label>
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-6 my-1">
-              <div class="form-floating">
-                <input type="text" value="${musico.pais}" class="form-control paisMus a${id}" name="paisMus[]" placeholder=".">
-                <label for="paisMus">País</label>
-              </div>
-            </div>
-            <div class="col-6 my-1">
-              <div class="form-floating">
-                <input type="text" value="${musico.origen}" class="form-control origenMus a${id}" name="origenMus[]" placeholder=".">
-                <label for="origenMus">Origen</label>
-              </div>
+        </div>
+        <div class="row">
+          <div class="col-6 my-1">
+            <div class="form-floating">
+              <input type="text" value="${musico.pais}" class="form-control paisMus a${id}" name="paisMus[]" placeholder=".">
+              <label for="paisMus">País</label>
             </div>
           </div>
-          <div class="row px-3">
-            <table class="table table-sm">
-              <thead>
-                <tr>
-                  <th scope="col"><button type="button" class="btn btn-success addEtapaMusBan anadir-fila">+</button></th>
-                  <th scope="col">Año Inicio</th>
-                  <th scope="col">Año Fin</th>
-                </tr>
-              </thead>
-              <tbody class="table-group-divider tbodyEtapasMus a${id}" id="tbodyEtapasMus-${id}">`;
-        for(let etapa of musico.etapas){
-          txt+=`<tr>
-                  <th><button type="button" class="btn btn-danger eliminar-fila">x</button></th>
-                  <td><input type="number" value="${etapa.anioInic}" class="form-control anioInicMus" name="anioInicMus[]" min="1965" max="${new Date().getFullYear()}"></td>
-                  <td><input type="number" value="${etapa.anioFin}" class="form-control anioFinMus" name="anioFinMus[]" min="1965" max="${new Date().getFullYear()}"></td>
-                </tr>`;
-        }
-        txt+=`</tbody>
-            </table>
+          <div class="col-6 my-1">
+            <div class="form-floating">
+              <input type="text" value="${musico.origen}" class="form-control origenMus a${id}" name="origenMus[]" placeholder=".">
+              <label for="origenMus">Origen</label>
+            </div>
           </div>
+        </div>
+        <div class="row px-3">
+          <table class="table table-sm">
+            <thead>
+              <tr>
+                <th scope="col"><button type="button" class="btn btn-success addEtapaMusBan anadir-fila">+</button></th>
+                <th scope="col">Año Inicio</th>
+                <th scope="col">Año Fin</th>
+              </tr>
+            </thead>
+            <tbody class="table-group-divider tbodyEtapasMus a${id}" id="tbodyEtapasMus-${id}">`;
+      for(let etapa of musico.etapas){
+        txt+=`<tr>
+                <th><button type="button" class="btn btn-danger eliminar-fila">x</button></th>
+                <td><input type="number" value="${etapa.anioInic}" class="form-control anioInicMus" name="anioInicMus[]" min="1965" max="${new Date().getFullYear()}"></td>
+                <td><input type="number" value="${etapa.anioFin}" class="form-control anioFinMus" name="anioFinMus[]" min="1965" max="${new Date().getFullYear()}"></td>
+              </tr>`;
+      }
+      txt+=`</tbody>
+          </table>
         </div>
       </div>
     </div>
   </div>`;
-  tbodyMusicos.innerHTML+=txt;
+  elm.innerHTML = txt;
 
   /* Generar Propuesta */
-  let btnGenPropMus = document.querySelectorAll(".card .btnGenPropMus");
+  let btnGenPropMus = elm.querySelector(".btnGenPropMus");
   let idPropMus = document.getElementById("idPropMus");
   /* Campos */
-  let nombreMus = document.querySelectorAll(".card .nombreMus");
+  let nombreMus = elm.querySelector(".nombreMus");
 
   //BOTÓN PRE-MODAL GENERAR PROPUESTA MUSICO
-  for(let btn of btnGenPropMus){
-    btn.addEventListener("click",(e)=>{
-      e.preventDefault();
-      let id = e.target.id[1];
-      idPropMus.innerHTML = id;
-      generarEnlaceMus(nombreMus[id].value, band);
-    });
-  }
+  btnGenPropMus.addEventListener("click",(e)=>{
+    e.preventDefault();
+    let id = e.target.id.substring(1);
+    idPropMus.innerHTML = id;
+    generarEnlaceMus(nombreMus.value, band);
+  });
+
+  tbodyMusicos.appendChild(elm);
 }

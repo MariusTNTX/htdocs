@@ -77,81 +77,81 @@ function addNewDiscografica(band, discografica, id){
   console.log(discografica)
   //-----------------------
   let tbodyDiscograficas = document.getElementById("tbodyDiscograficas");
+  let elm = document.createElement("div");
+  elm.classList.add("a"+id,"etiqueta","discografica","col-12","col-md-6","col-xl-4","my-2");
   let txt = `
-  <div class="a${id} etiqueta col-12 col-md-6 col-xl-4 my-2">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title text-center">
-          <span class="text-dark">Nueva Discográfica</span>
-          <button type="button" class="a${id} btn btn-danger ms-2 eliminar eliminar-etiqueta eliminarDisc">x</button>
-        </h5>
-        <div class="more p-0 text-center mb-2">
-          <button class="btn btn-primary btnGenPropDisc a${id}" id="a${id}" data-bs-toggle="modal" data-bs-target="#discPropModal">Generar Propuesta</button>
+  <div class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title text-center">
+        <span class="text-dark">Nueva Discográfica</span>
+        <button type="button" class="a${id} btn btn-danger ms-2 eliminar eliminar-etiqueta eliminarDisc">x</button>
+      </h5>
+      <div class="more p-0 text-center mb-2">
+        <button class="btn btn-primary btnGenPropDisc a${id}" id="a${id}" data-bs-toggle="modal" data-bs-target="#discPropModal">Generar Propuesta</button>
+      </div>
+      <div class="card-text">
+        <div class="row">
+          <div class="col-6 my-1">
+            <div class="form-floating">
+              <input type="text" value="${discografica.nombre}" class="form-control nombreDisc a${id}" name="nombreDisc[]" placeholder=".">
+              <label for="nombreDisc">Nombre</label>
+            </div>
+          </div>
+          <div class="col-6 my-1">
+            <select class="form-select py-3 estatusDisc a${id}" name="estatusDisc[]" aria-label="Default select example">
+              <option value="active" ${(discografica.estatus=='active') ? "selected" : ""}>En Activo</option>
+              <option value="inactive" ${(discografica.estatus!='active') ? "selected" : ""}>Inactivo</option>
+            </select>
+          </div>
         </div>
-        <div class="card-text">
-          <div class="row">
-            <div class="col-6 my-1">
-              <div class="form-floating">
-                <input type="text" value="${discografica.nombre}" class="form-control nombreDisc a${id}" name="nombreDisc[]" placeholder=".">
-                <label for="nombreDisc">Nombre</label>
-              </div>
-            </div>
-            <div class="col-6 my-1">
-              <select class="form-select py-3 estatusDisc a${id}" name="estatusDisc[]" aria-label="Default select example">
-                <option value="active" ${(discografica.estatus=='active') ? "selected" : ""}>En Activo</option>
-                <option value="inactive" ${(discografica.estatus!='active') ? "selected" : ""}>Inactivo</option>
-              </select>
+        <div class="row">
+          <div class="col-12 my-1">
+            <div class="form-floating">
+              <input type="text" value="${discografica.imagen}" class="form-control imgDisc a${id}" name="imgDisc[]" placeholder=".">
+              <label for="imgDisc">Imagen</label>
             </div>
           </div>
-          <div class="row">
-            <div class="col-12 my-1">
-              <div class="form-floating">
-                <input type="text" value="${discografica.imagen}" class="form-control imgDisc a${id}" name="imgDisc[]" placeholder=".">
-                <label for="imgDisc">Imagen</label>
-              </div>
+        </div>
+        <div class="row">
+          <div class="col-12 my-1">
+            <div class="form-floating">
+              <input type="text" value="${discografica.linkWeb}" class="form-control webDisc a${id}" name="webDisc[]" placeholder=".">
+              <label for="webDisc">Página Web</label>
             </div>
           </div>
-          <div class="row">
-            <div class="col-12 my-1">
-              <div class="form-floating">
-                <input type="text" value="${discografica.linkWeb}" class="form-control webDisc a${id}" name="webDisc[]" placeholder=".">
-                <label for="webDisc">Página Web</label>
-              </div>
+        </div>
+        <div class="row">
+          <div class="col-6 my-1">
+            <div class="form-floating">
+              <input type="text" value="${discografica.pais}" class="form-control paisDisc a${id}" name="paisDisc[]" placeholder=".">
+              <label for="paisDisc">País</label>
             </div>
           </div>
-          <div class="row">
-            <div class="col-6 my-1">
-              <div class="form-floating">
-                <input type="text" value="${discografica.pais}" class="form-control paisDisc a${id}" name="paisDisc[]" placeholder=".">
-                <label for="paisDisc">País</label>
-              </div>
-            </div>
-            <div class="col-6 my-1">
-              <div class="form-floating">
-                <input type="text" value="${discografica.direccion}" class="form-control direcDisc a${id}" name="direcDisc[]" placeholder=".">
-                <label for="direcDisc">Dirección</label>
-              </div>
+          <div class="col-6 my-1">
+            <div class="form-floating">
+              <input type="text" value="${discografica.direccion}" class="form-control direcDisc a${id}" name="direcDisc[]" placeholder=".">
+              <label for="direcDisc">Dirección</label>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>`;
-  tbodyDiscograficas.innerHTML+=txt;
+  elm.innerHTML = txt;
 
   // Generar Propuesta
-  let btnGenPropDisc = document.querySelectorAll(".card .btnGenPropDisc");
+  let btnGenPropDisc = elm.querySelector(".btnGenPropDisc");
   let idPropDisc = document.getElementById("idPropDisc");
   // Campos
-  let nombreDisc = document.querySelectorAll(".card .nombreDisc");
+  let nombreDisc = elm.querySelector(".nombreDisc");
 
   //BOTÓN PRE-MODAL GENERAR PROPUESTA DISCOGRÁFICA
-  for(let btn of btnGenPropDisc){
-    btn.addEventListener("click",(e)=>{
-      e.preventDefault();
-      let id = e.target.id[1];
-      idPropDisc.innerHTML = id;
-      generarEnlaceDisc(nombreDisc[id].value);
-    });
-  }
+  btnGenPropDisc.addEventListener("click",(e)=>{
+    e.preventDefault();
+    let id = e.target.id.substring(1);
+    idPropDisc.innerHTML = id;
+    generarEnlaceDisc(nombreDisc.value);
+  });
+
+  tbodyDiscograficas.appendChild(elm);
 }
