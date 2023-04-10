@@ -76,11 +76,11 @@ function addNewAlbum(band, album, id){
             <div class="row">
               <div class="col-12 col-sm-6 my-1">
                 <select class="form-select tipoAlb py-3 a${id}" name="tipoAlb[]" aria-label="Default select example">
-                  <option value="ESTUDIO" ${(album.tipo=='ESTUDIO') ? "selected" : ""}>Estudio</option>
+                  <option value="Estudio" ${(album.tipo=='Estudio') ? "selected" : ""}>Estudio</option>
                   <option value="EP" ${(album.tipo=='EP') ? "selected" : ""}>EP</option>
-                  <option value="LIVE" ${(album.tipo=='LIVE') ? "selected" : ""}>En Directo</option>
-                  <option value="RECOPILATORIO" ${(album.tipo=='RECOPILATORIO') ? "selected" : ""}>Recopilatorio</option>
-                  <option value="BOXSET" ${(album.tipo=='BOXSET') ? "selected" : ""}>Box Set</option>
+                  <option value="En Vivo" ${(album.tipo=='En Vivo') ? "selected" : ""}>En Directo</option>
+                  <option value="Recopilatorio" ${(album.tipo=='Recopilatorio') ? "selected" : ""}>Recopilatorio</option>
+                  <option value="BoxSet" ${(album.tipo=='BoxSet') ? "selected" : ""}>Box Set</option>
                 </select>
               </div>
               <div class="col-12 col-sm-6 my-1">

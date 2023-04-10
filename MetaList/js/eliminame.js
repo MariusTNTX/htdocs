@@ -2765,3 +2765,891 @@ Mastered in February 2006 at Mailmen Studios, Utrecht (NL).</p>
 
 
 </body></html>`;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+document.getElementById("musPropText").value=`<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<title>Ivo Henzi - Encyclopaedia Metallum: The Metal Archives</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="width=device-width, initial-scale=1" name="viewport">
+<link rel="stylesheet" type="text/css" href="/min/index.php?g=css">
+<script type="text/javascript" async="" src="https://ssl.google-analytics.com/ga.js"></script><script type="text/javascript" src="/min/index.php?g=js"></script>
+<script type="text/javascript">
+			var URL_SITE	= 'https://www.metal-archives.com/';
+			var URL_IMAGES	= 'https://www.metal-archives.com/images/';
+			var URL_CSS		= 'https://www.metal-archives.com/css/';
+			var csrfToken	= '';
+
+			$(document).ready(function() {
+				toggleFixedPositioning(1280, 600);
+				executeOnAllPages();
+				
+											});
+
+
+		</script>
+<noscript>
+			<style type="text/css">
+				.no-js { display: block !important; }
+			</style>
+		</noscript>
+<!--[if lt IE 8]>
+			<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE8.js"></script>
+			 <link rel="stylesheet" type="text/css" href="https://www.metal-archives.com/css/default/oldie.css" />
+		<![endif]-->
+<script type="text/javascript">
+			  var _gaq = _gaq || [];
+			  _gaq.push(['_setAccount', 'UA-4046749-4']);
+			  _gaq.push(['_trackPageview']);
+
+			  (function() {
+			    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			  })();
+		</script>
+</head>
+<body>
+<div id="wrapper">
+<div id="header">
+<a href="https://www.metal-archives.com/" id="MA_logo">Metal Archives</a>
+<div class="clear loading"><img src="https://www.metal-archives.com/images/loading.gif" alt="loading" width="12" height="12"> loading...</div>
+<div id="search_box">
+<form id="search_form" action="https://www.metal-archives.com/search" method="get">
+<div>
+<label>Search:</label><br>
+<input name="searchString" type="text" id="searchQueryBox" size="25" value="" tabindex="1">
+<select name="type" tabindex="2">
+<option value="band_name">Band name</option>
+<option value="band_genre">Music genre</option>
+<option value="band_themes">Themes</option>
+<option value="album_title">Album title</option>
+<option value="song_title">Song title</option>
+<option value="label_name">Label</option>
+<option value="artist_alias">Artist</option>
+<option value="user_name">User profile</option>
+<option value="google">Google</option>
+</select>
+<br>
+<a href="https://www.metal-archives.com/search/advanced/?searchString=&amp;type=" class="float_left" tabindex="4">Advanced search</a>
+<button type="submit" class="btn_submit float_right" tabindex="3">Submit</button>
+</div>
+</form>
+</div>
+<div id="top_menu_box">
+<ul class="menu_style_1">
+<li><a href="https://www.metal-archives.com/content/help">Help</a></li>
+<li><a href="https://www.metal-archives.com/content/rules">Rules</a></li>
+<li><a href="https://metalarchives.threadless.com/" target="_top">Store</a></li>
+<li><a href="https://forum.metal-archives.com" target="_top">Forum</a></li>
+</ul>
+<ul class="menu_style_2">
+<li><a href="https://www.metal-archives.com/content/faq">FAQ</a></li>
+<li><a href="https://www.metal-archives.com/content/support">Support Us</a></li>
+<li><a href="https://www.metal-archives.com/content/tools">Add-ons</a></li>
+</ul>
+</div>
+</div>
+<div id="left_col">
+<div id="member_box">
+<form name="login_form" id="login_form" action="https://www.metal-archives.com/authentication/login" method="post">
+<div>
+<label>Username</label><br>
+<input type="text" name="loginUsername">
+<label>Password</label><br>
+<input type="password" name="loginPassword">
+<input type="hidden" name="origin" value="/artists/ivo_henzi">
+<button type="submit" class="btn_login float_right">Login</button>
+</div>
+</form>
+<a href="https://www.metal-archives.com/user/signup" class="float-left writeAction">Register</a>
+<span class="float_right"><a href="https://www.metal-archives.com/user/forgot-password" class="float-left writeAction">Forgot login?</a> </span>
+<div class="clear"> </div>
+</div>
+<div id="left_menu_box">
+<ul class="menu_style_3 block_spacer_20">
+<li>
+Bands
+<ul>
+<li><a href="https://www.metal-archives.com/browse/letter">alphabetical</a></li>
+<li><a href="https://www.metal-archives.com/browse/country">country</a></li>
+<li><a href="https://www.metal-archives.com/browse/genre">genre</a></li>
+</ul>
+</li>
+<li>
+Labels
+<ul>
+<li><a href="https://www.metal-archives.com/label">alphabetical</a></li>
+<li><a href="https://www.metal-archives.com/label/country">country</a></li>
+</ul>
+</li>
+<li><a href="https://www.metal-archives.com/review/browse">Reviews</a></li>
+</ul>
+<ul class="menu_style_3 block_spacer_20">
+<li><a href="https://www.metal-archives.com/artist/rip">R.I.P.</a></li>
+<li><a href="https://www.metal-archives.com/band/random">Random Band</a></li>
+<li><a href="https://www.metal-archives.com/user/list">User rankings</a></li>
+<li><a href="https://www.metal-archives.com/news">News archive</a></li>
+</ul>
+<ul class="menu_style_3 ornement_30">
+<li><a href="https://www.metal-archives.com/report/list">Reports</a></li>
+<li><a href="https://www.metal-archives.com/todo">Contribute / To do</a></li>
+</ul>
+</div>
+<div id="left_text_box">
+<p class="small_text center"> © 2002-2023<br>Encyclopaedia Metallum </p>
+<p class="small_text center">Best viewed<br> <a href="http://www.getfirefox.com" target="_blank">without</a> Internet Explorer, <br>in 1280 x 960 resolution<br> or higher.</p>
+</div>
+<div>
+<p class="small_text center"><a href="https://www.metal-archives.com/content/pp">Privacy Policy</a></p>
+</div>
+</div>
+<div id="content_wrapper">
+<script type="text/javascript" src="https://www.metal-archives.com/js/jquery/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://www.metal-archives.com/js/jquery/jquery.form.js"></script>
+<script type="text/javascript">
+	var artistId = 12109;
+	
+
+	$(document).ready(function() {
+		$(".no-js").removeClass("no-js");
+		$('#member_tabs').tabs({ beforeLoad: cacheTab }).show();
+		$('#album_members').tabs({ beforeLoad: cacheTab });
+		$('.albumMenu').click(toggleAlbumMenu);
+		$('.toggleAlbums').click(toggleAlbums);
+		$('#bandSearchPopup').dialog({ autoOpen: false, width: 600, height: 500, position: 'top' });
+		$('#bandSearch').ajaxForm({ target: '#bandSearchResults', beforeSubmit: function() { if (!$('#searchBandName').val()) { outputErrors({ searchBandName: 'Please enter a band name to search for.'}, '#bandLink'); return false; } toggleLoading(); }, success: toggleLoading});
+			});
+	
+	function toggleAlbums() {
+		var link = $(this);
+		var posTabDelim = link.attr('id').indexOf('_') + 1;
+		var posIdDelim  = link.attr('id').indexOf('-') + 1;
+		var tab = link.attr('id').substring(posTabDelim, posIdDelim - 1); 
+		var bandId = link.attr('id').substring(posIdDelim);
+		$('.hiddenRelease_' + tab + '-' + bandId).toggle();
+		link.html( link.html() == 'show all' ? 'hide' : 'show all' );
+	}
+	
+		
+	</script>
+<div id="member_sidebar">
+
+<div class="member_img"><a class="image" id="artist" title="Ivo Henzi" href="https://www.metal-archives.com/images/1/2/1/0/12109_artist.jpg?4527"><img src="https://www.metal-archives.com/images/1/2/1/0/12109_artist.jpg?4527" title="Click to zoom" alt="Ivo Henzi" border="0"></a></div>
+</div>
+<div id="member_content">
+<div class="tool_strip right writeAction">
+<ul>
+<li><a title="Report a mistake or additional information for this page" href="javascript:popupReportDialog(3, 12109);" class="btn_report_error"> </a></li>
+
+</ul>
+</div>
+<div id="member_info">
+<h1 class="band_member_name">Ivo Henzi</h1>
+<div id="tool_strip_01" class="tool_strip writeAction">
+<ul>
+</ul>
+</div>
+<div class="clear block_spacer_20"></div>
+<dl class="float_left">
+<dt>Real/full name:</dt>
+<dd>
+Ivo Henzi
+</dd>
+<dt>Age:</dt>
+<dd> 40 (born 1983) </dd>
+</dl>
+<dl class="float_right">
+<dt>Place of birth:</dt>
+<dd> <a href="https://www.metal-archives.com/lists/CH">Switzerland</a> (Zürich) </dd>
+<dt>Gender:</dt>
+<dd>Male</dd>
+</dl>
+<div class="clear band_comment">
+</div>
+</div>
+<div id="message"> </div>
+<div id="member_tabs" class="tabs ui-tabs ui-widget ui-widget-content ui-corner-all">
+<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role="tablist">
+<li class="ui-state-default ui-corner-top ui-tabs-active ui-state-active" role="tab" tabindex="0" aria-controls="artist_tab_active" aria-labelledby="ui-id-1" aria-selected="true"><a href="#artist_tab_active" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-1">Active Bands</a></li> <li class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="artist_tab_past" aria-labelledby="ui-id-2" aria-selected="false"><a href="#artist_tab_past" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-2">Past Bands</a></li> <li class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="artist_tab_live" aria-labelledby="ui-id-3" aria-selected="false"><a href="#artist_tab_live" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-3">Live</a></li> <li class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="artist_tab_misc" aria-labelledby="ui-id-4" aria-selected="false"><a href="#artist_tab_misc" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-4">Misc. staff</a></li> <li class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="ui-tabs-1" aria-labelledby="ui-id-5" aria-selected="false"><a href="https://www.metal-archives.com/link/ajax-list/type/person/id/12109" title="Related links" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-5"><span>Links</span></a></li> </ul>
+
+<div id="artist_tab_active" aria-labelledby="ui-id-1" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="true" aria-hidden="false">
+<div id="member_active" class="tabs2lvl">
+</div>
+<div class="ui-tabs-panel-content block_spacer_top_36">
+<div class="member_in_band" id="memberInBand_l_2018954">
+<h3 class="member_in_band_name">Cellar Darling</h3>
+<p class="member_in_band_role" id="roleInBand_Cellar Darling">
+<strong>Guitars, Bass</strong>
+(2016-present) </p>
+</div>
+<div class="member_in_band" id="memberInBand_17815">
+<h3 class="member_in_band_name"><a href="https://www.metal-archives.com/bands/Forest_of_Fog/17815#band_tab_members" title="Forest of Fog">Forest of Fog</a></h3>
+<p class="member_in_band_role" id="roleInBand_17815">
+As I.H.:<br> <strong>Vocals, All instruments</strong>
+(2003-present) </p>
+<table class="display no_borders" cellpadding="0" cellspacing="0">
+<tbody><tr id="memberInAlbum_41038" class="even">
+<td width="28">2003</td>
+<td width="280">
+<a href="https://www.metal-archives.com/albums/Forest_of_Fog/Rabenflug/41038" title="Rabenflug">Rabenflug</a> (Demo) </td>
+<td>
+All instruments (as "Warburz") </td>
+</tr>
+<tr id="memberInAlbum_41040" class=" odd">
+<td width="28">2004</td>
+<td width="280">
+<a href="https://www.metal-archives.com/albums/Forest_of_Fog/Untergang/41040" title="Untergang">Untergang</a> </td>
+<td>
+All instruments, Vocals </td>
+</tr>
+<tr id="memberInAlbum_69579" class="even">
+<td width="28">2005</td>
+<td width="280">
+<a href="https://www.metal-archives.com/albums/Forest_of_Fog/Nebelhymnen/69579" title="Nebelhymnen">Nebelhymnen</a> </td>
+<td>
+All instruments, Vocals </td>
+</tr>
+<tr id="memberInAlbum_117306" class=" odd">
+<td width="28">2006</td>
+<td width="280">
+<a href="https://www.metal-archives.com/albums/Forest_of_Fog/Abgr%C3%BCnde/117306" title="Abgründe">Abgründe</a> </td>
+<td>
+All instruments, Vocals </td>
+</tr>
+<tr id="memberInAlbum_600309" class="even">
+<td width="28">2016</td>
+<td width="280">
+<a href="https://www.metal-archives.com/albums/Forest_of_Fog/Awake/600309" title="Awake">Awake</a> (Single) </td>
+<td>
+Vocals, Guitars, Bass </td>
+</tr>
+</tbody></table>
+</div>
+<div class="member_in_band" id="memberInBand_3540512866">
+<h3 class="member_in_band_name"><a href="https://www.metal-archives.com/bands/Nighted/3540512866#band_tab_members" title="Nighted">Nighted</a></h3>
+<p class="member_in_band_role" id="roleInBand_3540512866">
+<strong>Guitars</strong>
+(2020-present) </p>
+</div>
+</div>
+</div>
+
+
+<div id="artist_tab_past" aria-labelledby="ui-id-2" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display: none;">
+<div id="member_past" class="tabs2lvl">
+</div>
+<div class="ui-tabs-panel-content block_spacer_top_36">
+<div class="member_in_band" id="memberInBand_13991">
+<h3 class="member_in_band_name"><a href="https://www.metal-archives.com/bands/Eluveitie/13991#band_tab_members" title="Eluveitie">Eluveitie</a></h3>
+<p class="member_in_band_role" id="roleInBand_13991">
+<strong>Guitars (rhythm)</strong>
+(2004-2016) </p>
+<table class="display no_borders" cellpadding="0" cellspacing="0">
+<tbody><tr id="memberInAlbum_105454" class=" odd">
+<td width="28">2006</td>
+<td width="280">
+<a href="https://www.metal-archives.com/albums/Eluveitie/Spirit/105454" title="Spirit">Spirit</a> </td>
+<td>
+Guitars (rhythm) </td>
+</tr>
+<tr id="memberInAlbum_176461" class="even">
+<td width="28">2008</td>
+<td width="280">
+<a href="https://www.metal-archives.com/albums/Eluveitie/Slania/176461" title="Slania">Slania</a> </td>
+<td>
+Guitars (rhythm) </td>
+</tr>
+<tr id="memberInAlbum_216752" class=" odd hiddenRelease_past-13991 displayNone">
+<td width="28">2008</td>
+<td width="280">
+<a href="https://www.metal-archives.com/albums/Eluveitie/Live_%40_Metalcamp_2008/216752" title="Live @ Metalcamp 2008">Live @ Metalcamp 2008</a> (Live album) </td>
+<td>
+Guitars (rhythm) </td>
+</tr>
+<tr id="memberInAlbum_226917" class="even hiddenRelease_past-13991 displayNone">
+<td width="28">2009</td>
+<td width="280">
+<a href="https://www.metal-archives.com/albums/Eluveitie/Omnos/226917" title="Omnos">Omnos</a> (Single) </td>
+<td>
+Guitars (rhythm) </td>
+</tr>
+<tr id="memberInAlbum_230827" class=" odd hiddenRelease_past-13991 displayNone">
+<td width="28">2009</td>
+<td width="280">
+<a href="https://www.metal-archives.com/albums/Eluveitie/Slania_-_Evocation_I_-_The_Arcane_Metal_Hammer_Edition/230827" title="Slania / Evocation I - The Arcane Metal Hammer Edition">Slania / Evocation I - The Arcane Metal Hammer Edition</a> (Compilation) </td>
+<td>
+Guitars (rhythm) </td>
+</tr>
+<tr id="memberInAlbum_222767" class="even">
+<td width="28">2009</td>
+<td width="280">
+<a href="https://www.metal-archives.com/albums/Eluveitie/Evocation_I_-_The_Arcane_Dominion/222767" title="Evocation I - The Arcane Dominion">Evocation I - The Arcane Dominion</a> </td>
+<td>
+Guitars (acoustic) </td>
+</tr>
+<tr id="memberInAlbum_265198" class=" odd hiddenRelease_past-13991 displayNone">
+<td width="28">2010</td>
+<td width="280">
+<a href="https://www.metal-archives.com/albums/Eluveitie/Thousandfold/265198" title="Thousandfold">Thousandfold</a> (Single) </td>
+<td>
+Guitars (rhythm) </td>
+</tr>
+<tr id="memberInAlbum_255252" class="even">
+<td width="28">2010</td>
+<td width="280">
+<a href="https://www.metal-archives.com/albums/Eluveitie/Everything_Remains_as_It_Never_Was/255252" title="Everything Remains as It Never Was">Everything Remains as It Never Was</a> </td>
+<td>
+Guitars (rhythm) </td>
+</tr>
+<tr id="memberInAlbum_746791" class=" odd hiddenRelease_past-13991 displayNone">
+<td width="28">2012</td>
+<td width="280">
+<a href="https://www.metal-archives.com/albums/Eluveitie/Meet_the_Enemy/746791" title="Meet the Enemy">Meet the Enemy</a> (Single) </td>
+<td>
+Guitars (rhythm) </td>
+</tr>
+<tr id="memberInAlbum_323788" class="even">
+<td width="28">2012</td>
+<td width="280">
+<a href="https://www.metal-archives.com/albums/Eluveitie/Helvetios/323788" title="Helvetios">Helvetios</a> </td>
+<td>
+Guitars (rhythm) </td>
+ </tr>
+<tr id="memberInAlbum_472179" class=" odd hiddenRelease_past-13991 displayNone">
+<td width="28">2012</td>
+<td width="280">
+<a href="https://www.metal-archives.com/albums/Eluveitie/Live_on_Tour/472179" title="Live on Tour">Live on Tour</a> (Live album) </td>
+<td>
+Guitars (rhythm) </td>
+</tr>
+<tr id="memberInAlbum_351870" class="even hiddenRelease_past-13991 displayNone">
+<td width="28">2012</td>
+<td width="280">
+<a href="https://www.metal-archives.com/albums/Eluveitie/Divico/351870" title="Divico">Divico</a> (Single) </td>
+<td>
+Guitars (rhythm) </td>
+</tr>
+<tr id="memberInAlbum_422592" class=" odd hiddenRelease_past-13991 displayNone">
+<td width="28">2014</td>
+<td width="280">
+<a href="https://www.metal-archives.com/albums/Eluveitie/King/422592" title="King">King</a> (Single) </td>
+<td>
+Guitars (rhythm) </td>
+</tr>
+<tr id="memberInAlbum_434392" class="even hiddenRelease_past-13991 displayNone">
+<td width="28">2014</td>
+<td width="280">
+<a href="https://www.metal-archives.com/albums/Eluveitie/The_Call_of_the_Mountains/434392" title="The Call of the Mountains">The Call of the Mountains</a> (Single) </td>
+<td>
+Guitars (rhythm) </td>
+</tr>
+<tr id="memberInAlbum_411515" class=" odd">
+<td width="28">2014</td>
+<td width="280">
+<a href="https://www.metal-archives.com/albums/Eluveitie/Origins/411515" title="Origins">Origins</a> </td>
+<td>
+Guitars (rhythm) </td>
+</tr>
+<tr id="memberInAlbum_456821" class="even hiddenRelease_past-13991 displayNone">
+<td width="28">2014</td>
+<td width="280">
+<a href="https://www.metal-archives.com/albums/Eluveitie/Live_at_Feuertanz_2013/456821" title="Live at Feuertanz 2013">Live at Feuertanz 2013</a> (Live album) </td>
+<td>
+Guitars (rhythm) </td>
+</tr>
+<tr id="memberInAlbum_832440" class=" odd hiddenRelease_past-13991 displayNone">
+<td width="28">2020</td>
+<td width="280">
+<a href="https://www.metal-archives.com/albums/Eluveitie/The_Call_of_the_Mountains_and_Ambiramus_in_Russian/832440" title="The Call of the Mountains and Ambiramus in Russian">The Call of the Mountains and Ambiramus in Russian</a> (Single) </td>
+<td>
+Guitars (rhythm) (track 1) </td>
+</tr>
+<tr class="showAll">
+<td colspan="3">
+(<a href="javascript:;" id="toggle_past-13991" class="toggleAlbums">show all</a>)
+</td>
+</tr>
+</tbody></table>
+</div>
+</div>
+</div>
+
+
+<div id="artist_tab_live" aria-labelledby="ui-id-3" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display: none;">
+<div id="member_past" class="tabs2lvl">
+</div>
+<div class="ui-tabs-panel-content block_spacer_top_36">
+<div class="member_in_band" id="memberInBand_l_2870315">
+<h3 class="member_in_band_name">Godnr. Universe!</h3>
+<p class="member_in_band_role" id="roleInBand_Godnr. Universe!">
+<strong>Guitars</strong> </p>
+</div>
+</div>
+</div>
+
+
+<div id="artist_tab_misc" aria-labelledby="ui-id-4" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display: none;">
+<div id="member_guest" class="tabs2lvl"> </div>
+<div class="ui-tabs-panel-content block_spacer_top_36">
+<div class="member_in_band" id="memberInBand_13991">
+<h3 class="member_in_band_name"><a href="https://www.metal-archives.com/bands/Eluveitie/13991#band_tab_members" title="Eluveitie">Eluveitie</a></h3>
+<p class="member_in_band_role" id="roleInBand_13991">
+</p>
+<table class="display no_borders" cellpadding="0" cellspacing="0">
+<tbody><tr id="memberInAlbum_216752" class="even">
+<td width="28">2008</td>
+<td width="280">
+<a href="https://www.metal-archives.com/albums/Eluveitie/Live_%40_Metalcamp_2008/216752" title="Live @ Metalcamp 2008">Live @ Metalcamp 2008</a> (Live album) </td>
+<td>
+Mixing, Mastering </td>
+</tr>
+<tr id="memberInAlbum_255252" class=" odd">
+<td width="28">2010</td>
+<td width="280">
+<a href="https://www.metal-archives.com/albums/Eluveitie/Everything_Remains_as_It_Never_Was/255252" title="Everything Remains as It Never Was">Everything Remains as It Never Was</a> </td>
+<td>
+Engineering </td>
+</tr>
+</tbody></table>
+</div>
+<div class="member_in_band" id="memberInBand_3540377463">
+<h3 class="member_in_band_name"><a href="https://www.metal-archives.com/bands/Path_of_Desolation/3540377463#band_tab_members" title="Path of Desolation">Path of Desolation</a></h3>
+<p class="member_in_band_role" id="roleInBand_3540377463">
+</p>
+<table class="display no_borders" cellpadding="0" cellspacing="0">
+<tbody><tr id="memberInAlbum_608769" class="even">
+<td width="28">2016</td>
+<td width="280">
+<a href="https://www.metal-archives.com/albums/Path_of_Desolation/Where_the_Grass_Withers/608769" title="Where the Grass Withers">Where the Grass Withers</a> </td>
+<td>
+Engineering </td>
+</tr>
+</tbody></table>
+</div>
+</div>
+</div><div id="ui-tabs-1" class="ui-tabs-panel ui-widget-content ui-corner-bottom" aria-live="polite" aria-labelledby="ui-id-5" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display: none;"></div>
+
+</div>
+<div id="readMoreDialogBio" title="Biography" class="displayNone"> </div>
+<div id="readMoreDialogTrivia" title="Trivia" class="displayNone"> </div>
+
+<div id="auditTrail">
+<table>
+<tbody><tr>
+<td>Added by: <a href="https://www.metal-archives.com/users/Jodious" class="profileMenu">Jodious</a></td>
+<td align="right">Modified by: <a href="https://www.metal-archives.com/users/Verd" class="profileMenu">Verd</a></td>
+</tr>
+<tr>
+<td>Added on: 2011-04-10 14:45:57</td>
+<td align="right">Last modified on: 2023-03-25 06:41:12</td>
+</tr>
+<tr>
+<td valign="top">
+&nbsp;
+</td>
+<td align="right" valign="top">
+</td>
+</tr>
+<tr><td class="writeAction" colspan="2">Duplicate? Please <a href="javascript:popupReportDialog(3, 12109);">file a report</a> for merging.</td>
+</tr></tbody></table>
+</div>
+</div>
+</div>
+</div>
+
+
+
+</body></html>`;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+document.getElementById("discPropText").value=`<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<title>Fear Dark Records - Encyclopaedia Metallum: The Metal Archives</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="width=device-width, initial-scale=1" name="viewport">
+<link rel="stylesheet" type="text/css" href="/min/index.php?g=css">
+<script type="text/javascript" async="" src="https://ssl.google-analytics.com/ga.js"></script><script type="text/javascript" src="/min/index.php?g=js"></script>
+<script type="text/javascript">
+			var URL_SITE	= 'https://www.metal-archives.com/';
+			var URL_IMAGES	= 'https://www.metal-archives.com/images/';
+			var URL_CSS		= 'https://www.metal-archives.com/css/';
+			var csrfToken	= '';
+
+			$(document).ready(function() {
+				toggleFixedPositioning(1280, 600);
+				executeOnAllPages();
+				
+											});
+
+
+		</script>
+<noscript>
+			<style type="text/css">
+				.no-js { display: block !important; }
+			</style>
+		</noscript>
+<!--[if lt IE 8]>
+			<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE8.js"></script>
+			 <link rel="stylesheet" type="text/css" href="https://www.metal-archives.com/css/default/oldie.css" />
+		<![endif]-->
+<script type="text/javascript">
+			  var _gaq = _gaq || [];
+			  _gaq.push(['_setAccount', 'UA-4046749-4']);
+			  _gaq.push(['_trackPageview']);
+
+			  (function() {
+			    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			  })();
+		</script>
+</head>
+<body>
+<div id="wrapper">
+<div id="header">
+<a href="https://www.metal-archives.com/" id="MA_logo">Metal Archives</a>
+<div class="clear loading"><img src="https://www.metal-archives.com/images/loading.gif" alt="loading" width="12" height="12"> loading...</div>
+<div id="search_box">
+<form id="search_form" action="https://www.metal-archives.com/search" method="get">
+<div>
+<label>Search:</label><br>
+<input name="searchString" type="text" id="searchQueryBox" size="25" value="" tabindex="1">
+<select name="type" tabindex="2">
+<option value="band_name">Band name</option>
+<option value="band_genre">Music genre</option>
+<option value="band_themes">Themes</option>
+<option value="album_title">Album title</option>
+<option value="song_title">Song title</option>
+<option value="label_name">Label</option>
+<option value="artist_alias">Artist</option>
+<option value="user_name">User profile</option>
+<option value="google">Google</option>
+</select>
+<br>
+<a href="https://www.metal-archives.com/search/advanced/?searchString=&amp;type=" class="float_left" tabindex="4">Advanced search</a>
+<button type="submit" class="btn_submit float_right" tabindex="3">Submit</button>
+</div>
+</form>
+</div>
+<div id="top_menu_box">
+<ul class="menu_style_1">
+<li><a href="https://www.metal-archives.com/content/help">Help</a></li>
+<li><a href="https://www.metal-archives.com/content/rules">Rules</a></li>
+<li><a href="https://metalarchives.threadless.com/" target="_top">Store</a></li>
+<li><a href="https://forum.metal-archives.com" target="_top">Forum</a></li>
+</ul>
+<ul class="menu_style_2">
+<li><a href="https://www.metal-archives.com/content/faq">FAQ</a></li>
+<li><a href="https://www.metal-archives.com/content/support">Support Us</a></li>
+<li><a href="https://www.metal-archives.com/content/tools">Add-ons</a></li>
+</ul>
+</div>
+</div>
+<div id="left_col">
+<div id="member_box">
+<form name="login_form" id="login_form" action="https://www.metal-archives.com/authentication/login" method="post">
+<div>
+<label>Username</label><br>
+<input type="text" name="loginUsername">
+<label>Password</label><br>
+<input type="password" name="loginPassword">
+<input type="hidden" name="origin" value="/labels/Fear_Dark_Records/526">
+<button type="submit" class="btn_login float_right">Login</button>
+</div>
+</form>
+<a href="https://www.metal-archives.com/user/signup" class="float-left writeAction">Register</a>
+<span class="float_right"><a href="https://www.metal-archives.com/user/forgot-password" class="float-left writeAction">Forgot login?</a> </span>
+<div class="clear"> </div>
+</div>
+<div id="left_menu_box">
+<ul class="menu_style_3 block_spacer_20">
+<li>
+Bands
+<ul>
+<li><a href="https://www.metal-archives.com/browse/letter">alphabetical</a></li>
+<li><a href="https://www.metal-archives.com/browse/country">country</a></li>
+<li><a href="https://www.metal-archives.com/browse/genre">genre</a></li>
+</ul>
+</li>
+<li>
+Labels
+<ul>
+<li><a href="https://www.metal-archives.com/label">alphabetical</a></li>
+<li><a href="https://www.metal-archives.com/label/country">country</a></li>
+</ul>
+</li>
+<li><a href="https://www.metal-archives.com/review/browse">Reviews</a></li>
+</ul>
+<ul class="menu_style_3 block_spacer_20">
+<li><a href="https://www.metal-archives.com/artist/rip">R.I.P.</a></li>
+<li><a href="https://www.metal-archives.com/band/random">Random Band</a></li>
+<li><a href="https://www.metal-archives.com/user/list">User rankings</a></li>
+<li><a href="https://www.metal-archives.com/news">News archive</a></li>
+</ul>
+<ul class="menu_style_3 ornement_30">
+<li><a href="https://www.metal-archives.com/report/list">Reports</a></li>
+<li><a href="https://www.metal-archives.com/todo">Contribute / To do</a></li>
+</ul>
+</div>
+<div id="left_text_box">
+<p class="small_text center"> © 2002-2023<br>Encyclopaedia Metallum </p>
+<p class="small_text center">Best viewed<br> <a href="http://www.getfirefox.com" target="_blank">without</a> Internet Explorer, <br>in 1280 x 960 resolution<br> or higher.</p>
+</div>
+<div>
+<p class="small_text center"><a href="https://www.metal-archives.com/content/pp">Privacy Policy</a></p>
+</div>
+</div>
+<div id="content_wrapper">
+<script type="text/javascript" src="https://www.metal-archives.com/js/jquery/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://www.metal-archives.com/js/jquery/jquery.nospam.js"></script>
+<script type="text/javascript" src="https://www.metal-archives.com/js/jquery/jquery.form.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".no-js").removeClass("no-js");
+	    $('.nospam').nospam({ replaceText: true, filterLevel: 'normal'});
+	    $('#label_tabs').tabs({ beforeLoad: cacheTab });
+	    	});
+	  
+	
+	function toggleLegacy(link, id)
+	{
+		$('#' + id).toggle();
+		if ($('#' + id).css('display') == 'block') {
+			$(link).html('hide legacy data');
+		} else {
+			$(link).html('show legacy data');
+		}
+	}
+	  
+</script>
+<div id="label_sidebar">
+
+<div class="label_img"><a class="image" id="label_logo" title="Fear Dark Records" href="https://www.metal-archives.com/images/5/2/6/526_label.jpg?0028"><img src="https://www.metal-archives.com/images/5/2/6/526_label.jpg?0028" title="Click to zoom" alt="Fear Dark Records" border="0"></a></div>
+</div>
+<div id="label_content">
+<div class="tool_strip rightFromSidebar writeAction">
+<ul>
+<li><a title="Report a mistake or additional information for this page" href="javascript:popupReportDialog(2, 526);" class="btn_report_error"> </a></li>
+</ul>
+</div>
+<div id="label_info">
+<h1 class="label_name">Fear Dark Records</h1>
+<div id="tool_strip_01" class="tool_strip writeAction">
+<ul>
+</ul>
+</div>
+<div class="clear block_spacer_20"></div>
+<dl class="float_left">
+<dt>Address:</dt>
+<dd> N/A </dd>
+<dt>Country:</dt>
+<dd><a href="https://www.metal-archives.com/label/country/c/NL">Netherlands</a></dd>
+<dt>Phone number:</dt>
+<dd> N/A </dd>
+</dl>
+<dl class="float_right">
+<dt>Status:</dt>
+<dd><span class="closed">closed</span></dd>
+<dt>Styles/specialties:</dt>
+<dd> Christian Metal </dd>
+<dt>Founding date :</dt>
+<dd> N/A </dd>
+<dt>Online shopping:</dt>
+<dd>N/A</dd>
+</dl>
+</div>
+<p id="label_contact">
+</p>
+
+<div id="message"> </div>
+<div class="clear block_spacer_5"> </div>
+<div id="label_tabs" class="clear tabs ui-tabs ui-widget ui-widget-content ui-corner-all">
+<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role="tablist">
+<li class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="label_tabs_bands" aria-labelledby="ui-id-1" aria-selected="false"><a href="#label_tabs_bands" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-1">Last known roster</a></li>
+<li class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="label_tabs_past" aria-labelledby="ui-id-2" aria-selected="false"><a href="#label_tabs_past" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-2">Past roster</a></li> <li class="ui-state-default ui-corner-top ui-tabs-active ui-state-active" role="tab" tabindex="0" aria-controls="label_tabs_albums" aria-labelledby="ui-id-3" aria-selected="true"><a href="#label_tabs_albums" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-3">Releases</a></li>
+<li class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="ui-tabs-1" aria-labelledby="ui-id-4" aria-selected="false"><a href="https://www.metal-archives.com/link/ajax-list/type/label/id/526" title="Related links" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-4"><span>Links</span></a></li>
+<li class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="label_tabs_notes" aria-labelledby="ui-id-5" aria-selected="false"><a href="#label_tabs_notes" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-5">Additional notes</a></li> </ul>
+
+<div id="label_tabs_bands" aria-labelledby="ui-id-1" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display: none;">
+<div id="label_signed_bands" class="tabs2lvl"></div>
+<div class="ui-tabs-panel-content block_spacer_top_20">
+<div id="bandList_wrapper" class="dataTables_wrapper" role="grid"><div class="dataTables_info" id="bandList_info">Showing 1 to 2 of 2 entries</div><div class="dataTables_paginate paging_full_numbers" id="bandList_paginate"><a tabindex="0" class="first paginate_button paginate_button_disabled" id="bandList_first">First</a><a tabindex="0" class="previous paginate_button paginate_button_disabled" id="bandList_previous">Previous</a><span><a tabindex="0" class="paginate_active">1</a></span><a tabindex="0" class="next paginate_button paginate_button_disabled" id="bandList_next">Next</a><a tabindex="0" class="last paginate_button paginate_button_disabled" id="bandList_last">Last</a></div><div class="block_spacer_5"></div><div class="clear"><div id="bandList_processing" class="dataTables_processing" style="visibility: hidden;">Loading...</div></div><div><table id="bandList" class="display dataTable" cellpadding="0" cellspacing="0" aria-describedby="bandList_info">
+<thead>
+<tr role="row"><th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="bandList" rowspan="1" colspan="1" aria-label="Band: activate to sort column ascending">Band</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="bandList" rowspan="1" colspan="1" aria-label="Genre: activate to sort column ascending">Genre</th><th width="85" class="sorting" role="columnheader" tabindex="0" aria-controls="bandList" rowspan="1" colspan="1" aria-label="Country: activate to sort column ascending">Country</th></tr>
+</thead>
+
+<tbody role="alert" aria-live="polite" aria-relevant="all"><tr class="odd"><td class=" sorting_1"><a href="https://www.metal-archives.com/bands/Royal_Anguish/6768">Royal Anguish</a></td><td class="">Death/Gothic Metal</td><td class="">United States</td></tr><tr class="even"><td class=" sorting_1"><a href="https://www.metal-archives.com/bands/Taketh/5820">Taketh</a></td><td class="">Melodic Death Metal</td><td class="">Sweden</td></tr></tbody></table></div><div class="dataTables_processing" style="visibility: hidden;">Loading...</div><div class="dataTables_info">Showing 1 to 2 of 2 entries</div><div class="dataTables_paginate paging_full_numbers"><a tabindex="0" class="first paginate_button paginate_button_disabled">First</a><a tabindex="0" class="previous paginate_button paginate_button_disabled">Previous</a><span><a tabindex="0" class="paginate_active">1</a></span><a tabindex="0" class="next paginate_button paginate_button_disabled">Next</a><a tabindex="0" class="last paginate_button paginate_button_disabled">Last</a></div></div>
+<script type="text/javascript">
+	createGrid('#bandList',  100,  'label/ajax-bands/nbrPerPage/100/id/526', { aaSorting: [[0, 'asc']] });
+</script>
+</div>
+</div>
+
+
+<div id="label_tabs_past" aria-labelledby="ui-id-2" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display: none;">
+<div id="label_past_roster" class="tabs2lvl"></div>
+<div class="ui-tabs-panel-content block_spacer_top_20">
+<div id="bandListPast_wrapper" class="dataTables_wrapper" role="grid"><div class="dataTables_info" id="bandListPast_info">Showing 1 to 10 of 10 entries</div><div class="dataTables_paginate paging_full_numbers" id="bandListPast_paginate"><a tabindex="0" class="first paginate_button paginate_button_disabled" id="bandListPast_first">First</a><a tabindex="0" class="previous paginate_button paginate_button_disabled" id="bandListPast_previous">Previous</a><span><a tabindex="0" class="paginate_active">1</a></span><a tabindex="0" class="next paginate_button paginate_button_disabled" id="bandListPast_next">Next</a><a tabindex="0" class="last paginate_button paginate_button_disabled" id="bandListPast_last">Last</a></div><div class="block_spacer_5"></div><div class="clear"><div id="bandListPast_processing" class="dataTables_processing" style="visibility: hidden;">Loading...</div></div><div><table id="bandListPast" class="display dataTable" cellpadding="0" cellspacing="0" aria-describedby="bandListPast_info">
+<thead>
+<tr role="row"><th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="bandListPast" rowspan="1" colspan="1" aria-label="Band: activate to sort column ascending">Band</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="bandListPast" rowspan="1" colspan="1" aria-label="Genre: activate to sort column ascending">Genre</th><th width="85" class="sorting" role="columnheader" tabindex="0" aria-controls="bandListPast" rowspan="1" colspan="1" aria-label="Country: activate to sort column ascending">Country</th><th title="Number of albums released" class="sorting" role="columnheader" tabindex="0" aria-controls="bandListPast" rowspan="1" colspan="1" aria-label="#: activate to sort column ascending">#</th></tr>
+</thead>
+
+<tbody role="alert" aria-live="polite" aria-relevant="all"><tr class="odd"><td class=" sorting_1"><a href="https://www.metal-archives.com/bands/Antestor/3048">Antestor</a></td><td class="">Death/Doom Metal (early); Black Metal (later)</td><td class="">Norway</td><td class="">1</td></tr><tr class="even"><td class=" sorting_1"><a href="https://www.metal-archives.com/bands/Eluveitie/13991">Eluveitie</a></td><td class="">Folk/Melodic Death Metal/Metalcore, Folk</td><td class="">Switzerland</td><td class="">2</td></tr><tr class="odd"><td class=" sorting_1"><a href="https://www.metal-archives.com/bands/Immortal_Souls/1771">Immortal Souls</a></td><td class="">Melodic Death Metal</td><td class="">Finland</td><td class="">2</td></tr><tr class="even"><td class=" sorting_1"><a href="https://www.metal-archives.com/bands/Kekal/4418">Kekal</a></td><td class="">Avant-garde Metal/Electronic</td><td class="">Indonesia</td><td class="">4</td></tr><tr class="odd"><td class=" sorting_1"><a href="https://www.metal-archives.com/bands/Morphia/8920">Morphia</a></td><td class="">Atmospheric Death/Doom Metal</td><td class="">Netherlands</td><td class="">2</td></tr><tr class="even"><td class=" sorting_1"><a href="https://www.metal-archives.com/bands/Salutary/67333">Salutary</a></td><td class="">Thrash/Death Metal</td><td class="">Netherlands</td><td class="">2</td></tr><tr class="odd"><td class=" sorting_1"><a href="https://www.metal-archives.com/bands/Sculpture/6090">Sculpture</a></td><td class="">Death/Thrash Metal</td><td class="">Netherlands</td><td class="">1</td></tr><tr class="even"><td class=" sorting_1"><a href="https://www.metal-archives.com/bands/Slechtvalk/5957">Slechtvalk</a></td><td class="">Melodic/Epic Black Metal</td><td class="">Netherlands</td><td class="">8</td></tr><tr class="odd"><td class=" sorting_1"><a href="https://www.metal-archives.com/bands/Sympathy/4573">Sympathy</a></td><td class="">Technical Death/Symphonic Metal</td><td class="">Canada</td><td class="">2</td></tr><tr class="even"><td class=" sorting_1"><a href="https://www.metal-archives.com/bands/Tefilla/38357">Tefilla</a></td><td class="">Thrash Metal</td><td class="">Netherlands</td><td class="">2</td></tr></tbody></table></div><div class="dataTables_processing" style="visibility: hidden;">Loading...</div><div class="dataTables_info">Showing 1 to 10 of 10 entries</div><div class="dataTables_paginate paging_full_numbers"><a tabindex="0" class="first paginate_button paginate_button_disabled">First</a><a tabindex="0" class="previous paginate_button paginate_button_disabled">Previous</a><span><a tabindex="0" class="paginate_active">1</a></span><a tabindex="0" class="next paginate_button paginate_button_disabled">Next</a><a tabindex="0" class="last paginate_button paginate_button_disabled">Last</a></div></div>
+<script type="text/javascript">
+	createGrid('#bandListPast',  100,  'label/ajax-bands-past/nbrPerPage/100/id/526', { aaSorting: [[0, 'asc']] });
+</script>
+</div>
+</div>
+
+
+<div id="label_tabs_albums" aria-labelledby="ui-id-3" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="true" aria-hidden="false">
+<div id="label_album_relased" class="tabs2lvl"></div>
+<div class="ui-tabs-panel-content block_spacer_top_20">
+<div id="albumList_wrapper" class="dataTables_wrapper" role="grid"><div class="dataTables_info" id="albumList_info">Showing 1 to 26 of 26 entries</div><div class="dataTables_paginate paging_full_numbers" id="albumList_paginate"><a tabindex="0" class="first paginate_button paginate_button_disabled" id="albumList_first">First</a><a tabindex="0" class="previous paginate_button paginate_button_disabled" id="albumList_previous">Previous</a><span><a tabindex="0" class="paginate_active">1</a></span><a tabindex="0" class="next paginate_button paginate_button_disabled" id="albumList_next">Next</a><a tabindex="0" class="last paginate_button paginate_button_disabled" id="albumList_last">Last</a></div><div class="block_spacer_5"></div><div class="clear"><div id="albumList_processing" class="dataTables_processing" style="visibility: hidden;">Loading...</div></div><div><table id="albumList" class="display dataTable" cellpadding="0" cellspacing="0" aria-describedby="albumList_info">
+<thead>
+<tr role="row"><th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="albumList" rowspan="1" colspan="1" aria-label="Band: activate to sort column ascending">Band</th><th class="sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="Album">Album</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="albumList" rowspan="1" colspan="1" aria-label="Type: activate to sort column ascending">Type</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="albumList" rowspan="1" colspan="1" aria-label="Year: activate to sort column ascending">Year</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="albumList" rowspan="1" colspan="1" aria-label="Catalog: activate to sort column ascending">Catalog</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="albumList" rowspan="1" colspan="1" aria-label="Format: activate to sort column ascending">Format</th><th class="sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="Description">Description</th></tr>
+</thead>
+
+<tbody role="alert" aria-live="polite" aria-relevant="all"><tr class="odd"><td class=" sorting_1"><a href="https://www.metal-archives.com/bands/Antestor/3048">Antestor</a></td><td class=""><a href="https://www.metal-archives.com/albums/Antestor/The_Forsaken/419375">The Forsaken</a></td><td class="">Full-length</td><td class="">2005</td><td class="">FD 015</td><td class="">CD</td><td class=""></td></tr><tr class="even"><td class=" sorting_1"><a href="https://www.metal-archives.com/bands/Eluveitie/13991">Eluveitie</a></td><td class=""><a href="https://www.metal-archives.com/albums/Eluveitie/V%C3%AAn/62633">Vên</a></td><td class="">EP</td><td class="">2004</td><td class="">FD 014</td><td class="">CD</td><td class=""></td></tr><tr class="odd"><td class=" sorting_1"><a href="https://www.metal-archives.com/bands/Eluveitie/13991">Eluveitie</a></td><td class=""><a href="https://www.metal-archives.com/albums/Eluveitie/Spirit/105454">Spirit</a></td><td class="">Full-length</td><td class="">2006</td><td class="">FD023</td><td class="">CD</td><td class="">Slipcase</td></tr><tr class="even"><td class=" sorting_1"><a href="https://www.metal-archives.com/bands/Immortal_Souls/1771">Immortal Souls</a></td><td class=""><a href="https://www.metal-archives.com/albums/Immortal_Souls/Ice_upon_the_Night/16887">Ice upon the Night</a></td><td class="">Full-length</td><td class="">2003</td><td class="">FD 010</td><td class="">CD</td><td class=""></td></tr><tr class="odd"><td class=" sorting_1"><a href="https://www.metal-archives.com/bands/Immortal_Souls/1771">Immortal Souls</a></td><td class=""><a href="https://www.metal-archives.com/albums/Immortal_Souls/Once_upon_a_Time_in_the_North/93674">Once upon a Time in the North</a></td><td class="">Compilation</td><td class="">2005</td><td class="">FD 020</td><td class="">2CD</td><td class="">Digipak</td></tr><tr class="even"><td class=" sorting_1"><a href="https://www.metal-archives.com/bands/Kekal/4418">Kekal</a></td><td class=""><a href="https://www.metal-archives.com/albums/Kekal/1000_Thoughts_of_Violence/16890">1000 Thoughts of Violence</a></td><td class="">Full-length</td><td class="">2003</td><td class="">FD 011</td><td class="">CD</td><td class=""></td></tr><tr class="odd"><td class=" sorting_1"><a href="https://www.metal-archives.com/bands/Kekal/4418">Kekal</a> / <a href="https://www.metal-archives.com/bands/Slechtvalk/5957">Slechtvalk</a></td><td class=""><a href="https://www.metal-archives.com/albums/Kekal_-_Slechtvalk/Chaos_%26_Warfare/17133">Chaos &amp; Warfare</a></td><td class="">Split</td><td class="">2002</td><td class="">FD 008</td><td class="">CD</td><td class=""></td></tr><tr class="even"><td class=" sorting_1"><a href="https://www.metal-archives.com/bands/Kekal/4418">Kekal</a></td><td class=""><a href="https://www.metal-archives.com/albums/Kekal/Acidity/68768">Acidity</a></td><td class="">Full-length</td><td class="">2005</td><td class="">FD 016</td><td class="">CD</td><td class=""></td></tr><tr class="odd"><td class=" sorting_1"><a href="https://www.metal-archives.com/bands/Kekal/4418">Kekal</a></td><td class=""><a href="https://www.metal-archives.com/albums/Kekal/The_Painful_Experience/426683">The Painful Experience</a></td><td class="">Full-length</td><td class="">2001</td><td class="">FD 005</td><td class="">CD</td><td class=""></td></tr><tr class="even"><td class=" sorting_1"><a href="https://www.metal-archives.com/bands/Morphia/8920">Morphia</a></td><td class=""><a href="https://www.metal-archives.com/albums/Morphia/Frozen_Dust/21137">Frozen Dust</a></td><td class="">Full-length</td><td class="">2002</td><td class="">FD 006</td><td class="">CD</td><td class=""></td></tr><tr class="odd"><td class=" sorting_1"><a href="https://www.metal-archives.com/bands/Morphia/8920">Morphia</a></td><td class=""><a href="https://www.metal-archives.com/albums/Morphia/Fading_Beauty/69317">Fading Beauty</a></td><td class="">Full-length</td><td class="">2004</td><td class="">FD 013</td><td class="">CD</td><td class=""></td></tr><tr class="even"><td class=" sorting_1"><a href="https://www.metal-archives.com/bands/Royal_Anguish/6768">Royal Anguish</a></td><td class=""><a href="https://www.metal-archives.com/albums/Royal_Anguish/A_Journey_Through_the_Shadows_of_Time/120043">A Journey Through the Shadows of Time</a></td><td class="">Full-length</td><td class="">2006</td><td class="">FD 024</td><td class="">CD</td><td class=""></td></tr><tr class="odd"><td class=" sorting_1"><a href="https://www.metal-archives.com/bands/Royal_Anguish/6768">Royal Anguish</a></td><td class=""><a href="https://www.metal-archives.com/albums/Royal_Anguish/Tales_of_Sullen_Eyes/734158">Tales of Sullen Eyes</a></td><td class="">EP</td><td class="">2006</td><td class="">FD 022</td><td class="">CD</td><td class=""></td></tr><tr class="even"><td class=" sorting_1"><a href="https://www.metal-archives.com/bands/Salutary/67333">Salutary</a></td><td class=""><a href="https://www.metal-archives.com/albums/Salutary/Violated_Holiness/762884">Violated Holiness</a></td><td class="">Demo</td><td class="">1999</td><td class="">FD 002</td><td class="">CD</td><td class=""></td></tr><tr class="odd"><td class=" sorting_1"><a href="https://www.metal-archives.com/bands/Sculpture/6090">Sculpture</a> / <a href="https://www.metal-archives.com/bands/Tefilla/38357">Tefilla</a> / <a href="https://www.metal-archives.com/bands/Salutary/67333">Salutary</a></td><td class=""><a href="https://www.metal-archives.com/albums/Sculpture_-_Tefilla_-_Salutary/Glory_Hallelujah_Amen/234190">Glory Hallelujah Amen</a></td><td class="">Split</td><td class="">1999</td><td class="">FD 9972</td><td class="">CD</td><td class=""></td></tr><tr class="even"><td class=" sorting_1"><a href="https://www.metal-archives.com/bands/Slechtvalk/5957">Slechtvalk</a></td><td class=""><a href="https://www.metal-archives.com/albums/Slechtvalk/The_War_That_Plagues_the_Lands/14322">The War That Plagues the Lands</a></td><td class="">Full-length</td><td class="">2002</td><td class="">FD 009</td><td class="">CD</td><td class=""></td></tr><tr class="odd"><td class=" sorting_1"><a href="https://www.metal-archives.com/bands/Slechtvalk/5957">Slechtvalk</a></td><td class=""><a href="https://www.metal-archives.com/albums/Slechtvalk/Falconry/14323">Falconry</a></td><td class="">Full-length</td><td class="">2000</td><td class="">FD 004</td><td class="">CD</td><td class=""></td></tr><tr class="even"><td class=" sorting_1"><a href="https://www.metal-archives.com/bands/Slechtvalk/5957">Slechtvalk</a></td><td class=""><a href="https://www.metal-archives.com/albums/Slechtvalk/Upon_the_Fields_of_Battle/68948">Upon the Fields of Battle</a></td><td class="">Video</td><td class="">2005</td><td class="">FDVD018</td><td class="">DVD</td><td class=""></td></tr><tr class="odd"><td class=" sorting_1"><a href="https://www.metal-archives.com/bands/Slechtvalk/5957">Slechtvalk</a></td><td class=""><a href="https://www.metal-archives.com/albums/Slechtvalk/Thunder_of_War/83800">Thunder of War</a></td><td class="">EP</td><td class="">2005</td><td class="">FD 019</td><td class="">CD</td><td class="">Cardboard sleeve</td></tr><tr class="even"><td class=" sorting_1"><a href="https://www.metal-archives.com/bands/Slechtvalk/5957">Slechtvalk</a></td><td class=""><a href="https://www.metal-archives.com/albums/Slechtvalk/At_the_Dawn_of_War/68945">At the Dawn of War</a></td><td class="">Full-length</td><td class="">2005</td><td class="">FD 017</td><td class="">CD</td><td class=""></td></tr><tr class="odd"><td class=" sorting_1"><a href="https://www.metal-archives.com/bands/Slechtvalk/5957">Slechtvalk</a></td><td class=""><a href="https://www.metal-archives.com/albums/Slechtvalk/At_the_Dawn_of_War/468457">At the Dawn of War</a></td><td class="">Full-length</td><td class="">2005</td><td class="">FD 017/FDVD 018</td><td class="">CD + DVD</td><td class="">Digipak</td></tr><tr class="even"><td class=" sorting_1"><a href="https://www.metal-archives.com/bands/Slechtvalk/5957">Slechtvalk</a></td><td class=""><a href="https://www.metal-archives.com/albums/Slechtvalk/Falconry/936863">Falconry</a></td><td class="">Full-length</td><td class="">2000</td><td class=""></td><td class="">Digital</td><td class="">Amazon</td></tr><tr class="odd"><td class=" sorting_1"><a href="https://www.metal-archives.com/bands/Sympathy/4573">Sympathy</a></td><td class=""><a href="https://www.metal-archives.com/albums/Sympathy/Invocation/11090">Invocation</a></td><td class="">Full-length</td><td class="">2002</td><td class="">FD 007</td><td class="">CD</td><td class=""></td></tr><tr class="even"><td class=" sorting_1"><a href="https://www.metal-archives.com/bands/Sympathy/4573">Sympathy</a></td><td class=""><a href="https://www.metal-archives.com/albums/Sympathy/Arcane_Path/30070">Arcane Path</a></td><td class="">Full-length</td><td class="">2004</td><td class="">FD 012</td><td class="">CD</td><td class=""></td></tr><tr class="odd"><td class=" sorting_1"><a href="https://www.metal-archives.com/bands/Taketh/5820">Taketh</a></td><td class=""><a href="https://www.metal-archives.com/albums/Taketh/Freakshow/76383">Freakshow</a></td><td class="">Full-length</td><td class="">2005</td><td class="">FD 021</td><td class="">CD</td><td class=""></td></tr><tr class="even"><td class=" sorting_1"><a href="https://www.metal-archives.com/bands/Tefilla/38357">Tefilla</a></td><td class=""><a href="https://www.metal-archives.com/albums/Tefilla/Grievous_Anguish/80055">Grievous Anguish</a></td><td class="">Full-length</td><td class="">1998</td><td class="">FD9871</td><td class="">CD</td><td class=""></td></tr></tbody></table></div><div class="dataTables_processing" style="visibility: hidden;">Loading...</div><div class="dataTables_info">Showing 1 to 26 of 26 entries</div><div class="dataTables_paginate paging_full_numbers"><a tabindex="0" class="first paginate_button paginate_button_disabled">First</a><a tabindex="0" class="previous paginate_button paginate_button_disabled">Previous</a><span><a tabindex="0" class="paginate_active">1</a></span><a tabindex="0" class="next paginate_button paginate_button_disabled">Next</a><a tabindex="0" class="last paginate_button paginate_button_disabled">Last</a></div></div>
+<script type="text/javascript">
+	createGrid('#albumList', 200, 'label/ajax-albums/nbrPerPage/200/id/526', { aaSorting: [[0, 'asc']], aoColumns: [
+		null, // 0, Band
+		{ bSortable: false}, // 1, Album
+		null, // 2, Type
+ 		null, // 3, Date
+		null, // 4, Catalog number
+		null, // 5, Format
+		{ bSortable: false} // 6, Description
+ 	  ] 
+	 }
+		);
+</script>
+</div>
+</div><div id="ui-tabs-1" class="ui-tabs-panel ui-widget-content ui-corner-bottom" aria-live="polite" aria-labelledby="ui-id-4" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display: none;"></div>
+
+
+<div id="label_tabs_notes" aria-labelledby="ui-id-5" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display: none;">
+<div id="label_notes" class="tabs2lvl"></div>
+<div class="ui-tabs-panel-content block_spacer_top_20">
+<h2 class="title_comment">Description</h2>
+<p><b>Catalogue:</b><br>
+FD024 Royal Anguish - A Journey Through The Shadows Of Time CD<br>
+FD023 Eluveitie - Spirit CD<br>
+FD022 Royal Anguish - Tales Of Sullen Eyes EP<br>
+FD021 Taketh - Freakshow CD<br>
+FD020 Immortal Souls - Once Upon A Time In The North 2-CD<br>
+FD019 Slechtvalk - Thunder Of War CD-single<br>
+FDVD018 Slechtvalk - Upon The Fields Of Battle DVD<br>
+FD017 Slechtvalk - At The Dawn Of War CD<br>
+FD016 Kekal - Acidity CD<br>
+FD015 Antestor - The Forsaken CD<br>
+FD014 Eluveitie - Vên EP<br>
+FD013 Morphia - Fading Beauty CD<br>
+FD012 Sympathy - Arcane Path CD<br>
+FD011 Kekal - 1000 Thoughts Of Violence CD<br>
+FD010 Immortal Souls - Ice Upon The Night CD<br>
+FD009 Slechtvalk - The War That Plagues The Lands CD<br>
+FD008 Kekal/Slechtvalk - Chaos &amp; Warfare CD-split<br>
+FD007 Sympathy - Invocation CD<br>
+FD006 Morphia - Frozen Dust CD<br>
+FD005 Kekal - The Painful Experience CD<br>
+FD004 Slechtvalk - Falconry CD.</p>
+</div>
+</div>
+
+</div>
+
+<div id="auditTrail">
+<table>
+<tbody><tr>
+<td>Added by: (Unknown user)</td>
+<td align="right">Modified by: <a href="https://www.metal-archives.com/users/Sang%20Dalang%20Abu" class="profileMenu">Sang Dalang Abu</a></td>
+</tr>
+<tr>
+<td>Added on: N/A</td>
+<td align="right">Last modified on: 2018-06-30 14:15:30</td>
+</tr>
+<tr>
+<td valign="top">
+&nbsp;
+</td>
+<td align="right" valign="top">
+</td>
+</tr>
+<tr><td class="writeAction" colspan="2">Duplicate? Please <a href="javascript:popupReportDialog(2, 526);">file a report</a> for merging.</td>
+</tr></tbody></table>
+</div>
+</div>
+</div>
+</div>
+
+
+</body></html>`;

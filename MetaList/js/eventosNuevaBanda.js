@@ -1,10 +1,10 @@
 let filas = {
-  tbodyEtapas: `<th><button type="button" class="btn btn-danger eliminar eliminar-fila">x</button></th><td><input type="number" class="form-control anioInicBan" name="anioInicEtaBan[]" min="1965" max="2023"></td><td><input type="number" class="form-control anioFinBan" name="anioFin[]" min="1965" max="2023"></td><td><select class="form-select" name="tipoEtaBan[]" aria-label="Default select example"><option value="1">Activo</option><option value="2">Hiato</option></select></td>`,
+  tbodyEtapas: `<th><button type="button" class="btn btn-danger eliminar eliminar-fila">x</button></th><td><input type="number" class="form-control anioInicBan" name="anioInicEtaBan[]" min="1965" max="2023"></td><td><input type="number" class="form-control anioFinBan" name="anioFin[]" min="1965" max="2023"></td><td><select class="form-select tipoEtaBan" name="tipoEtaBan[]" aria-label="Default select example"><option value="ACTIVO">Activo</option><option value="HIATO">Hiato</option></select></td>`,
   tbodyTemas: `<th><button type="button" class="btn btn-danger eliminar eliminar-fila">x</button></th><td><input type="text" class="form-control temaLetra" name="temaLetra[]"></td>`,
   tbodyEstudios: `<th><button type="button" class="btn btn-danger eliminar eliminar-fila">x</button></th><td><input type="text" value="" class="form-control nomEstBan" name="nomEstBan[]"></td><td><input type="text" value="" class="form-control paisEstBan" name="paisEstBan[]"></td><td><input type="text" value="" class="form-control origenEstBan" name="origenEstBan[]"></td>`,
   tbodyAlbumes: `<div class="card mb-3"><div class="card-body"><div class="row"><div class="col-12 col-md-4 col-lg-0 col-xl-3"></div><div class="col-12 col-md-4 col-lg-12 col-xl-6 mb-2"><h5 class="card-title text-center"><span class="text-dark">Nuevo Álbum</span><button type="button" class="a$id btn btn-danger ms-2 eliminar eliminar-etiqueta eliminarAlb">x</button></h5></div><div class="col-12 col-md-4 col-lg-12 col-xl-3 mb-2"><div class="more p-0 text-center text-xl-end"><button class="btn btn-primary btnGenPropAlb a$id" id="a$id" disabled data-bs-toggle="modal" data-bs-target="#albPropModal">Generar Propuesta</button></div></div></div><div class="card-text"><div class="row"><!-- Columna 1 --><div class="col-12 col-xl-4"><div class="row"><div class="col-12 my-1"><div class="form-floating"><input type="text" value="" class="form-control nombreAlb a$id" name="nombreAlb[]" placeholder="."><label for="nombreAlb">Nombre</label></div></div></div><div class="row">
-                 <div class="col-12 my-1"><div class="row"><div class="col-4 form-floating pe-1"><input type="number" value="" class="form-control diaAlb a$id" name="diaAlb[]" min="0" max="31" placeholder="."><label for="diaAlb" class="ps-4">Día</label></div><div class="col-4 form-floating px-1"><input type="number" value="" class="form-control mesAlb a$id" name="mesAlb[]" min="1" max="12" placeholder="."><label for="mesAlb" class="ps-3">Mes</label></div><div class="col-4 form-floating ps-1"><input type="number" value="" class="form-control anioAlb a$id" name="anioAlb[]" minlength="4" maxlength="4" placeholder="."><label for="anioAlb" class="ps-3">Año</label></div></div></div></div><div class="row"><div class="col-12 col-sm-6 my-1"><select class="form-select tipoAlb py-3 a$id" name="tipoAlb[]" aria-label="Default select example"><option value="ESTUDIO">Estudio</option><option value="EP">EP</option><option value="LIVE">En Directo</option>
-                 <option value="RECOPILATORIO">Recopilatorio</option><option value="BOXSET">Box Set</option></select></div><div class="col-12 col-sm-6 my-1"><div class="form-floating"><input type="text" value="" class="form-control imgAlb a$id" name="imgAlb[]" placeholder="."><label for="imgAlb">Imagen</label></div></div></div><div class="row"><div class="col-12 col-sm-6 my-1"><div class="form-floating"><input type="text" value="" class="form-control escuchAlb a$id" name="escuchAlb[]" placeholder="."><label for="escuchAlb">Escuchas Spotify</label></div></div><div class="col-12 col-sm-6 my-1"><div class="form-floating"><input type="text" value="" class="form-control duracAlb a$id" name="duracAlb[]" placeholder="."><label for="duracAlb">Duración</label></div></div></div><div class="row"><div class="col-12 col-sm-6 my-1"><div class="form-floating"><input type="text" value="" class="form-control linkSpotAlb a$id" name="linkSpotAlb[]" placeholder=".">
+                 <div class="col-12 my-1"><div class="row"><div class="col-4 form-floating pe-1"><input type="number" value="" class="form-control diaAlb a$id" name="diaAlb[]" min="0" max="31" placeholder="."><label for="diaAlb" class="ps-4">Día</label></div><div class="col-4 form-floating px-1"><input type="number" value="" class="form-control mesAlb a$id" name="mesAlb[]" min="1" max="12" placeholder="."><label for="mesAlb" class="ps-3">Mes</label></div><div class="col-4 form-floating ps-1"><input type="number" value="" class="form-control anioAlb a$id" name="anioAlb[]" minlength="4" maxlength="4" placeholder="."><label for="anioAlb" class="ps-3">Año</label></div></div></div></div><div class="row"><div class="col-12 col-sm-6 my-1"><select class="form-select tipoAlb py-3 a$id" name="tipoAlb[]" aria-label="Default select example"><option value="Estudio">Estudio</option><option value="EP">EP</option><option value="En Vivo">En Directo</option>
+                 <option value="Recopilatorio">Recopilatorio</option><option value="BoxSet">Box Set</option></select></div><div class="col-12 col-sm-6 my-1"><div class="form-floating"><input type="text" value="" class="form-control imgAlb a$id" name="imgAlb[]" placeholder="."><label for="imgAlb">Imagen</label></div></div></div><div class="row"><div class="col-12 col-sm-6 my-1"><div class="form-floating"><input type="text" value="" class="form-control escuchAlb a$id" name="escuchAlb[]" placeholder="."><label for="escuchAlb">Escuchas Spotify</label></div></div><div class="col-12 col-sm-6 my-1"><div class="form-floating"><input type="text" value="" class="form-control duracAlb a$id" name="duracAlb[]" placeholder="."><label for="duracAlb">Duración</label></div></div></div><div class="row"><div class="col-12 col-sm-6 my-1"><div class="form-floating"><input type="text" value="" class="form-control linkSpotAlb a$id" name="linkSpotAlb[]" placeholder=".">
                  <label for="linkSpotAlb">Iframe Spotify</label></div></div><div class="col-12 col-sm-6 my-1"><div class="form-floating position-relative"><input type="text" value="" class="form-control amazonAlb a$id" name="amazonAlb[]" placeholder="."><label for="amazonAlb">Link Amazon</label><a class="position-absolute top-50 end-0 translate-middle-y me-3" href="https://www.amazon.es/" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg></a></div></div></div><div class="row"><div class="col-12 my-1"><div class="form-floating mb-3"><textarea class="form-control descripAlb a$id" placeholder="." name="descripAlb[]" style="height: 206px"></textarea><label for="descripAlb">
                  Descripción</label></div></div></div></div><!-- Columna 2 --><div class="col-12 col-xl-4"><div class="row px-3"><table class="table table-sm"><thead><tr><th scope="col"><button type="button" class="btn btn-success addGenAlb anadir-fila">+</button></th><th scope="col">Género</th><th scope="col">Estrellas</th></tr></thead><tbody class="table-group-divider tbodyGenerosAlb a$id" id="tbodyGenerosAlb-$id"></tbody></table></div><div class="row px-3"><table class="table table-sm"><thead><tr><th scope="col"><button type="button" class="btn btn-success addCanAlb anadir-fila">+</button></th><th scope="col">Canción</th><th scope="col">Estrellas</th></tr></thead><tbody class="table-group-divider tbodyCancionesAlb a$id" id="tbodyCancionesAlb-$id"></tbody></table></div></div><!-- Columna 3 --><div class="col-12 col-xl-4"><div class="row px-3"><table class="table table-sm"><thead><tr><th scope="col"><button type="button" class="btn btn-success addDiscAlb anadir-fila">
                  +</button></th><th scope="col" class="w-100">Discográfica</th></tr></thead><tbody class="table-group-divider tbodyDiscograficasAlb a$id" id="tbodyDiscograficasAlb-$id"></tbody></table></div><div class="row px-3"><table class="table table-sm"><thead><tr><th scope="col"><button type="button" class="btn btn-success addEstAlb anadir-fila">+</button></th><th scope="col" class="w-100">Estudio<a href="#" class="ms-1 btnEstExtr" id="e$id" data-bs-toggle="modal" data-bs-target="#estExtrModal"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg></a><p class="d-none txtEstAlb a$id"></p></th></tr></thead><tbody class="table-group-divider tbodyEstudiosAlb a$id" id="tbodyEstudiosAlb-$id">
@@ -19,7 +19,7 @@ let filas = {
                  <div class="col-12 my-1"><p class="text-center fw-bold bg-transparent mb-0">Fecha de Defunción</p><div class="row"><div class="col-4 form-floating pe-1"><input type="number" value="" class="form-control diaDefMus a$id" name="diaDefMus[]" min="0" max="31" placeholder="."><label for="diaDefMus" class="ps-4">Día</label></div><div class="col-4 form-floating px-1"><input type="number" value="" class="form-control mesDefMus a$id" name="mesDefMus[]" min="1" max="12" placeholder="."><label for="mesDefMus" class="ps-3">Mes</label></div><div class="col-4 form-floating ps-1"><input type="number" value="" class="form-control anioDefMus a$id" name="anioDefMus[]" minlength="4" maxlength="4" placeholder="."><label for="anioDefMus" class="ps-3">Año</label></div></div></div></div><div class="row"><div class="col-6 my-1"><div class="form-floating"><input type="text" value="" class="form-control paisMus a$id" name="paisMus[]" placeholder="."><label for="paisMus">
                  País</label></div></div><div class="col-6 my-1"><div class="form-floating"><input type="text" value="" class="form-control origenMus a$id" name="origenMus[]" placeholder="."><label for="origenMus">Origen</label></div></div></div><div class="row px-3"><table class="table table-sm"><thead><tr><th scope="col"><button type="button" class="btn btn-success addEtapaMusBan anadir-fila">+</button></th><th scope="col">Año Inicio</th><th scope="col">Año Fin</th></tr></thead><tbody class="table-group-divider tbodyEtapasMus a$id" id="tbodyEtapasMus-$id"></tbody></table></div></div></div></div>`,
   tbodyEtapasMus: `<th><button type="button" class="btn btn-danger eliminar-fila">x</button></th><td><input type="number" value="" class="form-control anioInicMus" name="anioInicMus[]" min="1965" max="2023"></td><td><input type="number" value="" class="form-control anioFinMus" name="anioFinMus[]" min="1965" max="2023"></td>`,
-  tbodyDiscograficas: `<div class="card mb-3"><div class="card-body"><h5 class="card-title text-center"><span class="text-dark">Nueva Discográfica</span><button type="button" class="a$id btn btn-danger ms-2 eliminar eliminar-etiqueta eliminarDisc">x</button></h5><div class="more p-0 text-center mb-2"><button class="btn btn-primary btnGenPropDisc a$id" id="a$id" disabled data-bs-toggle="modal" data-bs-target="#discPropModal">Generar Propuesta</button></div><div class="card-text"><div class="row"><div class="col-6 my-1"><div class="form-floating"><input type="text" value="" class="form-control nombreDisc a$id" name="nombreDisc[]" placeholder="."><label for="nombreDisc">Nombre</label></div></div><div class="col-6 my-1"><select class="form-select py-3 estatusDisc a$id" name="estatusDisc[]" aria-label="Default select example"><option value="active">En Activo</option><option value="inactive">Inactivo</option></select></div></div><div class="row"><div class="col-12 my-1"><div class="form-floating">
+  tbodyDiscograficas: `<div class="card mb-3"><div class="card-body"><h5 class="card-title text-center"><span class="text-dark">Nueva Discográfica</span><button type="button" class="a$id btn btn-danger ms-2 eliminar eliminar-etiqueta eliminarDisc">x</button></h5><div class="more p-0 text-center mb-2"><button class="btn btn-primary btnGenPropDisc a$id" id="a$id" disabled data-bs-toggle="modal" data-bs-target="#discPropModal">Generar Propuesta</button></div><div class="card-text"><div class="row"><div class="col-6 my-1"><div class="form-floating"><input type="text" value="" class="form-control nombreDisc a$id" name="nombreDisc[]" placeholder="."><label for="nombreDisc">Nombre</label></div></div><div class="col-6 my-1"><select class="form-select py-3 estatusDisc a$id" name="estatusDisc[]" aria-label="Default select example"><option value="ACTIVO">En Activo</option><option value="INACTIVO">Inactivo</option></select></div></div><div class="row"><div class="col-12 my-1"><div class="form-floating">
                        <input type="text" value="" class="form-control imgDisc a$id" name="imgDisc[]" placeholder="."><label for="imgDisc">Imagen</label></div></div></div><div class="row"><div class="col-12 my-1"><div class="form-floating"><input type="text" value="" class="form-control webDisc a$id" name="webDisc[]" placeholder="."><label for="webDisc">Página Web</label></div></div></div><div class="row"><div class="col-6 my-1"><div class="form-floating"><input type="text" value="" class="form-control paisDisc a$id" name="paisDisc[]" placeholder="."><label for="paisDisc">País</label></div></div><div class="col-6 my-1"><div class="form-floating"><input type="text" value="" class="form-control direcDisc a$id" name="direcDisc[]" placeholder="."><label for="direcDisc">Dirección</label></div></div></div></div></div></div>`
 };
 
@@ -143,6 +143,148 @@ function enableProp(e, target){
   else if(e.target.value.length==0 && !target.hasAttribute("disabled")) target.setAttribute("disabled","true");
 }
 
+function getInfoBan(){
+  let result = {};
+  result.nombre = document.getElementById("nombreBan").value.replaceAll("'","\'");
+  result.pais = document.getElementById("paisBan").value.replaceAll("'","\'");
+  result.origen = document.getElementById("origenBan").value.replaceAll("'","\'");
+  result.descrip = document.getElementById("descripcBan").value.replaceAll("'","\'").replaceAll('"','\"');
+  result.estatus = document.getElementById("estatusBan").value.replaceAll("'","\'");
+  result.imagen = document.getElementById("imagenBan").value.replaceAll("'","\'");
+  result.escuchas = document.getElementById("escuchasBan").value;
+  result.linkSpotify = document.getElementById("spotifyBan").value;
+  result.linkWeb = document.getElementById("webBan").value;
+  return result;
+}
+
+function getEtapasBan(){
+  let result = [];
+  for(let row of document.getElementById("tbodyEtapas").children){
+    result.push({
+      anioInic: row.querySelector(".anioInicBan").value,
+      anioFin: row.querySelector(".anioFinBan").value,
+      tipo: row.querySelector(".tipoEtaBan").value
+    });
+  }
+  return result;
+}
+
+function getTemasBan(){
+  let result = [];
+  for(let row of document.getElementById("tbodyTemas").children){
+    result.push({nombre: row.querySelector(".temaLetra").value.replaceAll("'","\'")});
+  }
+  return result;
+}
+
+function getEstudiosBan(){
+  let result = [];
+  for(let row of document.getElementById("tbodyEstudios").children){
+    result.push({
+      nombre: row.querySelector(".nomEstBan").value.replaceAll("'","\'"),
+      pais: row.querySelector(".paisEstBan").value.replaceAll("'","\'"),
+      origen: row.querySelector(".origenEstBan").value.replaceAll("'","\'")
+    });
+  }
+  return result;
+}
+
+function getAlbumBan(elm){
+  let result = {};
+  result.nombre = elm.querySelector(".nombreAlb").value.replaceAll("'","\'");
+  result.dia = elm.querySelector(".diaAlb").value;
+  result.mes = elm.querySelector(".mesAlb").value;
+  result.anio = elm.querySelector(".anioAlb").value;
+  result.tipo = elm.querySelector(".tipoAlb").value;
+  result.imagen = elm.querySelector(".imgAlb").value;
+  result.escuchas = elm.querySelector(".escuchAlb").value;
+  result.duracion = elm.querySelector(".duracAlb").value;
+  result.iframe = elm.querySelector(".linkSpotAlb").value;
+  result.linkAmazon = elm.querySelector(".amazonAlb").value;
+  result.descrip = elm.querySelector(".descripAlb").value.replaceAll("'","\'").replaceAll('"','\"');
+  result.generos = [];
+  for(let row of elm.querySelector(".tbodyGenerosAlb").children){
+    result.generos.push({
+      nombre: row.querySelector(".genAlb").value.replaceAll("'","\'"),
+      estrellas: row.querySelector(".estrGenAlb").value
+    });
+  }
+  result.canciones = [];
+  for(let row of elm.querySelector(".tbodyCancionesAlb").children){
+    result.canciones.push({
+      nombre: row.querySelector(".nomCanAlb").value.replaceAll("'","\'"),
+      estrellas: row.querySelector(".estrCanAlb").value
+    });
+  }
+  result.discograficas = [];
+  for(let row of elm.querySelector(".tbodyDiscograficasAlb").children){
+    result.discograficas.push({nombre: row.querySelector(".discAlb").value.replaceAll("'","\'")});
+  }
+  result.estudios = [];
+  for(let row of elm.querySelector(".tbodyEstudiosAlb").children){
+    result.estudios.push({nombre: row.querySelector(".estAlb").value.replaceAll("'","\'")});
+  }
+  result.musicos = [];
+  for(let row of elm.querySelector(".tbodyRolesAlb").children){
+    result.musicos.push({
+      nombre: row.querySelector(".musAlb").value.replaceAll("'","\'"),
+      roles: row.querySelector(".rolesMusAlb").value.replaceAll("'","\'")
+    });
+  }
+  return result;
+}
+
+function getAlbumesBan(){
+  let result = [];
+  for(let alb of document.getElementById("tbodyAlbumes").children){
+    result.push(getAlbumBan(alb));
+  }
+  return result;
+}
+
+function getMusicosBan(){
+  let result = [];
+  for(let mus of document.getElementById("tbodyMusicos").children){
+    let res = {
+      nombre: mus.querySelector(".nombreMus").value.replaceAll("'","\'"),
+      sexo: mus.querySelector(".sexoMus").value,
+      imagen: mus.querySelector(".imgMus").value,
+      diaNac: mus.querySelector(".diaNacMus").value,
+      mesNac: mus.querySelector(".mesNacMus").value,
+      anioNac: mus.querySelector(".anioNacMus").value,
+      diaDef: mus.querySelector(".diaDefMus").value,
+      mesDef: mus.querySelector(".mesDefMus").value,
+      anioDef: mus.querySelector(".anioDefMus").value,
+      pais: mus.querySelector(".paisMus").value.replaceAll("'","\'"),
+      origen: mus.querySelector(".origenMus").value.replaceAll("'","\'"),
+      etapas: []
+    };
+    for(let row of mus.querySelector(".tbodyEtapasMus").children){
+      res.etapas.push({
+        anioInic: row.querySelector(".anioInicMus").value,
+        anioFin: row.querySelector(".anioFinMus").value
+      });
+    }
+    result.push(res);
+  }
+  return result;
+}
+
+function getDiscograficasBan(){
+  let result = [];
+  for(let disc of document.getElementById("tbodyDiscograficas").children){
+    result.push({
+      nombre: disc.querySelector(".nombreDisc").value.replaceAll("'","\'"),
+      estatus: disc.querySelector(".estatusDisc").value.replaceAll("'","\'"),
+      imagen: disc.querySelector(".imgDisc").value,
+      linkWeb: disc.querySelector(".webDisc").value,
+      pais: disc.querySelector(".paisDisc").value.replaceAll("'","\'"),
+      origen: disc.querySelector(".direcDisc").value.replaceAll("'","\'")
+    });
+  }
+  return result;
+}
+
 //Eventos Habilitar/Deshabilitar Botones Buscar y Generar Propuesta
 nombreBan.addEventListener("keyup",(e)=>{
   enableProp(e, buscarBan);
@@ -157,3 +299,17 @@ for(let btn of document.querySelectorAll(".anadir-fila")) btn.addEventListener("
 for(let btn of document.querySelectorAll(".eliminar-etiqueta")) btn.addEventListener("click",(e)=>delEtiqueta(e.target));
 //Eventos Iniciales de Botones Añadir Etiqueta
 for(let btn of document.querySelectorAll(".anadir-etiqueta")) btn.addEventListener("click",(e)=>addEtiqueta(e.target));
+
+//BOTÓN GUARDAR
+document.getElementById("btnGuardar").addEventListener("click",()=>{
+  let body = {
+    info: getInfoBan(),
+    etapas: getEtapasBan(),
+    temas: getTemasBan(),
+    estudios: getEstudiosBan(),
+    albumes: getAlbumesBan(),
+    musicos: getMusicosBan(),
+    discograficas: getDiscograficasBan()
+  };
+  post("fullBand",body).then(data=>console.log(data));
+});

@@ -270,9 +270,9 @@
                               <th><button type="button" class="btn btn-danger eliminar eliminar-fila">x</button></th>
                               <td><input type="number" class="form-control anioInicBan" name="anioInicEtaBan[]" min="1965" max="2023"></td>
                               <td><input type="number" class="form-control anioFinBan" name="anioFin[]" min="1965" max="2023"></td>
-                              <td><select class="form-select" name="tipoEtaBan[]" aria-label="Default select example">
-                                  <option value="1">Activo</option>
-                                  <option value="2">Hiato</option>
+                              <td><select class="form-select tipoEtaBan" name="tipoEtaBan[]" aria-label="Default select example">
+                                  <option value="ACTIVO">Activo</option>
+                                  <option value="HIATO">Hiato</option>
                                 </select>
                               </td>
                             </tr>
@@ -416,7 +416,7 @@
               </div>
             </div>
             <div class="row py-4 px-3 more">
-              <button type="button" class="btn btn-primary shadow">Guardar</button>
+              <button type="button" id="btnGuardar" class="btn btn-primary shadow">Guardar</button>
             </div>
           </form>
         </div>
@@ -691,7 +691,7 @@
   <script src="js/newAlbum.js"></script>
   <script src="js/newMusico.js"></script>
   <script src="js/newDiscografica.js"></script>
-  <!-- <script src="js/eliminame.js"></script> -->
+  <script src="js/eliminame.js"></script>
 
 </body>
 

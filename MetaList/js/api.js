@@ -39,3 +39,15 @@ async function get(elm, ...params){
   response = await response.json();
   return Promise.resolve(response);
 }
+
+// POST: FUNCIÓN INSERTAR INFORMACIÓN A TRAVÉS DE LA API
+async function post(elm, body){
+  //Se obtiene el JSON de resultados:
+  let response = await fetch(`http://${root}/MetaList/php/api.php?key=${key()}&insert=${elm}`,{
+    method: 'POST',
+    body: JSON.stringify(body),
+    headers: {'Content-Type': 'application/json'}
+  });
+  response = await response.json();
+  return Promise.resolve(response);
+}

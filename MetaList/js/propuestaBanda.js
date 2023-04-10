@@ -198,9 +198,9 @@ function addEtapas(etapas){
       <th><button type="button" class="btn btn-danger eliminar-fila">x</button></th>
       <td><input type="number" value="${etapa.anioInic}" class="form-control anioInicBan" name="anioInicEtaBan[]" min="1965" max="2023"></td>
       <td><input type="number" value="${etapa.anioFin}" class="form-control anioFinBan" name="anioFin[]" min="1965" max="2023"></td>
-      <td><select class="form-select" name="tipoEtaBan[]" aria-label="Default select example">
-          <option value="1">Activo</option>
-          <option value="2">Hiato</option>
+      <td><select class="form-select tipoEtaBan" name="tipoEtaBan[]" aria-label="Default select example">
+          <option value="ACTIVO">Activo</option>
+          <option value="HIATO">Hiato</option>
         </select>
       </td>`;
     elm.querySelector(".eliminar-fila").addEventListener("click",(e)=>delFila(e.target));

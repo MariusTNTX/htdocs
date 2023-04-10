@@ -15,7 +15,7 @@ function getFechaAlbMA(txt, id){
 }
 
 function getTipoAlbMA(txt,id){
-  let tipos = {full_length: "ESTUDIO", live_album: "LIVE", demo: "DEMO", Single: "SINGLE", ep: "EP", video: "VIDEO", boxed_set: "BOXSET", split: "SPLIT", compilation: "COMPILATION", collaboration: "COLLABORATION"};
+  let tipos = {full_length: "Estudio", live_album: "En Vivo", demo: "Demo", Single: "Single", ep: "EP", video: "Video", boxed_set: "BoxSet", split: "Split", compilation: "Recopilatorio", collaboration: "Colaboración"};
   let index = txt.indexOf("Type:");
   index = txt.indexOf("<dd>",index)+4;
   let result = txt.substring(index,txt.indexOf("<",index)).trim().toLowerCase().replace(" ","_").replace("-","_");
