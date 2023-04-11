@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 11-04-2023 a las 10:42:39
+-- Tiempo de generación: 11-04-2023 a las 13:26:57
 -- Versión del servidor: 8.0.32
 -- Versión de PHP: 7.4.30
 
@@ -6009,7 +6009,7 @@ CREATE TABLE `discograficas` (
   `Imagen` text,
   `Pais` varchar(50) DEFAULT NULL,
   `Direccion` varchar(100) DEFAULT NULL,
-  `Estatus` enum('Activo','Inactivo') DEFAULT NULL,
+  `Estatus` enum('En Activo','Inactivo') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `LinkWeb` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -6059,7 +6059,7 @@ CREATE TABLE `etapas_bandas` (
   `NomBan` varchar(50) NOT NULL,
   `AnioInic` int NOT NULL,
   `AnioFin` int DEFAULT NULL,
-  `Tipo` enum('En Activo','Disueltos','En Hiato') DEFAULT NULL
+  `Tipo` enum('En Activo','En Hiato') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
@@ -11380,8 +11380,7 @@ INSERT INTO `generos_bandas` (`NomBan`, `NomGen`, `Estrellas`) VALUES
 --
 
 CREATE TABLE `musicos` (
-  `CodMus` int NOT NULL,
-  `NomMus` varchar(100) DEFAULT NULL,
+  `NomMus` varchar(100) NOT NULL,
   `Imagen` text,
   `Sexo` enum('Hombre','Mujer') DEFAULT NULL,
   `DiaNac` int DEFAULT NULL,
@@ -11401,7 +11400,7 @@ CREATE TABLE `musicos` (
 --
 
 CREATE TABLE `musicos_bandas` (
-  `CodMus` int NOT NULL,
+  `NomMus` varchar(100) NOT NULL,
   `NomBan` varchar(50) NOT NULL,
   `AnioInic` int NOT NULL,
   `AnioFin` int DEFAULT NULL
@@ -11414,7 +11413,7 @@ CREATE TABLE `musicos_bandas` (
 --
 
 CREATE TABLE `roles_musicos_albumes` (
-  `CodMus` int NOT NULL,
+  `NomMus` varchar(100) NOT NULL,
   `NomBan` varchar(50) NOT NULL,
   `NomAlb` varchar(100) NOT NULL,
   `Rol` varchar(50) NOT NULL
@@ -11509,20 +11508,20 @@ ALTER TABLE `generos_bandas`
 -- Indices de la tabla `musicos`
 --
 ALTER TABLE `musicos`
-  ADD PRIMARY KEY (`CodMus`);
+  ADD PRIMARY KEY (`NomMus`);
 
 --
 -- Indices de la tabla `musicos_bandas`
 --
 ALTER TABLE `musicos_bandas`
-  ADD PRIMARY KEY (`CodMus`,`NomBan`,`AnioInic`),
+  ADD PRIMARY KEY (`NomMus`,`NomBan`,`AnioInic`),
   ADD KEY `FK_NomBan` (`NomBan`);
 
 --
 -- Indices de la tabla `roles_musicos_albumes`
 --
 ALTER TABLE `roles_musicos_albumes`
-  ADD PRIMARY KEY (`CodMus`,`NomBan`,`NomAlb`,`Rol`),
+  ADD PRIMARY KEY (`NomMus`,`NomBan`,`NomAlb`,`Rol`),
   ADD KEY `FK_NomBanAlb` (`NomBan`,`NomAlb`);
 
 --
@@ -11530,16 +11529,6 @@ ALTER TABLE `roles_musicos_albumes`
 --
 ALTER TABLE `temas_letra_bandas`
   ADD PRIMARY KEY (`NomBan`,`Tema`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `musicos`
---
-ALTER TABLE `musicos`
-  MODIFY `CodMus` int NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas
@@ -11597,15 +11586,15 @@ ALTER TABLE `generos_bandas`
 -- Filtros para la tabla `musicos_bandas`
 --
 ALTER TABLE `musicos_bandas`
-  ADD CONSTRAINT `FK_CodMus` FOREIGN KEY (`CodMus`) REFERENCES `musicos` (`CodMus`),
-  ADD CONSTRAINT `FK_NomBan` FOREIGN KEY (`NomBan`) REFERENCES `bandas` (`NomBan`);
+  ADD CONSTRAINT `FK_NomBan` FOREIGN KEY (`NomBan`) REFERENCES `bandas` (`NomBan`),
+  ADD CONSTRAINT `FK_NomMus` FOREIGN KEY (`NomMus`) REFERENCES `musicos` (`NomMus`);
 
 --
 -- Filtros para la tabla `roles_musicos_albumes`
 --
 ALTER TABLE `roles_musicos_albumes`
-  ADD CONSTRAINT `FK_CodMusRol` FOREIGN KEY (`CodMus`) REFERENCES `musicos` (`CodMus`),
-  ADD CONSTRAINT `FK_NomBanAlb` FOREIGN KEY (`NomBan`,`NomAlb`) REFERENCES `albumes` (`NomBan`, `NomAlb`);
+  ADD CONSTRAINT `FK_NomBanAlb` FOREIGN KEY (`NomBan`,`NomAlb`) REFERENCES `albumes` (`NomBan`, `NomAlb`),
+  ADD CONSTRAINT `FK_NomMusRol` FOREIGN KEY (`NomMus`) REFERENCES `musicos` (`NomMus`);
 
 --
 -- Filtros para la tabla `temas_letra_bandas`

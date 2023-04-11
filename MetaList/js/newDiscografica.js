@@ -11,8 +11,8 @@ function getEstatusDiscMA(txt, id){
   index = txt.indexOf('<dd>',index)+4;
   index = txt.indexOf('>',index)+1;
   let estatus = txt.substring(index,txt.indexOf('<',index));
-  estatus = (estatus == "active") ? "ACTIVO" : "INACTIVO";
-  if(estatus=="ACTIVO"){
+  estatus = (estatus == "active") ? "En Activo" : "Inactivo";
+  if(estatus=="En Activo"){
     document.querySelector(".estatusDisc.a"+id).children[1].removeAttribute("selected");
     document.querySelector(".estatusDisc.a"+id).children[0].setAttribute("selected","true");
   } else {
@@ -99,8 +99,8 @@ function addNewDiscografica(band, discografica, id){
           </div>
           <div class="col-6 my-1">
             <select class="form-select py-3 estatusDisc a${id}" name="estatusDisc[]" aria-label="Default select example">
-              <option value="ACTIVO" ${(discografica.estatus=='ACTIVO') ? "selected" : ""}>En Activo</option>
-              <option value="INACTIVO" ${(discografica.estatus!='ACTIVO') ? "selected" : ""}>Inactivo</option>
+              <option value="En Activo" ${(discografica.estatus=='En Activo') ? "selected" : ""}>En Activo</option>
+              <option value="Inactivo" ${(discografica.estatus!='En Activo') ? "selected" : ""}>Inactivo</option>
             </select>
           </div>
         </div>

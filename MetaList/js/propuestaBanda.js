@@ -55,7 +55,7 @@ var albumes = [
     canciones: [{nombre:"", estrellas: 0}]
   }
 ];
-var musicos = [{nombre: "",imagen: "",sexo: "",fechaNac: "",fechaDef: "",pais: "",origen: ""}], idMusico=0, descripcion=[], tradAllowed=false; 
+var musicos = [{nombre: "",imagen: "",sexo: "",fechaNac: "",fechaDef: "",pais: "",origen: ""}], idMusico=0, descripcion=[], tradAllowed=true, auxTradAllowed=false; 
 
 function generarEnlace(){
   let banda = nombreBan.value;
@@ -123,7 +123,7 @@ function getEtapasBanMA(txt){ //PENDIENTE DETECTAR HIATOS
   etapas = etapas.map(elm=>elm.trim().replace("\n",""));
   let result = [];
   for(let i=0; i<etapas.length; i++){
-    result[i]={anioInic: etapas[i].split("-")[0], anioFin: etapas[i].split("-")[1], tipo: "ACTIVO"}
+    result[i]={anioInic: etapas[i].split("-")[0], anioFin: etapas[i].split("-")[1], tipo: "En Activo"}
     if(result[i].anioFin == 'present') result[i].anioFin = "";
   }
   addEtapas(result);
@@ -199,8 +199,8 @@ function addEtapas(etapas){
       <td><input type="number" value="${etapa.anioInic}" class="form-control anioInicBan" name="anioInicEtaBan[]" min="1965" max="2023"></td>
       <td><input type="number" value="${etapa.anioFin}" class="form-control anioFinBan" name="anioFin[]" min="1965" max="2023"></td>
       <td><select class="form-select tipoEtaBan" name="tipoEtaBan[]" aria-label="Default select example">
-          <option value="ACTIVO">Activo</option>
-          <option value="HIATO">Hiato</option>
+          <option value="En Activo">Activo</option>
+          <option value="En Hiato">Hiato</option>
         </select>
       </td>`;
     elm.querySelector(".eliminar-fila").addEventListener("click",(e)=>delFila(e.target));
@@ -252,7 +252,7 @@ function traducirInfoBanda(pais, origen, temas){
   }
   console.log("Traducir:")
   console.log(txt);
-  if(tradAllowed){
+  if(tradAllowed && auxTradAllowed){
     console.log("tradAllowed")
     traducir(txt).then(data => {
       console.log("traducir(txt)")
@@ -324,7 +324,7 @@ async function traducirPaisOrigen(tipo, id, pais, origen, target1, target2){
   target1.value = pais;
   target2.value = origen;
   let txt = pais+"; "+origen;
-  if(tradAllowed){
+  if(tradAllowed && auxTradAllowed){
     await traducir(txt).then(data => data.responseData.translatedText).then(data=>{
       if(!data.includes("MYMEMORY WARNING")){
         pais = data.split("; ")[0];

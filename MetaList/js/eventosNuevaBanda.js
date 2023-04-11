@@ -1,5 +1,5 @@
 let filas = {
-  tbodyEtapas: `<th><button type="button" class="btn btn-danger eliminar eliminar-fila">x</button></th><td><input type="number" class="form-control anioInicBan" name="anioInicEtaBan[]" min="1965" max="2023"></td><td><input type="number" class="form-control anioFinBan" name="anioFin[]" min="1965" max="2023"></td><td><select class="form-select tipoEtaBan" name="tipoEtaBan[]" aria-label="Default select example"><option value="ACTIVO">Activo</option><option value="HIATO">Hiato</option></select></td>`,
+  tbodyEtapas: `<th><button type="button" class="btn btn-danger eliminar eliminar-fila">x</button></th><td><input type="number" class="form-control anioInicBan" name="anioInicEtaBan[]" min="1965" max="2023"></td><td><input type="number" class="form-control anioFinBan" name="anioFin[]" min="1965" max="2023"></td><td><select class="form-select tipoEtaBan" name="tipoEtaBan[]" aria-label="Default select example"><option value="En Activo">Activo</option><option value="En Hiato">Hiato</option></select></td>`,
   tbodyTemas: `<th><button type="button" class="btn btn-danger eliminar eliminar-fila">x</button></th><td><input type="text" class="form-control temaLetra" name="temaLetra[]"></td>`,
   tbodyEstudios: `<th><button type="button" class="btn btn-danger eliminar eliminar-fila">x</button></th><td><input type="text" value="" class="form-control nomEstBan" name="nomEstBan[]"></td><td><input type="text" value="" class="form-control paisEstBan" name="paisEstBan[]"></td><td><input type="text" value="" class="form-control origenEstBan" name="origenEstBan[]"></td>`,
   tbodyAlbumes: `<div class="card mb-3"><div class="card-body"><div class="row"><div class="col-12 col-md-4 col-lg-0 col-xl-3"></div><div class="col-12 col-md-4 col-lg-12 col-xl-6 mb-2"><h5 class="card-title text-center"><span class="text-dark">Nuevo Álbum</span><button type="button" class="a$id btn btn-danger ms-2 eliminar eliminar-etiqueta eliminarAlb">x</button></h5></div><div class="col-12 col-md-4 col-lg-12 col-xl-3 mb-2"><div class="more p-0 text-center text-xl-end"><button class="btn btn-primary btnGenPropAlb a$id" id="a$id" disabled data-bs-toggle="modal" data-bs-target="#albPropModal">Generar Propuesta</button></div></div></div><div class="card-text"><div class="row"><!-- Columna 1 --><div class="col-12 col-xl-4"><div class="row"><div class="col-12 my-1"><div class="form-floating"><input type="text" value="" class="form-control nombreAlb a$id" name="nombreAlb[]" placeholder="."><label for="nombreAlb">Nombre</label></div></div></div><div class="row">
@@ -19,7 +19,7 @@ let filas = {
                  <div class="col-12 my-1"><p class="text-center fw-bold bg-transparent mb-0">Fecha de Defunción</p><div class="row"><div class="col-4 form-floating pe-1"><input type="number" value="" class="form-control diaDefMus a$id" name="diaDefMus[]" min="0" max="31" placeholder="."><label for="diaDefMus" class="ps-4">Día</label></div><div class="col-4 form-floating px-1"><input type="number" value="" class="form-control mesDefMus a$id" name="mesDefMus[]" min="1" max="12" placeholder="."><label for="mesDefMus" class="ps-3">Mes</label></div><div class="col-4 form-floating ps-1"><input type="number" value="" class="form-control anioDefMus a$id" name="anioDefMus[]" minlength="4" maxlength="4" placeholder="."><label for="anioDefMus" class="ps-3">Año</label></div></div></div></div><div class="row"><div class="col-6 my-1"><div class="form-floating"><input type="text" value="" class="form-control paisMus a$id" name="paisMus[]" placeholder="."><label for="paisMus">
                  País</label></div></div><div class="col-6 my-1"><div class="form-floating"><input type="text" value="" class="form-control origenMus a$id" name="origenMus[]" placeholder="."><label for="origenMus">Origen</label></div></div></div><div class="row px-3"><table class="table table-sm"><thead><tr><th scope="col"><button type="button" class="btn btn-success addEtapaMusBan anadir-fila">+</button></th><th scope="col">Año Inicio</th><th scope="col">Año Fin</th></tr></thead><tbody class="table-group-divider tbodyEtapasMus a$id" id="tbodyEtapasMus-$id"></tbody></table></div></div></div></div>`,
   tbodyEtapasMus: `<th><button type="button" class="btn btn-danger eliminar-fila">x</button></th><td><input type="number" value="" class="form-control anioInicMus" name="anioInicMus[]" min="1965" max="2023"></td><td><input type="number" value="" class="form-control anioFinMus" name="anioFinMus[]" min="1965" max="2023"></td>`,
-  tbodyDiscograficas: `<div class="card mb-3"><div class="card-body"><h5 class="card-title text-center"><span class="text-dark">Nueva Discográfica</span><button type="button" class="a$id btn btn-danger ms-2 eliminar eliminar-etiqueta eliminarDisc">x</button></h5><div class="more p-0 text-center mb-2"><button class="btn btn-primary btnGenPropDisc a$id" id="a$id" disabled data-bs-toggle="modal" data-bs-target="#discPropModal">Generar Propuesta</button></div><div class="card-text"><div class="row"><div class="col-6 my-1"><div class="form-floating"><input type="text" value="" class="form-control nombreDisc a$id" name="nombreDisc[]" placeholder="."><label for="nombreDisc">Nombre</label></div></div><div class="col-6 my-1"><select class="form-select py-3 estatusDisc a$id" name="estatusDisc[]" aria-label="Default select example"><option value="ACTIVO">En Activo</option><option value="INACTIVO">Inactivo</option></select></div></div><div class="row"><div class="col-12 my-1"><div class="form-floating">
+  tbodyDiscograficas: `<div class="card mb-3"><div class="card-body"><h5 class="card-title text-center"><span class="text-dark">Nueva Discográfica</span><button type="button" class="a$id btn btn-danger ms-2 eliminar eliminar-etiqueta eliminarDisc">x</button></h5><div class="more p-0 text-center mb-2"><button class="btn btn-primary btnGenPropDisc a$id" id="a$id" disabled data-bs-toggle="modal" data-bs-target="#discPropModal">Generar Propuesta</button></div><div class="card-text"><div class="row"><div class="col-6 my-1"><div class="form-floating"><input type="text" value="" class="form-control nombreDisc a$id" name="nombreDisc[]" placeholder="."><label for="nombreDisc">Nombre</label></div></div><div class="col-6 my-1"><select class="form-select py-3 estatusDisc a$id" name="estatusDisc[]" aria-label="Default select example"><option value="En Activo">En Activo</option><option value="Inactivo">Inactivo</option></select></div></div><div class="row"><div class="col-12 my-1"><div class="form-floating">
                        <input type="text" value="" class="form-control imgDisc a$id" name="imgDisc[]" placeholder="."><label for="imgDisc">Imagen</label></div></div></div><div class="row"><div class="col-12 my-1"><div class="form-floating"><input type="text" value="" class="form-control webDisc a$id" name="webDisc[]" placeholder="."><label for="webDisc">Página Web</label></div></div></div><div class="row"><div class="col-6 my-1"><div class="form-floating"><input type="text" value="" class="form-control paisDisc a$id" name="paisDisc[]" placeholder="."><label for="paisDisc">País</label></div></div><div class="col-6 my-1"><div class="form-floating"><input type="text" value="" class="form-control direcDisc a$id" name="direcDisc[]" placeholder="."><label for="direcDisc">Dirección</label></div></div></div></div></div></div>`
 };
 
@@ -143,6 +143,13 @@ function enableProp(e, target){
   else if(e.target.value.length==0 && !target.hasAttribute("disabled")) target.setAttribute("disabled","true");
 }
 
+function getDuracion(tiempo){
+  tiempo = tiempo.trim().split(":");
+  if(tiempo.length==2) return parseInt(tiempo[0])*60+parseInt(tiempo[1]);
+  else if(tiempo.length==3) return parseInt(tiempo[0])*60*60+parseInt(tiempo[1])*60+parseInt(tiempo[2]);
+  return 0;
+}
+
 function getInfoBan(){
   let result = {};
   result.nombre = document.getElementById("nombreBan").value.replaceAll("'","\'");
@@ -198,7 +205,7 @@ function getAlbumBan(elm){
   result.tipo = elm.querySelector(".tipoAlb").value;
   result.imagen = elm.querySelector(".imgAlb").value;
   result.escuchas = elm.querySelector(".escuchAlb").value;
-  result.duracion = elm.querySelector(".duracAlb").value;
+  result.duracion = getDuracion(elm.querySelector(".duracAlb").value);
   result.iframe = elm.querySelector(".linkSpotAlb").value;
   result.linkAmazon = elm.querySelector(".amazonAlb").value;
   result.descrip = elm.querySelector(".descripAlb").value.replaceAll("'","\'").replaceAll('"','\"');
@@ -249,12 +256,16 @@ function getMusicosBan(){
       nombre: mus.querySelector(".nombreMus").value.replaceAll("'","\'"),
       sexo: mus.querySelector(".sexoMus").value,
       imagen: mus.querySelector(".imgMus").value,
-      diaNac: mus.querySelector(".diaNacMus").value,
-      mesNac: mus.querySelector(".mesNacMus").value,
-      anioNac: mus.querySelector(".anioNacMus").value,
-      diaDef: mus.querySelector(".diaDefMus").value,
-      mesDef: mus.querySelector(".mesDefMus").value,
-      anioDef: mus.querySelector(".anioDefMus").value,
+      fechaNac: {
+        dia: mus.querySelector(".diaNacMus").value,
+        mes: mus.querySelector(".mesNacMus").value,
+        anio: mus.querySelector(".anioNacMus").value
+      },
+      fechaDef: {
+        dia: mus.querySelector(".diaDefMus").value,
+        mes: mus.querySelector(".mesDefMus").value,
+        anio: mus.querySelector(".anioDefMus").value
+      },
       pais: mus.querySelector(".paisMus").value.replaceAll("'","\'"),
       origen: mus.querySelector(".origenMus").value.replaceAll("'","\'"),
       etapas: []
@@ -311,5 +322,7 @@ document.getElementById("btnGuardar").addEventListener("click",()=>{
     musicos: getMusicosBan(),
     discograficas: getDiscograficasBan()
   };
-  post("fullBand",body).then(data=>console.log(data));
+  console.log("BODY:")
+  console.log(body)
+  post("fullBand",body).then(data=>console.log(data)).catch(error=>alert("Error al procesar la transacción"));
 });

@@ -303,7 +303,7 @@ function traducirRolesAlbum(roles, id){
   let txt = roles.join("_-_");
   console.log("Traducir:")
   console.log(txt);
-  if(tradAllowed){
+  if(tradAllowed && auxTradAllowed){
     console.log("tradAllowed")
     traducir(txt).then(data => {
       console.log("traducir(txt)")

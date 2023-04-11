@@ -7,10 +7,15 @@ include("oculto.php");
 ini_set('error_reporting', E_ALL & ~E_NOTICE & ~E_WARNING & ~E_DEPRECATED);
 
 function query($c1, $query){
-  echo "\n\n".$query;
-  /* if (!$resp = mysqli_query($c1, $query)){
+  echo "\n\n".$query.";";
+  /* if (!mysqli_query($c1, $query)){
     echo mysqli_error($c1).'<br>';
     echo 'Consulta: '.$query;
+    header("Content-type: application/json; charset=utf-8");
+    echo json_encode([500, array(
+      "error" => mysqli_error($c1),
+      "consulta" => $query,
+    )]);
     exit(-1);
   } */
 }
@@ -83,52 +88,55 @@ if(isset($_GET['key'])){
         // F U L L  B A N D
         if($insert=='fullBand'){
           $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
-          //CORREGIR ARRAY (Escapar comillas, sustituir valores vacios)
+          //Se inicia en modo Transacción
+          mysqli_autocommit($c1, false);
 
           //INFO BANDA
           $info = $body['info'];
+          $info['nombre'] = str_replace("'","\'",$info['nombre']);
           foreach($info as $i => $vlr) if($vlr=="" && $i=='escuchas') $info[$i]="NULL";
-          query($c1, "UPDATE BANDAS SET Pais='".$info['pais']."', Origen='".$info['origen']."', NumEscuchasMes=".$info['escuchas'].", Imagen='".$info['imagen']."', Estatus='".$info['estatus']."', Descrip='".str_replace("'","\'",$info['descrip'])."', LinkWeb='".$info['linkWeb']."', LinkSpotify='".$info['linkSpotify']."' WHERE NomBan='".$info['nombre']."'");
+          query($c1, "UPDATE BANDAS SET Pais='".$info['pais']."', Origen='".$info['origen']."', NumEscuchasMes=".$info['escuchas'].", Imagen='".$info['imagen']."', Estatus='".$info['estatus']."', Descrip='".str_replace("'","\\'",$info['descrip'])."', LinkWeb='".$info['linkWeb']."', LinkSpotify='".$info['linkSpotify']."' WHERE NomBan='".$info['nombre']."'");
 
           //ETAPAS BANDA
           foreach($body['etapas'] as $i => $eta){
             foreach($eta as $j => $vlr) if($vlr=="" && ($j=='anioInic' || $j='anioFin')) $eta[$j]="NULL";
-            query($c1, "INSERT INTO ETAPAS_BANDAS VALUES('".$body['info']['nombre']."',".$eta['anioInic'].",".$eta['anioFin'].",'".$eta['tipo']."')");
+            query($c1, "INSERT IGNORE INTO ETAPAS_BANDAS VALUES('".$info['nombre']."',".$eta['anioInic'].",".$eta['anioFin'].",'".$eta['tipo']."')");
           }
           
           //TEMAS BANDA
           foreach($body['temas'] as $i => $tema){
-            query($c1, "INSERT INTO TEMAS_LETRA_BANDAS VALUES('".$body['info']['nombre']."','".$tema['nombre']."')");
+            query($c1, "INSERT IGNORE INTO TEMAS_LETRA_BANDAS VALUES('".$info['nombre']."','".str_replace("'","\'",$tema['nombre'])."')");
           }
 
           //INFO MUSICOS
           foreach($body['musicos'] as $i => $mus){
             foreach($mus['fechaNac'] as $j => $vlr) if($vlr=="" && ($j=='dia' || $j=='mes' || $j=='anio')) $mus['fechaNac'][$j]="NULL";
             foreach($mus['fechaDef'] as $j => $vlr) if($vlr=="" && ($j=='dia' || $j=='mes' || $j=='anio')) $mus['fechaDef'][$j]="NULL";
-            query($c1, "INSERT INTO MUSICOS VALUES('".$mus['nombre']."','".$mus['imagen']."','".$mus['sexo']."',".$mus['fechaNac']['dia'].",".$mus['fechaNac']['mes'].",".$mus['fechaNac']['anio'].",".$mus['fechaDef']['dia'].",".$mus['fechaDef']['mes'].",".$mus['fechaDef']['anio'].",'".$mus['pais']."','".$mus['origen']."')");
+            query($c1, "INSERT IGNORE INTO MUSICOS VALUES('".str_replace("'","\'",$mus['nombre'])."','".$mus['imagen']."','".$mus['sexo']."',".$mus['fechaNac']['dia'].",".$mus['fechaNac']['mes'].",".$mus['fechaNac']['anio'].",".$mus['fechaDef']['dia'].",".$mus['fechaDef']['mes'].",".$mus['fechaDef']['anio'].",'".$mus['pais']."','".$mus['origen']."')");
             
             //ETAPAS MUSICOS BANDA
             foreach($mus['etapas'] as $j => $eta){
               foreach($eta as $k => $vlr) if($vlr=="" && ($k=='anioInic' || $k=='anioFin')) $eta[$k]="NULL";
-              query($c1, "INSERT INTO MUSICOS_BANDAS VALUES('(SELECT CodMus FROM MUSICOS WHERE NomMus='".$mus['nombre']."' AND AnioNac=".$mus['fechaNac']['anio']." AND Pais='".$mus['pais']."' AND Origen='".$mus['origen']."')','".$info['nombre']."',".$eta['anioInic'].",".$eta['anioFin'].")");
+              query($c1, "INSERT IGNORE INTO MUSICOS_BANDAS VALUES('".str_replace("'","\'",$mus['nombre'])."','".$info['nombre']."',".$eta['anioInic'].",".$eta['anioFin'].")");
             }
           }
           
           //INFO DISCOGRAFICAS
           foreach($body['discograficas'] as $i => $disc){
-            query($c1, "INSERT INTO DISCOGRAFICAS VALUES('".$disc['nombre']."','".$disc['imagen']."','".$disc['pais']."','".$disc['origen']."','".$disc['estatus']."','".$disc['linkWeb']."')");
+            query($c1, "INSERT IGNORE INTO DISCOGRAFICAS VALUES('".str_replace("'","\'",$disc['nombre'])."','".$disc['imagen']."','".$disc['pais']."','".$disc['origen']."','".$disc['estatus']."','".$disc['linkWeb']."')");
           }
 
           //INFO ESTUDIOS
           foreach($body['estudios'] as $i => $est){
-            query($c1, "INSERT INTO ESTUDIOS_GRABACION VALUES('".$est['nombre']."','".$est['pais']."','".$est['origen']."')");
+            query($c1, "INSERT IGNORE INTO ESTUDIOS_GRABACION VALUES('".str_replace("'","\'",$est['nombre'])."','".$est['pais']."','".$est['origen']."')");
           }
 
           $generos = [];
           //INFO ALBUMES BANDA
           foreach($body['albumes'] as $i => $alb){
+            $alb['nombre'] = str_replace("'","\'",$alb['nombre']);
             foreach($alb as $j => $vlr) if($vlr=="" && ($j=='dia' || $j=='mes' || $j=='anio' || $j=='escuchas')) $alb[$j]="NULL";
-            query($c1, "UPDATE ALBUMES SET Imagen='".$alb['imagen']."', TipoAlb='".$alb['tipo']."', EnLista='SI', Dia=".$alb['dia'].", Mes=".$alb['mes'].", Anio=".$alb['anio'].", NumEscuchasMax=".$alb['escuchas'].", Descrip='".$alb['descrip']."', Duracion='".$alb['duracion']."', LinkSpotify='".$alb['iframe']."', LinkAmazon='".$alb['linkAmazon']."' WHERE NomBan='".$info['nombre']."' AND NomAlb='".$alb['nombre']."'");
+            query($c1, "UPDATE ALBUMES SET Imagen='".$alb['imagen']."', TipoAlb='".$alb['tipo']."', EnLista='SI', Dia=".$alb['dia'].", Mes=".$alb['mes'].", Anio=".$alb['anio'].", NumEscuchasMax=".$alb['escuchas'].", Descrip='".str_replace("'","\'",$alb['descrip'])."', Duracion=".$alb['duracion'].", LinkSpotify='".$alb['iframe']."', LinkAmazon='".$alb['linkAmazon']."' WHERE NomBan='".$info['nombre']."' AND NomAlb='".$alb['nombre']."'");
             
             //GENEROS ALBUMES (recuento generos banda*)
             foreach($alb['generos'] as $j => $gen){
@@ -141,18 +149,17 @@ if(isset($_GET['key'])){
             //ROLES MUSICOS ALBUMES
             foreach($alb['musicos'] as $j => $mus){
               foreach(explode("; ", $mus['roles']) as $k => $rol){
-                query($c1, "INSERT INTO ROLES_MUSICOS_ALBUMES VALUES(SELECT CodMus FROM MUSICOS WHERE NomMus='".$mus['nombre']."','".$info['nombre']."','".$alb['nombre']."','".$rol."')");
+                query($c1, "INSERT IGNORE INTO ROLES_MUSICOS_ALBUMES VALUES('".str_replace("'","\'",$mus['nombre'])."','".$info['nombre']."','".$alb['nombre']."','".$rol."')");
               }
             }
             //DISCOGRAFICAS ALBUMES
-            $disc = $alb['discograficas'];
-            query($c1, "INSERT INTO DISCOGRAFICAS_ALBUMES VALUES('".$info['nombre']."','".$alb['nombre']."','".$disc['nombre']."')");
+            foreach($alb['discograficas'] as $j => $disc){
+              query($c1, "INSERT IGNORE INTO DISCOGRAFICAS_ALBUMES VALUES('".$info['nombre']."','".$alb['nombre']."','".str_replace("'","\'",$disc['nombre'])."')");
+            }
             
-
             //ESTUDIOS ALBUMES
             foreach($alb['estudios'] as $j => $est){
-              foreach($body['estudios'] as $k => $vlr) if($vlr['nombre']==$est['nombre']) $estudio = $body['estudios'][$k];
-              query($c1, "INSERT INTO ESTUDIOS_ALBUMES VALUES('".$info['nombre']."','".$alb['nombre']."','".$est['nombre']."','".$estudio['pais']."','".$estudio['origen']."')");
+              query($c1, "INSERT IGNORE INTO ESTUDIOS_ALBUMES VALUES('".$info['nombre']."','".$alb['nombre']."','".str_replace("'","\'",$est['nombre'])."')");
             }
 
             //CANCIONES ALBUMES
@@ -166,10 +173,13 @@ if(isset($_GET['key'])){
           foreach($generos as $i => $gen){
             query($c1, "INSERT IGNORE INTO GENEROS_BANDAS VALUES('".$info['nombre']."','".$gen."',0)");
           }
+
+          //Si no ha habido errores se realiza un commit
+          mysqli_commit($c1);
         }
 
-        //header("Content-type: application/json; charset=utf-8");
-        //echo $body;
+        header("Content-type: application/json; charset=utf-8");
+        echo json_encode([200]);
       } else {
         $data = ["Error: Se esperaba el parámetro principal"];
         header("Content-type: application/json; charset=utf-8");
