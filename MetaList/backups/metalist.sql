@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 10-04-2023 a las 20:11:08
+-- Tiempo de generación: 11-04-2023 a las 10:42:39
 -- Versión del servidor: 8.0.32
 -- Versión de PHP: 7.4.30
 
@@ -26,13 +26,6 @@ SET time_zone = "+00:00";
 --
 -- Estructura de tabla para la tabla `albumes`
 --
-
-DROP TABLE `generos_bandas`;
-DROP TABLE `generos_albumes`;
-DROP TABLE `generos`;
-DROP TABLE `canciones_albumes`;
-DROP TABLE `albumes`;
-DROP TABLE `bandas`;
 
 CREATE TABLE `albumes` (
   `NomBan` varchar(50) NOT NULL,
@@ -2083,7 +2076,7 @@ INSERT INTO `bandas` (`NomBan`, `Pais`, `Origen`, `NumEscuchasMes`, `Imagen`, `E
 CREATE TABLE `canciones_albumes` (
   `NomBan` varchar(50) NOT NULL,
   `NomAlb` varchar(100) NOT NULL,
-  `NomCan` varchar(100) NOT NULL,
+  `NomCan` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `Estrellas` int DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -6004,6 +5997,70 @@ INSERT INTO `canciones_albumes` (`NomBan`, `NomAlb`, `NomCan`, `Estrellas`) VALU
 ('Yngwie Malmsteen', 'Trilogy', 'Queen in Love', 0),
 ('Yngwie Malmsteen', 'Trilogy', 'Trilogy Suite Op - 5', 1),
 ('Yngwie Malmsteen', 'Trilogy', 'You Don\'t Remember, I\'ll Never Forget', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `discograficas`
+--
+
+CREATE TABLE `discograficas` (
+  `NomDisc` varchar(50) NOT NULL,
+  `Imagen` text,
+  `Pais` varchar(50) DEFAULT NULL,
+  `Direccion` varchar(100) DEFAULT NULL,
+  `Estatus` enum('Activo','Inactivo') DEFAULT NULL,
+  `LinkWeb` text
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `discograficas_albumes`
+--
+
+CREATE TABLE `discograficas_albumes` (
+  `NomBan` varchar(50) NOT NULL,
+  `NomAlb` varchar(100) NOT NULL,
+  `NomDisc` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `estudios_albumes`
+--
+
+CREATE TABLE `estudios_albumes` (
+  `NomBan` varchar(50) NOT NULL,
+  `NomAlb` varchar(100) NOT NULL,
+  `NomEst` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `estudios_grabacion`
+--
+
+CREATE TABLE `estudios_grabacion` (
+  `NomEst` varchar(50) NOT NULL,
+  `Pais` varchar(50) NOT NULL,
+  `Direccion` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `etapas_bandas`
+--
+
+CREATE TABLE `etapas_bandas` (
+  `NomBan` varchar(50) NOT NULL,
+  `AnioInic` int NOT NULL,
+  `AnioFin` int DEFAULT NULL,
+  `Tipo` enum('En Activo','Disueltos','En Hiato') DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -11316,6 +11373,64 @@ INSERT INTO `generos_bandas` (`NomBan`, `NomGen`, `Estrellas`) VALUES
 ('Yngwie Malmsteen', 'Instrumental', 0),
 ('Yngwie Malmsteen', 'Neoclassical', 0);
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `musicos`
+--
+
+CREATE TABLE `musicos` (
+  `CodMus` int NOT NULL,
+  `NomMus` varchar(100) DEFAULT NULL,
+  `Imagen` text,
+  `Sexo` enum('Hombre','Mujer') DEFAULT NULL,
+  `DiaNac` int DEFAULT NULL,
+  `MesNac` int DEFAULT NULL,
+  `AnioNac` int DEFAULT NULL,
+  `DiaDef` int DEFAULT NULL,
+  `MesDef` int DEFAULT NULL,
+  `AnioDef` int DEFAULT NULL,
+  `Pais` varchar(50) DEFAULT NULL,
+  `Origen` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `musicos_bandas`
+--
+
+CREATE TABLE `musicos_bandas` (
+  `CodMus` int NOT NULL,
+  `NomBan` varchar(50) NOT NULL,
+  `AnioInic` int NOT NULL,
+  `AnioFin` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `roles_musicos_albumes`
+--
+
+CREATE TABLE `roles_musicos_albumes` (
+  `CodMus` int NOT NULL,
+  `NomBan` varchar(50) NOT NULL,
+  `NomAlb` varchar(100) NOT NULL,
+  `Rol` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `temas_letra_bandas`
+--
+
+CREATE TABLE `temas_letra_bandas` (
+  `NomBan` varchar(50) NOT NULL,
+  `Tema` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 --
 -- Índices para tablas volcadas
 --
@@ -11339,6 +11454,38 @@ ALTER TABLE `canciones_albumes`
   ADD PRIMARY KEY (`NomBan`,`NomAlb`,`NomCan`);
 
 --
+-- Indices de la tabla `discograficas`
+--
+ALTER TABLE `discograficas`
+  ADD PRIMARY KEY (`NomDisc`);
+
+--
+-- Indices de la tabla `discograficas_albumes`
+--
+ALTER TABLE `discograficas_albumes`
+  ADD PRIMARY KEY (`NomBan`,`NomAlb`,`NomDisc`),
+  ADD KEY `NomDisc` (`NomDisc`);
+
+--
+-- Indices de la tabla `estudios_albumes`
+--
+ALTER TABLE `estudios_albumes`
+  ADD PRIMARY KEY (`NomBan`,`NomAlb`,`NomEst`),
+  ADD KEY `FK_NomEst` (`NomEst`);
+
+--
+-- Indices de la tabla `estudios_grabacion`
+--
+ALTER TABLE `estudios_grabacion`
+  ADD PRIMARY KEY (`NomEst`,`Pais`,`Direccion`);
+
+--
+-- Indices de la tabla `etapas_bandas`
+--
+ALTER TABLE `etapas_bandas`
+  ADD PRIMARY KEY (`NomBan`,`AnioInic`);
+
+--
 -- Indices de la tabla `generos`
 --
 ALTER TABLE `generos`
@@ -11359,6 +11506,42 @@ ALTER TABLE `generos_bandas`
   ADD KEY `NomGen` (`NomGen`);
 
 --
+-- Indices de la tabla `musicos`
+--
+ALTER TABLE `musicos`
+  ADD PRIMARY KEY (`CodMus`);
+
+--
+-- Indices de la tabla `musicos_bandas`
+--
+ALTER TABLE `musicos_bandas`
+  ADD PRIMARY KEY (`CodMus`,`NomBan`,`AnioInic`),
+  ADD KEY `FK_NomBan` (`NomBan`);
+
+--
+-- Indices de la tabla `roles_musicos_albumes`
+--
+ALTER TABLE `roles_musicos_albumes`
+  ADD PRIMARY KEY (`CodMus`,`NomBan`,`NomAlb`,`Rol`),
+  ADD KEY `FK_NomBanAlb` (`NomBan`,`NomAlb`);
+
+--
+-- Indices de la tabla `temas_letra_bandas`
+--
+ALTER TABLE `temas_letra_bandas`
+  ADD PRIMARY KEY (`NomBan`,`Tema`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `musicos`
+--
+ALTER TABLE `musicos`
+  MODIFY `CodMus` int NOT NULL AUTO_INCREMENT;
+
+--
 -- Restricciones para tablas volcadas
 --
 
@@ -11376,6 +11559,26 @@ ALTER TABLE `canciones_albumes`
   ADD CONSTRAINT `canciones_albumes_ibfk_2` FOREIGN KEY (`NomBan`,`NomAlb`) REFERENCES `albumes` (`NomBan`, `NomAlb`);
 
 --
+-- Filtros para la tabla `discograficas_albumes`
+--
+ALTER TABLE `discograficas_albumes`
+  ADD CONSTRAINT `NomBanAlbDisc` FOREIGN KEY (`NomBan`,`NomAlb`) REFERENCES `albumes` (`NomBan`, `NomAlb`),
+  ADD CONSTRAINT `NomDisc` FOREIGN KEY (`NomDisc`) REFERENCES `discograficas` (`NomDisc`);
+
+--
+-- Filtros para la tabla `estudios_albumes`
+--
+ALTER TABLE `estudios_albumes`
+  ADD CONSTRAINT `FK_NomBanAlbEst` FOREIGN KEY (`NomBan`,`NomAlb`) REFERENCES `albumes` (`NomBan`, `NomAlb`),
+  ADD CONSTRAINT `FK_NomEst` FOREIGN KEY (`NomEst`) REFERENCES `estudios_grabacion` (`NomEst`);
+
+--
+-- Filtros para la tabla `etapas_bandas`
+--
+ALTER TABLE `etapas_bandas`
+  ADD CONSTRAINT `etapas_bandas_ibfk_1` FOREIGN KEY (`NomBan`) REFERENCES `bandas` (`NomBan`);
+
+--
 -- Filtros para la tabla `generos_albumes`
 --
 ALTER TABLE `generos_albumes`
@@ -11389,6 +11592,26 @@ ALTER TABLE `generos_albumes`
 ALTER TABLE `generos_bandas`
   ADD CONSTRAINT `generos_bandas_ibfk_1` FOREIGN KEY (`NomBan`) REFERENCES `bandas` (`NomBan`),
   ADD CONSTRAINT `generos_bandas_ibfk_2` FOREIGN KEY (`NomGen`) REFERENCES `generos` (`NomGen`);
+
+--
+-- Filtros para la tabla `musicos_bandas`
+--
+ALTER TABLE `musicos_bandas`
+  ADD CONSTRAINT `FK_CodMus` FOREIGN KEY (`CodMus`) REFERENCES `musicos` (`CodMus`),
+  ADD CONSTRAINT `FK_NomBan` FOREIGN KEY (`NomBan`) REFERENCES `bandas` (`NomBan`);
+
+--
+-- Filtros para la tabla `roles_musicos_albumes`
+--
+ALTER TABLE `roles_musicos_albumes`
+  ADD CONSTRAINT `FK_CodMusRol` FOREIGN KEY (`CodMus`) REFERENCES `musicos` (`CodMus`),
+  ADD CONSTRAINT `FK_NomBanAlb` FOREIGN KEY (`NomBan`,`NomAlb`) REFERENCES `albumes` (`NomBan`, `NomAlb`);
+
+--
+-- Filtros para la tabla `temas_letra_bandas`
+--
+ALTER TABLE `temas_letra_bandas`
+  ADD CONSTRAINT `temas_letra_bandas_ibfk_1` FOREIGN KEY (`NomBan`) REFERENCES `bandas` (`NomBan`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

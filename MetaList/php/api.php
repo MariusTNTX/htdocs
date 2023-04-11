@@ -88,7 +88,7 @@ if(isset($_GET['key'])){
           //INFO BANDA
           $info = $body['info'];
           foreach($info as $i => $vlr) if($vlr=="" && $i=='escuchas') $info[$i]="NULL";
-          query($c1, "UPDATE BANDAS SET Pais='".$info['pais']."', Origen='".$info['origen']."', NumEscuchasMes=".$info['escuchas'].", Imagen='".$info['imagen']."', Estatus='".$info['estatus']."', Descrip='".$info['descrip']."', LinkWeb='".$info['linkWeb']."', LinkSpotify='".$info['linkSpotify']."' WHERE NomBan='".$info['nombre']."'");
+          query($c1, "UPDATE BANDAS SET Pais='".$info['pais']."', Origen='".$info['origen']."', NumEscuchasMes=".$info['escuchas'].", Imagen='".$info['imagen']."', Estatus='".$info['estatus']."', Descrip='".str_replace("'","\'",$info['descrip'])."', LinkWeb='".$info['linkWeb']."', LinkSpotify='".$info['linkSpotify']."' WHERE NomBan='".$info['nombre']."'");
 
           //ETAPAS BANDA
           foreach($body['etapas'] as $i => $eta){
@@ -141,13 +141,13 @@ if(isset($_GET['key'])){
             //ROLES MUSICOS ALBUMES
             foreach($alb['musicos'] as $j => $mus){
               foreach(explode("; ", $mus['roles']) as $k => $rol){
-                query($c1, "INSERT INTO ROLES_MUSICOS_ALBUMES VALUES('".$mus['nombre']."','".$info['nombre']."','".$alb['nombre']."','".$rol."')");
+                query($c1, "INSERT INTO ROLES_MUSICOS_ALBUMES VALUES(SELECT CodMus FROM MUSICOS WHERE NomMus='".$mus['nombre']."','".$info['nombre']."','".$alb['nombre']."','".$rol."')");
               }
             }
             //DISCOGRAFICAS ALBUMES
-            foreach($alb['discograficas'] as $j => $disc){
-              query($c1, "INSERT INTO DISCOGRAFICAS_ALBUMES VALUES('".$info['nombre']."','".$alb['nombre']."','".$disc['nombre']."')");
-            }
+            $disc = $alb['discograficas'];
+            query($c1, "INSERT INTO DISCOGRAFICAS_ALBUMES VALUES('".$info['nombre']."','".$alb['nombre']."','".$disc['nombre']."')");
+            
 
             //ESTUDIOS ALBUMES
             foreach($alb['estudios'] as $j => $est){
