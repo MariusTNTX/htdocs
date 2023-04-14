@@ -55,7 +55,7 @@ var albumes = [
     canciones: [{nombre:"", estrellas: 0}]
   }
 ];
-var musicos = [{nombre: "",imagen: "",sexo: "",fechaNac: "",fechaDef: "",pais: "",origen: ""}], idMusico=0, descripcion=[], tradAllowed=true, auxTradAllowed=false; 
+var musicos = [{nombre: "",imagen: "",sexo: "",fechaNac: "",fechaDef: "",pais: "",origen: ""}], idMusico=0, descripcion=[], tradAllowed=false, auxTradAllowed=false; 
 
 function generarEnlace(){
   let banda = nombreBan.value;
@@ -86,8 +86,9 @@ function getOrigenBanMA(txt){
 function getImagenBanMA(txt){
   let index = txt.indexOf("band_img");
   index = txt.indexOf('<img src="',index)+10;
-  document.getElementById("imagenBan").value=txt.substring(index,txt.indexOf('"',index));
-  return txt.substring(index,txt.indexOf('"',index));
+  let img = txt.substring(index,txt.indexOf('"',index));
+  document.getElementById("imagenBan").value=img;
+  return img;
 }
 
 function getEstatusBanMA(txt){
@@ -141,9 +142,9 @@ function getMusicosBanMA(txt){
     do{ //Leer lineupRows
       let link = "";
       index = txt1.indexOf('lineupRow',index)+11;
-      index = txt1.indexOf('>',index)+2;
+      index = txt1.indexOf('>',index)+1;
       let nombre=""; //Nombre
-      if(txt1.substring(index,index+1)=="<"){
+      if(txt1.substring(txt1.indexOf("<",index)+1,txt1.indexOf("<",index)+2)=="a"){
         index = txt1.indexOf("http",index);
         link = txt1.substring(index,txt1.indexOf('"',index));
         index = txt1.indexOf("artists/",index)+8;
@@ -286,7 +287,7 @@ async function traducirDescrip(txt, target){
   console.log(target)
   descripcion = [];
   txt = txt.replaceAll("#","Nº");
-  for(let bus of ["Full Wikipedia article:","Current members:","Members:","<a href"]){
+  for(let bus of ["Full Wikipedia article:","Current members:","Members:","Track listing","<a href"]){
     index = txt.indexOf(bus);
     if(index!=-1) txt = txt.substring(0,index-1);
   }
@@ -350,7 +351,7 @@ async function traducirPaisOrigen(tipo, id, pais, origen, target1, target2){
 buscarBan.addEventListener("click",(e)=>{
   e.preventDefault();
   if(nombreBan.value!=""){
-    get("infoBanda",nombreBan.value).then(data => {
+    get("infoBanda",["NomBan",nombreBan.value]).then(data => {
       console.log(data);
       //addGeneros(data.generos);
       addAlbumes(data.albumes);

@@ -25,15 +25,17 @@ function getEstatusDiscMA(txt, id){
 function getImagenDiscMA(txt, id){
   let index = txt.indexOf("label_img");
   index = txt.indexOf('<img src="',index)+10;
-  document.querySelector(".imgDisc.a"+id).setAttribute("value",txt.substring(index,txt.indexOf('"',index)));
-  return txt.substring(index,txt.indexOf('"',index));
+  let img = txt.substring(index,txt.indexOf('"',index));
+  if(img.includes("loading.gif")) img="";
+  document.querySelector(".imgDisc.a"+id).setAttribute("value",img);
+  return img;
 }
 
 function getWebDiscMA(txt, id){
   let result = "";
   if(txt.indexOf('id="label_contact"')!=-1){
-    let index = txt.indexOf('id="label_contact"')+20;
-    if(index == txt.indexOf('<a href=',index)){
+    let index = txt.indexOf('id="label_contact"')+19;
+    if(txt.indexOf('<',index) == txt.indexOf('<a href=',index)){
       index = txt.indexOf('<a href=',index)+9;
       result = txt.substring(index,txt.indexOf('"',index));
     }

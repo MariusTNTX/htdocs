@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="spotify"></div>
+  <div id="amazon"></div>
+  <div id="imagen"></div>
+  <script>
+    let spotify = document.getElementById("spotify");
+    let amazon = document.getElementById("amazon");
+    let imagen = document.getElementById("imagen");
+    spotify.innerHTML=`<iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/4BM6l9lxkjdr9U9A65DWbS?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`;
+    amazon.innerHTML=`<a href="https://www.amazon.es/Spirit-Eluveitie/dp/B000G09PT6/ref=sr_1_1?__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=O6YJGRJX0RNI&keywords=eluveitie+spirit&qid=1681222782&sprefix=eluveitie+spirit%2Caps%2C73&sr=8-1" target="_blank">Link</a>`;
+    imagen.innerHTML=`<img src="https://www.metal-archives.com/images/1/0/5/4/105454.jpg?3724" alt="">`;
+  </script>
+</body>
+</html>

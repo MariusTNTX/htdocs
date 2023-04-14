@@ -278,7 +278,11 @@ div.more{padding-top: 20px}
 .etc:hover{background-color: inherit}
 .message-title{color: #dc210e}
 
-/* Botón Login */
+/* Login */
+#loginForm .bi{
+  cursor: pointer;
+  color: #dc210e;
+}
 .login button{
   transition: .3s;
   font-size: 14px;
@@ -362,3 +366,7 @@ footer input{
   color: #151515;
   text-align: center;
 }
+
+/* NUEVA BANDA */
+.tbodyRolesAlb tr td:last-of-type{transition: 0.3s;}
+.tbodyRolesAlb tr td:last-of-type:hover{width: 100%;}

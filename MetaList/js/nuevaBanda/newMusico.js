@@ -24,8 +24,10 @@ function getSexoMusMA(txt, id){
 function getImagenMusMA(txt, id){
   let index = txt.indexOf("member_img");
   index = txt.indexOf('<img src="',index)+10;
-  document.querySelector(".imgMus.a"+id).setAttribute("value",txt.substring(index,txt.indexOf('"',index)));
-  return txt.substring(index,txt.indexOf('"',index));
+  let img = txt.substring(index,txt.indexOf('"',index));
+  if(img.includes("loading.gif")) img="";
+  document.querySelector(".imgMus.a"+id).setAttribute("value",img);
+  return img;
 }
 
 function getFechaNacMusMA(txt, id){

@@ -113,23 +113,26 @@
         <button type="button" class="btn text-white dropdown-toggle py-2 px-3 px-sm-4" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
           <i class="bi bi-person-fill"></i>Login
         </button>
-        <form action="nuevaBanda.html" method="get" class="dropdown-menu dropdown-menu-end p-4 w-50" id="loginForm">
+        <form action="" method="get" class="dropdown-menu dropdown-menu-end p-4 w-50" id="loginForm">
           <div class="mb-3">
-            <label for="exampleDropdownFormEmail2" class="form-label">Email</label>
-            <input type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="email@ejemplo.com">
+            <label for="loginEmail" class="form-label">Email</label>
+            <input type="email" class="form-control" id="loginEmail" placeholder="email@ejemplo.com" required>
           </div>
           <div class="mb-3">
-            <label for="exampleDropdownFormPassword2" class="form-label">Contraseña</label>
-            <input type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Contraseña">
+            <label for="loginPass" class="form-label">Contraseña</label>
+            <div class="position-relative">
+              <input type="password" class="form-control" id="loginPass" placeholder="Contraseña" required>
+              <i id="loginPassEye" class="bi bi-eye-fill position-absolute top-50 end-0 translate-middle-y me-2"></i>
+            </div>
           </div>
-          <div class="mb-3">
+          <!-- <div class="mb-3">
             <div class="form-check">
               <input type="checkbox" class="form-check-input" id="dropdownCheck2">
               <label class="form-check-label" for="dropdownCheck2">
                 Recordarme
               </label>
             </div>
-          </div>
+          </div> -->
           <div class="text-center"><button type="submit" class="btn btn-primary" id="loginButton">Iniciar Sesión</button></div>
           <hr class="mt-4">
           <div id="regist" class="text-center">
@@ -137,15 +140,6 @@
             <div><a href="./registro.html">Regístrate</a></div>
           </div>
         </form>
-        <script>
-          document.getElementById("loginButton").addEventListener("click",(e)=>{
-            if(document.getElementById("exampleDropdownFormEmail2").value!='mario@admin.com' || 
-               document.getElementById("exampleDropdownFormPassword2").value!='1234'){
-              e.preventDefault();
-              alert("Login Incorrecto");
-            } 
-          });
-        </script>
       </div>
       
     </div>
@@ -891,6 +885,8 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+
+  <script src="js/login.js"></script>
 
 </body>
 

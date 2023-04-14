@@ -27,8 +27,10 @@ function getTipoAlbMA(txt,id){
 function getImagenAlbMA(txt, id){
   let index = txt.indexOf("album_img");
   index = txt.indexOf('<img src="',index)+10;
-  document.querySelector(".imgAlb.a"+id).value=txt.substring(index,txt.indexOf('"',index));
-  return txt.substring(index,txt.indexOf('"',index));
+  let img = txt.substring(index,txt.indexOf('"',index));
+  if(img.includes("loading.gif")) img="";
+  document.querySelector(".imgAlb.a"+id).value=img;
+  return img;
 }
 
 function getDuracionAlbMA(txt,id){
@@ -63,18 +65,26 @@ function getMusicosAlbMA(txt,id){ //SACAR NOMBRE ORIGINAL DE LA URL
   do{ //Leer lineupRows
     let link = "";
     index = txt1.indexOf('lineupRow',index)+11;
-    index = txt1.indexOf('>',index)+2;
+    index = txt1.indexOf('>',index)+1;
     let nombre=""; //Nombre
-    if(txt1.substring(index,index+1)=="<"){
+    console.log("Verificando a")
+    if(txt1.substring(txt1.indexOf("<",index)+1,txt1.indexOf("<",index)+2)=="a"){
+      console.log("Hay a")
       index = txt1.indexOf("http",index);
       link = txt1.substring(index,txt1.indexOf('"',index));
+      console.log("link="+link)
       index = txt1.indexOf("artists/",index)+8;
       nombre = txt1.substring(index,txt1.indexOf("/",index)).replaceAll("_"," ");
+      console.log("nombre sin decode="+nombre)
       nombre = decodeURI(nombre);
+      console.log("nombre sin decode="+nombre)
       index = txt1.indexOf(">",index)+1;
     } else {
+      console.log("No hay a")
       nombre = txt1.substring(index,txt1.indexOf("<",index));
+      console.log("Nombre (con RIP)="+nombre)
       if(nombre.indexOf("(R.I.P.")>0) nombre = nombre.substring(0,nombre.indexOf("(R.I.P."));
+      console.log("Nombre (sin RIP)="+nombre)
     }
     index = txt1.indexOf('<td>',index)+4;
     //Roles
@@ -88,7 +98,26 @@ function getMusicosAlbMA(txt,id){ //SACAR NOMBRE ORIGINAL DE LA URL
     } while(roles.indexOf("(track")>0);
     roles = roles.split(", ");
     roles = roles.filter(rol => (!rol.includes("Lyrics") && !rol.includes("Songwriting")));
-    result.push({nombre: nombre, roles: roles.join("; "), link: link});
+    console.log(roles)
+    roles = roles.map(rol => rol.replaceAll(" &amp;",",").replaceAll(" &",","));
+    for(let i=0; i<roles.length; i++){
+      if(roles[i].includes("(") && !roles[i].includes(")") && i+1<roles.length){
+        roles[i] = roles[i]+", "+roles[i+1];
+        roles.splice(i+1,1);
+        i--;
+      }
+    }
+    for(let i=0; i<roles.length; i++){
+      if(roles[i].includes("(") && roles[i].includes(",")){
+        let rol = roles[i].substring(0,roles[i].indexOf("(")-1);
+        let tipos = roles[i].substring(roles[i].indexOf("(")+1,roles[i].indexOf(")")).split(", ");
+        tipos = tipos.map(tipo => rol+" ("+tipo+")");
+        roles.splice(i,1,...tipos);
+        i+=tipos.length-1;
+      }
+    }
+    console.log(roles)
+    result.push({nombre: nombre, roles: roles.map(rol=>rol = rol.trim().replaceAll("\t","")).join("; "), link: link});
   } while(index <= txt1.lastIndexOf('lineupRow'));
   //PRODUCTORES
   index = txt.lastIndexOf('album_members_misc');
@@ -98,9 +127,9 @@ function getMusicosAlbMA(txt,id){ //SACAR NOMBRE ORIGINAL DE LA URL
   do{ //Leer lineupRows
     let link = "";
     index = txt1.indexOf('lineupRow',index)+11;
-    index = txt1.indexOf('>',index)+2;
+    index = txt1.indexOf('>',index)+1;
     let nombre=""; //Nombre
-    if(txt1.substring(index,index+1)=="<"){
+    if(txt1.substring(txt1.indexOf("<",index)+1,txt1.indexOf("<",index)+2)=="a"){
       index = txt1.indexOf("http",index);
       link = txt1.substring(index,txt1.indexOf('"',index));
       index = txt1.indexOf("artists/",index)+8;
@@ -192,9 +221,12 @@ function formatTxtEstudiosAlb(txt){
 //Botón Modal Añadir Estudio
 document.getElementById("btnEstExtr").addEventListener("click",(e)=>{
   e.preventDefault();
-  if(document.getElementById("estExtrInput").value.length>0){
-    addEstudioAlb({nombre: document.getElementById("estExtrInput").value.trim(), pais: "", origen: ""}, document.getElementById("idExtrEst").innerHTML);
-    document.getElementById("estExtrInput").value="";
+  let estudio = document.getElementById("estExtrInput"), pais = document.getElementById("paisExtrInput"), direc = document.getElementById("direcExtrInput");
+  if(estudio.value.length>0){
+    addEstudioAlb({nombre: estudio.value.trim(), pais: pais.value.trim(), origen: direc.value.trim()}, document.getElementById("idExtrEst").innerHTML);
+    estudio.value="";
+    pais.value="";
+    direc.value="";
   } else alert("Debes incluir el nombre de un estudio");
 });
 

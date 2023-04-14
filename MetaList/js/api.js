@@ -25,14 +25,15 @@ function key(){ //Genera la key de uso único para peticiones realizadas por los
 async function get(elm, ...params){
   //Se seleccionan los filtros y sus valores:
   let elements = [], values = [];
-  for(let i in elementos[elm]){
-    elements.push(elementos[elm][i]);
-    values.push(params[i]);
+  for(let e of params){
+    elements.push(e[0]);
+    values.push(e[1]);
   }
   elements = elements.join('|');
   values = values.join('|');
   //Se obtiene el JSON de resultados:
-  let response = await fetch(`http://${root}/MetaList/php/api.php?key=${key()}&select=infoBanda&elements=${elements}&values=${values}`,{
+  console.log(`http://${root}/MetaList/php/api.php?key=${key()}&select=${elm}&elements=${elements}&values=${values}`)
+  let response = await fetch(`http://${root}/MetaList/php/api.php?key=${key()}&select=${elm}&elements=${elements}&values=${values}`,{
     method: 'GET',
     headers: {'Content-Type': 'application/json'}
   });

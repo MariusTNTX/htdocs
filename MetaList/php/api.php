@@ -7,8 +7,8 @@ include("oculto.php");
 ini_set('error_reporting', E_ALL & ~E_NOTICE & ~E_WARNING & ~E_DEPRECATED);
 
 function query($c1, $query){
-  echo "\n\n".$query.";";
-  /* if (!mysqli_query($c1, $query)){
+  //echo "\n\n".$query.";";
+  if (!$resp = mysqli_query($c1, $query)){
     echo mysqli_error($c1).'<br>';
     echo 'Consulta: '.$query;
     header("Content-type: application/json; charset=utf-8");
@@ -17,7 +17,8 @@ function query($c1, $query){
       "consulta" => $query,
     )]);
     exit(-1);
-  } */
+  }
+  return $resp;
 }
 
 if(isset($_GET['key'])){
@@ -95,7 +96,7 @@ if(isset($_GET['key'])){
           $info = $body['info'];
           $info['nombre'] = str_replace("'","\'",$info['nombre']);
           foreach($info as $i => $vlr) if($vlr=="" && $i=='escuchas') $info[$i]="NULL";
-          query($c1, "UPDATE BANDAS SET Pais='".$info['pais']."', Origen='".$info['origen']."', NumEscuchasMes=".$info['escuchas'].", Imagen='".$info['imagen']."', Estatus='".$info['estatus']."', Descrip='".str_replace("'","\\'",$info['descrip'])."', LinkWeb='".$info['linkWeb']."', LinkSpotify='".$info['linkSpotify']."' WHERE NomBan='".$info['nombre']."'");
+          query($c1, "UPDATE BANDAS SET Pais='".$info['pais']."', Origen='".str_replace("'","\'",$info['origen'])."', NumEscuchasMes=".$info['escuchas'].", Imagen='".$info['imagen']."', Estatus='".$info['estatus']."', Descrip='".str_replace("'","\\'",$info['descrip'])."', LinkWeb='".$info['linkWeb']."', LinkSpotify='".$info['linkSpotify']."' WHERE NomBan='".$info['nombre']."'");
 
           //ETAPAS BANDA
           foreach($body['etapas'] as $i => $eta){
@@ -112,7 +113,7 @@ if(isset($_GET['key'])){
           foreach($body['musicos'] as $i => $mus){
             foreach($mus['fechaNac'] as $j => $vlr) if($vlr=="" && ($j=='dia' || $j=='mes' || $j=='anio')) $mus['fechaNac'][$j]="NULL";
             foreach($mus['fechaDef'] as $j => $vlr) if($vlr=="" && ($j=='dia' || $j=='mes' || $j=='anio')) $mus['fechaDef'][$j]="NULL";
-            query($c1, "INSERT IGNORE INTO MUSICOS VALUES('".str_replace("'","\'",$mus['nombre'])."','".$mus['imagen']."','".$mus['sexo']."',".$mus['fechaNac']['dia'].",".$mus['fechaNac']['mes'].",".$mus['fechaNac']['anio'].",".$mus['fechaDef']['dia'].",".$mus['fechaDef']['mes'].",".$mus['fechaDef']['anio'].",'".$mus['pais']."','".$mus['origen']."')");
+            query($c1, "INSERT IGNORE INTO MUSICOS VALUES('".str_replace("'","\'",$mus['nombre'])."','".$mus['imagen']."','".$mus['sexo']."',".$mus['fechaNac']['dia'].",".$mus['fechaNac']['mes'].",".$mus['fechaNac']['anio'].",".$mus['fechaDef']['dia'].",".$mus['fechaDef']['mes'].",".$mus['fechaDef']['anio'].",'".$mus['pais']."','".str_replace("'","\'",$mus['origen'])."')");
             
             //ETAPAS MUSICOS BANDA
             foreach($mus['etapas'] as $j => $eta){
@@ -123,12 +124,12 @@ if(isset($_GET['key'])){
           
           //INFO DISCOGRAFICAS
           foreach($body['discograficas'] as $i => $disc){
-            query($c1, "INSERT IGNORE INTO DISCOGRAFICAS VALUES('".str_replace("'","\'",$disc['nombre'])."','".$disc['imagen']."','".$disc['pais']."','".$disc['origen']."','".$disc['estatus']."','".$disc['linkWeb']."')");
+            query($c1, "INSERT IGNORE INTO DISCOGRAFICAS VALUES('".str_replace("'","\'",$disc['nombre'])."','".$disc['imagen']."','".$disc['pais']."','".str_replace("'","\'",$disc['origen'])."','".$disc['estatus']."','".$disc['linkWeb']."')");
           }
 
           //INFO ESTUDIOS
           foreach($body['estudios'] as $i => $est){
-            query($c1, "INSERT IGNORE INTO ESTUDIOS_GRABACION VALUES('".str_replace("'","\'",$est['nombre'])."','".$est['pais']."','".$est['origen']."')");
+            query($c1, "INSERT IGNORE INTO ESTUDIOS_GRABACION VALUES('".str_replace("'","\'",$est['nombre'])."','".str_replace("'","\'",$est['pais'])."','".str_replace("'","\'",$est['origen'])."')");
           }
 
           $generos = [];

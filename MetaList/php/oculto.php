@@ -4,6 +4,129 @@
 	$dbpass="admin";
 	$dbname="MetaList";
 	$apikey="TheBig4000MetaListMariusTNTX";
+	
+	
+
+	$filtros=array(
+		"albumes"=>array(
+			"nombreAlbum" => ["albumes","varchar"],
+			"banda" => ["albumes","varchar"],
+			"tipo" => ["albumes","varchar"],
+			"enLista" => ["albumes","varchar"],
+			"anio" => ["albumes","int"],
+			"anioMin" => "int",
+			"anioMax" => "int",
+			"mes" => "int",
+			"dia" => "int",
+			"escuchas" => "int",
+			"escuchasMin" => "int",
+			"escuchasMax" => "int",
+			"duracion" => "int",
+			"duracionMin" => "int",
+			"duracionMax" => "int"
+		),
+		"bandas"=>array(
+			"nombre" => "varchar",
+			"pais" => "varchar",
+			"origen" => "varchar",
+			"escuchas" => "int",
+			"escuchasMin" => "int",
+			"escuchasMax" => "int",
+			"estatus" => "varchar"
+		)
+	);
+
+	$root=array(
+		"albumes" => array(
+			"info" => "SELECT nomalb as nombre, descrip, imagen, tipoalb as tipo, enlista, anio, mes, dia, numescuchasmax as escuchas, linkspotify, linkamazon, duracion FROM ALBUMES",
+			"banda" => "Nomban LIKE '?'",
+			"cancion" => "Nomalb IN (SELECT nomalb FROM CANCIONES_ALBUMES WHERE nomcan LIKE '?')",
+			"discografica" => "Nomalb IN (SELECT nomalb FROM DISCOGRAFICAS_ALBUMES WHERE nomdisc LIKE '?')",
+			"estudio" => "Nomalb IN (SELECT nomalb FROM ESTUDIOS_ALBUMES WHERE nomest LIKE '?')",
+			"genero" => "Nomalb IN (SELECT nomalb FROM GENEROS_ALBUMES WHERE nomgen LIKE '?')",
+			"estrellas-genero" => "Nomalb IN (SELECT nomalb FROM GENEROS_ALBUMES WHERE nomgen LIKE '?' AND estrellas = ?)",
+			"musico" => "Nomalb IN (SELECT nomalb FROM ROLES_MUSICOS_ALBUMES WHERE nommus LIKE '?')",
+			"rol-musico" => "Nomalb IN (SELECT nomalb FROM ROLES_MUSICOS_ALBUMES WHERE nommus LIKE '?' AND rol LIKE '?')"
+		),
+		"bandas" => array(
+			"key" => "nomban",
+			"select" => "SELECT nomban as nombre, pais, origen, numescuchasmes as escuchas, imagen, estatus, descrip, linkweb, linkspotify FROM BANDAS",
+			"nombre" => "Nomban LIKE '?'",
+			"pais" => "pais LIKE '?'",
+			"origen" => "origen LIKE '?'",
+			"escuchas" => "escuchas = ?",
+			"estatus" => "estatus LIKE '?'",
+			"album" => "Nomban IN (SELECT Nomban FROM ALBUMES WHERE NomAlb LIKE '?')",
+			"cancion" => "Nomban IN (SELECT Nomban FROM CANCIONES_ALBUMES WHERE NomCan LIKE '?')",
+			"discografica" => "Nomban IN (SELECT Nomban FROM DISCOGRAFICAS_ALBUMES WHERE NomDisc LIKE '?')",
+			"estudio" => "Nomban IN (SELECT Nomban FROM ESTUDIOS_ALBUMES WHERE NomEst LIKE '?')",
+			"anioInic" => "Nomban IN (SELECT Nomban FROM ETAPAS_BANDAS WHERE AnioInic = ?)",
+			"anioFin" => "Nomban IN (SELECT Nomban FROM ETAPAS_BANDAS WHERE AnioFin = ?)",
+			"genero" => "Nomban IN (SELECT Nomban FROM GENEROS_BANDAS WHERE NomGen LIKE '?')",
+			"musico" => "Nomban IN (SELECT Nomban FROM MUSICOS_BANDAS WHERE NomMus LIKE '?')",
+			"tema" => "Nomban IN (SELECT Nomban FROM TEMAS_LETRA_BANDAS WHERE tema LIKE '?')"
+		),
+		"discograficas" => array(
+			"info" => "SELECT nomdisc as nombre, imagen, pais, direccion, estatus, linkweb FROM DISCOGRAFICAS WHERE NomDisc LIKE ?",
+			"albumes" => "SELECT nomalb as nombre, nomban as banda FROM DISCOGRAFICAS_ALBUMES WHERE NomDisc LIKE ?",
+			"bandas" => "",
+			"canciones" => "",
+			"estudios" => "",
+			"generos" => "",
+			"musicos" => "",
+			"temas" => ""
+		),
+		"estudios" => array(
+			"info" => "SELECT nomest as nombre, pais, direccion FROM ESTUDIOS_GRABACION WHERE NomEst LIKE ?",
+			"albumes" => "SELECT nomalb as nombre, nomban as banda FROM ESTUDIOS_ALBUMES WHERE NomEst LIKE ?",
+			"bandas" => "",
+			"canciones" => "",
+			"discograficas" => "",
+			"generos" => "",
+			"musicos" => "",
+			"temas" => ""
+		),
+		"generos" => array(
+			"info" => "SELECT nomgen as nombre, descrip, imagen FROM GENEROS WHERE NomGen LIKE ?",
+			"albumes" => "SELECT nomalb as nombre, nomban as banda, estrellas FROM GENEROS_ALBUMES WHERE NomGen LIKE ?",
+			"bandas" => "SELECT nomban as nombre, estrellas FROM GENEROS_BANDAS WHERE NomGen LIKE ?",
+			"canciones" => "",
+			"discograficas" => "",
+			"estudios" => "",
+			"musicos" => "",
+			"temas" => ""
+		),
+		"musicos" => array(
+			"info" => "SELECT nommus as nombre, imagen, sexo, dianac, mesnac, anionac, diadef, mesdef, aniodef, pais, origen FROM MUSICOS WHERE NomMus LIKE ?",
+			"albumes" => "",
+			"canciones" => "",
+			"bandas" => "SELECT nomban as nombre, anioinic, aniofin FROM MUSICOS_BANDAS WHERE NomMus LIKE ?",
+			"discograficas" => "",
+			"estudios" => "",
+			"generos" => "",
+			"roles" => "SELECT nomalb as nombre, nomban as banda, rol FROM ROLES_MUSICOS_ALBUMES WHERE NomMus LIKE ?",
+			"temas" => ""
+		),
+		"canciones" => array(
+			"info" => "",
+			"albumes" => "",
+			"bandas" => "",
+			"discograficas" => "",
+			"estudios" => "",
+			"generos" => "",
+			"musicos" => ""
+		),
+		"temas" => array(
+			"info" => "",
+			"bandas" => "",
+			"discograficas" => "",
+			"estudios" => "",
+			"generos" => "",
+			"musicos" => ""
+		)
+	);
+
+
 	$tablas = [
 		['name'=>"BANDAS",
 		 'csv'=>$_SERVER['DOCUMENT_ROOT']."/Metalist/backups/bandas.csv",
