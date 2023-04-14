@@ -33,7 +33,7 @@ if(isset($_GET['key'])){
         $select = $_GET['select'];
         $elements = (strlen($_GET['elements'])>0) ? explode("|", $_GET['elements']) : [];
         $values = (strlen($_GET['values'])>0) ? explode("|", $_GET['values']) : [];
-        
+
         //INFO_BANDA
         if($select=='infoBanda'){
           //Se forma la raíz de la consulta
@@ -80,6 +80,61 @@ if(isset($_GET['key'])){
         header("Content-type: application/json; charset=utf-8");
         echo json_encode($data);
     
+      } else if(isset($_REQUEST['select2'])){
+      //S E L E C T  2
+        try{
+          include("funcionesSelect.php");
+          parse_str($_SERVER['QUERY_STRING'], $params);
+          //Sacar key, select2 y order (y almacenar los dos últimos)
+          foreach($params as $i => $p){
+            if($i=='select2') $select = $p;
+            else if($i=='order') $order = $p;
+            if($i=='key' || $i=='select2' || $i=='order') unset($params[$i]);
+          }
+          $alias = $metadata[$select]['alias'];
+          $key = $metadata[$select]['key'];
+          //Se incluyen los campos de la select en la query
+          foreach($metadata[$select]['campos'] as $i => $c){
+            array_push($query['select'], array("alias"=>$alias,"nombre"=>$c));
+          }
+          //Se incluye la tabla en el from
+          array_push($query['from'],array("alias"=>$alias,"tabla"=>$select));
+
+          //Se recorren los parámetros
+          foreach($params as $param => $content){
+            $signo="";
+            //Si param contiene una terminación se extrae y se realizan las modificaciones necesarias
+            if(strpos($param,"_")>0){
+              $term = strstr($param,"_");
+              $param = strstr($param,"_",true);
+              if($term == "_Like") $content="%".$content."%";
+              else if($term == "_Min") $signo=">";
+              else if($term == "_Max") $signo="<";
+            }
+            //Verificar si param pertenece a la tabla de origen
+            if(array_key_exists($param,$metadata[$select]['campos'])){ //Si pertenece
+              array_push($query['where'], array("alias"=>$alias,"filtro"=>$metadata[$select]['campos'][$param],"simbolo"=>$signo.$variable[$param]['simbolo'],"contenido"=>$content));
+            } else { //Si no pertenece
+              $nuevaTabla = $metadata[$select]['filtros'][$param];
+              $nuevoAlias = $metadata[$nuevaTabla]['alias'];
+              $nuevoCampo = $metadata[$nuevaTabla]['campos'][$param];
+              //Se añade el nuevo campo a la select
+              array_push($query['select'],array("alias"=>$nuevoAlias,"nombre"=>$nuevoCampo));
+              //Si no esta añadida la nueva tabla en el from se añade al from y se añade la condición de agrupación
+              if(!in_array(array("alias"=>$alias,"tabla"=>$nuevaTabla), $query['from'])){
+                array_push($query['from'],array("alias"=>$nuevoAlias,"tabla"=>$nuevaTabla));
+                array_push($query['whereGroup'],[array("alias"=>$alias,"filtro"=>$key),array("alias"=>$nuevoAlias,"filtro"=>$key)]);
+              } else echo "La tabla ya esta añadida";
+              //Se añade la condición where normal
+              array_push($query['where'], array("alias"=>$nuevoAlias,"filtro"=>$nuevoCampo,"simbolo"=>$signo.$variable[$param]['simbolo'],"contenido"=>$content));
+            }
+          }
+          echo json_encode($query);
+        } catch(Exception $e){
+          echo json_encode(array("error general"=>$e));
+        }
+        
+        
       } else if(isset($_REQUEST['insert'])){
         //ALMACENAMIENTO DE PARÁMETROS
         $insert = $_REQUEST['insert'];
