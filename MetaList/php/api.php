@@ -91,6 +91,7 @@ if(isset($_GET['key'])){
             else if($i=='order') $order = $p;
             if($i=='key' || $i=='list' || $i=='order') unset($params[$i]);
           }
+          if(array_key_exists($select, $conversion)) $select = $conversion[$select];
           $alias = $metadata[$select]['alias'];
           $key = $metadata[$select]['key']['nombre'];
           //Se incluyen los campos de la select en la query
@@ -123,7 +124,8 @@ if(isset($_GET['key'])){
                 }
               }
             } else { //Si no pertenece
-              $nuevaTabla = $metadata[$select]['filtros'][$param];
+              $nuevaTabla = $metadata[$select]['filtros'][$param]['tabla'];
+              $nuevaKey = $metadata[$select]['filtros'][$param]['key'];
               $nuevoAlias = $metadata[$nuevaTabla]['alias'];
               $nuevoCampo = $metadata[$nuevaTabla]['campos'][$param]['nombre'];
               $nuevaSalida = $metadata[$nuevaTabla]['campos'][$param]['salida'];
@@ -137,7 +139,6 @@ if(isset($_GET['key'])){
                 if(array_key_exists($metadata[$select]['key']['entrada'],$metadata[$nuevaTabla]['campos'])){
                   array_push($query['whereGroup'],[array("alias"=>$alias,"filtro"=>$key),array("alias"=>$nuevoAlias,"filtro"=>$key)]);
                 } else { //Sino, se añade la condición de agrupación con la clave de destino
-                  $nuevaKey = $metadata[$nuevaTabla]['key']['nombre'];
                   array_push($query['whereGroup'],[array("alias"=>$alias,"filtro"=>$nuevaKey),array("alias"=>$nuevoAlias,"filtro"=>$nuevaKey)]);
                 }
               }
@@ -167,7 +168,8 @@ if(isset($_GET['key'])){
               if(array_key_exists($param,$campos)){ //Si pertenece
                 array_push($query['order'], array("alias"=>$alias,"filtro"=>$campos[$param]['nombre'],"tipo"=>$tipo));
               } else { //Si no pertenece
-                $nuevaTabla = $metadata[$select]['filtros'][$param];
+                $nuevaTabla = $metadata[$select]['filtros'][$param]['tabla'];
+                $nuevaKey = $metadata[$select]['filtros'][$param]['key'];
                 $nuevoAlias = $metadata[$nuevaTabla]['alias'];
                 $nuevoCampo = $metadata[$nuevaTabla]['campos'][$param]['nombre'];
                 $nuevaSalida = $metadata[$nuevaTabla]['campos'][$param]['salida'];
@@ -184,7 +186,6 @@ if(isset($_GET['key'])){
                   if(array_key_exists($metadata[$select]['key']['entrada'],$metadata[$nuevaTabla]['campos'])){
                     array_push($query['whereGroup'],[array("alias"=>$alias,"filtro"=>$key),array("alias"=>$nuevoAlias,"filtro"=>$key)]);
                   } else { //Sino, se añade la condición de agrupación con la clave de destino
-                    $nuevaKey = $metadata[$nuevaTabla]['key']['nombre'];
                     array_push($query['whereGroup'],[array("alias"=>$alias,"filtro"=>$nuevaKey),array("alias"=>$nuevoAlias,"filtro"=>$nuevaKey)]);
                   }
                 }
@@ -240,10 +241,12 @@ if(isset($_GET['key'])){
               $content .= $coma.$order[$i]['alias'].".".$order[$i]['filtro']." ".$order[$i]['tipo'];
             }
           }
-          
-
           $query['content'] = $content;
-          echo json_encode($query);
+          //Se establece conexión con la BD
+          $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
+          $resp = query($c1,$query['content']);
+          $response = mysqli_fetch_all($resp,MYSQLI_ASSOC);
+          echo json_encode(array("request"=>$query['content'], "response"=>$response));
         } catch(Exception $e){
           echo json_encode(array("error general"=>$e));
         }

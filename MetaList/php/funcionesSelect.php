@@ -1,6 +1,14 @@
 <?
   $query = array("content"=>"","select" => [],"from" => [],"whereGroup" => [],"where" => [],"order" => []);
 
+  $conversion = array(
+    "canciones"=>"canciones_albumes",
+    "estudios"=>"estudios_grabacion",
+    "etapas"=>"etapas_bandas",
+    "roles"=>"roles_musicos_albumes",
+    "temasLetra"=>"temas_letra_bandas"
+  );
+
   $metadata = array(
     "albumes" => array(
       "alias" => "a",
@@ -18,17 +26,17 @@
         "escuchasAlbum" => array("nombre"=>"NumEscuchasMax", "simbolo"=>"=", "salida"=>"escuchas"),
         "linkSpotifyAlbum" => array("nombre"=>"LinkSpotify", "simbolo"=>"LIKE", "salida"=>"linkSpotify"),
         "linkAmazonAlbum" => array("nombre"=>"LinkAmazon", "simbolo"=>"LIKE", "salida"=>"linkAmazon"),
-        "duracionAlbum" => array("nombre"=>"Duracion", "simbolo"=>"=", "salida"=>"duracion"),
+        "duracionAlbum" => array("nombre"=>"Duracion", "simbolo"=>"=", "salida"=>"duracion")
       ),
       "filtros" => array(
-        "nombreCancion" => "canciones_albumes",
-        "estrellasCancion" => "canciones_albumes",
-        "nombreDiscografica" => "discograficas_albumes",
-        "nombreEstudio" => "estudios_albumes",
-        "nombreGenero" => "generos_albumes",
-        "estrellasGenero" => "generos_albumes",
-        "nombreMusico" => "roles_musicos_albumes",
-        "rolMusico" => "roles_musicos_albumes",
+        "nombreCancion" => array("tabla"=>"canciones_albumes", "key"=>"NomAlb"),
+        "estrellasCancion" => array("tabla"=>"canciones_albumes", "key"=>"NomAlb"),
+        "nombreDiscografica" => array("tabla"=>"discograficas_albumes", "key"=>"NomAlb"),
+        "nombreEstudio" => array("tabla"=>"estudios_albumes", "key"=>"NomAlb"),
+        "nombreGenero" => array("tabla"=>"generos_albumes", "key"=>"NomAlb"),
+        "estrellasGenero" => array("tabla"=>"generos_albumes", "key"=>"NomAlb"),
+        "nombreMusico" => array("tabla"=>"roles_musicos_albumes", "key"=>"NomAlb"),
+        "rolMusico" => array("tabla"=>"roles_musicos_albumes", "key"=>"NomAlb")
       )
     ),
     "bandas" => array(
@@ -53,6 +61,7 @@
         "nombreEstudio" => "estudios_albumes",
         "anioInicioEtapaBanda" => "etapas_bandas",
         "anioFinEtapaBanda" => "etapas_bandas",
+        "tipoEtapaBanda" => "etapas_bandas",
         "nombreGenero" => "generos_bandas",
         "estrellasGenero" => "generos_bandas",
         "nombreMusico" => "musicos_bandas",
@@ -82,11 +91,18 @@
         "origenBanda" => "bandas",
         "escuchasBanda" => "bandas",
         "estatusBanda" => "bandas",
-
-        "nombreCancion" => "canciones_albumes",
-        "estrellasCancion" => "canciones_albumes",
         "nombreDiscografica" => "discograficas_albumes",
         "nombreEstudio" => "estudios_albumes",
+        "anioInicioEtapaBanda" => "etapas_bandas",
+        "anioFinEtapaBanda" => "etapas_bandas",
+        "tipoEtapaBanda" => "etapas_bandas",
+        "nombreGeneroAlbum" => "generos_albumes",
+        "estrellasGeneroAlbum" => "generos_albumes",
+        "nombreGeneroBanda" => "generos_bandas",
+        "estrellasGeneroBanda" => "generos_bandas",
+        "anioInicioEtapaMusico" => "musicos_bandas",
+        "anioFinEtapaMusico" => "musicos_bandas",
+
         "anioInicioEtapaBanda" => "etapas_bandas",
         "anioFinEtapaBanda" => "etapas_bandas",
         "nombreGenero" => "generos_bandas",
