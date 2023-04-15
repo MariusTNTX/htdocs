@@ -80,55 +80,169 @@ if(isset($_GET['key'])){
         header("Content-type: application/json; charset=utf-8");
         echo json_encode($data);
     
-      } else if(isset($_REQUEST['select2'])){
-      //S E L E C T  2
+      } else if(isset($_REQUEST['list'])){
+      // L I S T 
         try{
           include("funcionesSelect.php");
           parse_str($_SERVER['QUERY_STRING'], $params);
-          //Sacar key, select2 y order (y almacenar los dos últimos)
+          //Sacar key, list y order (y almacenar los dos últimos)
           foreach($params as $i => $p){
-            if($i=='select2') $select = $p;
+            if($i=='list') $select = $p;
             else if($i=='order') $order = $p;
-            if($i=='key' || $i=='select2' || $i=='order') unset($params[$i]);
+            if($i=='key' || $i=='list' || $i=='order') unset($params[$i]);
           }
           $alias = $metadata[$select]['alias'];
-          $key = $metadata[$select]['key'];
+          $key = $metadata[$select]['key']['nombre'];
           //Se incluyen los campos de la select en la query
           foreach($metadata[$select]['campos'] as $i => $c){
-            array_push($query['select'], array("alias"=>$alias,"nombre"=>$c));
+            array_push($query['select'], array("alias"=>$alias,"nombre"=>$c['nombre'],"salida"=>$c['salida']));
           }
           //Se incluye la tabla en el from
           array_push($query['from'],array("alias"=>$alias,"tabla"=>$select));
-
           //Se recorren los parámetros
           foreach($params as $param => $content){
             $signo="";
+            $content = explode("|",$content);
             //Si param contiene una terminación se extrae y se realizan las modificaciones necesarias
             if(strpos($param,"_")>0){
               $term = strstr($param,"_");
               $param = strstr($param,"_",true);
-              if($term == "_Like") $content="%".$content."%";
+              if($term == "_Like") foreach($content as $j => $c) $content[$j] = "%".$c."%";
               else if($term == "_Min") $signo=">";
               else if($term == "_Max") $signo="<";
             }
+            $campos = $metadata[$select]['campos'];
             //Verificar si param pertenece a la tabla de origen
-            if(array_key_exists($param,$metadata[$select]['campos'])){ //Si pertenece
-              array_push($query['where'], array("alias"=>$alias,"filtro"=>$metadata[$select]['campos'][$param],"simbolo"=>$signo.$variable[$param]['simbolo'],"contenido"=>$content));
+            if(array_key_exists($param,$campos)){ //Si pertenece
+              if(count($content)==1){ //Si solo hay un contenido se añade una condición simple
+                array_push($query['where'], array("alias"=>$alias,"filtro"=>$campos[$param]['nombre'],"simbolo"=>$campos[$param]['simbolo'],"contenido"=>$content[0]));
+              } else { //Si hay más de un contenido se añade una condición compleja
+                array_push($query['where'],[]);
+                for($i=0; $i<count($content); $i++){
+                  array_push($query['where'][count($query['where'])-1], array("alias"=>$alias,"filtro"=>$campos[$param]['nombre'],"simbolo"=>$campos[$param]['simbolo'],"contenido"=>$content[$i]));
+                }
+              }
             } else { //Si no pertenece
               $nuevaTabla = $metadata[$select]['filtros'][$param];
               $nuevoAlias = $metadata[$nuevaTabla]['alias'];
-              $nuevoCampo = $metadata[$nuevaTabla]['campos'][$param];
+              $nuevoCampo = $metadata[$nuevaTabla]['campos'][$param]['nombre'];
+              $nuevaSalida = $metadata[$nuevaTabla]['campos'][$param]['salida'];
               //Se añade el nuevo campo a la select
-              array_push($query['select'],array("alias"=>$nuevoAlias,"nombre"=>$nuevoCampo));
-              //Si no esta añadida la nueva tabla en el from se añade al from y se añade la condición de agrupación
-              if(!in_array(array("alias"=>$alias,"tabla"=>$nuevaTabla), $query['from'])){
+              array_push($query['select'],array("alias"=>$nuevoAlias,"nombre"=>$nuevoCampo,"salida"=>$nuevaSalida));
+              //Si no esta añadida la nueva tabla en el from
+              if(!in_array(array("alias"=>$nuevoAlias,"tabla"=>$nuevaTabla), $query['from'])){
+                //se añade al from
                 array_push($query['from'],array("alias"=>$nuevoAlias,"tabla"=>$nuevaTabla));
-                array_push($query['whereGroup'],[array("alias"=>$alias,"filtro"=>$key),array("alias"=>$nuevoAlias,"filtro"=>$key)]);
-              } else echo "La tabla ya esta añadida";
+                //Si el campo key de origen esta en la tabla de destino se añade la condición de agrupación con la clave de origen
+                if(array_key_exists($metadata[$select]['key']['entrada'],$metadata[$nuevaTabla]['campos'])){
+                  array_push($query['whereGroup'],[array("alias"=>$alias,"filtro"=>$key),array("alias"=>$nuevoAlias,"filtro"=>$key)]);
+                } else { //Sino, se añade la condición de agrupación con la clave de destino
+                  $nuevaKey = $metadata[$nuevaTabla]['key']['nombre'];
+                  array_push($query['whereGroup'],[array("alias"=>$alias,"filtro"=>$nuevaKey),array("alias"=>$nuevoAlias,"filtro"=>$nuevaKey)]);
+                }
+              }
               //Se añade la condición where normal
-              array_push($query['where'], array("alias"=>$nuevoAlias,"filtro"=>$nuevoCampo,"simbolo"=>$signo.$variable[$param]['simbolo'],"contenido"=>$content));
+              if(count($content)==1){ //Si solo hay un contenido se añade una condición simple
+                array_push($query['where'], array("alias"=>$nuevoAlias,"filtro"=>$nuevoCampo,"simbolo"=>$metadata[$nuevaTabla]['campos'][$param]['simbolo'],"contenido"=>$content[0]));
+              } else { //Si hay más de un contenido se añade una condición compleja
+                array_push($query['where'],[]);
+                for($i=0; $i<count($content); $i++){
+                  array_push($query['where'][count($query['where'])-1], array("alias"=>$nuevoAlias,"filtro"=>$nuevoCampo,"simbolo"=>$metadata[$nuevaTabla]['campos'][$param]['simbolo'],"contenido"=>$content[$i]));
+                }
+              }
             }
           }
+          //Si hay order se añade al array query
+          if($order){
+            foreach(explode("|",$order) as $param){
+              $tipo="ASC";
+              if(strpos($param,"_")>0){
+                $term = strstr($param,"_");
+                $param = strstr($param,"_",true);
+                if($term == "_Desc") $tipo="DESC";
+                else if($term == "_Asc") $tipo="ASC";
+              }
+              $campos = $metadata[$select]['campos'];
+              //Verificar si param pertenece a la tabla de origen
+              if(array_key_exists($param,$campos)){ //Si pertenece
+                array_push($query['order'], array("alias"=>$alias,"filtro"=>$campos[$param]['nombre'],"tipo"=>$tipo));
+              } else { //Si no pertenece
+                $nuevaTabla = $metadata[$select]['filtros'][$param];
+                $nuevoAlias = $metadata[$nuevaTabla]['alias'];
+                $nuevoCampo = $metadata[$nuevaTabla]['campos'][$param]['nombre'];
+                $nuevaSalida = $metadata[$nuevaTabla]['campos'][$param]['salida'];
+                //Se añade el nuevo campo a la select si no está
+                if(!in_array(array("alias"=>$nuevoAlias,"nombre"=>$nuevoCampo,"salida"=>$nuevaSalida),$query['select'])){
+                  array_push($query['select'],array("alias"=>$nuevoAlias,"nombre"=>$nuevoCampo,"salida"=>$nuevaSalida));
+                }
+                //Se añade el nuevo campo al order
+                array_push($query['order'],array("alias"=>$nuevoAlias,"nombre"=>$nuevoCampo,"tipo"=>$tipo));
+                //Si no esta añadida la nueva tabla en el from se añade al from y se añade la condición de agrupación
+                if(!in_array(array("alias"=>$nuevoAlias,"tabla"=>$nuevaTabla), $query['from'])){
+                  array_push($query['from'],array("alias"=>$nuevoAlias,"tabla"=>$nuevaTabla));
+                  //Si el campo key de origen esta en la tabla de destino se añade la condición de agrupación con la clave de origen
+                  if(array_key_exists($metadata[$select]['key']['entrada'],$metadata[$nuevaTabla]['campos'])){
+                    array_push($query['whereGroup'],[array("alias"=>$alias,"filtro"=>$key),array("alias"=>$nuevoAlias,"filtro"=>$key)]);
+                  } else { //Sino, se añade la condición de agrupación con la clave de destino
+                    $nuevaKey = $metadata[$nuevaTabla]['key']['nombre'];
+                    array_push($query['whereGroup'],[array("alias"=>$alias,"filtro"=>$nuevaKey),array("alias"=>$nuevoAlias,"filtro"=>$nuevaKey)]);
+                  }
+                }
+              }
+            }
+          }
+          //Se forma la consulta SQL
+          //SELECT
+          $content = "SELECT DISTINCT ";
+          $select = $query['select'];
+          for($i=0; $i<count($select); $i++){
+            $coma = ($i>0) ? ", " : "";
+            $content .= $coma.$select[$i]['alias'].".".$select[$i]['nombre']." as ".$select[$i]['salida'];
+          }
+          //FROM
+          $content .= " FROM ";
+          $from = $query['from'];
+          for($i=0; $i<count($from); $i++){
+            $coma = ($i>0) ? ", " : "";
+            $content .= $coma.$from[$i]['tabla']." ".$from[$i]['alias'];
+          }
+          $content .= " WHERE ";
+          $whereG = $query['whereGroup'];
+          $where = $query['where'];
+          //WHERE_GROUP
+          for($i=0; $i<count($whereG); $i++){
+            $and = ($i>0) ? " AND " : "";
+            $content .= $and.$whereG[$i][0]['alias'].".".$whereG[$i][0]['filtro']." = ".$whereG[$i][1]['alias'].".".$whereG[$i][1]['filtro'];
+          }
+          if(count($whereG)>0 && count($where)>0) $content .= " AND ";
+          //WHERE
+          for($i=0; $i<count($where); $i++){
+            $and = ($i>0) ? " AND " : "";
+            if($where[$i][0]['alias']){ //Si es complejo
+              $content .= "(";
+              for($j=0; $j<count($where[$i]); $j++){
+                $or = ($j>0) ? " OR " : "";
+                $comillas = ($where[$i][$j]['simbolo']=="LIKE") ? "'" : "";
+                $content .= $or.$where[$i][$j]['alias'].".".$where[$i][$j]['filtro']." ".$where[$i][$j]['simbolo']." ".$comillas.$where[$i][$j]['contenido'].$comillas;
+              }
+              $content .= ")";
+            } else { //Si es simple
+              $comillas = ($where[$i]['simbolo']=="LIKE") ? "'" : "";
+              $content .= $and.$where[$i]['alias'].".".$where[$i]['filtro']." ".$where[$i]['simbolo']." ".$comillas.$where[$i]['contenido'].$comillas;
+            }
+          }
+          //OREDER BY
+          if(count($query['order'])>0){
+            $content .= " ORDER BY ";
+            $order = $query['order'];
+            for($i=0; $i<count($order); $i++){
+              $coma = ($i>0) ? ", " : "";
+              $content .= $coma.$order[$i]['alias'].".".$order[$i]['filtro']." ".$order[$i]['tipo'];
+            }
+          }
+          
+
+          $query['content'] = $content;
           echo json_encode($query);
         } catch(Exception $e){
           echo json_encode(array("error general"=>$e));
