@@ -116,11 +116,11 @@ if(isset($_GET['key'])){
             //Verificar si param pertenece a la tabla de origen
             if(array_key_exists($param,$campos)){ //Si pertenece
               if(count($content)==1){ //Si solo hay un contenido se añade una condición simple
-                array_push($query['where'], array("alias"=>$alias,"filtro"=>$campos[$param]['nombre'],"simbolo"=>$campos[$param]['simbolo'],"contenido"=>$content[0]));
+                array_push($query['where'], array("alias"=>$alias,"filtro"=>$campos[$param]['nombre'],"simbolo"=>$signo.$campos[$param]['simbolo'],"contenido"=>$content[0]));
               } else { //Si hay más de un contenido se añade una condición compleja
                 array_push($query['where'],[]);
                 for($i=0; $i<count($content); $i++){
-                  array_push($query['where'][count($query['where'])-1], array("alias"=>$alias,"filtro"=>$campos[$param]['nombre'],"simbolo"=>$campos[$param]['simbolo'],"contenido"=>$content[$i]));
+                  array_push($query['where'][count($query['where'])-1], array("alias"=>$alias,"filtro"=>$campos[$param]['nombre'],"simbolo"=>$signo.$campos[$param]['simbolo'],"contenido"=>$content[$i]));
                 }
               }
             } else { //Si no pertenece
@@ -129,8 +129,10 @@ if(isset($_GET['key'])){
               $nuevoAlias = $metadata[$nuevaTabla]['alias'];
               $nuevoCampo = $metadata[$nuevaTabla]['campos'][$param]['nombre'];
               $nuevaSalida = $metadata[$nuevaTabla]['campos'][$param]['salida'];
-              //Se añade el nuevo campo a la select
-              array_push($query['select'],array("alias"=>$nuevoAlias,"nombre"=>$nuevoCampo,"salida"=>$nuevaSalida));
+              //Se añade el nuevo campo a la select solo en caso de los campos con LIKE o con Menor o Mayor para prevenir elementos repetidos
+              if(strpos($content[0],"%")>=0 || $signo!=""){
+                array_push($query['select'],array("alias"=>$nuevoAlias,"nombre"=>$nuevoCampo,"salida"=>$nuevaSalida));
+              }
               //Si no esta añadida la nueva tabla en el from
               if(!in_array(array("alias"=>$nuevoAlias,"tabla"=>$nuevaTabla), $query['from'])){
                 //se añade al from
@@ -144,11 +146,11 @@ if(isset($_GET['key'])){
               }
               //Se añade la condición where normal
               if(count($content)==1){ //Si solo hay un contenido se añade una condición simple
-                array_push($query['where'], array("alias"=>$nuevoAlias,"filtro"=>$nuevoCampo,"simbolo"=>$metadata[$nuevaTabla]['campos'][$param]['simbolo'],"contenido"=>$content[0]));
+                array_push($query['where'], array("alias"=>$nuevoAlias,"filtro"=>$nuevoCampo,"simbolo"=>$signo.$metadata[$nuevaTabla]['campos'][$param]['simbolo'],"contenido"=>$content[0]));
               } else { //Si hay más de un contenido se añade una condición compleja
                 array_push($query['where'],[]);
                 for($i=0; $i<count($content); $i++){
-                  array_push($query['where'][count($query['where'])-1], array("alias"=>$nuevoAlias,"filtro"=>$nuevoCampo,"simbolo"=>$metadata[$nuevaTabla]['campos'][$param]['simbolo'],"contenido"=>$content[$i]));
+                  array_push($query['where'][count($query['where'])-1], array("alias"=>$nuevoAlias,"filtro"=>$nuevoCampo,"simbolo"=>$signo.$metadata[$nuevaTabla]['campos'][$param]['simbolo'],"contenido"=>$content[$i]));
                 }
               }
             }
@@ -166,7 +168,7 @@ if(isset($_GET['key'])){
               $campos = $metadata[$select]['campos'];
               //Verificar si param pertenece a la tabla de origen
               if(array_key_exists($param,$campos)){ //Si pertenece
-                array_push($query['order'], array("alias"=>$alias,"filtro"=>$campos[$param]['nombre'],"tipo"=>$tipo));
+                array_push($query['order'], array("alias"=>$alias,"nombre"=>$campos[$param]['nombre'],"tipo"=>$tipo));
               } else { //Si no pertenece
                 $nuevaTabla = $metadata[$select]['filtros'][$param]['tabla'];
                 $nuevaKey = $metadata[$select]['filtros'][$param]['key'];
@@ -220,7 +222,7 @@ if(isset($_GET['key'])){
           for($i=0; $i<count($where); $i++){
             $and = ($i>0) ? " AND " : "";
             if($where[$i][0]['alias']){ //Si es complejo
-              $content .= "(";
+              $content .= $and."(";
               for($j=0; $j<count($where[$i]); $j++){
                 $or = ($j>0) ? " OR " : "";
                 $comillas = ($where[$i][$j]['simbolo']=="LIKE") ? "'" : "";
@@ -238,15 +240,17 @@ if(isset($_GET['key'])){
             $order = $query['order'];
             for($i=0; $i<count($order); $i++){
               $coma = ($i>0) ? ", " : "";
-              $content .= $coma.$order[$i]['alias'].".".$order[$i]['filtro']." ".$order[$i]['tipo'];
+              $content .= $coma.$order[$i]['alias'].".".$order[$i]['nombre']." ".$order[$i]['tipo'];
             }
           }
+          /* echo json_encode($query); */
           $query['content'] = $content;
           //Se establece conexión con la BD
           $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
           $resp = query($c1,$query['content']);
           $response = mysqli_fetch_all($resp,MYSQLI_ASSOC);
           echo json_encode(array("request"=>$query['content'], "response"=>$response));
+
         } catch(Exception $e){
           echo json_encode(array("error general"=>$e));
         }
@@ -285,7 +289,7 @@ if(isset($_GET['key'])){
           foreach($body['musicos'] as $i => $mus){
             foreach($mus['fechaNac'] as $j => $vlr) if($vlr=="" && ($j=='dia' || $j=='mes' || $j=='anio')) $mus['fechaNac'][$j]="NULL";
             foreach($mus['fechaDef'] as $j => $vlr) if($vlr=="" && ($j=='dia' || $j=='mes' || $j=='anio')) $mus['fechaDef'][$j]="NULL";
-            query($c1, "INSERT IGNORE INTO MUSICOS VALUES('".str_replace("'","\'",$mus['nombre'])."','".$mus['imagen']."','".$mus['sexo']."',".$mus['fechaNac']['dia'].",".$mus['fechaNac']['mes'].",".$mus['fechaNac']['anio'].",".$mus['fechaDef']['dia'].",".$mus['fechaDef']['mes'].",".$mus['fechaDef']['anio'].",'".$mus['pais']."','".str_replace("'","\'",$mus['origen'])."')");
+            query($c1, "INSERT IGNORE INTO MUSICOS VALUES('".str_replace("'","\'",$mus['nombre'])."','".$mus['imagen']."','".$mus['sexo']."',".$mus['fechaNac']['dia'].",".$mus['fechaNac']['mes'].",".$mus['fechaNac']['anio'].",".$mus['fechaDef']['dia'].",".$mus['fechaDef']['mes'].",".$mus['fechaDef']['anio'].",'".$mus['pais']."','".str_replace("'","\'",$mus['origen'])."',0)");
             
             //ETAPAS MUSICOS BANDA
             foreach($mus['etapas'] as $j => $eta){
@@ -296,7 +300,7 @@ if(isset($_GET['key'])){
           
           //INFO DISCOGRAFICAS
           foreach($body['discograficas'] as $i => $disc){
-            query($c1, "INSERT IGNORE INTO DISCOGRAFICAS VALUES('".str_replace("'","\'",$disc['nombre'])."','".$disc['imagen']."','".$disc['pais']."','".str_replace("'","\'",$disc['origen'])."','".$disc['estatus']."','".$disc['linkWeb']."')");
+            query($c1, "INSERT IGNORE INTO DISCOGRAFICAS VALUES('".str_replace("'","\'",$disc['nombre'])."','".$disc['imagen']."','".$disc['pais']."','".str_replace("'","\'",$disc['origen'])."','".$disc['estatus']."','".$disc['linkWeb']."',0)");
           }
 
           //INFO ESTUDIOS
@@ -309,7 +313,7 @@ if(isset($_GET['key'])){
           foreach($body['albumes'] as $i => $alb){
             $alb['nombre'] = str_replace("'","\'",$alb['nombre']);
             foreach($alb as $j => $vlr) if($vlr=="" && ($j=='dia' || $j=='mes' || $j=='anio' || $j=='escuchas')) $alb[$j]="NULL";
-            query($c1, "UPDATE ALBUMES SET Imagen='".$alb['imagen']."', TipoAlb='".$alb['tipo']."', EnLista='SI', Dia=".$alb['dia'].", Mes=".$alb['mes'].", Anio=".$alb['anio'].", NumEscuchasMax=".$alb['escuchas'].", Descrip='".str_replace("'","\'",$alb['descrip'])."', Duracion=".$alb['duracion'].", LinkSpotify='".$alb['iframe']."', LinkAmazon='".$alb['linkAmazon']."' WHERE NomBan='".$info['nombre']."' AND NomAlb='".$alb['nombre']."'");
+            query($c1, "UPDATE ALBUMES SET Imagen='".$alb['imagen']."', TipoAlb='".$alb['tipo']."', EnLista='SI', Dia=".$alb['dia'].", Mes=".$alb['mes'].", Anio=".$alb['anio'].", NumEscuchasMax=".$alb['escuchas'].", Descrip='".str_replace("'","\'",$alb['descrip'])."', Duracion=".$alb['duracion'].", LinkSpotify='".$alb['iframe']."', LinkAmazon='".$alb['linkAmazon']."' WHERE NomBan='".$info['nombre']."' AND NomAlb='".$alb['nombre']."',0");
             
             //GENEROS ALBUMES (recuento generos banda*)
             foreach($alb['generos'] as $j => $gen){
