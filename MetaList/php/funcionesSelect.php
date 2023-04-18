@@ -670,11 +670,21 @@ function insertToArray($metadata,$conversion,$tabla,$body){
   if(array_key_exists($tabla, $conversion)) $tabla = $conversion[$tabla];
   //Se incluyen los campos
   foreach($body as $registro){
-    $query = array("content"=>"","values" => []);
+    $query = array("content"=>"","campos" => [], "values" => []);
     foreach($metadata[$tabla]['campos'] as $campo => $array){
-      array_push($query['values'], array('campo'=>$array['nombre'], 'tipo'=>$array['simbolo'], 'content'=>$registro[$campo]));
+      if($campo != 'fechaUsuario'){
+        array_push($query['campos'], $array['nombre']);
+        if($campo=='contraUsuario') $registro[$campo] = password_hash($registro[$campo],PASSWORD_DEFAULT);
+        array_push($query['values'], array('tipo'=>$array['simbolo'], 'content'=>$registro[$campo]));
+      }
     }
-    $query['content'] = "INSERT INTO $tabla VALUES(";
+    $query['content'] = "INSERT INTO $tabla (";
+    for($i=0; $i<count($query['campos']); $i++){
+      $q = $query['campos'][$i];
+      $coma = ($i>0) ? "," : "";
+      $query['content'] .= $coma.$q;
+    }
+    $query['content'] .= ") VALUES (";
     for($i=0; $i<count($query['values']); $i++){
       $q = $query['values'][$i];
       $coma = ($i>0) ? "," : "";
@@ -685,7 +695,70 @@ function insertToArray($metadata,$conversion,$tabla,$body){
     $query['content'] .= ");";
     array_push($querys,$query);
   }
-  //echo json_encode($querys);
+  return $querys;
+}
+
+function updateToArray($metadata,$conversion,$tabla,$body){
+  $querys = [];
+  //Se convierte el nombre del elemento a tabla
+  if(array_key_exists($tabla, $conversion)) $tabla = $conversion[$tabla];
+  //Se incluyen los campos
+  foreach($body as $registro){
+    $query = array("content"=>"", "set" => [], "where" => []);
+    foreach($registro as $campo => $valor){
+      if($campo=='id'){
+        foreach($registro['id'] as $campo2 => $valor2){
+          array_push($query['where'], array('campo'=>$metadata[$tabla]['campos'][$campo2]['nombre'], 'tipo'=>$metadata[$tabla]['campos'][$campo2]['simbolo'], 'content'=>$valor2));
+        }
+      } else {
+        if($campo=='contraUsuario') $valor = password_hash($valor, PASSWORD_DEFAULT);
+        array_push($query['set'], array('campo'=>$metadata[$tabla]['campos'][$campo]['nombre'], 'tipo'=>$metadata[$tabla]['campos'][$campo]['simbolo'], 'content'=>$valor));
+      }
+    }
+    $query['content'] = "UPDATE $tabla SET ";
+    for($i=0; $i<count($query['set']); $i++){
+      $q = $query['set'][$i];
+      if($q['campo']=='contraUsuario') $q['content'] = password_hash($q['content'],PASSWORD_DEFAULT);
+      $and = ($i>0) ? " AND " : "";
+      if($q['tipo'] == "LIKE" && !is_null($q['content'])) $query['content'] .= $and.$q['campo']."='".$q['content']."'";
+      else if(is_null($q['content'])) $query['content'] .= $and.$q['campo']."=NULL";
+      else $query['content'] .= $and.$q['campo']."=".$q['content'];
+    }
+    $query['content'] .= " WHERE ";
+    for($i=0; $i<count($query['where']); $i++){
+      $q = $query['where'][$i];
+      $and = ($i>0) ? " AND " : "";
+      if($q['tipo'] == "LIKE" && !is_null($q['content'])) $query['content'] .= $and.$q['campo']."='".$q['content']."'";
+      else if(is_null($q['content'])) $query['content'] .= $and.$q['campo']." IS NULL";
+      else $query['content'] .= $and.$q['campo']."=".$q['content'];
+    }
+    $query['content'] .= ";";
+    array_push($querys,$query);
+  }
+  return $querys;
+}
+
+function deleteToArray($metadata,$conversion,$tabla,$body){
+  $querys = [];
+  //Se convierte el nombre del elemento a tabla
+  if(array_key_exists($tabla, $conversion)) $tabla = $conversion[$tabla];
+  //Se incluyen los campos
+  foreach($body as $registro){
+    $query = array("content"=>"", "where" => []);
+    foreach($registro['id'] as $campo => $valor){
+      array_push($query['where'], array('campo'=>$metadata[$tabla]['campos'][$campo]['nombre'], 'tipo'=>$metadata[$tabla]['campos'][$campo]['simbolo'], 'content'=>$valor));
+    }
+    $query['content'] = "DELETE FROM $tabla WHERE ";
+    for($i=0; $i<count($query['where']); $i++){
+      $q = $query['where'][$i];
+      $and = ($i>0) ? " AND " : "";
+      if($q['tipo'] == "LIKE" && !is_null($q['content'])) $query['content'] .= $and.$q['campo']."='".$q['content']."'";
+      else if(is_null($q['content'])) $query['content'] .= $and.$q['campo']."=NULL";
+      else $query['content'] .= $and.$q['campo']."=".$q['content'];
+    }
+    $query['content'] .= ";";
+    array_push($querys,$query);
+  }
   return $querys;
 }
 ?>

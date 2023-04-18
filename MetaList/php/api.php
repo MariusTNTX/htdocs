@@ -144,7 +144,7 @@ if(isset($_GET['key'])){
           foreach($body['albumes'] as $i => $alb){
             $alb['nombre'] = str_replace("'","\'",$alb['nombre']);
             foreach($alb as $j => $vlr) if($vlr=="" && ($j=='dia' || $j=='mes' || $j=='anio' || $j=='escuchas')) $alb[$j]="NULL";
-            query($c1, "UPDATE ALBUMES SET Imagen='".$alb['imagen']."', TipoAlb='".$alb['tipo']."', EnLista='SI', Dia=".$alb['dia'].", Mes=".$alb['mes'].", Anio=".$alb['anio'].", NumEscuchasMax=".$alb['escuchas'].", Descrip='".str_replace("'","\'",$alb['descrip'])."', Duracion=".$alb['duracion'].", LinkSpotify='".$alb['iframe']."', LinkAmazon='".$alb['linkAmazon']."' WHERE NomBan='".$info['nombre']."' AND NomAlb='".$alb['nombre']."',0");
+            query($c1, "UPDATE ALBUMES SET Imagen='".$alb['imagen']."', TipoAlb='".$alb['tipo']."', EnLista='SI', Dia=".$alb['dia'].", Mes=".$alb['mes'].", Anio=".$alb['anio'].", NumEscuchasMax=".$alb['escuchas'].", Descrip='".str_replace("'","\'",$alb['descrip'])."', Duracion=".$alb['duracion'].", LinkSpotify='".$alb['iframe']."', LinkAmazon='".$alb['linkAmazon']."' WHERE NomBan='".$info['nombre']."' AND NomAlb='".$alb['nombre']."'");
             
             //GENEROS ALBUMES (recuento generos banda*)
             foreach($alb['generos'] as $j => $gen){
@@ -202,7 +202,53 @@ if(isset($_GET['key'])){
 
         header("Content-type: application/json; charset=utf-8");
         echo json_encode([200]);
-      } else {
+      } else if(isset($_REQUEST['update'])){
+      // U P D A T E  G E N É R I C O
+        $update = $_REQUEST['update'];
+        $body = file_get_contents('php://input');
+        $body = json_decode($body, true);
+        $data = array("request"=>[], "response"=>500);
+        try{
+          include("funcionesSelect.php");
+          $updates = updateToArray($metadata,$conversion,$update,$body);
+          //Se establece conexión con la BD
+          $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
+          foreach($updates as $update){
+            array_push($data['request'],$update['content']);
+            query($c1,$update['content']);
+          }
+          $data['response'] = 200;
+          echo json_encode($data);
+        } catch(Exception $e){
+          $data['error'] = $e;
+          echo $data;
+        }
+        header("Content-type: application/json; charset=utf-8");
+        echo json_encode([200]);
+      } else if(isset($_REQUEST['delete'])){
+        // U P D A T E  G E N É R I C O
+          $delete = $_REQUEST['delete'];
+          $body = file_get_contents('php://input');
+          $body = json_decode($body, true);
+          $data = array("request"=>[], "response"=>500);
+          try{
+            include("funcionesSelect.php");
+            $deletes = deleteToArray($metadata,$conversion,$delete,$body);
+            //Se establece conexión con la BD
+            $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
+            foreach($deletes as $delete){
+              array_push($data['request'],$delete['content']);
+              query($c1,$delete['content']);
+            }
+            $data['response'] = 200;
+            echo json_encode($data);
+          } catch(Exception $e){
+            $data['error'] = $e;
+            echo $data;
+          }
+          header("Content-type: application/json; charset=utf-8");
+          echo json_encode([200]);
+        } else {
         $data = ["Error: Se esperaba el parámetro principal"];
         header("Content-type: application/json; charset=utf-8");
         echo json_encode($data);

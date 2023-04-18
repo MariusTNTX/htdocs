@@ -55,7 +55,7 @@ var albumes = [
     canciones: [{nombre:"", estrellas: 0}]
   }
 ];
-var musicos = [{nombre: "",imagen: "",sexo: "",fechaNac: "",fechaDef: "",pais: "",origen: ""}], idMusico=0, descripcion=[], tradAllowed=false, auxTradAllowed=false; 
+var musicos = [{nombre: "",imagen: "",sexo: "",fechaNac: "",fechaDef: "",pais: "",origen: ""}], idMusico=0, descripcion=[], tradAllowed=true, auxTradAllowed=false; 
 
 function generarEnlace(){
   let banda = nombreBan.value;
