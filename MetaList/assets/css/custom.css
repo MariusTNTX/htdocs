@@ -339,6 +339,23 @@ footer input{
 
 .g-recaptcha div:first-child{margin: 0 auto;}
 
+#codigoVerificacion{
+  letter-spacing: 0.2rem;
+  width: 182px;
+}
+
+/* Perfil */
+
+.editPen{
+  background-color: #dc210e;
+  cursor: pointer;
+}
+
+#perfilForm .bi-eye-fill{
+  cursor: pointer;
+  color: #dc210e;
+}
+
 /* Políticas */
 
 .politicGrey h2::after, .politicGrey h2::before {

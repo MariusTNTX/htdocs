@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>MetaList - Registro</title>
+  <title>MetaList - Perfil</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -151,84 +151,86 @@
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2>Nuevo Registro</h2>
+          <h2>Perfil de Usuario</h2>
           <ol>
             <li><a href="index.html">Home</a></li>
-            <li>Nuevo Registro</li>
+            <li>Mi Perfil</li>
           </ol>
         </div>
 
       </div>
     </section><!-- End Breadcrumbs -->
-
+      
     <section class="inner-page">
       <div class="container" data-aos="fade-up">
-        <div class="reg-container row justify-content-center">
-
+        <div class="row justify-content-center">
           <!-- CONTENEDOR -->
-          <form action="forms/contact.php" method="post" role="form" class="php-email-form col-10 col-md-8 col-lg-6 col-xl-5 px-4 py-5 rounded-3 shadow-lg" data-aos="fade-up" data-aos-delay="100">
-
-            <!-- Imagen -->
-            <!-- <div class="row mb-5 mt-4">
-              <div class="col text-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-person-fill p-3 rounded-2 shadow-sm bg-gradient" viewBox="0 0 16 16">
-                  <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
-                </svg>
+          <form action="forms/contact.php" method="post" role="form" class="php-email-form reg-container col-10 col-xl-8 px-5 py-5 rounded-3 shadow-lg" id="perfilForm" data-aos="fade-up" data-aos-delay="100">
+            <!-- Imagen, Usuario y Correo -->
+            <div class="row justify-content-center align-items-center position-relative">
+              <!-- Fecha -->
+              <p class="text-end fst-italic fw-4 position-absolute top-0 start-50 translate-middle pb-4">Desde: <span id="fechaUsuario" class="text-dark">00/00/00</span></p>
+              <!-- Imagen -->
+              <div class="col-10 col-sm-8 col-md-4 mt-5 mt-md-4 p-0 position-relative">
+                <img class="w-100 rounded-5 shadow" src="./imagenes/albums/ashesOfTheWake.jpg" alt="Foto de perfil del usuario">
+                <span class="editPen position-absolute top-0 start-100 translate-middle text-white p-2 rounded-5 shadow">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                  </svg>
+                </span>
               </div>
-            </div> -->
-
-            <!-- Nombre de Usuario -->
-            <div class="row mb-4">
-              <div class="col-12">
-                <div class="form-floating">
-                  <input type="text" class="form-control" name="busq" id="busq" placeholder="Nombre de Usuario" maxlength="12" required>
-                  <label for="busq">Nombre de Usuario <span>*</span></label>
-                  <div class="form-text text-black-50 fst-italic ms-2">Tu nombre real o un apodo que te defina (Máximo 12 carcateres)</div>
+              <!-- Usuario y Correo -->
+              <div class="col-12 col-md-8 px-2 px-md-5 mt-5 mt-md-4">
+                <div class="row">
+                  <!-- Usuario -->
+                  <div class="col-12 text-center">
+                    <div class="mb-3 position-relative">
+                      <input type="text" class="form-control fs-2 text-center shadow-sm" value="MariusTNTX" id="nombreUsuario">
+                      <span class="editPen position-absolute top-0 start-100 translate-middle text-white p-2 rounded-5 shadow">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                          <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                        </svg>
+                      </span>
+                    </div>
+                  </div>
+                  <!-- Correo -->
+                  <div class="col-12 text-center"><p class="fs-6">molinamario.msc@gmail.com</p></div>
                 </div>
               </div>
             </div>
-
-            <!-- Correo -->
-            <div class="row mb-4">
-              <div class="col-12">
-                <div class="form-floating">
-                  <input type="email" class="form-control" name="busq" id="busq" placeholder="Correo Electrónico" required>
-                  <label for="busq">Correo Electrónico <span>*</span></label>
-                  <div class="form-text text-black-50 fst-italic ms-2">Por ejemplo: Janedoe19@gmail.com</div>
+            <hr class="my-5">
+            <!-- Cambiar Contraseña -->
+            <div class="row justify-content-center align-items-center">
+              <div class="col-12 mb-3"><h2 class="text-center">Cambiar Contraseña</h2></div>
+              <div class="row justify-content-center px-0">
+                <!-- Contraseña Original -->
+                <div class="col-12 col-md-6 mt-3">
+                  <label for="contraOriginal" class="form-label">Contraseña Original</label>
+                  <div class="mb-3 position-relative">
+                    <input type="password" class="form-control fs-6 text-center shadow-sm" value="micontraseña" id="contraOriginal">
+                    <i id="loginPassEye" class="bi bi-eye-fill position-absolute top-50 end-0 translate-middle-y me-2"></i>
+                  </div>
+                </div>
+              </div>
+              <!-- Contraseña Nueva -->
+              <div class="col-12 col-md-6 mt-3">
+                <label for="contraNueva" class="form-label">Contraseña Nueva</label>
+                <div class="mb-3 position-relative">
+                  <input type="password" class="form-control fs-6 text-center shadow-sm" id="contraNueva">
+                  <i id="loginPassEye" class="bi bi-eye-fill position-absolute top-50 end-0 translate-middle-y me-2"></i>
+                </div>
+              </div>
+              <!-- Repetir Contraseña Nueva -->
+              <div class="col-12 col-md-6 mt-3">
+                <label for="contraNueva2" class="form-label">Repetir Contraseña Nueva</label>
+                <div class="mb-3 position-relative">
+                  <input type="password" class="form-control fs-6 text-center shadow-sm" id="contraNueva2">
+                  <i id="loginPassEye" class="bi bi-eye-fill position-absolute top-50 end-0 translate-middle-y me-2"></i>
                 </div>
               </div>
             </div>
-
-            <!-- Contraseña -->
-            <div class="row mb-2">
-              <div class="col-md-6 mb-2 mb-md-0">
-                <div class="form-floating">
-                  <input type="password" class="form-control" name="busq" id="busq" placeholder="Contraseña" required>
-                  <label for="busq">Contraseña <span>*</span></label>
-                  <span class="position-absolute top-50 end-0 translate-middle-y me-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
-                      <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
-                      <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
-                    </svg>
-                  </span>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-floating">
-                  <input type="password" class="form-control" name="busq" id="busq" placeholder="Repetir Contraseña" required>
-                  <label for="busq">Repetir Contraseña <span>*</span></label>
-                  <span class="position-absolute top-50 end-0 translate-middle-y me-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
-                      <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
-                      <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
-                    </svg>
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Nota al Pie: Debe contener al menos 10 Caracteres 1 Mayus 1 Minus 1 Número 1 Caracter Especial -->
-            <div class="row mb-4 justify-content-center">
+            <!-- Requisitos Contraseña -->
+            <div class="row mb-5 mt-2 justify-content-center">
               <div class="col-12 form-group fw-lighter">
                 <div class="text-center mb-2">La contraseña debe contener al menos:</div>
                 <ul>
@@ -240,68 +242,18 @@
                 </ul>
               </div>
             </div>
-
-            <!-- Foto de Perfil -->
-            <div class="row mb-4">
-              <div class="col-12">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                  <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-                </svg>
-                <label for="formFile" class="form-label">Foto de Perfil:</label>
-                <input class="form-control" type="file" id="formFile">
-                <div class="form-text text-black-50 fst-italic ms-2">Este campo es opcional</div>
-              </div>
-            </div>
-
-            <!-- Checks -->
-            <div class="row ms-2 my-2">
-              <!-- Check Acepto recibir notificaciones -->
-              <div class="col-12 form-check">
-                <input class="form-check-input" type="checkbox" value="" id="Check1">
-                <label class="form-check-label" for="Check1">
-                  Acepto recibir notificaciones a mi dirección de correo electrónico
-                </label>
-              </div>
-            </div>
-            <!-- Check Acepto las políticas de privacidad y cookies (enlace) -->
-            <div class="row ms-2 mb-2">
-              <div class="col-12 form-check">
-                <input class="form-check-input" type="checkbox" value="" id="Check2" required>
-                <label class="form-check-label" for="Check2">
-                  Acepto las <a href="privacidad.html" target="_blank">políticas de privacidad y cookies</a> <span>*</span> y las <a href="legal.html" target="_blank">políticas legales y términos de uso</a> <span>*</span>
-                </label>
-              </div>
-            </div>
-
-            <!-- Captcha -->
-            <div class="row mt-4 mb-4">
-              <span class="msg-error error"></span>
-              <div id="recaptcha" class="g-recaptcha" data-sitekey="Clave del sitio"></div>
-            </div>
-            
-            <!-- Botón Crear cuenta -->
-            <div class="row mb-4">
-              <div class="col-12 text-center more">
-                <button type="button" data-bs-toggle="modal" data-bs-target="#modalVerificacion">Crear Cuenta</button>
+            <!-- Botón Verificar Cuenta -->
+            <div class="row">
+              <div class="col-12 text-center more pt-0">
+                <button type="button">Cambiar Contraseña</button>
                 <button type="button" class="d-none"></button>
               </div>
             </div>
-            
-            <!-- ¿Ya tienes cuenta? Iniciar Sesión -->
-            <div class="row mb-2">
-              <div class="col-12">
-                <p class="text-center">¿Ya tienes cuenta? <a href="#">Iniciar Sesión</a></p>
-              </div>
+            <!-- Opciones de Ayuda -->
+            <div class="row mt-4">
+              <div class="col-12 col-md-6 text-center my-2"><a href="#">He olvidado mi contraseña</a></div>
+              <div class="col-12 col-md-6 text-center my-2"><a href="#">Contactar con un administrador</a></div>
             </div>
-
-            <!-- Copyright -->
-            <div class="row">
-              <div class="col-12">
-                <p class="text-center text-secondary">© 2022-2023</p>
-              </div>
-            </div>
-
           </form>
         </div>
       </div>
@@ -400,39 +352,10 @@
     </div>
   </footer><!-- End Footer -->
 
-  <!-- Modal Verificación Cuenta -->
-  <div class="modal fade" id="modalVerificacion" tabindex="-1" aria-labelledby="modalVerificacionLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header bg-dark">
-          <h1 class="modal-title fs-5 text-white" id="modalVerificacionLabel">Verifica tu Correo Electrónico</h1>
-          <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body row justify-content-center">
-          <div class="col-10 py-3">
-            <p>En breves momentos recibirás un mensaje en tu cuenta de correo con un código que deberás insertar a continuación. Por favor, no cierres esta pestaña.</p>
-            <h1 class="text-center mb-4">00:00</h1>
-            <form>
-              <div class="mb-3 text-center">
-                <label for="codigoVerificacion" class="form-label fw-bold">Código de Verificación</label>
-                <input type="email" class="form-control fs-1 mx-auto" id="codigoVerificacion" placeholder="000000" maxlength="6" minlength="6">
-              </div>
-              <div class="mb-4 more text-center">
-                <button type="button" class="btn btn-primary">Verificar Cuenta</button>
-              </div>
-            </form>
-            <div class="row align-items-center">
-              <div class="col-6 text-center"><a href="#">Cancelar Proceso</a></div>
-              <div class="col-6 text-center"><a href="#">Contactar con un Administrador</a></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+
 
   <div id="preloader"></div>
-  <a href="registro.html#" class="back-to-top d-flex align-items-center justify-content-center"><span class="d-none">.</span><i class="bi bi-arrow-up-short"></i></a>
+  <a href="perfil.html#" class="back-to-top d-flex align-items-center justify-content-center"><span class="d-none">.</span><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
