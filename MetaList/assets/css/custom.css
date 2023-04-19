@@ -387,3 +387,6 @@ footer input{
 /* NUEVA BANDA */
 .tbodyRolesAlb tr td:last-of-type{transition: 0.3s;}
 .tbodyRolesAlb tr td:last-of-type:hover{width: 100%;}
+
+/* ADMINISTRACIÓN */
+.bg-red{background-color: #dc210e;}
