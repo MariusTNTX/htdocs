@@ -501,12 +501,14 @@ $metadata = array(
 
 function selectToArray($metadata,$conversion,$params){
   //parse_str($_SERVER['QUERY_STRING'], $params);
-  $query = array("content"=>"","select" => [],"from" => [],"whereGroup" => [],"where" => [],"order" => []);
+  $query = array("content"=>"","select" => [],"from" => [],"whereGroup" => [],"where" => [],"order" => [],"limit"=> []);
   //Sacar key, list y order (y almacenar los dos últimos)
   foreach($params as $i => $p){
     if($i=='list') $select = $p;
     else if($i=='order') $order = $p;
-    if($i=='key' || $i=='list' || $i=='order') unset($params[$i]);
+    else if($i=='limit') $limit = $p;
+    else if($i=='page') $page = $p;
+    if($i=='key' || $i=='list' || $i=='order' || $i=='limit' || $i=='page') unset($params[$i]);
   }
   if(array_key_exists($select, $conversion)) $select = $conversion[$select];
   $alias = $metadata[$select]['alias'];
@@ -611,6 +613,9 @@ function selectToArray($metadata,$conversion,$params){
       }
     }
   }
+  if($limit && $page) $query['limit'] = [$limit*($page-1),$limit];
+  else if($limit) $query['limit'] = [0,$limit];
+
   //Se forma la consulta SQL
   //SELECT
   $content = "SELECT DISTINCT ";
@@ -660,7 +665,9 @@ function selectToArray($metadata,$conversion,$params){
       $content .= $coma.$order[$i]['alias'].".".$order[$i]['nombre']." ".$order[$i]['tipo'];
     }
   }
-  $query['content'] = $content;
+  //LIMIT
+  if(count($query['limit'])>0) $content .= " LIMIT ".$query['limit'][0].", ".$query['limit'][1];
+  $query['content'] = $content.";";
   return $query;
 }
 
