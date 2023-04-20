@@ -76,6 +76,18 @@ div.more{padding-top: 20px}
 }
 .more .btn.disabled, .more .btn:disabled {background: rgba(0, 0, 0, 0.8);}
 
+/* Botón Negro Estándar */
+div.less{padding-top: 20px}
+.less button{
+  border: 0;
+  padding: 10px 24px;
+  color: #fff;
+  transition: 0.4s;
+  border-radius: 4px;
+}
+.less button:hover {color: #fff;}
+.less .btn.disabled, .less .btn:disabled {background: rgba(0, 0, 0, 0.8);}
+
 .first{padding: 0 0 60px 0}
 .mini-section{
   padding: 30px 0 0 0;
@@ -327,7 +339,7 @@ div.more{padding-top: 20px}
 .reg-container .form-floating label{color: #999}
 .reg-container span{color: #dc210e}
 
-.reg-container .asterisk svg{
+/* .reg-container */ .asterisk svg{
   color: #dc210e;
   vertical-align: -0.9em;
 }
