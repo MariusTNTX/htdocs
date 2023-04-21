@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ToDoListApp">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ToDo List</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script src="./angular-local-storage.min.js"></script>
+  <script src="controller.js"></script>
+</head>
+<body ng-controller="ToDoListController">
+
+  <form ng-submit="addActividad()">
+    <input type="text" ng-model="newActividad.descripcion" placeholder="Actividad">
+    <input type="datetime-local" ng-model="newActividad.fecha"><br><br>
+    <button type="submit">Agregar</button>
+  </form>
+
+  <button ng-click="todo = []">Limpiar Lista</button>
+
+  <ul>
+    <li ng-repeat="actividad in todo">
+      <!-- Filtro date: Se aplican con "|" indicando el tipo de dato y el tipo de filtro a aplicar -->
+      <strong>{{actividad.fecha | date: short}}</strong>: "{{actividad.descripcion}}"
+    </li>
+  </ul>
+
+</body>
+</html>

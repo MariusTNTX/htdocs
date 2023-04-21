@@ -325,7 +325,10 @@ div.less{padding-top: 20px}
   background-color: #dc210e;
   color: white;
 }
-.reg-container .bi-eye-fill{cursor: pointer;}
+.reg-container .bi-eye-fill, .reg-container .bi-eye-slash-fill{
+  cursor: pointer;
+  color: #dc210e;
+}
 .reg-container ul{
   width: max-content; 
   margin: 0 auto;

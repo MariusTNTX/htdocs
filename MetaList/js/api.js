@@ -41,6 +41,23 @@ async function get(elm, ...params){
   return Promise.resolve(response);
 }
 
+// LIST: FUNCIÓN OBTENER LISTAS DE LA API
+async function list(elm, awt, ...params){
+  let url = `http://${root}/MetaList/php/api.php?key=${key()}&list=${elm}`;
+  //Se seleccionan los filtros y sus valores:
+  for(let e of params) url += `&${e[0]}=${e[1]}`;
+  //Se obtiene el JSON de resultados:
+  console.log(url)
+  let response = await fetch(url,{
+    method: 'GET',
+    headers: {'Content-Type': 'application/json'}
+  });
+  response = await response.json();
+  console.log(response);
+  if(awt) return response;
+  return Promise.resolve(response);
+}
+
 // POST: FUNCIÓN INSERTAR INFORMACIÓN A TRAVÉS DE LA API
 async function post(elm, body){
   //Se obtiene el JSON de resultados:

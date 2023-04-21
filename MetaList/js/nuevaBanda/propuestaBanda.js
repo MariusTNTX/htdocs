@@ -370,29 +370,29 @@ btnGenProp.addEventListener("click",(e)=>{
 btnBanProp.addEventListener("click",(e)=>{
   e.preventDefault();
   if(banPropText.value.length>0){
-      let txt = banPropText.value;
-      if(getWebBanMA(txt)=="<html xmlns=" && getSpotifyBanMA(txt)=="<html xmlns="){
-        document.getElementById("webBan").value="";
-        document.getElementById("spotifyBan").value="";
-        alert("Debes hacer clic en \"Related Links\" para poder obtener los links");
-      } else {
-        banda.info.nombre = nombreBan.value;
-        banda.info.imagen = getImagenBanMA(txt);
-        banda.info.estatus = getEstatusBanMA(txt);
-        banda.info.linkWeb = getWebBanMA(txt);
-        banda.info.linkSpotify = getSpotifyBanMA(txt);
-        banda.etapas = getEtapasBanMA(txt);
-        banda.musicos = getMusicosBanMA(txt);
-        banda.info.pais = getPaisBanMA(txt);
-        banda.info.origen = getOrigenBanMA(txt);
-        banda.temasLetra = getTemasBanMA(txt);
-        traducirInfoBanda(getPaisBanMA(txt), getOrigenBanMA(txt), getTemasBanMA(txt));
-        fetch(`http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=${banda.info.nombre}&api_key=5a29d744e8273ab4a877e9b59555b81e&format=json`)
-          .then(data=>data.json())
-          .then(data=>traducirDescrip(data.artist.bio.content, document.getElementById("descripcBan")))
-          .catch(error=>alert("Error en la traducción de la descripción de la banda"));
-        console.log(banda);
-      }
+    let txt = banPropText.value;
+    if(getWebBanMA(txt)=="<html xmlns=" && getSpotifyBanMA(txt)=="<html xmlns="){
+      document.getElementById("webBan").value="";
+      document.getElementById("spotifyBan").value="";
+      alert("Debes hacer clic en \"Related Links\" para poder obtener los links");
+    } else {
+      banda.info.nombre = nombreBan.value;
+      banda.info.imagen = getImagenBanMA(txt);
+      banda.info.estatus = getEstatusBanMA(txt);
+      banda.info.linkWeb = getWebBanMA(txt);
+      banda.info.linkSpotify = getSpotifyBanMA(txt);
+      banda.etapas = getEtapasBanMA(txt);
+      banda.musicos = getMusicosBanMA(txt);
+      banda.info.pais = getPaisBanMA(txt);
+      banda.info.origen = getOrigenBanMA(txt);
+      banda.temasLetra = getTemasBanMA(txt);
+      traducirInfoBanda(getPaisBanMA(txt), getOrigenBanMA(txt), getTemasBanMA(txt));
+      fetch(`http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=${banda.info.nombre}&api_key=5a29d744e8273ab4a877e9b59555b81e&format=json`)
+        .then(data=>data.json())
+        .then(data=>traducirDescrip(data.artist.bio.content, document.getElementById("descripcBan")))
+        .catch(error=>alert("Error en la traducción de la descripción de la banda"));
+      console.log(banda);
+    }
   } else alert("Debes incluir contenido HTML");
   banPropText.value="";
 });

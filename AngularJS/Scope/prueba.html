@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!-- Directiva ng-app: Indica que el contenido debe procesarse según la logica de AngularJS -->
+<!-- Si contiene un nombre debe coincidir con el modulo de Angular que se desea asociar -->
+<html lang="en" ng-app="MyFirstApp"> 
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- Script de AngularJS (versión de acceso por internet) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <!-- Controlador: Contiene los modulos de Angular creados por el desarrollador -->
+  <script src="controller.js"></script>
+</head>
+
+<!-- Directiva ng-controller: Indica el controlador al que se hará referencia dentro del body -->
+<body ng-controller="FirstController">
+
+  <!-- Directiva ng-model: Asocia el value con una variable de $scope, actualizandola automáticamente -->
+  <input type="text" ng-model="nuevoComentario.comentario"><br>
+  <input type="text" ng-model="nuevoComentario.user"><br>
+  <!-- Directiva ng-click: Ejecuta una función de $scope al detectar un click sobre el elemento -->
+  <button ng-click="agregarComentario()">Agregar Comentario</button><br>
+  <!-- Operador de doble llave: Ejecuta su contenido como si fuese codigo JS -->
+  {{"Hola " + nombre}}
+
+  <h3>Comentarios</h3>
+  <ul>
+    <!-- Directiva ng-repeat: Realiza un bucle for sobre una variable de $scope imprimiendo el bloque por cada vuelta -->
+    <li ng-repeat="comentario in comentarios">
+      <strong>{{comentario.user}}</strong>: "{{comentario.comentario}}"
+    </li>
+  </ul>
+</body>
+
+</html>

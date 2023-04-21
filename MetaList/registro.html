@@ -181,9 +181,14 @@
             <div class="row mb-4">
               <div class="col-12">
                 <div class="form-floating">
-                  <input type="text" class="form-control" name="busq" id="busq" placeholder="Nombre de Usuario" maxlength="12" required>
+                  <input type="text" class="form-control" name="busq" id="usuario" placeholder="Nombre de Usuario" minlength="3" maxlength="12" required>
                   <label for="busq">Nombre de Usuario <span>*</span></label>
-                  <div class="form-text text-black-50 fst-italic ms-2">Tu nombre real o un apodo que te defina (Máximo 12 carcateres)</div>
+                  <div class="form-text text-black-50 fst-italic ms-2">Por ejemplo: Janedoe19 (entre 3 y 12 caracteres)</div>
+                  <div class="invalid-feedback ms-2">
+                    <span class="valUsuario d-none" id="valUsuario1">Debes indicar un nombre de usuario</span>
+                    <span class="valUsuario d-none" id="valUsuario2">El nombre debe contener al menos 3 caracteres</span>
+                    <span class="valUsuario d-none" id="valUsuario3">El nombre contiene espacios o caracteres especiales no permitidos</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -192,9 +197,14 @@
             <div class="row mb-4">
               <div class="col-12">
                 <div class="form-floating">
-                  <input type="email" class="form-control" name="busq" id="busq" placeholder="Correo Electrónico" required>
+                  <input type="email" class="form-control" name="busq" id="correo" placeholder="Correo Electrónico" required>
                   <label for="busq">Correo Electrónico <span>*</span></label>
                   <div class="form-text text-black-50 fst-italic ms-2">Por ejemplo: Janedoe19@gmail.com</div>
+                  <div id="validacionCorreo" class="invalid-feedback ms-2">
+                    <span class="valCorreo d-none" id="valCorreo1">Debes indicar una dirección de correo electrónico</span>
+                    <span class="valCorreo d-none" id="valCorreo2">Indica un correo válido como el que se indica en el ejemplo</span>
+                    <span class="valCorreo d-none" id="valCorreo3">Éste correo ya se encuentra registrado, debes indicar otro</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -203,26 +213,28 @@
             <div class="row mb-2">
               <div class="col-md-6 mb-2 mb-md-0">
                 <div class="form-floating">
-                  <input type="password" class="form-control" name="busq" id="busq" placeholder="Contraseña" required>
-                  <label for="busq">Contraseña <span>*</span></label>
-                  <span class="position-absolute top-50 end-0 translate-middle-y me-2">
+                  <input type="password" class="form-control" name="pass1" id="pass1" placeholder="Contraseña" required>
+                  <label for="pass1">Contraseña <span>*</span></label>
+                  <!-- <span class="position-absolute top-50 end-0 translate-middle-y me-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
                       <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
                       <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
                     </svg>
-                  </span>
+                  </span> -->
+                  <i id="loginPassEye1" class="bi bi-eye-fill position-absolute top-50 end-0 translate-middle-y me-2"></i>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-floating">
-                  <input type="password" class="form-control" name="busq" id="busq" placeholder="Repetir Contraseña" required>
-                  <label for="busq">Repetir Contraseña <span>*</span></label>
-                  <span class="position-absolute top-50 end-0 translate-middle-y me-2">
+                  <input type="password" class="form-control" name="pass2" id="pass2" placeholder="Repetir Contraseña" required>
+                  <label for="pass2">Repetir Contraseña <span>*</span></label>
+                  <!-- <span class="position-absolute top-50 end-0 translate-middle-y me-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
                       <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
                       <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
                     </svg>
-                  </span>
+                  </span> -->
+                  <i id="loginPassEye2" class="bi bi-eye-fill position-absolute top-50 end-0 translate-middle-y me-2"></i>
                 </div>
               </div>
             </div>
@@ -232,11 +244,11 @@
               <div class="col-12 form-group fw-lighter">
                 <div class="text-center mb-2">La contraseña debe contener al menos:</div>
                 <ul>
-                  <li><i class="bi bi-check2-circle"></i>10 Caracteres</li>
-                  <li><i class="bi bi-check2-circle"></i>1 Mayúscula</li>
-                  <li><i class="bi bi-check2-circle"></i>1 Minúscula</li>
-                  <li><i class="bi bi-check2-circle"></i>1 Número</li>
-                  <li><i class="bi bi-check2-circle"></i>1 Caracter Especial</li>
+                  <li><i class="bi bi-check2-circle" id="crt"></i>10 Caracteres</li>
+                  <li><i class="bi bi-check2-circle" id="may"></i>1 Mayúscula</li>
+                  <li><i class="bi bi-check2-circle" id="min"></i>1 Minúscula</li>
+                  <li><i class="bi bi-check2-circle" id="num"></i>1 Número</li>
+                  <li><i class="bi bi-check2-circle" id="esp"></i>1 Caracter Especial</li>
                 </ul>
               </div>
             </div>
@@ -248,8 +260,8 @@
                   <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
                   <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
                 </svg>
-                <label for="formFile" class="form-label">Foto de Perfil:</label>
-                <input class="form-control" type="file" id="formFile">
+                <label for="foto" class="form-label">Foto de Perfil:</label>
+                <input class="form-control" type="file" id="foto">
                 <div class="form-text text-black-50 fst-italic ms-2">Este campo es opcional</div>
               </div>
             </div>
@@ -258,8 +270,8 @@
             <div class="row ms-2 my-2">
               <!-- Check Acepto recibir notificaciones -->
               <div class="col-12 form-check">
-                <input class="form-check-input" type="checkbox" value="" id="Check1">
-                <label class="form-check-label" for="Check1">
+                <input class="form-check-input" type="checkbox" value="" id="check1">
+                <label class="form-check-label" for="check1">
                   Acepto recibir notificaciones a mi dirección de correo electrónico
                 </label>
               </div>
@@ -267,8 +279,8 @@
             <!-- Check Acepto las políticas de privacidad y cookies (enlace) -->
             <div class="row ms-2 mb-2">
               <div class="col-12 form-check">
-                <input class="form-check-input" type="checkbox" value="" id="Check2" required>
-                <label class="form-check-label" for="Check2">
+                <input class="form-check-input" type="checkbox" value="" id="check2" required>
+                <label class="form-check-label" for="check2">
                   Acepto las <a href="privacidad.html" target="_blank">políticas de privacidad y cookies</a> <span>*</span> y las <a href="legal.html" target="_blank">políticas legales y términos de uso</a> <span>*</span>
                 </label>
               </div>
@@ -283,8 +295,8 @@
             <!-- Botón Crear cuenta -->
             <div class="row mb-4">
               <div class="col-12 text-center more">
-                <button type="button" data-bs-toggle="modal" data-bs-target="#modalVerificacion">Crear Cuenta</button>
-                <button type="button" class="d-none"></button>
+                <button type="button" id="botonVerificar1" data-bs-toggle="modal" data-bs-target="#modalVerificacion">Crear Cuenta</button>
+                <button type="button" id="botonVerificar2" class="d-none"></button>
               </div>
             </div>
             
@@ -406,7 +418,7 @@
       <div class="modal-content">
         <div class="modal-header bg-dark">
           <h1 class="modal-title fs-5 text-white" id="modalVerificacionLabel">Verifica tu Correo Electrónico</h1>
-          <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          <!-- <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button> -->
         </div>
         <div class="modal-body row justify-content-center">
           <div class="col-10 py-3">
@@ -445,6 +457,10 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+
+  <script src="./js/api.js"></script>
+  <script src="./js/util.js"></script>
+  <script src="./js/registro/registro.js"></script>
 
 </body>
 

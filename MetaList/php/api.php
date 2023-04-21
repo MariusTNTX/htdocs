@@ -90,8 +90,10 @@ if(isset($_GET['key'])){
           $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
           $resp = query($c1,$query['content']);
           $response = mysqli_fetch_all($resp,MYSQLI_ASSOC);
+          header("Content-type: application/json; charset=utf-8");
           echo json_encode(array("request"=>$query['content'], "response"=>$response));
         } catch(Exception $e){
+          header("Content-type: application/json; charset=utf-8");
           echo json_encode(array("error general"=>$e));
         }
       } else if(isset($_REQUEST['insert'])){
@@ -193,9 +195,11 @@ if(isset($_GET['key'])){
               query($c1,$insert['content']);
             }
             $data['response'] = 200;
+            header("Content-type: application/json; charset=utf-8");
             echo json_encode($data);
           } catch(Exception $e){
             $data['error'] = $e;
+            header("Content-type: application/json; charset=utf-8");
             echo $data;
           }
         }
@@ -218,9 +222,11 @@ if(isset($_GET['key'])){
             query($c1,$update['content']);
           }
           $data['response'] = 200;
+          header("Content-type: application/json; charset=utf-8");
           echo json_encode($data);
         } catch(Exception $e){
           $data['error'] = $e;
+          header("Content-type: application/json; charset=utf-8");
           echo $data;
         }
         header("Content-type: application/json; charset=utf-8");
