@@ -226,7 +226,7 @@
               </div>
               <div class="col-md-6">
                 <div class="form-floating">
-                  <input type="password" class="form-control" name="pass2" id="pass2" placeholder="Repetir Contraseña" required>
+                  <input type="password" class="form-control" name="pass2" id="pass2" placeholder="Repetir Contraseña" required disabled>
                   <label for="pass2">Repetir Contraseña <span>*</span></label>
                   <!-- <span class="position-absolute top-50 end-0 translate-middle-y me-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
@@ -279,7 +279,7 @@
             <!-- Check Acepto las políticas de privacidad y cookies (enlace) -->
             <div class="row ms-2 mb-2">
               <div class="col-12 form-check">
-                <input class="form-check-input" type="checkbox" value="" id="check2" required>
+                <input class="form-check-input border-danger" type="checkbox" value="" id="check2" required>
                 <label class="form-check-label" for="check2">
                   Acepto las <a href="privacidad.html" target="_blank">políticas de privacidad y cookies</a> <span>*</span> y las <a href="legal.html" target="_blank">políticas legales y términos de uso</a> <span>*</span>
                 </label>
@@ -295,7 +295,7 @@
             <!-- Botón Crear cuenta -->
             <div class="row mb-4">
               <div class="col-12 text-center more">
-                <button type="button" id="botonVerificar1" data-bs-toggle="modal" data-bs-target="#modalVerificacion">Crear Cuenta</button>
+                <button type="button" id="botonVerificar1" class="btn" data-bs-toggle="modal" data-bs-target="#modalVerificacion" disabled>Crear Cuenta</button>
                 <button type="button" id="botonVerificar2" class="d-none"></button>
               </div>
             </div>
@@ -416,7 +416,7 @@
   <div class="modal fade" id="modalVerificacion" tabindex="-1" aria-labelledby="modalVerificacionLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
-        <div class="modal-header bg-dark">
+        <div class="modal-header bg-dark border-bottom border-danger border-4">
           <h1 class="modal-title fs-5 text-white" id="modalVerificacionLabel">Verifica tu Correo Electrónico</h1>
           <!-- <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button> -->
         </div>

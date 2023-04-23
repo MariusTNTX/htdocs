@@ -141,6 +141,7 @@ $filtrosMD = array(
   "nombreUsuario" => array("tabla"=>"usuarios", "key"=>"Email"),
   "emailUsuario" => array("tabla"=>"usuarios", "key"=>"Email"),
   "nivelPermisosUsuario" => array("tabla"=>"usuarios", "key"=>"Email"),
+  "notificacionesUsuario" => array("tabla"=>"usuarios", "key"=>"Email"),
   "fechaUsuario" => array("tabla"=>"usuarios", "key"=>"Email")
 );
 
@@ -477,6 +478,7 @@ $metadata = array(
         "contraUsuario" => array("nombre"=>"PassUsu", "simbolo"=>"LIKE", "salida"=>"contrasena"),
         "fotoUsuario" => array("nombre"=>"Foto", "simbolo"=>"LIKE", "salida"=>"foto"),
         "nivelPermisosUsuario" => array("nombre"=>"NvlPermisos", "simbolo"=>"=", "salida"=>"permisos"),
+        "notificacionesUsuario" => array("nombre"=>"Notificaciones", "simbolo"=>"LIKE", "salida"=>"notificaciones"),
         "fechaUsuario" => array("nombre"=>"FechaHora", "simbolo"=>"=", "salida"=>"fecha")
       ),
       "filtros" => array(

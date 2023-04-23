@@ -74,7 +74,10 @@ div.more{padding-top: 20px}
   background: #f74024; /* Palido */
   color: #fff;
 }
-.more .btn.disabled, .more .btn:disabled {background: rgba(0, 0, 0, 0.8);}
+.more .btn.disabled, .more .btn:disabled {
+  background: rgba(0, 0, 0, 0.8);
+  color: #f8f9fa;
+}
 
 /* Botón Negro Estándar */
 div.less{padding-top: 20px}
