@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="mainModule">
+<head>
+  <meta charset="UTF-8">
+  <title>Filters</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script src="controller.js"></script>
+</head>
+<body ng-controller="FiltersController">
+  <!-- Filtro removeHtml: Muestra el dato modificado por el filtro -->
+  <!-- {{ mi_html | removeHtml }} -->
+  <!-- Filtro JSON: Muestra un array en formato JSON -->
+  {{ mi_html | json }}
+  <!-- Filtro currency: Formatea un numero a una cifra monetaria. Opcionalmente se le puede pasar el símbolo de la moneda -->
+  <p>
+    {{costo | currency:'€' }}
+  </p>
+</body>
+</html>

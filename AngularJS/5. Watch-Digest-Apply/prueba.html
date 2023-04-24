@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="mainModule"> 
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script>
+    angular.module("mainModule",[]).controller("mainController",($scope)=>{
+      $scope.nombre="Mario";
+      // Para actualizar automaticamente los datos en un setTimeout se debe llamar a $apply o $digest
+      setTimeout(()=>{
+        // Después de 2 segundos actualizará el nombre, pero el valor no se actualizará en la parte visual.
+        // Esto sucede porque el Angular Context no está esperando un cambio en esta variable
+        $scope.nombre="Codigo Facilito 1";
+        console.log("Codigo Facilito");
+        // Pero si llamamos a $apply(), éste llamará a $digest() que recorrerá todos los $watch y lo actualizará en la vista automaticamente
+        $scope.$apply(()=> $scope.nombre="Codigo Facilito 2");
+      }, 2000);
+
+      // Con un EventListener tampoco se actualizan los datos en la vista automaticamente si no se llama a $apply
+      // Pero no es recomendable usar EventListener, en este caso sería mejor ng-click en la vista, que esta dentro del Angular Context
+      document.getElementById("miBoton").addEventListener("click",()=>{
+        $scope.$apply(()=> $scope.nombre = "Codigo Facilito 3");
+      });
+    });
+  </script>
+</head>
+
+<body ng-controller="mainController">
+  <!-- 
+    Event Loop: Un bucle mediante el cual el explorador detecta los eventos. NO actualiza datos automaticamente. 
+    Angular Context: Sistema de Angular mediante el cual se capturan eventos SI permitiendo actualizar datos automaticamente. 
+
+    Evento -> $apply -> $digest -> $watch
+    - Los eventos capturados por Angular llaman a $apply una vez finalizada su función
+    - $apply llama a $digest, el encargado de actualizar automaticamente la vista
+    - $digest llama al $watch correspondiente recorriendo la lista de watchers
+
+    Un $watch es creado por defecto por Angular para cada atributo de la vista
+   -->
+   <h1>{{nombre}}</h1>
+   <button id="miBoton">Click</button>
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="mainModule"> 
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script src="controller.js"></script>
+</head>
+
+<body ng-controller="mainController">
+  <h1>{{ nombre }}</h1>
+  <!-- Con $parent seguido de una variable se accede al valor de la variable correspondiente al padre (Ej: rootScope) -->
+  <p><strong>Valor del Padre: </strong>{{ $parent.nombre }}</p>
+  <div ng-controller="childController">
+    <p><strong>Valor del Hijo: </strong>{{ nombre }}</p>
+  </div>
+</body>
+
+</html>

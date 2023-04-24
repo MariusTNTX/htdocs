@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="mainModule"> 
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .animated{
+      opacity: 1;
+      max-height: auto;
+      overflow: hidden;
+      transition: all 2s;
+    }
+    .animated.ng-hide{
+      opacity: 0;
+      max-height: 0 !important;
+      overflow: hidden;
+      display: block !important;
+    }
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script src="controller.js"></script>
+</head>
+
+<body ng-controller="mainController">
+  <!-- Directiva ng-hide: Recibe como parámetro un booleano (condición) que indicará si se muestra o no el elemento -->
+  <div ng-show="loading">Cargando...</div>
+  <div ng-show="!loading && posts.length==0">No se encontraron resultados</div>
+  <!-- Directiva ng-show: Funciona exactamente igual, pero si el parametro es TRUE mostrará el elemento en vez de ocultarlo -->
+  <ul ng-show="posts.length > 0" class="animated">
+    <li ng-repeat="post in posts">
+      <h2>{{post.title}}</h2>
+      <p>{{post.body}}</p>
+    </li>
+  </ul>
+</body>
+
+</html>

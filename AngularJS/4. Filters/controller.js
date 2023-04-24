@@ -4,5 +4,9 @@ angular.module("mainModule",[])
   .filter("removeHtml",()=>(texto)=>texto.replace(/<[^>]+>/gm,''))
 
   .controller("FiltersController",($scope)=>{
-    $scope.mi_html = "<p>Hola Mundo</p>";
+    /* $scope.mi_html = "<p>Hola Mundo</p>"; */
+    $scope.mi_html = {};
+    $scope.mi_html.title = "Hola";
+    $scope.mi_html.body = "Hola mundo";
+    $scope.costo = 2;
   });
