@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Events-Class</title>
+  <style>
+    .hover{background-color: red;}
+    .no-hover{background-color: green;}
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script src="controller.js"></script>
+</head>
+
+<body ng-controller="controller">
+  <!-- Directiva ng-class: Añade nuevas clases en función del parámetro recibido en cada una de ellas (true/false) -->
+  <button ng-mouseover="bandera = true" ng-mouseleave="bandera = false" ng-class="{'hover': bandera, 'no-hover': !bandera}">
+    Hover me
+  </button> <span ng-show="bandera">&lt;- Click Me</span>
+  <p>{{ bandera | json }}</p>
+</body>
+
+</html>

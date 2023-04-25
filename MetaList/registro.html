@@ -166,7 +166,7 @@
         <div class="reg-container row justify-content-center">
 
           <!-- CONTENEDOR -->
-          <form action="forms/contact.php" method="post" role="form" class="php-email-form col-10 col-md-8 col-lg-6 col-xl-5 px-4 py-5 rounded-3 shadow-lg" data-aos="fade-up" data-aos-delay="100">
+          <form action="forms/contact.php" method="post" enctype="multipart/form-data" role="form" id="regForm" class="php-email-form col-10 col-md-8 col-lg-6 col-xl-5 px-4 py-5 rounded-3 shadow-lg" data-aos="fade-up" data-aos-delay="100">
 
             <!-- Imagen -->
             <!-- <div class="row mb-5 mt-4">
@@ -181,8 +181,8 @@
             <div class="row mb-4">
               <div class="col-12">
                 <div class="form-floating">
-                  <input type="text" class="form-control" name="busq" id="usuario" placeholder="Nombre de Usuario" minlength="3" maxlength="12" required>
-                  <label for="busq">Nombre de Usuario <span>*</span></label>
+                  <input type="text" class="form-control" name="usuario" id="usuario" placeholder="Nombre de Usuario" minlength="3" maxlength="12" required>
+                  <label for="usuario">Nombre de Usuario <span>*</span></label>
                   <div class="form-text text-black-50 fst-italic ms-2">Por ejemplo: Janedoe19 (entre 3 y 12 caracteres)</div>
                   <div class="invalid-feedback ms-2">
                     <span class="valUsuario d-none" id="valUsuario1">Debes indicar un nombre de usuario</span>
@@ -197,8 +197,8 @@
             <div class="row mb-4">
               <div class="col-12">
                 <div class="form-floating">
-                  <input type="email" class="form-control" name="busq" id="correo" placeholder="Correo Electrónico" required>
-                  <label for="busq">Correo Electrónico <span>*</span></label>
+                  <input type="email" class="form-control" name="correo" id="correo" placeholder="Correo Electrónico" required>
+                  <label for="correo">Correo Electrónico <span>*</span></label>
                   <div class="form-text text-black-50 fst-italic ms-2">Por ejemplo: Janedoe19@gmail.com</div>
                   <div id="validacionCorreo" class="invalid-feedback ms-2">
                     <span class="valCorreo d-none" id="valCorreo1">Debes indicar una dirección de correo electrónico</span>
@@ -213,7 +213,7 @@
             <div class="row mb-2">
               <div class="col-md-6 mb-2 mb-md-0">
                 <div class="form-floating">
-                  <input type="password" class="form-control" name="pass1" id="pass1" placeholder="Contraseña" required>
+                  <input type="password" class="form-control" name="pass1" id="pass1" placeholder="Contraseña" required nocopy>
                   <label for="pass1">Contraseña <span>*</span></label>
                   <!-- <span class="position-absolute top-50 end-0 translate-middle-y me-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
@@ -226,7 +226,7 @@
               </div>
               <div class="col-md-6">
                 <div class="form-floating">
-                  <input type="password" class="form-control" name="pass2" id="pass2" placeholder="Repetir Contraseña" required disabled>
+                  <input type="password" class="form-control" name="pass2" id="pass2" placeholder="Repetir Contraseña" required nocopy disabled>
                   <label for="pass2">Repetir Contraseña <span>*</span></label>
                   <!-- <span class="position-absolute top-50 end-0 translate-middle-y me-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
@@ -261,8 +261,11 @@
                   <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
                 </svg>
                 <label for="foto" class="form-label">Foto de Perfil:</label>
-                <input class="form-control" type="file" id="foto">
+                <input class="form-control" type="file" name="foto" id="foto" accept="image/jpeg, image/png, image/webp">
                 <div class="form-text text-black-50 fst-italic ms-2">Este campo es opcional</div>
+                <div id="validacionFoto" class="invalid-feedback ms-2">
+                  <span class="valFoto d-none" id="valFoto1">El formato del archivo seleccionado no está permitido</span>
+                </div>
               </div>
             </div>
 
@@ -270,7 +273,7 @@
             <div class="row ms-2 my-2">
               <!-- Check Acepto recibir notificaciones -->
               <div class="col-12 form-check">
-                <input class="form-check-input" type="checkbox" value="" id="check1">
+                <input class="form-check-input" type="checkbox" id="check1" name="check1" value="">
                 <label class="form-check-label" for="check1">
                   Acepto recibir notificaciones a mi dirección de correo electrónico
                 </label>
@@ -279,7 +282,7 @@
             <!-- Check Acepto las políticas de privacidad y cookies (enlace) -->
             <div class="row ms-2 mb-2">
               <div class="col-12 form-check">
-                <input class="form-check-input border-danger" type="checkbox" value="" id="check2" required>
+                <input class="form-check-input border-danger" type="checkbox" id="check2" name="check2" value="" required>
                 <label class="form-check-label" for="check2">
                   Acepto las <a href="privacidad.html" target="_blank">políticas de privacidad y cookies</a> <span>*</span> y las <a href="legal.html" target="_blank">políticas legales y términos de uso</a> <span>*</span>
                 </label>

@@ -1,4 +1,5 @@
 /* Variables DOM */
+let regForm  = document.getElementById("regForm");
 let usuario = document.getElementById("usuario");
 let correo = document.getElementById("correo");
 let pass1 = document.getElementById("pass1");
@@ -23,7 +24,7 @@ let exprPass2 = new RegExp(/[A-ZÑÇÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÂÊÎÔÛ]{1,
 let exprPass3 = new RegExp(/[a-zñçáéíóúàèìòùäëïöüâêîôû]{1,}/);
 let exprPass4 = new RegExp(/\d{1,}/);
 let exprPass5 = new RegExp(/[ºª!|"@·#$~%€&¬()=?'¿¡`^\[\+\*\]´¨{}<>,;.:\-_]{1,}/);
-let expresionFoto = new RegExp(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚäëïöüÄËÏÖÜàèìòùÀÈÌÒÙâêîôûÂÊÎÔÛ ]/g);
+let expresionFoto = new RegExp(/(pjp)|(jpg)|(pjpeg)|(jpeg)|(jfif)|(png)|(webp)/);
 /* Criterios contraseña */
 let criterios = [[exprPass1,crt],[exprPass2,may],[exprPass3,min],[exprPass4,num],[exprPass5,esp]];
 /* Estado de Validación General */
@@ -38,11 +39,12 @@ function showInvalidNumber(elm, num){
   for(let frase of document.querySelectorAll("."+id)) frase.classList.add("d-none");
   document.getElementById(id+num).classList.remove("d-none");
   elm.classList.add("is-invalid");
-  usuario.classList.remove("border-success");
+  elm.classList.remove("border-success");
 }
 
 /* Validacion usuario */
 usuario.addEventListener("blur",()=>{
+  console.log("blur usuario")
   validacion.user=false;
   validar();
   if(usuario.value.length==0) showInvalidNumber(usuario,1);
@@ -58,6 +60,7 @@ usuario.addEventListener("blur",()=>{
 
 /* Validacion email (y si no existe o existe sin validar) */
 correo.addEventListener("blur",async ()=>{
+  console.log("blur email")
   validacion.email=false;
   validar();
   if(correo.value.length==0) showInvalidNumber(correo,1);
@@ -88,10 +91,14 @@ pass1.addEventListener("keyup",()=>{
   }
   if(full){
     pass2.removeAttribute("disabled");
+    pass1.classList.remove("border-danger");
     validacion.pass1=true;
     validar();
+  } else {
+    pass2.setAttribute("disabled","true");
+    pass1.classList.remove("border-success");
+    pass1.classList.add("border-danger");
   }
-  else pass2.setAttribute("disabled","true");
   validPassRepeat();
 });
 
@@ -100,8 +107,9 @@ pass2.addEventListener("keyup",()=> validPassRepeat());
 
 //Función Validar Coincidencia entre Contraseñas
 function validPassRepeat(){
-  if(pass2.value==pass1.value){
+  if(pass1.value.length>0 && pass2.value==pass1.value){
     pass1.classList.add("border-success");
+    pass2.classList.remove("border-danger");
     pass2.classList.add("border-success");
     loginPassEye1.classList.add("text-success");
     loginPassEye2.classList.add("text-success");
@@ -112,18 +120,35 @@ function validPassRepeat(){
     pass2.classList.remove("border-success");
     loginPassEye1.classList.remove("text-success");
     loginPassEye2.classList.remove("text-success");
+    if(!pass2.hasAttribute("disabled")) pass2.classList.add("border-danger");
     validacion.pass2=false;
     validar();
   }
 }
+
+/* Validación Foto Usuario */
+foto.addEventListener("change",()=>{
+  console.log("change")
+  let ext = (foto.files.length>0) ? foto.files[0].name.substring(foto.files[0].name.lastIndexOf(".")+1) : "";
+  if(foto.files.length>0 && !expresionFoto.test(ext)){ //Si hay una foto seleccionada y su formato no es correcto se muestra en rojo con el mensaje de error
+    showInvalidNumber(foto, 1);
+  } else if(foto.files.length>0 && expresionFoto.test(ext)){ //Si hay una foto seleccionada y su formato es correcto se quitan los mensajes y se muestra en verde
+    foto.classList.remove("is-invalid");
+    foto.classList.remove("border-danger");
+    foto.classList.add("border-success");
+  } else { //Si no hay foto se quita el borde y los mensajes
+    foto.classList.remove("is-invalid");
+    foto.classList.remove("border-danger");
+    foto.classList.remove("border-success");
+  }
+});
 
 /* Validación Términos y Condiciones */
 check2.addEventListener("change",()=>{
   if(check2.checked){
     validacion.terms=true;
     validar();
-  } 
-  else {
+  } else {
     validacion.terms=false;
     validar();
   }
@@ -137,31 +162,52 @@ function validar(){
 }
 
 /* Iniciar verificación: */
-  // Se inserta o actualiza el ususario en bbdd con la hora
-  // Se genera un codigo en cliente y se envia al servidor para enviar el correo
-  // Se inicia el temporizador
-  botonVerificar1.addEventListener("click", async ()=>{
-    //Se incluye el usuario provisional si no existe en la base de datos, si existe se actualizan los datos
-    let data = await list("usuarios",true,["emailUsuario",correo.value]);
-    if(data.response.length==0){
-      post("usuarios",true,[{
-        nombreUsuario: usuario.value,
-        emailUsuario: correo.value,
-        contraUsuario: pass1.value,
-        fotoUsuario: (foto.files.length==0) ? null : correo.value.replace(expresionFoto,'_')+"-"+usuario.value.replace(expresionFoto,'_')+"-"+foto.files[0].name,
-        notificacionesUsuario: (check1.checked) ? "SI" : "NO",
-        nivelPermisosUsuario: 0
-      }]);
-    } else if(data.response[0].permisos==0){ //PENDIENTEEEEEEEE
+// Se inserta o actualiza el ususario en bbdd con la hora
+// Se genera un codigo en cliente y se envia al servidor para enviar el correo
+// Se inicia el temporizador
+botonVerificar1.addEventListener("click", async ()=>{
+  //Se prepara el campo foto si lo hay
+  let infoFoto = null, fd;
+  if(foto.files.length>0){
+    fd = new FormData(regForm);
+    //fd.append("foto", foto.files[0], foto.files[0].nombre);
+    infoFoto = new Date().getTime()+new Date().getMilliseconds()+foto.files[0].name.substring(foto.files[0].name.lastIndexOf("."));
+    console.log(infoFoto)
+    console.log(fd)
+  }
+  //Se incluye el usuario provisional si no existe en la base de datos, si existe se actualizan los datos
+  let data = await list("usuarios",true,["emailUsuario",correo.value]);
+  if(data.response.length==0){ //INSERCIÓN
+    //Inserción Usuario
+    /* post("usuarios",true,[{
+      nombreUsuario: usuario.value,
+      emailUsuario: correo.value,
+      contraUsuario: pass1.value,
+      fotoUsuario: infoFoto,
+      notificacionesUsuario: (check1.checked) ? "SI" : "NO",
+      nivelPermisosUsuario: 0
+    }]); */
+    //Inserción Foto
+    console.log(infoFoto)
+    console.log(fd)
+    setFormData("usuarios",true,fd);
 
-    } 
-    
-    //Si incluye foto se sube al servidor
-    if(foto.files.length>0){
-      let fd = new FormData();
-      fd.append("foto", foto.files[0]);
-    }
-  });
+  } else if(data.response[0].permisos==0){ //ACTUALIZACIÓN
+    //Actualización Usuario
+    put("usuarios",true,[{
+      id: {emailUsuario: correo.value},
+      nombreUsuario: usuario.value,
+      contraUsuario: pass1.value,
+      fotoUsuario: infoFoto,
+      notificacionesUsuario: (check1.checked) ? "SI" : "NO",
+    }]);
+    //Actualización Foto
+
+  } 
+  
+  //Si incluye foto se sube al servidor
+  
+});
 
 /* Verificar codigo y actualizar o no en bbdd */
 /* Cancelar Verificación */

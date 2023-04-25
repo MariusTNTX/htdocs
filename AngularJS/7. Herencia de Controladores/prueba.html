@@ -11,12 +11,14 @@
 </head>
 
 <body ng-controller="mainController">
-  <h1>{{ nombre }}</h1>
+  <h1>MainController - Nombre: {{ nombre }}</h1>
   <!-- Con $parent seguido de una variable se accede al valor de la variable correspondiente al padre (Ej: rootScope) -->
-  <p><strong>Valor del Padre: </strong>{{ $parent.nombre }}</p>
+  <p><strong>MainController - Parent nombre: </strong>{{ $parent.nombre }}</p>
   <div ng-controller="childController">
-    <p><strong>Valor del Hijo: </strong>{{ nombre }}</p>
+    <p><strong>ChildController - nombre: </strong>{{ nombre }}</p>
+    <p><strong>ChildController - Parent Parent nombre: </strong>{{ $parent.$parent.nombre }}</p>
   </div>
+  <input type="text" ng-model="$parent.nombre">
 </body>
 
 </html>

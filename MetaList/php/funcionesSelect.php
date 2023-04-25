@@ -728,10 +728,10 @@ function updateToArray($metadata,$conversion,$tabla,$body){
     for($i=0; $i<count($query['set']); $i++){
       $q = $query['set'][$i];
       if($q['campo']=='contraUsuario') $q['content'] = password_hash($q['content'],PASSWORD_DEFAULT);
-      $and = ($i>0) ? " AND " : "";
-      if($q['tipo'] == "LIKE" && !is_null($q['content'])) $query['content'] .= $and.$q['campo']."='".$q['content']."'";
-      else if(is_null($q['content'])) $query['content'] .= $and.$q['campo']."=NULL";
-      else $query['content'] .= $and.$q['campo']."=".$q['content'];
+      $coma = ($i>0) ? ", " : "";
+      if($q['tipo'] == "LIKE" && !is_null($q['content'])) $query['content'] .= $coma.$q['campo']."='".$q['content']."'";
+      else if(is_null($q['content'])) $query['content'] .= $coma.$q['campo']."=NULL";
+      else $query['content'] .= $coma.$q['campo']."=".$q['content'];
     }
     $query['content'] .= " WHERE ";
     for($i=0; $i<count($query['where']); $i++){

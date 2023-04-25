@@ -1,0 +1,11 @@
+<div class="circular" back-img="{{repos[0].owner.avatar_url}}"></div>
+<ul class="no-list">
+  <li ng-repeat="repo in repos">
+      <p><b>ID: <i>{{ repo.id }}</i> - Fecha: <i>{{ repo.created_at | date: short }}</i></b></p>
+      <a href="#/repo/{{repo.name}}">
+        <h2>{{ repo.name }} - {{ repo.full_name }}</h2>
+      </a>
+      <p>{{ repo.description }}</p>
+      <hr>
+  </li>
+</ul>

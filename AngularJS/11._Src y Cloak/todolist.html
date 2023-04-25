@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Events-Class</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script src="controller.js"></script>
+</head>
+
+<body ng-controller="controller">
+  <!-- Directiva ng-src: Asigna el valor entre llaves al atributo src, previniendo que de un error 404 al ejecutarse de forma literal -->
+  <img ng-src="{{repos[0].owner.avatar_url}}">
+  <!-- Directiva ng-cloak: Oculta el elemento hasta que se haya cargado en su totalidad -->
+  <ul class="no-list" ng-cloak>
+    <li ng-repeat="repo in repos">
+      <p><b>ID: <i>{{ repo.id }}</i> - Fecha: <i>{{ repo.created_at | date: short }}</i></b></p>
+      <h2>{{ repo.name }} - {{ repo.full_name }}</h2>
+      <p>{{ repo.description }}</p>
+      <hr>
+    </li>
+  </ul>
+</body>
+
+</html>

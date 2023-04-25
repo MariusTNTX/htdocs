@@ -7,12 +7,17 @@ angular.module("mainModule",[])
 })
 
 .controller("mainController",($scope)=>{
-  // Si se cambia el valor de nombre desde el hijo, el valor final también cambiará
+  // Si en cierto momento se cambia el valor del scope solo afectará a ese valor
   $scope.nombre = "Mario";
+  setTimeout(()=>{
+    $scope.$apply(()=>{
+      $scope.nombre = "Nuevo Nombre";
+    });
+  },1000)
 })
 
 // ChildController hereda todos los atributos de mainController al estar declarado de forma anidada
 // El $scope del hijo se crea a partir de $scope del padre
 .controller("childController",($scope)=> {
-
+  $scope.nombre = "Hijo"
 })

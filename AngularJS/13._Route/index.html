@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Events-Class</title>
+  <style>
+    .circular{
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+      display: inline-block;
+    }
+    .no-list li{list-style-type: none;}
+    body,html{
+      text-align: center;
+      background-color: #eee;
+      margin: 0px;
+    }
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <!-- Script de NG-ROUTE -->
+  <script src="./node_modules/angular-route/angular-route.min.js"></script>
+
+  <script src="controller.js"></script>
+</head>
+
+<!-- Ya no es necesaria la directiva ng-controller porque el controlador viene indicado en el route -->
+<body>
+  <!-- Directiva ng-view: Indica el elemento que contiene toda la vista. 
+  Si el route ejecuta este html, el contenido lo menterá dentro del elemento con la directiva ng-view -->
+  <div ng-view>
+    <div class="circular" back-img="{{repos[0].owner.avatar_url}}"></div>
+    <ul class="no-list">
+      <li ng-repeat="repo in repos">
+        <p><b>ID: <i>{{ repo.id }}</i> - Fecha: <i>{{ repo.created_at | date: short }}</i></b></p>
+        <h2>{{ repo.name }} - {{ repo.full_name }}</h2>
+        <p>{{ repo.description }}</p>
+        <hr>
+      </li>
+    </ul>
+  </div>
+</body>
+
+</html>

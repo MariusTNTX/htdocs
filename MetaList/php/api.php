@@ -81,7 +81,7 @@ if(isset($_GET['key'])){
         echo json_encode($data);
     
       } else if(isset($_REQUEST['list'])){
-      // L I S T 
+        // L I S T 
         try{
           include("funcionesSelect.php");
           parse_str($_SERVER['QUERY_STRING'], $params);
@@ -182,6 +182,10 @@ if(isset($_GET['key'])){
           //Si no ha habido errores se realiza un commit
           mysqli_commit($c1);
 
+          mysqli_close($c1);
+          header("Content-type: application/json; charset=utf-8");
+          echo json_encode([200]);
+
         } else {
         // I N S E R T  G E N É R I C O
           $data = array("request"=>[], "response"=>500);
@@ -195,19 +199,19 @@ if(isset($_GET['key'])){
               query($c1,$insert['content']);
             }
             $data['response'] = 200;
+            mysqli_close($c1);
             header("Content-type: application/json; charset=utf-8");
             echo json_encode($data);
           } catch(Exception $e){
             $data['error'] = $e;
+            mysqli_close($c1);
             header("Content-type: application/json; charset=utf-8");
             echo $data;
           }
         }
 
-        header("Content-type: application/json; charset=utf-8");
-        echo json_encode([200]);
       } else if(isset($_REQUEST['update'])){
-      // U P D A T E  G E N É R I C O
+        // U P D A T E  G E N É R I C O
         $update = $_REQUEST['update'];
         $body = file_get_contents('php://input');
         $body = json_decode($body, true);
@@ -222,39 +226,73 @@ if(isset($_GET['key'])){
             query($c1,$update['content']);
           }
           $data['response'] = 200;
+          mysqli_close($c1);
           header("Content-type: application/json; charset=utf-8");
           echo json_encode($data);
         } catch(Exception $e){
           $data['error'] = $e;
+          mysqli_close($c1);
           header("Content-type: application/json; charset=utf-8");
           echo $data;
         }
-        header("Content-type: application/json; charset=utf-8");
-        echo json_encode([200]);
       } else if(isset($_REQUEST['delete'])){
-        // U P D A T E  G E N É R I C O
-          $delete = $_REQUEST['delete'];
-          $body = file_get_contents('php://input');
-          $body = json_decode($body, true);
-          $data = array("request"=>[], "response"=>500);
-          try{
-            include("funcionesSelect.php");
-            $deletes = deleteToArray($metadata,$conversion,$delete,$body);
-            //Se establece conexión con la BD
-            $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
-            foreach($deletes as $delete){
-              array_push($data['request'],$delete['content']);
-              query($c1,$delete['content']);
-            }
-            $data['response'] = 200;
-            echo json_encode($data);
-          } catch(Exception $e){
-            $data['error'] = $e;
-            echo $data;
+        // D E L E T E  G E N É R I C O
+        $delete = $_REQUEST['delete'];
+        $body = file_get_contents('php://input');
+        $body = json_decode($body, true);
+        $data = array("request"=>[], "response"=>500);
+        try{
+          include("funcionesSelect.php");
+          $deletes = deleteToArray($metadata,$conversion,$delete,$body);
+          //Se establece conexión con la BD
+          $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
+          foreach($deletes as $delete){
+            array_push($data['request'],$delete['content']);
+            query($c1,$delete['content']);
           }
+          $data['response'] = 200;
+          mysqli_close($c1);
           header("Content-type: application/json; charset=utf-8");
-          echo json_encode([200]);
-        } else {
+          echo json_encode($data);
+        } catch(Exception $e){
+          $data['error'] = $e;
+          mysqli_close($c1);
+          header("Content-type: application/json; charset=utf-8");
+          echo $data;
+        }
+        
+      } else if(isset($_REQUEST['setFormData'])){
+        // S E T  F O R M  D A T A
+        $elemento = $_REQUEST['setFormData'];
+        echo $elemento."\n";
+        echo print_r($_FILES);
+        $data = [array("elemento"=>$elemento, "files"=>$_FILES)];
+        header("Content-type: application/json; charset=utf-8");
+        echo json_encode($data);
+        /* $body = file_get_contents('php://input');
+        $body = json_decode($body, true);
+        $data = array("request"=>[], "response"=>500);
+        try{
+          include("funcionesSelect.php");
+          $deletes = deleteToArray($metadata,$conversion,$delete,$body);
+          //Se establece conexión con la BD
+          $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
+          foreach($deletes as $delete){
+            array_push($data['request'],$delete['content']);
+            query($c1,$delete['content']);
+          }
+          $data['response'] = 200;
+          mysqli_close($c1);
+          header("Content-type: application/json; charset=utf-8");
+          echo json_encode($data);
+        } catch(Exception $e){
+          $data['error'] = $e;
+          mysqli_close($c1);
+          header("Content-type: application/json; charset=utf-8");
+          echo $data;
+        } */
+        
+      } else {
         $data = ["Error: Se esperaba el parámetro principal"];
         header("Content-type: application/json; charset=utf-8");
         echo json_encode($data);

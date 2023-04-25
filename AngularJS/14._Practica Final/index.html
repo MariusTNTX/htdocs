@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="FinalApp">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Posts App</title>
+
+  <link rel="stylesheet" href="resource/css/materialdesignicons.css">
+  <link rel="stylesheet" href="resource/css/lumx.css">
+  <link rel="stylesheet" href="resource/css/main.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="http://code.angularjs.org/1.8.2/angular-route.min.js"></script>
+  <!-- <script src="./node_modules/angular-route/angular-route.min.js"></script> -->
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.2/velocity.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.min.js"></script>
+  <script src="./resource/js/lumx.js"></script>
+
+  <script src="app.js"></script>
+  <script src="services.js"></script>
+  <script src="controllers.js"></script>
+</head>
+
+<body ng-controller="MainController">
+  <!-- HEADER -->
+  <nav>
+    <div class="bgc-blue-900 tc-white" flex-container="row" flex-align="center center">
+      <div flex-item="4">
+        <h1 class="fs-display-3 display-block">Posts App</h1>
+      </div>
+      <div flex-item="1">
+        <a href="#">Inicio</a>
+      </div>
+      <div flex-item="1">
+        <a href="#">Crear Post</a>
+      </div>
+    </div>
+  </nav>
+  <!-- VISOR DEL BODY -->
+  <div flex-container="row" flex-align="center">
+    <div ng-view flex-item="9"></div>
+  </div>
+  
+</body>
+</html>

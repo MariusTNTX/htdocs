@@ -71,3 +71,31 @@ async function post(elm, awt, body){
   if(awt) return response;
   return Promise.resolve(response);
 }
+
+// SET_FORM_DATA: FUNCIÓN INSERTAR, INTERCAMBIAR Y ELIMNAR FOTOS A TRAVÉS DE LA API
+async function setFormData(elm, awt, body){
+  console.log(body)
+  //Se obtiene el JSON de resultados:
+  let response = await fetch(`http://${root}/MetaList/php/api.php?key=${key()}&setFormData=${elm}`,{
+    method: 'POST',
+    body: body
+  });
+  response = await response.json();
+  console.log(response);
+  if(awt) return response;
+  return Promise.resolve(response);
+}
+
+// PUT: FUNCIÓN ACTUALIZAR INFORMACIÓN A TRAVÉS DE LA API
+async function put(elm, awt, body){
+  console.log(body)
+  //Se obtiene el JSON de resultados:
+  let response = await fetch(`http://${root}/MetaList/php/api.php?key=${key()}&update=${elm}`,{
+    method: 'PUT',
+    body: JSON.stringify(body),
+    headers: {'Content-Type': 'application/json'}
+  });
+  response = await response.json();
+  if(awt) return response;
+  return Promise.resolve(response);
+}
