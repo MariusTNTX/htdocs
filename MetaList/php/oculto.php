@@ -5,7 +5,6 @@
 	$dbname="MetaList";
 	$apikey="TheBig4000MetaListMariusTNTX";
 	
-	
 
 	$filtros=array(
 		"albumes"=>array(

@@ -162,51 +162,42 @@ function validar(){
 }
 
 /* Iniciar verificación: */
-// Se inserta o actualiza el ususario en bbdd con la hora
-// Se genera un codigo en cliente y se envia al servidor para enviar el correo
 // Se inicia el temporizador
 botonVerificar1.addEventListener("click", async ()=>{
   //Se prepara el campo foto si lo hay
-  let infoFoto = null, fd;
+  let nombreFoto = null, fd;
   if(foto.files.length>0){
     fd = new FormData(regForm);
-    //fd.append("foto", foto.files[0], foto.files[0].nombre);
-    infoFoto = new Date().getTime()+new Date().getMilliseconds()+foto.files[0].name.substring(foto.files[0].name.lastIndexOf("."));
-    console.log(infoFoto)
-    console.log(fd)
+    nombreFoto = 'D:/MetaListStorage/userProfilePictures/'+new Date().getTime()+new Date().getMilliseconds()+foto.files[0].name.substring(foto.files[0].name.lastIndexOf("."));
   }
-  //Se incluye el usuario provisional si no existe en la base de datos, si existe se actualizan los datos
+  // -- Se incluye el usuario provisional si no existe en la base de datos, si existe se actualizan los datos
   let data = await list("usuarios",true,["emailUsuario",correo.value]);
   if(data.response.length==0){ //INSERCIÓN
     //Inserción Usuario
-    /* post("usuarios",true,[{
+    post("usuarios",true,[{
       nombreUsuario: usuario.value,
       emailUsuario: correo.value,
       contraUsuario: pass1.value,
-      fotoUsuario: infoFoto,
       notificacionesUsuario: (check1.checked) ? "SI" : "NO",
       nivelPermisosUsuario: 0
-    }]); */
+    }]);
     //Inserción Foto
-    console.log(infoFoto)
-    console.log(fd)
-    setFormData("usuarios",true,fd);
-
+    if(foto.files.length>0) setFormData("usuarios",true,fd,nombreFoto,correo.value);
   } else if(data.response[0].permisos==0){ //ACTUALIZACIÓN
     //Actualización Usuario
     put("usuarios",true,[{
       id: {emailUsuario: correo.value},
       nombreUsuario: usuario.value,
       contraUsuario: pass1.value,
-      fotoUsuario: infoFoto,
       notificacionesUsuario: (check1.checked) ? "SI" : "NO",
     }]);
     //Actualización Foto
-
+    if(foto.files.length>0) replaceFormData("usuarios",true,fd,nombreFoto,correo.value);
   } 
-  
-  //Si incluye foto se sube al servidor
-  
+  // -- Se genera un codigo en cliente y se envia al servidor para enviar el correo
+  let codigo = "";
+  for(let i=0; i<6; i++) codigo += Math.floor(Math.random()*10);
+  sendVerifyEmail(correo.value, codigo, true);
 });
 
 /* Verificar codigo y actualizar o no en bbdd */

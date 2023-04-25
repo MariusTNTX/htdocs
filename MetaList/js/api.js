@@ -72,11 +72,36 @@ async function post(elm, awt, body){
   return Promise.resolve(response);
 }
 
-// SET_FORM_DATA: FUNCIÓN INSERTAR, INTERCAMBIAR Y ELIMNAR FOTOS A TRAVÉS DE LA API
-async function setFormData(elm, awt, body){
-  console.log(body)
+// SET_FORM_DATA: FUNCIÓN INSERTAR FOTOS A TRAVÉS DE LA API
+async function setFormData(elm, awt, body, name, id=""){
   //Se obtiene el JSON de resultados:
-  let response = await fetch(`http://${root}/MetaList/php/api.php?key=${key()}&setFormData=${elm}`,{
+  let response = await fetch(`http://${root}/MetaList/php/api.php?key=${key()}&setFormData=${elm}&name=${name}&id=${id}`,{
+    method: 'POST',
+    body: body
+  });
+  response = await response.json();
+  console.log(response);
+  if(awt) return response;
+  return Promise.resolve(response);
+}
+
+// REPLACE_FORM_DATA: FUNCIÓN INTERCAMBIAR FOTOS A TRAVÉS DE LA API
+async function replaceFormData(elm, awt, body, name, id=""){
+  //Se obtiene el JSON de resultados:
+  let response = await fetch(`http://${root}/MetaList/php/api.php?key=${key()}&replaceFormData=${elm}&name=${name}&id=${id}`,{
+    method: 'POST',
+    body: body
+  });
+  response = await response.json();
+  console.log(response);
+  if(awt) return response;
+  return Promise.resolve(response);
+}
+
+// DELETE_FORM_DATA: FUNCIÓN ELIMINAR FOTOS A TRAVÉS DE LA API
+async function deleteFormData(elm, awt, body, id=""){
+  //Se obtiene el JSON de resultados:
+  let response = await fetch(`http://${root}/MetaList/php/api.php?key=${key()}&deleteFormData=${elm}&id=${id}`,{
     method: 'POST',
     body: body
   });
@@ -93,6 +118,18 @@ async function put(elm, awt, body){
   let response = await fetch(`http://${root}/MetaList/php/api.php?key=${key()}&update=${elm}`,{
     method: 'PUT',
     body: JSON.stringify(body),
+    headers: {'Content-Type': 'application/json'}
+  });
+  response = await response.json();
+  if(awt) return response;
+  return Promise.resolve(response);
+}
+
+// SEND_VERIFY_EMAIL: FUNCIÓN ENVIAR CORREO DE VERIFICACIÓN A TRAVÉS DE LA API
+async function sendVerifyEmail(email, code, awt){
+  //Se obtiene el JSON de resultados:
+  let response = await fetch(`http://${root}/MetaList/php/api.php?key=${key()}&sendVerifyEmail=${email}&code=${code}`,{
+    method: 'GET',
     headers: {'Content-Type': 'application/json'}
   });
   response = await response.json();

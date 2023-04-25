@@ -264,34 +264,59 @@ if(isset($_GET['key'])){
       } else if(isset($_REQUEST['setFormData'])){
         // S E T  F O R M  D A T A
         $elemento = $_REQUEST['setFormData'];
-        echo $elemento."\n";
-        echo print_r($_FILES);
-        $data = [array("elemento"=>$elemento, "files"=>$_FILES)];
+        $nombreFoto = $_REQUEST['name'];
+        $email = $_REQUEST['id'];
+        $data = [array("elemento"=>$elemento, "nombreFoto"=>$nombreFoto, "email"=>$email, "update"=>"UPDATE USUARIOS SET Foto = '".$nombreFoto."' WHERE Email LIKE '".$email."'","archivos"=>$_FILES)];
+        if($elemento=='usuarios' && count($_FILES)>0){
+          move_uploaded_file($_FILES['foto']['tmp_name'],$nombreFoto);
+          $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
+          mysqli_query($c1,"UPDATE USUARIOS SET Foto = '".$nombreFoto."' WHERE Email LIKE '".$email."'");
+          mysqli_close($c1);
+        }
         header("Content-type: application/json; charset=utf-8");
         echo json_encode($data);
-        /* $body = file_get_contents('php://input');
-        $body = json_decode($body, true);
-        $data = array("request"=>[], "response"=>500);
-        try{
-          include("funcionesSelect.php");
-          $deletes = deleteToArray($metadata,$conversion,$delete,$body);
-          //Se establece conexión con la BD
+
+      } else if(isset($_REQUEST['replaceFormData'])){
+        // R E P L A C E  F O R M  D A T A
+        $elemento = $_REQUEST['replaceFormData'];
+        $nombreFoto = $_REQUEST['name'];
+        $email = $_REQUEST['id'];
+        $data = [array("elemento"=>$elemento, "nombreFotoNueva"=>$nombreFoto, "email"=>$email, "archivos"=>$_FILES)];
+        if($elemento=='usuarios' && count($email)>0 && count($_FILES)>0){
+          //Se sube la nueva foto
+          move_uploaded_file($_FILES['foto']['tmp_name'],$nombreFoto); 
+          //Se obtiene el nombre de la foto anterior
           $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
-          foreach($deletes as $delete){
-            array_push($data['request'],$delete['content']);
-            query($c1,$delete['content']);
-          }
-          $data['response'] = 200;
+          $resp = mysqli_query($c1,"SELECT foto FROM USUARIOS WHERE Email LIKE '".$email."'");
+          $nombreFoto2 = mysqli_fetch_all($resp,MYSQLI_ASSOC)[0]['foto'];
+          $data['nombreFotoAnterior'] = $nombreFoto2;
+          //Se actualiza la foto en la base de datos
+          mysqli_query($c1,"UPDATE USUARIOS SET Foto = '".$nombreFoto."' WHERE Email LIKE '".$email."'");
           mysqli_close($c1);
-          header("Content-type: application/json; charset=utf-8");
-          echo json_encode($data);
-        } catch(Exception $e){
-          $data['error'] = $e;
+          //Se elimina la foto anterior de MetaListStorage
+          unlink($nombreFoto2);
+        }
+        header("Content-type: application/json; charset=utf-8");
+        echo json_encode($data);
+      } else if(isset($_REQUEST['deleteFormData'])){
+        // D E L E T E  F O R M  D A T A
+        $elemento = $_REQUEST['deleteFormData'];
+        $email = $_REQUEST['id'];
+        $data = [array("elemento"=>$elemento, "email"=>$email)];
+        if($elemento=='usuarios' && count($email)>0){
+          //Se obtiene el nombre de la foto anterior
+          $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
+          $resp = mysqli_query($c1,"SELECT foto FROM USUARIOS WHERE Email LIKE '".$email."'");
+          $nombreFoto = mysqli_fetch_all($resp,MYSQLI_ASSOC)[0]['foto'];
+          $data['nombreFotoEliminada'] = $nombreFoto;
+          //Se elimina la foto de la base de datos
+          mysqli_query($c1,"UPDATE USUARIOS SET Foto = NULL WHERE Email LIKE '".$email."'");
           mysqli_close($c1);
-          header("Content-type: application/json; charset=utf-8");
-          echo $data;
-        } */
-        
+          //Se elimina la foto anterior de MetaListStorage
+          unlink($nombreFoto);
+        }
+        header("Content-type: application/json; charset=utf-8");
+        echo json_encode($data);
       } else {
         $data = ["Error: Se esperaba el parámetro principal"];
         header("Content-type: application/json; charset=utf-8");
