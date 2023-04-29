@@ -324,5 +324,5 @@ document.getElementById("btnGuardar").addEventListener("click",()=>{
   };
   console.log("BODY:")
   console.log(body)
-  post("fullBand",body).then(data=>console.log(data)).catch(error=>alert("Error al procesar la transacción"));
+  post("fullBand",true,body).then(data=>console.log(data)).catch(error=>alert("Error al procesar la transacción"));
 });

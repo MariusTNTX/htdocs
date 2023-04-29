@@ -16,6 +16,10 @@ let check1 = document.getElementById("check1");
 let check2 = document.getElementById("check2");
 let botonVerificar1 = document.getElementById("botonVerificar1");
 let botonVerificar2 = document.getElementById("botonVerificar2");
+let contador = document.getElementById("contador");
+let codigoVerificacion = document.getElementById("codigoVerificacion");
+let verificarCuenta = document.getElementById("verificarCuenta");
+let cancelarProceso = document.getElementById("cancelarProceso");
 /* Expresiones Regulares */
 let expresionUsuario = new RegExp(/^[\wñç'ª\.@áéíóúÁÉÍÓÚäëïöüÄËÏÖÜàèìòùÀÈÌÒÙâêîôûÂÊÎÔÛ]{3,12}$/i);
 let expresionCorreo = new RegExp(/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
@@ -29,6 +33,7 @@ let expresionFoto = new RegExp(/(pjp)|(jpg)|(pjpeg)|(jpeg)|(jfif)|(png)|(webp)/)
 let criterios = [[exprPass1,crt],[exprPass2,may],[exprPass3,min],[exprPass4,num],[exprPass5,esp]];
 /* Estado de Validación General */
 let validacion = {user: false, email: false, pass1: false, pass2: false, terms: false};
+let codigo;
 
 /* Eventos Mostrar/Ocultar Contraseña */
 addShowPassSwitch(loginPassEye1, pass1);
@@ -161,9 +166,28 @@ function validar(){
   } else botonVerificar1.setAttribute("disabled","true");
 }
 
+function iniciarTemp(){
+  let endTime = new Date().getTime()+1000*60*30, curTime, mins, segs;
+  let intId = setInterval(()=>{
+    curTime = endTime - new Date().getTime();
+    mins = parseInt(curTime / 1000 / 60);
+    segs = parseInt((curTime - mins*1000*60)/1000);
+    mins = (mins<10) ? "0"+mins : mins;
+    segs = (segs<10) ? "0"+segs : segs;
+    contador.innerHTML = mins+":"+segs;
+    if(curTime<=0){
+      contador.style.color="#dc210e";
+      codigoVerificacion.setAttribute("disabled","true");
+      verificarCuenta.setAttribute("disabled","true");
+      alert("Se ha superado el tiempo límite para la verificación de tu cuenta. Regístrate de nuevo")
+      clearInterval(intId);
+    }
+  },100);
+}
+
 /* Iniciar verificación: */
-// Se inicia el temporizador
 botonVerificar1.addEventListener("click", async ()=>{
+  iniciarTemp(); // Se inicia el temporizador
   //Se prepara el campo foto si lo hay
   let nombreFoto = null, fd;
   if(foto.files.length>0){
@@ -174,7 +198,7 @@ botonVerificar1.addEventListener("click", async ()=>{
   let data = await list("usuarios",true,["emailUsuario",correo.value]);
   if(data.response.length==0){ //INSERCIÓN
     //Inserción Usuario
-    post("usuarios",true,[{
+    await post("usuarios",true,[{
       nombreUsuario: usuario.value,
       emailUsuario: correo.value,
       contraUsuario: pass1.value,
@@ -182,23 +206,39 @@ botonVerificar1.addEventListener("click", async ()=>{
       nivelPermisosUsuario: 0
     }]);
     //Inserción Foto
-    if(foto.files.length>0) setFormData("usuarios",true,fd,nombreFoto,correo.value);
+    if(foto.files.length>0) await setFormData("usuarios",true,fd,nombreFoto,correo.value);
   } else if(data.response[0].permisos==0){ //ACTUALIZACIÓN
     //Actualización Usuario
-    put("usuarios",true,[{
+    await put("usuarios",true,[{
       id: {emailUsuario: correo.value},
       nombreUsuario: usuario.value,
       contraUsuario: pass1.value,
       notificacionesUsuario: (check1.checked) ? "SI" : "NO",
     }]);
     //Actualización Foto
-    if(foto.files.length>0) replaceFormData("usuarios",true,fd,nombreFoto,correo.value);
+    if(fd) if(foto.files.length>0) await replaceFormData("usuarios",true,fd,nombreFoto,correo.value);
+    else await deleteFormData("usuarios",true,fd,correo.value);
   } 
   // -- Se genera un codigo en cliente y se envia al servidor para enviar el correo
-  let codigo = "";
+  codigo = "";
   for(let i=0; i<6; i++) codigo += Math.floor(Math.random()*10);
-  sendVerifyEmail(correo.value, codigo, true);
+  console.log("Codigo = "+codigo)
+  await sendVerifyEmail(correo.value, codigo, true);
 });
 
 /* Verificar codigo y actualizar o no en bbdd */
+verificarCuenta.addEventListener("click", async ()=>{
+  if(codigoVerificacion.value.length>0){
+    if(codigoVerificacion.value == codigo){
+      //Actualización Usuario
+      await put("usuarios",true,[{
+        id: {emailUsuario: correo.value},
+        nivelPermisosUsuario: 1,
+      }]);
+      //Redireccionamiento al index
+      location.href = "index.html?newLogin";
+    } else alert("El código indicado no es correcto. Revisa tu correo o ponte en contacto con un administrador");
+  } else alert("Debes indicar el código de verificación procedente del email recibido en la dirección de correo");
+});
+
 /* Cancelar Verificación */

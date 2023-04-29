@@ -48,7 +48,7 @@
 
       <h1 class="logo me-auto me-lg-0">
         <a href="index.html">
-          <img src="imagenes/basico/logo MetaList.png" alt="Logo rojo de MetaList" title="Logo rojo de MetaList">
+          <img src="imagenes/basico/logo_MetaList.png" alt="Logo rojo de MetaList" title="Logo rojo de MetaList">
         </a>
       </h1>
       <!-- Uncomment below if you prefer to use an image logo -->
@@ -181,7 +181,7 @@
             <div class="row mb-4">
               <div class="col-12">
                 <div class="form-floating">
-                  <input type="text" class="form-control" name="usuario" id="usuario" placeholder="Nombre de Usuario" minlength="3" maxlength="12" required value="Ricar">
+                  <input type="text" class="form-control" name="usuario" id="usuario" placeholder="Nombre de Usuario" minlength="3" maxlength="12" required value="MariusTNTX">
                   <label for="usuario">Nombre de Usuario <span>*</span></label>
                   <div class="form-text text-black-50 fst-italic ms-2">Por ejemplo: Janedoe19 (entre 3 y 12 caracteres)</div>
                   <div class="invalid-feedback ms-2">
@@ -197,7 +197,7 @@
             <div class="row mb-4">
               <div class="col-12">
                 <div class="form-floating">
-                  <input type="email" class="form-control" name="correo" id="correo" placeholder="Correo Electrónico" required value="rclavelr@gmail.com">
+                  <input type="email" class="form-control" name="correo" id="correo" placeholder="Correo Electrónico" required value="molinamario.msc@gmail.com">
                   <label for="correo">Correo Electrónico <span>*</span></label>
                   <div class="form-text text-black-50 fst-italic ms-2">Por ejemplo: Janedoe19@gmail.com</div>
                   <div id="validacionCorreo" class="invalid-feedback ms-2">
@@ -213,7 +213,7 @@
             <div class="row mb-2">
               <div class="col-md-6 mb-2 mb-md-0">
                 <div class="form-floating">
-                  <input type="password" class="form-control" name="pass1" id="pass1" placeholder="Contraseña" required nocopy value="Rclavel%99">
+                  <input type="password" class="form-control" name="pass1" id="pass1" placeholder="Contraseña" required nocopy value="M@r1usTNTX">
                   <label for="pass1">Contraseña <span>*</span></label>
                   <!-- <span class="position-absolute top-50 end-0 translate-middle-y me-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
@@ -226,7 +226,7 @@
               </div>
               <div class="col-md-6">
                 <div class="form-floating">
-                  <input type="password" class="form-control" name="pass2" id="pass2" placeholder="Repetir Contraseña" required nocopy disabled value="Rclavel%99">
+                  <input type="password" class="form-control" name="pass2" id="pass2" placeholder="Repetir Contraseña" required nocopy disabled value="M@r1usTNTX">
                   <label for="pass2">Repetir Contraseña <span>*</span></label>
                   <!-- <span class="position-absolute top-50 end-0 translate-middle-y me-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
@@ -334,7 +334,7 @@
             <div class="footer-info">
               <h1 class="logo me-auto me-lg-0 footer-h1">
                 <a href="index.html">
-                  <img src="imagenes/basico/logo MetaList-2.png" alt="Logo blanco de MetaList" title="Logo blanco de MetaList" width="200px">
+                  <img src="imagenes/basico/logo_MetaList-2.png" alt="Logo blanco de MetaList" title="Logo blanco de MetaList" width="200px">
                 </a>
               </h1>
               <p>
@@ -426,18 +426,18 @@
         <div class="modal-body row justify-content-center">
           <div class="col-10 py-3">
             <p>En breves momentos recibirás un mensaje en tu cuenta de correo con un código que deberás insertar a continuación. Por favor, no cierres esta pestaña.</p>
-            <h1 class="text-center mb-4">00:00</h1>
+            <p class="text-center mb-4 fs-1" id="contador">00:00</p>
             <form>
               <div class="mb-3 text-center">
                 <label for="codigoVerificacion" class="form-label fw-bold">Código de Verificación</label>
-                <input type="email" class="form-control fs-1 mx-auto" id="codigoVerificacion" placeholder="000000" maxlength="6" minlength="6">
+                <input type="email" class="form-control fs-1 mx-auto text-center" id="codigoVerificacion" placeholder="000000" maxlength="6" minlength="6">
               </div>
               <div class="mb-4 more text-center">
-                <button type="button" class="btn btn-primary">Verificar Cuenta</button>
+                <button type="button" class="btn btn-primary" id="verificarCuenta">Verificar Cuenta</button>
               </div>
             </form>
             <div class="row align-items-center">
-              <div class="col-6 text-center"><a href="#">Cancelar Proceso</a></div>
+              <div class="col-6 text-center" id="cancelarProceso"><a href="#">Cancelar Proceso</a></div>
               <div class="col-6 text-center"><a href="#">Contactar con un Administrador</a></div>
             </div>
           </div>

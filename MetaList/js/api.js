@@ -127,12 +127,14 @@ async function put(elm, awt, body){
 
 // SEND_VERIFY_EMAIL: FUNCIÓN ENVIAR CORREO DE VERIFICACIÓN A TRAVÉS DE LA API
 async function sendVerifyEmail(email, code, awt){
+  console.log(`http://${root}/MetaList/php/api.php?key=${key()}&sendVerifyEmail=${email}&code=${code}`);
   //Se obtiene el JSON de resultados:
   let response = await fetch(`http://${root}/MetaList/php/api.php?key=${key()}&sendVerifyEmail=${email}&code=${code}`,{
     method: 'GET',
     headers: {'Content-Type': 'application/json'}
   });
   response = await response.json();
+  console.log(response);
   if(awt) return response;
   return Promise.resolve(response);
 }

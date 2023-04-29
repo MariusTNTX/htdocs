@@ -317,6 +317,15 @@ if(isset($_GET['key'])){
         }
         header("Content-type: application/json; charset=utf-8");
         echo json_encode($data);
+      } else if(isset($_REQUEST['sendVerifyEmail'])){
+        // S E N D  V E R I F Y  E M A I L
+        include("sendVerifyEmail.php");
+        $email = $_REQUEST['sendVerifyEmail'];
+        $code = $_REQUEST['code'];
+        $data = [array("codigo"=>$code, "email"=>$email)];
+        if(count($code)>0 && count($email)>0) sendVerifyEmail($email,$code);
+        header("Content-type: application/json; charset=utf-8");
+        echo json_encode($data);
       } else {
         $data = ["Error: Se esperaba el parámetro principal"];
         header("Content-type: application/json; charset=utf-8");

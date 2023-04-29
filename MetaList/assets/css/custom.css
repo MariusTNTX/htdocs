@@ -408,3 +408,11 @@ footer input{
 
 /* ADMINISTRACIÓN */
 .bg-red{background-color: #dc210e;}
+
+/* ALERT TEMPLATE */
+#alertTemplate #alertBack{height: fit-content}
+#alertTemplate .offcanvas-header{align-items: normal}
+#alertTemplate .btn-close{
+  min-width: 16px; 
+  max-width: 16px;
+}

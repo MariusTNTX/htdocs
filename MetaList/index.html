@@ -45,7 +45,7 @@
 
       <h1 class="logo me-auto me-lg-0">
         <a href="index.html">
-          <img src="imagenes/basico/logo MetaList.png" alt="Logo MetaList">
+          <img src="imagenes/basico/logo_MetaList.png" alt="logo_MetaList">
         </a>
       </h1>
       <!-- Uncomment below if you prefer to use an image logo -->
@@ -790,7 +790,7 @@
             <div class="footer-info">
               <h1 class="logo me-auto me-lg-0 footer-h1">
                 <a href="index.html">
-                  <img src="imagenes/basico/logo MetaList-2.png" alt="Logo MetaList 2" width="200px">
+                  <img src="imagenes/basico/logo_MetaList-2.png" alt="logo_MetaList 2" width="200px">
                 </a>
               </h1>
               <p>
@@ -870,6 +870,24 @@
       </div>
     </div>
   </footer><!-- End Footer -->
+
+  <!-- Alerts -->
+  <div id="alertTemplate">
+    <button class="btn btn-primary d-none" id="alertStart" type="button" data-bs-toggle="offcanvas" data-bs-target="#alertBack" aria-controls="alertBack"></button>
+
+    <div class="offcanvas offcanvas-top m-3 rounded shadow" tabindex="-1" id="alertBack" aria-labelledby="alertBackLabel"> <!-- bg-success -->
+      <div class="offcanvas-header">
+        
+        <h5 class="offcanvas-title text-white me-3 fs-6" id="alertBackLabel">
+          <i class="bi align-middle me-2" id="alertIcon"></i> <!-- bi-check-circle-fill -->
+          <span id="alertText"><!-- ¡Felicidades! Ya eres un miembro oficial de MetaList. Inicia sesión con tu correo y tu contraseña --></span>
+        </h5>
+
+        <button type="button" class="btn-close bg-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+    </div>
+
+  </div>
 
   <div id="preloader"></div>
   <a href="index.html#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
