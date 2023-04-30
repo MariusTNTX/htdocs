@@ -192,7 +192,7 @@ botonVerificar1.addEventListener("click", async ()=>{
   let nombreFoto = null, fd;
   if(foto.files.length>0){
     fd = new FormData(regForm);
-    nombreFoto = 'D:/MetaListStorage/userProfilePictures/'+new Date().getTime()+new Date().getMilliseconds()+foto.files[0].name.substring(foto.files[0].name.lastIndexOf("."));
+    nombreFoto = new Date().getTime()+new Date().getMilliseconds()+foto.files[0].name.substring(foto.files[0].name.lastIndexOf("."));
   }
   // -- Se incluye el usuario provisional si no existe en la base de datos, si existe se actualizan los datos
   let data = await list("usuarios",true,["emailUsuario",correo.value]);

@@ -4,6 +4,7 @@
 	$dbpass="admin";
 	$dbname="MetaList";
 	$apikey="TheBig4000MetaListMariusTNTX";
+	$metaliststorage="http://localhost/MetaList/MetaListStorage/userProfilePictures/";
 	
 
 	$filtros=array(

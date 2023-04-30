@@ -264,7 +264,7 @@ if(isset($_GET['key'])){
       } else if(isset($_REQUEST['setFormData'])){
         // S E T  F O R M  D A T A
         $elemento = $_REQUEST['setFormData'];
-        $nombreFoto = $_REQUEST['name'];
+        $nombreFoto = $metaliststorage.$_REQUEST['name'];
         $email = $_REQUEST['id'];
         $data = [array("elemento"=>$elemento, "nombreFoto"=>$nombreFoto, "email"=>$email, "update"=>"UPDATE USUARIOS SET Foto = '".$nombreFoto."' WHERE Email LIKE '".$email."'","archivos"=>$_FILES)];
         if($elemento=='usuarios' && count($_FILES)>0){
@@ -279,7 +279,7 @@ if(isset($_GET['key'])){
       } else if(isset($_REQUEST['replaceFormData'])){
         // R E P L A C E  F O R M  D A T A
         $elemento = $_REQUEST['replaceFormData'];
-        $nombreFoto = $_REQUEST['name'];
+        $nombreFoto = $metaliststorage.$_REQUEST['name'];
         $email = $_REQUEST['id'];
         $data = [array("elemento"=>$elemento, "nombreFotoNueva"=>$nombreFoto, "email"=>$email, "archivos"=>$_FILES)];
         if($elemento=='usuarios' && count($email)>0 && count($_FILES)>0){
@@ -324,6 +324,21 @@ if(isset($_GET['key'])){
         $code = $_REQUEST['code'];
         $data = [array("codigo"=>$code, "email"=>$email)];
         if(count($code)>0 && count($email)>0) sendVerifyEmail($email,$code);
+        header("Content-type: application/json; charset=utf-8");
+        echo json_encode($data);
+      } else if(isset($_REQUEST['checkPassword'])){
+        // C H E C K   P A S S W O R D
+        $email = $_REQUEST['email'];
+        $pass = $_REQUEST['checkPassword'];
+        $data = [array("pass"=>$pass, "email"=>$email, "verify"=>false, "coincidence"=>true)];
+        $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
+        $resp = mysqli_query($c1,"SELECT passusu FROM USUARIOS WHERE Email LIKE '".$email."'");
+        $hash = mysqli_fetch_all($resp,MYSQLI_ASSOC);
+        if(count($hash)==1){
+          $hash = $hash[0]['passusu'];
+          if(password_verify($pass,$hash)) $data[0]["verify"] = true;
+        } else $data[0]["coincidence"] = false;
+        mysqli_close($c1);
         header("Content-type: application/json; charset=utf-8");
         echo json_encode($data);
       } else {

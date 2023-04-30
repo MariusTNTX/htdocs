@@ -59,6 +59,8 @@
 
 /* Color Hover Menú Desplegable */
 .navbar-mobile li:hover>a {color: #fff}
+/* Posición Correjida de los Dropdown */
+.navbar .dropdown ul{left: 4px}
 
 /* Botón Rojo Estándar */
 div.more{padding-top: 20px}
@@ -311,7 +313,8 @@ div.less{padding-top: 20px}
   background: #dc210e;
   border-color: #dc210e;
 }
-.dropdown-menu-end{min-width: 15rem}
+form.dropdown-menu-end{min-width: 16rem}
+#loginForm input{font-size: .8rem}
 .login form button{
   background: #dc210e;
   border-color: #dc210e;
@@ -320,6 +323,11 @@ div.less{padding-top: 20px}
 .login form button:hover, .login form button:active, .login form .btn.show{
   background: #ee371d;
   border-color: #ee371d;
+}
+#userImgDrop{transform: translateY(-44px)}
+#userImgDrop img{
+  max-width: 50px;
+  max-height: 50px;
 }
 
 /* Registro */
@@ -408,6 +416,7 @@ footer input{
 
 /* ADMINISTRACIÓN */
 .bg-red{background-color: #dc210e;}
+.text-red{color: #dc210e;}
 
 /* ALERT TEMPLATE */
 #alertTemplate #alertBack{height: fit-content}

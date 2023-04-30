@@ -138,3 +138,18 @@ async function sendVerifyEmail(email, code, awt){
   if(awt) return response;
   return Promise.resolve(response);
 }
+
+// CHECK_PASSWORD: FUNCIÓN VERIFICAR CONTRASEÑAS A TRAVÉS DE LA API
+async function checkPassword(email, pass, awt){
+  pass = encodeURI(pass);
+  console.log(`http://${root}/MetaList/php/api.php?key=${key()}&checkPassword=${pass}&email=${email}`);
+  //Se obtiene el JSON de resultados:
+  let response = await fetch(`http://${root}/MetaList/php/api.php?key=${key()}&checkPassword=${pass}&email=${email}`,{
+    method: 'GET',
+    headers: {'Content-Type': 'application/json'}
+  });
+  response = await response.json();
+  console.log(response);
+  if(awt) return response;
+  return Promise.resolve(response);
+}
