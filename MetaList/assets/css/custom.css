@@ -425,3 +425,4 @@ footer input{
   min-width: 16px; 
   max-width: 16px;
 }
+#alertTemplate #alertInput{max-width: 300px;}

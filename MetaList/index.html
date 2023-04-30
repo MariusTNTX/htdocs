@@ -126,7 +126,10 @@
               <i id="loginPassEye" class="bi bi-eye-fill position-absolute top-50 end-0 translate-middle-y me-2"></i>
             </div>
           </div>
-          <div class="text-center"><button type="submit" class="btn btn-primary" id="loginButton">Iniciar Sesión</button></div>
+          <div class="text-center mb-2"><button type="submit" class="btn btn-primary" id="loginButton">Iniciar Sesión</button></div>
+          <div class="mb-3 text-center">
+            <a href="#" id="forgPass">He olvidado mi contraseña</a>
+          </div>
           <hr class="mt-4">
           <div id="regist" class="text-center">
             <label for="regist" class="form-label">¿No tienes cuenta?</label>
@@ -877,18 +880,25 @@
 
   <!-- Alerts -->
   <div id="alertTemplate">
+
     <button class="btn btn-primary d-none" id="alertStart" type="button" data-bs-toggle="offcanvas" data-bs-target="#alertBack" aria-controls="alertBack"></button>
-
-    <div class="offcanvas offcanvas-top m-3 rounded shadow" tabindex="-1" id="alertBack" aria-labelledby="alertBackLabel"> <!-- bg-success -->
+    <div class="offcanvas offcanvas-top bg-dark m-3 rounded shadow" tabindex="-1" id="alertBack" data-bs-scroll="true" data-bs-backdrop="false" aria-labelledby="alertBackLabel">
       <div class="offcanvas-header">
-        
         <h5 class="offcanvas-title text-white me-3 fs-6" id="alertBackLabel">
-          <i class="bi align-middle me-2" id="alertIcon"></i> <!-- bi-check-circle-fill -->
-          <span id="alertText"><!-- ¡Felicidades! Ya eres un miembro oficial de MetaList. Inicia sesión con tu correo y tu contraseña --></span>
+          <i class="bi bi-question-diamond-fill align-middle me-2" id="alertIcon"></i>
+          <span id="alertText">Texto erergre gteg tg tr gtg tgt gggfgfhgf</span>
         </h5>
-
         <button type="button" class="btn-close bg-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
+      <form class="offcanvas-body pt-0">
+        <div class="mb-3 mt-1">
+          <input type="text" class="form-control mx-auto" id="alertInput" placeholder="Correo Electrónico" required>
+        </div>
+        <div class="text-end">
+          <div class="less p-0 d-inline-block"><button class="btn btn-secondary" id="alertAcept">Cancelar</button></div>
+          <div class="more p-0 d-inline-block ms-1"><button class="btn btn-primary" id="alertCancel">Aceptar</button></div>
+        </div>
+      </form>
     </div>
 
   </div>
@@ -911,6 +921,8 @@
   <script src="js/api.js"></script>
   <script src="js/util.js"></script>
   <script src="js/login.js"></script>
+
+  <!-- <script>document.getElementById("alertStart").dispatchEvent(new Event("click"))</script> -->
 
 </body>
 
