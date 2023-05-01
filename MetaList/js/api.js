@@ -153,3 +153,17 @@ async function checkPassword(email, pass, awt){
   if(awt) return response;
   return Promise.resolve(response);
 }
+
+// SEND_NEW_PASS: FUNCIÓN ENVIAR NUEVA CONTRASEÑA A TRAVÉS DE LA API
+async function sendNewPass(email, awt){
+  console.log(`http://${root}/MetaList/php/api.php?key=${key()}&sendNewPass=${email}`);
+  //Se obtiene el JSON de resultados:
+  let response = await fetch(`http://${root}/MetaList/php/api.php?key=${key()}&sendNewPass=${email}`,{
+    method: 'GET',
+    headers: {'Content-Type': 'application/json'}
+  });
+  response = await response.json();
+  console.log(response);
+  if(awt) return response;
+  return Promise.resolve(response);
+}

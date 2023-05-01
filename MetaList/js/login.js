@@ -29,8 +29,8 @@ function addForgPass(forgPass){
     showInput("WARNING","Para poder acceder a tu cuenta debes recibir tu nueva contraseña provisional. Indica tu dirección de correo electrónico:","Correo Electrónico",(input)=>{
       showConfirm("WARNING","¿Deseas sustituir tu contraseña actual por la nueva contraseña que recibirás al email indicado ("+input+")?", async (input2)=>{
         showAlert("INFO","En breves momentos recibirás tu nueva contraseña en la dirección de correo indicada. Podrás cambiarla en tu perfil de usuario cuando inicies sesión");
-        /* await sendNewPass(); */
-        console.log("Email: "+input2);
+        let result = await sendNewPass(input2,true);
+        console.log(result);
       }, input);
     });
   });
