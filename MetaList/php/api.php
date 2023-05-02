@@ -264,13 +264,14 @@ if(isset($_GET['key'])){
       } else if(isset($_REQUEST['setFormData'])){
         // S E T  F O R M  D A T A
         $elemento = $_REQUEST['setFormData'];
-        $nombreFoto = $metaliststorage.$_REQUEST['name'];
+        $nombreFotoLocal = $metaliststoragelocal.$_REQUEST['name'];
+        $nombreFotoRemota = $metaliststorageremote.$_REQUEST['name'];
         $email = $_REQUEST['id'];
-        $data = [array("elemento"=>$elemento, "nombreFoto"=>$nombreFoto, "email"=>$email, "update"=>"UPDATE USUARIOS SET Foto = '".$nombreFoto."' WHERE Email LIKE '".$email."'","archivos"=>$_FILES)];
+        $data = [array("elemento"=>$elemento, "nombreFotoLocal"=>$nombreFotoLocal, "nombreFotoRemota"=>$nombreFotoRemota, "email"=>$email, "update"=>"UPDATE USUARIOS SET Foto = '".$nombreFoto."' WHERE Email LIKE '".$email."'","archivos"=>$_FILES)];
         if($elemento=='usuarios' && count($_FILES)>0){
-          move_uploaded_file($_FILES['foto']['tmp_name'],$nombreFoto);
+          move_uploaded_file($_FILES['foto']['tmp_name'],$nombreFotoLocal);
           $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
-          mysqli_query($c1,"UPDATE USUARIOS SET Foto = '".$nombreFoto."' WHERE Email LIKE '".$email."'");
+          mysqli_query($c1,"UPDATE USUARIOS SET Foto = '".$nombreFotoRemota."' WHERE Email LIKE '".$email."'");
           mysqli_close($c1);
         }
         header("Content-type: application/json; charset=utf-8");
@@ -279,22 +280,23 @@ if(isset($_GET['key'])){
       } else if(isset($_REQUEST['replaceFormData'])){
         // R E P L A C E  F O R M  D A T A
         $elemento = $_REQUEST['replaceFormData'];
-        $nombreFoto = $metaliststorage.$_REQUEST['name'];
+        $nombreFotoLocal = $metaliststoragelocal.$_REQUEST['name'];
+        $nombreFotoRemota = $metaliststorageremote.$_REQUEST['name'];
         $email = $_REQUEST['id'];
-        $data = [array("elemento"=>$elemento, "nombreFotoNueva"=>$nombreFoto, "email"=>$email, "archivos"=>$_FILES)];
+        $data = [array("elemento"=>$elemento, "nombreFotoLocal"=>$nombreFotoLocal, "nombreFotoRemota"=>$nombreFotoRemota, "email"=>$email, "archivos"=>$_FILES)];
         if($elemento=='usuarios' && count($email)>0 && count($_FILES)>0){
           //Se sube la nueva foto
-          move_uploaded_file($_FILES['foto']['tmp_name'],$nombreFoto); 
+          move_uploaded_file($_FILES['foto']['tmp_name'],$nombreFotoLocal); 
           //Se obtiene el nombre de la foto anterior
           $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
           $resp = mysqli_query($c1,"SELECT foto FROM USUARIOS WHERE Email LIKE '".$email."'");
-          $nombreFoto2 = mysqli_fetch_all($resp,MYSQLI_ASSOC)[0]['foto'];
-          $data['nombreFotoAnterior'] = $nombreFoto2;
+          $nombreFotoRemota2 = mysqli_fetch_all($resp,MYSQLI_ASSOC)[0]['foto'];
+          $data['nombreFotoRemotaAnterior'] = $nombreFotoRemota2;
           //Se actualiza la foto en la base de datos
-          mysqli_query($c1,"UPDATE USUARIOS SET Foto = '".$nombreFoto."' WHERE Email LIKE '".$email."'");
+          mysqli_query($c1,"UPDATE USUARIOS SET Foto = '".$nombreFotoRemota."' WHERE Email LIKE '".$email."'");
           mysqli_close($c1);
           //Se elimina la foto anterior de MetaListStorage
-          unlink($nombreFoto2);
+          unlink($nombreFotoLocal2);
         }
         header("Content-type: application/json; charset=utf-8");
         echo json_encode($data);
@@ -307,13 +309,14 @@ if(isset($_GET['key'])){
           //Se obtiene el nombre de la foto anterior
           $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
           $resp = mysqli_query($c1,"SELECT foto FROM USUARIOS WHERE Email LIKE '".$email."'");
-          $nombreFoto = mysqli_fetch_all($resp,MYSQLI_ASSOC)[0]['foto'];
-          $data['nombreFotoEliminada'] = $nombreFoto;
+          $nombreFotoRemota = mysqli_fetch_all($resp,MYSQLI_ASSOC)[0]['foto'];
+          $nombreFotoLocal = $metaliststoragelocal.substr($nombreFotoRemota, strrpos($nombreFotoRemota,"/")+1);
+          $data['nombreFotoEliminada'] = $nombreFotoLocal;
           //Se elimina la foto de la base de datos
           mysqli_query($c1,"UPDATE USUARIOS SET Foto = NULL WHERE Email LIKE '".$email."'");
           mysqli_close($c1);
           //Se elimina la foto anterior de MetaListStorage
-          unlink($nombreFoto);
+          unlink($nombreFotoLocal);
         }
         header("Content-type: application/json; charset=utf-8");
         echo json_encode($data);

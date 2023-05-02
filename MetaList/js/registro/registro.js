@@ -1,4 +1,7 @@
 /* Variables DOM */
+let loginFormDrop = document.getElementById("loginForm");
+let loginFormButton = document.getElementById("loginFormButton");
+let toLoginForm = document.getElementById("toLoginForm");
 let regForm  = document.getElementById("regForm");
 let usuario = document.getElementById("usuario");
 let correo = document.getElementById("correo");
@@ -16,6 +19,7 @@ let check1 = document.getElementById("check1");
 let check2 = document.getElementById("check2");
 let botonVerificar1 = document.getElementById("botonVerificar1");
 let botonVerificar2 = document.getElementById("botonVerificar2");
+let modalClose = document.getElementById("modalClose");
 let contador = document.getElementById("contador");
 let codigoVerificacion = document.getElementById("codigoVerificacion");
 let verificarCuenta = document.getElementById("verificarCuenta");
@@ -34,10 +38,11 @@ let criterios = [[exprPass1,crt],[exprPass2,may],[exprPass3,min],[exprPass4,num]
 /* Estado de Validación General */
 let validacion = {user: false, email: false, pass1: false, pass2: false, terms: false};
 let codigo;
+let enVerific = false;
 
 /* Eventos Mostrar/Ocultar Contraseña */
 addShowPassSwitch(loginPassEye1, pass1);
-addShowPassSwitch(loginPassEye2, pass2);
+/* addShowPassSwitch(loginPassEye2, pass2); */
 
 function showInvalidNumber(elm, num){
   let id = "val"+elm.id[0].toUpperCase()+elm.id.substring(1);
@@ -46,6 +51,13 @@ function showInvalidNumber(elm, num){
   elm.classList.add("is-invalid");
   elm.classList.remove("border-success");
 }
+
+toLoginForm.addEventListener("click",()=>{
+  let id = setInterval(()=>{
+    loginFormButton.dispatchEvent(new Event("click"));
+    clearInterval(id);
+  },500);
+});
 
 /* Validacion usuario */
 usuario.addEventListener("blur",()=>{
@@ -117,14 +129,14 @@ function validPassRepeat(){
     pass2.classList.remove("border-danger");
     pass2.classList.add("border-success");
     loginPassEye1.classList.add("text-success");
-    loginPassEye2.classList.add("text-success");
+    /* loginPassEye2.classList.add("text-success"); */
     validacion.pass2=true;
     validar();
   } else {
     pass1.classList.remove("border-success");
     pass2.classList.remove("border-success");
     loginPassEye1.classList.remove("text-success");
-    loginPassEye2.classList.remove("text-success");
+    /* loginPassEye2.classList.remove("text-success"); */
     if(!pass2.hasAttribute("disabled")) pass2.classList.add("border-danger");
     validacion.pass2=false;
     validar();
@@ -133,8 +145,7 @@ function validPassRepeat(){
 
 /* Validación Foto Usuario */
 foto.addEventListener("change",()=>{
-  console.log("change")
-  let ext = (foto.files.length>0) ? foto.files[0].name.substring(foto.files[0].name.lastIndexOf(".")+1) : "";
+  let ext = (foto.files[0]) ? foto.files[0].name.substring(foto.files[0].name.lastIndexOf(".")+1) : "";
   if(foto.files.length>0 && !expresionFoto.test(ext)){ //Si hay una foto seleccionada y su formato no es correcto se muestra en rojo con el mensaje de error
     showInvalidNumber(foto, 1);
   } else if(foto.files.length>0 && expresionFoto.test(ext)){ //Si hay una foto seleccionada y su formato es correcto se quitan los mensajes y se muestra en verde
@@ -167,6 +178,10 @@ function validar(){
 }
 
 function iniciarTemp(){
+  enVerific = true;
+  contador.style.color="inherit";
+  codigoVerificacion.removeAttribute("disabled");
+  verificarCuenta.removeAttribute("disabled");
   let endTime = new Date().getTime()+1000*60*30, curTime, mins, segs;
   let intId = setInterval(()=>{
     curTime = endTime - new Date().getTime();
@@ -175,11 +190,11 @@ function iniciarTemp(){
     mins = (mins<10) ? "0"+mins : mins;
     segs = (segs<10) ? "0"+segs : segs;
     contador.innerHTML = mins+":"+segs;
-    if(curTime<=0){
+    if(curTime<=0 || !enVerific){
       contador.style.color="#dc210e";
       codigoVerificacion.setAttribute("disabled","true");
       verificarCuenta.setAttribute("disabled","true");
-      alert("Se ha superado el tiempo límite para la verificación de tu cuenta. Regístrate de nuevo")
+      if(curTime<=0) showAlert("ERROR","Se ha superado el tiempo límite para la verificación de tu cuenta. Regístrate de nuevo")
       clearInterval(intId);
     }
   },100);
@@ -242,3 +257,8 @@ verificarCuenta.addEventListener("click", async ()=>{
 });
 
 /* Cancelar Verificación */
+cancelarProceso.addEventListener("click",()=>{
+  enVerific=false; //Detener Temporizador
+  botonVerificar1.textContent = "Intentar de Nuevo"; //Cambiar Botón
+  modalClose.dispatchEvent(new Event("click")); //Cerrar Modal
+});
