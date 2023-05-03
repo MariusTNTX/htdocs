@@ -31,7 +31,6 @@
     $mensaje .= "--Separador_de_partes\r\n"; */
 
     mail($destinatario,$asunto,$mensaje,$encabezados) or die("No se ha podido enviar el correo");
-    //echo "<h1 style='color:green'>Correo enviado correctamente</h1>";
   }
   
   function generateNewPass(){
@@ -77,6 +76,5 @@
     $mensaje .= "--Separador_de_partes\r\n"; */
 
     mail($destinatario,$asunto,$mensaje,$encabezados) or die("No se ha podido enviar el correo");
-    //echo "<h1 style='color:green'>Correo enviado correctamente</h1>";
   }
 ?>

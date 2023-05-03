@@ -169,10 +169,10 @@
             <!-- Imagen, Usuario y Correo -->
             <div class="row justify-content-center align-items-center position-relative">
               <!-- Fecha -->
-              <p class="text-end fst-italic fw-4 position-absolute top-0 start-50 translate-middle pb-4">Desde: <span id="fechaUsuario" class="text-dark">16/04/2023</span></p>
+              <p class="text-end fst-italic fw-4 position-absolute top-0 start-50 translate-middle pb-4">Desde: <span id="fechaUsuario" class="text-dark"></span></p>
               <!-- Imagen -->
               <div class="col-10 col-sm-8 col-md-4 mt-5 mt-md-4 p-0 position-relative">
-                <img class="w-100 rounded-5 shadow" src="./imagenes/usuarios/ElUroboro77.webp" alt="Foto de perfil del usuario">
+                <img class="w-100 rounded-5 shadow" id="fotoUsuario" src="" alt="Foto de perfil del usuario">
                 <span class="editPen position-absolute top-0 start-100 translate-middle text-white p-2 rounded-5 shadow">
                   <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
                     <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
@@ -185,16 +185,21 @@
                   <!-- Usuario -->
                   <div class="col-12 text-center">
                     <div class="mb-3 position-relative">
-                      <input type="text" class="form-control fs-2 text-center shadow-sm" value="MariusTNTX" id="nombreUsuario">
+                      <input type="text" class="form-control fs-2 text-center shadow-sm"id="nombreUsuario">
                       <span class="editPen position-absolute top-0 start-100 translate-middle text-white p-2 rounded-5 shadow">
                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
                           <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
                         </svg>
                       </span>
+                      <div class="invalid-feedback ms-2">
+                        <span class="valNombreUsuario d-none" id="valNombreUsuario1">Debes indicar un nombre de usuario</span>
+                        <span class="valNombreUsuario d-none" id="valNombreUsuario2">El nombre debe contener al menos 3 caracteres</span>
+                        <span class="valNombreUsuario d-none" id="valNombreUsuario3">El nombre contiene espacios o caracteres especiales no permitidos</span>
+                      </div>
                     </div>
                   </div>
                   <!-- Correo -->
-                  <div class="col-12 text-center"><p class="fs-6">molinamario.msc@gmail.com</p></div>
+                  <div class="col-12 text-center"><p class="fs-6" id="emailUsuario"></p></div>
                 </div>
               </div>
             </div>
@@ -207,25 +212,29 @@
                 <div class="col-12 col-md-6 mt-3">
                   <label for="contraOriginal" class="form-label">Contraseña Original</label>
                   <div class="mb-3 position-relative">
-                    <input type="password" class="form-control fs-6 text-center shadow-sm" value="micontraseña" id="contraOriginal">
-                    <i id="loginPassEye" class="bi bi-eye-fill position-absolute top-50 end-0 translate-middle-y me-2"></i>
+                    <input type="password" class="form-control fs-6 text-center shadow-sm" id="contraOriginal">
+                    <i id="loginPassEye1" class="bi bi-eye-fill position-absolute top-50 end-0 translate-middle-y me-2"></i>
+                    <div class="invalid-feedback ms-2">
+                      <span class="valContraOriginal d-none" id="valContraOriginal1">Debes indicar tu contraseña actual</span>
+                      <span class="valContraOriginal d-none" id="valContraOriginal2">La contraseña es incorrecta, inténtalo de nuevo</span>
+                    </div>
                   </div>
                 </div>
               </div>
               <!-- Contraseña Nueva -->
               <div class="col-12 col-md-6 mt-3">
-                <label for="contraNueva" class="form-label">Contraseña Nueva</label>
+                <label for="contraNueva1" class="form-label">Contraseña Nueva</label>
                 <div class="mb-3 position-relative">
-                  <input type="password" class="form-control fs-6 text-center shadow-sm" id="contraNueva">
-                  <i id="loginPassEye" class="bi bi-eye-fill position-absolute top-50 end-0 translate-middle-y me-2"></i>
+                  <input type="password" class="form-control fs-6 text-center shadow-sm" id="contraNueva1" disabled>
+                  <i id="loginPassEye2" class="bi bi-eye-fill position-absolute top-50 end-0 translate-middle-y me-2"></i>
                 </div>
               </div>
               <!-- Repetir Contraseña Nueva -->
               <div class="col-12 col-md-6 mt-3">
                 <label for="contraNueva2" class="form-label">Repetir Contraseña Nueva</label>
                 <div class="mb-3 position-relative">
-                  <input type="password" class="form-control fs-6 text-center shadow-sm" id="contraNueva2">
-                  <i id="loginPassEye" class="bi bi-eye-fill position-absolute top-50 end-0 translate-middle-y me-2"></i>
+                  <input type="password" class="form-control fs-6 text-center shadow-sm" id="contraNueva2" disabled>
+                  <!-- <i id="loginPassEye" class="bi bi-eye-fill position-absolute top-50 end-0 translate-middle-y me-2"></i> -->
                 </div>
               </div>
             </div>
@@ -234,25 +243,24 @@
               <div class="col-12 form-group fw-lighter">
                 <div class="text-center mb-2">La contraseña debe contener al menos:</div>
                 <ul>
-                  <li><i class="bi bi-check2-circle"></i>10 Caracteres</li>
-                  <li><i class="bi bi-check2-circle"></i>1 Mayúscula</li>
-                  <li><i class="bi bi-check2-circle"></i>1 Minúscula</li>
-                  <li><i class="bi bi-check2-circle"></i>1 Número</li>
-                  <li><i class="bi bi-check2-circle"></i>1 Caracter Especial</li>
+                  <li><i class="bi bi-check2-circle" id="crt"></i>10 Caracteres</li>
+                  <li><i class="bi bi-check2-circle" id="may"></i>1 Mayúscula</li>
+                  <li><i class="bi bi-check2-circle" id="min"></i>1 Minúscula</li>
+                  <li><i class="bi bi-check2-circle" id="num"></i>1 Número</li>
+                  <li><i class="bi bi-check2-circle" id="esp"></i>1 Caracter Especial</li>
                 </ul>
               </div>
             </div>
             <!-- Botón Verificar Cuenta -->
             <div class="row">
               <div class="col-12 text-center more pt-0">
-                <button type="button" class="shadow">Cambiar Contraseña</button>
-                <button type="button" class="d-none"></button>
+                <button type="button" class="btn shadow" id="cambiarPass" disabled>Cambiar Contraseña</button>
               </div>
             </div>
             <!-- Opciones de Ayuda -->
             <div class="row mt-4">
-              <div class="col-12 col-md-6 text-center my-2"><a href="#">He olvidado mi contraseña</a></div>
-              <div class="col-12 col-md-6 text-center my-2"><a href="#">Contactar con un administrador</a></div>
+              <div class="col-12 col-md-6 text-center my-2"><a href="#" id="forgPass">He olvidado mi contraseña</a></div>
+              <div class="col-12 col-md-6 text-center my-2"><a href="index.html#contact">Contactar con un administrador</a></div>
             </div>
           </form>
         </div>
@@ -368,6 +376,11 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+
+  <script src="js/api.js"></script>
+  <script src="js/util.js"></script>
+  <script src="js/login.js"></script>
+  <script src="js/perfil.js"></script>
 
 </body>
 

@@ -42,7 +42,6 @@ let enVerific = false;
 
 /* Eventos Mostrar/Ocultar Contraseña */
 addShowPassSwitch(loginPassEye1, pass1);
-/* addShowPassSwitch(loginPassEye2, pass2); */
 
 function showInvalidNumber(elm, num){
   let id = "val"+elm.id[0].toUpperCase()+elm.id.substring(1);
