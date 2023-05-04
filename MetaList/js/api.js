@@ -154,6 +154,22 @@ async function checkPassword(email, pass, awt){
   return Promise.resolve(response);
 }
 
+// CHANGE_PASSWORD: FUNCIÓN VERIFICAR CONTRASEÑAS A TRAVÉS DE LA API
+async function changePassword(email, oldPass, newPass, awt){
+  oldPass = encodeURI(oldPass);
+  newPass = encodeURI(newPass);
+  console.log(`http://${root}/MetaList/php/api.php?key=${key()}&changePassword=${email}&oldPass=${oldPass}&newPass=${newPass}`);
+  //Se obtiene el JSON de resultados:
+  let response = await fetch(`http://${root}/MetaList/php/api.php?key=${key()}&changePassword=${email}&oldPass=${oldPass}&newPass=${newPass}`,{
+    method: 'GET',
+    headers: {'Content-Type': 'application/json'}
+  });
+  response = await response.json();
+  console.log(response);
+  if(awt) return response;
+  return Promise.resolve(response);
+}
+
 // SEND_NEW_PASS: FUNCIÓN ENVIAR NUEVA CONTRASEÑA A TRAVÉS DE LA API
 async function sendNewPass(email, awt){
   console.log(`http://${root}/MetaList/php/api.php?key=${key()}&sendNewPass=${email}`);

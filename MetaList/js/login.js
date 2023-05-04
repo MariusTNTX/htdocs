@@ -67,15 +67,18 @@ async function login(email="", pass=""){
 }
 
 function logout(){
-  console.log("logout");
   sessionStorage.removeItem("email");
   sessionStorage.removeItem("usuario");
   sessionStorage.removeItem("foto");
   sessionStorage.removeItem("permisos");
   sessionStorage.removeItem("notificaciones");
   sessionStorage.removeItem("fecha");
-  showUserOptions(false);
-  showAlert("INFO","Se ha cerrado la sesión");
+  if(location.href.includes("perfil.html")) location.href="index.html";
+  else {
+    console.log("logout");
+    showUserOptions(false);
+    showAlert("INFO","Se ha cerrado la sesión");
+  }
 }
 
 function addLoginEvent(loginButton){

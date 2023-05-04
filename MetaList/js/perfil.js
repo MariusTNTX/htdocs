@@ -25,6 +25,8 @@ let exprPass5 = new RegExp(/[ºª!|"@·#$~%€&¬()=?'¿¡`^\[\+\*\]´¨{}<>,;.:
 let expresionFoto = new RegExp(/(pjp)|(jpg)|(pjpeg)|(jpeg)|(jfif)|(png)|(webp)/);
 /* Criterios contraseña */
 let criterios = [[exprPass1,crt],[exprPass2,may],[exprPass3,min],[exprPass4,num],[exprPass5,esp]];
+/* Estado de Validación General */
+let validacion = {pass0: false, pass1: false, pass2: false};
 
 /* Fecha */
 let fec = new Date(sessionStorage.getItem("fecha"));
@@ -34,7 +36,7 @@ fotoUsuario.src = sessionStorage.getItem("foto");
 /* Usuario */
 nombreUsuario.value = sessionStorage.getItem("usuario");
 /* Email */
-emailUsuario.value = sessionStorage.getItem("email");
+emailUsuario.textContent = sessionStorage.getItem("email");
 
 //---------
 
@@ -46,8 +48,17 @@ function showInvalidNumber(elm, num){
   let id = "val"+elm.id[0].toUpperCase()+elm.id.substring(1);
   for(let frase of document.querySelectorAll("."+id)) frase.classList.add("d-none");
   document.getElementById(id+num).classList.remove("d-none");
-  elm.classList.add("is-invalid");
+  elm.classList.add("border-danger");
   elm.classList.remove("border-success");
+  elm.parentElement.classList.replace("mb-3","mb-5");
+}
+
+function hideInvalidNumbers(elm){
+  let id = "val"+elm.id[0].toUpperCase()+elm.id.substring(1);
+  for(let frase of document.querySelectorAll("."+id)) frase.classList.add("d-none");
+  elm.classList.remove("border-danger");
+  elm.classList.add("border-success");
+  elm.parentElement.classList.replace("mb-5","mb-3");
 }
 
 /* Validacion usuario */
@@ -57,33 +68,37 @@ nombreUsuario.addEventListener("blur",()=>{
   else if(nombreUsuario.value.length<3) showInvalidNumber(nombreUsuario,2);
   else if(!expresionUsuario.test(nombreUsuario.value)) showInvalidNumber(nombreUsuario,3);
   else {
-    nombreUsuario.classList.remove("is-invalid");
+    nombreUsuario.classList.remove("border-danger");
     nombreUsuario.classList.add("border-success");
   }
 });
 
 /* Validación Contraseña Original */
 contraOriginal.addEventListener("blur", async ()=>{
+  validacion.pass0 = false;
   if(contraOriginal.value.length>0){
     let passVerif = await checkPassword(sessionStorage.getItem("email"), contraOriginal.value, true);
     if(passVerif[0].coincidence && passVerif[0].verify){
-      contraOriginal.classList.remove("is-invalid");
-      contraOriginal.classList.add("border-success");
-      contraOriginal.classList.remove("border-danger");
+      hideInvalidNumbers(contraOriginal);
       contraNueva1.removeAttribute("disabled");
+      if(validacion.pass1) contraNueva2.removeAttribute("disabled");
+      loginPassEye2.classList.remove("d-none");
       loginPassEye1.classList.add("text-success");
+      validacion.pass0 = true;
     } else {
       contraNueva1.setAttribute("disabled","true");
-      contraNueva1.classList.remove("border-success");
-      contraOriginal.classList.add("border-danger");
+      contraNueva2.setAttribute("disabled","true");
+      loginPassEye2.classList.add("d-none");
       loginPassEye1.classList.remove("text-success");
       showInvalidNumber(contraOriginal,2);
     }
   } else showInvalidNumber(contraOriginal,1);
+  validar();
 });
 
 /* Validación Nueva Contraseña 1 */
 contraNueva1.addEventListener("keyup",()=>{
+  validacion.pass1 = false;
   let full = true;
   for(let criterio of criterios){
     if(criterio[0].test(contraNueva1.value)) criterio[1].classList.add("text-success");
@@ -92,15 +107,20 @@ contraNueva1.addEventListener("keyup",()=>{
       full = false;
     }
   }
-  if(full){
+  if(full && contraNueva1.value != contraOriginal.value){
+    hideInvalidNumbers(contraNueva1);
     contraNueva2.removeAttribute("disabled");
-    contraNueva1.classList.add("border-success");
-    contraNueva1.classList.remove("border-danger");
+    loginPassEye2.classList.add("text-success");
+    validacion.pass1 = true;
   } else {
     contraNueva2.setAttribute("disabled","true");
     contraNueva1.classList.remove("border-success");
     contraNueva1.classList.add("border-danger");
+    loginPassEye2.classList.remove("text-success");
+    if(contraNueva1.value == contraOriginal.value) showInvalidNumber(contraNueva1,1);
+    else hideInvalidNumbers(contraNueva1);
   }
+  validar();
   validPassRepeat();
 });
 
@@ -109,17 +129,20 @@ contraNueva2.addEventListener("keyup",()=> validPassRepeat());
 
 //Función Validar Coincidencia entre Contraseñas
 function validPassRepeat(){
+  validacion.pass2=false;
   if(contraNueva1.value.length>0 && contraNueva2.value==contraNueva1.value){
-    contraNueva1.classList.add("border-success");
+    /* contraNueva1.classList.add("border-success"); */
     contraNueva2.classList.remove("border-danger");
     contraNueva2.classList.add("border-success");
-    loginPassEye1.classList.add("text-success");
+    /* loginPassEye2.classList.add("text-success"); */
+    validacion.pass2 = true;
   } else {
-    contraNueva1.classList.remove("border-success");
+    /* contraNueva1.classList.remove("border-success"); */
     contraNueva2.classList.remove("border-success");
-    loginPassEye1.classList.remove("text-success");
+    /* loginPassEye2.classList.remove("text-success"); */
     if(!contraNueva2.hasAttribute("disabled")) contraNueva2.classList.add("border-danger");
   }
+  validar();
 }
 
 /* Validación Foto Usuario */
@@ -136,4 +159,19 @@ fotoUsuario.addEventListener("change", async ()=>{
     else await replaceFormData("usuarios",true,fd,nombreFoto,correo.value);
   }
   /* await deleteFormData("usuarios",true,fd,correo.value); */
+});
+
+function validar(){
+  console.log(validacion)
+  if(validacion.pass0 && validacion.pass1 && validacion.pass2){
+    cambiarPass.removeAttribute("disabled");
+  } else cambiarPass.setAttribute("disabled","true");
+}
+
+/* Botón Cambiar Contraseña */
+cambiarPass.addEventListener("click",async ()=>{
+  let response = await changePassword(sessionStorage.getItem("email"),contraOriginal.value,contraNueva1.value,true);
+  console.log(response);
+  if(!response[0].verify) showAlert("ERROR","La contraseña original no es correcta. No se pudieron efectuar los cambios");
+  else showAlert("SUCCESS","Tu contraseña ha sido actualizada correctamente");
 });

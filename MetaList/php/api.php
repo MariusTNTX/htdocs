@@ -344,6 +344,26 @@ if(isset($_GET['key'])){
         mysqli_close($c1);
         header("Content-type: application/json; charset=utf-8");
         echo json_encode($data);
+      } else if(isset($_REQUEST['changePassword'])){
+        // U P D A T E   P A S S W O R D
+        $oldPass = $_REQUEST['oldPass'];
+        $newPass = $_REQUEST['newPass'];
+        $email = $_REQUEST['changePassword'];
+        $data = [array("email"=>$email, "verify"=>false, "coincidence"=>true)];
+        $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
+        $resp = mysqli_query($c1,"SELECT passusu FROM USUARIOS WHERE Email LIKE '".$email."'");
+        $hash = mysqli_fetch_all($resp,MYSQLI_ASSOC);
+        if(count($hash)==1){
+          $hash = $hash[0]['passusu'];
+          if(password_verify($oldPass,$hash)){
+            $data[0]["verify"] = true;
+            $newPass = password_hash($newPass,PASSWORD_DEFAULT);
+            mysqli_query($c1,"UPDATE USUARIOS SET PassUsu = '".$newPass."' WHERE Email LIKE '".$email."'");
+          } 
+        } else $data[0]["coincidence"] = false;
+        mysqli_close($c1);
+        header("Content-type: application/json; charset=utf-8");
+        echo json_encode($data);
       } else if(isset($_REQUEST['sendNewPass'])){
         // S E N D  N E W  P A S S
         include("sendVerifyEmail.php");

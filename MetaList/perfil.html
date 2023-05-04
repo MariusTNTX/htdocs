@@ -111,34 +111,44 @@
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 
-      <div class="dropdown login me-2">
-        <button type="button" class="btn text-white dropdown-toggle py-2 px-3 px-sm-4" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
-          <i class="bi bi-person-fill"></i>Login
+      <div class="dropdown login me-2" id="dropdownLogin">
+        <button type="button" class="btn text-white dropdown-toggle py-2 px-4" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+          <i class="bi bi-person-fill"></i>
+          <span class="d-none d-sm-inline-block" id="userName">Login</span>
         </button>
-        <form class="dropdown-menu dropdown-menu-end p-4 w-50">
+        <form action="" method="get" class="dropdown-menu dropdown-menu-end p-4 w-50" id="loginForm">
           <div class="mb-3">
-            <label for="exampleDropdownFormEmail2" class="form-label">Email</label>
-            <input type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="email@ejemplo.com">
+            <label for="loginEmail" class="form-label">Email</label>
+            <input type="email" class="form-control" id="loginEmail" placeholder="email@ejemplo.com" required>
           </div>
           <div class="mb-3">
-            <label for="exampleDropdownFormPassword2" class="form-label">Contraseña</label>
-            <input type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Contraseña">
-          </div>
-          <div class="mb-3">
-            <div class="form-check">
-              <input type="checkbox" class="form-check-input" id="dropdownCheck2">
-              <label class="form-check-label" for="dropdownCheck2">
-                Recordarme
-              </label>
+            <label for="loginPass" class="form-label">Contraseña</label>
+            <div class="position-relative">
+              <input type="password" class="form-control" id="loginPass" placeholder="Contraseña" required>
+              <i id="loginPassEye" class="bi bi-eye-fill position-absolute top-50 end-0 translate-middle-y me-2"></i>
             </div>
           </div>
-          <div class="text-center"><button type="submit" class="btn btn-primary">Iniciar Sesión</button></div>
+          <div class="text-center mb-2"><button type="submit" class="btn btn-primary" id="loginButton">Iniciar Sesión</button></div>
+          <div class="mb-3 text-center">
+            <a href="#" id="forgPass">He olvidado mi contraseña</a>
+          </div>
           <hr class="mt-4">
           <div id="regist" class="text-center">
             <label for="regist" class="form-label">¿No tienes cuenta?</label>
             <div><a href="./registro.html">Regístrate</a></div>
           </div>
         </form>
+        <!-- <ul class="dropdown-menu dropdown-menu-end" id="userOptions">
+          <li><a class="dropdown-item position-relative" href="perfil.html"><i class="bi bi-person-square me-2 text-primary"></i>Perfil
+            <div class="position-absolute top-100 end-0 mt-2 me-2 shadow-sm rounded" id="userImgDrop">
+              <img src="./imagenes/usuarios/ElUroboro77.webp" class="rounded" id="userImgMini" alt="Foto de Perfil">
+            </div>
+          </a></li>
+          <li><a class="dropdown-item" href="favoritos.html"><i class="bi bi-heart-fill me-2"></i>Favoritos</a></li>
+          <li><a class="dropdown-item" href="recomendaciones.html"><i class="bi bi-star-fill me-2"></i>Recomendaciones</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" id="logOut" href="#"><i class="bi bi-door-closed-fill me-2"></i>Cerrar Sesión</a></li>
+        </ul> -->
       </div>
 
     </div>
@@ -210,11 +220,11 @@
               <div class="row justify-content-center px-0">
                 <!-- Contraseña Original -->
                 <div class="col-12 col-md-6 mt-3">
-                  <label for="contraOriginal" class="form-label">Contraseña Original</label>
+                  <label for="contraOriginal" class="form-label">Contraseña Actual</label>
                   <div class="mb-3 position-relative">
                     <input type="password" class="form-control fs-6 text-center shadow-sm" id="contraOriginal">
                     <i id="loginPassEye1" class="bi bi-eye-fill position-absolute top-50 end-0 translate-middle-y me-2"></i>
-                    <div class="invalid-feedback ms-2">
+                    <div class="position-absolute top-100 start-0 text-danger ms-2 mt-1">
                       <span class="valContraOriginal d-none" id="valContraOriginal1">Debes indicar tu contraseña actual</span>
                       <span class="valContraOriginal d-none" id="valContraOriginal2">La contraseña es incorrecta, inténtalo de nuevo</span>
                     </div>
@@ -226,7 +236,10 @@
                 <label for="contraNueva1" class="form-label">Contraseña Nueva</label>
                 <div class="mb-3 position-relative">
                   <input type="password" class="form-control fs-6 text-center shadow-sm" id="contraNueva1" disabled>
-                  <i id="loginPassEye2" class="bi bi-eye-fill position-absolute top-50 end-0 translate-middle-y me-2"></i>
+                  <i id="loginPassEye2" class="bi bi-eye-fill position-absolute top-50 end-0 translate-middle-y me-2 d-none"></i>
+                  <div class="position-absolute top-100 start-0 text-danger ms-2 mt-1">
+                    <span class="valContraNueva1 d-none" id="valContraNueva11">La nueva contraseña no puede ser igual a la actual</span>
+                  </div>
                 </div>
               </div>
               <!-- Repetir Contraseña Nueva -->
@@ -360,7 +373,8 @@
     </div>
   </footer><!-- End Footer -->
 
-
+  <!-- Alerts -->
+  <div id="alertTemplate"></div>
 
   <div id="preloader"></div>
   <a href="perfil.html#" class="back-to-top d-flex align-items-center justify-content-center"><span class="d-none">.</span><i class="bi bi-arrow-up-short"></i></a>
