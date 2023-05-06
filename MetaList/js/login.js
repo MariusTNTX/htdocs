@@ -1,3 +1,5 @@
+var defaultFoto = "http://localhost/MetaList/imagenes/basico/user_MetaList.png";
+
 function addShowPassSwitch(loginPassEye, loginPass){
   loginPassEye.addEventListener("click",()=>{
     if(/* passView */ loginPassEye.classList.contains("bi-eye-slash-fill")){
@@ -14,7 +16,7 @@ function showUserOptions(show){
   if(show){
     document.getElementById("dropdownLogin").innerHTML = userOptions;
     document.getElementById("userName").textContent = sessionStorage.getItem("usuario");
-    if(sessionStorage.getItem("foto")=="null") document.getElementById("userImgMini").src = "./imagenes/basico/user_MetaList.png";
+    if(sessionStorage.getItem("foto")=="null") document.getElementById("userImgMini").src = defaultFoto;
     else document.getElementById("userImgMini").src = sessionStorage.getItem("foto");
     addLogoutEvent(document.getElementById("logOut"));
   } else {
@@ -50,7 +52,8 @@ async function login(email="", pass=""){
           //Meter datos del usuario en sesión
           sessionStorage.setItem("email",usuario.email);
           sessionStorage.setItem("usuario",usuario.nombre);
-          sessionStorage.setItem("foto",usuario.foto);
+          if(usuario.foto!=null) sessionStorage.setItem("foto",usuario.foto);
+          else sessionStorage.setItem("foto",defaultFoto);
           sessionStorage.setItem("permisos",usuario.permisos);
           sessionStorage.setItem("notificaciones",usuario.notificaciones);
           sessionStorage.setItem("fecha",usuario.fecha);

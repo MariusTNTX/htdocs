@@ -267,7 +267,7 @@ if(isset($_GET['key'])){
         $nombreFotoLocal = $metaliststoragelocal.$_REQUEST['name'];
         $nombreFotoRemota = $metaliststorageremote.$_REQUEST['name'];
         $email = $_REQUEST['id'];
-        $data = [array("elemento"=>$elemento, "nombreFotoLocal"=>$nombreFotoLocal, "nombreFotoRemota"=>$nombreFotoRemota, "email"=>$email, "update"=>"UPDATE USUARIOS SET Foto = '".$nombreFoto."' WHERE Email LIKE '".$email."'","archivos"=>$_FILES)];
+        $data = [array("elemento"=>$elemento, "nombreFotoLocal"=>$nombreFotoLocal, "nombreFotoRemota"=>$nombreFotoRemota, "email"=>$email, "update"=>"UPDATE USUARIOS SET Foto = '".$nombreFotoRemota."' WHERE Email LIKE '".$email."'","archivos"=>$_FILES)];
         if($elemento=='usuarios' && count($_FILES)>0){
           move_uploaded_file($_FILES['foto']['tmp_name'],$nombreFotoLocal);
           $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
@@ -291,7 +291,9 @@ if(isset($_GET['key'])){
           $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
           $resp = mysqli_query($c1,"SELECT foto FROM USUARIOS WHERE Email LIKE '".$email."'");
           $nombreFotoRemota2 = mysqli_fetch_all($resp,MYSQLI_ASSOC)[0]['foto'];
-          $data['nombreFotoRemotaAnterior'] = $nombreFotoRemota2;
+          $data[0]['nombreFotoRemotaAnterior'] = $nombreFotoRemota2;
+          $nombreFotoLocal2 = $metaliststoragelocal.substr($nombreFotoRemota2, strrpos($nombreFotoRemota2,"/")+1);
+          $data[0]['nombreFotoLocalAnterior'] = $nombreFotoLocal2;
           //Se actualiza la foto en la base de datos
           mysqli_query($c1,"UPDATE USUARIOS SET Foto = '".$nombreFotoRemota."' WHERE Email LIKE '".$email."'");
           mysqli_close($c1);
@@ -300,6 +302,7 @@ if(isset($_GET['key'])){
         }
         header("Content-type: application/json; charset=utf-8");
         echo json_encode($data);
+
       } else if(isset($_REQUEST['deleteFormData'])){
         // D E L E T E  F O R M  D A T A
         $elemento = $_REQUEST['deleteFormData'];

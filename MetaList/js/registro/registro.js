@@ -205,8 +205,8 @@ botonVerificar1.addEventListener("click", async ()=>{
   //Se prepara el campo foto si lo hay
   let nombreFoto = null, fd;
   if(foto.files.length>0){
-    fd = new FormData(regForm);
-    nombreFoto = new Date().getTime()+new Date().getMilliseconds()+foto.files[0].name.substring(foto.files[0].name.lastIndexOf("."));
+    fd = new FormData(regForm); //TODO Hacer formulario con input file
+    nombreFoto = ""+new Date().getTime()+new Date().getMilliseconds()+foto.files[0].name.substring(foto.files[0].name.lastIndexOf("."));
   }
   // -- Se incluye el usuario provisional si no existe en la base de datos, si existe se actualizan los datos
   let data = await list("usuarios",true,["emailUsuario",correo.value]);
@@ -231,7 +231,7 @@ botonVerificar1.addEventListener("click", async ()=>{
     }]);
     //Actualización Foto
     if(fd) if(foto.files.length>0) await replaceFormData("usuarios",true,fd,nombreFoto,correo.value);
-    else await deleteFormData("usuarios",true,fd,correo.value);
+    else await deleteFormData("usuarios",true,correo.value);
   } 
   // -- Se genera un codigo en cliente y se envia al servidor para enviar el correo
   codigo = "";

@@ -61,7 +61,7 @@
           <li><a class="nav-link scrollto" href="#services">Services</a></li>
           <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>
           <li><a class="nav-link scrollto" href="#team">Team</a></li> -->
-          <li class="dropdown"><a href="#"><span>Bandas</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href="#" class="px-2 px-lg-1 px-xl-2"><span>Bandas</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="#">Listas Personalizadas</a></li>
               <li><a href="#">Tier Lists</a></li>
@@ -69,35 +69,35 @@
               <li><a href="#">Banda Aleatoria</a></li>
             </ul>
           </li>
-          <li class="dropdown"><a href="#"><span>Albumes</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href="#" class="px-2 px-lg-1 px-xl-2"><span>Albumes</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="./buscadorAvanzado.html">Listas Personalizadas</a></li>
               <li><a href="#">Tier Lists</a></li>
               <li><a href="./album.html">Álbum Aleatorio</a></li>
             </ul>
           </li>
-          <li class="dropdown"><a href="#"><span>Discográficas</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href="#" class="px-2 px-lg-1 px-xl-2"><span>Discográficas</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="#">Listas Personalizadas</a></li>
               <li><a href="#">Playlists Spotify</a></li>
               <li><a href="#">Discográfica Aleatoria</a></li>
             </ul>
           </li>
-          <li class="dropdown"><a href="#"><span>Géneros</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href="#" class="px-2 px-lg-1 px-xl-2"><span>Géneros</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="#">Ranking</a></li>
               <li><a href="#">Tier Lists</a></li>
               <li><a href="#">Playlists Spotify</a></li>
             </ul>
           </li>
-          <li class="dropdown"><a href="#"><span>Historia</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href="#" class="px-2 px-lg-1 px-xl-2"><span>Historia</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="#">Cronología del Heavy Metal</a></li>
               <li><a href="#">Playlists Spotify por Etapas</a></li>
               <li><a href="#">Resúmenes de Años</a></li>
             </ul>
           </li>
-          <li class="dropdown"><a href="#"><span>Juegos</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href="#" class="px-2 px-lg-1 px-xl-2"><span>Juegos</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="#">TimeLine</a></li>
               <li><a href="#">Trivia</a></li>
@@ -175,7 +175,7 @@
       <div class="container" data-aos="fade-up">
         <div class="row justify-content-center">
           <!-- CONTENEDOR -->
-          <form action="forms/contact.php" method="post" role="form" class="php-email-form reg-container col-10 col-xl-8 px-5 py-5 rounded-3 shadow-lg" id="perfilForm" data-aos="fade-up" data-aos-delay="100">
+          <form action="" method="post" role="form" class="php-email-form reg-container col-10 col-xl-8 px-5 py-5 rounded-3 shadow-lg" id="perfilForm" data-aos="fade-up" data-aos-delay="100">
             <!-- Imagen, Usuario y Correo -->
             <div class="row justify-content-center align-items-center position-relative">
               <!-- Fecha -->
@@ -183,9 +183,20 @@
               <!-- Imagen -->
               <div class="col-10 col-sm-8 col-md-4 mt-5 mt-md-4 p-0 position-relative">
                 <img class="w-100 rounded-5 shadow" id="fotoUsuario" src="" alt="Foto de perfil del usuario">
-                <span class="editPen position-absolute top-0 start-100 translate-middle text-white p-2 rounded-5 shadow">
+                <span class="position-absolute top-50 start-50 translate-middle d-none" id="fotoSpinner">
+                  <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                </span>
+                <span id="opcFoto1" class="editPen position-absolute top-0 start-100 translate-middle text-white p-2 rounded-5 shadow">
                   <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
                     <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                  </svg>
+                </span>
+                <input type="file" name="foto" id="inputFoto" class="d-none">
+                <span id="opcFoto2" class="editPen position-absolute top-0 start-100 translate-middle text-white p-2 rounded-5 shadow">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                    <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
                   </svg>
                 </span>
               </div>
@@ -195,16 +206,20 @@
                   <!-- Usuario -->
                   <div class="col-12 text-center">
                     <div class="mb-3 position-relative">
-                      <input type="text" class="form-control fs-2 text-center shadow-sm"id="nombreUsuario">
-                      <span class="editPen position-absolute top-0 start-100 translate-middle text-white p-2 rounded-5 shadow">
+                      <input type="text" class="form-control fs-2 text-center shadow-sm bg-white" id="nombreUsuario" maxlength="12" disabled>
+                      <span id="opcUsuario1" class="editPen position-absolute top-0 start-100 translate-middle text-white p-2 rounded-5 shadow">
                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
                           <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-check-lg d-none" viewBox="0 0 16 16">
+                          <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
                         </svg>
                       </span>
                       <div class="invalid-feedback ms-2">
                         <span class="valNombreUsuario d-none" id="valNombreUsuario1">Debes indicar un nombre de usuario</span>
                         <span class="valNombreUsuario d-none" id="valNombreUsuario2">El nombre debe contener al menos 3 caracteres</span>
                         <span class="valNombreUsuario d-none" id="valNombreUsuario3">El nombre contiene espacios o caracteres especiales no permitidos</span>
+                        <span class="valNombreUsuario d-none" id="valNombreUsuario4">El nombre es idéntico al original</span>
                       </div>
                     </div>
                   </div>

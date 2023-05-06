@@ -382,6 +382,19 @@ footer input{
   color: #dc210e;
 }
 
+#opcFoto2{margin-top: 3.5rem;}
+
+#fotoSpinner div{
+  color: #dc210e;
+  width: 3rem;
+  height: 3rem
+}
+
+#perfilForm .row.position-relative .bi {
+  vertical-align: -0.5rem;
+  fill: currentColor;
+}
+
 /* Políticas */
 
 .politicGrey h2::after, .politicGrey h2::before {
