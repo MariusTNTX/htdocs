@@ -506,6 +506,7 @@ function selectToArray($metadata,$conversion,$params){
   $query = array("content"=>"","select" => [],"from" => [],"whereGroup" => [],"where" => [],"order" => [],"limit"=> []);
   //Sacar key, list y order (y almacenar los dos últimos)
   foreach($params as $i => $p){
+    if(strpos($p,"'")) $params[$i] = str_replace("'","\'",$p); //Nueva Línea
     if($i=='list') $select = $p;
     else if($i=='order') $order = $p;
     else if($i=='limit') $limit = $p;
@@ -633,9 +634,9 @@ function selectToArray($metadata,$conversion,$params){
     $coma = ($i>0) ? ", " : "";
     $content .= $coma.$from[$i]['tabla']." ".$from[$i]['alias'];
   }
-  $content .= " WHERE ";
   $whereG = $query['whereGroup'];
   $where = $query['where'];
+  if(count($whereG)>0 || count($where)>0) $content .= " WHERE "; //Antes sin el where
   //WHERE_GROUP
   for($i=0; $i<count($whereG); $i++){
     $and = ($i>0) ? " AND " : "";

@@ -27,7 +27,7 @@ async function get(elm, ...params){
   let elements = [], values = [];
   for(let e of params){
     elements.push(e[0]);
-    values.push(e[1]);
+    values.push((typeof(e[1])=='string')?e[1].replaceAll("&","%26"):e[1]);
   }
   elements = elements.join('|');
   values = values.join('|');
@@ -45,7 +45,7 @@ async function get(elm, ...params){
 async function list(elm, awt, ...params){
   let url = `http://${root}/MetaList/php/api.php?key=${key()}&list=${elm}`;
   //Se seleccionan los filtros y sus valores:
-  for(let e of params) url += `&${e[0]}=${e[1]}`;
+  for(let e of params) url += `&${e[0]}=${(typeof(e[1])=='string')?e[1].replaceAll("&","%26"):e[1]}`;
   //Se obtiene el JSON de resultados:
   console.log(url)
   let response = await fetch(url,{
