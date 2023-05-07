@@ -81,7 +81,7 @@
           <li><a class="nav-link scrollto" href="#services">Services</a></li>
           <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>
           <li><a class="nav-link scrollto" href="#team">Team</a></li> -->
-          <li class="dropdown"><a href="#"><span>Bandas</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href="#" class="px-2 px-lg-1 px-xl-2"><span>Bandas</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="#">Listas Personalizadas</a></li>
               <li><a href="#">Tier Lists</a></li>
@@ -89,35 +89,35 @@
               <li><a href="#">Banda Aleatoria</a></li>
             </ul>
           </li>
-          <li class="dropdown"><a href="#"><span>Albumes</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href="#" class="px-2 px-lg-1 px-xl-2"><span>Albumes</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="./buscadorAvanzado.html">Listas Personalizadas</a></li>
               <li><a href="#">Tier Lists</a></li>
               <li><a href="./album.html">Álbum Aleatorio</a></li>
             </ul>
           </li>
-          <li class="dropdown"><a href="#"><span>Discográficas</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href="#" class="px-2 px-lg-1 px-xl-2"><span>Discográficas</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="#">Listas Personalizadas</a></li>
               <li><a href="#">Playlists Spotify</a></li>
               <li><a href="#">Discográfica Aleatoria</a></li>
             </ul>
           </li>
-          <li class="dropdown"><a href="#"><span>Géneros</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href="#" class="px-2 px-lg-1 px-xl-2"><span>Géneros</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="#">Ranking</a></li>
               <li><a href="#">Tier Lists</a></li>
               <li><a href="#">Playlists Spotify</a></li>
             </ul>
           </li>
-          <li class="dropdown"><a href="#"><span>Historia</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href="#" class="px-2 px-lg-1 px-xl-2"><span>Historia</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="#">Cronología del Heavy Metal</a></li>
               <li><a href="#">Playlists Spotify por Etapas</a></li>
               <li><a href="#">Resúmenes de Años</a></li>
             </ul>
           </li>
-          <li class="dropdown"><a href="#"><span>Juegos</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href="#" class="px-2 px-lg-1 px-xl-2"><span>Juegos</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="#">TimeLine</a></li>
               <li><a href="#">Trivia</a></li>
@@ -131,34 +131,44 @@
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 
-      <div class="dropdown login me-2">
-        <button type="button" class="btn text-white dropdown-toggle py-2 px-3 px-sm-4" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
-          <i class="bi bi-person-fill"></i>Login
+      <div class="dropdown login me-2" id="dropdownLogin">
+        <button type="button" class="btn text-white dropdown-toggle py-2 px-4" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+          <i class="bi bi-person-fill"></i>
+          <span class="d-none d-sm-inline-block" id="userName">Login</span>
         </button>
-        <form class="dropdown-menu dropdown-menu-end p-4 w-50">
+        <form action="" method="get" class="dropdown-menu dropdown-menu-end p-4 w-50" id="loginForm">
           <div class="mb-3">
-            <label for="exampleDropdownFormEmail2" class="form-label">Email</label>
-            <input type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="email@ejemplo.com">
+            <label for="loginEmail" class="form-label">Email</label>
+            <input type="email" class="form-control" id="loginEmail" placeholder="email@ejemplo.com" required>
           </div>
           <div class="mb-3">
-            <label for="exampleDropdownFormPassword2" class="form-label">Contraseña</label>
-            <input type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Contraseña">
-          </div>
-          <div class="mb-3">
-            <div class="form-check">
-              <input type="checkbox" class="form-check-input" id="dropdownCheck2">
-              <label class="form-check-label" for="dropdownCheck2">
-                Recordarme
-              </label>
+            <label for="loginPass" class="form-label">Contraseña</label>
+            <div class="position-relative">
+              <input type="password" class="form-control" id="loginPass" placeholder="Contraseña" required>
+              <i id="loginPassEye" class="bi bi-eye-fill position-absolute top-50 end-0 translate-middle-y me-2"></i>
             </div>
           </div>
-          <div class="text-center"><button type="submit" class="btn btn-primary">Iniciar Sesión</button></div>
+          <div class="text-center mb-2"><button type="submit" class="btn btn-primary" id="loginButton">Iniciar Sesión</button></div>
+          <div class="mb-3 text-center">
+            <a href="#" id="forgPass">He olvidado mi contraseña</a>
+          </div>
           <hr class="mt-4">
           <div id="regist" class="text-center">
             <label for="regist" class="form-label">¿No tienes cuenta?</label>
             <div><a href="./registro.html">Regístrate</a></div>
           </div>
         </form>
+        <!-- <ul class="dropdown-menu dropdown-menu-end" id="userOptions">
+          <li><a class="dropdown-item position-relative" href="perfil.html"><i class="bi bi-person-square me-2 text-primary"></i>Perfil
+            <div class="position-absolute top-100 end-0 mt-2 me-2 shadow-sm rounded" id="userImgDrop">
+              <img src="./imagenes/usuarios/ElUroboro77.webp" class="rounded" id="userImgMini" alt="Foto de Perfil">
+            </div>
+          </a></li>
+          <li><a class="dropdown-item" href="favoritos.html"><i class="bi bi-heart-fill me-2"></i>Favoritos</a></li>
+          <li><a class="dropdown-item" href="recomendaciones.html"><i class="bi bi-star-fill me-2"></i>Recomendaciones</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" id="logOut" href="#"><i class="bi bi-door-closed-fill me-2"></i>Cerrar Sesión</a></li>
+        </ul> -->
       </div>
 
     </div>
@@ -199,17 +209,17 @@
                 <div class="row">
                   <div class="col-lg-12 d-flex justify-content-center">
                     <ul id="portfolio-flters">
-                      <li data-filter=".filter-bandas">Bandas</li>
-                      <li data-filter=".filter-albumes" class="filter-active">Álbumes</li>
-                      <li data-filter=".filter-canciones">Canciones</li>
-                      <li data-filter=".filter-discograf">Discográficas</li>
-                      <li data-filter=".filter-esttudios">Estudios de Grabación</li>
+                      <li data-filter=".filter-bandas1" class="filterButton filterBandas" id="filterBandas1">Bandas</li>
+                      <li data-filter=".filter-albumes1" class="filter-active filterButton filterAlbumes" id="filterAlbumes1">Álbumes</li>
+                      <!-- <li data-filter=".filter-canciones">Canciones</li> -->
+                      <li data-filter=".filter-discograf1" class="filterButton filterDiscogs" id="filterDiscogs1">Discográficas</li>
+                      <!-- <li data-filter=".filter-estudios">Estudios de Grabación</li>
                       <li data-filter=".filter-generos">Géneros</li>
                       <li data-filter=".filter-paises">Paises</li>
-                      <li data-filter=".filter-">Años</li>
-                      <li data-filter=".filter-">Músicos</li>
-                      <li data-filter=".filter-">Productores</li>
-                      <li data-filter=".filter-">Temas de Letra</li>
+                      <li data-filter=".filter-">Años</li> -->
+                      <li data-filter=".filter-musicos1" class="filterButton filterMusicos" id="filterMusicos1">Músicos</li>
+                      <!-- <li data-filter=".filter-">Productores</li>
+                      <li data-filter=".filter-">Temas de Letra</li> -->
                     </ul>
                   </div>
                 </div>
@@ -230,24 +240,20 @@
 
                   <!-- Texto -->
                   <!-- <input type="text" name="busq" id="busq" placeholder="Texto de búsqueda" style="width: 100%"> -->
-                  <div class="form-floating mb-3">
+                  <div class="form-floating mb-3" id="mainSearch">
                     <input type="text" class="form-control" name="busq" id="busq" placeholder="Título del Álbum">
                     <label for="busq">Título del Álbum</label>
                   </div>
 
                   <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault1">
-                    <label class="form-check-label" for="flexSwitchCheckDefault1">Búsqueda Estricta</label>
-                  </div> <br>
+                    <input class="form-check-input" type="checkbox" role="switch" id="estrictSearch">
+                    <label class="form-check-label" for="estrictSearch">Búsqueda Estricta</label>
+                  </div>
 
-                  <!-- Top100 -->
-                  <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault2">
-                    <label class="form-check-label" for="flexSwitchCheckDefault2">Top 100 Álbumes MetaList</label>
-                  </div> <br>
+                  <br>
 
-                  <br> <h2 class="menu-h2 mb-3">Intervalos</h2>
-                  <div class="accordion" id="accordionExample">
+                  <h2 class="menu-h2 mb-3">Intervalos</h2>
+                  <div class="accordion" id="intervalsAccordion">
 
                     <!-- Fecha -->
                     <div class="accordion-item">
@@ -258,15 +264,15 @@
                         </button>
                       </h2>
                       <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
-                        data-bs-parent="#accordionExample">
+                        data-bs-parent="#intervalsAccordion">
                         <div class="accordion-body">
                           <div class="row">
                             <h6>Desde:</h6>
                             <div class="col-12 text-center">
-                              <input id="fechaDesde1" type="range" class="form-range" min="1968" max="2023" step="1" value="1968">
+                              <input id="fechaDesde1" type="range" class="form-range" value="1968" min="1968" max="2023" step="1">
                             </div>
                             <div class="col-6 col-md-12 text-center mx-auto">
-                              <input type="number" name="fecha1" id="fechaDesde2" value="1968" min="1968" max="2023" step="1">
+                              <input type="number" name="fecha1" id="fechaDesde2" min="1968" max="2023" step="1">
                             </div>
                             <script>
                               document.getElementById('fechaDesde1').addEventListener('input', function () {
@@ -275,10 +281,10 @@
                             </script>
                             <h6>Hasta:</h6>
                             <div class="col-12 text-center">
-                              <input id="fechaHasta1" type="range" class="form-range" min="1968" max="2023" step="1" value="1968">
+                              <input id="fechaHasta1" type="range" class="form-range" value="1968" min="1968" max="2023" step="1">
                             </div>
                             <div class="col-6 col-md-12 text-center mx-auto">
-                              <input type="number" name="fecha2" id="fechaHasta2" value="1968" min="1968" max="2023" step="1">
+                              <input type="number" name="fecha2" id="fechaHasta2" min="1968" max="2023" step="1">
                             </div>
                             <script>
                               document.getElementById('fechaHasta1').addEventListener('input', function () {
@@ -299,15 +305,15 @@
                         </button>
                       </h2>
                       <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-                        data-bs-parent="#accordionExample">
+                        data-bs-parent="#intervalsAccordion">
                         <div class="accordion-body">
                           <div class="row">
                             <h6>Desde:</h6>
                             <div class="col-12 text-center">
-                              <input id="puntDesde1" type="range" class="form-range" min="0" max="5000" step="50" value="0">
+                              <input id="puntDesde1" type="range" class="form-range" value="0" min="0" max="5000" step="50">
                             </div>
                             <div class="col-6 col-md-12 text-center mx-auto">
-                              <input type="number" name="punt1" id="puntDesde2" value="0" min="0" max="5000" step="50"> P
+                              <input type="number" name="punt1" id="puntDesde2" min="0" max="5000" step="50"> P
                             </div>
                             <script>
                               document.getElementById('puntDesde1').addEventListener('input', function () {
@@ -316,10 +322,10 @@
                             </script>
                             <h6>Hasta:</h6>
                             <div class="col-12 text-center">
-                              <input id="puntHasta1" type="range" class="form-range" min="0" max="5000" step="50" value="0">
+                              <input id="puntHasta1" type="range" class="form-range" value="0" min="0" max="5000" step="50">
                             </div>
                             <div class="col-6 col-md-12 text-center mx-auto">
-                              <input type="number" name="punt2" id="puntHasta2" value="0" min="0" max="5000" step="50"> P
+                              <input type="number" name="punt2" id="puntHasta2" min="0" max="5000" step="50"> P
                             </div>
                             <script>
                               document.getElementById('puntHasta1').addEventListener('input', function () {
@@ -340,15 +346,15 @@
                         </button>
                       </h2>
                       <div id="cEscuchas" class="accordion-collapse collapse" aria-labelledby="hEscuchas"
-                        data-bs-parent="#accordionExample">
+                        data-bs-parent="#intervalsAccordion">
                         <div class="accordion-body">
                           <div class="row">
                             <h6>Desde:</h6>
                             <div class="col-12 text-center">
-                              <input id="escuDesde1" type="range" class="form-range" min="0" max="1000000" step="10" value="0">
+                              <input id="escuDesde1" type="range" class="form-range" value="0" min="0" max="1000000" step="10">
                             </div>
                             <div class="col-6 col-md-12 text-center mx-auto">
-                              <input type="number" name="escu1" id="escuDesde2" value="0" min="0" max="1000000" step="10"> k
+                              <input type="number" name="escu1" id="escuDesde2" min="0" max="1000000" step="10"> k
                             </div>
                             <script>
                               document.getElementById('escuDesde1').addEventListener('input', function () {
@@ -357,10 +363,10 @@
                             </script>
                             <h6>Hasta:</h6>
                             <div class="col-12 text-center">
-                              <input id="escuHasta1" type="range" class="form-range" min="0" max="1000000" min="0" max="1000000" step="10" value="0">
+                              <input id="escuHasta1" type="range" class="form-range" value="0" min="0" max="1000000" min="0" max="1000000" step="10">
                             </div>
                             <div class="col-6 col-md-12 text-center mx-auto">
-                              <input type="number" name="escu2" id="escuHasta2" value="0" step="10"> k
+                              <input type="number" name="escu2" id="escuHasta2" step="10"> k
                             </div>
                             <script>
                               document.getElementById('escuHasta1').addEventListener('input', function () {
@@ -379,15 +385,15 @@
                           Estrellas
                         </button>
                       </h2>
-                      <div id="cEstr" class="accordion-collapse collapse" aria-labelledby="hEstr" data-bs-parent="#accordionExample">
+                      <div id="cEstr" class="accordion-collapse collapse" aria-labelledby="hEstr" data-bs-parent="#intervalsAccordion">
                         <div class="accordion-body">
                           <div class="row">
                             <h6>Desde:</h6>
                             <div class="col-12 text-center">
-                              <input id="estrDesde1" type="range" class="form-range" min="0" max="5" step="1" value="0">
+                              <input id="estrDesde1" type="range" class="form-range" value="0" min="0" max="5" step="1">
                             </div>
                             <div class="col-6 col-md-12 text-center mx-auto">
-                              <input type="number" name="estr1" id="estrDesde2" value="0" min="0" max="5" step="1">
+                              <input type="number" name="estr1" id="estrDesde2" min="0" max="5" step="1">
                             </div>
                             <script>
                               document.getElementById('estrDesde1').addEventListener('input', function () {
@@ -396,10 +402,10 @@
                             </script>
                             <h6>Hasta:</h6>
                             <div class="col-12 text-center">
-                              <input id="estrHasta1" type="range" class="form-range" min="0" max="5" step="1" value="0">
+                              <input id="estrHasta1" type="range" class="form-range" value="0" min="0" max="5" step="1">
                             </div>
                             <div class="col-6 col-md-12 text-center mx-auto">
-                              <input type="number" name="estr2" id="estrHasta2" value="0" min="0" max="5" step="1">
+                              <input type="number" name="estr2" id="estrHasta2" min="0" max="5" step="1">
                             </div>
                             <script>
                               document.getElementById('estrHasta1').addEventListener('input', function () {
@@ -419,15 +425,15 @@
                         </button>
                       </h2>
                       <div id="cVisitas" class="accordion-collapse collapse" aria-labelledby="hVisitas"
-                        data-bs-parent="#accordionExample">
+                        data-bs-parent="#intervalsAccordion">
                         <div class="accordion-body">
                           <div class="row">
                             <h6>Desde:</h6>
                             <div class="col-12 text-center">
-                              <input id="visitDesde1" type="range" class="form-range" min="0" max="1000000" step="10" value="0">
+                              <input id="visitDesde1" type="range" class="form-range" value="0" min="0" max="1000000" step="10">
                             </div>
                             <div class="col-6 col-md-12 text-center mx-auto">
-                              <input type="number" name="visit1" id="visitDesde2" value="0" min="0" max="1000000" step="10">
+                              <input type="number" name="visit1" id="visitDesde2" min="0" max="1000000" step="10">
                             </div>
                             <script>
                               document.getElementById('visitDesde1').addEventListener('input', function () {
@@ -436,10 +442,10 @@
                             </script>
                             <h6>Hasta:</h6>
                             <div class="col-12 text-center">
-                              <input id="visitHasta1" type="range" class="form-range" min="0" max="1000000" step="10" value="0">
+                              <input id="visitHasta1" type="range" class="form-range" value="0" min="0" max="1000000" step="10">
                             </div>
                             <div class="col-6 col-md-12 text-center mx-auto">
-                              <input type="number" name="visit2" id="visitHasta2" value="0" min="0" max="1000000" step="10">
+                              <input type="number" name="visit2" id="visitHasta2" min="0" max="1000000" step="10">
                             </div>
                             <script>
                               document.getElementById('visitHasta1').addEventListener('input', function () {
@@ -460,15 +466,15 @@
                         </button>
                       </h2>
                       <div id="cLikes" class="accordion-collapse collapse" aria-labelledby="hLikes"
-                        data-bs-parent="#accordionExample">
+                        data-bs-parent="#intervalsAccordion">
                         <div class="accordion-body">
                           <div class="row">
                             <h6>Desde:</h6>
                             <div class="col-12 text-center">
-                              <input id="likeDesde1" type="range" class="form-range" min="0" max="1000" step="10" value="0">
+                              <input id="likeDesde1" type="range" class="form-range" value="0" min="0" max="1000" step="10">
                             </div>
                             <div class="col-6 col-md-12 text-center mx-auto">
-                              <input type="number" name="like1" id="likeDesde2" value="0" min="0" max="1000" step="10">
+                              <input type="number" name="like1" id="likeDesde2" min="0" max="1000" step="10">
                             </div>
                             <script>
                               document.getElementById('likeDesde1').addEventListener('input', function () {
@@ -477,10 +483,10 @@
                             </script>
                             <h6>Hasta:</h6>
                             <div class="col-12 text-center">
-                              <input id="likeHasta1" type="range" class="form-range" min="0" max="1000" step="10" value="0">
+                              <input id="likeHasta1" type="range" class="form-range" value="0" min="0" max="1000" step="10">
                             </div>
                             <div class="col-6 col-md-12 text-center mx-auto">
-                              <input type="number" name="like2" id="likeHasta2" value="0" min="0" max="1000" step="10">
+                              <input type="number" name="like2" id="likeHasta2" min="0" max="1000" step="10">
                             </div>
                             <script>
                               document.getElementById('likeHasta1').addEventListener('input', function () {
@@ -495,7 +501,7 @@
                   </div>
 
                   <br> <h2 class="menu-h2 mb-3">Categorias</h2>
-                  <div class="accordion" id="accordionExample">
+                  <div class="accordion" id="categoriesAccordion">
 
                     <!-- Tipo de Álbum -->
                     <div class="accordion-item">
@@ -506,14 +512,14 @@
                         </button>
                       </h2>
                       <div id="cTipo" class="accordion-collapse collapse" aria-labelledby="hTipo"
-                        data-bs-parent="#accordionExample">
+                        data-bs-parent="#categoriesAccordion">
                         <div class="accordion-body">
-                          <input type="checkbox" name="tipo" id="estudio"><label for="estudio">Estudio</label> <br>
-                          <input type="checkbox" name="tipo" id="demo"><label for="demo">Demo</label> <br>
-                          <input type="checkbox" name="tipo" id="ep"><label for="ep">EP</label> <br>
-                          <input type="checkbox" name="tipo" id="recopilatorio"><label for="recopilatorio">Recopilatorio</label> <br>
-                          <input type="checkbox" name="tipo" id="boxset"><label for="boxset">Boxset</label> <br>
-                          <input type="checkbox" name="tipo" id="envivo"><label for="envivo">En Vivo</label>
+                          <div class="form-check"><input type="checkbox" class="form-check-input" name="tipo" id="estudio"><label for="estudio" class="form-check-label">Estudio</label></div>
+                          <div class="form-check"><input type="checkbox" class="form-check-input" name="tipo" id="demo"><label for="demo" class="form-check-label">Demo</label></div>
+                          <div class="form-check"><input type="checkbox" class="form-check-input" name="tipo" id="ep"><label for="ep" class="form-check-label">EP</label></div>
+                          <div class="form-check"><input type="checkbox" class="form-check-input" name="tipo" id="recopilatorio"><label for="recopilatorio" class="form-check-label">Recopilatorio</label></div>
+                          <div class="form-check"><input type="checkbox" class="form-check-input" name="tipo" id="boxset"><label for="boxset" class="form-check-label">Boxset</label></div>
+                          <div class="form-check"><input type="checkbox" class="form-check-input" name="tipo" id="envivo"><label for="envivo" class="form-check-label">En Vivo</label></div>
                         </div>
                       </div>
                     </div>
@@ -527,35 +533,35 @@
                         </button>
                       </h2>
                       <div id="cGeneros" class="accordion-collapse collapse" aria-labelledby="hGeneros"
-                        data-bs-parent="#accordionExample">
+                        data-bs-parent="#categoriesAccordion">
                         <div class="accordion-body">
-                          <input type="checkbox" name="tipo" id="Alternative"><label for="Alternative">Alternative Metal</label> <br>
-                          <input type="checkbox" name="tipo" id="Black"><label for="Black">Black Metal</label> <br>
-                          <input type="checkbox" name="tipo" id="Crossover-Thrash"><label for="Crossover-Thrash">Crossover Thrash Metal</label> <br>
-                          <input type="checkbox" name="tipo" id="Deathcore"><label for="Deathcore">Deathcore</label> <br>
-                          <input type="checkbox" name="tipo" id="Death"><label for="Death">Death Metal</label> <br>
-                          <input type="checkbox" name="tipo" id="Djent"><label for="Djent">Djent</label> <br>
-                          <input type="checkbox" name="tipo" id="Doom"><label for="Doom">Doom Metal</label> <br>
-                          <input type="checkbox" name="tipo" id="Folk"><label for="Folk">Folk Metal</label> <br>
-                          <input type="checkbox" name="tipo" id="Glam"><label for="Glam">Glam Metal</label> <br>
-                          <input type="checkbox" name="tipo" id="Groove"><label for="Groove">Groove Metal</label> <br>
-                          <input type="checkbox" name="tipo" id="Gothic"><label for="Gothic">Gothic Metal</label> <br>
-                          <input type="checkbox" name="tipo" id="Grindcore"><label for="Grindcore">Grindcore</label> <br>
-                          <input type="checkbox" name="tipo" id="Heavy"><label for="Heavy">Heavy Metal</label> <br>
-                          <input type="checkbox" name="tipo" id="Industrial"><label for="Industrial">Industrial Metal</label> <br>
-                          <input type="checkbox" name="tipo" id="Melodic-Death"><label for="Melodic-Death">Melodic Death Metal</label> <br>
-                          <input type="checkbox" name="tipo" id="Metalcore"><label for="Metalcore">Metalcore</label> <br>
-                          <input type="checkbox" name="tipo" id="Nu"><label for="Nu">Nu Metal</label> <br>
-                          <input type="checkbox" name="tipo" id="NWOBHM"><label for="NWOBHM">NWOBHM</label> <br>
-                          <input type="checkbox" name="tipo" id="Power"><label for="Power">Power Metal</label> <br>
-                          <input type="checkbox" name="tipo" id="Progressive"><label for="Progressive">Progressive Metal</label> <br>
-                          <input type="checkbox" name="tipo" id="Sludge"><label for="Sludge">Sludge Metal</label> <br>
-                          <input type="checkbox" name="tipo" id="Speed"><label for="Speed">Speed Metal</label> <br>
-                          <input type="checkbox" name="tipo" id="Stoner"><label for="Stoner">Stoner Metal</label> <br>
-                          <input type="checkbox" name="tipo" id="Symphonic"><label for="Symphonic">Symphonic Metal</label> <br>
-                          <input type="checkbox" name="tipo" id="Technical-Death"><label for="Technical-Death">Technical Death Metal</label> <br>
-                          <input type="checkbox" name="tipo" id="Thrash"><label for="Thrash">Thrash Metal</label> <br>
-                          <input type="checkbox" name="tipo" id="Viking"><label for="Viking">Viking Metal</label> <br>
+                          <div class="form-check"><input type="checkbox" class="form-check-input" name="tipo" id="Alternative"><label for="Alternative" class="form-check-label">Alternative Metal</label></div>
+                          <div class="form-check"><input type="checkbox" class="form-check-input" name="tipo" id="Black"><label for="Black" class="form-check-label">Black Metal</label></div>
+                          <div class="form-check"><input type="checkbox" class="form-check-input" name="tipo" id="Crossover-Thrash"><label for="Crossover-Thrash" class="form-check-label">Crossover Thrash Metal</label></div>
+                          <div class="form-check"><input type="checkbox" class="form-check-input" name="tipo" id="Deathcore"><label for="Deathcore" class="form-check-label">Deathcore</label></div>
+                          <div class="form-check"><input type="checkbox" class="form-check-input" name="tipo" id="Death"><label for="Death" class="form-check-label">Death Metal</label></div>
+                          <div class="form-check"><input type="checkbox" class="form-check-input" name="tipo" id="Djent"><label for="Djent" class="form-check-label">Djent</label></div>
+                          <div class="form-check"><input type="checkbox" class="form-check-input" name="tipo" id="Doom"><label for="Doom" class="form-check-label">Doom Metal</label></div>
+                          <div class="form-check"><input type="checkbox" class="form-check-input" name="tipo" id="Folk"><label for="Folk" class="form-check-label">Folk Metal</label></div>
+                          <div class="form-check"><input type="checkbox" class="form-check-input" name="tipo" id="Glam"><label for="Glam" class="form-check-label">Glam Metal</label></div>
+                          <div class="form-check"><input type="checkbox" class="form-check-input" name="tipo" id="Groove"><label for="Groove" class="form-check-label">Groove Metal</label></div>
+                          <div class="form-check"><input type="checkbox" class="form-check-input" name="tipo" id="Gothic"><label for="Gothic" class="form-check-label">Gothic Metal</label></div>
+                          <div class="form-check"><input type="checkbox" class="form-check-input" name="tipo" id="Grindcore"><label for="Grindcore" class="form-check-label">Grindcore</label></div>
+                          <div class="form-check"><input type="checkbox" class="form-check-input" name="tipo" id="Heavy"><label for="Heavy" class="form-check-label">Heavy Metal</label></div>
+                          <div class="form-check"><input type="checkbox" class="form-check-input" name="tipo" id="Industrial"><label for="Industrial" class="form-check-label">Industrial Metal</label></div>
+                          <div class="form-check"><input type="checkbox" class="form-check-input" name="tipo" id="Melodic-Death"><label for="Melodic-Death" class="form-check-label">Melodic Death Metal</label></div>
+                          <div class="form-check"><input type="checkbox" class="form-check-input" name="tipo" id="Metalcore"><label for="Metalcore" class="form-check-label">Metalcore</label></div>
+                          <div class="form-check"><input type="checkbox" class="form-check-input" name="tipo" id="Nu"><label for="Nu" class="form-check-label">Nu Metal</label></div>
+                          <div class="form-check"><input type="checkbox" class="form-check-input" name="tipo" id="NWOBHM"><label for="NWOBHM" class="form-check-label">NWOBHM</label></div>
+                          <div class="form-check"><input type="checkbox" class="form-check-input" name="tipo" id="Power"><label for="Power" class="form-check-label">Power Metal</label></div>
+                          <div class="form-check"><input type="checkbox" class="form-check-input" name="tipo" id="Progressive"><label for="Progressive" class="form-check-label">Progressive Metal</label></div>
+                          <div class="form-check"><input type="checkbox" class="form-check-input" name="tipo" id="Sludge"><label for="Sludge" class="form-check-label">Sludge Metal</label></div>
+                          <div class="form-check"><input type="checkbox" class="form-check-input" name="tipo" id="Speed"><label for="Speed" class="form-check-label">Speed Metal</label></div>
+                          <div class="form-check"><input type="checkbox" class="form-check-input" name="tipo" id="Stoner"><label for="Stoner" class="form-check-label">Stoner Metal</label></div>
+                          <div class="form-check"><input type="checkbox" class="form-check-input" name="tipo" id="Symphonic"><label for="Symphonic" class="form-check-label">Symphonic Metal</label></div>
+                          <div class="form-check"><input type="checkbox" class="form-check-input" name="tipo" id="Technical-Death"><label for="Technical-Death" class="form-check-label">Technical Death Metal</label></div>
+                          <div class="form-check"><input type="checkbox" class="form-check-input" name="tipo" id="Thrash"><label for="Thrash" class="form-check-label">Thrash Metal</label></div>
+                          <div class="form-check"><input type="checkbox" class="form-check-input" name="tipo" id="Viking"><label for="Viking" class="form-check-label">Viking Metal</label></div>
                         </div>
                       </div>
                     </div>
@@ -569,29 +575,29 @@
                         </button>
                       </h2>
                       <div id="cPais" class="accordion-collapse collapse" aria-labelledby="hPais"
-                        data-bs-parent="#accordionExample">
+                        data-bs-parent="#categoriesAccordion">
                         <div class="accordion-body">
-                          <input type="checkbox" name="pais" id="Alemania"><label for="Alemania">Alemania</label> <br>
-                          <input type="checkbox" name="pais" id="Australia"><label for="Australia">Australia</label> <br>
-                          <input type="checkbox" name="pais" id="Belgica"><label for="Belgica">Belgica</label> <br>
-                          <input type="checkbox" name="pais" id="Brasil"><label for="Brasil">Brasil</label> <br>
-                          <input type="checkbox" name="pais" id="Canada"><label for="Canada">Canadá</label> <br>
-                          <input type="checkbox" name="pais" id="Dinamarca"><label for="Dinamarca">Dinamarca</label> <br>
-                          <input type="checkbox" name="pais" id="Espana"><label for="Espana">España</label> <br>
-                          <input type="checkbox" name="pais" id="EEUU"><label for="EEUU">Estados Unidos</label> <br>
-                          <input type="checkbox" name="pais" id="Finlandia"><label for="Finlandia">Finlandia</label> <br>
-                          <input type="checkbox" name="pais" id="Francia"><label for="Francia">Francia</label> <br>
-                          <input type="checkbox" name="pais" id="Grecia"><label for="Grecia">Grecia</label> <br>
-                          <input type="checkbox" name="pais" id="Italia"><label for="Italia">Italia</label> <br>
-                          <input type="checkbox" name="pais" id="Japón"><label for="Japón">Japón</label> <br>
-                          <input type="checkbox" name="pais" id="Noruega"><label for="Noruega">Noruega</label> <br>
-                          <input type="checkbox" name="pais" id="Paises Bajos"><label for="Paises Bajos">Paises Bajos</label> <br>
-                          <input type="checkbox" name="pais" id="Polonia"><label for="Polonia">Polonia</label> <br>
-                          <input type="checkbox" name="pais" id="UK"><label for="UK">Reino Unido</label> <br>
-                          <input type="checkbox" name="pais" id="Rusia"><label for="Rusia">Rusia</label> <br>
-                          <input type="checkbox" name="pais" id="Suecia"><label for="Suecia">Suecia</label> <br>
-                          <input type="checkbox" name="pais" id="Suiza"><label for="Suiza">Suiza</label> <br>
-                          <input type="checkbox" name="pais" id="Ucrania"><label for="Ucrania">Ucrania</label> <br>
+                          <div class="form-check"><input type="checkbox" class="form-check-input" name="pais" id="Alemania"><label for="Alemania" class="form-check-label">Alemania</label></div>
+                          <div class="form-check"><input type="checkbox" class="form-check-input" name="pais" id="Australia"><label for="Australia" class="form-check-label">Australia</label></div>
+                          <div class="form-check"><input type="checkbox" class="form-check-input" name="pais" id="Belgica"><label for="Belgica" class="form-check-label">Belgica</label></div>
+                          <div class="form-check"><input type="checkbox" class="form-check-input" name="pais" id="Brasil"><label for="Brasil" class="form-check-label">Brasil</label></div>
+                          <div class="form-check"><input type="checkbox" class="form-check-input" name="pais" id="Canada"><label for="Canada" class="form-check-label">Canadá</label></div>
+                          <div class="form-check"><input type="checkbox" class="form-check-input" name="pais" id="Dinamarca"><label for="Dinamarca" class="form-check-label">Dinamarca</label></div>
+                          <div class="form-check"><input type="checkbox" class="form-check-input" name="pais" id="Espana"><label for="Espana" class="form-check-label">España</label></div>
+                          <div class="form-check"><input type="checkbox" class="form-check-input" name="pais" id="EEUU"><label for="EEUU" class="form-check-label">Estados Unidos</label></div>
+                          <div class="form-check"><input type="checkbox" class="form-check-input" name="pais" id="Finlandia"><label for="Finlandia" class="form-check-label">Finlandia</label></div>
+                          <div class="form-check"><input type="checkbox" class="form-check-input" name="pais" id="Francia"><label for="Francia" class="form-check-label">Francia</label></div>
+                          <div class="form-check"><input type="checkbox" class="form-check-input" name="pais" id="Grecia"><label for="Grecia" class="form-check-label">Grecia</label></div>
+                          <div class="form-check"><input type="checkbox" class="form-check-input" name="pais" id="Italia"><label for="Italia" class="form-check-label">Italia</label></div>
+                          <div class="form-check"><input type="checkbox" class="form-check-input" name="pais" id="Japón"><label for="Japón" class="form-check-label">Japón</label></div>
+                          <div class="form-check"><input type="checkbox" class="form-check-input" name="pais" id="Noruega"><label for="Noruega" class="form-check-label">Noruega</label></div>
+                          <div class="form-check"><input type="checkbox" class="form-check-input" name="pais" id="Paises Bajos"><label for="Paises Bajos" class="form-check-label">Paises Bajos</label></div>
+                          <div class="form-check"><input type="checkbox" class="form-check-input" name="pais" id="Polonia"><label for="Polonia" class="form-check-label">Polonia</label></div>
+                          <div class="form-check"><input type="checkbox" class="form-check-input" name="pais" id="UK"><label for="UK" class="form-check-label">Reino Unido</label></div>
+                          <div class="form-check"><input type="checkbox" class="form-check-input" name="pais" id="Rusia"><label for="Rusia" class="form-check-label">Rusia</label></div>
+                          <div class="form-check"><input type="checkbox" class="form-check-input" name="pais" id="Suecia"><label for="Suecia" class="form-check-label">Suecia</label></div>
+                          <div class="form-check"><input type="checkbox" class="form-check-input" name="pais" id="Suiza"><label for="Suiza" class="form-check-label">Suiza</label></div>
+                          <div class="form-check"><input type="checkbox" class="form-check-input" name="pais" id="Ucrania"><label for="Ucrania" class="form-check-label">Ucrania</label></div>
                         </div>
                       </div>
                     </div>
@@ -599,7 +605,7 @@
                   </div>
 
                   <br> <h2 class="menu-h2 mb-3">Reducir por</h2>
-                  <div class="accordion" id="accordionExample">
+                  <div class="accordion" id="reductionsAccordion">
 
                     <!-- Banda -->
                     <div class="accordion-item">
@@ -610,24 +616,13 @@
                         </button>
                       </h2>
                       <div id="cBanda" class="accordion-collapse collapse" aria-labelledby="hBanda"
-                        data-bs-parent="#accordionExample">
+                        data-bs-parent="#reductionsAccordion">
                         <div class="accordion-body">
-                          <div class="row">
-                            <div class="col-10 col-md-12 col-xl-9">
-                              <input type="search" class="form-control" name="band" id="band" list="listaBandas" style="width: 100%">
-                            </div>
-                            <div class="col-2 col-md-12 col-xl-3 text-center">
-                              <button class="btn btn-primary fw-bold">+</button>
+                          <div class="row justify-content-center">
+                            <div class="col-10 col-md-12">
+                              <input type="text" class="form-control" name="band" id="band" list="listaBandas" style="width: 100%">
                             </div>
                           </div>
-                          <datalist id="listaBandas">
-                            <option value="Black Sabbath">
-                            <option value="Megadeth">
-                            <option value="Pantera">
-                            <option value="Nightwish">
-                            <option value="Sabaton">
-                            <option value="Spiritbox">
-                          </datalist>
                         </div>
                       </div>
                     </div>
@@ -641,24 +636,13 @@
                         </button>
                       </h2>
                       <div id="cDisc" class="accordion-collapse collapse" aria-labelledby="hDisc"
-                        data-bs-parent="#accordionExample">
+                        data-bs-parent="#reductionsAccordion">
                         <div class="accordion-body">
-                          <div class="row">
-                            <div class="col-10 col-md-12 col-xl-9">
-                              <input type="search" class="form-control" name="disc" id="disc" list="listaDisc" style="width: 100%">
-                            </div>
-                            <div class="col-2 col-md-12 col-xl-3 text-center">
-                              <button class="btn btn-primary fw-bold">+</button>
+                          <div class="row justify-content-center">
+                            <div class="col-10 col-md-12">
+                              <input type="text" class="form-control" name="disc" id="disc" list="listaDisc" style="width: 100%">
                             </div>
                           </div>
-                          <datalist id="listaDisc">
-                            <option value="Nuclear Blast Records">
-                            <option value="Spinefarm Records">
-                            <option value="Warner Brothers Records">
-                            <option value="Century Media Records">
-                            <option value="Napalm Records">
-                            <option value="Roadruner Records">
-                          </datalist>
                         </div>
                       </div>
                     </div>
@@ -672,24 +656,13 @@
                         </button>
                       </h2>
                       <div id="cEstud" class="accordion-collapse collapse" aria-labelledby="hEstud"
-                        data-bs-parent="#accordionExample">
+                        data-bs-parent="#reductionsAccordion">
                         <div class="accordion-body">
-                          <div class="row">
-                            <div class="col-10 col-md-12 col-xl-9">
-                              <input type="search" class="form-control" name="estud" id="estud" list="listaEstud" style="width: 100%">
-                            </div>
-                            <div class="col-2 col-md-12 col-xl-3 text-center">
-                              <button class="btn btn-primary fw-bold">+</button>
+                          <div class="row justify-content-center">
+                            <div class="col-10 col-md-12">
+                              <input type="text" class="form-control" name="estud" id="estud" list="listaEstud" style="width: 100%">
                             </div>
                           </div>
-                          <datalist id="listaEstud">
-                            <option value="Sweet Silence, Copenhague, Dinamarca">
-                            <option value="Rumbo Recorders, Canoga Park, California">
-                            <option value="Hit City West, Los Angeles, California">
-                            <option value="Sound City Studios, Van Nuys, California">
-                            <option value="Island Studios, London">
-                            <option value="Pantego Sound Studio, Pantego, Texas">
-                          </datalist>
                         </div>
                       </div>
                     </div>
@@ -703,24 +676,13 @@
                         </button>
                       </h2>
                       <div id="cMus" class="accordion-collapse collapse" aria-labelledby="hMus"
-                        data-bs-parent="#accordionExample">
+                        data-bs-parent="#reductionsAccordion">
                         <div class="accordion-body">
-                          <div class="row">
-                            <div class="col-10 col-md-12 col-xl-9">
-                              <input type="search" class="form-control" name="mus" id="mus" list="listaMus" style="width: 100%">
-                            </div>
-                            <div class="col-2 col-md-12 col-xl-3 text-center">
-                              <button class="btn btn-primary fw-bold">+</button>
+                          <div class="row justify-content-center">
+                            <div class="col-10 col-md-12">
+                              <input type="text" class="form-control" name="mus" id="mus" list="listaMus" style="width: 100%">
                             </div>
                           </div>
-                          <datalist id="listaMus">
-                            <option value="Rob Halford">
-                            <option value="Dave Mustaine">
-                            <option value="Tuomas Holopainen">
-                            <option value="Ronnie James Dio">
-                            <option value="Lemmie Kilmister">
-                            <option value="Cliff Burton">
-                          </datalist>
                         </div>
                       </div>
                     </div>
@@ -734,24 +696,13 @@
                         </button>
                       </h2>
                       <div id="cProd" class="accordion-collapse collapse" aria-labelledby="hProd"
-                        data-bs-parent="#accordionExample">
+                        data-bs-parent="#reductionsAccordion">
                         <div class="accordion-body">
-                          <div class="row">
-                            <div class="col-10 col-md-12 col-xl-9">
-                              <input type="search" class="form-control" name="prod" id="prod" list="listaProd" style="width: 100%">
-                            </div>
-                            <div class="col-2 col-md-12 col-xl-3 text-center">
-                              <button class="btn btn-primary fw-bold">+</button>
+                          <div class="row justify-content-center">
+                            <div class="col-10 col-md-12">
+                              <input type="text" class="form-control" name="prod" id="prod" list="listaProd" style="width: 100%">
                             </div>
                           </div>
-                          <datalist id="listaProd">
-                            <option value="Bob Rock">
-                            <option value="Mike Clink">
-                            <option value="Scott Burns">
-                            <option value="Ross Robinson">
-                            <option value="Martin Birch">
-                            <option value="Matt Bayles">
-                          </datalist>
                         </div>
                       </div>
                     </div>
@@ -765,32 +716,18 @@
                         </button>
                       </h2>
                       <div id="cLetra" class="accordion-collapse collapse" aria-labelledby="hLetra"
-                        data-bs-parent="#accordionExample">
+                        data-bs-parent="#reductionsAccordion">
                         <div class="accordion-body">
-                          <div class="row">
-                            <div class="col-10 col-md-12 col-xl-9">
-                              <input type="search" class="form-control" name="letra" id="letra" list="listaLetra" style="width: 100%">
-                            </div>
-                            <div class="col-2 col-md-12 col-xl-3 text-center">
-                              <button class="btn btn-primary fw-bold">+</button>
+                          <div class="row justify-content-center">
+                            <div class="col-10 col-md-12">
+                              <input type="text" class="form-control" name="letra" id="letra" list="listaLetra" style="width: 100%">
                             </div>
                           </div>
-                          <datalist id="listaLetra">
-                            <option value="Fantasía">
-                            <option value="Naturaleza">
-                            <option value="Corrupción">
-                            <option value="Guerra">
-                            <option value="Religión">
-                            <option value="Filosofía">
-                          </datalist>
                         </div>
                       </div>
                     </div>
-
                   </div>
-
                 </div>
-
               </section>
 
               <!-- Orden -->
@@ -802,7 +739,8 @@
                   </div>
                   <div class="row">
                     <div class="col-6 col-md-12">
-                      <select class="form-select" aria-label="Default select example" name="critTipo" id="critTipo">
+                      <select class="form-select" aria-label="Default select example" name="critTipo" id="order">
+                        <option value="0"></option>
                         <option value="Alfabetico">Alfabético</option>
                         <option value="Puntuacion">Puntuación</option>
                         <option value="Escuchas">Escuchas</option>
@@ -811,19 +749,11 @@
                       </select>
                     </div>
                     <div class="col-6 col-md-12">
-                      <select class="form-select" aria-label="multiple select example" name="critOrden" id="critOrden">
-                        <option value="Ascendente">Ascendente</option>
-                        <option value="Descendente">Descendente</option>
+                      <select class="form-select" aria-label="multiple select example" name="orderDirec" id="orderDirec">
+                        <option value="_Asc">Ascendente</option>
+                        <option value="_Desc">Descendente</option>
                       </select>
                     </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-12 text-center more">
-                      <button class="btn btn-primary">Añadir</button>
-                    </div>
-                  </div>
-                  <div class="row justify-content-center">
-                    <div class="col-8 col-md-12 orden border rounded my-3 bg-white"></div>
                   </div>
                 </div>
               </section>
@@ -845,17 +775,17 @@
                   <div class="row">
                     <div class="col-lg-12 d-flex justify-content-center">
                       <ul id="portfolio-flters">
-                        <li data-filter=".filter-bandas">Bandas</li>
-                        <li data-filter=".filter-albumes" class="filter-active">Álbumes</li>
-                        <li data-filter=".filter-canciones">Canciones</li>
-                        <li data-filter=".filter-discograf">Discográficas</li>
-                        <li data-filter=".filter-esttudios">Estudios de Grabación</li>
+                        <li data-filter=".filter-bandas2" class="filterButton filterBandas" id="filterBandas2">Bandas</li>
+                        <li data-filter=".filter-albumes2" class="filter-active filterButton filterAlbumes" id="filterAlbumes2">Álbumes</li>
+                        <!-- <li data-filter=".filter-canciones">Canciones</li> -->
+                        <li data-filter=".filter-discograf2" class="filterButton filterDiscogs" id="filterDiscogs2">Discográficas</li>
+                       <!--  <li data-filter=".filter-esttudios">Estudios de Grabación</li>
                         <li data-filter=".filter-generos">Géneros</li>
                         <li data-filter=".filter-paises">Paises</li>
-                        <li data-filter=".filter-">Años</li>
-                        <li data-filter=".filter-">Músicos</li>
-                        <li data-filter=".filter-">Productores</li>
-                        <li data-filter=".filter-">Temas de Letra</li>
+                        <li data-filter=".filter-">Años</li> -->
+                        <li data-filter=".filter-musicos2" class="filterButton filterMusicos" id="filterMusicos2">Músicos</li>
+                        <!-- <li data-filter=".filter-">Productores</li>
+                        <li data-filter=".filter-">Temas de Letra</li> -->
                       </ul>
                     </div>
                   </div>
@@ -864,14 +794,14 @@
                 <!-- Botón Buscar -->
                 <div class="row mb-4" data-aos="fade-up" data-aos-delay="400">
                   <div class="col text-center more">
-                    <button type="button" class="btn btn-primary">Buscar</button>
+                    <button type="button" class="btn btn-primary" id="searchButton">Buscar</button>
                   </div>
                 </div>
 
                 <!-- Resultados -->
                 <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3 g-4 mt-3 mx-2" data-aos="fade-up" data-aos-delay="500">
-                  <div class="col">
-                    <div class="card h-100">
+                  <div class="col portfolio-item filter-albumes1 filter-albumes2">
+                    <div class="card h-100 shadow-sm">
                       <img src="./imagenes/albums/ashesOfTheWake.jpg" class="card-img-top" alt="album">
                       <div class="card-body text-center bg-light">
                         <h5 class="card-title"><a href="album.html">Ashes of the Wake</a></h5>
@@ -894,8 +824,8 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col">
-                    <div class="card h-100">
+                  <div class="col portfolio-item filter-albumes1 filter-albumes2">
+                    <div class="card h-100 shadow-sm">
                       <img src="./imagenes/albums/TheWickedSymphny.jpg" class="card-img-top" alt="album">
                       <div class="card-body text-center bg-light">
                         <h5 class="card-title"><a href="album.html">The Wicked Symphony</a></h5>
@@ -918,8 +848,8 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col">
-                    <div class="card h-100">
+                  <div class="col portfolio-item filter-albumes1 filter-albumes2">
+                    <div class="card h-100 shadow-sm">
                       <img src="./imagenes/albums/TalesFromTheThousandLakes.webp" class="card-img-top" alt="album">
                       <div class="card-body text-center bg-light">
                         <h5 class="card-title"><a href="album.html">Tales From The Thousand Lakes</a></h5>
@@ -951,8 +881,8 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col">
-                    <div class="card h-100">
+                  <div class="col portfolio-item filter-albumes1 filter-albumes2">
+                    <div class="card h-100 shadow-sm">
                       <img src="./imagenes/albums/Soulfly.jpg" class="card-img-top" alt="album">
                       <div class="card-body text-center bg-light">
                         <h5 class="card-title"><a href="album.html">Soulfly</a></h5>
@@ -972,8 +902,8 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col">
-                    <div class="card h-100">
+                  <div class="col portfolio-item filter-albumes1 filter-albumes2">
+                    <div class="card h-100 shadow-sm">
                       <img src="./imagenes/albums/OctoberRust.jpg" class="card-img-top" alt="album">
                       <div class="card-body text-center bg-light">
                         <h5 class="card-title"><a href="album.html">October Rust</a></h5>
@@ -993,8 +923,8 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col">
-                    <div class="card h-100">
+                  <div class="col portfolio-item filter-albumes1 filter-albumes2">
+                    <div class="card h-100 shadow-sm">
                       <img src="./imagenes/albums/TheBlackHalo.jpg" class="card-img-top" alt="album">
                       <div class="card-body text-center bg-light">
                         <h5 class="card-title"><a href="album.html">The Black Halo</a></h5>
@@ -1017,8 +947,8 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col">
-                    <div class="card h-100">
+                  <div class="col portfolio-item filter-albumes1 filter-albumes2">
+                    <div class="card h-100 shadow-sm">
                       <img src="./imagenes/albums/Moment.jpg" class="card-img-top" alt="album">
                       <div class="card-body text-center bg-light">
                         <h5 class="card-title"><a href="album.html">Moment</a></h5>
@@ -1038,8 +968,8 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col">
-                    <div class="card h-100">
+                  <div class="col portfolio-item filter-albumes1 filter-albumes2">
+                    <div class="card h-100 shadow-sm">
                       <img src="./imagenes/albums/ScreamingForVengeance.jpg" class="card-img-top" alt="album">
                       <div class="card-body text-center bg-light">
                         <h5 class="card-title"><a href="album.html">Screaming for Vengeance</a></h5>
@@ -1083,15 +1013,15 @@
                 </a>
               </h1>
               <p>
-                Calle de la Fuensanta, 3 <br>
+                Calle de la Fuensanta, 3
                 16002, Cuenca, España<br><br>
                 <strong>Teléfono:</strong> +32 969 304 288<br>
                 <strong>Email:</strong> <a href="mailto:molinamario.msc@gmail.com" class="inv-a">molinamario.msc@gmail.com</a><br>
-              </p> <br>
+              </p>
               <p>
                 <a href="privacidad.html" class="inv-a">Políticas de Privacidad y Cookies</a><br>
                 <a href="legal.html" class="inv-a">Políticas Legales y Términos de Uso</a><br>
-              </p> <br>
+              </p>
               <div class="social-links mt-3">
                 <a href="https://twitter.com/?lang=es" class="twitter"><span class="d-none">.</span><div><i class="bx bxl-twitter"></div></i></a>
                 <a href="https://www.facebook.com/" class="facebook"><span class="d-none">.</span><div><i class="bx bxl-facebook"></i></div></a>
@@ -1134,12 +1064,12 @@
             <form action="" method="post">
               <input type="email" name="email" placeholder="Correo Electrónico">
               <input type="submit" value="Enlazar">
-            </form> <br>
+            </form>
             <p>En caso de no querer recibir más notificaciones podemos desenlazar el email que indiques a continuación:</p>
             <form action="" method="post">
               <input type="email" name="email" placeholder="Correo Electrónico">
               <input type="submit" value="Desenlazar">
-            </form> <br>
+            </form>
           </div>
 
         </div>
@@ -1160,6 +1090,9 @@
     </div>
   </footer><!-- End Footer -->
 
+  <!-- Alerts -->
+  <div id="alertTemplate"></div>
+
   <div id="preloader"></div>
   <a href="buscadorAvanzado.html#" class="back-to-top d-flex align-items-center justify-content-center"><i
       class="bi bi-arrow-up-short"></i></a>
@@ -1176,16 +1109,11 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 
-  <script>
-    var headers = document.getElementsByClassName('viewer-header');
-
-    for (var i = 0; i < headers.length; i++) {
-      headers[i].addEventListener('click', function () {
-        this.classList.toggle('open');
-      });
-    }
-  </script>
-  <!-- <script src="../../../bootstrap/noUiSlider-master/documentation/assets/prism.js"></script> -->
+  <script src="js/api.js"></script>
+  <script src="js/util.js"></script>
+  <script src="js/login.js"></script>
+  <script src="js/buscador/newFilter.js"></script>
+  <script src="js/buscador/buscador.js"></script>
 
 </body>
 
