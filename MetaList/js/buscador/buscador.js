@@ -11,10 +11,11 @@ let order = document.getElementById("order");
 let orderDirec = document.getElementById("orderDirec");
 // Contenedor de resultados
 let resultContainer = document.getElementById("resultContainer");
+let noDataFound = document.getElementById("noDataFound");
 //Parámetros de búsqueda
-let elemento, parameters = [];
+let elemento, parameters = [], getCard;
 //Variables de paginación basada en Scroll
-let numPag = 1, showMore = true;
+let numPag = 1, showMore = true, allowScroll=false, footer = document.getElementById("footer");
 
 //Gestionar Botones de la Lista Principal
 filterButtons.forEach(btn=>{
@@ -29,10 +30,12 @@ filterButtons.forEach(btn=>{
       case 'Álbumes': 
         newFilter("albums");
         elemento = "albumes";
+        getCard = getAlbumCard;
         break;
       case 'Bandas': 
         newFilter("bands");
         elemento = "bandas";
+        getCard = getBandCard;
         break;
       case 'Discográficas': 
         newFilter("labels");
@@ -54,7 +57,8 @@ filterButtons.forEach(btn=>{
 
 searchButton.addEventListener("click", ()=>{
   //Reestablecimiento de parámetros de búsqueda
-  parameters = [], numPag = 1, showMore = true;
+  parameters = [], numPag = 1, showMore = true, allowScroll=true;
+  resultContainer.innerHTML = "";
 
   //Título
   if(mainTitle.value.length>0 && !estrictSearch.checked){
@@ -94,21 +98,40 @@ searchButton.addEventListener("click", ()=>{
   if(showMore) printResults(1);
 });
 
+window.addEventListener("scroll",()=>{
+  if(allowScroll && window.scrollY + window.innerHeight >= document.body.clientHeight - footer.clientHeight){
+    console.log("Scroll detectado")
+    if(showMore){
+      printResults();
+    }
+    allowScroll=false;
+  }
+});
+
 async function printResults(pag = numPag){
   parameters.push(["limit","12"],["page",pag]);
   //Obtención de datos
   let results = await list(elemento,true,...parameters);
   console.log(results);
   results = results.response;
-  //Actualización de datos de paginación
-  numPag++;
-  showMore = results.length==12;
+  
   //Impresión
-  resultContainer.innerHTML = "";
-  let txt = "";
-  for(let res of results){
-    txt += await getAlbumCard(res);
-    console.log("nuevoAlbum")
+  if(results.length>0){
+    noDataFound.classList.add("d-none")
+    numPag++;
+    showMore = results.length==12;
+    let txt = "";
+    for(let res of results){
+      txt += await getCard(res);
+      console.log("nuevoAlbum")
+    }
+    resultContainer.innerHTML += txt;
+    allowScroll = results.length==12;
+  } else {
+    if(numPag==1) noDataFound.classList.remove("d-none")
+    else numPag=1;
+    showMore = false;
+    allowScroll = false;
   }
-  resultContainer.innerHTML = txt;
+  
 }

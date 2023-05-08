@@ -738,7 +738,7 @@
                     <p>Ordenar por:</p>
                   </div>
                   <div class="row">
-                    <div class="col-6 col-md-12">
+                    <div class="col-6 col-md-12 mt-1">
                       <select class="form-select" aria-label="Default select example" name="critTipo" id="order">
                         <option value="0"></option>
                         <option value="Alfabetico">Alfabético</option>
@@ -748,7 +748,7 @@
                         <option value="Likes">Likes</option>
                       </select>
                     </div>
-                    <div class="col-6 col-md-12">
+                    <div class="col-6 col-md-12 mt-1">
                       <select class="form-select" aria-label="multiple select example" name="orderDirec" id="orderDirec">
                         <option value="_Asc">Ascendente</option>
                         <option value="_Desc">Descendente</option>
@@ -798,9 +798,14 @@
                   </div>
                 </div>
 
+                <div class="row justify-content-center align-items-end mt-5 d-none" id="noDataFound">
+                  <div class="col-auto"><img src="./imagenes/basico/noDataFoundGrey.png" alt="" style="width: 120px"></div>
+                  <div class="col-auto pb-3"><h2 class="text-center">No se han encontrado resultados</h2></div>
+                </div>
+
                 <!-- Resultados -->
                 <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3 g-4 mt-3 mx-2" id="resultContainer" data-aos="fade-up" data-aos-delay="500">
-                  <div class="col portfolio-item filter-albumes1 filter-albumes2">
+                  <!-- <div class="col portfolio-item filter-albumes1 filter-albumes2">
                     <div class="card h-100 shadow-sm">
                       <img src="./imagenes/albums/ashesOfTheWake.jpg" class="card-img-top" alt="album">
                       <div class="card-body text-center bg-light">
@@ -985,7 +990,7 @@
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
 
               </section>
@@ -1113,6 +1118,7 @@
   <script src="js/util.js"></script>
   <script src="js/login.js"></script>
   <script src="js/buscador/newAlbumCard.js"></script>
+  <script src="js/buscador/newBandCard.js"></script>
   <script src="js/buscador/newFilter.js"></script>
   <script src="js/buscador/buscador.js"></script>
 

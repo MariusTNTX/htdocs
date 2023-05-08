@@ -273,7 +273,7 @@ $metadata = array(
       "nombreMusico" => array("tabla"=>"roles_musicos_albumes", "key"=>"NomBan"),
       "nombreAlbumRol" => array("tabla"=>"roles_musicos_albumes", "key"=>"NomBan"),
       "rolMusico" => array("tabla"=>"roles_musicos_albumes", "key"=>"NomBan"),
-      "temaLetra" => array("tabla"=>"temas_letra_bandas", "key"=>"NomBan")
+      "temaLetraBanda" => array("tabla"=>"temas_letra_bandas", "key"=>"NomBan")
     )
   ),
   "bandas_favoritas" => array(
@@ -447,7 +447,7 @@ $metadata = array(
   "musicos_bandas" => array(
     "alias" => "mb",
     "campos" => array(
-      "nombreMusico" => array("nombre"=>"NomMus", "simbolo"=>"LIKE", "salida"=>"musico"),
+      "nombreMusicoEtapa" => array("nombre"=>"NomMus", "simbolo"=>"LIKE", "salida"=>"musico"),
       "nombreBanda" => array("nombre"=>"NomBan", "simbolo"=>"LIKE", "salida"=>"banda"),
       "anioInicioEtapaMusico" => array("nombre"=>"anioInic", "simbolo"=>"=", "salida"=>"anioInicio"),
       "anioFinEtapaMusico" => array("nombre"=>"anioFin", "simbolo"=>"=", "salida"=>"anioFin")

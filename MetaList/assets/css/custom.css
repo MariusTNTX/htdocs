@@ -52,7 +52,7 @@
   color: inherit;
   transition: ease-in-out 0.3s;
 }
-.inv-a:hover{color: #dc210e}
+.inv-a:hover{color: rgb(220, 33, 14)}
 
 
 /* OTROS */
@@ -411,7 +411,7 @@ footer input{
   font-weight: 700;
   text-transform: uppercase;
   font-family: "Poppins", sans-serif;
-  color: #151515;
+  color: rgb(21, 21, 21);
 }
 
 .politicGrey h2{
@@ -419,7 +419,7 @@ footer input{
   font-weight: 700;
   text-transform: uppercase;
   font-family: "Poppins", sans-serif;
-  color: #151515;
+  color: rgb(21, 21, 21);
   text-align: center;
 }
 

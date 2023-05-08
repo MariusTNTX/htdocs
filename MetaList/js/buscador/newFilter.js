@@ -2,12 +2,15 @@
 let albumTypes = ["Estudio","EP","Recopilatorio","Boxset","En Vivo","Demo","Single","Video","Split"];
 let genres = ["Alternative Metal","Black Metal","Crossover Thrash Metal","Deathcore","Death Metal","Djent","Doom Metal","Folk Metal","Glam Metal","Groove Metal","Gothic Metal","Grindcore","Heavy Metal","Industrial Metal","Melodic Death Metal","Metalcore","Nu Metal","NWOBHM","Power Metal","Progressive Metal","Sludge Metal","Speed Metal","Stoner Metal","Symphonic Metal","Technical Death Metal","Thrash Metal","Viking Metal"];
 let countries = ["Alemania","Australia","Bélgica","Brasil","Canadá","Dinamarca","España","Estados Unidos","Finlandia","Francia","Grecia","Italia","Japón","Noruega","Paises Bajos","Polonia","Reino Unido","Rusia","Suecia","Suiza","Ucrania"];
+let statusList = ["En Activo","Disueltos","En Hiato"];
+let phases = ["En Activo","En Hiato"];
 
 /* CAMPOS */
 let campos = {
   anioAlbum: {type: "interval", name: "Año de Lanzamiento", reqName: "anioAlbum", min: 1968, max: new Date().getFullYear(), sufix: "", step: 1},
   puntuacionAlbum: {type: "interval", name: "Puntuación", reqName: "puntuacionAlbum", min: 0, max: 5000, sufix: "P", step: 50},
-  escuchasAlbum: {type: "interval", name: "Escuchas", reqName: "escuchasAlbum", min: 0, max: 1000000, sufix: "k", step: 10},
+  escuchasAlbum: {type: "interval", name: "Escuchas de Álbum", reqName: "escuchasAlbum", min: 0, max: 1000000, sufix: "k", step: 10},
+  escuchasBanda: {type: "interval", name: "Escuchas de Banda", reqName: "escuchasBanda", min: 0, max: 1000000, sufix: "k", step: 10},
   visitasAlbum: {type: "interval", name: "Visitas del Álbum", reqName: "visitasAlbum", min: 0, max: 1000, sufix: "", step: 1},
   visitasBanda: {type: "interval", name: "Visitas de la Banda", reqName: "visitasBanda", min: 0, max: 1000, sufix: "", step: 10},
   likesAlbum: {type: "interval", name: "Likes", reqName: "likesAlbum", min: 0, max: 1000, sufix: "", step: 10}, // ¿Cambiar tabla albumes por puntuacion_albumes?
@@ -20,9 +23,11 @@ let campos = {
   paisBanda: {type: "check", name: "Países", reqName: "paisBanda", list: countries},
   nombreGeneroAlbum: {type: "check", name: "Géneros de Álbum", reqName: "nombreGeneroAlbum", list: genres},
   nombreGeneroBanda: {type: "check", name: "Géneros de Banda", reqName: "nombreGeneroBanda", list: genres},
+  estatusBanda: {type: "check", name: "Estatus Actual de Banda", reqName: "estatusBanda", list: statusList},
+  tipoEtapa: {type: "check", name: "Etapa de Banda", reqName: "tipoEtapa", list: phases},
 
-  nombreAlbum: {type: "text", name: "Título del Álbum", reqName: "nombreAlbum"},
-  nombreBanda: {type: "text", name: "Banda", reqName: "nombreBanda"},
+  nombreAlbum: {type: "text", name: "Título de Álbum", reqName: "nombreAlbum"},
+  nombreBanda: {type: "text", name: "Nombre de Banda", reqName: "nombreBanda"},
   nombreDiscografica: {type: "text", name: "Discográfica", reqName: "nombreDiscografica"},
   nombreEstudio: {type: "text", name: "Estudio de Grabación", reqName: "nombreEstudio"},
   nombreMusico: {type: "text", name: "Músico de Álbum", reqName: "nombreMusico"},
@@ -30,6 +35,8 @@ let campos = {
   rolMusico: {type: "text", name: "Rol de Músico", reqName: "rolMusico"},
   temaLetraBanda: {type: "text", name: "Tema de Letra", reqName: "temaLetraBanda"},
   nombreCancion: {type: "text", name: "Nombre de Canción", reqName: "nombreCancion"},
+  nombreDiscograficaAlbum: {type: "text", name: "Nombre de Discográfica", reqName: "nombreDiscograficaAlbum"},
+  nombreEstudioAlbum: {type: "text", name: "Nombre de Estudio de Grabación", reqName: "nombreEstudioAlbum"},
 }
 
 let metadata = {
@@ -41,6 +48,15 @@ let metadata = {
     categories: [campos.tipoAlbum, campos.nombreGeneroAlbum, campos.nombreGeneroBanda, campos.paisBanda],
     reductions: [campos.nombreBanda, campos.nombreDiscografica, campos.nombreEstudio, campos.nombreMusico, campos.nombreMusicoEtapa, 
                 campos.rolMusico, campos.temaLetraBanda, campos.nombreCancion],
+  },
+  bands: {
+    mainSearch: campos.nombreBanda,
+    checks: [],
+    intervals: [campos.escuchasBanda,campos.visitasBanda,campos.visitasAlbum,campos.anioAlbum,campos.escuchasAlbum,campos.duracionAlbum,
+                campos.estrellasGeneroAlbum,campos.estrellasGeneroBanda],
+    categories: [campos.paisBanda,campos.estatusBanda,campos.tipoEtapa,campos.nombreGeneroAlbum,campos.nombreGeneroBanda],
+    reductions: [campos.nombreAlbum,campos.nombreDiscograficaAlbum,campos.nombreEstudioAlbum,campos.nombreMusicoEtapa,campos.nombreMusico,
+                 campos.rolMusico,campos.temaLetraBanda],
   }
 };
 
