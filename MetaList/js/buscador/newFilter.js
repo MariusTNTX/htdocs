@@ -4,6 +4,7 @@ let genres = ["Alternative Metal","Black Metal","Crossover Thrash Metal","Deathc
 let countries = ["Alemania","Australia","Bélgica","Brasil","Canadá","Dinamarca","España","Estados Unidos","Finlandia","Francia","Grecia","Italia","Japón","Noruega","Paises Bajos","Polonia","Reino Unido","Rusia","Suecia","Suiza","Ucrania"];
 let statusList = ["En Activo","Disueltos","En Hiato"];
 let phases = ["En Activo","En Hiato"];
+let sexList = ["Hombre","Mujer"];
 
 /* CAMPOS */
 let campos = {
@@ -11,20 +12,30 @@ let campos = {
   puntuacionAlbum: {type: "interval", name: "Puntuación", reqName: "puntuacionAlbum", min: 0, max: 5000, sufix: "P", step: 50},
   escuchasAlbum: {type: "interval", name: "Escuchas de Álbum", reqName: "escuchasAlbum", min: 0, max: 1000000, sufix: "k", step: 10},
   escuchasBanda: {type: "interval", name: "Escuchas de Banda", reqName: "escuchasBanda", min: 0, max: 1000000, sufix: "k", step: 10},
-  visitasAlbum: {type: "interval", name: "Visitas del Álbum", reqName: "visitasAlbum", min: 0, max: 1000, sufix: "", step: 1},
-  visitasBanda: {type: "interval", name: "Visitas de la Banda", reqName: "visitasBanda", min: 0, max: 1000, sufix: "", step: 10},
+  visitasAlbum: {type: "interval", name: "Visitas de Álbum", reqName: "visitasAlbum", min: 0, max: 1000, sufix: "", step: 1},
+  visitasBanda: {type: "interval", name: "Visitas de Banda", reqName: "visitasBanda", min: 0, max: 1000, sufix: "", step: 10},
+  visitasDiscografica: {type: "interval", name: "Visitas de Discográfica", reqName: "visitasDiscografica", min: 0, max: 1000, sufix: "", step: 10},
+  visitasMusico: {type: "interval", name: "Visitas de Músico", reqName: "visitasMusico", min: 0, max: 1000, sufix: "", step: 10},
   likesAlbum: {type: "interval", name: "Likes", reqName: "likesAlbum", min: 0, max: 1000, sufix: "", step: 10}, // ¿Cambiar tabla albumes por puntuacion_albumes?
   duracionAlbum: {type: "interval", name: "Duración", reqName: "duracionAlbum", min: 0, max: 6000, sufix: "", step: 5},
   estrellasCancionAlbum: {type: "interval", name: "Estrellas de Canción", reqName: "estrellasCancionAlbum", min: 0, max: 3, sufix: "", step: 1},
   estrellasGeneroAlbum: {type: "interval", name: "Estrellas de Género de Álbum", reqName: "estrellasGeneroAlbum", min: 0, max: 5, sufix: "", step: 1},
   estrellasGeneroBanda: {type: "interval", name: "Estrellas de Género de Banda", reqName: "estrellasGeneroBanda", min: 0, max: 5, sufix: "", step: 1},
+  anioNacimientoMusico: {type: "interval", name: "Año de Nacimiento", reqName: "anioNacimientoMusico", min: 1940, max: new Date().getFullYear(), sufix: "", step: 1},
+  anioDefuncionMusico: {type: "interval", name: "Año de Defunción", reqName: "anioDefuncionMusico", min: 1940, max: new Date().getFullYear(), sufix: "", step: 1},
+  anioInicioEtapaMusico: {type: "interval", name: "Año de Inicio de Músico en una Banda", reqName: "anioInicioEtapaMusico", min: 1940, max: new Date().getFullYear(), sufix: "", step: 1},
+  anioFinEtapaMusico: {type: "interval", name: "Año de Fin de Músico en una Banda", reqName: "anioFinEtapaMusico", min: 1940, max: new Date().getFullYear(), sufix: "", step: 1},
 
   tipoAlbum: {type: "check", name: "Tipo de Álbum", reqName: "tipoAlbum", list: albumTypes},
-  paisBanda: {type: "check", name: "Países", reqName: "paisBanda", list: countries},
+  paisBanda: {type: "check", name: "País de Banda", reqName: "paisBanda", list: countries},
+  paisDiscografica: {type: "check", name: "País de Discográfica", reqName: "paisDiscografica", list: countries},
+  paisMusico: {type: "check", name: "País de Músico", reqName: "paisMusico", list: countries},
   nombreGeneroAlbum: {type: "check", name: "Géneros de Álbum", reqName: "nombreGeneroAlbum", list: genres},
   nombreGeneroBanda: {type: "check", name: "Géneros de Banda", reqName: "nombreGeneroBanda", list: genres},
   estatusBanda: {type: "check", name: "Estatus Actual de Banda", reqName: "estatusBanda", list: statusList},
+  estatusDiscografica: {type: "check", name: "Estatus Actual de Discográfica", reqName: "estatusDiscografica", list: statusList},
   tipoEtapa: {type: "check", name: "Etapa de Banda", reqName: "tipoEtapa", list: phases},
+  sexoMusico: {type: "check", name: "Sexo de Músico", reqName: "sexoMusico", list: sexList},
 
   nombreAlbum: {type: "text", name: "Título de Álbum", reqName: "nombreAlbum"},
   nombreBanda: {type: "text", name: "Nombre de Banda", reqName: "nombreBanda"},
@@ -57,6 +68,21 @@ let metadata = {
     categories: [campos.paisBanda,campos.estatusBanda,campos.tipoEtapa,campos.nombreGeneroAlbum,campos.nombreGeneroBanda],
     reductions: [campos.nombreAlbum,campos.nombreDiscograficaAlbum,campos.nombreEstudioAlbum,campos.nombreMusicoEtapa,campos.nombreMusico,
                  campos.rolMusico,campos.temaLetraBanda],
+  },
+  labels: {
+    mainSearch: campos.nombreDiscografica,
+    checks: [],
+    intervals: [campos.visitasDiscografica],
+    categories: [campos.paisDiscografica,campos.estatusDiscografica],
+    reductions: [campos.nombreAlbum,campos.nombreBanda],
+  },
+  musicians: {
+    mainSearch: campos.nombreMusico,
+    checks: [],
+    intervals: [campos.anioNacimientoMusico, campos.anioDefuncionMusico, campos.visitasMusico, campos.anioInicioEtapaMusico, 
+                campos.anioFinEtapaMusico],
+    categories: [campos.sexoMusico, campos.paisMusico],
+    reductions: [campos.nombreBanda, campos.nombreAlbum, campos.rolMusico],
   }
 };
 

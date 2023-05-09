@@ -40,10 +40,12 @@ filterButtons.forEach(btn=>{
       case 'Discográficas': 
         newFilter("labels");
         elemento = "discograficas";
+        getCard = getLabelCard;
         break;
       case 'Músicos': 
         newFilter("musicians");
         elemento = "musicos";
+        getCard = getMusicianCard;
         break;
       default: console.log("El elmento seleccionado de la lista no está contemplado");
     }
@@ -92,7 +94,6 @@ searchButton.addEventListener("click", ()=>{
   if(order.value.length>0){
     parameters.push(["order",order.value+orderDirec.value]);
   }
-  console.log(parameters);
 
   //Obtención de Datos
   if(showMore) printResults(1);
@@ -100,7 +101,6 @@ searchButton.addEventListener("click", ()=>{
 
 window.addEventListener("scroll",()=>{
   if(allowScroll && window.scrollY + window.innerHeight >= document.body.clientHeight - footer.clientHeight){
-    console.log("Scroll detectado")
     if(showMore){
       printResults();
     }
@@ -112,7 +112,6 @@ async function printResults(pag = numPag){
   parameters.push(["limit","12"],["page",pag]);
   //Obtención de datos
   let results = await list(elemento,true,...parameters);
-  console.log(results);
   results = results.response;
   
   //Impresión
@@ -120,12 +119,11 @@ async function printResults(pag = numPag){
     noDataFound.classList.add("d-none")
     numPag++;
     showMore = results.length==12;
-    let txt = "";
+    let txt = [];
     for(let res of results){
-      txt += await getCard(res);
-      console.log("nuevoAlbum")
+      txt.push(await getCard(res));
     }
-    resultContainer.innerHTML += txt;
+    for(card of txt) resultContainer.appendChild(card);
     allowScroll = results.length==12;
   } else {
     if(numPag==1) noDataFound.classList.remove("d-none")
@@ -134,4 +132,15 @@ async function printResults(pag = numPag){
     allowScroll = false;
   }
   
+}
+
+function imgResize(){
+  console.log("card-img:",resultContainer.querySelectorAll(".card-img-top"))
+  for(let img of resultContainer.querySelectorAll(".card-img-top")){
+    console.log(img)
+    console.log("Client Height: ",img.clientHeight)
+    if(img.clientHeight>329){
+      img.style="margin:0 auto;height:329px;width:fit-content";
+    }
+  }
 }

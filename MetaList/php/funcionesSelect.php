@@ -259,8 +259,8 @@ $metadata = array(
       "nombreAlbumDiscografica" => array("tabla"=>"discograficas_albumes", "key"=>"NomBan"),
       "nombreEstudioAlbum" => array("tabla"=>"estudios_albumes", "key"=>"NomBan"),
       "nombreAlbumEstudio" => array("tabla"=>"estudios_albumes", "key"=>"NomBan"),
-      "anioInicioEtapa" => array("tabla"=>"etapas_bandas", "key"=>"NomBan"),
-      "anioFinEtapa" => array("tabla"=>"etapas_bandas", "key"=>"NomBan"),
+      "anioInicioEtapaBanda" => array("tabla"=>"etapas_bandas", "key"=>"NomBan"),
+      "anioFinEtapaBanda" => array("tabla"=>"etapas_bandas", "key"=>"NomBan"),
       "tipoEtapa" => array("tabla"=>"etapas_bandas", "key"=>"NomBan"),
       "nombreGeneroAlbum" => array("tabla"=>"generos_albumes", "key"=>"NomBan"),
       "nombreAlbumGenero" => array("tabla"=>"generos_albumes", "key"=>"NomBan"),
@@ -437,11 +437,11 @@ $metadata = array(
     ),
     "filtros" => array(
       "nombreBanda" => array("tabla"=>"musicos_bandas", "key"=>"NomMus"),
-      "anioInicioEtapa" => array("tabla"=>"musicos_bandas", "key"=>"NomMus"),
-      "anioFinEtapa" => array("tabla"=>"musicos_bandas", "key"=>"NomMus"),
+      "anioInicioEtapaMusico" => array("tabla"=>"musicos_bandas", "key"=>"NomMus"),
+      "anioFinEtapaMusico" => array("tabla"=>"musicos_bandas", "key"=>"NomMus"),
       "nombreBandaRol" => array("tabla"=>"roles_musicos_albumes", "key"=>"NomMus"),
       "nombreAlbum" => array("tabla"=>"roles_musicos_albumes", "key"=>"NomMus"),
-      "rol" => array("tabla"=>"roles_musicos_albumes", "key"=>"NomMus")
+      "rolMusico" => array("tabla"=>"roles_musicos_albumes", "key"=>"NomMus")
     )
   ),
   "musicos_bandas" => array(
