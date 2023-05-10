@@ -13,10 +13,15 @@ async function getLabelCard(label){
       </div>
     </div>`;
   card.innerHTML = txt;
+  
   card.querySelector(".card-img-top").addEventListener("load",(e)=>{
     if(e.target.clientHeight>329){
       e.target.style="margin:0 auto;height:329px;width:fit-content";
+    } else if(e.target.clientHeight<329 && e.target.clientHeight!=0) {
+      let pad = parseInt((329 - e.target.clientHeight) / 2);
+      e.target.style=`padding: ${pad}px 0`;
     }
   });
+  
   return card;
 }

@@ -133,14 +133,3 @@ async function printResults(pag = numPag){
   }
   
 }
-
-function imgResize(){
-  console.log("card-img:",resultContainer.querySelectorAll(".card-img-top"))
-  for(let img of resultContainer.querySelectorAll(".card-img-top")){
-    console.log(img)
-    console.log("Client Height: ",img.clientHeight)
-    if(img.clientHeight>329){
-      img.style="margin:0 auto;height:329px;width:fit-content";
-    }
-  }
-}
