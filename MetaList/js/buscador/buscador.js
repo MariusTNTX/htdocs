@@ -29,12 +29,12 @@ filterButtons.forEach(btn=>{
     switch(btn.textContent){
       case 'Álbumes': 
         newFilter("albums");
-        elemento = "albumes";
+        elemento = "albumes_plus";
         getCard = getAlbumCard;
         break;
       case 'Bandas': 
         newFilter("bands");
-        elemento = "bandas";
+        elemento = "bandas_plus";
         getCard = getBandCard;
         break;
       case 'Discográficas': 

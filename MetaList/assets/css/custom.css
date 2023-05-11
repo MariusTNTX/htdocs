@@ -271,6 +271,18 @@ div.less{padding-top: 20px}
 
 .breadcrumbs h2{margin-top: 10px}
 
+.div-card-img-top{
+  /* text-align: center; */
+  height: 331px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card-img-top{
+  max-height: 331px;
+  max-width: fit-content;
+}
+
 /* Tabla Músicos */
 .table-striped>tbody>tr:nth-of-type(odd)>* {background-color: rgba(220,33,14,.02)}
 

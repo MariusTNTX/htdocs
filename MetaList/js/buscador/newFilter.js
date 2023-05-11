@@ -1,6 +1,6 @@
 /* LISTAS */
 let albumTypes = ["Estudio","EP","Recopilatorio","Boxset","En Vivo","Demo","Single","Video","Split"];
-let genres = ["Alternative Metal","Black Metal","Crossover Thrash Metal","Deathcore","Death Metal","Djent","Doom Metal","Folk Metal","Glam Metal","Groove Metal","Gothic Metal","Grindcore","Heavy Metal","Industrial Metal","Melodic Death Metal","Metalcore","Nu Metal","NWOBHM","Power Metal","Progressive Metal","Sludge Metal","Speed Metal","Stoner Metal","Symphonic Metal","Technical Death Metal","Thrash Metal","Viking Metal"];
+let genres = ["Alternative Metal","Black Metal","Crossover Thrash Metal","Deathcore","Death Metal","Djent","Doom Metal","Extreme Metal","Folk Metal","Glam Metal","Groove Metal","Gothic Metal","Grindcore","Heavy Metal","Industrial Metal","Melodic Death Metal","Metalcore","Nu Metal","NWOBHM","Power Metal","Progressive Metal","Sludge Metal","Speed Metal","Stoner Metal","Symphonic Metal","Technical Death Metal","Thrash Metal","Viking Metal"];
 let countries = ["Alemania","Australia","Bélgica","Brasil","Canadá","Dinamarca","España","Estados Unidos","Finlandia","Francia","Grecia","Italia","Japón","Noruega","Paises Bajos","Polonia","Reino Unido","Rusia","Suecia","Suiza","Ucrania"];
 let statusList = ["En Activo","Disueltos","En Hiato"];
 let phases = ["En Activo","En Hiato"];
@@ -9,14 +9,12 @@ let sexList = ["Hombre","Mujer"];
 /* CAMPOS */
 let campos = {
   anioAlbum: {type: "interval", name: "Año de Lanzamiento", reqName: "anioAlbum", min: 1968, max: new Date().getFullYear(), sufix: "", step: 1},
-  puntuacionAlbum: {type: "interval", name: "Puntuación", reqName: "puntuacionAlbum", min: 0, max: 5000, sufix: "P", step: 50},
   escuchasAlbum: {type: "interval", name: "Escuchas de Álbum", reqName: "escuchasAlbum", min: 0, max: 1000000, sufix: "k", step: 10},
   escuchasBanda: {type: "interval", name: "Escuchas de Banda", reqName: "escuchasBanda", min: 0, max: 1000000, sufix: "k", step: 10},
   visitasAlbum: {type: "interval", name: "Visitas de Álbum", reqName: "visitasAlbum", min: 0, max: 1000, sufix: "", step: 1},
   visitasBanda: {type: "interval", name: "Visitas de Banda", reqName: "visitasBanda", min: 0, max: 1000, sufix: "", step: 10},
   visitasDiscografica: {type: "interval", name: "Visitas de Discográfica", reqName: "visitasDiscografica", min: 0, max: 1000, sufix: "", step: 10},
   visitasMusico: {type: "interval", name: "Visitas de Músico", reqName: "visitasMusico", min: 0, max: 1000, sufix: "", step: 10},
-  likesAlbum: {type: "interval", name: "Likes", reqName: "likesAlbum", min: 0, max: 1000, sufix: "", step: 10}, // ¿Cambiar tabla albumes por puntuacion_albumes?
   duracionAlbum: {type: "interval", name: "Duración", reqName: "duracionAlbum", min: 0, max: 6000, sufix: "", step: 5},
   estrellasCancionAlbum: {type: "interval", name: "Estrellas de Canción", reqName: "estrellasCancionAlbum", min: 0, max: 3, sufix: "", step: 1},
   estrellasGeneroAlbum: {type: "interval", name: "Estrellas de Género de Álbum", reqName: "estrellasGeneroAlbum", min: 0, max: 5, sufix: "", step: 1},
@@ -25,6 +23,23 @@ let campos = {
   anioDefuncionMusico: {type: "interval", name: "Año de Defunción", reqName: "anioDefuncionMusico", min: 1940, max: new Date().getFullYear(), sufix: "", step: 1},
   anioInicioEtapaMusico: {type: "interval", name: "Año de Inicio de Músico en una Banda", reqName: "anioInicioEtapaMusico", min: 1940, max: new Date().getFullYear(), sufix: "", step: 1},
   anioFinEtapaMusico: {type: "interval", name: "Año de Fin de Músico en una Banda", reqName: "anioFinEtapaMusico", min: 1940, max: new Date().getFullYear(), sufix: "", step: 1},
+  estrellasMaximasAlbum: {type: "interval", name: "Estrellas Máximas de Género de Álbum", reqName: "estrellasMaximasAlbum", min: 0, max: 5, sufix: "", step: 1},
+  puntuacionAlbum: {type: "interval", name: "Puntuación de álbum", reqName: "puntuacionAlbum", min: 0, max: 5000000000, sufix: "P", step: 500},
+  numeroLikesAlbum: {type: "interval", name: "Número de Likes de Álbum", reqName: "numeroLikesAlbum", min: 0, max: 1000, sufix: "", step: 1},
+  numeroCancionesAlbum: {type: "interval", name: "Número de Canciones de Álbum", reqName: "numeroCancionesAlbum", min: 0, max: 30, sufix: "", step: 1},
+  numeroEstudiosAlbum: {type: "interval", name: "Número de Estudios de Grabación de Álbum", reqName: "numeroEstudiosAlbum", min: 0, max: 20, sufix: "", step: 1},
+  numeroGenerosAlbum: {type: "interval", name: "Número de Géneros de Álbum", reqName: "numeroGenerosAlbum", min: 0, max: 20, sufix: "", step: 1},
+  numeroMusicosAlbum: {type: "interval", name: "Número de Músicos de Álbum", reqName: "numeroMusicosAlbum", min: 0, max: 30, sufix: "", step: 1},
+  estrellasMaximasBanda: {type: "interval", name: "Estrellas Máximas de Género de Banda", reqName: "estrellasMaximasBanda", min: 0, max: 5, sufix: "", step: 1},
+  puntuacionBanda: {type: "interval", name: "Puntuación de Banda", reqName: "puntuacionBanda", min: 0, max: 200000000, sufix: "P", step: 100},
+  numeroAlbumesBanda: {type: "interval", name: "Número de Álbumes de Banda", reqName: "numeroAlbumesBanda", min: 0, max: 50, sufix: "", step: 1},
+  numeroLikesBandas: {type: "interval", name: "Número de Likes de Banda", reqName: "numeroLikesBandas", min: 0, max: 1000, sufix: "", step: 1},
+  numeroCancionesBanda: {type: "interval", name: "Número de Canciones de Banda", reqName: "numeroCancionesBanda", min: 0, max: 50, sufix: "", step: 1},
+  numeroDiscograficasBanda: {type: "interval", name: "Número de Discográficas de Banda", reqName: "numeroDiscograficasBanda", min: 0, max: 20, sufix: "", step: 1},
+  numeroEstudiosBanda: {type: "interval", name: "Número de Estudios de Grabación de Banda", reqName: "numeroEstudiosBanda", min: 0, max: 30, sufix: "", step: 1},
+  numeroGenerosBanda: {type: "interval", name: "Número de Géneros de Banda", reqName: "numeroGenerosBanda", min: 0, max: 20, sufix: "", step: 1},
+  numeroMusicosBanda: {type: "interval", name: "Número de Músicos de Banda", reqName: "numeroMusicosBanda", min: 0, max: 50, sufix: "", step: 1},
+  numeroTemasBanda: {type: "interval", name: "Número de Temas de Letra de Banda", reqName: "numeroTemasBanda", min: 0, max: 20, sufix: "", step: 1},
 
   tipoAlbum: {type: "check", name: "Tipo de Álbum", reqName: "tipoAlbum", list: albumTypes},
   paisBanda: {type: "check", name: "País de Banda", reqName: "paisBanda", list: countries},
@@ -54,8 +69,9 @@ let metadata = {
   albums: {
     mainSearch: campos.nombreAlbum,
     checks: [],
-    intervals: [campos.anioAlbum, campos.puntuacionAlbum, campos.escuchasAlbum, campos.visitasAlbum, campos.visitasBanda, campos.likesAlbum, 
-                campos.duracionAlbum, campos.estrellasCancionAlbum, campos.estrellasGeneroAlbum, campos.estrellasGeneroBanda],
+    intervals: [campos.anioAlbum, campos.puntuacionAlbum, campos.escuchasAlbum, campos.visitasAlbum, campos.visitasBanda, campos.duracionAlbum, 
+                campos.estrellasCancionAlbum, campos.estrellasGeneroAlbum, campos.estrellasGeneroBanda, campos.estrellasMaximasAlbum, 
+                campos.numeroLikesAlbum, campos.numeroCancionesAlbum, campos.numeroEstudiosAlbum, campos.numeroGenerosAlbum, campos.numeroMusicosAlbum],
     categories: [campos.tipoAlbum, campos.nombreGeneroAlbum, campos.nombreGeneroBanda, campos.paisBanda],
     reductions: [campos.nombreBanda, campos.nombreDiscografica, campos.nombreEstudio, campos.nombreMusico, campos.nombreMusicoEtapa, 
                 campos.rolMusico, campos.temaLetraBanda, campos.nombreCancion],
@@ -63,8 +79,10 @@ let metadata = {
   bands: {
     mainSearch: campos.nombreBanda,
     checks: [],
-    intervals: [campos.escuchasBanda,campos.visitasBanda,campos.visitasAlbum,campos.anioAlbum,campos.escuchasAlbum,campos.duracionAlbum,
-                campos.estrellasGeneroAlbum,campos.estrellasGeneroBanda],
+    intervals: [campos.escuchasBanda, campos.visitasBanda, campos.visitasAlbum, campos.anioAlbum, campos.escuchasAlbum, campos.duracionAlbum,
+                campos.estrellasGeneroAlbum, campos.estrellasGeneroBanda, campos.estrellasMaximasBanda, campos.puntuacionBanda, campos.numeroAlbumesBanda, 
+                campos.numeroLikesBandas, campos.numeroCancionesBanda, campos.numeroDiscograficasBanda, campos.numeroEstudiosBanda, campos.numeroGenerosBanda, 
+                campos.numeroMusicosBanda, campos.numeroTemasBanda],
     categories: [campos.paisBanda,campos.estatusBanda,campos.tipoEtapa,campos.nombreGeneroAlbum,campos.nombreGeneroBanda],
     reductions: [campos.nombreAlbum,campos.nombreDiscograficaAlbum,campos.nombreEstudioAlbum,campos.nombreMusicoEtapa,campos.nombreMusico,
                  campos.rolMusico,campos.temaLetraBanda],

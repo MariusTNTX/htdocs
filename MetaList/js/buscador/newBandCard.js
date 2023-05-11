@@ -5,7 +5,9 @@ async function getBandCard(band){
   card.classList.add("col","portfolio-item","filter-bandas1","filter-bandas2");
   let txt = `
       <div class="card h-100 shadow-sm bg-light">
-        <img src="${(band.imagen)?band.imagen:"./imagenes/basico/user_MetaList.png"}" class="card-img-top" alt="Imagen de la banda '${band.banda}'">
+        <div class="div-card-img-top">
+          <img src="${(band.imagen)?band.imagen:"./imagenes/basico/user_MetaList.png"}" class="card-img-top" alt="Imagen de la banda '${band.banda}'">
+        </div>
         <div class="card-body text-center">
           <h5 class="card-title"><a href="banda.html?banda=${band.banda}">${band.banda}</a></h5>
           <hr>
@@ -33,7 +35,7 @@ async function getBandCard(band){
 
   card.innerHTML = txt;
   
-  card.querySelector(".card-img-top").addEventListener("load",(e)=>{
+  /* card.querySelector(".card-img-top").addEventListener("load",(e)=>{
     if(e.target.clientHeight>335){
       e.target.style="margin:0 auto;height:335px;width:fit-content";
     } else if(e.target.clientHeight<335 && e.target.clientHeight!=0) {
@@ -42,7 +44,7 @@ async function getBandCard(band){
     }
     console.log("Altura de "+band.banda+": ",e.target.clientHeight)
     console.log("img cargado: ",e.target)
-  });
+  }); */
   
   return card;
 }

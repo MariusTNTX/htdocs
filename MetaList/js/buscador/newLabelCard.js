@@ -4,7 +4,9 @@ async function getLabelCard(label){
   card.classList.add("col","portfolio-item","filter-discogs1","filter-discogs2");
   let txt = `
     <div class="card h-100 shadow-sm bg-light">
-      <img src="${(label.imagen)?label.imagen:"./imagenes/basico/user_MetaList.png"}" class="card-img-top" alt="Logotipo de la discográfica '${label.discografica}'">
+      <div class="div-card-img-top">
+        <img src="${(label.imagen)?label.imagen:"./imagenes/basico/user_MetaList.png"}" class="card-img-top" alt="Logotipo de la discográfica '${label.discografica}'">
+      </div>
       <div class="card-body text-center">
         <h5 class="card-title"><a href="discografica.html?discografica=${label.discografica}">${label.discografica}</a></h5>
         <hr>
@@ -14,14 +16,14 @@ async function getLabelCard(label){
     </div>`;
   card.innerHTML = txt;
   
-  card.querySelector(".card-img-top").addEventListener("load",(e)=>{
+  /* card.querySelector(".card-img-top").addEventListener("load",(e)=>{
     if(e.target.clientHeight>329){
       e.target.style="margin:0 auto;height:329px;width:fit-content";
     } else if(e.target.clientHeight<329 && e.target.clientHeight!=0) {
       let pad = parseInt((329 - e.target.clientHeight) / 2);
       e.target.style=`padding: ${pad}px 0`;
     }
-  });
+  }); */
   
   return card;
 }

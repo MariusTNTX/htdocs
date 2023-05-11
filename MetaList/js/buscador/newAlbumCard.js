@@ -8,7 +8,9 @@ async function getAlbumCard(album){
   card.classList.add("col","portfolio-item","filter-albumes1","filter-albumes2");
   let txt = `
       <div class="card h-100 shadow-sm bg-light">
-        <img src="${(album.imagen)?album.imagen:"./imagenes/basico/user_MetaList.png"}" class="card-img-top" alt="Portada del álbum '${album.album}'">
+        <div class="div-card-img-top">
+          <img src="${(album.imagen)?album.imagen:"./imagenes/basico/user_MetaList.png"}" class="card-img-top" alt="Portada del álbum '${album.album}'">
+        </div>
         <div class="card-body text-center">
           <h5 class="card-title"><a href="album.html?banda=${album.banda}&album=${album.album}">${album.album}</a></h5>
           <h6 class="card-title"><a href="banda.html?banda=${album.banda}">${album.banda}</a></h6>
