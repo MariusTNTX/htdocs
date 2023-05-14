@@ -12,6 +12,7 @@ let orderDirec = document.getElementById("orderDirec");
 // Contenedor de resultados
 let resultContainer = document.getElementById("resultContainer");
 let noDataFound = document.getElementById("noDataFound");
+let spinner = document.getElementById("spinner");
 //Parámetros de búsqueda
 let elemento, parameters = [], getCard;
 //Variables de paginación basada en Scroll
@@ -20,6 +21,7 @@ let numPag = 1, showMore = true, allowScroll=false, footer = document.getElement
 //Gestionar Botones de la Lista Principal
 filterButtons.forEach(btn=>{
   btn.addEventListener("click",()=>{
+    allowScroll=false;
     //Resalta únicamente el botón clicado
     filterButtons.forEach(b=>b.classList.remove("filter-active"));
     btn.classList.add("filter-active");
@@ -39,12 +41,12 @@ filterButtons.forEach(btn=>{
         break;
       case 'Discográficas': 
         newFilter("labels");
-        elemento = "discograficas";
+        elemento = "discograficas_plus";
         getCard = getLabelCard;
         break;
       case 'Músicos': 
         newFilter("musicians");
-        elemento = "musicos";
+        elemento = "musicos_plus";
         getCard = getMusicianCard;
         break;
       default: console.log("El elmento seleccionado de la lista no está contemplado");
@@ -62,6 +64,7 @@ searchButton.addEventListener("click", ()=>{
   parameters = [], numPag = 1, showMore = true, allowScroll=true;
   resultContainer.innerHTML = "";
 
+  //OBTENCIÓN DE LOS PARÁMETROS DE BÚSQUEDA
   //Título
   if(mainTitle.value.length>0 && !estrictSearch.checked){
     parameters.push([mainTitle.classList[1]+"_Like",mainTitle.value]);
@@ -109,6 +112,7 @@ window.addEventListener("scroll",()=>{
 });
 
 async function printResults(pag = numPag){
+  spinner.classList.remove("d-none");
   parameters.push(["limit","12"],["page",pag]);
   //Obtención de datos
   let results = await list(elemento,true,...parameters);
@@ -123,9 +127,11 @@ async function printResults(pag = numPag){
     for(let res of results){
       txt.push(await getCard(res));
     }
+    spinner.classList.add("d-none");
     for(card of txt) resultContainer.appendChild(card);
     allowScroll = results.length==12;
   } else {
+    spinner.classList.add("d-none");
     if(numPag==1) noDataFound.classList.remove("d-none")
     else numPag=1;
     showMore = false;

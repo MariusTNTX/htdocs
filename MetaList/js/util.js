@@ -130,3 +130,24 @@ function showInput(tipo,txt,placeholder="",yesFunc=null,data=null){
     }
   });
 }
+
+function secToTime(segs){
+  let horas = Math.floor(segs / 3600);
+  let minutos = Math.floor((segs % 3600) / 60);
+  let segundos = segs % 60;
+  horas = horas < 10 ? "0" + horas : horas;
+  minutos = minutos < 10 ? "0" + minutos : minutos;
+  segundos = segundos < 10 ? "0" + segundos : segundos;
+  if(horas!=='00') return horas + ":" + minutos + ":" + segundos;
+  else return minutos + ":" + segundos;
+}
+
+function addPoints(num){
+  num = num.split('').reverse().join('');
+  let resultado = "";
+  for(let i=0; i<num.length; i++){
+    if(i%3==0 && i!=0) resultado = num[i]+'.'+resultado;
+    else resultado = num[i]+resultado;
+  }
+  return resultado;
+}

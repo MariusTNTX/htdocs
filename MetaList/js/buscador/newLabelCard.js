@@ -4,7 +4,7 @@ async function getLabelCard(label){
   card.classList.add("col","portfolio-item","filter-discogs1","filter-discogs2");
   let txt = `
     <div class="card h-100 shadow-sm bg-light">
-      <div class="div-card-img-top">
+      <div class="div-card-img-top label">
         <img src="${(label.imagen)?label.imagen:"./imagenes/basico/user_MetaList.png"}" class="card-img-top" alt="Logotipo de la discográfica '${label.discografica}'">
       </div>
       <div class="card-body text-center">

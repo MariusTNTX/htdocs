@@ -7,7 +7,7 @@ async function getMusicianCard(musician){
   card.classList.add("col","portfolio-item","filter-musicos1","filter-musicos2");
   let txt = `
       <div class="card h-100 shadow-sm bg-light">
-        <div class="div-card-img-top">
+        <div class="div-card-img-top musician">
           <img src="${(musician.imagen)?musician.imagen:"./imagenes/basico/user_MetaList.png"}" class="card-img-top" alt="Imagen del músico '${musician.musico}'">
         </div>
         <div class="card-body text-center">

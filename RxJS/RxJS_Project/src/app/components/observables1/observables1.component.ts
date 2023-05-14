@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.prueba.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-observables1',
+  templateUrl: './observables1.component.html',
+  styleUrls: ['./observables1.component.css']
 })
-export class AppComponent implements OnInit {
+export class Observables1Component implements OnInit {
 
   /* Variable observable */
   obs:any;
@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    // Se crea un nuevo observable al cual se le pasa un subscriber (observer) para definir qué datos se van a recoger y cuando
+    /* Se crea un nuevo observable al cual se le pasa un subscriber (observer) */
     this.obs = new Observable((subscriber) => {
       subscriber.next(1);
       subscriber.next(2);
@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
     });
   }
 
-  rxjsFun(){ //Al hacer click al botón se inicia la subscripción, donde se indica qué van a hacer los tres métodos básicos
+  rxjsFun(){
     console.log('just before subscribe');
     this.obs.subscribe({
       next(x: any) {

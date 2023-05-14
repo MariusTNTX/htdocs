@@ -271,17 +271,29 @@ div.less{padding-top: 20px}
 
 .breadcrumbs h2{margin-top: 10px}
 
+/* TARJETAS BUSCADOR AVANZADO */
+
 .div-card-img-top{
-  /* text-align: center; */
-  height: 331px;
+  /* height: 331px; */
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.card-img-top{
-  max-height: 331px;
-  max-width: fit-content;
-}
+.card-img-top{max-width: fit-content;}
+
+.div-card-img-top.band{height: 331px;}
+.div-card-img-top.band .card-img-top{max-height: 331px;}
+
+/* .div-card-img-top.album{height: 388px;}
+.div-card-img-top.album .card-img-top{max-height: 388px;} */
+
+.div-card-img-top.label{height: 331px;}
+.div-card-img-top.label .card-img-top{max-height: 331px;}
+
+.div-card-img-top.musician{height: 388px;}
+.div-card-img-top.musician .card-img-top{max-height: 388px;}
+
+.card-body .bi{vertical-align: 0;}
 
 /* Tabla Músicos */
 .table-striped>tbody>tr:nth-of-type(odd)>* {background-color: rgba(220,33,14,.02)}

@@ -26,3 +26,29 @@ SELECT b.NomBan, b.Pais, b.Origen, b.NumEscuchasMes, b.Imagen, b.Estatus, b.Desc
 FROM bandas b 
 WHERE pais is not null 
 ORDER BY Puntuacion desc;
+
+CREATE OR REPLACE VIEW Discograficas_Plus AS 
+SELECT d.NomDisc, d.Imagen, d.Pais, d.Direccion, d.Estatus, d.LinkWeb, d.Visitas,
+  (SELECT SUM(puntuacion) FROM discograficas_albumes a2 LEFT OUTER JOIN albumes_plus b2 ON a2.nomban = b2.nomban AND a2.nomalb = b2.nomalb WHERE a2.nomdisc LIKE d.nomdisc GROUP BY a2.nomdisc) as Puntuacion,
+  (SELECT COUNT(DISTINCT b2.nomalb) FROM discograficas a2 LEFT OUTER JOIN discograficas_albumes b2 ON a2.nomdisc = b2.nomdisc WHERE a2.nomdisc LIKE d.nomdisc GROUP BY a2.nomdisc) as CountAlb,
+  (SELECT COUNT(DISTINCT a2.nomban) FROM discograficas_albumes a2 WHERE a2.nomdisc LIKE d.nomdisc GROUP BY a2.nomdisc) as CountBan,
+  (SELECT COUNT(DISTINCT b2.nomcan) FROM discograficas_albumes a2 LEFT OUTER JOIN canciones_albumes b2 ON a2.nomban=b2.nomban AND a2.nomalb=b2.nomalb WHERE a2.nomdisc LIKE d.nomdisc GROUP BY a2.nomdisc) as CountCan,
+  (SELECT COUNT(DISTINCT b2.nomest) FROM discograficas_albumes a2 LEFT OUTER JOIN estudios_albumes b2 ON a2.nomban=b2.nomban AND a2.nomalb=b2.nomalb WHERE a2.nomdisc LIKE d.nomdisc GROUP BY a2.nomdisc) as CountEst,
+  (SELECT COUNT(DISTINCT b2.nomgen) FROM discograficas_albumes a2 LEFT OUTER JOIN generos_albumes b2 ON a2.nomban=b2.nomban AND a2.nomalb=b2.nomalb WHERE a2.nomdisc LIKE d.nomdisc GROUP BY a2.nomdisc) as CountGen, 
+  (SELECT COUNT(DISTINCT b2.nommus) FROM discograficas_albumes a2 LEFT OUTER JOIN roles_musicos_albumes b2 ON a2.nomban=b2.nomban AND a2.nomalb=b2.nomalb WHERE a2.nomdisc LIKE d.nomdisc GROUP BY a2.nomdisc) as CountMus,
+  (SELECT COUNT(DISTINCT b2.tema) FROM discograficas_albumes a2 LEFT OUTER JOIN temas_letra_bandas b2 ON a2.nomban=b2.nomban WHERE a2.nomdisc LIKE d.nomdisc GROUP BY a2.nomdisc) as CountTemas
+FROM discograficas d 
+ORDER BY Puntuacion desc;
+
+SELECT m.nommus, m.sexo, m.pais, m.origen, m.aniodef, m.mesdef, m.diadef, m.dianac, m.mesnac, m.anionac, m.imagen, m.visitas,
+(SELECT SUM(puntuacion) FROM roles_musicos_albumes a2 LEFT OUTER JOIN albumes_plus b2 ON a2.nomban = b2.nomban AND a2.nomalb = b2.nomalb WHERE a2.nommus LIKE m.nommus GROUP BY a2.nommus) as Puntuacion,
+(SELECT COUNT(DISTINCT b2.nomalb) FROM musicos a2 LEFT OUTER JOIN roles_musicos_albumes b2 ON a2.nommus = b2.nommus WHERE a2.nommus LIKE m.nommus GROUP BY a2.nommus) as CountAlb,
+(SELECT COUNT(DISTINCT b2.nomban) FROM musicos a2 LEFT OUTER JOIN musicos_bandas b2 ON a2.nommus = b2.nommus WHERE a2.nommus LIKE m.nommus GROUP BY a2.nommus) as CountBan,
+(SELECT COUNT(DISTINCT b2.rol) FROM musicos a2 LEFT OUTER JOIN roles_musicos_albumes b2 ON a2.nommus = b2.nommus WHERE a2.nommus LIKE m.nommus GROUP BY a2.nommus) as CountRoles,
+(SELECT COUNT(DISTINCT b2.nomcan) FROM roles_musicos_albumes a2 LEFT OUTER JOIN canciones_albumes b2 ON a2.nomban=b2.nomban AND a2.nomalb=b2.nomalb WHERE a2.nommus LIKE m.nommus GROUP BY a2.nommus) as CountCan,
+(SELECT COUNT(DISTINCT b2.nomdisc) FROM roles_musicos_albumes a2 LEFT OUTER JOIN discograficas_albumes b2 ON a2.nomban=b2.nomban AND a2.nomalb=b2.nomalb WHERE a2.nommus LIKE m.nommus GROUP BY a2.nommus) as CountDisc,
+(SELECT COUNT(DISTINCT b2.nomest) FROM roles_musicos_albumes a2 LEFT OUTER JOIN estudios_albumes b2 ON a2.nomban=b2.nomban AND a2.nomalb=b2.nomalb WHERE a2.nommus LIKE m.nommus GROUP BY a2.nommus) as CountEst,
+(SELECT COUNT(DISTINCT b2.nomgen) FROM roles_musicos_albumes a2 LEFT OUTER JOIN generos_albumes b2 ON a2.nomban=b2.nomban AND a2.nomalb=b2.nomalb WHERE a2.nommus LIKE m.nommus GROUP BY a2.nommus) as CountGen,
+(SELECT COUNT(DISTINCT b2.tema) FROM musicos_bandas a2 LEFT OUTER JOIN temas_letra_bandas b2 ON a2.nomban=b2.nomban WHERE a2.nommus LIKE m.nommus GROUP BY a2.nommus) as CountTemas
+FROM musicos m 
+ORDER BY Puntuacion desc;
