@@ -143,11 +143,42 @@ function secToTime(segs){
 }
 
 function addPoints(num){
-  num = num.split('').reverse().join('');
-  let resultado = "";
-  for(let i=0; i<num.length; i++){
-    if(i%3==0 && i!=0) resultado = num[i]+'.'+resultado;
-    else resultado = num[i]+resultado;
+  try{
+    num = num.split('').reverse().join('');
+    let resultado = "";
+    for(let i=0; i<num.length; i++){
+      if(i%3==0 && i!=0) resultado = num[i]+'.'+resultado;
+      else resultado = num[i]+resultado;
+    }
+    return resultado;
+  } catch(e){
+    return "???";
   }
-  return resultado;
+}
+
+function calcularEdad(fecha) {
+  console.log("Calcular Edad:",fecha);
+  divis = fecha.split("-");
+  if(divis[0]=="null") return "Edad Desconocida";
+  else {
+    if(divis[1]=="null") fecha = divis[0]+"-1-1";
+    else if(divis[2]=="null") fecha = divis[0]+divis[1]+"-1";
+    var hoy = new Date();
+    var fechaNacimiento = new Date(fecha);
+    var edad = hoy.getFullYear() - fechaNacimiento.getFullYear();
+    var diferenciaMeses = hoy.getMonth() - fechaNacimiento.getMonth();
+    if (diferenciaMeses < 0 || (diferenciaMeses === 0 && hoy.getDate() < fechaNacimiento.getDate())) {
+      edad--;
+    }
+    return edad+" años";
+  }
+}
+
+function getURLParameters(){
+  let params = new URLSearchParams(window.location.search);
+  let parametros = {};
+  for (let [key, value] of params.entries()) {
+    parametros[key] = value;
+  }
+  return parametros;
 }

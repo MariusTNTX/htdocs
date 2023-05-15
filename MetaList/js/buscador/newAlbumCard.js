@@ -12,8 +12,8 @@ async function getAlbumCard(album){
           <img src="${(album.imagen)?album.imagen:"./imagenes/basico/user_MetaList.png"}" class="card-img-top" alt="Portada del álbum '${album.album}'">
         </div>
         <div class="card-body text-center">
-          <h5 class="card-title"><a href="album.html?banda=${album.banda}&album=${album.album}">${album.album}</a></h5>
-          <h6 class="card-title"><a href="banda.html?banda=${album.banda}">${album.banda}</a></h6>
+          <h5 class="card-title"><a href="visor.html?element=album&band=${album.banda}&album=${album.album}">${album.album}</a></h5>
+          <h6 class="card-title"><a href="visor.html?element=band&band=${album.banda}">${album.banda}</a></h6>
           <hr>
           <h6 class="card-title">${(album.tipo)?tipoEsp[album.tipo.replaceAll(" ","_")]:"Tipo Desconocido"}</h6>
           <h6 class="card-title">${(album.dia)?album.dia+" de ":""}${(album.mes)?mesEsp[parseInt(album.mes)]+" de ":""}${(album.anio)?album.anio:"Fecha Desconocida"}</h6>
