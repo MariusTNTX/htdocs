@@ -182,3 +182,14 @@ function getURLParameters(){
   }
   return parametros;
 }
+
+function getStage(anio){
+  let etapas = ['Proto-Metal','Periodo de formación','Periodo mainstream de los 80s','Periodo underground','Renacimiento de los 2000','Periodo alternativo','Etapa Moderna'];
+  if(anio<=1969) return etapas[0];
+  else if(anio<=1979) return etapas[1];
+  else if(anio<=1990) return etapas[2];
+  else if(anio<=1996) return etapas[3];
+  else if(anio<=2003) return etapas[4];
+  else if(anio<=2008) return etapas[5];
+  else return etapas[5];
+}
