@@ -25,31 +25,20 @@ heart2.addEventListener("click",()=>{
     heart2.classList.add("hid");
 });
 
-/* let etiquetas = {
-  head: {title, subtitle, link, heart},
-  image: "",
-  mainInfo: [{element, content, link}],
-  recording: {labels: [{content, link}], studios: [{content, link}], roles: [{content, link}]},
-  lyricThemes: [{theme}],
-  descripcion: "",
-  links: [{title, link}],
-  top: {
-    element: "",
-    content: [{img, stars, title, subtitle, country, date, roles, stages}],
-    limit: "",
-    link: ""
-  }
-}; */
-
 let params = getURLParameters();
 let element = params.element;
 
 let metadata = {
   album: {
-    requests: {
-      elements: ['albumes_plus', 'discograficas_albumes', 'estudios_albumes', 'generos_albumes', 'roles_musicos_albumes', 'musicos', 'canciones_albumes'],
-      params: [['nombreAlbum','params.album'],['nombreBanda','params.band']],
-    },
+    requests: [
+      {element: ['albumes_plus'], params: [['nombreAlbum','params.album'],['nombreBanda','params.band']]},
+      {element: ['discograficas'], params: [['nombreAlbum','params.album'],['nombreBanda','params.band']]},
+      {element: ['estudios_grabacion'], params: [['nombreAlbum','params.album'],['nombreBanda','params.band']]},
+      {element: ['generos_albumes'], params: [['nombreAlbum','params.album'],['nombreBanda','params.band'],['order','estrellasGeneroAlbum_Desc']]},
+      {element: ['roles_musicos_albumes'], params: [['nombreAlbum','params.album'],['nombreBanda','params.band']]},
+      {element: ['musicos'], params: [['nombreAlbum','params.album'],['nombreBanda','params.band']]},
+      {element: ['canciones_albumes'], params: [['nombreAlbum','params.album'],['nombreBanda','params.band'],['order','estrellasCancion_Desc']]}
+    ],
     cards: [head, image, mainInfo, recording, topGenres, topMusicians, topSongs, description, links]
   },
   band: {},
@@ -61,9 +50,9 @@ setFullData();
 
 async function setFullData(){
   //OBTENCIÓN DE TODOS LOS DATOS NECESARIOS DE LA API (array 1)
-  let data = {}, keys = metadata[element].requests.params, cards = metadata[element].cards;
-  for(let elm of metadata[element].requests.elements){
-    data[elm] = await getData(elm, keys);
+  let data = {}, cards = metadata[element].cards;
+  for(let elm of metadata[element].requests){
+    data[elm.element] = await getData(elm.element, elm.params);
   }
   //RECORRIDO DE ETIQUETAS: IMPRESIÓN HTML (array 2)
   cards.forEach(func=>func(element, data));
@@ -121,15 +110,15 @@ function mainInfo(elm, data){
 
 function recording(elm, data){
   console.log("recording",elm,data);
-  let discograficas = data.discograficas_albumes, estudios = data.estudios_albumes, txt;
+  let labels = data.discograficas, studios = data.estudios_grabacion, txt;
   if(elm=='album'){
     txt=`<ul><li><strong>Discográficas</strong>: <ul>`;
-    for(let disc of discograficas){
-      txt+=`<li><i class="bx bx-chevron-right"></i><a href="element=label$label=${disc.discografica}">${disc.discografica}</a></li>`;
+    for(let label of labels){
+      txt+=`<li><i class="bx bx-chevron-right"></i><a href="element=label$label=${label.discografica}">${label.discografica}</a> - ${(label.direccion)?label.direccion+", ":""}${(label.pais)?label.pais:"Origen Desconocido"}</li>`;
     }
     txt+= `</ul></li><li><strong>Estudios de Grabación</strong>: <ul>`;
-    for(let est of estudios){
-      txt+=`<li><i class="bx bx-chevron-right"></i>${est.estudio}</li>`;
+    for(let studio of studios){
+      txt+=`<li><i class="bx bx-chevron-right"></i>${studio.estudio} - ${(studio.direccion)?studio.direccion+", ":""}${(studio.pais)?studio.pais:"Origen Desconocido"}</li>`;
     }
     txt+= `</ul></li></ul>`;
   } else if(elm=='band'){
@@ -160,7 +149,7 @@ function description(elm, data){
 function links(elm, data){
   console.log("links",elm,data);
   if(elm=='album'){
-    linksElm.innerHTML=`<li><strong>Amazon</strong>: <a href="${data.albumes_plus[0].linkAmazon}">${data.albumes_plus[0].album}</a></li>`;
+    linksElm.innerHTML=`<li><strong>Amazon</strong>: <a href="${data.albumes_plus[0].linkAmazon}" target="_blank">${data.albumes_plus[0].album}</a></li>`;
   } else if(elm=='band'){
 
   } else if(elm=='label'){
@@ -187,46 +176,72 @@ function topBands(elm, data){
 }
 function topMusicians(elm, data){
   console.log("topMusicians",elm,data);
-  let txt;
+  let txt="";
   if(elm=='album'){
-    let musicosFull = data.roles_musicos_albumes;
-    for(let musicos of musicosFull){
-      musicos = musicosFull.filter(m=>m.musico==musicos.musico);
-      console.log("musicos",musicos)
+    let musiciansFull = data.roles_musicos_albumes;
+    let musiciansList = data.musicos;
+    for(let musician of musiciansList){
+      console.log("musician antes de roles",musician)
       let roles="";
-      musicos.forEach((m,i)=>{
-        roles += (i==0)?"":", ";
-        roles += m.rol;
+      musiciansFull.forEach(m=>{
+        if(m.musico==musician.musico){
+          roles += (roles.length==0)?"":", ";
+          roles += m.rol;
+        }
       });
       console.log("roles",roles)
-      console.log("musicos tras roles: ",musicos)
+      console.log("musician tras roles: ",musician)
       txt+=`
       <div class="col-auto py-2 elmCard">
         <div class="row">
-          <div class="col-auto pe-0"><img src="${data.musicos.filter(m=>m.musico==musicos[0].musico).imagen}" alt="Imagen del músico ${musicos[0].musico}"></div>
+          <div class="col-auto pe-0"><img src="${musician.imagen}" class="rounded-1" alt="Imagen del músico ${musician.musico}"></div>
           <div class="col-auto ps-2 elmCardText">
-            <p class="mb-0 fs-6">${musicos[0].musico}</p>
+            <p class="mb-0 fs-6"><a href="visor.html?element=musician&musician=${musician.musico}">${musician.musico}</a></p>
             <hr class="mt-1 mb-2">
             <p class="mb-0">${roles}</p>
           </div>
         </div>
       </div>`;
-      console.log("MusicosFull antes de filtrar",musicosFull)
-      console.log("1",musicosFull[0].musico)
-      console.log("2",musicos[0].musico)
-      musicosFull = musicosFull.filter(m=>{m.musico!=musicos[0].musico}); //
-      console.log("MusicosFull tras filtrar",musicosFull)
     }
   } else if(elm=='band'){
 
   } else if(elm=='label'){
 
   }
+  topMusiciansElm.innerHTML=txt;
+}
+function topGenres(elm, data){
+  console.log("topGenres",elm,data);
+  let txt="";
+  if(elm=='album'){
+    for(let genre of data.generos_albumes){
+      txt+=`<li>
+              <i class="bi bi-star${(genre.estrellas>=1)?"-fill":""}"></i>
+              <i class="bi bi-star${(genre.estrellas>=2)?"-fill":""}"></i>
+              <i class="bi bi-star${(genre.estrellas>=3)?"-fill":""}"></i>
+              <i class="bi bi-star${(genre.estrellas>=4)?"-fill":""}"></i>
+              <i class="bi bi-star${(genre.estrellas==5)?"-fill":""}"></i>
+              ${genre.genero}
+            </li>`;
+    }
+  } else if(elm=='band'){
+
+  }
+  topGenresElm.innerHTML=txt;
 }
 function topSongs(elm, data){
   console.log("topSongs",elm,data);
+  let txt="";
   if(elm=='album'){
-
+    for(let song of data.canciones_albumes){
+      txt+=`<li>
+              <i class="bi bi-star${(song.estrellas>=1)?"-fill":""}"></i>
+              <i class="bi bi-star${(song.estrellas>=2)?"-fill":""}"></i>
+              <i class="bi bi-star${(song.estrellas==3)?"-fill":""}"></i>
+              ${song.cancion}
+            </li>`;
+    }
+    txt+=`<div class="mt-4">${data.albumes_plus[0].linkSpotify}</div>`;
   } else if(elm=='band'){
 
   } else if(elm=='label'){
@@ -234,12 +249,5 @@ function topSongs(elm, data){
   } else if(elm=='musician'){
     
   }
-}
-function topGenres(elm, data){
-  console.log("topGenres",elm,data);
-  if(elm=='album'){
-
-  } else if(elm=='band'){
-
-  }
+  topSongsElm.innerHTML=txt;
 }

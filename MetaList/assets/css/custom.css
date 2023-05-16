@@ -284,8 +284,8 @@ div.less{padding-top: 20px}
 .div-card-img-top.band{height: 331px;}
 .div-card-img-top.band .card-img-top{max-height: 331px;}
 
-/* .div-card-img-top.album{height: 388px;}
-.div-card-img-top.album .card-img-top{max-height: 388px;} */
+/* .div-card-img-top.album{height: 388px;} */
+.div-card-img-top.album .card-img-top{max-width: none;}
 
 .div-card-img-top.label{height: 331px;}
 .div-card-img-top.label .card-img-top{max-height: 331px;}
