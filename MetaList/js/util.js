@@ -183,7 +183,7 @@ function getURLParameters(){
   return parametros;
 }
 
-function getStage(anio){
+function getHistoryStage(anio){
   let etapas = ['Proto-Metal','Periodo de formación','Periodo mainstream de los 80s','Periodo underground','Renacimiento de los 2000','Periodo alternativo','Etapa Moderna'];
   if(anio<=1969) return etapas[0];
   else if(anio<=1979) return etapas[1];
@@ -192,4 +192,26 @@ function getStage(anio){
   else if(anio<=2003) return etapas[4];
   else if(anio<=2008) return etapas[5];
   else return etapas[5];
+}
+
+function getStages(stages){
+  console.log("getBandStages",stages)
+  let txt="";
+  for(let stage of stages){
+    txt += (txt.length>0)?" | ":"";
+    if(stage.anioInicio==stage.anioFin) txt += stage.anioInicio;
+    else if(stage.anioFin==null) txt += stage.anioInicio+" - Actualidad";
+    else txt += stage.anioInicio+" - "+stage.anioFin;
+  }
+  return txt;
+}
+
+function getBandLyricThemes(themes){
+  console.log("getBandLyricThemes",themes)
+  let txt="";
+  for(let theme of themes){
+    txt += (txt.length>0)?" | ":"";
+    txt += theme.tema;
+  }
+  return txt;
 }

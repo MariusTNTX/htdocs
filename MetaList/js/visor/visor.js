@@ -41,7 +41,22 @@ let metadata = {
     ],
     cards: [head, image, mainInfo, recording, topGenres, topMusicians, topSongs, description, links]
   },
-  band: {},
+  band: {
+    requests: [
+      {element: ['bandas_plus'], params: [['nombreBanda','params.band']]},
+      {element: ['etapas_bandas'], params: [['nombreBanda','params.band'],['order','anioInicioEtapaBanda']]},
+      {element: ['discograficas'], params: [['nombreBanda','params.band']]},
+      {element: ['estudios_grabacion'], params: [['nombreBanda','params.band']]},
+      {element: ['temas_letra_bandas'], params: [['nombreBanda','params.band']]},
+      {element: ['generos_bandas'], params: [['nombreBanda','params.band'],['order','estrellasGeneroBanda_Desc']]},
+      {element: ['roles_musicos_albumes'], params: [['nombreBanda','params.band']]},
+      {element: ['musicos_bandas'], params: [['nombreBanda','params.band'],['order','anioInicioEtapaMusico']]},
+      {element: ['musicos'], params: [['nombreBanda','params.band']]},
+      {element: ['canciones_albumes'], params: [['nombreBanda','params.band'],['order','estrellasCancion_Desc']]},
+      {element: ['albumes'], params: [['nombreBanda','params.band'],['order','anioAlbum']]}
+    ],
+    cards: [head, image, mainInfo, recording, topGenres, topMusicians, topSongs, topAlbums, description, links]
+  },
   label: {},
   musician: {}
 };
@@ -71,7 +86,7 @@ function head(elm, data){
   if(elm=='album'){
     headElm.innerHTML = `<h1>${data.albumes_plus[0].album} - <a href="visor.html?element=band&band=${data.albumes_plus[0].banda}">${data.albumes_plus[0].banda}</a></h1>`;
   } else if(elm=='band'){
-
+    headElm.innerHTML = `<h1>${data.bandas_plus[0].banda}</h1>`;
   } else if(elm=='label'){
 
   } else if(elm=='musician'){
@@ -81,26 +96,12 @@ function head(elm, data){
 
 function image(elm, data){
   console.log("image",elm,data);
-  image1Elm.src=data.albumes_plus[0].imagen;
-  image2Elm.src=data.albumes_plus[0].imagen;
-}
-
-function mainInfo(elm, data){
-  console.log("mainInfo",elm,data);
-  let mesEsp = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
-  let tipoEsp = {Estudio: "Álbum de Estudio",EP:"EP",Recopilatorio:"Álbum Recopilatorio",BoxSet:"Box Set",En_Vivo:"DVD en Directo",Demo:"Demo",Single:"Single",Video:"Video",Split:"Split",Colaboración:"Álbum Colaborativo"};
-  
   if(elm=='album'){
-    let album = data.albumes_plus[0];
-    mainInfoElm.innerHTML=`
-    <li><strong>Tipo de Álbum</strong>: ${(album.tipo)?tipoEsp[album.tipo.replaceAll(" ","_")]:"Tipo Desconocido"}</li>
-    <li><strong>Fecha</strong>: ${(album.dia)?album.dia+" de ":""}${(album.mes)?mesEsp[parseInt(album.mes)]+" de ":""}${(album.anio)?album.anio:"Fecha Desconocida"}</li>
-    <li><strong>Escuchas Spotify</strong>: ${addPoints(album.escuchas)}</li>
-    <li><strong>Etapa Histórica</strong>: ${getStage(album.anio)}</li>
-    <li><strong>Duración</strong>: ${secToTime(album.duracion)}</li>
-    <li><strong>Puntuación</strong>: ${addPoints(album.puntuacion)}</li>`;
+    image1Elm.src=data.albumes_plus[0].imagen;
+    image2Elm.src=data.albumes_plus[0].imagen;
   } else if(elm=='band'){
-
+    image1Elm.src=data.bandas_plus[0].imagen;
+    image2Elm.src=data.bandas_plus[0].imagen;
   } else if(elm=='label'){
 
   } else if(elm=='musician'){
@@ -108,10 +109,40 @@ function mainInfo(elm, data){
   }
 }
 
+function mainInfo(elm, data){
+  console.log("mainInfo",elm,data);
+  let mesEsp = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+  let tipoEsp = {Estudio: "Álbum de Estudio",EP:"EP",Recopilatorio:"Álbum Recopilatorio",BoxSet:"Box Set",En_Vivo:"DVD en Directo",Demo:"Demo",Single:"Single",Video:"Video",Split:"Split",Colaboración:"Álbum Colaborativo"};
+  let txt="";
+  if(elm=='album'){
+    let album = data.albumes_plus[0];
+    txt= `<li><strong>Tipo de Álbum</strong>: ${(album.tipo)?tipoEsp[album.tipo.replaceAll(" ","_")]:"Tipo Desconocido"}</li>
+          <li><strong>Fecha</strong>: ${(album.dia)?album.dia+" de ":""}${(album.mes)?mesEsp[parseInt(album.mes)]+" de ":""}${(album.anio)?album.anio:"Fecha Desconocida"}</li>
+          <li><strong>Escuchas Spotify</strong>: ${addPoints(album.escuchas)}</li>
+          <li><strong>Etapa Histórica</strong>: ${getHistoryStage(album.anio)}</li>
+          <li><strong>Duración</strong>: ${secToTime(album.duracion)}</li>
+          <li><strong>Puntuación</strong>: ${addPoints(album.puntuacion)}</li>`;
+  } else if(elm=='band'){
+    let band = data.bandas_plus[0];
+    txt= `<li><strong>País</strong>: ${(band.pais)?band.pais:"Desconocido"}</li>
+          <li><strong>Origen</strong>: ${(band.origen)?band.origen:"Desconocido"}</li>
+          <li><strong>Escuchas Spotify</strong>: ${addPoints(band.escuchas)}</li>
+          <li><strong>Estatus</strong>: ${band.estatus}</li>
+          <li><strong>Etapas</strong>: ${getStages(data.etapas_bandas)}</li>
+          <li><strong>Temas de Letra</strong>: ${getBandLyricThemes(data.temas_letra_bandas)}</li>
+          <li><strong>Puntuación</strong>: ${addPoints(band.puntuacion)}</li>`;
+  } else if(elm=='label'){
+
+  } else if(elm=='musician'){
+    
+  }
+  mainInfoElm.innerHTML=txt;
+}
+
 function recording(elm, data){
   console.log("recording",elm,data);
   let labels = data.discograficas, studios = data.estudios_grabacion, txt;
-  if(elm=='album'){
+  if(elm=='album' || elm=='band'){
     txt=`<ul><li><strong>Discográficas</strong>: <ul>`;
     for(let label of labels){
       txt+=`<li><i class="bx bx-chevron-right"></i><a href="element=label$label=${label.discografica}">${label.discografica}</a> - ${(label.direccion)?label.direccion+", ":""}${(label.pais)?label.pais:"Origen Desconocido"}</li>`;
@@ -121,8 +152,6 @@ function recording(elm, data){
       txt+=`<li><i class="bx bx-chevron-right"></i>${studio.estudio} - ${(studio.direccion)?studio.direccion+", ":""}${(studio.pais)?studio.pais:"Origen Desconocido"}</li>`;
     }
     txt+= `</ul></li></ul>`;
-  } else if(elm=='band'){
-
   } else if(elm=='label'){
 
   } else if(elm=='musician'){
@@ -131,19 +160,19 @@ function recording(elm, data){
   recordingElm.innerHTML=txt;
 }
 
-function lyricThemes(elm, data){
-  console.log("lyricThemes",elm,data);
-  if(elm=='band'){
+function description(elm, data){
+  console.log("description",elm,data);
+  if(elm=='album'){
+    description1Elm.innerHTML=data.albumes_plus[0].descripcion;
+    description2Elm.innerHTML=data.albumes_plus[0].descripcion;
+  } else if(elm=='band'){
+    description1Elm.innerHTML=data.bandas_plus[0].descripcion;
+    description2Elm.innerHTML=data.bandas_plus[0].descripcion;
+  } else if(elm=='label'){
 
   } else if(elm=='musician'){
     
   }
-}
-
-function description(elm, data){
-  console.log("description",elm,data);
-  description1Elm.innerHTML=data.albumes_plus[0].descripcion;
-  description2Elm.innerHTML=data.albumes_plus[0].descripcion;
 }
 
 function links(elm, data){
@@ -151,20 +180,38 @@ function links(elm, data){
   if(elm=='album'){
     linksElm.innerHTML=`<li><strong>Amazon</strong>: <a href="${data.albumes_plus[0].linkAmazon}" target="_blank">${data.albumes_plus[0].album}</a></li>`;
   } else if(elm=='band'){
-
+    linksElm.innerHTML=`<li><strong>Página Web</strong>: <a href="${data.bandas_plus[0].linkWeb}" target="_blank">${data.bandas_plus[0].banda}</a></li>
+                        <li><strong>Amazon</strong>: <a href="${data.bandas_plus[0].linkAmazon}" target="_blank">${data.bandas_plus[0].banda}</a></li>`;
   } else if(elm=='label'){
 
   }
 }
 function topAlbums(elm, data){
   console.log("topAlbums",elm,data);
+  let txt = "";
   if(elm=='band'){
-
+    let mesEsp = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+    let albums = data.albumes;
+    for(let album of albums){
+      txt+=`
+      <div class="col-12 col-md-6 col-xxl-4 py-2 elmCard">
+        <div class="row">
+          <div class="col-auto pe-0"><img src="${album.imagen}" class="rounded-1" alt="Imagen del álbum ${album.album}"></div>
+          <div class="col-auto ps-2 elmCardText">
+            <p class="mb-0 fs-6"><a href="visor.html?element=album&band=${album.banda}&album=${album.album}">${album.album}</a></p>
+            <hr class="mt-1 mb-2">
+            <p class="mb-0">${(album.dia)?album.dia+" de ":""}${(album.mes)?mesEsp[parseInt(album.mes)]+" de ":""}${(album.anio)?album.anio:""}</p>
+          </div>
+        </div>
+      </div>`;
+    }
   } else if(elm=='label'){
 
   } else if(elm=='musician'){
     
   }
+  topAlbumsElm.innerHTML=txt;
+  topAlbumsElm.parentElement.parentElement.classList.remove("d-none");
 }
 function topBands(elm, data){
   console.log("topBands",elm,data);
@@ -192,7 +239,7 @@ function topMusicians(elm, data){
       console.log("roles",roles)
       console.log("musician tras roles: ",musician)
       txt+=`
-      <div class="col-auto py-2 elmCard">
+      <div class="col-12 col-md-6 col-xxl-4 py-2 elmCard">
         <div class="row">
           <div class="col-auto pe-0"><img src="${musician.imagen}" class="rounded-1" alt="Imagen del músico ${musician.musico}"></div>
           <div class="col-auto ps-2 elmCardText">
@@ -204,7 +251,21 @@ function topMusicians(elm, data){
       </div>`;
     }
   } else if(elm=='band'){
-
+    let musicians = data.musicos;
+    let stages = data.musicos_bandas;
+    for(let musician of musicians){
+      txt+=`
+      <div class="col-12 col-md-6 col-xxl-4 py-2 elmCard">
+        <div class="row">
+          <div class="col-auto pe-0"><img src="${musician.imagen}" class="rounded-1" alt="Imagen del músico ${musician.musico}"></div>
+          <div class="col-auto ps-2 elmCardText">
+            <p class="mb-0 fs-6"><a href="visor.html?element=musician&musician=${musician.musico}">${musician.musico}</a></p>
+            <hr class="mt-1 mb-2">
+            <p class="mb-0">${getStages(stages.filter(m=>m.musico==musician.musico))}</p>
+          </div>
+        </div>
+      </div>`;
+    }
   } else if(elm=='label'){
 
   }
@@ -225,7 +286,16 @@ function topGenres(elm, data){
             </li>`;
     }
   } else if(elm=='band'){
-
+    for(let genre of data.generos_bandas){
+      txt+=`<li>
+              <i class="bi bi-star${(genre.estrellas>=1)?"-fill":""}"></i>
+              <i class="bi bi-star${(genre.estrellas>=2)?"-fill":""}"></i>
+              <i class="bi bi-star${(genre.estrellas>=3)?"-fill":""}"></i>
+              <i class="bi bi-star${(genre.estrellas>=4)?"-fill":""}"></i>
+              <i class="bi bi-star${(genre.estrellas==5)?"-fill":""}"></i>
+              ${genre.genero}
+            </li>`;
+    }
   }
   topGenresElm.innerHTML=txt;
 }
@@ -243,7 +313,14 @@ function topSongs(elm, data){
     }
     txt+=`<div class="mt-4">${data.albumes_plus[0].linkSpotify}</div>`;
   } else if(elm=='band'){
-
+    for(let song of data.canciones_albumes){
+      txt+=`<li>
+              <i class="bi bi-star${(song.estrellas>=1)?"-fill":""}"></i>
+              <i class="bi bi-star${(song.estrellas>=2)?"-fill":""}"></i>
+              <i class="bi bi-star${(song.estrellas==3)?"-fill":""}"></i>
+              ${song.cancion}
+            </li>`;
+    }
   } else if(elm=='label'){
 
   } else if(elm=='musician'){
