@@ -525,7 +525,7 @@ $metadata = array(
       "nombreMusicoEtapa" => array("tabla"=>"musicos_bandas", "key"=>"NomBan"),
       "anioInicioEtapaMusico" => array("tabla"=>"musicos_bandas", "key"=>"NomBan"),
       "anioFinEtapaMusico" => array("tabla"=>"musicos_bandas", "key"=>"NomBan"),
-      "nombreMusicoRol" => array("tabla"=>"roles_musicos_albumes", "key"=>"NomAlb"),
+      "nombreMusico" => array("tabla"=>"roles_musicos_albumes", "key"=>"NomAlb"),
       "rolMusico" => array("tabla"=>"roles_musicos_albumes", "key"=>"NomAlb"),
       "temaLetraBanda" => array("tabla"=>"temas_letra_bandas", "key"=>"NomBan")
     )
@@ -731,37 +731,37 @@ $metadata = array(
       "nombreBanda" => array("nombre"=>"NomBan", "simbolo"=>"LIKE", "salida"=>"banda"),
       "temaBanda" => array("nombre"=>"Tema", "simbolo"=>"LIKE", "salida"=>"tema")
     )
+  ),
+  "usuarios" => array(
+    "alias" => "u",
+    "key" => array("entrada"=>"emailUsuario", "nombre"=>"Email"),
+    "campos" => array(
+      "emailUsuario" => array("nombre"=>"Email", "simbolo"=>"LIKE", "salida"=>"email"),
+      "nombreUsuario" => array("nombre"=>"NomUsu", "simbolo"=>"LIKE", "salida"=>"nombre"),
+      "contraUsuario" => array("nombre"=>"PassUsu", "simbolo"=>"LIKE", "salida"=>"contrasena"),
+      "fotoUsuario" => array("nombre"=>"Foto", "simbolo"=>"LIKE", "salida"=>"foto"),
+      "nivelPermisosUsuario" => array("nombre"=>"NvlPermisos", "simbolo"=>"=", "salida"=>"permisos"),
+      "notificacionesUsuario" => array("nombre"=>"Notificaciones", "simbolo"=>"LIKE", "salida"=>"notificaciones"),
+      "fechaUsuario" => array("nombre"=>"FechaHora", "simbolo"=>"=", "salida"=>"fecha")
     ),
-    "usuarios" => array(
-      "alias" => "u",
-      "key" => array("entrada"=>"emailUsuario", "nombre"=>"Email"),
-      "campos" => array(
-        "emailUsuario" => array("nombre"=>"Email", "simbolo"=>"LIKE", "salida"=>"email"),
-        "nombreUsuario" => array("nombre"=>"NomUsu", "simbolo"=>"LIKE", "salida"=>"nombre"),
-        "contraUsuario" => array("nombre"=>"PassUsu", "simbolo"=>"LIKE", "salida"=>"contrasena"),
-        "fotoUsuario" => array("nombre"=>"Foto", "simbolo"=>"LIKE", "salida"=>"foto"),
-        "nivelPermisosUsuario" => array("nombre"=>"NvlPermisos", "simbolo"=>"=", "salida"=>"permisos"),
-        "notificacionesUsuario" => array("nombre"=>"Notificaciones", "simbolo"=>"LIKE", "salida"=>"notificaciones"),
-        "fechaUsuario" => array("nombre"=>"FechaHora", "simbolo"=>"=", "salida"=>"fecha")
-      ),
-      "filtros" => array(
-        "nombreAlbumFavorito" => array("tabla"=>"albumes_favoritos", "key"=>"Email"),
-        "nombreBandaFavorita" => array("tabla"=>"bandas_favoritas", "key"=>"Email"),
-        "codigoComentario" => array("tabla"=>"comentarios", "key"=>"Email"),
-        "codigoSeccionComentario" => array("tabla"=>"comentarios", "key"=>"Email"),
-        "fechaComentario" => array("tabla"=>"comentarios", "key"=>"Email"),
-        "nombreGeneroUsuario" => array("tabla"=>"generos_usuarios", "key"=>"Email"),
-        "visitasGeneroUsuario" => array("tabla"=>"generos_usuarios", "key"=>"Email"),
-        "tipoJuegoPartida" => array("tabla"=>"partidas", "key"=>"Email"),
-        "fechaPartida" => array("tabla"=>"partidas", "key"=>"Email"),
-        "dificultadPartida" => array("tabla"=>"partidas", "key"=>"Email"),
-        "aciertosPartida" => array("tabla"=>"partidas", "key"=>"Email"),
-        "numeroPreguntasPartida" => array("tabla"=>"partidas", "key"=>"Email"),
-        "numeroIntentosPartida" => array("tabla"=>"partidas", "key"=>"Email"),
-        "numeroOpcionesPartida" => array("tabla"=>"partidas", "key"=>"Email"),
-        "codigoSeccionSeguida" => array("tabla"=>"secciones_seguidas", "key"=>"Email"),
-      )
+    "filtros" => array(
+      "nombreAlbumFavorito" => array("tabla"=>"albumes_favoritos", "key"=>"Email"),
+      "nombreBandaFavorita" => array("tabla"=>"bandas_favoritas", "key"=>"Email"),
+      "codigoComentario" => array("tabla"=>"comentarios", "key"=>"Email"),
+      "codigoSeccionComentario" => array("tabla"=>"comentarios", "key"=>"Email"),
+      "fechaComentario" => array("tabla"=>"comentarios", "key"=>"Email"),
+      "nombreGeneroUsuario" => array("tabla"=>"generos_usuarios", "key"=>"Email"),
+      "visitasGeneroUsuario" => array("tabla"=>"generos_usuarios", "key"=>"Email"),
+      "tipoJuegoPartida" => array("tabla"=>"partidas", "key"=>"Email"),
+      "fechaPartida" => array("tabla"=>"partidas", "key"=>"Email"),
+      "dificultadPartida" => array("tabla"=>"partidas", "key"=>"Email"),
+      "aciertosPartida" => array("tabla"=>"partidas", "key"=>"Email"),
+      "numeroPreguntasPartida" => array("tabla"=>"partidas", "key"=>"Email"),
+      "numeroIntentosPartida" => array("tabla"=>"partidas", "key"=>"Email"),
+      "numeroOpcionesPartida" => array("tabla"=>"partidas", "key"=>"Email"),
+      "codigoSeccionSeguida" => array("tabla"=>"secciones_seguidas", "key"=>"Email"),
     )
+  )
 );
 
 function selectToArray($metadata,$conversion,$params){

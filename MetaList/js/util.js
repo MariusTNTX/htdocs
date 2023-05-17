@@ -195,7 +195,7 @@ function getHistoryStage(anio){
 }
 
 function getStages(stages){
-  console.log("getBandStages",stages)
+  console.log("getStages",stages)
   let txt="";
   for(let stage of stages){
     txt += (txt.length>0)?" | ":"";

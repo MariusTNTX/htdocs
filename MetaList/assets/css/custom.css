@@ -295,6 +295,10 @@ div.less{padding-top: 20px}
 
 .card-body .bi{vertical-align: 0;}
 
+#recording, #topAlbums, #topMusicians, #topBands{overflow-y: auto;}
+#recording{max-height: 280px;}
+#topAlbums, #topMusicians, #topBands{max-height: 355px;}
+
 
 /* Tabla Músicos */
 .table-striped>tbody>tr:nth-of-type(odd)>* {background-color: rgba(220,33,14,.02)}
@@ -303,7 +307,7 @@ div.less{padding-top: 20px}
   max-height:100px;
 }
 .elmCard p{font-size: 13px;}
-.elmCardText{max-width: 159px;} /* 195px - 187px */
+.elmCardText{max-width: 153px;} /* 195px - 187px - 159px */
 .elmCardImg{
   max-width: 100%;
   /* max-height: 100%; */

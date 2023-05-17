@@ -160,7 +160,7 @@
     </section><!-- End Breadcrumbs -->
 
     <!-- ======= Portfolio Details Section ======= -->
-    <section id="portfolio-details" class="portfolio-details">
+    <section id="portfolio-details" class="portfolio-details aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
       <div class="container">
 
         <!-- M A I N -->
@@ -169,14 +169,14 @@
           <!-- COLUMNA IZQUIERDA -->
           <div class="col-lg-4 order-1 order-lg-first">
             <!-- Imagen -->
-            <div class="row estado1" data-aos="fade-up" data-aos-delay="100">
-              <div class="col-12 mb-3">
-                <img id="image1" class="elmCardImg" src="./imagenes/albums/ashesOfTheWake.jpg" alt="">
+            <div class="row estado1"> <!--  data-aos="fade-up" data-aos-delay="100" -->
+              <div class="col-12 mb-3 text-center">
+                <img id="image1" class="elmCardImg shadow" src="./imagenes/albums/ashesOfTheWake.jpg" alt="">
               </div>
             </div>
 
             <!-- Géneros TOP ALL -->
-            <div class="row" data-aos="fade-up" data-aos-delay="100">
+            <div class="row d-none"> <!--  data-aos="fade-up" data-aos-delay="100" -->
               <div class="col-12 my-3">
                 <div class="portfolio-info">
                   <h3>Géneros</h3>
@@ -196,7 +196,7 @@
             </div>
 
             <!-- Canciones Destacadas TOP ALL -->
-            <div class="row" data-aos="fade-up" data-aos-delay="100">
+            <div class="row d-none"> <!--  data-aos="fade-up" data-aos-delay="100" -->
               <div class="col-12 my-3">
                 <div class="portfolio-info">
                   <h3>Canciones Destacadas</h3>
@@ -223,10 +223,10 @@
             </div>
 
             <!-- Descripción (Solo Resolución Pequeña) -->
-            <div class="col-12 estado2" data-aos="fade-up" data-aos-delay="100">
-              <div class="portfolio-description">
+            <div class="col-12 estado2"> <!--  data-aos="fade-up" data-aos-delay="100" -->
+              <div class="portfolio-description d-none">
                 <h2>Descripción</h2>
-                <div id="description1">
+                <div id="description1" class="mb-4">
                   <p>Fue nombrado por "Guitar World" el 49.º mejor álbum de guitarra de todos los tiempos. El álbum es mucho más político que su trabajo anterior apuntando específicamente a la guerra de Irak con canciones como "Ashes of the Wake", "Now You've Got Something to Die For", "One Gun" y "The Faded Line". Actualmente Ashes of the Wake ha vendido más de 398.000 copias en todo el mundo.</p>
                   <p>Se trata del álbum con el que Lamb of God debuta en una multinacional (Sony) y prescinde del legendario Devin Townsend para dejarle las labores de producción a “Machine”, con quien definitivamente la banda definiría su sonido. Ashes Of The Wake no es solo un gran álbum, es un disco que en el futuro podrá ser fácilmente usado como referencia, así como el Reign in Blood de Slayer o Burn My Eyes de Machine Head.</p>
                   <p>En esta producción destacan la agresividad, la brillantez en las composiciones y la técnica pulida a nivel instrumental. El uso de los riffs recuerda en cierta medida al sonido de Pantera debido a la gran cantidad de ellos y a los diferentes usos que se les da en cada una de las canciones, con crescendos y diferentes ritmos de batería. Es un disco que difícilmente pueda llegar a cansar gracias a eso, solo preocupándote por cual es el siguiente riff que te vas a encontrar y las melodías, armónicos y demás arreglos de los guitarristas Morton y Adler, quienes lograron trascender en sus carreras como guitarristas gracias a su participación en este álbum.</p>
@@ -237,7 +237,7 @@
             </div>
 
             <!-- Enlaces -->
-            <div class="row" data-aos="fade-up" data-aos-delay="100">
+            <div class="row"> <!--  data-aos="fade-up" data-aos-delay="100" -->
               <div class="col-12 my-3">
                 <div class="portfolio-info">
                   <h3>Enlaces</h3>
@@ -249,32 +249,21 @@
                 </div>
               </div>
             </div>
-
-            <!-- Relacionados -->
-            <!-- <div class="row" data-aos="fade-up" data-aos-delay="100">
-              <div class="col-12">
-                <div class="portfolio-description text-center">
-                  <h2>Relacionados:</h2>
-                  <p><a href="./buscadorAvanzado.html">Lista de Álbumes Relacionados</a></p>
-                  <p><a href="#">TierLists en los que Aparece</a></p>
-                  <p><a href="#">Playlists en las que Aparece</a></p>
-                </div>
-              </div>
-            </div> -->
             
           </div>
 
           <!-- COLUMNA DERECHA -->
           <div class="col-lg-8 order-first order-lg-1">
             <div class="row">
+              <div class="col-3 col-sm-2 mb-3"></div>
               <!-- Titulo -->
-              <div class="col-9 col-sm-10 mb-3 ps-4 ps-lg-0" data-aos="fade-up" data-aos-delay="100">
+              <div class="col-6 col-sm-8 mb-6 ps-4 ps-lg-0"> <!--  data-aos="fade-up" data-aos-delay="100" -->
                 <div id="head" class="text-center fw-bold">
                   <h1>Ashes of The Wake - <a href="#">Lamb of God</a></h1>
                 </div>
               </div>
               <!-- Like -->
-              <div id="heart" class="col-3 col-sm-2 mb-3 like" data-aos="fade-up" data-aos-delay="100">
+              <div id="heart" class="col-3 col-sm-2 mb-3 like d-none"> <!--  data-aos="fade-up" data-aos-delay="100" -->
                 <div class="text-center" id="heart1">
                   <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
                     <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
@@ -287,14 +276,14 @@
                 </div>
               </div>
               <!-- Imagen (Solo Resolución Pequeña) -->
-              <div class="row estado2" data-aos="fade-up" data-aos-delay="100">
+              <div class="row estado2"> <!--  data-aos="fade-up" data-aos-delay="100" -->
                 <div class="col-12 mb-3 pe-0 ps-4 text-center">
-                  <img id="image2" class="elmCardImg" src="./imagenes/albums/ashesOfTheWake.jpg" alt="">
+                  <img id="image2" class="elmCardImg shadow" src="./imagenes/albums/ashesOfTheWake.jpg" alt="">
                 </div>
               </div>
               
               <!-- Info Básica -->
-              <div class="col-12 col-xxl-6 my-3" data-aos="fade-up" data-aos-delay="100">
+              <div class="col-12 col-xxl-6 my-3"> <!--  data-aos="fade-up" data-aos-delay="100" -->
                 <div class="portfolio-info">
                   <h3>Información Básica</h3>
                   <ul id="mainInfo">
@@ -309,7 +298,7 @@
               </div>
 
               <!-- Grabación y Distribución -->
-              <div class="col-12 col-xxl-6 my-3" data-aos="fade-up" data-aos-delay="100">
+              <div class="col-12 col-xxl-6 my-3 d-none"> <!--  data-aos="fade-up" data-aos-delay="100" -->
                 <div class="portfolio-info">
                   <h3>Grabación y Distribución</h3>
                   <div id="recording">
@@ -338,100 +327,40 @@
               </div>
 
               <!-- Músicos TOP ALL -->
-              <div class="col-12 my-3" data-aos="fade-up" data-aos-delay="100">
+              <div class="col-12 my-3 d-none"> <!--  data-aos="fade-up" data-aos-delay="100" -->
                 <div class="portfolio-info">
                   <h3>Músicos</h3>
                   <div id="topMusicians" class="row">
-
-                    <div class="col-12 col-md-6 col-xxl-4 py-2 elmCard">
-                      <div class="row">
-                        <div class="col-auto pe-0"><img src="./imagenes/albums/ashesOfTheWake.jpg" alt=""></div>
-                        <div class="col-auto ps-2 elmCardText">
-                          <p class="mb-0 fs-6">Randy Blythe</p>
-                          <hr class="mt-1 mb-2">
-                          <p class="mb-0">Vocalista</p>
-                          <p class="mb-0">1995 - Actualidad</p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="col-12 col-md-6 col-xxl-4 py-2 elmCard">
-                      <div class="row">
-                        <div class="col-auto pe-0"><img src="./imagenes/albums/ashesOfTheWake.jpg" alt=""></div>
-                        <div class="col-auto ps-2 elmCardText">
-                          <p class="mb-0 fs-6">Randy Blythe</p>
-                          <hr class="mt-1 mb-2">
-                          <p class="mb-0">Guitarrista, Productor, Teclista, Programador</p>
-                          <p class="mb-0">1995 - Actualidad</p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="col-12 col-md-6 col-xxl-4 py-2 elmCard">
-                      <div class="row">
-                        <div class="col-auto pe-0"><img src="./imagenes/albums/ashesOfTheWake.jpg" alt=""></div>
-                        <div class="col-auto ps-2 elmCardText">
-                          <p class="mb-0 fs-6">Randy Blythe</p>
-                          <hr class="mt-1 mb-2">
-                          <p class="mb-0">Vocalista</p>
-                          <p class="mb-0">1995 - Actualidad</p>
-                        </div>
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-
-              <!-- Álbumes TOP ALL -->
-              <div class="col-12 my-3 d-none" data-aos="fade-up" data-aos-delay="100">
-                <div class="portfolio-info">
-                  <h3>Álbumes</h3>
-                  <div id="topAlbums" class="row">
-
-                    <div class="col-auto py-2 elmCard">
-                      <div class="row">
-                        <div class="col-auto pe-0"><img src="./imagenes/albums/ashesOfTheWake.jpg" alt=""></div>
-                        <div class="col-auto ps-2 elmCardText">
-                          <p class="mb-0 fs-6">Ashes of the Wake</p>
-                          <hr class="mt-1 mb-2">
-                          <p class="mb-0">Lamb of God</p>
-                          <p class="mb-0">31/8/2004</p>
-                        </div>
-                      </div>
-                    </div>
 
                   </div>
                 </div>
               </div>
 
               <!-- Bandas TOP ALL -->
-              <div class="col-12 my-3 d-none" data-aos="fade-up" data-aos-delay="100">
+              <div class="col-12 my-3 d-none"> <!--  data-aos="fade-up" data-aos-delay="100" -->
                 <div class="portfolio-info">
                   <h3>Bandas</h3>
                   <div id="topBands" class="row">
 
-                    <div class="col-auto py-2 elmCard">
-                      <div class="row">
-                        <div class="col-auto pe-0"><img src="./imagenes/albums/ashesOfTheWake.jpg" alt=""></div>
-                        <div class="col-auto ps-2 elmCardText">
-                          <p class="mb-0 fs-6">Lamb of God</p>
-                          <hr class="mt-1 mb-2">
-                          <p class="mb-0">California, United States</p>
-                          <p class="mb-0">En Activo</p>
-                        </div>
-                      </div>
-                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Álbumes TOP ALL -->
+              <div class="col-12 my-3 d-none"> <!--  data-aos="fade-up" data-aos-delay="100" -->
+                <div class="portfolio-info">
+                  <h3>Álbumes</h3>
+                  <div id="topAlbums" class="row">
 
                   </div>
                 </div>
               </div>
-              
+
               <!-- Descripción -->
-              <div class="col-12 estado1" data-aos="fade-up" data-aos-delay="100">
+              <div class="col-12 estado1 d-none"> <!--  data-aos="fade-up" data-aos-delay="100" -->
                 <div class="portfolio-description">
                   <h2>Descripción</h2>
-                  <div id="description2">
+                  <div id="description2" class="mb-4">
                     <p>Fue nombrado por "Guitar World" el 49.º mejor álbum de guitarra de todos los tiempos. El álbum es mucho más político que su trabajo anterior apuntando específicamente a la guerra de Irak con canciones como "Ashes of the Wake", "Now You've Got Something to Die For", "One Gun" y "The Faded Line". Actualmente Ashes of the Wake ha vendido más de 398.000 copias en todo el mundo.</p>
                     <p>Se trata del álbum con el que Lamb of God debuta en una multinacional (Sony) y prescinde del legendario Devin Townsend para dejarle las labores de producción a “Machine”, con quien definitivamente la banda definiría su sonido. Ashes Of The Wake no es solo un gran álbum, es un disco que en el futuro podrá ser fácilmente usado como referencia, así como el Reign in Blood de Slayer o Burn My Eyes de Machine Head.</p>
                     <p>En esta producción destacan la agresividad, la brillantez en las composiciones y la técnica pulida a nivel instrumental. El uso de los riffs recuerda en cierta medida al sonido de Pantera debido a la gran cantidad de ellos y a los diferentes usos que se les da en cada una de las canciones, con crescendos y diferentes ritmos de batería. Es un disco que difícilmente pueda llegar a cansar gracias a eso, solo preocupándote por cual es el siguiente riff que te vas a encontrar y las melodías, armónicos y demás arreglos de los guitarristas Morton y Adler, quienes lograron trascender en sus carreras como guitarristas gracias a su participación en este álbum.</p>
@@ -447,7 +376,7 @@
         </div>
 
         <!-- C O M E N T A R I O S -->
-        <div class="row mt-5" data-aos="fade-up" data-aos-delay="100">
+        <div class="row mt-5"> <!--  data-aos="fade-up" data-aos-delay="100" -->
           <div class="col-12">
             <div class="">
               <div class="row comments-title">  
