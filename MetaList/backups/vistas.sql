@@ -12,7 +12,7 @@ WHERE tipoAlb is not null
 ORDER BY puntuacion desc;
 
 CREATE OR REPLACE VIEW Bandas_Plus AS 
-SELECT b.NomBan, b.Pais, b.Origen, b.NumEscuchasMes, b.Imagen, b.Estatus, b.Descrip, b.LinkWeb, b.LinkSpotify, b.Visitas,
+SELECT b.NomBan, b.Pais, b.Origen, b.NumEscuchasMes, b.Imagen, b.Estatus, b.Descrip, b.LinkWeb, b.LinkSpotify, b.FechaIncorp, b.Visitas,
   (SELECT DISTINCT MAX(estrellas) from generos_bandas where nomban = b.nomban) as EstrellasMax, 
   b.NumEscuchasMes+b.NumEscuchasMes*(SELECT DISTINCT MAX(estrellas) FROM generos_bandas where nomban = b.nomban) as Puntuacion,
   (SELECT COUNT(nomalb) FROM bandas a2 LEFT OUTER JOIN albumes b2 ON a2.nomban = b2.nomban WHERE a2.nomban LIKE b.nomban GROUP BY a2.nomban) as CountAlb,

@@ -86,6 +86,20 @@ async function put(elm, awt, body){
   return Promise.resolve(response);
 }
 
+// REMOVE: FUNCIÓN ELIMINAR INFORMACIÓN A TRAVÉS DE LA API
+async function remove(elm, awt, body){
+  console.log(body)
+  //Se obtiene el JSON de resultados:
+  let response = await fetch(`http://${root}/MetaList/php/api.php?key=${key()}&delete=${elm}`,{
+    method: 'DELETE',
+    body: JSON.stringify(body),
+    headers: {'Content-Type': 'application/json'}
+  });
+  response = await response.json();
+  if(awt) return response;
+  return Promise.resolve(response);
+}
+
 // SET_FORM_DATA: FUNCIÓN INSERTAR FOTOS A TRAVÉS DE LA API
 async function setFormData(elm, awt, body, name, id=""){
   let response = await fetch(`http://${root}/MetaList/php/api.php?key=${key()}&setFormData=${elm}&name=${name}&id=${id}`,{

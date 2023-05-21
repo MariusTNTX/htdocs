@@ -46,7 +46,7 @@ let userOptions = `
       </div>
     </a></li>
     <li><a class="dropdown-item" href="favoritos.html"><i class="bi bi-heart-fill me-2"></i>Favoritos</a></li>
-    <li><a class="dropdown-item" href="recomendaciones.html"><i class="bi bi-star-fill me-2"></i>Recomendaciones</a></li>
+    <li id="adminOption" class="d-none"><a class="dropdown-item" href="administracion.html"><i class="bi bi-star-fill me-2"></i>Administración</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><a class="dropdown-item" href="#" id="logOut"><i class="bi bi-door-closed-fill me-2"></i>Cerrar Sesión</a></li>
   </ul>
@@ -214,4 +214,52 @@ function getBandLyricThemes(themes){
     txt += theme.tema;
   }
   return txt;
+}
+
+async function setHeart(params){
+  console.log("SET HEART")
+  let elm = params.element;
+  let heart1 = document.getElementById("heart1");
+  let heart2 = document.getElementById("heart2");
+  let elemento = (elm=='band')?'bandas_favoritas':'albumes_favoritos';
+  let parametros = (elm=='band')?[['nombreBanda',params.band]]:[['nombreBanda',params.band],['nombreAlbum',params.album]];
+  console.log("BÚSQUEDA DE FAVORITOS:")
+  if(sessionStorage.getItem("email")){
+    let favs = await list(elemento,true,['emailUsuario',sessionStorage.getItem("email")],...parametros);
+    if(favs.response.length>0){
+      sessionStorage.setItem('favorito','SI');
+      heart1.classList.add("hid");
+      heart2.classList.remove("hid");
+    } else sessionStorage.setItem('favorito','NO');
+  } else {
+    heart1.classList.remove("hid");
+    heart2.classList.add("hid");
+  }
+}
+
+for(let a of document.querySelectorAll(".randomElement")){
+  a.addEventListener("click",(e)=>{
+    e.preventDefault();
+    loadRandomElement(e.target.id.replace("random",""));
+  });
+}
+
+async function loadRandomElement(element){
+  if(element=='Band'){
+    let banda = await list("bandas",true,['escuchasBanda_Min',1],['order','RAND()'],['limit',1]);
+    banda = banda.response;
+    location.href = `visor.html?element=band&band=${banda[0].banda}`;
+  } else if(element=='Album'){
+    let album = await list("albumes",true,['escuchasAlbum_Min',1],['order','RAND()'],['limit',1]);
+    album = album.response;
+    location.href = `visor.html?element=album&band=${album[0].banda}&album=${album[0].album}`;
+  } else if(element=='Label'){
+    let label = await list("discograficas",true,['estatusDiscografica_Like','a'],['order','RAND()'],['limit',1]);
+    label = label.response;
+    location.href = `visor.html?element=label&label=${label[0].discografica}`;
+  } else if(element=='Musician'){
+    let musician = await list("musicos",true,['sexoMusico_Like','e'],['order','RAND()'],['limit',1]);
+    musician = musician.response;
+    location.href = `visor.html?element=musician&musician=${musician[0].musico}`;
+  }
 }

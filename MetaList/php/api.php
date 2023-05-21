@@ -111,7 +111,7 @@ if(isset($_GET['key'])){
           $info = $body['info'];
           $info['nombre'] = str_replace("'","\'",$info['nombre']);
           foreach($info as $i => $vlr) if($vlr=="" && $i=='escuchas') $info[$i]="NULL";
-          query($c1, "UPDATE BANDAS SET Pais='".$info['pais']."', Origen='".str_replace("'","\'",$info['origen'])."', NumEscuchasMes=".$info['escuchas'].", Imagen='".$info['imagen']."', Estatus='".$info['estatus']."', Descrip='".str_replace("'","\\'",$info['descrip'])."', LinkWeb='".$info['linkWeb']."', LinkSpotify='".$info['linkSpotify']."' WHERE NomBan='".$info['nombre']."'");
+          query($c1, "UPDATE BANDAS SET Pais='".$info['pais']."', Origen='".str_replace("'","\'",$info['origen'])."', NumEscuchasMes=".$info['escuchas'].", Imagen='".$info['imagen']."', Estatus='".$info['estatus']."', Descrip='".str_replace("'","\\'",$info['descrip'])."', LinkWeb='".$info['linkWeb']."', LinkSpotify='".$info['linkSpotify']."', FechaIncorp='".date("Y-m-d")."' WHERE NomBan='".$info['nombre']."'");
           //ETAPAS BANDA
           foreach($body['etapas'] as $i => $eta){
             foreach($eta as $j => $vlr) if($vlr=="" && ($j=='anioInic' || $j='anioFin')) $eta[$j]="NULL";

@@ -27,7 +27,7 @@ $filtrosMD = array(
   "numeroGenerosAlbum" => array("tabla"=>"albumes_plus", "key"=>"NomBan_NomAlb"),
   "numeroMusicosAlbum" => array("tabla"=>"albumes_plus", "key"=>"NomBan_NomAlb"),
 
-  "EmailUsuarioAlbumFavorito" => array("tabla"=>"albumes_favoritos", "key"=>"Email_NomBan_NomAlb"),
+  "emailUsuarioAlbumFavorito" => array("tabla"=>"albumes_favoritos", "key"=>"Email_NomBan_NomAlb"),
   "nombreBandaAlbumFavorito" => array("tabla"=>"albumes_favoritos", "key"=>"Email_NomBan_NomAlb"),
   "nombreAlbumFavorito" => array("tabla"=>"albumes_favoritos", "key"=>"Email_NomBan_NomAlb"),
 
@@ -61,7 +61,7 @@ $filtrosMD = array(
   "numeroMusicosBanda" => array("tabla"=>"bandas_plus", "key"=>"NomBan"),
   "numeroTemasBanda" => array("tabla"=>"bandas_plus", "key"=>"NomBan"),
   
-  "EmailUsuarioBandaFavorita" => array("tabla"=>"bandas_favoritas", "key"=>"NomBan_Email"),
+  "emailUsuarioBandaFavorita" => array("tabla"=>"bandas_favoritas", "key"=>"NomBan_Email"),
   "nombreBandaFavorita" => array("tabla"=>"bandas_favoritas", "key"=>"NomBan_Email"),
 
   "nombreCancion" => array("tabla"=>"canciones_albumes", "key"=>"NomBan_NomAlb_NomCan"),
@@ -75,7 +75,7 @@ $filtrosMD = array(
   "nombreCancionPlaylist" => array("tabla"=>"canciones_playlists", "key"=>"NomPlay_NomBan_NomAlb_NomCan"),
 
   "codigoComentario" => array("tabla"=>"comentarios", "key"=>"CodCom_Email_CodSec"),
-  "EmailUsuarioComentario" => array("tabla"=>"comentarios", "key"=>"CodCom_Email_CodSec"),
+  "emailUsuarioComentario" => array("tabla"=>"comentarios", "key"=>"CodCom_Email_CodSec"),
   "codigoSeccionComentario" => array("tabla"=>"comentarios", "key"=>"CodCom_Email_CodSec"),
   "fechaComentario" => array("tabla"=>"comentarios", "key"=>"CodCom_Email_CodSec"),
 
@@ -130,7 +130,7 @@ $filtrosMD = array(
   "nombreBandaGenero" => array("tabla"=>"generos_bandas", "key"=>"NomBan_NomGen"),
   "estrellasGeneroBanda" => array("tabla"=>"generos_bandas", "key"=>"NomBan_NomGen"),
 
-  "EmailUsuarioGeneroUsuario" => array("tabla"=>"generos_usuarios", "key"=>"NomGen_Email"),
+  "emailUsuarioGeneroUsuario" => array("tabla"=>"generos_usuarios", "key"=>"NomGen_Email"),
   "nombreGeneroUsuario" => array("tabla"=>"generos_usuarios", "key"=>"NomGen_Email"),
   "visitasGeneroUsuario" => array("tabla"=>"generos_usuarios", "key"=>"NomGen_Email"),
 
@@ -172,7 +172,7 @@ $filtrosMD = array(
   "anioInicioEtapaMusico" => array("tabla"=>"musicos_bandas", "key"=>"NomMus_NomBan"),
   "anioFinEtapaMusico" => array("tabla"=>"musicos_bandas", "key"=>"NomMus_NomBan"),
 
-  "EmailUsuarioPartida" => array("tabla"=>"partidas", "key"=>"Email"),
+  "emailUsuarioPartida" => array("tabla"=>"partidas", "key"=>"Email"),
   "tipoJuegoPartida" => array("tabla"=>"partidas", "key"=>"Email"),
   "fechaPartida" => array("tabla"=>"partidas", "key"=>"Email"),
   "dificultadPartida" => array("tabla"=>"partidas", "key"=>"Email"),
@@ -200,13 +200,13 @@ $filtrosMD = array(
   "temaSeccion" => array("tabla"=>"secciones_comentarios", "key"=>"CodSec"),
   "tipoSeccion" => array("tabla"=>"secciones_comentarios", "key"=>"CodSec"),
 
-  "EmailUsuarioSeccionSeguida" => array("tabla"=>"secciones_seguidas", "key"=>"Email_CodSec"),
+  "emailUsuarioSeccionSeguida" => array("tabla"=>"secciones_seguidas", "key"=>"Email_CodSec"),
   "codigoSeccionSeguida" => array("tabla"=>"secciones_seguidas", "key"=>"Email_CodSec"),
 
   "nombreBandaTemaLetra" => array("tabla"=>"temas_letra_bandas", "key"=>"NomBan"),
   "temaLetraBanda" => array("tabla"=>"temas_letra_bandas", "key"=>"NomBan"),
 
-  "EmailUsuario" => array("tabla"=>"usuarios", "key"=>"Email"),
+  "emailUsuario" => array("tabla"=>"usuarios", "key"=>"Email"),
   "nombreUsuario" => array("tabla"=>"usuarios", "key"=>"Email"),
   "emailUsuario" => array("tabla"=>"usuarios", "key"=>"Email"),
   "nivelPermisosUsuario" => array("tabla"=>"usuarios", "key"=>"Email"),
@@ -237,13 +237,13 @@ $metadata = array(
       "visitasAlbum" => array("nombre"=>"Visitas", "simbolo"=>"=", "salida"=>"visitas")
     ),
     "filtros" => array(
-      "EmailUsuarioAlbumFavorito" => array("tabla"=>"albumes_favoritos", "key"=>"NomAlb"),
+      "emailUsuarioAlbumFavorito" => array("tabla"=>"albumes_favoritos", "key"=>"NomAlb"),
       "paisBanda" => array("tabla"=>"bandas", "key"=>"NomBan"),
       "origenBanda" => array("tabla"=>"bandas", "key"=>"NomBan"),
       "escuchasBanda" => array("tabla"=>"bandas", "key"=>"NomBan"),
       "estatusBanda" => array("tabla"=>"bandas", "key"=>"NomBan"),
       "visitasBanda" => array("tabla"=>"bandas", "key"=>"NomBan"),
-      "EmailUsuarioBandaFavorita" => array("tabla"=>"bandas_favoritas", "key"=>"NomBan"),
+      "emailUsuarioBandaFavorita" => array("tabla"=>"bandas_favoritas", "key"=>"NomBan"),
       "nombreCancion" => array("tabla"=>"canciones_albumes", "key"=>"NomAlb"),
       "estrellasCancion" => array("tabla"=>"canciones_albumes", "key"=>"NomAlb"),
       "nombrePlaylist" => array("tabla"=>"canciones_playlists", "key"=>"NomAlb"),
@@ -292,13 +292,13 @@ $metadata = array(
       "numeroMusicosAlbum" => array("nombre"=>"CountMus", "simbolo"=>"=", "salida"=>"musicos"),
     ),
     "filtros" => array(
-      "EmailUsuarioAlbumFavorito" => array("tabla"=>"albumes_favoritos", "key"=>"NomAlb"),
+      "emailUsuarioAlbumFavorito" => array("tabla"=>"albumes_favoritos", "key"=>"NomAlb"),
       "paisBanda" => array("tabla"=>"bandas", "key"=>"NomBan"),
       "origenBanda" => array("tabla"=>"bandas", "key"=>"NomBan"),
       "escuchasBanda" => array("tabla"=>"bandas", "key"=>"NomBan"),
       "estatusBanda" => array("tabla"=>"bandas", "key"=>"NomBan"),
       "visitasBanda" => array("tabla"=>"bandas", "key"=>"NomBan"),
-      "EmailUsuarioBandaFavorita" => array("tabla"=>"bandas_favoritas", "key"=>"NomBan"),
+      "emailUsuarioBandaFavorita" => array("tabla"=>"bandas_favoritas", "key"=>"NomBan"),
       "nombreCancion" => array("tabla"=>"canciones_albumes", "key"=>"NomAlb"),
       "estrellasCancion" => array("tabla"=>"canciones_albumes", "key"=>"NomAlb"),
       "nombrePlaylist" => array("tabla"=>"canciones_playlists", "key"=>"NomAlb"),
@@ -340,7 +340,7 @@ $metadata = array(
   "albumes_favoritos" => array(
     "alias" => "af",
     "campos" => array(
-      "EmailUsuario" => array("nombre"=>"Email", "simbolo"=>"=", "salida"=>"email"),
+      "emailUsuario" => array("nombre"=>"Email", "simbolo"=>"LIKE", "salida"=>"email"),
       "nombreBanda" => array("nombre"=>"NomBan", "simbolo"=>"LIKE", "salida"=>"banda"),
       "nombreAlbum" => array("nombre"=>"NomAlb", "simbolo"=>"LIKE", "salida"=>"album")
     )
@@ -358,6 +358,7 @@ $metadata = array(
       "descripcionBanda" => array("nombre"=>"Descrip", "simbolo"=>"LIKE", "salida"=>"descripcion"),
       "linkWebBanda" => array("nombre"=>"LinkWeb", "simbolo"=>"LIKE", "salida"=>"linkWeb"),
       "linkSpotifyBanda" => array("nombre"=>"LinkSpotify", "simbolo"=>"LIKE", "salida"=>"linkSpotify"),
+      "fechaIncorporacionBanda" => array("nombre"=>"FechaIncorp", "simbolo"=>"=", "salida"=>"fechaIncorporacion"),
       "visitasBanda" => array("nombre"=>"Visitas", "simbolo"=>"=", "salida"=>"visitas")
     ),
     "filtros" => array(
@@ -370,9 +371,9 @@ $metadata = array(
       "diaAlbum" => array("tabla"=>"albumes", "key"=>"NomBan"),
       "escuchasAlbum" => array("tabla"=>"albumes", "key"=>"NomBan"),
       "duracionAlbum" => array("tabla"=>"albumes", "key"=>"NomBan"),
-      "EmailUsuarioAlbumFavorito" => array("tabla"=>"albumes_favoritos", "key"=>"NomBan"),
+      "emailUsuarioAlbumFavorito" => array("tabla"=>"albumes_favoritos", "key"=>"NomBan"),
       "nombreAlbumFavorito" => array("tabla"=>"albumes_favoritos", "key"=>"NomBan"),
-      "EmailUsuarioBandaFavorita" => array("tabla"=>"bandas_favoritas", "key"=>"NomBan"),
+      "emailUsuarioBandaFavorita" => array("tabla"=>"bandas_favoritas", "key"=>"NomBan"),
       "nombreCancion" => array("tabla"=>"canciones_albumes", "key"=>"NomBan"),
       "nombreAlbumCancion" => array("tabla"=>"canciones_albumes", "key"=>"NomBan"),
       "estrellasCancion" => array("tabla"=>"canciones_albumes", "key"=>"NomBan"),
@@ -420,6 +421,7 @@ $metadata = array(
       "descripcionBanda" => array("nombre"=>"Descrip", "simbolo"=>"LIKE", "salida"=>"descripcion"),
       "linkWebBanda" => array("nombre"=>"LinkWeb", "simbolo"=>"LIKE", "salida"=>"linkWeb"),
       "linkSpotifyBanda" => array("nombre"=>"LinkSpotify", "simbolo"=>"LIKE", "salida"=>"linkSpotify"),
+      "fechaIncorporacionBanda" => array("nombre"=>"FechaIncorp", "simbolo"=>"=", "salida"=>"fechaIncorporacion"),
       "visitasBanda" => array("nombre"=>"Visitas", "simbolo"=>"=", "salida"=>"visitas"),
       "estrellasMaximasBanda" => array("nombre"=>"EstrellasMax", "simbolo"=>"=", "salida"=>"estrellasMaximas"),
       "puntuacionBanda" => array("nombre"=>"Puntuacion", "simbolo"=>"=", "salida"=>"puntuacion"),
@@ -442,9 +444,9 @@ $metadata = array(
       "diaAlbum" => array("tabla"=>"albumes", "key"=>"NomBan"),
       "escuchasAlbum" => array("tabla"=>"albumes", "key"=>"NomBan"),
       "duracionAlbum" => array("tabla"=>"albumes", "key"=>"NomBan"),
-      "EmailUsuarioAlbumFavorito" => array("tabla"=>"albumes_favoritos", "key"=>"NomBan"),
+      "emailUsuarioAlbumFavorito" => array("tabla"=>"albumes_favoritos", "key"=>"NomBan"),
       "nombreAlbumFavorito" => array("tabla"=>"albumes_favoritos", "key"=>"NomBan"),
-      "EmailUsuarioBandaFavorita" => array("tabla"=>"bandas_favoritas", "key"=>"NomBan"),
+      "emailUsuarioBandaFavorita" => array("tabla"=>"bandas_favoritas", "key"=>"NomBan"),
       "nombreCancion" => array("tabla"=>"canciones_albumes", "key"=>"NomBan"),
       "nombreAlbumCancion" => array("tabla"=>"canciones_albumes", "key"=>"NomBan"),
       "estrellasCancion" => array("tabla"=>"canciones_albumes", "key"=>"NomBan"),
@@ -482,7 +484,7 @@ $metadata = array(
   "bandas_favoritas" => array(
     "alias" => "bf",
     "campos" => array(
-      "EmailUsuario" => array("nombre"=>"Email", "simbolo"=>"=", "salida"=>"email"),
+      "emailUsuario" => array("nombre"=>"Email", "simbolo"=>"LIKE", "salida"=>"email"),
       "nombreBanda" => array("nombre"=>"NomBan", "simbolo"=>"LIKE", "salida"=>"banda")
     )
   ),
@@ -504,13 +506,13 @@ $metadata = array(
       "diaAlbum" => array("tabla"=>"albumes", "key"=>"NomAlb"),
       "escuchasAlbum" => array("tabla"=>"albumes", "key"=>"NomAlb"),
       "duracionAlbum" => array("tabla"=>"albumes", "key"=>"NomAlb"),
-      "EmailUsuarioAlbumFavorito" => array("tabla"=>"albumes_favoritos", "key"=>"NomAlb"),
+      "emailUsuarioAlbumFavorito" => array("tabla"=>"albumes_favoritos", "key"=>"NomAlb"),
       "paisBanda" => array("tabla"=>"bandas", "key"=>"NomBan"),
       "origenBanda" => array("tabla"=>"bandas", "key"=>"NomBan"),
       "escuchasBanda" => array("tabla"=>"bandas", "key"=>"NomBan"),
       "estatusBanda" => array("tabla"=>"bandas", "key"=>"NomBan"),
       "visitasBanda" => array("tabla"=>"bandas", "key"=>"NomBan"),
-      "EmailUsuarioBandaFavorita" => array("tabla"=>"bandas_favoritas", "key"=>"NomBan"),
+      "emailUsuarioBandaFavorita" => array("tabla"=>"bandas_favoritas", "key"=>"NomBan"),
       "nombrePlaylist" => array("tabla"=>"canciones_playlists", "key"=>"NomCan"),
       "nombreCancionPlaylist" => array("tabla"=>"canciones_playlists", "key"=>"NomCan"),
       "nombreDiscografica" => array("tabla"=>"discograficas_albumes", "key"=>"NomAlb"),
@@ -624,7 +626,7 @@ $metadata = array(
       "estrellasGeneroAlbum" => array("tabla"=>"generos_albumes", "key"=>"NomGen"),
       "nombreBanda" => array("tabla"=>"generos_bandas", "key"=>"NomGen"),
       "estrellasGeneroBanda" => array("tabla"=>"generos_bandas", "key"=>"NomGen"),
-      "EmailUsuarioGeneroUsuario" => array("tabla"=>"generos_usuarios", "key"=>"NomGen"),
+      "emailUsuarioGeneroUsuario" => array("tabla"=>"generos_usuarios", "key"=>"NomGen"),
       "nombreGeneroUsuario" => array("tabla"=>"generos_usuarios", "key"=>"NomGen"),
       "visitasGeneroUsuario" => array("tabla"=>"generos_usuarios", "key"=>"NomGen")
     )
@@ -852,7 +854,9 @@ function selectToArray($metadata,$conversion,$params){
       }
       $campos = $metadata[$select]['campos'];
       //Verificar si param pertenece a la tabla de origen
-      if(array_key_exists($param,$campos)){ //Si pertenece
+      if($param=='RAND()'){ //Registros aleatorios
+        array_push($query['order'], array("alias"=>'',"nombre"=>$param,"tipo"=>$tipo));
+      } else if(array_key_exists($param,$campos)){ //Si pertenece
         array_push($query['order'], array("alias"=>$alias,"nombre"=>$campos[$param]['nombre'],"tipo"=>$tipo));
       } else { //Si no pertenece
         $nuevaTabla = $metadata[$select]['filtros'][$param]['tabla'];
@@ -928,7 +932,8 @@ function selectToArray($metadata,$conversion,$params){
     $order = $query['order'];
     for($i=0; $i<count($order); $i++){
       $coma = ($i>0) ? ", " : "";
-      $content .= $coma.$order[$i]['alias'].".".$order[$i]['nombre']." ".$order[$i]['tipo'];
+      if($order[$i]['nombre']=='RAND()') $content .= $coma.$order[$i]['nombre']." ".$order[$i]['tipo'];
+      else $content .= $coma.$order[$i]['alias'].".".$order[$i]['nombre']." ".$order[$i]['tipo'];
     }
   }
   //LIMIT

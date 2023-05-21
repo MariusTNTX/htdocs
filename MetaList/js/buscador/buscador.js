@@ -137,5 +137,15 @@ async function printResults(pag = numPag){
     showMore = false;
     allowScroll = false;
   }
-  
+}
+
+switch(getURLParameters().list){
+  case 'bands': for(let e of document.querySelectorAll(".filterBandas")) e.dispatchEvent(new Event('click'));
+  break;
+  case 'albums': for(let e of document.querySelectorAll(".filterAlbumes")) e.dispatchEvent(new Event('click'));
+  break;
+  case 'labels': for(let e of document.querySelectorAll(".filterDiscogs")) e.dispatchEvent(new Event('click'));
+  break;
+  case 'musicians': for(let e of document.querySelectorAll(".filterMusicos")) e.dispatchEvent(new Event('click'));
+  break;
 }

@@ -1,4 +1,6 @@
 /* ELEMENTOS DOM */
+let pageTitle = document.getElementById("pageTitle");
+let pageBreadcrumb = document.getElementById("pageBreadcrumb");
 let image1Elm = document.getElementById("image1");
 let topGenresElm = document.getElementById("topGenres");
 let topSongsElm = document.getElementById("topSongs");
@@ -6,6 +8,8 @@ let description1Elm = document.getElementById("description1");
 let linksElm = document.getElementById("links");
 let headElm = document.getElementById("head");
 let heartElm = document.getElementById("heart");
+let heartElm1 = document.getElementById("heart1");
+let heartElm2 = document.getElementById("heart2");
 let image2Elm = document.getElementById("image2");
 let mainInfoElm = document.getElementById("mainInfo");
 let recordingElm = document.getElementById("recording");
@@ -13,18 +17,6 @@ let topMusiciansElm = document.getElementById("topMusicians");
 let description2Elm = document.getElementById("description2");
 let topAlbumsElm = document.getElementById("topAlbums");
 let topBandsElm = document.getElementById("topBands");
-
-// Gestión de Likes (trasladar a función head)
-let heart1 = document.getElementById("heart1");
-let heart2 = document.getElementById("heart2");
-heart1.addEventListener("click",()=>{
-    heart1.classList.add("hid");
-    heart2.classList.remove("hid");
-});
-heart2.addEventListener("click",()=>{
-    heart1.classList.remove("hid");
-    heart2.classList.add("hid");
-});
 
 let params = getURLParameters();
 let element = params.element;
@@ -103,16 +95,30 @@ async function getData(elm, keys){
 function head(elm, data){
   console.log("head",elm,data);
   if(elm=='album'){
+    pageTitle.textContent = "Álbum";
+    pageBreadcrumb.textContent = "Álbum";
     headElm.innerHTML = `<h1>${data.albumes[0].album} - <a href="visor.html?element=band&band=${data.albumes[0].banda}">${data.albumes[0].banda}</a></h1>`;
     heartElm.classList.remove("d-none");
   } else if(elm=='band'){
+    pageTitle.textContent = "Banda";
+    pageBreadcrumb.textContent = "Banda";
     headElm.innerHTML = `<h1>${data.bandas[0].banda}</h1>`;
     heartElm.classList.remove("d-none");
   } else if(elm=='label'){
+    pageTitle.textContent = "Discográfica";
+    pageBreadcrumb.textContent = "Discográfica";
     headElm.innerHTML = `<h1>${data.discograficas[0].discografica}</h1>`;
   } else if(elm=='musician'){
+    pageTitle.textContent = "Músico";
+    pageBreadcrumb.textContent = "Músico";
     headElm.innerHTML = `<h1>${data.musicos[0].musico}</h1>`;
   }
+  //Corazón de Favoritos
+  addHeartEvent();
+  if((elm=='band' || elm=='album')) setHeart(params);
+  //Visitas
+  if(elm=='album') put('albumes',false,[{id:{nombreBanda: data.albumes[0].banda, nombreAlbum: data.albumes[0].album},visitasAlbum: parseInt(data.albumes[0].visitas)+1}]);
+  else if(elm=='band') put('bandas',false,[{id:{nombreBanda: data.bandas[0].banda},visitasBanda: parseInt(data.bandas[0].visitas)+1}]);
 }
 
 function image(elm, data){
@@ -166,6 +172,7 @@ function mainInfo(elm, data){
           <li><strong>${(musician.anioDefuncion)?"Fecha de Defunción":"Edad"}</strong>: ${(musician.diaDefuncion)?musician.diaDefuncion+" de ":""}${(musician.mesDefuncion)?mesEsp[parseInt(musician.mesDefuncion)-1]+" de ":""}${(musician.anioDefuncion)?musician.anioDefuncion:calcularEdad(`${musician.anioNacimiento}-${musician.mesNacimiento}-${musician.diaNacimiento}`)}</li>`;
   }
   mainInfoElm.innerHTML=txt;
+  mainInfoElm.parentElement.parentElement.classList.remove("d-none");
 }
 
 async function recording(elm, data){
@@ -197,7 +204,7 @@ async function recording(elm, data){
     recordingElm.parentElement.parentElement.classList.remove("d-none");
   } else if(elm=='label'){
     let studios = await list('estudios_grabacion',true,['nombreAlbum',data.albumes.map(a=>a.album).join('|')]);
-    studios = studios.response;
+    studios = studios.response.filter((s,i,list)=>i==list.findIndex(s2=>s2.estudio==s.estudio));
     txt=`<ul class="mb-0"><li><strong>Estudios de Grabación</strong>: <ul>`;
     for(let studio of studios){
       txt+=`<li><i class="bx bx-chevron-right"></i>${studio.estudio} - ${(studio.direccion)?studio.direccion+", ":""}${(studio.pais)?studio.pais:"Origen Desconocido"}</li>`;
@@ -236,11 +243,12 @@ function links(elm, data){
     else txt+=`<li><strong>Página Web</strong>: No Disponible</li>`;
   } else if(elm=='musician'){
     for(let band of data.bandas){
-      if(data.bandas[0].linkWeb) txt+=`<li><strong>Página Web</strong>: <a href="${band.linkWeb}" target="_blank">${band.banda}</a></li>`;
-      else txt+=`<li><strong>Página Web</strong>: No Disponible</li>`;
+      if(band.linkWeb) txt+=`<li><strong>Página Web${(data.bandas.length>1)?' ('+band.banda+')':""}</strong>: <a href="${band.linkWeb}" target="_blank">${band.banda}</a></li>`;
+      else txt+=`<li><strong>Página Web${(data.bandas.length>1)?' ('+band.banda+')':""}</strong>: No Disponible</li>`;
     }
   }
   linksElm.innerHTML=txt;
+  linksElm.parentElement.parentElement.parentElement.classList.remove("d-none");
 }
 
 function topAlbums(elm, data){
@@ -460,4 +468,53 @@ function topSongs(elm, data){
     topSongsElm.innerHTML=txt;
     topSongsElm.parentElement.parentElement.parentElement.classList.remove("d-none");
   }
+}
+
+function addHeartEvent(){
+  heartElm.addEventListener("click", async ()=>{
+    let params = getURLParameters();
+    if(sessionStorage.getItem("email")){
+      if(sessionStorage.getItem('favorito')=='SI'){ //Quitar de favoritos
+        heartElm1.classList.remove("hid");
+        heartElm2.classList.add("hid");
+        sessionStorage.setItem('favorito','NO');
+        if(params.element=='band'){
+          await remove('bandas_favoritas',true,[
+            {"id": {
+              "emailUsuario": sessionStorage.getItem('email'),
+              "nombreBanda": params.band
+            }}
+          ]);
+        } else {
+          await remove('albumes_favoritos',true,[
+            {"id": {
+              "emailUsuario": sessionStorage.getItem('email'),
+              "nombreBanda": params.band,
+              "nombreAlbum": params.album
+            }}
+          ]);
+        }
+      } else { //Añadir a favoritos
+        heartElm1.classList.add("hid");
+        heartElm2.classList.remove("hid");
+        sessionStorage.setItem('favorito','SI');
+        if(params.element=='band'){
+          await post('bandas_favoritas',true,[
+            {
+              "emailUsuario": sessionStorage.getItem('email'),
+              "nombreBanda": params.band
+            }
+          ]);
+        } else {
+          await post('albumes_favoritos',true,[
+            {
+              "emailUsuario": sessionStorage.getItem('email'),
+              "nombreBanda": params.band,
+              "nombreAlbum": params.album
+            }
+          ]);
+        }
+      }
+    } else showAlert('ERROR','Debes iniciar sesión para añadir bandas y álbumes a favoritos');
+  });
 }

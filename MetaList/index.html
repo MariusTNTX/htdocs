@@ -60,27 +60,34 @@
           <li><a class="nav-link scrollto" href="#team">Team</a></li> -->
           <li class="dropdown"><a href="#" class="px-2 px-lg-1 px-xl-2"><span>Bandas</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="#">Listas Personalizadas</a></li>
-              <li><a href="#">Tier Lists</a></li>
-              <li><a href="#">Playlists Spotify</a></li>
-              <li><a href="#">Banda Aleatoria</a></li>
+              <li><a href="#">Buscador Avanzado</a></li>
+              <!-- <li><a href="#">Tier Lists</a></li>
+              <li><a href="#">Playlists Spotify</a></li> -->
+              <li><a class="randomElement" id="randomBand" href="#">Banda Aleatoria</a></li>
             </ul>
           </li>
           <li class="dropdown"><a href="#" class="px-2 px-lg-1 px-xl-2"><span>Álbumes</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="./buscadorAvanzado.html">Listas Personalizadas</a></li>
-              <li><a href="#">Tier Lists</a></li>
-              <li><a href="./album.html">Álbum Aleatorio</a></li>
+              <li><a href="./buscadorAvanzado.html">Buscador Avanzado</a></li>
+              <!-- <li><a href="#">Tier Lists</a></li> -->
+              <li><a class="randomElement" id="randomAlbum" href="#">Álbum Aleatorio</a></li>
             </ul>
           </li>
           <li class="dropdown"><a href="#" class="px-2 px-lg-1 px-xl-2"><span>Discográficas</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="#">Listas Personalizadas</a></li>
-              <li><a href="#">Playlists Spotify</a></li>
-              <li><a href="#">Discográfica Aleatoria</a></li>
+              <li><a href="#">Buscador Avanzado</a></li>
+              <!-- <li><a href="#">Playlists Spotify</a></li> -->
+              <li><a class="randomElement" id="randomLabel" href="#">Discográfica Aleatoria</a></li>
             </ul>
           </li>
-          <li class="dropdown"><a href="#" class="px-2 px-lg-1 px-xl-2"><span>Géneros</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href="#" class="px-2 px-lg-1 px-xl-2"><span>Músicos</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="#">Buscador Avanzado</a></li>
+              <!-- <li><a href="#">Playlists Spotify</a></li> -->
+              <li><a class="randomElement" id="randomMusician" href="#">Músico Aleatorio</a></li>
+            </ul>
+          </li>
+          <!-- <li class="dropdown"><a href="#" class="px-2 px-lg-1 px-xl-2"><span>Géneros</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="#">Ranking</a></li>
               <li><a href="#">Tier Lists</a></li>
@@ -100,7 +107,7 @@
               <li><a href="#">Trivia</a></li>
               <li><a href="#">Guitar Zero</a></li>
             </ul>
-          </li>
+          </li> -->
           <!-- <li><a class="nav-link scrollto" href="#contact">Donaciones</a></li>
           <li><a class="nav-link scrollto" href="#about">Sobre Nosotros</a></li>
           <li><a class="nav-link scrollto" href="#contact">Contacto</a></li> -->
@@ -136,17 +143,6 @@
             <div><a href="./registro.html">Regístrate</a></div>
           </div>
         </form>
-        <!-- <ul class="dropdown-menu dropdown-menu-end" id="userOptions">
-          <li><a class="dropdown-item position-relative" href="perfil.html"><i class="bi bi-person-square me-2 text-primary"></i>Perfil
-            <div class="position-absolute top-100 end-0 mt-2 me-2 shadow-sm rounded" id="userImgDrop">
-              <img src="./imagenes/usuarios/ElUroboro77.webp" class="rounded" id="userImgMini" alt="Foto de Perfil">
-            </div>
-          </a></li>
-          <li><a class="dropdown-item" href="favoritos.html"><i class="bi bi-heart-fill me-2"></i>Favoritos</a></li>
-          <li><a class="dropdown-item" href="recomendaciones.html"><i class="bi bi-star-fill me-2"></i>Recomendaciones</a></li>
-          <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" id="logOut" href="#"><i class="bi bi-door-closed-fill me-2"></i>Cerrar Sesión</a></li>
-        </ul> -->
       </div>
       
     </div>
@@ -175,11 +171,11 @@
       </div>
 
       <div class="row justify-content-center mt-4" data-aos="fade-up" data-aos-delay="150">
-        <div class="col-xl-6 col-md-8">
+        <!-- <div class="col-xl-6 col-md-8">
           <form action="./buscadorAvanzado.html" method="post" id="mainSearch">
             <input type="text" name="search" placeholder="Bandas, Álbumes, Noticias, etc."><input type="submit" value="Buscar">
           </form>
-        </div>
+        </div> -->
       </div>
       
       <!-- === Nav Section === -->
@@ -192,7 +188,7 @@
             <p class="text-white hid">Listas dinámicas con todos los filtros que quieras</p>
           </div>
         </div>
-        <div class="col-xl-2 col-md-4">
+        <!-- <div class="col-xl-2 col-md-4">
           <div class="icon-box">
             <a href="#"><i class="ri-menu-2-line"></i></a>
             <h3><a class="nav-link scrollto mb-3" href="#">Tier Lists</a></h3>
@@ -226,7 +222,7 @@
             <h3><a class="nav-link scrollto mb-3" href="#">Juegos</a></h3>
             <p class="text-white hid">Pasar el rato, competir con amigos y dominar el ranking global</p>
           </div>
-        </div>
+        </div> -->
       </div>
 
     </div>
@@ -707,7 +703,7 @@
         <div class="text-center">
           <h3>¿Te gusta nuestro contenido? Apoya al proyecto con la cantidad que desees</h3>
           <p> Toda máquina necesita energía para funcionar a pleno rendimiento, y tú puedes contribuir con una donación 100% libre para que este proyecto siga creciendo sin parar.</p>
-          <a class="cta-btn" href="https://www.patreon.com/es-ES">Donar en Patreon</a>
+          <a class="cta-btn" href="https://www.patreon.com/es-ES" target="_blank">Donar en Patreon</a>
         </div>
 
       </div>
@@ -793,7 +789,7 @@
       <div class="container">
         <div class="row">
 
-          <div class="col-lg-3 col-md-6">
+          <div class="col-md-6"> <!-- col-lg-3 col-md-6 -->
             <div class="footer-info">
               <h1 class="logo me-auto me-lg-0 footer-h1">
                 <a href="index.html">
@@ -820,7 +816,7 @@
             </div>
           </div>
 
-          <div class="col-lg-2 col-md-6 footer-links">
+          <div class="col-md-3 footer-links"> <!-- col-lg-2 col-md-6 footer-links -->
             <h4>Nuestros Servicios</h4>
             <ul>
               <li><i class="bx bx-chevron-right"></i> <a href="./buscadorAvanzado.html">Búsquedas Avanzadas</a></li>
@@ -832,7 +828,7 @@
             </ul>
           </div>
 
-          <div class="col-lg-3 col-md-6 footer-links">
+          <div class="col-md-3 footer-links"> <!-- col-lg-3 col-md-6 footer-links -->
             <h4>Nuestras Secciones</h4>
             <ul>
               <li><i class="bx bx-chevron-right"></i> <a href="#portfolio">Noticias</a></li>
@@ -846,7 +842,7 @@
             </ul>
           </div>
 
-          <div class="col-lg-4 col-md-6 footer-newsletter">
+          <!-- <div class="col-lg-4 col-md-6 footer-newsletter">
             <h4>¿Quieres recibir notificaciones sin registrarte?</h4>
             <p>Podemos enviarte las últimas noticias e incorporaciones al correo que nos indiques, pero si deseas elegir qué notificaciones recibir deberás crearte una cuenta.</p>
             <form action="" method="post">
@@ -858,7 +854,7 @@
               <input type="email" name="email" placeholder="Correo Electrónico">
               <input type="submit" value="Desenlazar">
             </form> <br>
-          </div>
+          </div> -->
 
         </div>
       </div>

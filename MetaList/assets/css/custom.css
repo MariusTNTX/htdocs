@@ -369,6 +369,8 @@ form.dropdown-menu-end{min-width: 16rem}
   max-height: 50px;
 }
 
+#userOptions{min-width: 190px;}
+
 /* Registro */
 
 .reg-container .bi-person-fill, .message-title span{

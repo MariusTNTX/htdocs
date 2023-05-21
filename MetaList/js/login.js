@@ -16,6 +16,8 @@ function showUserOptions(show){
   if(show){
     document.getElementById("dropdownLogin").innerHTML = userOptions;
     document.getElementById("userName").textContent = sessionStorage.getItem("usuario");
+    console.log("Permisos: ",parseInt(sessionStorage.getItem("permisos")))
+    if(parseInt(sessionStorage.getItem("permisos"))>1) document.getElementById("adminOption").classList.remove("d-none");
     if(sessionStorage.getItem("foto")=="null") document.getElementById("userImgMini").src = defaultFoto;
     else document.getElementById("userImgMini").src = sessionStorage.getItem("foto");
     addLogoutEvent(document.getElementById("logOut"));
@@ -59,6 +61,10 @@ async function login(email="", pass=""){
           sessionStorage.setItem("fecha",usuario.fecha);
           //Cambiar Opciones del Login
           showUserOptions(true);
+          //Cambiar corazón (solo para visores)
+          if(location.href.includes("visor.html") && (getURLParameters().element=='band' || getURLParameters().element=='album')){
+            setHeart(getURLParameters());
+          }
           //Mensaje de éxito
           showAlert("SUCCESS","Bienvenido/a "+sessionStorage.getItem("usuario"));
         } else showAlert("ERROR","La contraseña indicada es incorrecta. Inténtalo de nuevo");
@@ -78,6 +84,7 @@ function logout(){
   sessionStorage.removeItem("fecha");
   if(location.href.includes("perfil.html")) location.href="index.html";
   else {
+    if(location.href.includes("visor.html") && (getURLParameters().element=='band' || getURLParameters().element=='album')) setHeart(getURLParameters());
     console.log("logout");
     showUserOptions(false);
     showAlert("INFO","Se ha cerrado la sesión");
