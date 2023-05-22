@@ -2,7 +2,7 @@ async function getMusicianCard(musician){
   let mesEsp = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
   console.log(musician)
   let bandas = await list("musicos_bandas",true,["nombreMusicoEtapa",musician.musico],["order","anioInicioEtapaMusico_Asc"]);
-  let roles = await list("roles_musicos_albumes",true,["nombreMusico",musician.musico]);
+  let roles = await list("roles_musicos_albumes",true,["nombreMusicoRol",musician.musico]);
   let cross = "";
   if(musician.anioDefuncion) cross = `
     <span class="position-absolute top-0 start-100 translate-middle ms-2 mt-1"><img style="height:20px" src="./imagenes/basico/deathCross.png" alt="Símbolo de la cruz"></span>

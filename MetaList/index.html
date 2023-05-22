@@ -60,7 +60,7 @@
           <li><a class="nav-link scrollto" href="#team">Team</a></li> -->
           <li class="dropdown"><a href="#" class="px-2 px-lg-1 px-xl-2"><span>Bandas</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="#">Buscador Avanzado</a></li>
+              <li><a href="buscadorAvanzado.html?list=bands">Buscador Avanzado</a></li>
               <!-- <li><a href="#">Tier Lists</a></li>
               <li><a href="#">Playlists Spotify</a></li> -->
               <li><a class="randomElement" id="randomBand" href="#">Banda Aleatoria</a></li>
@@ -68,21 +68,21 @@
           </li>
           <li class="dropdown"><a href="#" class="px-2 px-lg-1 px-xl-2"><span>Álbumes</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="./buscadorAvanzado.html">Buscador Avanzado</a></li>
+              <li><a href="buscadorAvanzado.html?list=albums">Buscador Avanzado</a></li>
               <!-- <li><a href="#">Tier Lists</a></li> -->
               <li><a class="randomElement" id="randomAlbum" href="#">Álbum Aleatorio</a></li>
             </ul>
           </li>
           <li class="dropdown"><a href="#" class="px-2 px-lg-1 px-xl-2"><span>Discográficas</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="#">Buscador Avanzado</a></li>
+              <li><a href="buscadorAvanzado.html?list=labels">Buscador Avanzado</a></li>
               <!-- <li><a href="#">Playlists Spotify</a></li> -->
               <li><a class="randomElement" id="randomLabel" href="#">Discográfica Aleatoria</a></li>
             </ul>
           </li>
           <li class="dropdown"><a href="#" class="px-2 px-lg-1 px-xl-2"><span>Músicos</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="#">Buscador Avanzado</a></li>
+              <li><a href="buscadorAvanzado.html?list=musicians">Buscador Avanzado</a></li>
               <!-- <li><a href="#">Playlists Spotify</a></li> -->
               <li><a class="randomElement" id="randomMusician" href="#">Músico Aleatorio</a></li>
             </ul>
@@ -183,8 +183,8 @@
 
         <div class="col-xl-2 col-md-4">
           <div class="icon-box">
-            <a href="./buscadorAvanzado.html"><i class="ri-search-line"></i></a>
-            <h3><a class="nav-link scrollto mb-3" href="./buscadorAvanzado.html">Búsqueda Avanzada</a></h3>
+            <a href="buscadorAvanzado.html?list=bands"><i class="ri-search-line"></i></a>
+            <h3><a class="nav-link scrollto mb-3" href="buscadorAvanzado.html?list=bands">Búsqueda Avanzada</a></h3>
             <p class="text-white hid">Listas dinámicas con todos los filtros que quieras</p>
           </div>
         </div>
@@ -243,15 +243,16 @@
         <div class="row" data-aos="fade-up" data-aos-delay="100">
           <div class="col-lg-12 d-flex justify-content-center">
             <ul id="portfolio-flters">
-              <li data-filter=".filter-hoy">Hoy</li>
-              <li data-filter=".filter-3">Últimos 3 días</li>
-              <li data-filter=".filter-30">Últimos 30 días</li>
-              <li data-filter="*" class="filter-active">Últimos 365 días</li>
+              <li id="noticesToday" data-filter=".filter-today">Hoy</li>
+              <li id="noticesCurMonth" data-filter=".filter-curMonth">Éste Mes</li>
+              <li id="noticesLastMonths" data-filter=".filter-lastMonths">Últimos 3 Meses</li>
+              <li id="noticesCurYear" data-filter=".filter-curYear">Éste Año</li>
+              <li id="noticesFull" data-filter=".filter-full" class="filter-active">Todo</li>
             </ul>
           </div>
         </div>
 
-        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+        <div class="row portfolio-container" id="noticeList" data-aos="fade-up" data-aos-delay="200">
 
           <div class="col-lg-4 col-md-6 portfolio-item">
             <div class="portfolio-wrap">
@@ -267,7 +268,7 @@
             </div>
           </div>
 
-          <div class="col-lg-4 col-md-6 portfolio-item filter-30">
+          <div class="col-lg-4 col-md-6 portfolio-item filter-lastMonths">
             <div class="portfolio-wrap">
               <img src="imagenes/noticias/blindGuardian.jpg" class="img-fluid" alt="">
               <div class="portfolio-info">
@@ -281,7 +282,7 @@
             </div>
           </div>
 
-          <div class="col-lg-4 col-md-6 portfolio-item filter-hoy filter-3 filter-30">
+          <div class="col-lg-4 col-md-6 portfolio-item filter-today filter-curMonth filter-lastMonths">
             <div class="portfolio-wrap">
               <img src="imagenes/noticias/sebastianMarino.webp" class="img-fluid" alt="">
               <div class="portfolio-info">
@@ -295,7 +296,7 @@
             </div>
           </div>
 
-          <div class="col-lg-4 col-md-6 portfolio-item filter-3 filter-30">
+          <div class="col-lg-4 col-md-6 portfolio-item filter-curMonth filter-lastMonths">
             <div class="portfolio-wrap">
               <img src="imagenes/noticias/archEnemy.jpg" class="img-fluid" alt="">
               <div class="portfolio-info">
@@ -309,7 +310,7 @@
             </div>
           </div>
 
-          <div class="col-lg-4 col-md-6 portfolio-item filter-hoy filter-3 filter-30">
+          <div class="col-lg-4 col-md-6 portfolio-item filter-today filter-curMonth filter-lastMonths">
             <div class="portfolio-wrap">
               <img src="imagenes/noticias/accept.jpg" class="img-fluid" alt="">
               <div class="portfolio-info">
@@ -323,7 +324,7 @@
             </div>
           </div>
 
-          <div class="col-lg-4 col-md-6 portfolio-item filter-3 filter-30">
+          <div class="col-lg-4 col-md-6 portfolio-item filter-curMonth filter-lastMonths">
             <div class="portfolio-wrap">
               <img src="imagenes/noticias/dreamTheater.jpg" class="img-fluid" alt="">
               <div class="portfolio-info">
@@ -337,7 +338,7 @@
             </div>
           </div>
 
-          <div class="col-lg-4 col-md-6 portfolio-item filter-a filter-30">
+          <div class="col-lg-4 col-md-6 portfolio-item filter-a filter-lastMonths">
             <div class="portfolio-wrap">
               <img src="imagenes/noticias/slipknot.jpg" class="img-fluid" alt="">
               <div class="portfolio-info">
@@ -365,7 +366,7 @@
             </div>
           </div>
 
-          <div class="col-lg-4 col-md-6 portfolio-item filter-a filter-hoy filter-3 filter-30">
+          <div class="col-lg-4 col-md-6 portfolio-item filter-a filter-today filter-curMonth filter-lastMonths">
             <div class="portfolio-wrap">
               <img src="imagenes/noticias/helloween.jpg" class="img-fluid" alt="">
               <div class="portfolio-info">
@@ -892,12 +893,11 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 
+  <!-- MetaList JS Files -->
   <script src="js/api.js"></script>
   <script src="js/util.js"></script>
   <script src="js/login.js"></script>
-  <script src="js/index.js"></script>
-
-  <!-- <script>document.getElementById("alertStart").dispatchEvent(new Event("click"))</script> -->
+  <script src="js/index/index.js"></script>
 
 </body>
 

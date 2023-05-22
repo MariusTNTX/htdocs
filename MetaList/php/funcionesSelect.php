@@ -190,7 +190,7 @@ $filtrosMD = array(
   "codigoComentarioOrigen" => array("tabla"=>"respuestas_comentarios", "key"=>"CodCom"),
   "codigoComentarioDestino" => array("tabla"=>"respuestas_comentarios", "key"=>"CodCom"),
 
-  "nombreMusico" => array("tabla"=>"roles_musicos_albumes", "key"=>"NomMus_NomBan_NomAlb"),
+  "nombreMusicoRol" => array("tabla"=>"roles_musicos_albumes", "key"=>"NomMus_NomBan_NomAlb"),
   "nombreBandaRol" => array("tabla"=>"roles_musicos_albumes", "key"=>"NomMus_NomBan_NomAlb"),
   "nombreAlbumRol" => array("tabla"=>"roles_musicos_albumes", "key"=>"NomMus_NomBan_NomAlb"),
   "rolMusico" => array("tabla"=>"roles_musicos_albumes", "key"=>"NomMus_NomBan_NomAlb"),
@@ -260,7 +260,7 @@ $metadata = array(
       "nombreMusicoEtapa" => array("tabla"=>"musicos_bandas", "key"=>"NomBan"),
       "anioInicioEtapaMusico" => array("tabla"=>"musicos_bandas", "key"=>"NomBan"),
       "anioFinEtapaMusico" => array("tabla"=>"musicos_bandas", "key"=>"NomBan"),
-      "nombreMusico" => array("tabla"=>"roles_musicos_albumes", "key"=>"NomAlb"),
+      "nombreMusicoRol" => array("tabla"=>"roles_musicos_albumes", "key"=>"NomAlb"),
       "rolMusico" => array("tabla"=>"roles_musicos_albumes", "key"=>"NomAlb"),
       "temaLetraBanda" => array("tabla"=>"temas_letra_bandas", "key"=>"NomBan")
     )
@@ -315,7 +315,7 @@ $metadata = array(
       "nombreMusicoEtapa" => array("tabla"=>"musicos_bandas", "key"=>"NomBan"),
       "anioInicioEtapaMusico" => array("tabla"=>"musicos_bandas", "key"=>"NomBan"),
       "anioFinEtapaMusico" => array("tabla"=>"musicos_bandas", "key"=>"NomBan"),
-      "nombreMusico" => array("tabla"=>"roles_musicos_albumes", "key"=>"NomAlb"),
+      "nombreMusicoRol" => array("tabla"=>"roles_musicos_albumes", "key"=>"NomAlb"),
       "rolMusico" => array("tabla"=>"roles_musicos_albumes", "key"=>"NomAlb"),
       "temaLetraBanda" => array("tabla"=>"temas_letra_bandas", "key"=>"NomBan")
     )
@@ -331,7 +331,8 @@ $metadata = array(
       "imagenArticulo" => array("nombre"=>"Imagen", "simbolo"=>"LIKE", "salida"=>"imagen"),
       "anioArticulo" => array("nombre"=>"Anio", "simbolo"=>"=", "salida"=>"anio"),
       "mesArticulo" => array("nombre"=>"Mes", "simbolo"=>"=", "salida"=>"mes"),
-      "diaArticulo" => array("nombre"=>"Dia", "simbolo"=>"=", "salida"=>"dia")
+      "diaArticulo" => array("nombre"=>"Dia", "simbolo"=>"=", "salida"=>"dia"),
+      "visitasArticulo" => array("nombre"=>"Visitas", "simbolo"=>"=", "salida"=>"visitas"),
     ),
     "filtros" => array(
       "nombreEtiqueta" => array("tabla"=>"etiquetas_articulos", "key"=>"nomArt"),
@@ -395,7 +396,7 @@ $metadata = array(
       "nombreMusicoEtapa" => array("tabla"=>"musicos_bandas", "key"=>"NomBan"),
       "anioInicioEtapaMusico" => array("tabla"=>"musicos_bandas", "key"=>"NomBan"),
       "anioFinEtapaMusico" => array("tabla"=>"musicos_bandas", "key"=>"NomBan"),
-      "nombreMusico" => array("tabla"=>"roles_musicos_albumes", "key"=>"NomBan"),
+      "nombreMusicoRol" => array("tabla"=>"roles_musicos_albumes", "key"=>"NomBan"),
       "nombreAlbumRol" => array("tabla"=>"roles_musicos_albumes", "key"=>"NomBan"),
       "rolMusico" => array("tabla"=>"roles_musicos_albumes", "key"=>"NomBan"),
       "temaLetraBanda" => array("tabla"=>"temas_letra_bandas", "key"=>"NomBan"),
@@ -468,7 +469,7 @@ $metadata = array(
       "nombreMusicoEtapa" => array("tabla"=>"musicos_bandas", "key"=>"NomBan"),
       "anioInicioEtapaMusico" => array("tabla"=>"musicos_bandas", "key"=>"NomBan"),
       "anioFinEtapaMusico" => array("tabla"=>"musicos_bandas", "key"=>"NomBan"),
-      "nombreMusico" => array("tabla"=>"roles_musicos_albumes", "key"=>"NomBan"),
+      "nombreMusicoRol" => array("tabla"=>"roles_musicos_albumes", "key"=>"NomBan"),
       "nombreAlbumRol" => array("tabla"=>"roles_musicos_albumes", "key"=>"NomBan"),
       "rolMusico" => array("tabla"=>"roles_musicos_albumes", "key"=>"NomBan"),
       "temaLetraBanda" => array("tabla"=>"temas_letra_bandas", "key"=>"NomBan"),
@@ -527,7 +528,7 @@ $metadata = array(
       "nombreMusicoEtapa" => array("tabla"=>"musicos_bandas", "key"=>"NomBan"),
       "anioInicioEtapaMusico" => array("tabla"=>"musicos_bandas", "key"=>"NomBan"),
       "anioFinEtapaMusico" => array("tabla"=>"musicos_bandas", "key"=>"NomBan"),
-      "nombreMusico" => array("tabla"=>"roles_musicos_albumes", "key"=>"NomAlb"),
+      "nombreMusicoRol" => array("tabla"=>"roles_musicos_albumes", "key"=>"NomAlb"),
       "rolMusico" => array("tabla"=>"roles_musicos_albumes", "key"=>"NomAlb"),
       "temaLetraBanda" => array("tabla"=>"temas_letra_bandas", "key"=>"NomBan")
     )
@@ -666,11 +667,11 @@ $metadata = array(
       "visitasMusico" => array("nombre"=>"Visitas", "simbolo"=>"=", "salida"=>"visitas")
     ),
     "filtros" => array(
-      "nombreBanda" => array("tabla"=>"musicos_bandas", "key"=>"NomMus"),
+      "nombreBandaEtapa" => array("tabla"=>"musicos_bandas", "key"=>"NomMus"),
       "anioInicioEtapaMusico" => array("tabla"=>"musicos_bandas", "key"=>"NomMus"),
       "anioFinEtapaMusico" => array("tabla"=>"musicos_bandas", "key"=>"NomMus"),
       "nombreBandaRol" => array("tabla"=>"roles_musicos_albumes", "key"=>"NomMus"),
-      "nombreAlbum" => array("tabla"=>"roles_musicos_albumes", "key"=>"NomMus"),
+      "nombreAlbumRol" => array("tabla"=>"roles_musicos_albumes", "key"=>"NomMus"),
       "rolMusico" => array("tabla"=>"roles_musicos_albumes", "key"=>"NomMus")
     )
   ),
@@ -705,7 +706,7 @@ $metadata = array(
       "anioInicioEtapaMusico" => array("tabla"=>"musicos_bandas", "key"=>"NomMus"),
       "anioFinEtapaMusico" => array("tabla"=>"musicos_bandas", "key"=>"NomMus"),
       "nombreBandaRol" => array("tabla"=>"roles_musicos_albumes", "key"=>"NomMus"),
-      "nombreAlbum" => array("tabla"=>"roles_musicos_albumes", "key"=>"NomMus"),
+      "nombreAlbumRol" => array("tabla"=>"roles_musicos_albumes", "key"=>"NomMus"),
       "rolMusico" => array("tabla"=>"roles_musicos_albumes", "key"=>"NomMus")
     )
   ),
@@ -713,7 +714,7 @@ $metadata = array(
     "alias" => "mb",
     "campos" => array(
       "nombreMusicoEtapa" => array("nombre"=>"NomMus", "simbolo"=>"LIKE", "salida"=>"musico"),
-      "nombreBanda" => array("nombre"=>"NomBan", "simbolo"=>"LIKE", "salida"=>"banda"),
+      "nombreBandaEtapa" => array("nombre"=>"NomBan", "simbolo"=>"LIKE", "salida"=>"banda"),
       "anioInicioEtapaMusico" => array("nombre"=>"anioInic", "simbolo"=>"=", "salida"=>"anioInicio"),
       "anioFinEtapaMusico" => array("nombre"=>"anioFin", "simbolo"=>"=", "salida"=>"anioFin")
     )
@@ -721,9 +722,9 @@ $metadata = array(
   "roles_musicos_albumes" => array(
     "alias" => "r",
     "campos" => array(
-      "nombreMusico" => array("nombre"=>"NomMus", "simbolo"=>"LIKE", "salida"=>"musico"),
-      "nombreBanda" => array("nombre"=>"NomBan", "simbolo"=>"LIKE", "salida"=>"banda"),
-      "nombreAlbum" => array("nombre"=>"NomAlb", "simbolo"=>"LIKE", "salida"=>"album"),
+      "nombreMusicoRol" => array("nombre"=>"NomMus", "simbolo"=>"LIKE", "salida"=>"musico"),
+      "nombreBandaRol" => array("nombre"=>"NomBan", "simbolo"=>"LIKE", "salida"=>"banda"),
+      "nombreAlbumRol" => array("nombre"=>"NomAlb", "simbolo"=>"LIKE", "salida"=>"album"),
       "rolMusico" => array("nombre"=>"Rol", "simbolo"=>"LIKE", "salida"=>"rol")
     )
   ),
@@ -731,7 +732,7 @@ $metadata = array(
     "alias" => "t",
     "campos" => array(
       "nombreBanda" => array("nombre"=>"NomBan", "simbolo"=>"LIKE", "salida"=>"banda"),
-      "temaBanda" => array("nombre"=>"Tema", "simbolo"=>"LIKE", "salida"=>"tema")
+      "temaLetraBanda" => array("nombre"=>"Tema", "simbolo"=>"LIKE", "salida"=>"tema")
     )
   ),
   "usuarios" => array(
@@ -953,7 +954,7 @@ function insertToArray($metadata,$conversion,$tabla,$body){
       if($campo != 'fechaUsuario'){
         array_push($query['campos'], $array['nombre']);
         if($campo=='contraUsuario') $registro[$campo] = password_hash($registro[$campo],PASSWORD_DEFAULT);
-        array_push($query['values'], array('tipo'=>$array['simbolo'], 'content'=>$registro[$campo]));
+        array_push($query['values'], array('tipo'=>$array['simbolo'], 'content'=>str_replace("'","\'",$registro[$campo])));
       }
     }
     $query['content'] = "INSERT INTO $tabla (";
@@ -986,10 +987,11 @@ function updateToArray($metadata,$conversion,$tabla,$body){
     foreach($registro as $campo => $valor){
       if($campo=='id'){
         foreach($registro['id'] as $campo2 => $valor2){
-          array_push($query['where'], array('campo'=>$metadata[$tabla]['campos'][$campo2]['nombre'], 'tipo'=>$metadata[$tabla]['campos'][$campo2]['simbolo'], 'content'=>$valor2));
+          array_push($query['where'], array('campo'=>$metadata[$tabla]['campos'][$campo2]['nombre'], 'tipo'=>$metadata[$tabla]['campos'][$campo2]['simbolo'], 'content'=>str_replace("'","\'",$valor2)));
         }
       } else {
         if($campo=='contraUsuario') $valor = password_hash($valor, PASSWORD_DEFAULT);
+        else $valor = str_replace("'","\'",$valor);
         array_push($query['set'], array('campo'=>$metadata[$tabla]['campos'][$campo]['nombre'], 'tipo'=>$metadata[$tabla]['campos'][$campo]['simbolo'], 'content'=>$valor));
       }
     }
@@ -1024,7 +1026,7 @@ function deleteToArray($metadata,$conversion,$tabla,$body){
   foreach($body as $registro){
     $query = array("content"=>"", "where" => []);
     foreach($registro['id'] as $campo => $valor){
-      array_push($query['where'], array('campo'=>$metadata[$tabla]['campos'][$campo]['nombre'], 'tipo'=>$metadata[$tabla]['campos'][$campo]['simbolo'], 'content'=>$valor));
+      array_push($query['where'], array('campo'=>$metadata[$tabla]['campos'][$campo]['nombre'], 'tipo'=>$metadata[$tabla]['campos'][$campo]['simbolo'], 'content'=>str_replace("'","\'",$valor)));
     }
     $query['content'] = "DELETE FROM $tabla WHERE ";
     for($i=0; $i<count($query['where']); $i++){

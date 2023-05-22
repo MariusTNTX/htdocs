@@ -93,6 +93,23 @@ div.less{padding-top: 20px}
 .less button:hover {color: #fff;}
 .less .btn.disabled, .less .btn:disabled {background: rgba(0, 0, 0, 0.8);}
 
+/* Botón Blanco Estándar */
+div.less2{padding-top: 20px}
+.less2 button{
+  border: 0;
+  padding: 10px 24px;
+  color:rgb(21, 21, 21);
+  font-weight: bold;
+  background-color: rgba(255,255,255,.5);
+  transition: 0.4s;
+  border-radius: 4px;
+}
+.less2 button:hover {
+  color:rgb(21, 21, 21);
+  background-color: rgba(255,255,255,.75);
+}
+.less2 .btn.disabled, .less2 .btn:disabled {background: rgba(0, 0, 0, 0.5);}
+
 .first{padding: 0 0 60px 0}
 .mini-section{
   padding: 30px 0 0 0;
@@ -243,12 +260,12 @@ div.less{padding-top: 20px}
 
 .accordion-body input[type='range']{border: none}
 
-.bi-heart, .bi-heart-fill{
+#heart .bi-heart, #heart .bi-heart-fill{
   cursor: pointer;
   color: #dc210e;
   transition: .3s;
 }
-.bi-heart:hover, .bi-heart-fill:hover{
+#heart .bi-heart:hover, #heart .bi-heart-fill:hover{
   color: #ee371d;
   transition: .3s;
 }
@@ -270,6 +287,11 @@ div.less{padding-top: 20px}
 .portfolio-details .portfolio-info ul.enfasis{font-size: 16px}
 
 .breadcrumbs h2{margin-top: 10px}
+
+#cleanSearch{
+  width: 38px;
+  cursor: pointer;
+}
 
 /* TARJETAS BUSCADOR AVANZADO */
 

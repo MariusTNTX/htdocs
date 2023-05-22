@@ -27,7 +27,7 @@ async function getBandCard(band){
             <div class="col-auto text-start">
               <p class="mb-0"><i class="bi bi-award-fill text-dark"></i> <b>Puntos</b>: ${addPoints(band.puntuacion)}</p>
               <p class="mb-0"><i class="bi bi-eye-fill text-primary"></i> <b>Visitas</b>: ${addPoints(band.visitas)}</p>
-              <p class="mb-0"><i class="bi bi-heart-fill"></i> <b>Likes</b>: ${addPoints(band.likes)}</p>
+              <p class="mb-0"><i class="bi bi-heart-fill text-red"></i> <b>Likes</b>: ${addPoints(band.likes)}</p>
               <p class="mb-0"><i class="bi bi-spotify text-success"></i> <b>Escuchas</b>: ${addPoints(band.escuchas)}</p>
             </div>
           </div>`;

@@ -28,8 +28,8 @@ let metadata = {
       {element: ['discograficas'], params: [['nombreAlbum','params.album'],['nombreBanda','params.band']]},
       {element: ['estudios_grabacion'], params: [['nombreAlbum','params.album'],['nombreBanda','params.band']]},
       {element: ['generos_albumes'], params: [['nombreAlbum','params.album'],['nombreBanda','params.band'],['order','estrellasGeneroAlbum_Desc']]},
-      {element: ['roles_musicos_albumes'], params: [['nombreAlbum','params.album'],['nombreBanda','params.band']]},
-      {element: ['musicos'], params: [['nombreAlbum','params.album'],['nombreBanda','params.band']]},
+      {element: ['roles_musicos_albumes'], params: [['nombreAlbumRol','params.album'],['nombreBandaRol','params.band']]},
+      {element: ['musicos'], params: [['nombreAlbumRol','params.album'],['nombreBandaRol','params.band']]},
       {element: ['canciones_albumes'], params: [['nombreAlbum','params.album'],['nombreBanda','params.band'],['order','estrellasCancion_Desc']]}
     ],
     cards: [head, image, mainInfo, recording, topGenres, topMusicians, topSongs, description, links]
@@ -42,8 +42,8 @@ let metadata = {
       {element: ['estudios_grabacion'], params: [['nombreBanda','params.band']]},
       {element: ['temas_letra_bandas'], params: [['nombreBanda','params.band']]},
       {element: ['generos_bandas'], params: [['nombreBanda','params.band'],['order','estrellasGeneroBanda_Desc']]},
-      {element: ['musicos_bandas'], params: [['nombreBanda','params.band'],['order','anioInicioEtapaMusico_Asc']]},
-      {element: ['musicos'], params: [['nombreBanda','params.band']]},
+      {element: ['musicos_bandas'], params: [['nombreBandaEtapa','params.band'],['order','anioInicioEtapaMusico_Asc']]},
+      {element: ['musicos'], params: [['nombreBandaRol','params.band']]},
       {element: ['canciones_albumes'], params: [['nombreBanda','params.band'],['order','estrellasCancion_Desc'],['page','1'],['limit','10']]},
       {element: ['albumes'], params: [['nombreBanda','params.band'],['order','anioAlbum']]}
     ],
@@ -62,17 +62,18 @@ let metadata = {
     requests: [
       {element: ['musicos'], params: [['nombreMusico','params.musician']]},
       {element: ['musicos_bandas'], params: [['nombreMusicoEtapa','params.musician'],['order','anioInicioEtapaMusico']]},
-      {element: ['roles_musicos_albumes'], params: [['nombreMusico','params.musician']]},
-      {element: ['canciones_albumes'], params: [['nombreMusicoEtapa','params.musician'],['order','estrellasCancion_Desc']]},
-      {element: ['albumes'], params: [['nombreMusico','params.musician'],['order','anioAlbum']]},
-      {element: ['bandas'], params: [['nombreMusicoEtapa','params.musician']]},
-      {element: ['canciones_albumes'], params: [['nombreMusico','params.musician'],['order','estrellasCancion_Desc'],['page','1'],['limit','10']]},
+      {element: ['roles_musicos_albumes'], params: [['nombreMusicoRol','params.musician']]},
+      {element: ['albumes'], params: [['nombreMusicoRol','params.musician'],['order','anioAlbum']]},
+      {element: ['bandas'], params: [['nombreMusicoRol','params.musician']]}, /* antes: nombreMusicoEtapa */
+      {element: ['canciones_albumes'], params: [['nombreMusicoRol','params.musician'],['order','estrellasCancion_Desc'],['page','1'],['limit','10']]},
     ],
     cards: [head, image, mainInfo, recording, topSongs, topAlbums, topBands, links]
   }
 };
 
 setFullData();
+
+
 
 async function setFullData(){
   //OBTENCIÓN DE TODOS LOS DATOS NECESARIOS DE LA API (array 1)
@@ -111,7 +112,14 @@ function head(elm, data){
   } else if(elm=='musician'){
     pageTitle.textContent = "Músico";
     pageBreadcrumb.textContent = "Músico";
-    headElm.innerHTML = `<h1>${data.musicos[0].musico}</h1>`;
+    if(!data.musicos[0].anioDefuncion) headElm.innerHTML = `<h1>${data.musicos[0].musico}</h1>`;
+    else headElm.innerHTML = `
+      <h1>
+        <span class="position-relative">
+          ${data.musicos[0].musico}
+          <span class="position-absolute start-100 top-0"><img class="mb-4" style="height:22px" src="./imagenes/basico/deathCross.png" alt="Símbolo de la cruz"></span>
+        </span>
+      </h1>`;
   }
   //Corazón de Favoritos
   addHeartEvent();
@@ -124,17 +132,17 @@ function head(elm, data){
 function image(elm, data){
   console.log("image",elm,data);
   if(elm=='album'){
-    image1Elm.src=data.albumes[0].imagen;
-    image2Elm.src=data.albumes[0].imagen;
+    image1Elm.src=(data.albumes[0].imagen)?data.albumes[0].imagen:"imagenes/basico/user_MetaList.png";
+    image2Elm.src=(data.albumes[0].imagen)?data.albumes[0].imagen:"imagenes/basico/user_MetaList.png";
   } else if(elm=='band'){
-    image1Elm.src=data.bandas[0].imagen;
-    image2Elm.src=data.bandas[0].imagen;
+    image1Elm.src=(data.bandas[0].imagen)?data.bandas[0].imagen:"imagenes/basico/user_MetaList.png";
+    image2Elm.src=(data.bandas[0].imagen)?data.bandas[0].imagen:"imagenes/basico/user_MetaList.png";
   } else if(elm=='label'){
-    image1Elm.src=data.discograficas[0].imagen;
-    image2Elm.src=data.discograficas[0].imagen;
+    image1Elm.src=(data.discograficas[0].imagen)?data.discograficas[0].imagen:"imagenes/basico/user_MetaList.png";
+    image2Elm.src=(data.discograficas[0].imagen)?data.discograficas[0].imagen:"imagenes/basico/user_MetaList.png";
   } else if(elm=='musician'){
-    image1Elm.src=data.musicos[0].imagen;
-    image2Elm.src=data.musicos[0].imagen;
+    image1Elm.src=(data.musicos[0].imagen)?data.musicos[0].imagen:"imagenes/basico/user_MetaList.png";
+    image2Elm.src=(data.musicos[0].imagen)?data.musicos[0].imagen:"imagenes/basico/user_MetaList.png";
   }
 }
 
@@ -261,7 +269,7 @@ function topAlbums(elm, data){
       txt+=`
       <div class="col-12 col-md-6 col-xxl-4 py-2 elmCard">
         <div class="row">
-          <div class="col-auto pe-0"><img src="${album.imagen}" class="rounded-1 shadow" alt="Imagen del álbum ${album.album}"></div>
+          <div class="col-auto pe-0"><img src="${(album.imagen)?album.imagen:"imagenes/basico/user_MetaList.png"}" class="rounded-1 shadow" alt="Imagen del álbum ${album.album}"></div>
           <div class="col-auto ps-2 elmCardText">
             <p class="mb-0 fs-6"><a href="visor.html?element=album&band=${album.banda}&album=${album.album}">${album.album}</a></p>
             <hr class="mt-1 mb-2">
@@ -277,7 +285,7 @@ function topAlbums(elm, data){
       txt+=`
       <div class="col-12 col-md-6 col-xxl-4 py-2 elmCard">
         <div class="row">
-          <div class="col-auto pe-0"><img src="${album.imagen}" class="rounded-1 shadow" alt="Imagen del álbum ${album.album}"></div>
+          <div class="col-auto pe-0"><img src="${(album.imagen)?album.imagen:"imagenes/basico/user_MetaList.png"}" class="rounded-1 shadow" alt="Imagen del álbum ${album.album}"></div>
           <div class="col-auto ps-2 elmCardText">
             <p class="mb-0 fs-6"><a href="visor.html?element=album&band=${album.banda}&album=${album.album}">${(data.bandas.length>1)?album.banda+' - ':''}${album.album}</a></p>
             <hr class="mt-1 mb-2">
@@ -299,7 +307,7 @@ function topBands(elm, data){
       txt+=`
       <div class="col-12 col-md-6 col-xxl-4 py-2 elmCard">
         <div class="row">
-          <div class="col-auto pe-0"><img src="${band.imagen}" class="rounded-1 shadow" alt="Imagen de la banda ${band.banda}"></div>
+          <div class="col-auto pe-0"><img src="${(band.imagen)?band.imagen:"imagenes/basico/user_MetaList.png"}" class="rounded-1 shadow" alt="Imagen de la banda ${band.banda}"></div>
           <div class="col-auto ps-2 elmCardText">
             <p class="mb-0 fs-6"><a href="visor.html?element=band&band=${band.banda}">${band.banda}</a></p>
             <hr class="mt-1 mb-2">
@@ -315,11 +323,11 @@ function topBands(elm, data){
       txt+=`
       <div class="col-12 col-md-6 col-xxl-4 py-2 elmCard">
         <div class="row">
-          <div class="col-auto pe-0"><img src="${band.imagen}" class="rounded-1 shadow" alt="Imagen de la banda ${band.banda}"></div>
+          <div class="col-auto pe-0"><img src="${(band.imagen)?band.imagen:"imagenes/basico/user_MetaList.png"}" class="rounded-1 shadow" alt="Imagen de la banda ${band.banda}"></div>
           <div class="col-auto ps-2 elmCardText">
             <p class="mb-0 fs-6"><a href="visor.html?element=band&band=${band.banda}">${band.banda}</a></p>
             <hr class="mt-1 mb-2">
-            <p class="mb-0">${getStages(data.musicos_bandas.filter(m=>m.musico==data.musicos[0].musico))}</p>
+            <p class="mb-0">${(data.musicos_bandas.filter(m=>m.musico==data.musicos[0].musico).length>0)?getStages(data.musicos_bandas.filter(m=>m.musico==data.musicos[0].musico)):data.bandas.filter(b=>b.banda==band.banda)[0].pais}</p>
           </div>
         </div>
       </div>`;
@@ -349,9 +357,14 @@ function topMusicians(elm, data){
       txt+=`
       <div class="col-12 col-md-6 col-xxl-4 py-2 elmCard">
         <div class="row">
-          <div class="col-auto pe-0"><img src="${musician.imagen}" class="rounded-1 shadow" alt="Imagen del músico ${musician.musico}"></div>
+          <div class="col-auto pe-0"><img src="${(musician.imagen)?musician.imagen:"imagenes/basico/user_MetaList.png"}" class="rounded-1 shadow" alt="Imagen del músico ${musician.musico}"></div>
           <div class="col-auto ps-2 elmCardText">
-            <p class="mb-0 fs-6"><a href="visor.html?element=musician&musician=${musician.musico}">${musician.musico}</a></p>
+            <p class="mb-0 fs-6">
+              <a href="visor.html?element=musician&musician=${musician.musico}" class="position-relative">
+                ${musician.musico}
+                ${(musician.anioDefuncion)?'<span class="position-absolute start-100 top-0"><img class="mb-2" style="height:13px" src="./imagenes/basico/deathCross.png" alt="Símbolo de la cruz"></span>':''}
+              </a>
+            </p>
             <hr class="mt-1 mb-2">
             <p class="mb-0">${roles}</p>
           </div>
@@ -367,35 +380,23 @@ function topMusicians(elm, data){
       txt+=`
       <div class="col-12 col-md-6 col-xxl-4 py-2 elmCard">
         <div class="row">
-          <div class="col-auto pe-0"><img src="${musician.imagen}" class="rounded-1 shadow" alt="Imagen del músico ${musician.musico}"></div>
+          <div class="col-auto pe-0"><img src="${(musician.imagen)?musician.imagen:"imagenes/basico/user_MetaList.png"}" class="rounded-1 shadow" alt="Imagen del músico ${musician.musico}"></div>
           <div class="col-auto ps-2 elmCardText">
-            <p class="mb-0 fs-6"><a href="visor.html?element=musician&musician=${musician.musico}">${musician.musico}</a></p>
+            <p class="mb-0 fs-6">
+              <a href="visor.html?element=musician&musician=${musician.musico}" class="position-relative">
+                ${musician.musico}
+                ${(musician.anioDefuncion)?'<span class="position-absolute start-100 top-0"><img class="mb-2" style="height:13px" src="./imagenes/basico/deathCross.png" alt="Símbolo de la cruz"></span>':''}
+              </a>
+            </p>
             <hr class="mt-1 mb-2">
-            <p class="mb-0">${getStages(stages.filter(m=>m.musico==musician.musico))}</p>
+            <p class="mb-0">${(stages.filter(m=>m.musico==musician.musico).length>0)?getStages(stages.filter(m=>m.musico==musician.musico)):"Productor/a"}</p>
           </div>
         </div>
       </div>`;
     }
     topMusiciansElm.innerHTML=txt;
     topMusiciansElm.parentElement.parentElement.classList.remove("d-none");
-  } /* else if(elm=='label'){
-    let musiciansList = data.musicos;
-    for(let musician of musiciansList){
-      txt+=`
-      <div class="col-12 col-md-6 col-xxl-4 py-2 elmCard">
-        <div class="row">
-          <div class="col-auto pe-0"><img src="${musician.imagen}" class="rounded-1 shadow" alt="Imagen del músico ${musician.musico}"></div>
-          <div class="col-auto ps-2 elmCardText">
-            <p class="mb-0 fs-6"><a href="visor.html?element=musician&musician=${musician.musico}">${musician.musico}</a></p>
-            <hr class="mt-1 mb-2">
-            <p class="mb-0">${(musician.origen)?musician.origen+', ':''}${(musician.pais)?musician.pais:'Origen Desconocido'}</p>
-          </div>
-        </div>
-      </div>`;
-    }
-    topMusiciansElm.innerHTML=txt;
-    topMusiciansElm.parentElement.parentElement.classList.remove("d-none");
-  } */
+  }
 }
 
 function topGenres(elm, data){

@@ -23,7 +23,7 @@ async function getAlbumCard(album){
             <div class="col-auto text-start">
               <p class="mb-0"><i class="bi bi-award-fill text-dark"></i> <b>Puntos</b>: ${addPoints(album.puntuacion)}</p>
               <p class="mb-0"><i class="bi bi-eye-fill text-primary"></i> <b>Visitas</b>: ${addPoints(album.visitas)}</p>
-              <p class="mb-0"><i class="bi bi-heart-fill"></i> <b>Likes</b>: ${addPoints(album.likes)}</p>
+              <p class="mb-0"><i class="bi bi-heart-fill text-red"></i> <b>Likes</b>: ${addPoints(album.likes)}</p>
               <p class="mb-0"><i class="bi bi-spotify text-success"></i> <b>Escuchas</b>: ${addPoints(album.escuchas)}</p>
             </div>
           </div>`;

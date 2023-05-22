@@ -2,6 +2,7 @@
 let filterButtons = document.querySelectorAll(".filterButton");
 let searchButton = document.getElementById("searchButton");
 //Filtros y Ordenación
+let cleanSearch = document.getElementById("cleanSearch");
 let mainTitle = document.getElementById("mainTitle");
 let estrictSearch = document.getElementById("estrictSearch");
 let intervals = document.querySelectorAll(".interval");
@@ -20,37 +21,24 @@ let numPag = 1, showMore = true, allowScroll=false, footer = document.getElement
 
 //Gestionar Botones de la Lista Principal
 filterButtons.forEach(btn=>{
-  btn.addEventListener("click",()=>{
+  btn.addEventListener("click",(e)=>{
     allowScroll=false;
     //Resalta únicamente el botón clicado
     filterButtons.forEach(b=>b.classList.remove("filter-active"));
     btn.classList.add("filter-active");
+    //Resalta su botón equivalente en la otra resolución
+    if(e.target.id.includes("1")){
+      document.getElementById(e.target.id.replace("1","2")).classList.add("filter-active");
+    } else if(e.target.id.includes("2")){
+      document.getElementById(e.target.id.replace("2","1")).classList.add("filter-active");
+    }
     if(elemento != btn.textContent) resultContainer.innerHTML="";
     elemento = btn.textContent;
     //Impresión de los filtros del elemento
-    switch(btn.textContent){
-      case 'Álbumes': 
-        newFilter("albums");
-        elemento = "albumes_plus";
-        getCard = getAlbumCard;
-        break;
-      case 'Bandas': 
-        newFilter("bands");
-        elemento = "bandas_plus";
-        getCard = getBandCard;
-        break;
-      case 'Discográficas': 
-        newFilter("labels");
-        elemento = "discograficas_plus";
-        getCard = getLabelCard;
-        break;
-      case 'Músicos': 
-        newFilter("musicians");
-        elemento = "musicos_plus";
-        getCard = getMusicianCard;
-        break;
-      default: console.log("El elmento seleccionado de la lista no está contemplado");
-    }
+    let f = printFilters(btn.textContent);
+    elemento = f[0];
+    getCard = f[1];
+    console.log(elemento,getCard)
     //Actualización de valores de los filtros del elemento imprimido
     mainTitle = document.getElementById("mainTitle");
     intervals = document.querySelectorAll(".interval");
@@ -58,6 +46,27 @@ filterButtons.forEach(btn=>{
     reductions = document.querySelectorAll(".reduction");
   });
 });
+
+cleanSearch.addEventListener("click",()=>{
+  printFilters(elemento)
+});
+
+function printFilters(content){
+  switch(content){
+    case 'Álbumes': case 'albums': case 'albumes_plus': 
+      newFilter("albums");
+      return ["albumes_plus",getAlbumCard];
+    case 'Bandas': case 'bands': case 'bandas_plus': 
+      newFilter("bands");
+      return ["bandas_plus",getBandCard];
+    case 'Discográficas': case 'labels': case 'discograficas_plus': 
+      newFilter("labels");
+      return ["discograficas_plus",getLabelCard];
+    case 'Músicos': case 'musicians': case 'musicos_plus': 
+      newFilter("musicians");
+      return ["musicos_plus",getMusicianCard];
+  }
+}
 
 searchButton.addEventListener("click", ()=>{
   //Reestablecimiento de parámetros de búsqueda
@@ -67,9 +76,9 @@ searchButton.addEventListener("click", ()=>{
   //OBTENCIÓN DE LOS PARÁMETROS DE BÚSQUEDA
   //Título
   if(mainTitle.value.length>0 && !estrictSearch.checked){
-    parameters.push([mainTitle.classList[1]+"_Like",mainTitle.value]);
-  } else if(mainTitle.value.length>0 && estrictSearch.checked){
     parameters.push([mainTitle.classList[1],mainTitle.value]);
+  } else if(mainTitle.value.length>0 && estrictSearch.checked){
+    parameters.push([mainTitle.classList[1].replace("_Like",""),mainTitle.value]);
   }
   //Intervalos
   for(let intv of intervals){
@@ -99,7 +108,16 @@ searchButton.addEventListener("click", ()=>{
   }
 
   //Obtención de Datos
-  if(showMore) printResults(1);
+  try {
+    if(showMore) printResults(1);
+  } catch (error) {
+    showAlert('ERROR','Ha habido un error en la búsqueda. Por favor, <a href="index.html#contact" class="text-warning">contacta con un administrador</a>');
+    allowScroll=false;
+    showMore=false;
+    spinner.classList.add("d-none");
+    noDataFound.classList.remove("d-none");
+  }
+  
 });
 
 window.addEventListener("scroll",()=>{
@@ -132,7 +150,7 @@ async function printResults(pag = numPag){
     allowScroll = results.length==12;
   } else {
     spinner.classList.add("d-none");
-    if(numPag==1) noDataFound.classList.remove("d-none")
+    if(numPag==1) noDataFound.classList.remove("d-none");
     else numPag=1;
     showMore = false;
     allowScroll = false;

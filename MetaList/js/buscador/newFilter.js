@@ -69,38 +69,41 @@ let campos = {
   tipoEtapa: {type: "check", name: "Etapa de Banda", reqName: "tipoEtapa", list: phases},
   sexoMusico: {type: "check", name: "Sexo de Músico", reqName: "sexoMusico", list: sexList},
 
-  nombreAlbum: {type: "text", name: "Título de Álbum", reqName: "nombreAlbum"},
-  nombreBanda: {type: "text", name: "Nombre de Banda", reqName: "nombreBanda"},
-  nombreDiscografica: {type: "text", name: "Nombre de Discográfica", reqName: "nombreDiscografica"},
-  nombreEstudio: {type: "text", name: "Nombre de Estudio de Grabación", reqName: "nombreEstudio"},
-  nombreMusico: {type: "text", name: "Nombre de Músico de Álbum", reqName: "nombreMusico"},
-  nombreMusicoEtapa: {type: "text", name: "Nombre de Músico de Banda", reqName: "nombreMusicoEtapa"},
-  rolMusico: {type: "text", name: "Rol de Músico", reqName: "rolMusico"},
-  temaLetraBanda: {type: "text", name: "Tema de Letra", reqName: "temaLetraBanda"},
-  nombreCancion: {type: "text", name: "Nombre de Canción", reqName: "nombreCancion"},
-  nombreEstudioAlbum: {type: "text", name: "Nombre de Estudio de Grabación", reqName: "nombreEstudioAlbum"},
+  nombreAlbum: {type: "text", name: "Título de Álbum", reqName: "nombreAlbum_Like"},
+  nombreBanda: {type: "text", name: "Nombre de Banda", reqName: "nombreBanda_Like"},
+  nombreDiscografica: {type: "text", name: "Nombre de Discográfica", reqName: "nombreDiscografica_Like"},
+  nombreMusico: {type: "text", name: "Nombre de Músico de Álbum", reqName: "nombreMusico_Like"},
+  nombreAlbumRol: {type: "text", name: "Título de Álbum", reqName: "nombreAlbumRol_Like"},
+  nombreBandaRol: {type: "text", name: "Nombre de Banda", reqName: "nombreBandaRol_Like"},
+  nombreMusicoRol: {type: "text", name: "Nombre de Músico de Álbum", reqName: "nombreMusicoRol_Like"},
+  nombreEstudio: {type: "text", name: "Nombre de Estudio de Grabación", reqName: "nombreEstudio_Like"},
+  nombreMusicoEtapa: {type: "text", name: "Nombre de Músico de Banda", reqName: "nombreMusicoEtapa_Like"},
+  rolMusico: {type: "text", name: "Rol de Músico", reqName: "rolMusico_Like"},
+  temaLetraBanda: {type: "text", name: "Tema de Letra", reqName: "temaLetraBanda_Like"},
+  nombreCancion: {type: "text", name: "Nombre de Canción", reqName: "nombreCancion_Like"},
+  nombreEstudioAlbum: {type: "text", name: "Nombre de Estudio de Grabación", reqName: "nombreEstudioAlbum_Like"},
 }
 
 let metadata = {
   albums: {
     mainSearch: campos.nombreAlbum,
     checks: [],
-    intervals: [campos.anioAlbum, campos.puntuacionAlbum, campos.escuchasAlbum, campos.visitasAlbum, campos.visitasBanda, campos.duracionAlbum, 
+    intervals: [campos.anioAlbum, campos.puntuacionAlbum, campos.escuchasAlbum, campos.visitasAlbum, campos.visitasBanda, /* campos.duracionAlbum, */ 
                 campos.estrellasCancionAlbum, campos.estrellasGeneroAlbum, campos.estrellasGeneroBanda, campos.estrellasMaximasAlbum, 
                 campos.numeroLikesAlbum, campos.numeroCancionesAlbum, campos.numeroEstudiosAlbum, campos.numeroGenerosAlbum, campos.numeroMusicosAlbum],
     categories: [campos.tipoAlbum, campos.nombreGeneroAlbum, campos.nombreGeneroBanda, campos.paisBanda],
-    reductions: [campos.nombreBanda, campos.nombreDiscografica, campos.nombreEstudio, campos.nombreMusico, campos.nombreMusicoEtapa, 
+    reductions: [campos.nombreBanda, campos.nombreDiscografica, campos.nombreEstudio, campos.nombreMusicoRol, campos.nombreMusicoEtapa, 
                 campos.rolMusico, campos.temaLetraBanda, campos.nombreCancion],
   },
   bands: {
     mainSearch: campos.nombreBanda,
     checks: [],
-    intervals: [campos.escuchasBanda, campos.visitasBanda, campos.visitasAlbum, campos.anioAlbum, campos.escuchasAlbum, campos.duracionAlbum,
+    intervals: [campos.escuchasBanda, campos.visitasBanda, campos.visitasAlbum, campos.anioAlbum, campos.escuchasAlbum, /* campos.duracionAlbum, */
                 campos.estrellasGeneroAlbum, campos.estrellasGeneroBanda, campos.estrellasMaximasBanda, campos.puntuacionBanda, campos.numeroAlbumesBanda, 
                 campos.numeroLikesBandas, campos.numeroCancionesBanda, campos.numeroDiscograficasBanda, campos.numeroEstudiosBanda, campos.numeroGenerosBanda, 
                 campos.numeroMusicosBanda, campos.numeroTemasBanda],
     categories: [campos.paisBanda,campos.estatusBanda,campos.tipoEtapa,campos.nombreGeneroAlbum,campos.nombreGeneroBanda],
-    reductions: [campos.nombreAlbum,campos.nombreDiscografica,campos.nombreEstudioAlbum,campos.nombreMusicoEtapa,campos.nombreMusico,
+    reductions: [campos.nombreAlbum,campos.nombreDiscografica,campos.nombreEstudioAlbum,campos.nombreMusicoEtapa,campos.nombreMusicoRol,
                  campos.rolMusico,campos.temaLetraBanda],
   },
   labels: {
@@ -119,7 +122,7 @@ let metadata = {
                 campos.puntuacionMusico, campos.numeroAlbumesMusico, campos.numeroBandasMusico, campos.numeroRolesMusico, campos.numeroCancionesMusico, 
                 campos.numeroDiscograficasMusico, campos.numeroEstudiosMusico, campos.numeroGenerosMusico, campos.numeroTemasMusico],
     categories: [campos.sexoMusico, campos.paisMusico],
-    reductions: [campos.nombreBanda, campos.nombreAlbum, campos.rolMusico],
+    reductions: [campos.nombreBandaRol, campos.nombreAlbumRol, campos.rolMusico],
   }
 };
 

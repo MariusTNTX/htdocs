@@ -45,7 +45,7 @@ let userOptions = `
         <img src="./imagenes/usuarios/ElUroboro77.webp" class="rounded" id="userImgMini" alt="Foto de Perfil">
       </div>
     </a></li>
-    <li><a class="dropdown-item" href="favoritos.html"><i class="bi bi-heart-fill me-2"></i>Favoritos</a></li>
+    <li><a class="dropdown-item" href="favoritos.html"><i class="bi bi-heart-fill text-red me-2"></i>Favoritos</a></li>
     <li id="adminOption" class="d-none"><a class="dropdown-item" href="administracion.html"><i class="bi bi-star-fill me-2"></i>Administración</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><a class="dropdown-item" href="#" id="logOut"><i class="bi bi-door-closed-fill me-2"></i>Cerrar Sesión</a></li>
@@ -82,8 +82,8 @@ function showConfirm(tipo,txt,yesFunc=null,data=null){
         <button type="button" class="btn-close bg-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body pt-0 text-end">
-        <div class="less p-0 d-inline-block"><button class="btn btn-secondary" id="alertCancel">Cancelar</button></div>
-        <div class="more p-0 d-inline-block ms-1"><button class="btn btn-primary" id="alertAcept">Aceptar</button></div>
+        <div class="less2 p-0 d-inline-block"><button class="btn btn-secondary" id="alertCancel">Cancelar</button></div>
+        <div class="less2 p-0 d-inline-block ms-1"><button class="btn btn-primary" id="alertAcept">Aceptar</button></div>
       </div>
     </div>
   `;
@@ -115,11 +115,10 @@ function showInput(tipo,txt,placeholder="",yesFunc=null,data=null){
           <input type="text" class="form-control mx-auto" id="alertInput" placeholder="${placeholder}" required>
         </div>
         <div class="text-end">
-          <div class="more p-0 d-inline-block ms-1"><button class="btn btn-primary" id="alertAcept">Aceptar</button></div>
+          <div class="less2 p-0 d-inline-block ms-1"><button class="btn btn-primary" id="alertAcept">Aceptar</button></div>
         </div>
       </form>
-    </div>
-  `;
+    </div>`;
   document.getElementById("alertStart").dispatchEvent(new Event("click"));
   document.getElementById("alertForm").addEventListener("submit",(e)=>e.preventDefault());
   document.getElementById("alertAcept").addEventListener("click",(e)=>{
@@ -237,13 +236,6 @@ async function setHeart(params){
   }
 }
 
-for(let a of document.querySelectorAll(".randomElement")){
-  a.addEventListener("click",(e)=>{
-    e.preventDefault();
-    loadRandomElement(e.target.id.replace("random",""));
-  });
-}
-
 async function loadRandomElement(element){
   if(element=='Band'){
     let banda = await list("bandas",true,['escuchasBanda_Min',1],['order','RAND()'],['limit',1]);
@@ -263,3 +255,14 @@ async function loadRandomElement(element){
     location.href = `visor.html?element=musician&musician=${musician[0].musico}`;
   }
 }
+
+//Asignación de eventos de carga de elementos aleatorios
+for(let a of document.querySelectorAll(".randomElement")){
+  a.addEventListener("click",(e)=>{
+    e.preventDefault();
+    loadRandomElement(e.target.id.replace("random",""));
+  });
+}
+
+//Asignación de URL al botón de regreso a la parte superior
+document.querySelector(".back-to-top").href=(location.href.includes("#"))?location.href:location.href+"#";
