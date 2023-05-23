@@ -389,6 +389,33 @@ if(isset($_GET['key'])){
         mysqli_close($c1);
         header("Content-type: application/json; charset=utf-8");
         echo json_encode($data);
+      } else if(isset($_REQUEST['sendAdminMessage'])){
+        // S E N D  A D M I N  M E S S A G E
+        $asunto = "From: ".$_REQUEST['nombre']."<".$_REQUEST['email'].">: ".$_REQUEST['asunto'];
+        $cabecera = "From: ".$_REQUEST['nombre']."<".$_REQUEST['email'].">\r\nContent-Type: text/html; charset=UTF-8";
+        try {
+          mail ("molinamario.msc@gmail.com", $asunto, $_REQUEST['mensaje'], $cabecera);
+          $data = [200];
+        } catch (\Throwable $th) {
+          $data = [array("error" => $th)];
+        }
+        header("Content-type: application/json; charset=utf-8");
+        echo json_encode($data);
+      } else if(isset($_REQUEST['stats'])){
+        // G E T  S T A T S
+        $data = [array("bandas"=>0, "albumes"=>0, "usuarios"=>0, "articulos"=>0)];
+        $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
+        $resp = mysqli_query($c1,"SELECT COUNT(*) AS num FROM bandas WHERE pais IS NOT NULL");
+        $data[0]["bandas"] = mysqli_fetch_all($resp,MYSQLI_ASSOC)[0]["num"];
+        $resp = mysqli_query($c1,"SELECT COUNT(*) AS num FROM albumes WHERE tipoAlb IS NOT NULL");
+        $data[0]["albumes"] = mysqli_fetch_all($resp,MYSQLI_ASSOC)[0]["num"];
+        $resp = mysqli_query($c1,"SELECT COUNT(*) AS num FROM usuarios WHERE nvlPermisos = 1");
+        $data[0]["usuarios"] = mysqli_fetch_all($resp,MYSQLI_ASSOC)[0]["num"];
+        $resp = mysqli_query($c1,"SELECT COUNT(*) AS num FROM articulos");
+        $data[0]["articulos"] = mysqli_fetch_all($resp,MYSQLI_ASSOC)[0]["num"];
+        mysqli_close($c1);
+        header("Content-type: application/json; charset=utf-8");
+        echo json_encode($data);
       } else {
         $data = ["Error: Se esperaba el parámetro principal"];
         header("Content-type: application/json; charset=utf-8");

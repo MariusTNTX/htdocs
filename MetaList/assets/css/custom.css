@@ -54,6 +54,24 @@
 }
 .inv-a:hover{color: rgb(220, 33, 14)}
 
+/* CAROUSEL */
+#carousel{height: 450px;}
+#carousel button{
+  background-color: #ee371d;
+  border: 0px;
+  height: 15px;
+  width: 15px;
+  border-radius: 8px;
+  margin: 0 4px;
+}
+.carousel-inner{width: auto;}
+.carousel-item{height: 438px;}
+.carousel-item img{
+  max-width: 300px;
+  max-height: 300px;
+  margin: 0 auto;
+  border: 8px solid rgba(0,0,0,0.40);
+}
 
 /* OTROS */
 

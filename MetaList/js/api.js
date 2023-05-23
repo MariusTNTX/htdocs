@@ -195,3 +195,31 @@ async function sendNewPass(email, awt){
   if(awt) return response;
   return Promise.resolve(response);
 }
+
+// STATS: FUNCIÓN RECUPERAR STADÍSTICAS DE LA PÁGINA WEB A TRAVÉS DE LA API
+async function getStats(awt){
+  console.log(`http://${root}/MetaList/php/api.php?key=${key()}&stats=1`);
+  //Se obtiene el JSON de resultados:
+  let response = await fetch(`http://${root}/MetaList/php/api.php?key=${key()}&stats=1`,{
+    method: 'GET',
+    headers: {'Content-Type': 'application/json'}
+  });
+  response = await response.json();
+  console.log(response);
+  if(awt) return response;
+  return Promise.resolve(response);
+}
+
+// SEND_ADMIN_MESSAGE: FUNCIÓN ENVIAR CORREOS AL ADMINISTRADOR A TRAVÉS DE LA API
+async function sendAdminMessage(awt,email,asunto,mensaje,nombre="Anónimo"){
+  console.log(`http://${root}/MetaList/php/api.php?key=${key()}&email=${email}&asunto=${asunto}&mensaje=${mensaje}&nombre=${nombre}`);
+  //Se obtiene el JSON de resultados:
+  let response = await fetch(`http://${root}/MetaList/php/api.php?key=${key()}&sendAdminMessage=1&email=${email}&asunto=${asunto}&mensaje=${mensaje}&nombre=${nombre}`,{
+    method: 'GET',
+    headers: {'Content-Type': 'application/json'}
+  });
+  response = await response.json();
+  console.log(response);
+  if(awt) return response;
+  return Promise.resolve(response);
+}

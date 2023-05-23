@@ -109,6 +109,13 @@ function addLogoutEvent(logoutButton){
   });
 }
 
+//Nuevos Usuarios
+let url = location.href;
+if(url.includes("index.html?")){
+  url = url.substring(url.indexOf("?")+1);
+  if(url == "newLogin") showAlert("SUCCESS",'Felicidades, ya tienes tu propia cuenta de MetaList. Puedes iniciar sesión en el apartado "Login" con tu email y tu contraseña');
+}
+
 //Si hay un usuario guardado en sesión se muestran las opciones del usuario
 if(sessionStorage.getItem("email")) showUserOptions(true);
 //Sino se añade el evento del botón login
