@@ -416,6 +416,75 @@ if(isset($_GET['key'])){
         mysqli_close($c1);
         header("Content-type: application/json; charset=utf-8");
         echo json_encode($data);
+      } else if(isset($_REQUEST['validateBBDD'])){
+        // V A L I D A T E  B B D D
+        $data = [];
+        try {
+          $c1=mysqli_connect($dbhost,$dbuser,$dbpass);
+          if(!mysqli_query($c1,'use '.$dbname)) $data[] = "NOT-CREATED";
+          else $data[] = 200;
+          mysqli_close($c1);
+        } catch (Exception $e) {
+          $data[] = "NO-CONNECTION";
+        }
+        header("Content-type: application/json; charset=utf-8");
+        echo json_encode($data);
+      } else if(isset($_REQUEST['restoreList'])){
+        // R E S T O R E  L I S T
+        $data = scandir($relBackup);
+          array_splice($data,0,2);
+          foreach($data as $i => $b){
+            $fecha = substr($b,7,8);
+            $hora = substr($b,15,6);
+            $data[$i] = [
+              'fecha'=>substr($fecha,6,2).'/'.substr($fecha,4,2).'/'.substr($fecha,0,4),
+              'hora'=>substr($hora,0,2).':'.substr($hora,2,2).':'.substr($hora,4,2)
+            ];
+          }
+          $data = array_reverse($data);
+        header("Content-type: application/json; charset=utf-8");
+        echo json_encode($data);
+      } else if(isset($_REQUEST['restore'])){
+        // R E S T O R E
+        $fecha = $_REQUEST['fecha'];
+        $fecha = substr($fecha,6,4).substr($fecha,3,2).substr($fecha,0,2);
+        $hora = $_REQUEST['hora'];
+        $hora = substr($hora,0,2).substr($hora,3,2).substr($hora,6,2);
+        $fichero = 'Backup-'.$fecha.$hora.'.sql';
+        $ruta = $rutaBackup.$fichero;
+        $comando = $comandoRestore.$ruta;
+        //echo $comando;
+        $data = [array('comando'=>$comando,'resultado'=>exec($comando))];
+        header("Content-type: application/json; charset=utf-8");
+        echo json_encode($data);
+      } else if(isset($_REQUEST['backup'])){ //-----------------------------------------------------------
+        // B A C K U P
+        $data = [array("status"=>200, "result"=>"")];
+        $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
+        mysqli_close($c1);
+        header("Content-type: application/json; charset=utf-8");
+        echo json_encode($data);
+      } else if(isset($_REQUEST['csvExportTableList'])){
+        // C S V  E X P O R T  T A B L E  L I S T
+        $data = [array("status"=>200, "result"=>"")];
+        $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
+        mysqli_close($c1);
+        header("Content-type: application/json; charset=utf-8");
+        echo json_encode($data);
+      } else if(isset($_REQUEST['deleteTableList'])){
+        // D E L E T E  T A B L E  L I S T
+        $data = [array("status"=>200, "result"=>"")];
+        $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
+        mysqli_close($c1);
+        header("Content-type: application/json; charset=utf-8");
+        echo json_encode($data);
+      } else if(isset($_REQUEST['dropBBDD'])){
+        // D R O P  B B D D
+        $data = [array("status"=>200, "result"=>"")];
+        $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
+        mysqli_close($c1);
+        header("Content-type: application/json; charset=utf-8");
+        echo json_encode($data);
       } else {
         $data = ["Error: Se esperaba el parámetro principal"];
         header("Content-type: application/json; charset=utf-8");

@@ -341,9 +341,9 @@ $metadata = array(
   "albumes_favoritos" => array(
     "alias" => "af",
     "campos" => array(
-      "emailUsuario" => array("nombre"=>"Email", "simbolo"=>"LIKE", "salida"=>"email"),
-      "nombreBanda" => array("nombre"=>"NomBan", "simbolo"=>"LIKE", "salida"=>"banda"),
-      "nombreAlbum" => array("nombre"=>"NomAlb", "simbolo"=>"LIKE", "salida"=>"album")
+      "emailUsuarioAlbumFavorito" => array("nombre"=>"Email", "simbolo"=>"LIKE", "salida"=>"email"),
+      "nombreBandaFavorita" => array("nombre"=>"NomBan", "simbolo"=>"LIKE", "salida"=>"banda"),
+      "nombreAlbumFavorito" => array("nombre"=>"NomAlb", "simbolo"=>"LIKE", "salida"=>"album")
     )
   ),
   "bandas" => array(
@@ -485,8 +485,8 @@ $metadata = array(
   "bandas_favoritas" => array(
     "alias" => "bf",
     "campos" => array(
-      "emailUsuario" => array("nombre"=>"Email", "simbolo"=>"LIKE", "salida"=>"email"),
-      "nombreBanda" => array("nombre"=>"NomBan", "simbolo"=>"LIKE", "salida"=>"banda")
+      "emailUsuarioBandaFavorita" => array("nombre"=>"Email", "simbolo"=>"LIKE", "salida"=>"email"),
+      "nombreBandaFavorita" => array("nombre"=>"NomBan", "simbolo"=>"LIKE", "salida"=>"banda")
     )
   ),
   "canciones_albumes" => array(

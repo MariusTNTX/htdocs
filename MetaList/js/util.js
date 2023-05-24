@@ -221,10 +221,11 @@ async function setHeart(params){
   let heart1 = document.getElementById("heart1");
   let heart2 = document.getElementById("heart2");
   let elemento = (elm=='band')?'bandas_favoritas':'albumes_favoritos';
-  let parametros = (elm=='band')?[['nombreBanda',params.band]]:[['nombreBanda',params.band],['nombreAlbum',params.album]];
+  let parametros = (elm=='band')?[['nombreBandaFavorita',params.band]]:[['nombreBandaFavorita',params.band],['nombreAlbumFavorito',params.album]];
   console.log("BÚSQUEDA DE FAVORITOS:")
   if(sessionStorage.getItem("email")){
-    let favs = await list(elemento,true,['emailUsuario',sessionStorage.getItem("email")],...parametros);
+    let email = (elm=='band')?'emailUsuarioBandaFavorita':'emailUsuarioAlbumFavorito';
+    let favs = await list(elemento,true,[email,sessionStorage.getItem("email")],...parametros);
     if(favs.response.length>0){
       sessionStorage.setItem('favorito','SI');
       heart1.classList.add("hid");

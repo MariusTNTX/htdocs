@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>MetaList - Buscador Avanzado</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Scripts GgitHub -->
+  <!-- <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script>
+  <script src="/cdn-cgi/apps/head/GC70lTtl46FkC1JcBx7amV9L0W0.js"></script>
+  <script src="../../../bootstrap/noUiSlider-master/recuperado1.js"></script> -->
+
+  <!-- Favicons -->
+  <link href="imagenes/basico/favicon MetaList.png" rel="icon">
+  <link href="imagenes/basico/appletouch2 MetaList.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/custom.css" rel="stylesheet">
+
+  <!-- Bootstrap -->
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sidebars/">
+
+  <!-- =======================================================
+  * Template Name: Gp - v4.9.1
+  * Template URL: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top header-inner-pages">
+    <div class="container d-flex align-items-center justify-content-lg-between">
+
+      <h1 class="logo me-auto me-lg-0">
+        <a href="index.html">
+          <img src="imagenes/basico/logo_MetaList.png" alt="logo_MetaList">
+        </a>
+      </h1>
+
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li class="dropdown"><a href="#" class="px-2 px-lg-1 px-xl-2"><span>Bandas</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="#">Listas Personalizadas</a></li>
+              <li><a href="#">Tier Lists</a></li>
+              <li><a href="#">Playlists Spotify</a></li>
+              <li><a href="#">Banda Aleatoria</a></li>
+            </ul>
+          </li>
+          <li class="dropdown"><a href="#" class="px-2 px-lg-1 px-xl-2"><span>Albumes</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="./buscadorAvanzado.html">Listas Personalizadas</a></li>
+              <li><a href="#">Tier Lists</a></li>
+              <li><a href="./album.html">Álbum Aleatorio</a></li>
+            </ul>
+          </li>
+          <li class="dropdown"><a href="#" class="px-2 px-lg-1 px-xl-2"><span>Discográficas</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="#">Listas Personalizadas</a></li>
+              <li><a href="#">Playlists Spotify</a></li>
+              <li><a href="#">Discográfica Aleatoria</a></li>
+            </ul>
+          </li>
+          <li class="dropdown"><a href="#" class="px-2 px-lg-1 px-xl-2"><span>Géneros</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="#">Ranking</a></li>
+              <li><a href="#">Tier Lists</a></li>
+              <li><a href="#">Playlists Spotify</a></li>
+            </ul>
+          </li>
+          <li class="dropdown"><a href="#" class="px-2 px-lg-1 px-xl-2"><span>Historia</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="#">Cronología del Heavy Metal</a></li>
+              <li><a href="#">Playlists Spotify por Etapas</a></li>
+              <li><a href="#">Resúmenes de Años</a></li>
+            </ul>
+          </li>
+          <li class="dropdown"><a href="#" class="px-2 px-lg-1 px-xl-2"><span>Juegos</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="#">TimeLine</a></li>
+              <li><a href="#">Trivia</a></li>
+              <li><a href="#">Guitar Zero</a></li>
+            </ul>
+          </li>
+          <!-- <li><a class="nav-link scrollto" href="#contact">Donaciones</a></li>
+          <li><a class="nav-link scrollto" href="#about">Sobre Nosotros</a></li>
+          <li><a class="nav-link scrollto" href="#contact">Contacto</a></li> -->
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+      <div class="dropdown login me-2" id="dropdownLogin">
+        <button type="button" class="btn text-white dropdown-toggle py-2 px-4" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+          <i class="bi bi-person-fill"></i>
+          <span class="d-none d-sm-inline-block" id="userName">Login</span>
+        </button>
+        <form action="" method="get" class="dropdown-menu dropdown-menu-end p-4 w-50" id="loginForm">
+          <div class="mb-3">
+            <label for="loginEmail" class="form-label">Email</label>
+            <input type="email" class="form-control" id="loginEmail" placeholder="email@ejemplo.com" required>
+          </div>
+          <div class="mb-3">
+            <label for="loginPass" class="form-label">Contraseña</label>
+            <div class="position-relative">
+              <input type="password" class="form-control" id="loginPass" placeholder="Contraseña" required>
+              <i id="loginPassEye" class="bi bi-eye-fill position-absolute top-50 end-0 translate-middle-y me-2"></i>
+            </div>
+          </div>
+          <div class="text-center mb-2"><button type="submit" class="btn btn-primary" id="loginButton">Iniciar Sesión</button></div>
+          <div class="mb-3 text-center">
+            <a href="#" id="forgPass">He olvidado mi contraseña</a>
+          </div>
+          <hr class="mt-4">
+          <div id="regist" class="text-center">
+            <label for="regist" class="form-label">¿No tienes cuenta?</label>
+            <div><a href="./registro.html">Regístrate</a></div>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main" class="min-vh-100">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Mis Favoritos</h2>
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li>Mis Favoritos</li>
+          </ol>
+        </div>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    <section class="inner-page first">
+
+      <div class="container busq" data-aos="fade-up">
+
+        <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+
+          <div class="row justify-content-center">
+
+            <!-- VISUAL -->
+            <div class="col-12 col-md-8 col-lg-9">
+
+              <!-- Elementos -->
+              <section id="portfolio" class="portfolio mini-section">
+                <div class="container mb-4" data-aos="fade-up" data-aos-delay="300">
+                  <div class="section-title">
+                    <h2>Elementos</h2>
+                    <p>Lista de Favoritos:</p>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-12 d-flex justify-content-center">
+                      <ul id="portfolio-flters">
+                        <li data-filter=".filter-bandas2" class="filterButton filterBandas" id="filterBandas2">Bandas</li>
+                        <li data-filter=".filter-albumes2" class="filterButton filterAlbumes" id="filterAlbumes2">Álbumes</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- No Data Found -->
+                <div class="row justify-content-center align-items-end mt-5 d-none" id="noDataFound">
+                  <div class="col-auto"><img src="./imagenes/basico/noDataFoundGrey.png" alt="" style="width: 120px"></div>
+                  <div class="col-auto pb-3"><h2 class="text-center">No se han encontrado resultados</h2></div>
+                </div>
+
+                <!-- Resultados -->
+                <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3 g-4 mt-3 mx-2" id="resultContainer" data-aos="fade-up" data-aos-delay="500"></div>
+                
+                <!-- Loading -->
+                <div id="spinner" class="row justify-content-center my-4 d-none">
+                  <div class="col-auto">
+                    <div class="spinner-border text-red" style="width: 3rem; height: 3rem;" role="status">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
+                  </div>
+                </div>
+
+              </section>
+            </div>
+
+          </div>
+
+        </form>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6">
+            <div class="footer-info">
+              <h1 class="logo me-auto me-lg-0 footer-h1">
+                <a href="index.html">
+                  <img src="imagenes/basico/logo_MetaList-2.png" alt="logo_MetaList 2" width="200px">
+                </a>
+              </h1>
+              <p>
+                Calle de la Fuensanta, 3
+                16002, Cuenca, España<br><br>
+                <strong>Teléfono:</strong> +32 969 304 288<br>
+                <strong>Email:</strong> <a href="mailto:molinamario.msc@gmail.com" class="inv-a">molinamario.msc@gmail.com</a><br>
+              </p>
+              <p>
+                <a href="privacidad.html" class="inv-a">Políticas de Privacidad y Cookies</a><br>
+                <a href="legal.html" class="inv-a">Políticas Legales y Términos de Uso</a><br>
+              </p>
+              <div class="social-links mt-3">
+                <a href="https://twitter.com/?lang=es" class="twitter"><span class="d-none">.</span><div><i class="bx bxl-twitter"></div></i></a>
+                <a href="https://www.facebook.com/" class="facebook"><span class="d-none">.</span><div><i class="bx bxl-facebook"></i></div></a>
+                <a href="https://www.instagram.com/" class="instagram"><span class="d-none">.</span><div><i class="bx bxl-instagram"></i></div></a>
+                <a href="https://github.com/MariusTNTX?tab=repositories" class="google-plus"><span class="d-none">.</span><div><i class="bx bxl-github"></i></div></a>
+                <a href="https://es.linkedin.com/" class="linkedin"><span class="d-none">.</span><div><i class="bx bxl-linkedin"></i></div></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-6 footer-links">
+            <h4>Nuestros Servicios</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="./buscadorAvanzado.html">Búsquedas Avanzadas</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Tier Lists</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Cronología</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Playlists de Spotify</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Mosaico de Géneros</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Juegos</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Nuestras Secciones</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="index.html#portfolio">Noticias</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="index.html#testimonials">Sección "Hoy"</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="index.html#team">Incorporaciones</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="index.html#features">Sobre Nosotros</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="index.html#clients">Lista de Fuentes</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="index.html#counts">Estadísticas</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="index.html#cta">Donaciones</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="index.html#contact">Contacto</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-4 col-md-6 footer-newsletter">
+            <h4>¿Quieres recibir notificaciones sin registrarte?</h4>
+            <p>Podemos enviarte las últimas noticias e incorporaciones al correo que nos indiques, pero si deseas elegir qué notificaciones recibir deberás crearte una cuenta.</p>
+            <form action="" method="post">
+              <input type="email" name="email" placeholder="Correo Electrónico">
+              <input type="submit" value="Enlazar">
+            </form>
+            <p>En caso de no querer recibir más notificaciones podemos desenlazar el email que indiques a continuación:</p>
+            <form action="" method="post">
+              <input type="email" name="email" placeholder="Correo Electrónico">
+              <input type="submit" value="Desenlazar">
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>MetaList</span></strong> | Todos los derechos reservados
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/ -->
+        Diseñado por <a href="https://github.com/MariusTNTX?tab=repositories">Mario Molina</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <!-- Alerts -->
+  <div id="alertTemplate"></div>
+
+  <div id="preloader"></div>
+  <a href="buscadorAvanzado.html#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+  <!-- MetaList JS -->
+  <script src="js/api.js"></script>
+  <script src="js/util.js"></script>
+  <script src="js/login.js"></script>
+  <script src="js/buscador/newAlbumCard.js"></script>
+  <script src="js/buscador/newBandCard.js"></script>
+  <script src="js/favoritos.js"></script>
+
+</body>
+
+</html>

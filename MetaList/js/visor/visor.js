@@ -482,16 +482,16 @@ function addHeartEvent(){
         if(params.element=='band'){
           await remove('bandas_favoritas',true,[
             {"id": {
-              "emailUsuario": sessionStorage.getItem('email'),
-              "nombreBanda": params.band
+              "emailUsuarioBandaFavorita": sessionStorage.getItem('email'),
+              "nombreBandaFavorita": params.band
             }}
           ]);
         } else {
           await remove('albumes_favoritos',true,[
             {"id": {
-              "emailUsuario": sessionStorage.getItem('email'),
-              "nombreBanda": params.band,
-              "nombreAlbum": params.album
+              "emailUsuarioAlbumFavorito": sessionStorage.getItem('email'),
+              "nombreBandaFavorita": params.band,
+              "nombreAlbumFavorito": params.album
             }}
           ]);
         }
@@ -502,16 +502,16 @@ function addHeartEvent(){
         if(params.element=='band'){
           await post('bandas_favoritas',true,[
             {
-              "emailUsuario": sessionStorage.getItem('email'),
-              "nombreBanda": params.band
+              "emailUsuarioBandaFavorita": sessionStorage.getItem('email'),
+              "nombreBandaFavorita": params.band
             }
           ]);
         } else {
           await post('albumes_favoritos',true,[
             {
-              "emailUsuario": sessionStorage.getItem('email'),
-              "nombreBanda": params.band,
-              "nombreAlbum": params.album
+              "emailUsuarioAlbumFavorito": sessionStorage.getItem('email'),
+              "nombreBandaFavorita": params.band,
+              "nombreAlbumFavorito": params.album
             }
           ]);
         }
