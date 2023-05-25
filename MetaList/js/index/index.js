@@ -44,11 +44,16 @@ preLoadData.addEventListener("click",()=>{
 function printData(){
   console.log("dataList-Post: ",dataList);
   //Imprimir Noticias
-  noticeList.innerHTML="";
-  dataList.notices.map(n=>setNotice(noticeList,n));
+  /* noticeList.innerHTML=""; */
+  dataList.notices.map((n,i)=>setNotice(noticeList,n,i));
+  let id = setInterval(() => {
+    document.getElementById("noticesFull").dispatchEvent(new Event("click"));
+    clearInterval(id);
+  }, 2000);
   //Imprimir Aniversarios
   todayList.innerHTML="";
   dataList.anniversaries.map((a,i)=>setAnniversarie(carouselContent,a,i));
+  document.getElementById("carouselButtons").firstElementChild.dispatchEvent(new Event("click"));
   //Imprimir Incorporaciones
   dataList.incorporations.map((b,i)=>setIncorporation(b,i));
   //Imprimir estadísticas
@@ -59,8 +64,8 @@ function printData(){
 }
 
 //Función Imprimir Noticia
-function setNotice(contanier, notice){
-  let elm = document.createElement("div");
+function setNotice(container, notice, i){
+  /* let elm = document.createElement("div");
   elm.classList.add('col-lg-4', 'col-md-6', 'portfolio-item');
   for(let cl of notice.timeCategory.split(" ")) elm.classList.add(cl);
   elm.innerHTML=`
@@ -74,7 +79,20 @@ function setNotice(contanier, notice){
         </div>
       </div>
     </div>`;
-  contanier.appendChild(elm);
+  container.appendChild(elm); */
+  let elm = container.children[i];
+  for(let cl of notice.timeCategory.split(" ")) elm.classList.add(cl);
+  let img = elm.querySelector("img");
+  img.src = (notice.imagen)?notice.imagen:"imagenes/basico/user_MetaList.png";
+  img.alt = notice.nombre;
+  let mainA = elm.querySelector(".inv-a");
+  mainA.textContent = notice.nombre;
+  let subA = elm.querySelector(".portfolio-lightbox");
+  subA.href = (notice.imagen)?notice.imagen:"imagenes/basico/user_MetaList.png";
+  subA.title = notice.nombre;
+  let p = elm.querySelector("p");
+  p.textContent = `${(notice.dia)?notice.dia:"??"}/${(notice.mes)?notice.mes:"??"}/${(notice.anio)?notice.anio:"????"}`;
+  elm.classList.remove("d-none");
 }
 
 //Función Imprimir Aniversario

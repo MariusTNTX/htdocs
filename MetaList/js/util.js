@@ -1,3 +1,7 @@
+if(document.querySelector(".portfolio-container")){
+  console.log("***NOTICES***: PORTFOLIO-CLIENTHEIGHT: ", document.querySelector(".portfolio-container").clientHeight);
+} else console.log("***NOTICES***: NO-PORTFOLIO");
+
 let tiposAlert = {
   success: {i: "bi-check-circle-fill", bg: "bg-success bg-gradient", color: "text-white"},
   info: {i: "bi-info-circle-fill", bg: "bg-primary bg-gradient", color: "text-white"},

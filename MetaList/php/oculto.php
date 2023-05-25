@@ -7,10 +7,12 @@
 	$metaliststoragelocal="C:/Apache24/htdocs/MetaList/MetaListStorage/userProfilePictures/";
 	$metaliststorageremote="http://localhost/MetaList/MetaListStorage/userProfilePictures/";
 
-	$rutaBackup='C:\Apache24\htdocs\MetaList\backups';
+	$rutaCSVs = 'C:/Apache24/htdocs/MetaList/CSVs/';
+
+	$rutaBackup='C:/Apache24/htdocs/MetaList/backups/';
 	$relBackup='../backups';
-	$comandoBackup='C:/ServidorLocal/mysql/bin/mysqldump --op -h localhost -u root --password="admin" metalist > ';
-	$comandoRestore='C:\ServidorLocal\mysql\bin\mysql -h localhost -u root --password="admin" metalist < ';
+	$comandoBackup='C:/ServidorLocal/mysql/bin/mysqldump --opt -h localhost -u root --password="admin" metalist > ';
+	$comandoRestore='C:/ServidorLocal/mysql/bin/mysql -h localhost -u root --password="admin" metalist < ';
 
 	$filtros=array(
 		"albumes"=>array(

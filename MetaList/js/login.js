@@ -46,7 +46,7 @@ async function login(email="", pass=""){
     let usuarios = await list("usuarios",true,["emailUsuario",email]);
     console.log(usuarios);
     if(usuarios.response.length==1){
-      let passVerif = await checkPassword(email, pass, true);
+      let passVerif = await checkPassword(email, pass, true); 
       console.log(passVerif);
       if(passVerif[0].coincidence){
         if(passVerif[0].verify){
@@ -82,7 +82,7 @@ function logout(){
   sessionStorage.removeItem("permisos");
   sessionStorage.removeItem("notificaciones");
   sessionStorage.removeItem("fecha");
-  if(location.href.includes("perfil.html")) location.href="index.html";
+  if(location.href.includes("perfil.html") || location.href.includes("favoritos.html") || location.href.includes("administracion.html")) location.href="index.html";
   else {
     if(location.href.includes("visor.html") && (getURLParameters().element=='band' || getURLParameters().element=='album')) setHeart(getURLParameters());
     console.log("logout");
@@ -107,6 +107,12 @@ function addLogoutEvent(logoutButton){
     e.preventDefault();
     logout();
   });
+}
+
+//Protección frente a accesos no autorizados
+if((location.href.includes("perfil.html") || location.href.includes("favoritos.html") || 
+    location.href.includes("administracion.html")) && !sessionStorage.getItem('email')){
+  location.href='index.html';
 }
 
 //Nuevos Usuarios

@@ -154,9 +154,9 @@ async function sendVerifyEmail(email, code, awt){
 // CHECK_PASSWORD: FUNCIÓN VERIFICAR CONTRASEÑAS A TRAVÉS DE LA API
 async function checkPassword(email, pass, awt){
   pass = encodeURI(pass);
-  console.log(`http://${root}/MetaList/php/api.php?key=${key()}&checkPassword=${pass}&email=${email}`);
+  console.log(`http://${root}/MetaList/php/api.php?key=${key()}&checkPassword=${encodeURIComponent(pass)}&email=${email}`);
   //Se obtiene el JSON de resultados:
-  let response = await fetch(`http://${root}/MetaList/php/api.php?key=${key()}&checkPassword=${pass}&email=${email}`,{
+  let response = await fetch(`http://${root}/MetaList/php/api.php?key=${key()}&checkPassword=${encodeURIComponent(pass)}&email=${email}`,{
     method: 'GET',
     headers: {'Content-Type': 'application/json'}
   });
@@ -170,9 +170,9 @@ async function checkPassword(email, pass, awt){
 async function changePassword(email, oldPass, newPass, awt){
   oldPass = encodeURI(oldPass);
   newPass = encodeURI(newPass);
-  console.log(`http://${root}/MetaList/php/api.php?key=${key()}&changePassword=${email}&oldPass=${oldPass}&newPass=${newPass}`);
+  console.log(`http://${root}/MetaList/php/api.php?key=${key()}&changePassword=${email}&oldPass=${encodeURIComponent(oldPass)}&newPass=${encodeURIComponent(newPass)}`);
   //Se obtiene el JSON de resultados:
-  let response = await fetch(`http://${root}/MetaList/php/api.php?key=${key()}&changePassword=${email}&oldPass=${oldPass}&newPass=${newPass}`,{
+  let response = await fetch(`http://${root}/MetaList/php/api.php?key=${key()}&changePassword=${email}&oldPass=${encodeURIComponent(oldPass)}&newPass=${encodeURIComponent(newPass)}`,{
     method: 'GET',
     headers: {'Content-Type': 'application/json'}
   });
@@ -219,6 +219,24 @@ async function sendAdminMessage(awt,email,asunto,mensaje,nombre="Anónimo"){
     headers: {'Content-Type': 'application/json'}
   });
   response = await response.json();
+  console.log(response);
+  if(awt) return response;
+  return Promise.resolve(response);
+}
+
+// DBACTIONS: REALIZAR ACCIONES GENERALES SOBRE LA BASE DE DATOS A TRAVÉS DE LA API
+async function dbAction(elm,awt,...params){
+  let url = `http://${root}/MetaList/php/api.php?key=${key()}&${elm}=1`;
+  //Se seleccionan los filtros y sus valores:
+  if(params) for(let e of params) url += `&${e[0]}=${(typeof(e[1])=='string')?e[1].replaceAll("&","%26"):e[1]}`;
+  //Se obtiene el JSON de resultados:
+  console.log(url)
+  let response = await fetch(url,{
+    method: 'GET',
+    headers: {'Content-Type': 'application/json'}
+  });
+  if(elm=='csvExportTable') response = await response.blob();
+  else response = await response.json();
   console.log(response);
   if(awt) return response;
   return Promise.resolve(response);

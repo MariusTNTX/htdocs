@@ -335,7 +335,7 @@ if(isset($_GET['key'])){
       } else if(isset($_REQUEST['checkPassword'])){
         // C H E C K   P A S S W O R D
         $email = $_REQUEST['email'];
-        $pass = $_REQUEST['checkPassword'];
+        $pass = urldecode($_REQUEST['checkPassword']);
         $data = [array("pass"=>$pass, "email"=>$email, "verify"=>false, "coincidence"=>true)];
         $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
         $resp = mysqli_query($c1,"SELECT passusu FROM USUARIOS WHERE Email LIKE '".$email."'");
@@ -349,8 +349,8 @@ if(isset($_GET['key'])){
         echo json_encode($data);
       } else if(isset($_REQUEST['changePassword'])){
         // U P D A T E   P A S S W O R D
-        $oldPass = $_REQUEST['oldPass'];
-        $newPass = $_REQUEST['newPass'];
+        $oldPass = urldecode($_REQUEST['oldPass']);
+        $newPass = urldecode($_REQUEST['newPass']);
         $email = $_REQUEST['changePassword'];
         $data = [array("email"=>$email, "verify"=>false, "coincidence"=>true)];
         $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
@@ -416,8 +416,8 @@ if(isset($_GET['key'])){
         mysqli_close($c1);
         header("Content-type: application/json; charset=utf-8");
         echo json_encode($data);
-      } else if(isset($_REQUEST['validateBBDD'])){
-        // V A L I D A T E  B B D D
+      } else if(isset($_REQUEST['validateDataBase'])){
+        // V A L I D A T E  D A T A  B A S E
         $data = [];
         try {
           $c1=mysqli_connect($dbhost,$dbuser,$dbpass);
@@ -453,35 +453,77 @@ if(isset($_GET['key'])){
         $fichero = 'Backup-'.$fecha.$hora.'.sql';
         $ruta = $rutaBackup.$fichero;
         $comando = $comandoRestore.$ruta;
-        //echo $comando;
         $data = [array('comando'=>$comando,'resultado'=>exec($comando))];
         header("Content-type: application/json; charset=utf-8");
         echo json_encode($data);
-      } else if(isset($_REQUEST['backup'])){ //-----------------------------------------------------------
+      } else if(isset($_REQUEST['backup'])){
         // B A C K U P
-        $data = [array("status"=>200, "result"=>"")];
+        $fecha = new DateTime();
+        $fichero = 'Backup-'.$fecha->format('YmdHis').'.sql';
+        $ruta = $rutaBackup.$fichero;
+        $comando = $comandoBackup.$ruta;
+        $data = [array('comando'=>$comando,'resultado'=>exec($comando))];
+        header("Content-type: application/json; charset=utf-8");
+        echo json_encode($data);
+      } else if(isset($_REQUEST['csvExportTable'])){
+        // C S V  E X P O R T  T A B L E
         $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
+        $tabla = $_REQUEST['tabla'];
+        $fic = fopen($rutaCSVs.$tabla.".csv", "w");
+        mysqli_set_charset($c1, "utf8"); //Establecer la codificación de los datos obtenidos de la BD
+        $result = mysqli_query($c1, "SELECT * FROM $tabla");
+        $campos = mysqli_fetch_fields($result);
+        $columnas = [];
+        foreach ($campos as $campo) $columnas[] = $campo->name;
+        fputcsv($fic, array_map('utf8_decode', $columnas), ';');
+        while ($reg = mysqli_fetch_row($result)){
+          fputcsv($fic, array_map('utf8_decode', $reg), ';'); //Decodificación (caracteres especiales)
+        }
+        fclose($fic);
+        mysqli_close($c1);
+        header('Content-Type: text/csv');
+        $h = 'Content-Disposition: attachment; filename="'.$tabla.'.csv"';
+        header($h);
+        readfile($rutaCSVs.$tabla.".csv");
+        exit;
+      } else if(isset($_REQUEST['deleteTable'])){
+        // D E L E T E  T A B L E
+        $data = [array("status"=>200, "tabla"=>"")];
+        $tabla = $_REQUEST['tabla'];
+        $data[0]['tabla'] = $tabla;
+        $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
+        try {
+          mysqli_query($c1,"DELETE FROM $tabla WHERE 1=1");
+        } catch (\Throwable $th) {
+          $data[0]['status'] = 500;
+          $data[0]['error'] = $th;
+        }
         mysqli_close($c1);
         header("Content-type: application/json; charset=utf-8");
         echo json_encode($data);
-      } else if(isset($_REQUEST['csvExportTableList'])){
-        // C S V  E X P O R T  T A B L E  L I S T
-        $data = [array("status"=>200, "result"=>"")];
-        $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
+      } else if(isset($_REQUEST['createDataBase'])){
+        // C R E A T E  D A T A  B A S E
+        $data = [array("status"=>200)];
+        $c1 = mysqli_connect($dbhost,$dbuser,$dbpass) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
+        try {
+          mysqli_query($c1,"CREATE DATABASE IF NOT EXISTS $dbname");
+        } catch (\Throwable $th) {
+          $data[0]['status'] = 500;
+          $data[0]['error'] = $th;
+        }
         mysqli_close($c1);
         header("Content-type: application/json; charset=utf-8");
         echo json_encode($data);
-      } else if(isset($_REQUEST['deleteTableList'])){
-        // D E L E T E  T A B L E  L I S T
-        $data = [array("status"=>200, "result"=>"")];
+      } else if(isset($_REQUEST['dropDataBase'])){
+        // D R O P  D A T A  B A S E
+        $data = [array("status"=>200)];
         $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
-        mysqli_close($c1);
-        header("Content-type: application/json; charset=utf-8");
-        echo json_encode($data);
-      } else if(isset($_REQUEST['dropBBDD'])){
-        // D R O P  B B D D
-        $data = [array("status"=>200, "result"=>"")];
-        $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
+        try {
+          mysqli_query($c1,"DROP DATABASE IF EXISTS $dbname");
+        } catch (\Throwable $th) {
+          $data[0]['status'] = 500;
+          $data[0]['error'] = $th;
+        }
         mysqli_close($c1);
         header("Content-type: application/json; charset=utf-8");
         echo json_encode($data);

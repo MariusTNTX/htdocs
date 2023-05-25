@@ -52,69 +52,33 @@
           <img src="imagenes/basico/logo_MetaList.png" alt="logo_MetaList">
         </a>
       </h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo me-auto me-lg-0"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
-          <!-- <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="#about">About</a></li>
-          <li><a class="nav-link scrollto" href="#services">Services</a></li>
-          <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>
-          <li><a class="nav-link scrollto" href="#team">Team</a></li> -->
           <li class="dropdown"><a href="#" class="px-2 px-lg-1 px-xl-2"><span>Bandas</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="buscadorAvanzado.html?list=bands">Buscador Avanzado</a></li>
-              <!-- <li><a href="#">Tier Lists</a></li>
-              <li><a href="#">Playlists Spotify</a></li> -->
               <li><a class="randomElement" id="randomBand" href="#">Banda Aleatoria</a></li>
             </ul>
           </li>
           <li class="dropdown"><a href="#" class="px-2 px-lg-1 px-xl-2"><span>Álbumes</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="buscadorAvanzado.html?list=albums">Buscador Avanzado</a></li>
-              <!-- <li><a href="#">Tier Lists</a></li> -->
               <li><a class="randomElement" id="randomAlbum" href="#">Álbum Aleatorio</a></li>
             </ul>
           </li>
           <li class="dropdown"><a href="#" class="px-2 px-lg-1 px-xl-2"><span>Discográficas</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="buscadorAvanzado.html?list=labels">Buscador Avanzado</a></li>
-              <!-- <li><a href="#">Playlists Spotify</a></li> -->
               <li><a class="randomElement" id="randomLabel" href="#">Discográfica Aleatoria</a></li>
             </ul>
           </li>
           <li class="dropdown"><a href="#" class="px-2 px-lg-1 px-xl-2"><span>Músicos</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="buscadorAvanzado.html?list=musicians">Buscador Avanzado</a></li>
-              <!-- <li><a href="#">Playlists Spotify</a></li> -->
               <li><a class="randomElement" id="randomMusician" href="#">Músico Aleatorio</a></li>
             </ul>
           </li>
-          <!-- <li class="dropdown"><a href="#" class="px-2 px-lg-1 px-xl-2"><span>Géneros</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="#">Ranking</a></li>
-              <li><a href="#">Tier Lists</a></li>
-              <li><a href="#">Playlists Spotify</a></li>
-            </ul>
-          </li>
-          <li class="dropdown"><a href="#" class="px-2 px-lg-1 px-xl-2"><span>Historia</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="#">Cronología del Heavy Metal</a></li>
-              <li><a href="#">Playlists Spotify por Etapas</a></li>
-              <li><a href="#">Resúmenes de Años</a></li>
-            </ul>
-          </li>
-          <li class="dropdown"><a href="#" class="px-2 px-lg-1 px-xl-2"><span>Juegos</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="#">TimeLine</a></li>
-              <li><a href="#">Trivia</a></li>
-              <li><a href="#">Guitar Zero</a></li>
-            </ul>
-          </li> -->
-          <!-- <li><a class="nav-link scrollto" href="#contact">Donaciones</a></li>
-          <li><a class="nav-link scrollto" href="#about">Sobre Nosotros</a></li>
-          <li><a class="nav-link scrollto" href="#contact">Contacto</a></li> -->
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -153,37 +117,20 @@
   </header><!-- End Header -->
 
   <!-- ======= Title Section ======= -->
-  <section id="hero" class="align-items-center justify-content-center"> <!-- d-flex -->
-    <div class="container" data-aos="fade-up">
+  <section id="hero" class="align-items-center justify-content-center">
+    <div class="container"> <!-- data-aos="fade-up" -->
 
-      <!-- <div class="alert alert-warning alert-dismissible fade show position-fixed pt-4" role="alert" style="z-index:1">
-        <i class="bi bi-exclamation-triangle-fill me-1"></i>
-        <strong>Página en Fase de Desarrollo</strong>: Lamentablemente la mayoría de secciones no se encuentran disponibles en estos instantes. Únicamente podrá acceder a los siguientes apartados:
-        <ul class="text-start ms-4 mt-4">
-          <li>Buscador Avanzado de Álbumes (Listas Personalizadas)</li>
-          <li>Información Específica de un Álbum</li>
-          <li>Nuevo Registro de Cuenta de Usuario</li>
-        </ul>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div> -->
-
-      <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
+      <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150"> <!--  -->
         <div class="col-xl-6 col-lg-8">
           <h1>Consulta Desde Otra Perspectiva</h1>
           <h2>Exloración, lectura, análisis y juegos</h2>
         </div>
       </div>
 
-      <div class="row justify-content-center mt-4" data-aos="fade-up" data-aos-delay="150">
-        <!-- <div class="col-xl-6 col-md-8">
-          <form action="./buscadorAvanzado.html" method="post" id="mainSearch">
-            <input type="text" name="search" placeholder="Bandas, Álbumes, Noticias, etc."><input type="submit" value="Buscar">
-          </form>
-        </div> -->
-      </div>
+      <div class="row justify-content-center mt-4" data-aos="fade-up" data-aos-delay="150"></div> <!--  -->
       
       <!-- === Nav Section === -->
-      <div class="row gy-4 mt-3 justify-content-center" data-aos="zoom-in" data-aos-delay="250">
+      <div class="row gy-4 mt-3 justify-content-center" data-aos="zoom-in" data-aos-delay="250"> <!--  -->
 
         <div class="col-xl-2 col-md-4">
           <div class="icon-box">
@@ -237,14 +184,14 @@
 
     <!-- ======= Notices Section ======= -->
     <section id="portfolio" class="portfolio">
-      <div class="container" data-aos="fade-up">
+      <div class="container" data-aos="fade-up"> <!--  -->
 
         <div class="section-title">
           <h2>Noticias</h2>
           <p>Últimas Noticias:</p>
         </div>
 
-        <div class="row" data-aos="fade-up" data-aos-delay="100">
+        <div class="row" data-aos="fade-up" data-aos-delay="100"> <!--  -->
           <div class="col-lg-12 d-flex justify-content-center">
             <ul id="portfolio-flters">
               <li id="noticesToday" data-filter=".filter-today">Hoy</li>
@@ -256,124 +203,70 @@
           </div>
         </div>
 
-        <div class="row portfolio-container" id="noticeList" data-aos="fade-up" data-aos-delay="100">
+        <div class="row portfolio-container" id="noticeList" data-aos="fade-up" data-aos-delay="100"> <!--  -->
 
           <div class="col-lg-4 col-md-6 portfolio-item d-none">
             <div class="portfolio-wrap">
-              <img src="imagenes/noticias/lux aeterna.webp" class="img-fluid" alt="">
+              <img src="imagenes/basico/user_MetaList.png" class="img-fluid" alt="">
               <div class="portfolio-info">
-                <h4><a href="#" class="inv-a">Metallica lanza su nuevo single "Lux Aeterna"</a></h4>
-                <p>14/12/2022</p>
+                <h4><a href="#" class="inv-a">Nombre Noticia</a></h4>
+                <p>Fecha Noticia</p>
                 <div class="portfolio-links">
-                  <a href="imagenes/noticias/lux aeterna.webp" data-gallery="portfolioGallery" class="portfolio-lightbox" title='Metallica lanza su nuevo single "Lux Aeterna"'><i class='bx bx-expand'></i></a>
+                  <a href="imagenes/basico/user_MetaList.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title='Nombre Noticia'><i class='bx bx-expand'></i></a>
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="col-lg-4 col-md-6 portfolio-item filter-lastMonths d-none">
-            <div class="portfolio-wrap">
-              <img src="imagenes/noticias/blindGuardian.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4><a href="#" class="inv-a">Blind Guardian publica un breve clip con imágenes de la grabación del disco "The God Machine"</a></h4>
-                <p>02/01/2023</p>
-                <div class="portfolio-links">
-                  <a href="imagenes/noticias/blindGuardian.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title='Blind Guardian publica un breve clip con imágenes de la grabación del disco "The God Machine"'><i class='bx bx-expand'></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- <div class="col-lg-4 col-md-6 portfolio-item filter-today filter-curMonth filter-lastMonths">
-            <div class="portfolio-wrap">
-              <img src="imagenes/noticias/sebastianMarino.webp" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4><a href="#" class="inv-a">El ex-guitarrista de Liege Lord, Anvil y Overkill Sebastian Marino fallece a los 57 años</a></h4>
-                <p>01/01/2023</p>
-                <div class="portfolio-links">
-                  <a href="imagenes/noticias/sebastianMarino.webp" data-gallery="portfolioGallery" class="portfolio-lightbox" title="El ex-guitarrista de Liege Lord, Anvil y Overkill Sebastian Marino fallece repentinamente a los 57 años"><i class='bx bx-expand'></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-curMonth filter-lastMonths">
-            <div class="portfolio-wrap">
-              <img src="imagenes/noticias/archEnemy.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4><a href="#" class="inv-a">El festival Leyendas del Rock añade a la banda Arch Enemy a su cartel</a></h4>
-                <p>30/12/2022</p>
-                <div class="portfolio-links">
-                  <a href="imagenes/noticias/archEnemy.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="El festival Leyendas del Rock añade a la banda Arch Enemy a su cartel"><i class='bx bx-expand'></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-today filter-curMonth filter-lastMonths">
-            <div class="portfolio-wrap">
-              <img src="imagenes/noticias/accept.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4><a href="#" class="inv-a">Se confirman 3 conciertos en España durante la gira de Accept</a></h4>
-                <p>03/01/2023</p>
-                <div class="portfolio-links">
-                  <a href="imagenes/noticias/accept.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Se confirman 3 conciertos en España durante la gira de Accept"><i class='bx bx-expand'></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-curMonth filter-lastMonths">
-            <div class="portfolio-wrap">
-              <img src="imagenes/noticias/dreamTheater.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4><a href="#" class="inv-a">Dream Theater publica su cartel de conciertos en España</a></h4>
-                <p>03/01/2023</p>
-                <div class="portfolio-links">
-                  <a href="imagenes/noticias/dreamTheater.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Dream Theater publica su cartel de conciertos en España"><i class='bx bx-expand'></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-a filter-lastMonths">
-            <div class="portfolio-wrap">
-              <img src="imagenes/noticias/slipknot.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4><a href="#" class="inv-a">El disco inédito de Slipknot "Look Outside Your Window" podría salir este año</a></h4>
-                <p>02/01/2023</p>
-                <div class="portfolio-links">
-                  <a href="imagenes/noticias/slipknot.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title='El disco inédito de Slipknot "Look Outside Your Window" podría salir este año'><i class='bx bx-expand'></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-a">
-            <div class="portfolio-wrap">
-              <img src="imagenes/noticias/steelHammer.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4><a href="#" class="inv-a">Steel Hammer, el nuevo proyecto de Chris Boltendahl, el vocalista de Grave Digger</a></h4>
-                <p>03/01/2023</p>
-                <div class="portfolio-links">
-                  <a href="imagenes/noticias/steelHammer.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Steel Hammer, el nuevo proyecto de Chris Boltendahl, el vocalista de Grave Digger"><i class='bx bx-expand'></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-a filter-today filter-curMonth filter-lastMonths">
-            <div class="portfolio-wrap">
-              <img src="imagenes/noticias/helloween.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4><a href="#" class="inv-a">Helloween agota el aforo del Wizink Center de Madrid y logra ampliar su aforo</a></h4>
-                <p>03/01/2023</p>
-                <div class="portfolio-links">
-                  <a href="imagenes/noticias/helloween.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Helloween agota el aforo del Wizink Center de Madrid y logra ampliar su aforo"><i class='bx bx-expand'></i></a>
-                </div>
-              </div>
-            </div>
-          </div> -->
+          <div class="col-lg-4 col-md-6 portfolio-item d-none"><div class="portfolio-wrap"><img src="imagenes/basico/user_MetaList.png" class="img-fluid" alt=""><div class="portfolio-info"><h4><a href="#" class="inv-a">Nombre Noticia</a></h4><p>Fecha Noticia</p><div class="portfolio-links"><a href="imagenes/basico/user_MetaList.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title='Nombre Noticia'><i class='bx bx-expand'></i></a></div></div></div></div>
+          <div class="col-lg-4 col-md-6 portfolio-item d-none"><div class="portfolio-wrap"><img src="imagenes/basico/user_MetaList.png" class="img-fluid" alt=""><div class="portfolio-info"><h4><a href="#" class="inv-a">Nombre Noticia</a></h4><p>Fecha Noticia</p><div class="portfolio-links"><a href="imagenes/basico/user_MetaList.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title='Nombre Noticia'><i class='bx bx-expand'></i></a></div></div></div></div>
+          <div class="col-lg-4 col-md-6 portfolio-item d-none"><div class="portfolio-wrap"><img src="imagenes/basico/user_MetaList.png" class="img-fluid" alt=""><div class="portfolio-info"><h4><a href="#" class="inv-a">Nombre Noticia</a></h4><p>Fecha Noticia</p><div class="portfolio-links"><a href="imagenes/basico/user_MetaList.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title='Nombre Noticia'><i class='bx bx-expand'></i></a></div></div></div></div>
+          <div class="col-lg-4 col-md-6 portfolio-item d-none"><div class="portfolio-wrap"><img src="imagenes/basico/user_MetaList.png" class="img-fluid" alt=""><div class="portfolio-info"><h4><a href="#" class="inv-a">Nombre Noticia</a></h4><p>Fecha Noticia</p><div class="portfolio-links"><a href="imagenes/basico/user_MetaList.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title='Nombre Noticia'><i class='bx bx-expand'></i></a></div></div></div></div>
+          <div class="col-lg-4 col-md-6 portfolio-item d-none"><div class="portfolio-wrap"><img src="imagenes/basico/user_MetaList.png" class="img-fluid" alt=""><div class="portfolio-info"><h4><a href="#" class="inv-a">Nombre Noticia</a></h4><p>Fecha Noticia</p><div class="portfolio-links"><a href="imagenes/basico/user_MetaList.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title='Nombre Noticia'><i class='bx bx-expand'></i></a></div></div></div></div>
+          <div class="col-lg-4 col-md-6 portfolio-item d-none"><div class="portfolio-wrap"><img src="imagenes/basico/user_MetaList.png" class="img-fluid" alt=""><div class="portfolio-info"><h4><a href="#" class="inv-a">Nombre Noticia</a></h4><p>Fecha Noticia</p><div class="portfolio-links"><a href="imagenes/basico/user_MetaList.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title='Nombre Noticia'><i class='bx bx-expand'></i></a></div></div></div></div>
+          <div class="col-lg-4 col-md-6 portfolio-item d-none"><div class="portfolio-wrap"><img src="imagenes/basico/user_MetaList.png" class="img-fluid" alt=""><div class="portfolio-info"><h4><a href="#" class="inv-a">Nombre Noticia</a></h4><p>Fecha Noticia</p><div class="portfolio-links"><a href="imagenes/basico/user_MetaList.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title='Nombre Noticia'><i class='bx bx-expand'></i></a></div></div></div></div>
+          <div class="col-lg-4 col-md-6 portfolio-item d-none"><div class="portfolio-wrap"><img src="imagenes/basico/user_MetaList.png" class="img-fluid" alt=""><div class="portfolio-info"><h4><a href="#" class="inv-a">Nombre Noticia</a></h4><p>Fecha Noticia</p><div class="portfolio-links"><a href="imagenes/basico/user_MetaList.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title='Nombre Noticia'><i class='bx bx-expand'></i></a></div></div></div></div>
+          <div class="col-lg-4 col-md-6 portfolio-item d-none"><div class="portfolio-wrap"><img src="imagenes/basico/user_MetaList.png" class="img-fluid" alt=""><div class="portfolio-info"><h4><a href="#" class="inv-a">Nombre Noticia</a></h4><p>Fecha Noticia</p><div class="portfolio-links"><a href="imagenes/basico/user_MetaList.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title='Nombre Noticia'><i class='bx bx-expand'></i></a></div></div></div></div>
+          <div class="col-lg-4 col-md-6 portfolio-item d-none"><div class="portfolio-wrap"><img src="imagenes/basico/user_MetaList.png" class="img-fluid" alt=""><div class="portfolio-info"><h4><a href="#" class="inv-a">Nombre Noticia</a></h4><p>Fecha Noticia</p><div class="portfolio-links"><a href="imagenes/basico/user_MetaList.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title='Nombre Noticia'><i class='bx bx-expand'></i></a></div></div></div></div>
+          <div class="col-lg-4 col-md-6 portfolio-item d-none"><div class="portfolio-wrap"><img src="imagenes/basico/user_MetaList.png" class="img-fluid" alt=""><div class="portfolio-info"><h4><a href="#" class="inv-a">Nombre Noticia</a></h4><p>Fecha Noticia</p><div class="portfolio-links"><a href="imagenes/basico/user_MetaList.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title='Nombre Noticia'><i class='bx bx-expand'></i></a></div></div></div></div>
+          <div class="col-lg-4 col-md-6 portfolio-item d-none"><div class="portfolio-wrap"><img src="imagenes/basico/user_MetaList.png" class="img-fluid" alt=""><div class="portfolio-info"><h4><a href="#" class="inv-a">Nombre Noticia</a></h4><p>Fecha Noticia</p><div class="portfolio-links"><a href="imagenes/basico/user_MetaList.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title='Nombre Noticia'><i class='bx bx-expand'></i></a></div></div></div></div>
+          <div class="col-lg-4 col-md-6 portfolio-item d-none"><div class="portfolio-wrap"><img src="imagenes/basico/user_MetaList.png" class="img-fluid" alt=""><div class="portfolio-info"><h4><a href="#" class="inv-a">Nombre Noticia</a></h4><p>Fecha Noticia</p><div class="portfolio-links"><a href="imagenes/basico/user_MetaList.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title='Nombre Noticia'><i class='bx bx-expand'></i></a></div></div></div></div>
+          <div class="col-lg-4 col-md-6 portfolio-item d-none"><div class="portfolio-wrap"><img src="imagenes/basico/user_MetaList.png" class="img-fluid" alt=""><div class="portfolio-info"><h4><a href="#" class="inv-a">Nombre Noticia</a></h4><p>Fecha Noticia</p><div class="portfolio-links"><a href="imagenes/basico/user_MetaList.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title='Nombre Noticia'><i class='bx bx-expand'></i></a></div></div></div></div>
+          <div class="col-lg-4 col-md-6 portfolio-item d-none"><div class="portfolio-wrap"><img src="imagenes/basico/user_MetaList.png" class="img-fluid" alt=""><div class="portfolio-info"><h4><a href="#" class="inv-a">Nombre Noticia</a></h4><p>Fecha Noticia</p><div class="portfolio-links"><a href="imagenes/basico/user_MetaList.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title='Nombre Noticia'><i class='bx bx-expand'></i></a></div></div></div></div>
+          <div class="col-lg-4 col-md-6 portfolio-item d-none"><div class="portfolio-wrap"><img src="imagenes/basico/user_MetaList.png" class="img-fluid" alt=""><div class="portfolio-info"><h4><a href="#" class="inv-a">Nombre Noticia</a></h4><p>Fecha Noticia</p><div class="portfolio-links"><a href="imagenes/basico/user_MetaList.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title='Nombre Noticia'><i class='bx bx-expand'></i></a></div></div></div></div>
+          <div class="col-lg-4 col-md-6 portfolio-item d-none"><div class="portfolio-wrap"><img src="imagenes/basico/user_MetaList.png" class="img-fluid" alt=""><div class="portfolio-info"><h4><a href="#" class="inv-a">Nombre Noticia</a></h4><p>Fecha Noticia</p><div class="portfolio-links"><a href="imagenes/basico/user_MetaList.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title='Nombre Noticia'><i class='bx bx-expand'></i></a></div></div></div></div>
+          <div class="col-lg-4 col-md-6 portfolio-item d-none"><div class="portfolio-wrap"><img src="imagenes/basico/user_MetaList.png" class="img-fluid" alt=""><div class="portfolio-info"><h4><a href="#" class="inv-a">Nombre Noticia</a></h4><p>Fecha Noticia</p><div class="portfolio-links"><a href="imagenes/basico/user_MetaList.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title='Nombre Noticia'><i class='bx bx-expand'></i></a></div></div></div></div>
+          <div class="col-lg-4 col-md-6 portfolio-item d-none"><div class="portfolio-wrap"><img src="imagenes/basico/user_MetaList.png" class="img-fluid" alt=""><div class="portfolio-info"><h4><a href="#" class="inv-a">Nombre Noticia</a></h4><p>Fecha Noticia</p><div class="portfolio-links"><a href="imagenes/basico/user_MetaList.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title='Nombre Noticia'><i class='bx bx-expand'></i></a></div></div></div></div>
+          <div class="col-lg-4 col-md-6 portfolio-item d-none"><div class="portfolio-wrap"><img src="imagenes/basico/user_MetaList.png" class="img-fluid" alt=""><div class="portfolio-info"><h4><a href="#" class="inv-a">Nombre Noticia</a></h4><p>Fecha Noticia</p><div class="portfolio-links"><a href="imagenes/basico/user_MetaList.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title='Nombre Noticia'><i class='bx bx-expand'></i></a></div></div></div></div>
+          <div class="col-lg-4 col-md-6 portfolio-item d-none"><div class="portfolio-wrap"><img src="imagenes/basico/user_MetaList.png" class="img-fluid" alt=""><div class="portfolio-info"><h4><a href="#" class="inv-a">Nombre Noticia</a></h4><p>Fecha Noticia</p><div class="portfolio-links"><a href="imagenes/basico/user_MetaList.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title='Nombre Noticia'><i class='bx bx-expand'></i></a></div></div></div></div>
+          <div class="col-lg-4 col-md-6 portfolio-item d-none"><div class="portfolio-wrap"><img src="imagenes/basico/user_MetaList.png" class="img-fluid" alt=""><div class="portfolio-info"><h4><a href="#" class="inv-a">Nombre Noticia</a></h4><p>Fecha Noticia</p><div class="portfolio-links"><a href="imagenes/basico/user_MetaList.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title='Nombre Noticia'><i class='bx bx-expand'></i></a></div></div></div></div>
+          <div class="col-lg-4 col-md-6 portfolio-item d-none"><div class="portfolio-wrap"><img src="imagenes/basico/user_MetaList.png" class="img-fluid" alt=""><div class="portfolio-info"><h4><a href="#" class="inv-a">Nombre Noticia</a></h4><p>Fecha Noticia</p><div class="portfolio-links"><a href="imagenes/basico/user_MetaList.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title='Nombre Noticia'><i class='bx bx-expand'></i></a></div></div></div></div>
+          <div class="col-lg-4 col-md-6 portfolio-item d-none"><div class="portfolio-wrap"><img src="imagenes/basico/user_MetaList.png" class="img-fluid" alt=""><div class="portfolio-info"><h4><a href="#" class="inv-a">Nombre Noticia</a></h4><p>Fecha Noticia</p><div class="portfolio-links"><a href="imagenes/basico/user_MetaList.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title='Nombre Noticia'><i class='bx bx-expand'></i></a></div></div></div></div>
+          <div class="col-lg-4 col-md-6 portfolio-item d-none"><div class="portfolio-wrap"><img src="imagenes/basico/user_MetaList.png" class="img-fluid" alt=""><div class="portfolio-info"><h4><a href="#" class="inv-a">Nombre Noticia</a></h4><p>Fecha Noticia</p><div class="portfolio-links"><a href="imagenes/basico/user_MetaList.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title='Nombre Noticia'><i class='bx bx-expand'></i></a></div></div></div></div>
+          <div class="col-lg-4 col-md-6 portfolio-item d-none"><div class="portfolio-wrap"><img src="imagenes/basico/user_MetaList.png" class="img-fluid" alt=""><div class="portfolio-info"><h4><a href="#" class="inv-a">Nombre Noticia</a></h4><p>Fecha Noticia</p><div class="portfolio-links"><a href="imagenes/basico/user_MetaList.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title='Nombre Noticia'><i class='bx bx-expand'></i></a></div></div></div></div>
+          <div class="col-lg-4 col-md-6 portfolio-item d-none"><div class="portfolio-wrap"><img src="imagenes/basico/user_MetaList.png" class="img-fluid" alt=""><div class="portfolio-info"><h4><a href="#" class="inv-a">Nombre Noticia</a></h4><p>Fecha Noticia</p><div class="portfolio-links"><a href="imagenes/basico/user_MetaList.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title='Nombre Noticia'><i class='bx bx-expand'></i></a></div></div></div></div>
+          <div class="col-lg-4 col-md-6 portfolio-item d-none"><div class="portfolio-wrap"><img src="imagenes/basico/user_MetaList.png" class="img-fluid" alt=""><div class="portfolio-info"><h4><a href="#" class="inv-a">Nombre Noticia</a></h4><p>Fecha Noticia</p><div class="portfolio-links"><a href="imagenes/basico/user_MetaList.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title='Nombre Noticia'><i class='bx bx-expand'></i></a></div></div></div></div>
+          <div class="col-lg-4 col-md-6 portfolio-item d-none"><div class="portfolio-wrap"><img src="imagenes/basico/user_MetaList.png" class="img-fluid" alt=""><div class="portfolio-info"><h4><a href="#" class="inv-a">Nombre Noticia</a></h4><p>Fecha Noticia</p><div class="portfolio-links"><a href="imagenes/basico/user_MetaList.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title='Nombre Noticia'><i class='bx bx-expand'></i></a></div></div></div></div>
+          <div class="col-lg-4 col-md-6 portfolio-item d-none"><div class="portfolio-wrap"><img src="imagenes/basico/user_MetaList.png" class="img-fluid" alt=""><div class="portfolio-info"><h4><a href="#" class="inv-a">Nombre Noticia</a></h4><p>Fecha Noticia</p><div class="portfolio-links"><a href="imagenes/basico/user_MetaList.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title='Nombre Noticia'><i class='bx bx-expand'></i></a></div></div></div></div>
+          <div class="col-lg-4 col-md-6 portfolio-item d-none"><div class="portfolio-wrap"><img src="imagenes/basico/user_MetaList.png" class="img-fluid" alt=""><div class="portfolio-info"><h4><a href="#" class="inv-a">Nombre Noticia</a></h4><p>Fecha Noticia</p><div class="portfolio-links"><a href="imagenes/basico/user_MetaList.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title='Nombre Noticia'><i class='bx bx-expand'></i></a></div></div></div></div>
+          <div class="col-lg-4 col-md-6 portfolio-item d-none"><div class="portfolio-wrap"><img src="imagenes/basico/user_MetaList.png" class="img-fluid" alt=""><div class="portfolio-info"><h4><a href="#" class="inv-a">Nombre Noticia</a></h4><p>Fecha Noticia</p><div class="portfolio-links"><a href="imagenes/basico/user_MetaList.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title='Nombre Noticia'><i class='bx bx-expand'></i></a></div></div></div></div>
+          <div class="col-lg-4 col-md-6 portfolio-item d-none"><div class="portfolio-wrap"><img src="imagenes/basico/user_MetaList.png" class="img-fluid" alt=""><div class="portfolio-info"><h4><a href="#" class="inv-a">Nombre Noticia</a></h4><p>Fecha Noticia</p><div class="portfolio-links"><a href="imagenes/basico/user_MetaList.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title='Nombre Noticia'><i class='bx bx-expand'></i></a></div></div></div></div>
+          <div class="col-lg-4 col-md-6 portfolio-item d-none"><div class="portfolio-wrap"><img src="imagenes/basico/user_MetaList.png" class="img-fluid" alt=""><div class="portfolio-info"><h4><a href="#" class="inv-a">Nombre Noticia</a></h4><p>Fecha Noticia</p><div class="portfolio-links"><a href="imagenes/basico/user_MetaList.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title='Nombre Noticia'><i class='bx bx-expand'></i></a></div></div></div></div>
+          <div class="col-lg-4 col-md-6 portfolio-item d-none"><div class="portfolio-wrap"><img src="imagenes/basico/user_MetaList.png" class="img-fluid" alt=""><div class="portfolio-info"><h4><a href="#" class="inv-a">Nombre Noticia</a></h4><p>Fecha Noticia</p><div class="portfolio-links"><a href="imagenes/basico/user_MetaList.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title='Nombre Noticia'><i class='bx bx-expand'></i></a></div></div></div></div>
+          <div class="col-lg-4 col-md-6 portfolio-item d-none"><div class="portfolio-wrap"><img src="imagenes/basico/user_MetaList.png" class="img-fluid" alt=""><div class="portfolio-info"><h4><a href="#" class="inv-a">Nombre Noticia</a></h4><p>Fecha Noticia</p><div class="portfolio-links"><a href="imagenes/basico/user_MetaList.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title='Nombre Noticia'><i class='bx bx-expand'></i></a></div></div></div></div>
+          <div class="col-lg-4 col-md-6 portfolio-item d-none"><div class="portfolio-wrap"><img src="imagenes/basico/user_MetaList.png" class="img-fluid" alt=""><div class="portfolio-info"><h4><a href="#" class="inv-a">Nombre Noticia</a></h4><p>Fecha Noticia</p><div class="portfolio-links"><a href="imagenes/basico/user_MetaList.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title='Nombre Noticia'><i class='bx bx-expand'></i></a></div></div></div></div>
+          <div class="col-lg-4 col-md-6 portfolio-item d-none"><div class="portfolio-wrap"><img src="imagenes/basico/user_MetaList.png" class="img-fluid" alt=""><div class="portfolio-info"><h4><a href="#" class="inv-a">Nombre Noticia</a></h4><p>Fecha Noticia</p><div class="portfolio-links"><a href="imagenes/basico/user_MetaList.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title='Nombre Noticia'><i class='bx bx-expand'></i></a></div></div></div></div>
+          <div class="col-lg-4 col-md-6 portfolio-item d-none"><div class="portfolio-wrap"><img src="imagenes/basico/user_MetaList.png" class="img-fluid" alt=""><div class="portfolio-info"><h4><a href="#" class="inv-a">Nombre Noticia</a></h4><p>Fecha Noticia</p><div class="portfolio-links"><a href="imagenes/basico/user_MetaList.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title='Nombre Noticia'><i class='bx bx-expand'></i></a></div></div></div></div>
+          <div class="col-lg-4 col-md-6 portfolio-item d-none"><div class="portfolio-wrap"><img src="imagenes/basico/user_MetaList.png" class="img-fluid" alt=""><div class="portfolio-info"><h4><a href="#" class="inv-a">Nombre Noticia</a></h4><p>Fecha Noticia</p><div class="portfolio-links"><a href="imagenes/basico/user_MetaList.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title='Nombre Noticia'><i class='bx bx-expand'></i></a></div></div></div></div>
+          <div class="col-lg-4 col-md-6 portfolio-item d-none"><div class="portfolio-wrap"><img src="imagenes/basico/user_MetaList.png" class="img-fluid" alt=""><div class="portfolio-info"><h4><a href="#" class="inv-a">Nombre Noticia</a></h4><p>Fecha Noticia</p><div class="portfolio-links"><a href="imagenes/basico/user_MetaList.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title='Nombre Noticia'><i class='bx bx-expand'></i></a></div></div></div></div>
+          <div class="col-lg-4 col-md-6 portfolio-item d-none"><div class="portfolio-wrap"><img src="imagenes/basico/user_MetaList.png" class="img-fluid" alt=""><div class="portfolio-info"><h4><a href="#" class="inv-a">Nombre Noticia</a></h4><p>Fecha Noticia</p><div class="portfolio-links"><a href="imagenes/basico/user_MetaList.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title='Nombre Noticia'><i class='bx bx-expand'></i></a></div></div></div></div>
+          <div class="col-lg-4 col-md-6 portfolio-item d-none"><div class="portfolio-wrap"><img src="imagenes/basico/user_MetaList.png" class="img-fluid" alt=""><div class="portfolio-info"><h4><a href="#" class="inv-a">Nombre Noticia</a></h4><p>Fecha Noticia</p><div class="portfolio-links"><a href="imagenes/basico/user_MetaList.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title='Nombre Noticia'><i class='bx bx-expand'></i></a></div></div></div></div>
+          <div class="col-lg-4 col-md-6 portfolio-item d-none"><div class="portfolio-wrap"><img src="imagenes/basico/user_MetaList.png" class="img-fluid" alt=""><div class="portfolio-info"><h4><a href="#" class="inv-a">Nombre Noticia</a></h4><p>Fecha Noticia</p><div class="portfolio-links"><a href="imagenes/basico/user_MetaList.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title='Nombre Noticia'><i class='bx bx-expand'></i></a></div></div></div></div>
+          <div class="col-lg-4 col-md-6 portfolio-item d-none"><div class="portfolio-wrap"><img src="imagenes/basico/user_MetaList.png" class="img-fluid" alt=""><div class="portfolio-info"><h4><a href="#" class="inv-a">Nombre Noticia</a></h4><p>Fecha Noticia</p><div class="portfolio-links"><a href="imagenes/basico/user_MetaList.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title='Nombre Noticia'><i class='bx bx-expand'></i></a></div></div></div></div>
+          <div class="col-lg-4 col-md-6 portfolio-item d-none"><div class="portfolio-wrap"><img src="imagenes/basico/user_MetaList.png" class="img-fluid" alt=""><div class="portfolio-info"><h4><a href="#" class="inv-a">Nombre Noticia</a></h4><p>Fecha Noticia</p><div class="portfolio-links"><a href="imagenes/basico/user_MetaList.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title='Nombre Noticia'><i class='bx bx-expand'></i></a></div></div></div></div>
+          <div class="col-lg-4 col-md-6 portfolio-item d-none"><div class="portfolio-wrap"><img src="imagenes/basico/user_MetaList.png" class="img-fluid" alt=""><div class="portfolio-info"><h4><a href="#" class="inv-a">Nombre Noticia</a></h4><p>Fecha Noticia</p><div class="portfolio-links"><a href="imagenes/basico/user_MetaList.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title='Nombre Noticia'><i class='bx bx-expand'></i></a></div></div></div></div>
+          <div class="col-lg-4 col-md-6 portfolio-item d-none"><div class="portfolio-wrap"><img src="imagenes/basico/user_MetaList.png" class="img-fluid" alt=""><div class="portfolio-info"><h4><a href="#" class="inv-a">Nombre Noticia</a></h4><p>Fecha Noticia</p><div class="portfolio-links"><a href="imagenes/basico/user_MetaList.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title='Nombre Noticia'><i class='bx bx-expand'></i></a></div></div></div></div>
+          <div class="col-lg-4 col-md-6 portfolio-item d-none"><div class="portfolio-wrap"><img src="imagenes/basico/user_MetaList.png" class="img-fluid" alt=""><div class="portfolio-info"><h4><a href="#" class="inv-a">Nombre Noticia</a></h4><p>Fecha Noticia</p><div class="portfolio-links"><a href="imagenes/basico/user_MetaList.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title='Nombre Noticia'><i class='bx bx-expand'></i></a></div></div></div></div>
 
         </div>
 
@@ -383,13 +276,14 @@
 
     <!-- ======= Today's Section ======= -->
     <section id="testimonials" class="testimonials">
-      <div class="container" data-aos="zoom-in">
+      
+      <div class="container" > <!-- data-aos="zoom-in" -->
         <div class="section-title pb-3">
           <h2>Hoy</h2>
           <p class="text-white">Sección "Hoy":</p>
         </div>
 
-        <div class="testimonials-slider swiper d-none" data-aos="fade-up" data-aos-delay="100"> <!-- D-NONE -->
+        <div class="testimonials-slider swiper d-none" data-aos="fade-up" data-aos-delay="100"> <!-- D-NONE --> <!--  -->
           <div class="swiper-wrapper" id="todayList">
             <div class="swiper-slide d-none">
               <div class="testimonial-item">
@@ -402,9 +296,9 @@
           <div class="swiper-pagination"></div>
         </div>
 
-        <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="100">
+        <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="100"> <!--  -->
           <div class="col-12 col-md-10">
-            <div id="carousel" class="carousel slide text-center" data-bs-ride="true">
+            <div id="carousel" class="carousel slide text-center" data-bs-touch="true" data-bs-ride="true">
               <div id="carouselButtons" class="carousel-indicators"></div>
               <div id="carouselContent" class="carousel-inner"></div>
             </div>
@@ -420,7 +314,7 @@
 
     <!-- ======= Last Incorporation Section ======= -->
     <section id="team" class="team">
-      <div class="container" data-aos="fade-up">
+      <div class="container" data-aos="fade-up"> <!--  -->
 
         <div class="section-title">
           <h2>Incorporaciones</h2>
@@ -430,14 +324,10 @@
         <div class="row">
 
           <div class="col-lg-3 col-md-6 d-flex align-items-stretch" id="incorporation0">
-            <div class="member" data-aos="fade-up" data-aos-delay="100">
+            <div class="member" data-aos="fade-up" data-aos-delay="100"> <!--  -->
               <div class="member-img">
                 <img src="imagenes/incorporaciones/beyond the black.jpg" class="img-fluid incorporationImage" alt="">
                 <div class="social">
-                  <!-- <a href="https://twitter.com/_beyondtheblack"><i class="bi bi-twitter"></i></a>
-                  <a href="https://www.facebook.com/beyondtheblackofficial"><i class="bi bi-facebook"></i></a>
-                  <a href="https://www.instagram.com/beyondtheblack_official/"><i class="bi bi-instagram"></i></a>
-                  <a href="https://www.youtube.com/channel/UCv8qGsOBKIMaIV8_BQrb6tQ"><i class="bi bi-youtube"></i></a> -->
                   <a class="incorporationSpotify" href="https://open.spotify.com/artist/6swnqiL41Bd4gO2fnAXXrf"><i class="bi bi-spotify"></i></a>
                 </div>
               </div>
@@ -450,14 +340,10 @@
           </div>
 
           <div class="col-lg-3 col-md-6 d-flex align-items-stretch" id="incorporation1">
-            <div class="member" data-aos="fade-up" data-aos-delay="200">
+            <div class="member" data-aos="fade-up" data-aos-delay="200"> <!--  -->
               <div class="member-img">
                 <img src="imagenes/incorporaciones/cavaleraConspiracy.jpg" class="img-fluid incorporationImage" alt="">
                 <div class="social">
-                  <!-- <a href="https://twitter.com/cavconspiracy"><i class="bi bi-twitter"></i></a>
-                  <a href="https://www.facebook.com/cavaleraconspiracy"><i class="bi bi-facebook"></i></a>
-                  <a href="https://www.instagram.com/cavaleraconspiracy/"><i class="bi bi-instagram"></i></a>
-                  <a href="https://www.youtube.com/channel/UCEGKcFSQgxGetaALFdGBZ3A"><i class="bi bi-youtube"></i></a> -->
                   <a class="incorporationSpotify" href="https://open.spotify.com/artist/7F1K4WlMshx23V2TTz4KwV"><i class="bi bi-spotify"></i></a>
                 </div>
               </div>
@@ -470,14 +356,10 @@
           </div>
 
           <div class="col-lg-3 col-md-6 d-flex align-items-stretch" id="incorporation2">
-            <div class="member" data-aos="fade-up" data-aos-delay="300">
+            <div class="member" data-aos="fade-up" data-aos-delay="300"> <!--  -->
               <div class="member-img">
                 <img src="imagenes/incorporaciones/cultOfLuna.jpg" class="img-fluid incorporationImage" alt="">
                 <div class="social">
-                  <!-- <a href="https://twitter.com/Cultofluna_off"><i class="bi bi-twitter"></i></a>
-                  <a href="https://www.facebook.com/cultoflunamusic"><i class="bi bi-facebook"></i></a>
-                  <a href="https://www.instagram.com/cultofluna/"><i class="bi bi-instagram"></i></a>
-                  <a href="https://www.youtube.com/channel/UCgXfedHrL3D7uxHX9oiYBbQ"><i class="bi bi-youtube"></i></a> -->
                   <a class="incorporationSpotify" href="https://open.spotify.com/artist/7E7fJJpdVgr1F3pfAfRtHe"><i class="bi bi-spotify"></i></a>
                 </div>
               </div>
@@ -490,14 +372,10 @@
           </div>
 
           <div class="col-lg-3 col-md-6 d-flex align-items-stretch" id="incorporation3">
-            <div class="member" data-aos="fade-up" data-aos-delay="400">
+            <div class="member" data-aos="fade-up" data-aos-delay="400"> <!--  -->
               <div class="member-img">
                 <img src="imagenes/incorporaciones/girlschool.jfif" class="img-fluid incorporationImage" alt="">
                 <div class="social">
-                  <!-- <a href="https://twitter.com/girlschoolband"><i class="bi bi-twitter"></i></a>
-                  <a href="https://www.facebook.com/GirlschoolOfficial"><i class="bi bi-facebook"></i></a>
-                  <a href="https://www.instagram.com/girlschoolofficial/"><i class="bi bi-instagram"></i></a>
-                  <a href="https://www.youtube.com/@wackentv"><i class="bi bi-youtube"></i></a> -->
                   <a class="incorporationSpotify" href="https://open.spotify.com/artist/2TRtXTjjmyzK5oUGec1Gv8"><i class="bi bi-spotify"></i></a>
                 </div>
               </div>
@@ -521,7 +399,7 @@
 
     <!-- ======= About Section ======= -->
     <section id="features" class="features">
-      <div class="container" data-aos="fade-up">
+      <div class="container" data-aos="fade-up"> <!--  -->
 
         <div class="section-title">
           <h2>Sobre Nosotros</h2>
@@ -529,9 +407,9 @@
         </div>
 
         <div class="row">
-          <div class="image col-lg-6" style='background-image: url("imagenes/basico/idea.jpg"); background-position: inherit;' data-aos="fade-right"></div> <!-- "assets/img/features.jpg" -->
-          <div class="col-lg-6" data-aos="fade-left" data-aos-delay="100">
-            <div class="icon-box mt-5 mt-lg-0" data-aos="zoom-in" data-aos-delay="150">
+          <div class="image col-lg-6" style='background-image: url("imagenes/basico/idea.jpg"); background-position: inherit;' data-aos="fade-right"></div> <!--  -->
+          <div class="col-lg-6" data-aos="fade-left" data-aos-delay="100"> <!--  -->
+            <div class="icon-box mt-5 mt-lg-0" data-aos="zoom-in" data-aos-delay="150"> <!--  -->
               <i class='bx bx-user'></i>
               <h4>
                 Creador - Mario Molina
@@ -550,17 +428,17 @@
               </h4>
               <p>Desarrollador de Aplicaciones Web Junior especializado en Frontend y fanático del Heavy Metal en la mayoría de sus formas desde 2011.</p>
             </div>
-            <div class="icon-box mt-5" data-aos="zoom-in" data-aos-delay="150">
+            <div class="icon-box mt-5" data-aos="zoom-in" data-aos-delay="150"> <!--  -->
               <i class='bx bx-bulb'></i>
               <h4>Historia del Proyecto</h4>
               <p>¿Opinarán igual que yo en internet? Esa fue la pregunta que inició una serie de investigaciones que alimentaron la base de datos que hoy está disponible para ti.</p>
             </div>
-            <div class="icon-box mt-5" data-aos="zoom-in" data-aos-delay="150">
+            <div class="icon-box mt-5" data-aos="zoom-in" data-aos-delay="150"> <!--  -->
               <i class='bx bxs-vial'></i>
               <h4>Metodología</h4>
               <p>Toda la información procede de varios recuentos de información de una gran variedad de fuentes, por lo que la opinión solo la pones tu.</p>
             </div>
-            <div class="icon-box mt-5" data-aos="zoom-in" data-aos-delay="150">
+            <div class="icon-box mt-5" data-aos="zoom-in" data-aos-delay="150"> <!--  -->
               <i class='bx bx-trending-up'></i>
               <h4>Propósito</h4>
               <p>Queremos ser la página número #1 en publicar las opiniones de los usuarios de internet tal y como son, lejos de cualquier interés.</p>
@@ -573,7 +451,7 @@
 
     <!-- ======= Source List Section ======= -->
     <section id="clients" class="clients">
-      <div class="container" data-aos="zoom-in">
+      <div class="container" data-aos="zoom-in"> <!--  -->
 
         <div class="section-title">
           <h2>Fuentes</h2>
@@ -609,11 +487,11 @@
 
     <!-- ======= Statistics Section ======= -->
     <section id="counts" class="counts">
-      <div class="container" data-aos="fade-up">
+      <div class="container" data-aos="fade-up"> <!--  -->
 
         <div class="row no-gutters">
-          <div class="image col-xl-5 d-flex align-items-stretch justify-content-center justify-content-lg-start" data-aos="fade-right" data-aos-delay="100"></div>
-          <div class="col-xl-7 ps-2 ps-lg-5 pe-lg-1 d-flex align-items-stretch" data-aos="fade-left" data-aos-delay="100">
+          <div class="image col-xl-5 d-flex align-items-stretch justify-content-center justify-content-lg-start" data-aos="fade-right" data-aos-delay="100"></div> <!--  -->
+          <div class="col-xl-7 ps-2 ps-lg-5 pe-lg-1 d-flex align-items-stretch" data-aos="fade-left" data-aos-delay="100"> <!--  -->
             <div class="content d-flex flex-column justify-content-center">
               <h3>Nuestras Estadísticas Actuales:</h3>
               <div class="row">
@@ -661,7 +539,7 @@
 
     <!-- ======= Donation Section ======= -->
     <section id="cta" class="cta">
-      <div class="container" data-aos="zoom-in">
+      <div class="container" data-aos="zoom-in"> <!--  -->
 
         <div class="text-center">
           <h3>¿Te gusta nuestro contenido? Apoya al proyecto con la cantidad que desees</h3>
@@ -675,7 +553,7 @@
 
     <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact">
-      <div class="container" data-aos="fade-up">
+      <div class="container" data-aos="fade-up"> <!--  -->
 
         <div class="section-title">
           <h2>Contacto</h2>
@@ -786,16 +664,11 @@
           <div class="col-md-3 footer-links"> <!-- col-lg-2 col-md-6 footer-links -->
             <h4>Nuestros Servicios</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="./buscadorAvanzado.html">Búsquedas Avanzadas</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Tier Lists</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Cronología</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Playlists de Spotify</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Mosaico de Géneros</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Juegos</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="./buscadorAvanzado.html?list=bands">Búsquedas Avanzadas</a></li>
             </ul>
           </div>
 
-          <div class="col-md-3 footer-links"> <!-- col-lg-3 col-md-6 footer-links -->
+          <div class="col-md-3 footer-links">
             <h4>Nuestras Secciones</h4>
             <ul>
               <li><i class="bx bx-chevron-right"></i> <a href="#portfolio">Noticias</a></li>
@@ -809,20 +682,6 @@
             </ul>
           </div>
 
-          <!-- <div class="col-lg-4 col-md-6 footer-newsletter">
-            <h4>¿Quieres recibir notificaciones sin registrarte?</h4>
-            <p>Podemos enviarte las últimas noticias e incorporaciones al correo que nos indiques, pero si deseas elegir qué notificaciones recibir deberás crearte una cuenta.</p>
-            <form action="" method="post">
-              <input type="email" name="email" placeholder="Correo Electrónico">
-              <input type="submit" value="Enlazar">
-            </form> <br>
-            <p>En caso de no querer recibir más notificaciones podemos desenlazar el email que indiques a continuación:</p>
-            <form action="" method="post">
-              <input type="email" name="email" placeholder="Correo Electrónico">
-              <input type="submit" value="Desenlazar">
-            </form> <br>
-          </div> -->
-
         </div>
       </div>
     </div>
@@ -832,10 +691,6 @@
         &copy; Copyright <strong><span>MetaList</span></strong> | Todos los derechos reservados
       </div>
       <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/ -->
         Diseñado por <a href="https://github.com/MariusTNTX?tab=repositories">Mario Molina</a>
       </div>
     </div>
