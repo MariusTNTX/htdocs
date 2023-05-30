@@ -1,4 +1,10 @@
-<?
+<?php
+
+//Evitar problemas de CORS
+header('Access-Control-Allow-Origin: *');
+header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method");
+header("Access-Control-Allow-Methods: GET, POST");
+header("Allow: GET, POST");
 
 use PhpMyAdmin\Utils\HttpRequest;
 
@@ -24,63 +30,8 @@ function query($c1, $query){
 if(isset($_GET['key'])){
   if(checkTime($_GET['key']) || $_GET['key']==$apikey){
     try {
-      //CAMPOS QUE SE BUSCARÁN SIEMPRE CON "LIKE %%"
-      $like = ['NomBan','NomAlb','Descrip','Origen','NomCan','NomGen'];
-    
       /* S E L E C T S ---------------------------------------------------------------------------------------------------- */
-      if(isset($_GET['select'])){
-        //ALMACENAMIENTO DE PARÁMETROS
-        $select = $_GET['select'];
-        $elements = (strlen($_GET['elements'])>0) ? explode("|", $_GET['elements']) : [];
-        $values = (strlen($_GET['values'])>0) ? explode("|", $_GET['values']) : [];
-
-        //INFO_BANDA
-        if($select=='infoBanda'){
-          //Se forma la raíz de la consulta
-          $consultas = [
-            'info'=>'SELECT NomBan as nombre, pais, origen, numescuchasmes as escuchas, imagen, estatus, descrip, linkweb, linkspotify FROM BANDAS WHERE NomBan LIKE "'.$values[0].'"',
-            'albumes'=>'SELECT nomalb as nombre, descrip, imagen, tipoalb as tipo, enlista, anio, mes, dia, numescuchasmax as escuchas, linkspotify, linkamazon FROM ALBUMES WHERE NomBan LIKE "'.$values[0].'" ORDER BY Anio',
-            'generos'=>'SELECT nomgen as nombre, estrellas FROM GENEROS_BANDAS WHERE NomBan LIKE "'.$values[0].'"'
-          ];
-          $data = ['info'=>'','albumes'=>'','generos'=>''];
-          //Se establece conexión con la BD
-          $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
-          
-          foreach($consultas as $elm => $cons){
-            //Se realiza la consulta
-            if (!$resp = mysqli_query($c1, $cons)){
-              echo mysqli_error($c1).'<br>';
-              echo 'Consulta: '.$consulta;
-              exit(-1);
-            }
-            //Se almacenan los datos
-            if($elm=='info') $data[$elm] = mysqli_fetch_all($resp, MYSQLI_ASSOC)[0];
-            else $data[$elm] = mysqli_fetch_all($resp, MYSQLI_ASSOC);
-          }
-
-          //RECORRER ÁLBUMES ABAJO
-          foreach($data['albumes'] as $i => $album){
-            if (!$resp = mysqli_query($c1, 'SELECT nomcan as nombre, estrellas FROM CANCIONES_ALBUMES WHERE NomBan LIKE "'.$values[0].'" AND NomAlb LIKE "'.$album['nombre'].'"')){
-              echo mysqli_error($c1).'<br>';
-              echo 'Consulta: '.$consulta;
-              exit(-1);
-            } 
-            $data['albumes'][$i]['canciones'] = mysqli_fetch_all($resp, MYSQLI_ASSOC);
-            if (!$resp = mysqli_query($c1, 'SELECT nomgen as nombre, estrellas FROM GENEROS_ALBUMES WHERE NomBan LIKE "'.$values[0].'" AND NomAlb LIKE "'.$album['nombre'].'"')){
-              echo mysqli_error($c1).'<br>';
-              echo 'Consulta: '.$consulta;
-              exit(-1);
-            }
-            $data['albumes'][$i]['generos'] = mysqli_fetch_all($resp, MYSQLI_ASSOC);
-          }
-        }
-
-        //DEVOLUCIÓN DE JSON
-        mysqli_close($c1);
-        header("Content-type: application/json; charset=utf-8");
-        echo json_encode($data);
-    
-      } else if(isset($_REQUEST['list'])){
+      if(isset($_REQUEST['list'])){
         // L I S T 
         try{
           include("funcionesSelect.php");
@@ -284,12 +235,12 @@ if(isset($_GET['key'])){
         $nombreFotoRemota = $metaliststorageremote.$_REQUEST['name'];
         $email = $_REQUEST['id'];
         $data = [array("elemento"=>$elemento, "nombreFotoLocal"=>$nombreFotoLocal, "nombreFotoRemota"=>$nombreFotoRemota, "email"=>$email, "archivos"=>$_FILES)];
-        if($elemento=='usuarios' && count($email)>0 && count($_FILES)>0){
+        if($elemento=='usuarios' && count(str_split($email))>0 && count($_FILES)>0){
           //Se sube la nueva foto
           move_uploaded_file($_FILES['foto']['tmp_name'],$nombreFotoLocal); 
           //Se obtiene el nombre de la foto anterior
           $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
-          $resp = mysqli_query($c1,"SELECT foto FROM USUARIOS WHERE Email LIKE '".$email."'");
+          $resp = mysqli_query($c1,"SELECT Foto as foto FROM usuarios WHERE Email LIKE '".$email."'");
           $nombreFotoRemota2 = mysqli_fetch_all($resp,MYSQLI_ASSOC)[0]['foto'];
           $data[0]['nombreFotoRemotaAnterior'] = $nombreFotoRemota2;
           $nombreFotoLocal2 = $metaliststoragelocal.substr($nombreFotoRemota2, strrpos($nombreFotoRemota2,"/")+1);
@@ -308,10 +259,10 @@ if(isset($_GET['key'])){
         $elemento = $_REQUEST['deleteFormData'];
         $email = $_REQUEST['id'];
         $data = [array("elemento"=>$elemento, "email"=>$email)];
-        if($elemento=='usuarios' && count($email)>0){
+        if($elemento=='usuarios' && count(str_split($email))>0){
           //Se obtiene el nombre de la foto anterior
           $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
-          $resp = mysqli_query($c1,"SELECT foto FROM USUARIOS WHERE Email LIKE '".$email."'");
+          $resp = mysqli_query($c1,"SELECT Foto as foto FROM usuarios WHERE Email LIKE '".$email."'");
           $nombreFotoRemota = mysqli_fetch_all($resp,MYSQLI_ASSOC)[0]['foto'];
           $nombreFotoLocal = $metaliststoragelocal.substr($nombreFotoRemota, strrpos($nombreFotoRemota,"/")+1);
           $data['nombreFotoEliminada'] = $nombreFotoLocal;
@@ -329,7 +280,7 @@ if(isset($_GET['key'])){
         $email = $_REQUEST['sendVerifyEmail'];
         $code = $_REQUEST['code'];
         $data = [array("codigo"=>$code, "email"=>$email)];
-        if(count($code)>0 && count($email)>0) sendVerifyEmail($email,$code);
+        if(count(str_split($code))>0 && count(str_split($email))>0) sendVerifyEmail($hostEmail, $email,$code);
         header("Content-type: application/json; charset=utf-8");
         echo json_encode($data);
       } else if(isset($_REQUEST['checkPassword'])){
@@ -338,7 +289,7 @@ if(isset($_GET['key'])){
         $pass = urldecode($_REQUEST['checkPassword']);
         $data = [array("pass"=>$pass, "email"=>$email, "verify"=>false, "coincidence"=>true)];
         $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
-        $resp = mysqli_query($c1,"SELECT passusu FROM USUARIOS WHERE Email LIKE '".$email."'");
+        $resp = mysqli_query($c1,"SELECT PassUsu as passusu FROM usuarios WHERE Email LIKE '".$email."'");
         $hash = mysqli_fetch_all($resp,MYSQLI_ASSOC);
         if(count($hash)==1){
           $hash = $hash[0]['passusu'];
@@ -354,7 +305,7 @@ if(isset($_GET['key'])){
         $email = $_REQUEST['changePassword'];
         $data = [array("email"=>$email, "verify"=>false, "coincidence"=>true)];
         $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
-        $resp = mysqli_query($c1,"SELECT passusu FROM USUARIOS WHERE Email LIKE '".$email."'");
+        $resp = mysqli_query($c1,"SELECT PassUsu as passusu FROM usuarios WHERE Email LIKE '".$email."'");
         $hash = mysqli_fetch_all($resp,MYSQLI_ASSOC);
         if(count($hash)==1){
           $hash = $hash[0]['passusu'];
@@ -373,7 +324,7 @@ if(isset($_GET['key'])){
         $email = $_REQUEST['sendNewPass'];
         $data = [array("email"=>$email, "coincidence"=>true)];
         $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
-        $resp = mysqli_query($c1,"SELECT nomusu FROM USUARIOS WHERE Email LIKE '".$email."'");
+        $resp = mysqli_query($c1,"SELECT NomUsu as nomusu FROM usuarios WHERE Email LIKE '".$email."'");
         $usuario = mysqli_fetch_all($resp,MYSQLI_ASSOC);
         if(count($usuario)==1){
           $usuario = $usuario[0]['nomusu'];
@@ -381,7 +332,7 @@ if(isset($_GET['key'])){
           $data[0]['user'] = $usuario;
           $data[0]['pass'] = $password;
           //Envío del Correo
-          sendNewPass($email,$password,$usuario);
+          sendNewPass($hostEmail, $email, $password, $usuario);
           //Update de la Password
           $password = password_hash($password,PASSWORD_DEFAULT);
           mysqli_query($c1,"UPDATE USUARIOS SET passusu = '".$password."' WHERE Email LIKE '".$email."'");
@@ -394,7 +345,7 @@ if(isset($_GET['key'])){
         $asunto = "From: ".$_REQUEST['nombre']."<".$_REQUEST['email'].">: ".$_REQUEST['asunto'];
         $cabecera = "From: ".$_REQUEST['nombre']."<".$_REQUEST['email'].">\r\nContent-Type: text/html; charset=UTF-8";
         try {
-          mail ("molinamario.msc@gmail.com", $asunto, $_REQUEST['mensaje'], $cabecera);
+          mail($hostEmail, $asunto, $_REQUEST['mensaje'], $cabecera);
           $data = [200];
         } catch (\Throwable $th) {
           $data = [array("error" => $th)];
@@ -405,11 +356,11 @@ if(isset($_GET['key'])){
         // G E T  S T A T S
         $data = [array("bandas"=>0, "albumes"=>0, "usuarios"=>0, "articulos"=>0)];
         $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
-        $resp = mysqli_query($c1,"SELECT COUNT(*) AS num FROM bandas WHERE pais IS NOT NULL");
+        $resp = mysqli_query($c1,"SELECT COUNT(*) AS num FROM bandas WHERE Pais IS NOT NULL");
         $data[0]["bandas"] = mysqli_fetch_all($resp,MYSQLI_ASSOC)[0]["num"];
-        $resp = mysqli_query($c1,"SELECT COUNT(*) AS num FROM albumes WHERE tipoAlb IS NOT NULL");
+        $resp = mysqli_query($c1,"SELECT COUNT(*) AS num FROM albumes WHERE TipoAlb IS NOT NULL");
         $data[0]["albumes"] = mysqli_fetch_all($resp,MYSQLI_ASSOC)[0]["num"];
-        $resp = mysqli_query($c1,"SELECT COUNT(*) AS num FROM usuarios WHERE nvlPermisos = 1");
+        $resp = mysqli_query($c1,"SELECT COUNT(*) AS num FROM usuarios WHERE NvlPermisos = 1");
         $data[0]["usuarios"] = mysqli_fetch_all($resp,MYSQLI_ASSOC)[0]["num"];
         $resp = mysqli_query($c1,"SELECT COUNT(*) AS num FROM articulos");
         $data[0]["articulos"] = mysqli_fetch_all($resp,MYSQLI_ASSOC)[0]["num"];

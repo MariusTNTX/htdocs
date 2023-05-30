@@ -56,83 +56,55 @@
 
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
-          <!-- <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="#about">About</a></li>
-          <li><a class="nav-link scrollto" href="#services">Services</a></li>
-          <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>
-          <li><a class="nav-link scrollto" href="#team">Team</a></li> -->
-          <li class="dropdown"><a href="#"><span>Bandas</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href="#" class="px-2 px-lg-1 px-xl-2"><span>Bandas</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="#">Listas Personalizadas</a></li>
-              <li><a href="#">Tier Lists</a></li>
-              <li><a href="#">Playlists Spotify</a></li>
-              <li><a href="#">Banda Aleatoria</a></li>
+              <li><a href="buscadorAvanzado.html?list=bands">Buscador Avanzado</a></li>
+              <li><a class="randomElement" id="randomBand" href="#">Banda Aleatoria</a></li>
             </ul>
           </li>
-          <li class="dropdown"><a href="#"><span>Albumes</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href="#" class="px-2 px-lg-1 px-xl-2"><span>Álbumes</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="./buscadorAvanzado.html">Listas Personalizadas</a></li>
-              <li><a href="#">Tier Lists</a></li>
-              <li><a href="./album.html">Álbum Aleatorio</a></li>
+              <li><a href="buscadorAvanzado.html?list=albums">Buscador Avanzado</a></li>
+              <li><a class="randomElement" id="randomAlbum" href="#">Álbum Aleatorio</a></li>
             </ul>
           </li>
-          <li class="dropdown"><a href="#"><span>Discográficas</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href="#" class="px-2 px-lg-1 px-xl-2"><span>Discográficas</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="#">Listas Personalizadas</a></li>
-              <li><a href="#">Playlists Spotify</a></li>
-              <li><a href="#">Discográfica Aleatoria</a></li>
+              <li><a href="buscadorAvanzado.html?list=labels">Buscador Avanzado</a></li>
+              <li><a class="randomElement" id="randomLabel" href="#">Discográfica Aleatoria</a></li>
             </ul>
           </li>
-          <li class="dropdown"><a href="#"><span>Géneros</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href="#" class="px-2 px-lg-1 px-xl-2"><span>Músicos</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="#">Ranking</a></li>
-              <li><a href="#">Tier Lists</a></li>
-              <li><a href="#">Playlists Spotify</a></li>
+              <li><a href="buscadorAvanzado.html?list=musicians">Buscador Avanzado</a></li>
+              <li><a class="randomElement" id="randomMusician" href="#">Músico Aleatorio</a></li>
             </ul>
           </li>
-          <li class="dropdown"><a href="#"><span>Historia</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="#">Cronología del Heavy Metal</a></li>
-              <li><a href="#">Playlists Spotify por Etapas</a></li>
-              <li><a href="#">Resúmenes de Años</a></li>
-            </ul>
-          </li>
-          <li class="dropdown"><a href="#"><span>Juegos</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="#">TimeLine</a></li>
-              <li><a href="#">Trivia</a></li>
-              <li><a href="#">Guitar Zero</a></li>
-            </ul>
-          </li>
-          <!-- <li><a class="nav-link scrollto" href="#contact">Donaciones</a></li>
-          <li><a class="nav-link scrollto" href="#about">Sobre Nosotros</a></li>
-          <li><a class="nav-link scrollto" href="#contact">Contacto</a></li> -->
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 
-      <div class="dropdown login me-2">
-        <button type="button" class="btn text-white dropdown-toggle py-2 px-3 px-sm-4" id="loginFormButton" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
-          <i class="bi bi-person-fill"></i>Login
+      <div class="dropdown login me-2" id="dropdownLogin">
+        <button type="button" class="btn text-white dropdown-toggle py-2 px-4" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+          <i class="bi bi-person-fill"></i>
+          <span class="d-none d-sm-inline-block" id="userName">Login</span>
         </button>
-        <form class="dropdown-menu dropdown-menu-end p-4 w-50" id="loginForm">
+        <form action="" method="get" class="dropdown-menu dropdown-menu-end p-4 w-50" id="loginForm">
           <div class="mb-3">
-            <label for="exampleDropdownFormEmail2" class="form-label">Email</label>
-            <input type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="email@ejemplo.com">
+            <label for="loginEmail" class="form-label">Email</label>
+            <input type="email" class="form-control" id="loginEmail" placeholder="email@ejemplo.com" required>
           </div>
           <div class="mb-3">
-            <label for="exampleDropdownFormPassword2" class="form-label">Contraseña</label>
-            <input type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Contraseña">
-          </div>
-          <div class="mb-3">
-            <div class="form-check">
-              <input type="checkbox" class="form-check-input" id="dropdownCheck2">
-              <label class="form-check-label" for="dropdownCheck2">
-                Recordarme
-              </label>
+            <label for="loginPass" class="form-label">Contraseña</label>
+            <div class="position-relative">
+              <input type="password" class="form-control" id="loginPass" placeholder="Contraseña" required>
+              <i id="loginPassEye" class="bi bi-eye-fill position-absolute top-50 end-0 translate-middle-y me-2"></i>
             </div>
           </div>
-          <div class="text-center"><button type="submit" class="btn btn-primary">Iniciar Sesión</button></div>
+          <div class="text-center mb-2"><button type="submit" class="btn btn-primary" id="loginButton">Iniciar Sesión</button></div>
+          <div class="mb-3 text-center">
+            <a href="#" id="forgPass">He olvidado mi contraseña</a>
+          </div>
           <hr class="mt-4">
           <div id="regist" class="text-center">
             <label for="regist" class="form-label">¿No tienes cuenta?</label>
@@ -181,7 +153,7 @@
             <div class="row mb-4">
               <div class="col-12">
                 <div class="form-floating">
-                  <input type="text" class="form-control" name="usuario" id="usuario" placeholder="Nombre de Usuario" minlength="3" maxlength="12" required value="MariusTNTX">
+                  <input type="text" class="form-control" name="usuario" id="usuario" placeholder="Nombre de Usuario" minlength="3" maxlength="12" required value="">
                   <label for="usuario">Nombre de Usuario <span>*</span></label>
                   <div class="form-text text-black-50 fst-italic ms-2">Por ejemplo: Janedoe19 (entre 3 y 12 caracteres)</div>
                   <div class="invalid-feedback ms-2">
@@ -197,7 +169,7 @@
             <div class="row mb-4">
               <div class="col-12">
                 <div class="form-floating">
-                  <input type="email" class="form-control" name="correo" id="correo" placeholder="Correo Electrónico" required value="molinamario.msc@gmail.com">
+                  <input type="email" class="form-control" name="correo" id="correo" placeholder="Correo Electrónico" required value="">
                   <label for="correo">Correo Electrónico <span>*</span></label>
                   <div class="form-text text-black-50 fst-italic ms-2">Por ejemplo: Janedoe19@gmail.com</div>
                   <div id="validacionCorreo" class="invalid-feedback ms-2">
@@ -213,7 +185,7 @@
             <div class="row mb-2">
               <div class="col-md-6 mb-2 mb-md-0">
                 <div class="form-floating">
-                  <input type="password" class="form-control" name="pass1" id="pass1" placeholder="Contraseña" required nocopy value="M@r1usTNTX">
+                  <input type="password" class="form-control" name="pass1" id="pass1" placeholder="Contraseña" required nocopy value="">
                   <label for="pass1">Contraseña <span>*</span></label>
                   <!-- <span class="position-absolute top-50 end-0 translate-middle-y me-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
@@ -226,7 +198,7 @@
               </div>
               <div class="col-md-6">
                 <div class="form-floating">
-                  <input type="password" class="form-control" name="pass2" id="pass2" placeholder="Repetir Contraseña" required nocopy disabled value="M@r1usTNTX">
+                  <input type="password" class="form-control" name="pass2" id="pass2" placeholder="Repetir Contraseña" required nocopy disabled value="">
                   <label for="pass2">Repetir Contraseña <span>*</span></label>
                   <!-- <span class="position-absolute top-50 end-0 translate-middle-y me-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
@@ -282,7 +254,7 @@
             <!-- Check Acepto las políticas de privacidad y cookies (enlace) -->
             <div class="row ms-2 mb-2">
               <div class="col-12 form-check">
-                <input class="form-check-input border-danger" type="checkbox" id="check2" name="check2" value="" required checked>
+                <input class="form-check-input border-danger" type="checkbox" id="check2" name="check2" value="" required>
                 <label class="form-check-label" for="check2">
                   Acepto las <a href="privacidad.html" target="_blank">políticas de privacidad y cookies</a> <span>*</span> y las <a href="legal.html" target="_blank">políticas legales y términos de uso</a> <span>*</span>
                 </label>
@@ -330,11 +302,11 @@
       <div class="container">
         <div class="row">
 
-          <div class="col-lg-3 col-md-6">
+          <div class="col-md-6"> <!-- col-lg-3 col-md-6 -->
             <div class="footer-info">
               <h1 class="logo me-auto me-lg-0 footer-h1">
                 <a href="index.html">
-                  <img src="imagenes/basico/logo_MetaList-2.png" alt="Logo blanco de MetaList" title="Logo blanco de MetaList" width="200px">
+                  <img src="imagenes/basico/logo_MetaList-2.png" alt="logo_MetaList 2" width="200px">
                 </a>
               </h1>
               <p>
@@ -344,8 +316,8 @@
                 <strong>Email:</strong> <a href="mailto:molinamario.msc@gmail.com" class="inv-a">molinamario.msc@gmail.com</a><br>
               </p> <br>
               <p>
-                <a href="privacidad.html" class="inv-a">Políticas de Privacidad y Cookies</a><br>
-                <a href="legal.html" class="inv-a">Políticas Legales y Términos de Uso</a><br>
+                <a href="privacidad.html" class="inv-a fw-bold">Políticas de Privacidad y Cookies</a><br>
+                <a href="legal.html" class="inv-a fw-bold">Políticas Legales y Términos de Uso</a><br>
               </p> <br>
               <div class="social-links mt-3">
                 <a href="https://twitter.com/?lang=es" class="twitter"><span class="d-none">.</span><div><i class="bx bxl-twitter"></div></i></a>
@@ -357,23 +329,18 @@
             </div>
           </div>
 
-          <div class="col-lg-2 col-md-6 footer-links">
+          <div class="col-md-3 footer-links"> <!-- col-lg-2 col-md-6 footer-links -->
             <h4>Nuestros Servicios</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="./buscadorAvanzado.html">Búsquedas Avanzadas</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Tier Lists</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Cronología</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Playlists de Spotify</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Mosaico de Géneros</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Juegos</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="./buscadorAvanzado.html?list=bands">Búsquedas Avanzadas</a></li>
             </ul>
           </div>
 
-          <div class="col-lg-3 col-md-6 footer-links">
+          <div class="col-md-3 footer-links">
             <h4>Nuestras Secciones</h4>
             <ul>
               <li><i class="bx bx-chevron-right"></i> <a href="index.html#portfolio">Noticias</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="index.html#testimonials">Sección "Hoy"</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="index.html#testimonials">Sección "Today"</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="index.html#team">Incorporaciones</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="index.html#features">Sobre Nosotros</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="index.html#clients">Lista de Fuentes</a></li>
@@ -381,20 +348,6 @@
               <li><i class="bx bx-chevron-right"></i> <a href="index.html#cta">Donaciones</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="index.html#contact">Contacto</a></li>
             </ul>
-          </div>
-
-          <div class="col-lg-4 col-md-6 footer-newsletter">
-            <h4 title="¿Quieres recibir notificaciones sin registrarte?">¿Quieres recibir notificaciones sin registrarte?</h4>
-            <p>Podemos enviarte las últimas noticias e incorporaciones al correo que nos indiques, pero si deseas elegir qué notificaciones recibir deberás crearte una cuenta.</p>
-            <form action="" method="post">
-              <label for="email1"></label><input type="email" name="email" id="email1" placeholder="Correo Electrónico">
-              <input type="submit" value="Enlazar">
-            </form> <br>
-            <p>En caso de no querer recibir más notificaciones podemos desenlazar el email que indiques a continuación:</p>
-            <form action="" method="post">
-              <label for="email2"></label><input type="email" name="email" id="email2" placeholder="Correo Electrónico">
-              <input type="submit" value="Desenlazar">
-            </form> <br>
           </div>
 
         </div>
@@ -406,10 +359,6 @@
         &copy; Copyright <strong><span>MetaList</span></strong> | Todos los derechos reservados
       </div>
       <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/ -->
         Diseñado por <a href="https://github.com/MariusTNTX?tab=repositories">Mario Molina</a>
       </div>
     </div>

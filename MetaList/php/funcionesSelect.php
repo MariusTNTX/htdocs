@@ -1,4 +1,4 @@
-<?
+<?php
 $filtrosMD = array(
   "nombreAlbum" => array("tabla"=>"albumes", "key"=>"NomBan_NomAlb"),
   "visitasAlbum" => array("tabla"=>"albumes", "key"=>"NomBan_NomAlb"),
@@ -249,7 +249,7 @@ $metadata = array(
       "nombrePlaylist" => array("tabla"=>"canciones_playlists", "key"=>"NomAlb"),
       "nombreCancionPlaylist" => array("tabla"=>"canciones_playlists", "key"=>"NomAlb"),
       "nombreDiscografica" => array("tabla"=>"discograficas_albumes", "key"=>"NomAlb"),
-      "nombreEstudio" => array("tabla"=>"estudios_albumes", "key"=>"NomAlb"),
+      "nombreEstudioAlbum" => array("tabla"=>"estudios_albumes", "key"=>"NomAlb"),
       "anioInicioEtapaBanda" => array("tabla"=>"etapas_bandas", "key"=>"NomBan"),
       "anioFinEtapaBanda" => array("tabla"=>"etapas_bandas", "key"=>"NomBan"),
       "tipoEtapaBanda" => array("tabla"=>"etapas_bandas", "key"=>"NomBan"),
@@ -304,7 +304,7 @@ $metadata = array(
       "nombrePlaylist" => array("tabla"=>"canciones_playlists", "key"=>"NomAlb"),
       "nombreCancionPlaylist" => array("tabla"=>"canciones_playlists", "key"=>"NomAlb"),
       "nombreDiscografica" => array("tabla"=>"discograficas_albumes", "key"=>"NomAlb"),
-      "nombreEstudio" => array("tabla"=>"estudios_albumes", "key"=>"NomAlb"),
+      "nombreEstudioAlbum" => array("tabla"=>"estudios_albumes", "key"=>"NomAlb"),
       "anioInicioEtapaBanda" => array("tabla"=>"etapas_bandas", "key"=>"NomBan"),
       "anioFinEtapaBanda" => array("tabla"=>"etapas_bandas", "key"=>"NomBan"),
       "tipoEtapaBanda" => array("tabla"=>"etapas_bandas", "key"=>"NomBan"),
@@ -586,9 +586,9 @@ $metadata = array(
   "estudios_albumes" => array(
     "alias" => "ea",
     "campos" => array(
-      "nombreBanda" => array("nombre"=>"NomBan", "simbolo"=>"LIKE", "salida"=>"banda"),
-      "nombreAlbum" => array("nombre"=>"NomAlb", "simbolo"=>"LIKE", "salida"=>"album"),
-      "nombreEstudio" => array("nombre"=>"NomEst", "simbolo"=>"LIKE", "salida"=>"estudio")
+      "nombreBandaEstudio" => array("nombre"=>"NomBan", "simbolo"=>"LIKE", "salida"=>"banda"),
+      "nombreAlbumEstudio" => array("nombre"=>"NomAlb", "simbolo"=>"LIKE", "salida"=>"album"),
+      "nombreEstudioAlbum" => array("nombre"=>"NomEst", "simbolo"=>"LIKE", "salida"=>"estudio")
     )
   ),
   "estudios_grabacion" => array(
@@ -600,8 +600,8 @@ $metadata = array(
       "direccionEstudio" => array("nombre"=>"Direccion", "simbolo"=>"LIKE", "salida"=>"direccion")
     ),
     "filtros" => array(
-      "nombreAlbum" => array("tabla"=>"estudios_albumes", "key"=>"NomEst"),
-      "nombreBanda" => array("tabla"=>"estudios_albumes", "key"=>"NomEst")
+      "nombreAlbumEstudio" => array("tabla"=>"estudios_albumes", "key"=>"NomEst"),
+      "nombreBandaEstudio" => array("tabla"=>"estudios_albumes", "key"=>"NomEst")
     )
   ),
   "etapas_bandas" => array(

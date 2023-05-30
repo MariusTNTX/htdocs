@@ -72,7 +72,7 @@ inputFoto.addEventListener("change", async ()=>{
   if(inputFoto.files.length>0 && expresionFoto.test(ext)){
     fd = new FormData(perfilForm);
     nombreFoto = ""+new Date().getTime()+new Date().getMilliseconds()+"."+ext;
-    sessionStorage.setItem("foto","http://localhost/MetaList/MetaListStorage/userProfilePictures/"+nombreFoto);
+    sessionStorage.setItem("foto",path+"/MetaListStorage/userProfilePictures/"+nombreFoto);
   } else if(inputFoto.files.length>0 && !expresionFoto.test(ext)) showAlert("ERROR",'Los archivos con la estensión ".'+ext+'" no están permitidos');
   else sessionStorage.setItem("foto",defaultFoto);
 

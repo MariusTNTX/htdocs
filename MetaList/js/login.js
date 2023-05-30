@@ -1,4 +1,4 @@
-var defaultFoto = "http://localhost/MetaList/imagenes/basico/user_MetaList.png";
+var defaultFoto = path+"/imagenes/basico/user_MetaList.png";
 
 function addShowPassSwitch(loginPassEye, loginPass){
   loginPassEye.addEventListener("click",()=>{

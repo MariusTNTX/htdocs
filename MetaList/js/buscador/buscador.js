@@ -108,15 +108,7 @@ searchButton.addEventListener("click", ()=>{
   }
 
   //Obtención de Datos
-  try {
-    if(showMore) printResults(1);
-  } catch (error) {
-    showAlert('ERROR','Ha habido un error en la búsqueda. Por favor, <a href="index.html#contact" class="text-warning">contacta con un administrador</a>');
-    allowScroll=false;
-    showMore=false;
-    spinner.classList.add("d-none");
-    noDataFound.classList.remove("d-none");
-  }
+  if(showMore) printResults(1);
   
 });
 
@@ -130,30 +122,35 @@ window.addEventListener("scroll",()=>{
 });
 
 async function printResults(pag = numPag){
-  spinner.classList.remove("d-none");
-  parameters.push(["limit","12"],["page",pag]);
-  //Obtención de datos
-  let results = await list(elemento,true,...parameters);
-  results = results.response;
-  
-  //Impresión
-  if(results.length>0){
-    noDataFound.classList.add("d-none")
-    numPag++;
-    showMore = results.length==12;
-    let txt = [];
-    for(let res of results){
-      txt.push(await getCard(res));
+  try {
+    spinner.classList.remove("d-none");
+    parameters.push(["limit","12"],["page",pag]);
+    //Obtención de datos
+    let results = await list(elemento,true,...parameters);
+    results = results.response;
+    
+    //Impresión
+    if(results.length>0){
+      noDataFound.classList.add("d-none")
+      numPag++;
+      showMore = results.length==12;
+      let txt = [];
+      for(let res of results){
+        txt.push(await getCard(res));
+      }
+      spinner.classList.add("d-none");
+      for(card of txt) resultContainer.appendChild(card);
+      allowScroll = results.length==12;
+    } else {
+      spinner.classList.add("d-none");
+      if(numPag==1) noDataFound.classList.remove("d-none");
+      else numPag=1;
+      showMore = false;
+      allowScroll = false;
     }
-    spinner.classList.add("d-none");
-    for(card of txt) resultContainer.appendChild(card);
-    allowScroll = results.length==12;
-  } else {
-    spinner.classList.add("d-none");
-    if(numPag==1) noDataFound.classList.remove("d-none");
-    else numPag=1;
-    showMore = false;
-    allowScroll = false;
+  } catch (error) {
+    manageSearchError();
+    throw new Error(error);
   }
 }
 
@@ -166,4 +163,12 @@ switch(getURLParameters().list){
   break;
   case 'musicians': for(let e of document.querySelectorAll(".filterMusicos")) e.dispatchEvent(new Event('click'));
   break;
+}
+
+function manageSearchError(){
+  showAlert('ERROR','Ha habido un error en la búsqueda. Por favor, <a href="index.html#contact" class="text-warning">contacta con un administrador</a>');
+  allowScroll=false;
+  showMore=false;
+  spinner.classList.add("d-none");
+  noDataFound.classList.remove("d-none");
 }

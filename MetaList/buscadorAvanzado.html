@@ -76,57 +76,30 @@
 
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
-          <!-- <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="#about">About</a></li>
-          <li><a class="nav-link scrollto" href="#services">Services</a></li>
-          <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>
-          <li><a class="nav-link scrollto" href="#team">Team</a></li> -->
           <li class="dropdown"><a href="#" class="px-2 px-lg-1 px-xl-2"><span>Bandas</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="#">Listas Personalizadas</a></li>
-              <li><a href="#">Tier Lists</a></li>
-              <li><a href="#">Playlists Spotify</a></li>
-              <li><a href="#">Banda Aleatoria</a></li>
+              <li><a href="buscadorAvanzado.html?list=bands">Buscador Avanzado</a></li>
+              <li><a class="randomElement" id="randomBand" href="#">Banda Aleatoria</a></li>
             </ul>
           </li>
-          <li class="dropdown"><a href="#" class="px-2 px-lg-1 px-xl-2"><span>Albumes</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href="#" class="px-2 px-lg-1 px-xl-2"><span>Álbumes</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="./buscadorAvanzado.html">Listas Personalizadas</a></li>
-              <li><a href="#">Tier Lists</a></li>
-              <li><a href="./album.html">Álbum Aleatorio</a></li>
+              <li><a href="buscadorAvanzado.html?list=albums">Buscador Avanzado</a></li>
+              <li><a class="randomElement" id="randomAlbum" href="#">Álbum Aleatorio</a></li>
             </ul>
           </li>
           <li class="dropdown"><a href="#" class="px-2 px-lg-1 px-xl-2"><span>Discográficas</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="#">Listas Personalizadas</a></li>
-              <li><a href="#">Playlists Spotify</a></li>
-              <li><a href="#">Discográfica Aleatoria</a></li>
+              <li><a href="buscadorAvanzado.html?list=labels">Buscador Avanzado</a></li>
+              <li><a class="randomElement" id="randomLabel" href="#">Discográfica Aleatoria</a></li>
             </ul>
           </li>
-          <li class="dropdown"><a href="#" class="px-2 px-lg-1 px-xl-2"><span>Géneros</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href="#" class="px-2 px-lg-1 px-xl-2"><span>Músicos</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="#">Ranking</a></li>
-              <li><a href="#">Tier Lists</a></li>
-              <li><a href="#">Playlists Spotify</a></li>
+              <li><a href="buscadorAvanzado.html?list=musicians">Buscador Avanzado</a></li>
+              <li><a class="randomElement" id="randomMusician" href="#">Músico Aleatorio</a></li>
             </ul>
           </li>
-          <li class="dropdown"><a href="#" class="px-2 px-lg-1 px-xl-2"><span>Historia</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="#">Cronología del Heavy Metal</a></li>
-              <li><a href="#">Playlists Spotify por Etapas</a></li>
-              <li><a href="#">Resúmenes de Años</a></li>
-            </ul>
-          </li>
-          <li class="dropdown"><a href="#" class="px-2 px-lg-1 px-xl-2"><span>Juegos</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="#">TimeLine</a></li>
-              <li><a href="#">Trivia</a></li>
-              <li><a href="#">Guitar Zero</a></li>
-            </ul>
-          </li>
-          <!-- <li><a class="nav-link scrollto" href="#contact">Donaciones</a></li>
-          <li><a class="nav-link scrollto" href="#about">Sobre Nosotros</a></li>
-          <li><a class="nav-link scrollto" href="#contact">Contacto</a></li> -->
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -827,7 +800,7 @@
       <div class="container">
         <div class="row">
 
-          <div class="col-lg-3 col-md-6">
+          <div class="col-md-6"> <!-- col-lg-3 col-md-6 -->
             <div class="footer-info">
               <h1 class="logo me-auto me-lg-0 footer-h1">
                 <a href="index.html">
@@ -835,15 +808,15 @@
                 </a>
               </h1>
               <p>
-                Calle de la Fuensanta, 3
+                Calle de la Fuensanta, 3 <br>
                 16002, Cuenca, España<br><br>
                 <strong>Teléfono:</strong> +32 969 304 288<br>
                 <strong>Email:</strong> <a href="mailto:molinamario.msc@gmail.com" class="inv-a">molinamario.msc@gmail.com</a><br>
-              </p>
+              </p> <br>
               <p>
-                <a href="privacidad.html" class="inv-a">Políticas de Privacidad y Cookies</a><br>
-                <a href="legal.html" class="inv-a">Políticas Legales y Términos de Uso</a><br>
-              </p>
+                <a href="privacidad.html" class="inv-a fw-bold">Políticas de Privacidad y Cookies</a><br>
+                <a href="legal.html" class="inv-a fw-bold">Políticas Legales y Términos de Uso</a><br>
+              </p> <br>
               <div class="social-links mt-3">
                 <a href="https://twitter.com/?lang=es" class="twitter"><span class="d-none">.</span><div><i class="bx bxl-twitter"></div></i></a>
                 <a href="https://www.facebook.com/" class="facebook"><span class="d-none">.</span><div><i class="bx bxl-facebook"></i></div></a>
@@ -854,23 +827,18 @@
             </div>
           </div>
 
-          <div class="col-lg-2 col-md-6 footer-links">
+          <div class="col-md-3 footer-links"> <!-- col-lg-2 col-md-6 footer-links -->
             <h4>Nuestros Servicios</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="./buscadorAvanzado.html">Búsquedas Avanzadas</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Tier Lists</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Cronología</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Playlists de Spotify</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Mosaico de Géneros</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Juegos</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="./buscadorAvanzado.html?list=bands">Búsquedas Avanzadas</a></li>
             </ul>
           </div>
 
-          <div class="col-lg-3 col-md-6 footer-links">
+          <div class="col-md-3 footer-links">
             <h4>Nuestras Secciones</h4>
             <ul>
               <li><i class="bx bx-chevron-right"></i> <a href="index.html#portfolio">Noticias</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="index.html#testimonials">Sección "Hoy"</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="index.html#testimonials">Sección "Today"</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="index.html#team">Incorporaciones</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="index.html#features">Sobre Nosotros</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="index.html#clients">Lista de Fuentes</a></li>
@@ -878,20 +846,6 @@
               <li><i class="bx bx-chevron-right"></i> <a href="index.html#cta">Donaciones</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="index.html#contact">Contacto</a></li>
             </ul>
-          </div>
-
-          <div class="col-lg-4 col-md-6 footer-newsletter">
-            <h4>¿Quieres recibir notificaciones sin registrarte?</h4>
-            <p>Podemos enviarte las últimas noticias e incorporaciones al correo que nos indiques, pero si deseas elegir qué notificaciones recibir deberás crearte una cuenta.</p>
-            <form action="" method="post">
-              <input type="email" name="email" placeholder="Correo Electrónico">
-              <input type="submit" value="Enlazar">
-            </form>
-            <p>En caso de no querer recibir más notificaciones podemos desenlazar el email que indiques a continuación:</p>
-            <form action="" method="post">
-              <input type="email" name="email" placeholder="Correo Electrónico">
-              <input type="submit" value="Desenlazar">
-            </form>
           </div>
 
         </div>
@@ -903,10 +857,6 @@
         &copy; Copyright <strong><span>MetaList</span></strong> | Todos los derechos reservados
       </div>
       <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/ -->
         Diseñado por <a href="https://github.com/MariusTNTX?tab=repositories">Mario Molina</a>
       </div>
     </div>

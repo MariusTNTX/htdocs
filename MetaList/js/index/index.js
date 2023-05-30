@@ -53,7 +53,9 @@ function printData(){
   //Imprimir Aniversarios
   todayList.innerHTML="";
   dataList.anniversaries.map((a,i)=>setAnniversarie(carouselContent,a,i));
-  document.getElementById("carouselButtons").firstElementChild.dispatchEvent(new Event("click"));
+  if(dataList.anniversaries.length>0){
+    document.getElementById("carouselButtons").firstElementChild.dispatchEvent(new Event("click"));
+  }
   //Imprimir Incorporaciones
   dataList.incorporations.map((b,i)=>setIncorporation(b,i));
   //Imprimir estadísticas

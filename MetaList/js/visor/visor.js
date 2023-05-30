@@ -26,7 +26,7 @@ let metadata = {
     requests: [
       {element: ['albumes'], params: [['nombreAlbum','params.album'],['nombreBanda','params.band']]},
       {element: ['discograficas'], params: [['nombreAlbum','params.album'],['nombreBanda','params.band']]},
-      {element: ['estudios_grabacion'], params: [['nombreAlbum','params.album'],['nombreBanda','params.band']]},
+      {element: ['estudios_grabacion'], params: [['nombreAlbumEstudio','params.album'],['nombreBandaEstudio','params.band']]},
       {element: ['generos_albumes'], params: [['nombreAlbum','params.album'],['nombreBanda','params.band'],['order','estrellasGeneroAlbum_Desc']]},
       {element: ['roles_musicos_albumes'], params: [['nombreAlbumRol','params.album'],['nombreBandaRol','params.band']]},
       {element: ['musicos'], params: [['nombreAlbumRol','params.album'],['nombreBandaRol','params.band']]},
@@ -39,7 +39,7 @@ let metadata = {
       {element: ['bandas'], params: [['nombreBanda','params.band']]},
       {element: ['etapas_bandas'], params: [['nombreBanda','params.band'],['order','anioInicioEtapaBanda']]},
       {element: ['discograficas'], params: [['nombreBanda','params.band']]},
-      {element: ['estudios_grabacion'], params: [['nombreBanda','params.band']]},
+      {element: ['estudios_grabacion'], params: [['nombreBandaEstudio','params.band']]},
       {element: ['temas_letra_bandas'], params: [['nombreBanda','params.band']]},
       {element: ['generos_bandas'], params: [['nombreBanda','params.band'],['order','estrellasGeneroBanda_Desc']]},
       {element: ['musicos_bandas'], params: [['nombreBandaEtapa','params.band'],['order','anioInicioEtapaMusico_Asc']]},

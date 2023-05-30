@@ -152,15 +152,15 @@ function getDuracion(tiempo){
 
 function getInfoBan(){
   let result = {};
-  result.nombre = document.getElementById("nombreBan").value.replaceAll("'","\'");
-  result.pais = document.getElementById("paisBan").value.replaceAll("'","\'");
-  result.origen = document.getElementById("origenBan").value.replaceAll("'","\'");
-  result.descrip = document.getElementById("descripcBan").value.replaceAll("'","\'").replaceAll('"','\"');
-  result.estatus = document.getElementById("estatusBan").value.replaceAll("'","\'");
-  result.imagen = document.getElementById("imagenBan").value.replaceAll("'","\'");
-  result.escuchas = document.getElementById("escuchasBan").value;
-  result.linkSpotify = document.getElementById("spotifyBan").value;
-  result.linkWeb = document.getElementById("webBan").value;
+  result.nombre = document.getElementById("nombreBan").value.replaceAll("'","\'").trim();
+  result.pais = document.getElementById("paisBan").value.replaceAll("'","\'").trim();
+  result.origen = document.getElementById("origenBan").value.replaceAll("'","\'").trim();
+  result.descrip = document.getElementById("descripcBan").value.replaceAll("'","\'").replaceAll('"','\"').trim();
+  result.estatus = document.getElementById("estatusBan").value.replaceAll("'","\'").trim();
+  result.imagen = document.getElementById("imagenBan").value.replaceAll("'","\'").trim();
+  result.escuchas = document.getElementById("escuchasBan").value.trim();
+  result.linkSpotify = document.getElementById("spotifyBan").value.trim();
+  result.linkWeb = document.getElementById("webBan").value.trim();
   return result;
 }
 
@@ -168,9 +168,9 @@ function getEtapasBan(){
   let result = [];
   for(let row of document.getElementById("tbodyEtapas").children){
     result.push({
-      anioInic: row.querySelector(".anioInicBan").value,
-      anioFin: row.querySelector(".anioFinBan").value,
-      tipo: row.querySelector(".tipoEtaBan").value
+      anioInic: row.querySelector(".anioInicBan").value.trim(),
+      anioFin: row.querySelector(".anioFinBan").value.trim(),
+      tipo: row.querySelector(".tipoEtaBan").value.trim()
     });
   }
   return result;
@@ -179,7 +179,7 @@ function getEtapasBan(){
 function getTemasBan(){
   let result = [];
   for(let row of document.getElementById("tbodyTemas").children){
-    result.push({nombre: row.querySelector(".temaLetra").value.replaceAll("'","\'")});
+    result.push({nombre: row.querySelector(".temaLetra").value.replaceAll("'","\'").trim()});
   }
   return result;
 }
@@ -188,9 +188,9 @@ function getEstudiosBan(){
   let result = [];
   for(let row of document.getElementById("tbodyEstudios").children){
     result.push({
-      nombre: row.querySelector(".nomEstBan").value.replaceAll("'","\'"),
-      pais: row.querySelector(".paisEstBan").value.replaceAll("'","\'"),
-      origen: row.querySelector(".origenEstBan").value.replaceAll("'","\'")
+      nombre: row.querySelector(".nomEstBan").value.replaceAll("'","\'").trim(),
+      pais: row.querySelector(".paisEstBan").value.replaceAll("'","\'").trim(),
+      origen: row.querySelector(".origenEstBan").value.replaceAll("'","\'").trim()
     });
   }
   return result;
@@ -198,44 +198,44 @@ function getEstudiosBan(){
 
 function getAlbumBan(elm){
   let result = {};
-  result.nombre = elm.querySelector(".nombreAlb").value.replaceAll("'","\'");
-  result.dia = elm.querySelector(".diaAlb").value;
-  result.mes = elm.querySelector(".mesAlb").value;
-  result.anio = elm.querySelector(".anioAlb").value;
-  result.tipo = elm.querySelector(".tipoAlb").value;
-  result.imagen = elm.querySelector(".imgAlb").value;
-  result.escuchas = elm.querySelector(".escuchAlb").value;
-  result.duracion = getDuracion(elm.querySelector(".duracAlb").value);
-  result.iframe = elm.querySelector(".linkSpotAlb").value;
-  result.linkAmazon = elm.querySelector(".amazonAlb").value;
-  result.descrip = elm.querySelector(".descripAlb").value.replaceAll("'","\'").replaceAll('"','\"');
+  result.nombre = elm.querySelector(".nombreAlb").value.replaceAll("'","\'").trim();
+  result.dia = elm.querySelector(".diaAlb").value.trim();
+  result.mes = elm.querySelector(".mesAlb").value.trim();
+  result.anio = elm.querySelector(".anioAlb").value.trim();
+  result.tipo = elm.querySelector(".tipoAlb").value.trim();
+  result.imagen = elm.querySelector(".imgAlb").value.trim();
+  result.escuchas = elm.querySelector(".escuchAlb").value.trim();
+  result.duracion = getDuracion(elm.querySelector(".duracAlb").value.trim());
+  result.iframe = elm.querySelector(".linkSpotAlb").value.trim();
+  result.linkAmazon = elm.querySelector(".amazonAlb").value.trim();
+  result.descrip = elm.querySelector(".descripAlb").value.replaceAll("'","\'").replaceAll('"','\"').trim();
   result.generos = [];
   for(let row of elm.querySelector(".tbodyGenerosAlb").children){
     result.generos.push({
-      nombre: row.querySelector(".genAlb").value.replaceAll("'","\'"),
-      estrellas: row.querySelector(".estrGenAlb").value
+      nombre: row.querySelector(".genAlb").value.replaceAll("'","\'").trim(),
+      estrellas: row.querySelector(".estrGenAlb").value.trim()
     });
   }
   result.canciones = [];
   for(let row of elm.querySelector(".tbodyCancionesAlb").children){
     result.canciones.push({
-      nombre: row.querySelector(".nomCanAlb").value.replaceAll("'","\'"),
-      estrellas: row.querySelector(".estrCanAlb").value
+      nombre: row.querySelector(".nomCanAlb").value.replaceAll("'","\'").trim(),
+      estrellas: row.querySelector(".estrCanAlb").value.trim()
     });
   }
   result.discograficas = [];
   for(let row of elm.querySelector(".tbodyDiscograficasAlb").children){
-    result.discograficas.push({nombre: row.querySelector(".discAlb").value.replaceAll("'","\'")});
+    result.discograficas.push({nombre: row.querySelector(".discAlb").value.replaceAll("'","\'").trim()});
   }
   result.estudios = [];
   for(let row of elm.querySelector(".tbodyEstudiosAlb").children){
-    result.estudios.push({nombre: row.querySelector(".estAlb").value.replaceAll("'","\'")});
+    result.estudios.push({nombre: row.querySelector(".estAlb").value.replaceAll("'","\'").trim()});
   }
   result.musicos = [];
   for(let row of elm.querySelector(".tbodyRolesAlb").children){
     result.musicos.push({
-      nombre: row.querySelector(".musAlb").value.replaceAll("'","\'"),
-      roles: row.querySelector(".rolesMusAlb").value.replaceAll("'","\'")
+      nombre: row.querySelector(".musAlb").value.replaceAll("'","\'").trim(),
+      roles: row.querySelector(".rolesMusAlb").value.replaceAll("'","\'").trim()
     });
   }
   return result;
@@ -253,27 +253,27 @@ function getMusicosBan(){
   let result = [];
   for(let mus of document.getElementById("tbodyMusicos").children){
     let res = {
-      nombre: mus.querySelector(".nombreMus").value.replaceAll("'","\'"),
-      sexo: mus.querySelector(".sexoMus").value,
-      imagen: mus.querySelector(".imgMus").value,
+      nombre: mus.querySelector(".nombreMus").value.replaceAll("'","\'").trim(),
+      sexo: mus.querySelector(".sexoMus").value.trim(),
+      imagen: mus.querySelector(".imgMus").value.trim(),
       fechaNac: {
-        dia: mus.querySelector(".diaNacMus").value,
-        mes: mus.querySelector(".mesNacMus").value,
-        anio: mus.querySelector(".anioNacMus").value
+        dia: mus.querySelector(".diaNacMus").value.trim(),
+        mes: mus.querySelector(".mesNacMus").value.trim(),
+        anio: mus.querySelector(".anioNacMus").value.trim()
       },
       fechaDef: {
-        dia: mus.querySelector(".diaDefMus").value,
-        mes: mus.querySelector(".mesDefMus").value,
-        anio: mus.querySelector(".anioDefMus").value
+        dia: mus.querySelector(".diaDefMus").value.trim(),
+        mes: mus.querySelector(".mesDefMus").value.trim(),
+        anio: mus.querySelector(".anioDefMus").value.trim()
       },
-      pais: mus.querySelector(".paisMus").value.replaceAll("'","\'"),
-      origen: mus.querySelector(".origenMus").value.replaceAll("'","\'"),
+      pais: mus.querySelector(".paisMus").value.replaceAll("'","\'").trim(),
+      origen: mus.querySelector(".origenMus").value.replaceAll("'","\'").trim(),
       etapas: []
     };
     for(let row of mus.querySelector(".tbodyEtapasMus").children){
       res.etapas.push({
-        anioInic: row.querySelector(".anioInicMus").value,
-        anioFin: row.querySelector(".anioFinMus").value
+        anioInic: row.querySelector(".anioInicMus").value.trim(),
+        anioFin: row.querySelector(".anioFinMus").value.trim()
       });
     }
     result.push(res);
@@ -285,12 +285,12 @@ function getDiscograficasBan(){
   let result = [];
   for(let disc of document.getElementById("tbodyDiscograficas").children){
     result.push({
-      nombre: disc.querySelector(".nombreDisc").value.replaceAll("'","\'"),
-      estatus: disc.querySelector(".estatusDisc").value.replaceAll("'","\'"),
-      imagen: disc.querySelector(".imgDisc").value,
-      linkWeb: disc.querySelector(".webDisc").value,
-      pais: disc.querySelector(".paisDisc").value.replaceAll("'","\'"),
-      origen: disc.querySelector(".direcDisc").value.replaceAll("'","\'")
+      nombre: disc.querySelector(".nombreDisc").value.replaceAll("'","\'").trim(),
+      estatus: disc.querySelector(".estatusDisc").value.replaceAll("'","\'").trim(),
+      imagen: disc.querySelector(".imgDisc").value.trim(),
+      linkWeb: disc.querySelector(".webDisc").value.trim(),
+      pais: disc.querySelector(".paisDisc").value.replaceAll("'","\'").trim(),
+      origen: disc.querySelector(".direcDisc").value.replaceAll("'","\'").trim()
     });
   }
   return result;
