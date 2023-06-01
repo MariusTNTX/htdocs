@@ -50,7 +50,7 @@ function printData(){
   let id = setInterval(() => {
     document.getElementById("noticesFull").dispatchEvent(new Event("click"));
     clearInterval(id);
-  }, 2000);
+  }, 500);
   //Imprimir Aniversarios
   todayList.innerHTML="";
   if(dataList.anniversaries.length>0){

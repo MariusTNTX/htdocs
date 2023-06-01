@@ -1,4 +1,7 @@
 <?php
+//Establecer zona horaria española
+date_default_timezone_set('Europe/Madrid');
+
 $filtrosMD = array(
   "nombreAlbum" => array("tabla"=>"albumes", "key"=>"NomBan_NomAlb"),
   "visitasAlbum" => array("tabla"=>"albumes", "key"=>"NomBan_NomAlb"),

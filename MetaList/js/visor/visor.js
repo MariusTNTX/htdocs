@@ -229,12 +229,12 @@ async function mainArticle(elm, data){
   mainArticleElm.parentElement.parentElement.parentElement.classList.remove("d-none");
   tags.forEach(async (t,i)=>{
     let tag = t.etiqueta, enlace="";
-    if(tag.includes('NomBan::')){
-      enlace = await list('bandas',true,['nombreBanda',tag.split('::')[1]],['estatusBanda_Like','e']);
-      viewerParams = `element=band&band=${encodeURIComponent(tag.split('::')[1])}`;
-    } else if(tag.includes('NomAlb::')){
+    if(tag.includes('NomAlb::')){
       enlace = await list('albumes',true,['nombreBanda',tag.split(';;')[0].split('::')[1]],['nombreAlbum',tag.split(';;')[1].split('::')[1]],['escuchasAlbum_Min',1]);
       viewerParams = `element=album&band=${encodeURIComponent(tag.split(';;')[0].split('::')[1])}&album=${encodeURIComponent(tag.split(';;')[1].split('::')[1])}`;
+    } else if(tag.includes('NomBan::')){
+      enlace = await list('bandas',true,['nombreBanda',tag.split('::')[1]],['estatusBanda_Like','e']);
+      viewerParams = `element=band&band=${encodeURIComponent(tag.split('::')[1])}`;
     } else if(tag.includes('NomMus::')){
       enlace = await list('musicos',true,['nombreMusico',tag.split('::')[1]]);
       viewerParams = `element=musician&musician=${encodeURIComponent(tag.split('::')[1])}`;
@@ -245,7 +245,7 @@ async function mainArticle(elm, data){
     enlace = enlace.response;
     if(enlace.length>0){
       let tagSpan = document.querySelectorAll(".tagSpan")[i];
-      tagSpan.innerHTML=`<a href='visor.html?${viewerParams}'>${tagSpan.innerHTML}</a>`;
+      tagSpan.innerHTML=`<a href="visor.html?${viewerParams}">${tagSpan.innerHTML}</a>`;
     }
   });
 }

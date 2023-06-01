@@ -24,6 +24,7 @@ let contador = document.getElementById("contador");
 let codigoVerificacion = document.getElementById("codigoVerificacion");
 let verificarCuenta = document.getElementById("verificarCuenta");
 let cancelarProceso = document.getElementById("cancelarProceso");
+
 /* Expresiones Regulares */
 let expresionUsuario = new RegExp(/^[\wñç'ª\.@áéíóúÁÉÍÓÚäëïöüÄËÏÖÜàèìòùÀÈÌÒÙâêîôûÂÊÎÔÛ]{3,12}$/i);
 let expresionCorreo = new RegExp(/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
@@ -33,12 +34,15 @@ let exprPass3 = new RegExp(/[a-zñçáéíóúàèìòùäëïöüâêîôû]{1,
 let exprPass4 = new RegExp(/\d{1,}/);
 let exprPass5 = new RegExp(/[ºª!|"@·#$~%€&¬()=?'¿¡`^\[\+\*\]´¨{}<>,;.:\-_]{1,}/);
 let expresionFoto = new RegExp(/(pjp)|(jpg)|(pjpeg)|(jpeg)|(jfif)|(png)|(webp)/);
+
 /* Criterios contraseña */
 let criterios = [[exprPass1,crt],[exprPass2,may],[exprPass3,min],[exprPass4,num],[exprPass5,esp]];
+
 /* Estado de Validación General */
-let validacion = {user: false, email: false, pass1: false, pass2: false, terms: false};
+let validacion = {user: false, email: false, pass1: false, pass2: false, terms: false, captcha: false};
 let codigo;
 let enVerific = false;
+
 
 /* Eventos Mostrar/Ocultar Contraseña */
 addShowPassSwitch(loginPassEye1, pass1);
@@ -108,12 +112,15 @@ pass1.addEventListener("keyup",()=>{
   if(full){
     pass2.removeAttribute("disabled");
     pass1.classList.remove("border-danger");
+    pass1.classList.add("border-success");
+    loginPassEye1.classList.add("text-success");
     validacion.pass1=true;
     validar();
   } else {
     pass2.setAttribute("disabled","true");
     pass1.classList.remove("border-success");
     pass1.classList.add("border-danger");
+    loginPassEye1.classList.remove("text-success");
   }
   validPassRepeat();
 });
@@ -124,18 +131,15 @@ pass2.addEventListener("keyup",()=> validPassRepeat());
 //Función Validar Coincidencia entre Contraseñas
 function validPassRepeat(){
   if(pass1.value.length>0 && pass2.value==pass1.value){
+    pass1.classList.remove("border-danger");
     pass1.classList.add("border-success");
     pass2.classList.remove("border-danger");
     pass2.classList.add("border-success");
     loginPassEye1.classList.add("text-success");
-    /* loginPassEye2.classList.add("text-success"); */
     validacion.pass2=true;
     validar();
   } else {
-    pass1.classList.remove("border-success");
     pass2.classList.remove("border-success");
-    loginPassEye1.classList.remove("text-success");
-    /* loginPassEye2.classList.remove("text-success"); */
     if(!pass2.hasAttribute("disabled")) pass2.classList.add("border-danger");
     validacion.pass2=false;
     validar();
@@ -169,9 +173,15 @@ check2.addEventListener("change",()=>{
   }
 });
 
+/* Validación Captcha */
+function checkCaptcha(){
+  validacion.captcha=true;
+  validar();
+}
+
 function validar(){
   console.log(validacion)
-  if(validacion.user && validacion.email && validacion.pass1 && validacion.pass2 && validacion.terms){
+  if(validacion.user && validacion.email && validacion.pass1 && validacion.pass2 && validacion.terms && validacion.captcha){
     botonVerificar1.removeAttribute("disabled");
   } else botonVerificar1.setAttribute("disabled","true");
 }

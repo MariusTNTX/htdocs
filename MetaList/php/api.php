@@ -18,6 +18,8 @@ use PhpMyAdmin\Utils\HttpRequest;
 include("calcFechas.php");
 //Evitar Warnings, deprecated y enotived
 ini_set('error_reporting', E_ALL & ~E_NOTICE & ~E_WARNING & ~E_DEPRECATED);
+//Establecer zona horaria española
+date_default_timezone_set('Europe/Madrid');
 
 function query($c1, $query){
   //echo "\n\n".$query.";";
