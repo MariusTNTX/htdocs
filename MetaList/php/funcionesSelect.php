@@ -109,7 +109,7 @@ $filtrosMD = array(
 
   "nombreEstudio" => array("tabla"=>"estudios_grabacion", "key"=>"NomEst"),
   "paisEstudio" => array("tabla"=>"estudios_grabacion", "key"=>"NomEst"),
-  "DireccionEstudio" => array("tabla"=>"estudios_grabacion", "key"=>"NomEst"),
+  "direccionEstudio" => array("tabla"=>"estudios_grabacion", "key"=>"NomEst"),
 
   "nombreBandaEtapa" => array("tabla"=>"etapas_bandas", "key"=>"NomBan"),
   "anioInicioEtapaBanda" => array("tabla"=>"etapas_bandas", "key"=>"NomBan"),
@@ -210,7 +210,6 @@ $filtrosMD = array(
   "nombreUsuario" => array("tabla"=>"usuarios", "key"=>"Email"),
   "emailUsuario" => array("tabla"=>"usuarios", "key"=>"Email"),
   "nivelPermisosUsuario" => array("tabla"=>"usuarios", "key"=>"Email"),
-  "notificacionesUsuario" => array("tabla"=>"usuarios", "key"=>"Email"),
   "fechaUsuario" => array("tabla"=>"usuarios", "key"=>"Email")
 );
 
@@ -324,7 +323,7 @@ $metadata = array(
     "alias" => "ar",
     "key" => array("entrada"=>"nombreArticulo", "nombre"=>"nomArt"),
     "campos" => array(
-      "nombreArticulo" => array("nombre"=>"nomArt", "simbolo"=>"LIKE", "salida"=>"nombre"),
+      "nombreArticulo" => array("nombre"=>"nomArt", "simbolo"=>"LIKE", "salida"=>"articulo"),
       "resumenArticulo" => array("nombre"=>"Resumen", "simbolo"=>"LIKE", "salida"=>"resumen"),
       "descripcionArticulo" => array("nombre"=>"Descrip", "simbolo"=>"LIKE", "salida"=>"descripcion"),
       "categoriaArticulo" => array("nombre"=>"Categoria", "simbolo"=>"LIKE", "salida"=>"categoria"),
@@ -613,6 +612,13 @@ $metadata = array(
       "tipoEtapaBanda" => array("nombre"=>"Tipo", "simbolo"=>"LIKE", "salida"=>"tipo")
     )
   ),
+  "etiquetas_articulos" => array(
+    "alias" => "ear",
+    "campos" => array(
+      "nombreArticulo" => array("nombre"=>"NomArt", "simbolo"=>"LIKE", "salida"=>"articulo"),
+      "nombreEtiqueta" => array("nombre"=>"NomEtiq", "simbolo"=>"LIKE", "salida"=>"etiqueta")
+    )
+  ),
   "generos" => array(
     "alias" => "g",
     "key" => array("entrada"=>"nombreGenero", "nombre"=>"NomGen"),
@@ -744,7 +750,6 @@ $metadata = array(
       "contraUsuario" => array("nombre"=>"PassUsu", "simbolo"=>"LIKE", "salida"=>"contrasena"),
       "fotoUsuario" => array("nombre"=>"Foto", "simbolo"=>"LIKE", "salida"=>"foto"),
       "nivelPermisosUsuario" => array("nombre"=>"NvlPermisos", "simbolo"=>"=", "salida"=>"permisos"),
-      "notificacionesUsuario" => array("nombre"=>"Notificaciones", "simbolo"=>"LIKE", "salida"=>"notificaciones"),
       "fechaUsuario" => array("nombre"=>"FechaHora", "simbolo"=>"=", "salida"=>"fecha")
     ),
     "filtros" => array(

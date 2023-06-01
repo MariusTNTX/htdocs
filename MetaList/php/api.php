@@ -2,13 +2,20 @@
 
 //Evitar problemas de CORS
 header('Access-Control-Allow-Origin: *');
-header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method");
-header("Access-Control-Allow-Methods: GET, POST");
-header("Allow: GET, POST");
+header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization');
+header("Access-Control-Allow-Credentials: true");
+header('Content-Type: application/json');
+$method = $_SERVER['REQUEST_METHOD'];
+if ($method == "OPTIONS") {
+  header('Access-Control-Allow-Origin: *');
+  header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method,Access-Control-Request-Headers, Authorization");
+  header("HTTP/1.1 200 OK");
+  die();
+}
 
 use PhpMyAdmin\Utils\HttpRequest;
 
-include("oculto.php");
+include("calcFechas.php");
 //Evitar Warnings, deprecated y enotived
 ini_set('error_reporting', E_ALL & ~E_NOTICE & ~E_WARNING & ~E_DEPRECATED);
 
@@ -31,7 +38,59 @@ if(isset($_GET['key'])){
   if(checkTime($_GET['key']) || $_GET['key']==$apikey){
     try {
       /* S E L E C T S ---------------------------------------------------------------------------------------------------- */
-      if(isset($_REQUEST['list'])){
+      if(isset($_GET['select'])){
+        //ALMACENAMIENTO DE PARÁMETROS
+        $select = $_GET['select'];
+        $elements = (strlen($_GET['elements'])>0) ? explode("|", $_GET['elements']) : [];
+        $values = (strlen($_GET['values'])>0) ? explode("|", $_GET['values']) : [];
+
+        //INFO_BANDA
+        if($select=='infoBanda'){
+          //Se forma la raíz de la consulta
+          $consultas = [
+            'info'=>'SELECT NomBan as nombre, pais, origen, numescuchasmes as escuchas, imagen, estatus, descrip, linkweb, linkspotify FROM BANDAS WHERE NomBan LIKE "'.$values[0].'"',
+            'albumes'=>'SELECT nomalb as nombre, descrip, imagen, tipoalb as tipo, enlista, anio, mes, dia, numescuchasmax as escuchas, linkspotify, linkamazon FROM ALBUMES WHERE NomBan LIKE "'.$values[0].'" ORDER BY Anio',
+            'generos'=>'SELECT nomgen as nombre, estrellas FROM GENEROS_BANDAS WHERE NomBan LIKE "'.$values[0].'"'
+          ];
+          $data = ['info'=>'','albumes'=>'','generos'=>''];
+          //Se establece conexión con la BD
+          $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
+          
+          foreach($consultas as $elm => $cons){
+            //Se realiza la consulta
+            if (!$resp = mysqli_query($c1, $cons)){
+              echo mysqli_error($c1).'<br>';
+              echo 'Consulta: '.$consulta;
+              exit(-1);
+            }
+            //Se almacenan los datos
+            if($elm=='info') $data[$elm] = mysqli_fetch_all($resp, MYSQLI_ASSOC)[0];
+            else $data[$elm] = mysqli_fetch_all($resp, MYSQLI_ASSOC);
+          }
+
+          //RECORRER ÁLBUMES ABAJO
+          foreach($data['albumes'] as $i => $album){
+            if (!$resp = mysqli_query($c1, 'SELECT nomcan as nombre, estrellas FROM CANCIONES_ALBUMES WHERE NomBan LIKE "'.$values[0].'" AND NomAlb LIKE "'.$album['nombre'].'"')){
+              echo mysqli_error($c1).'<br>';
+              echo 'Consulta: '.$consulta;
+              exit(-1);
+            } 
+            $data['albumes'][$i]['canciones'] = mysqli_fetch_all($resp, MYSQLI_ASSOC);
+            if (!$resp = mysqli_query($c1, 'SELECT nomgen as nombre, estrellas FROM GENEROS_ALBUMES WHERE NomBan LIKE "'.$values[0].'" AND NomAlb LIKE "'.$album['nombre'].'"')){
+              echo mysqli_error($c1).'<br>';
+              echo 'Consulta: '.$consulta;
+              exit(-1);
+            }
+            $data['albumes'][$i]['generos'] = mysqli_fetch_all($resp, MYSQLI_ASSOC);
+          }
+        }
+
+        //DEVOLUCIÓN DE JSON
+        mysqli_close($c1);
+        header("Content-type: application/json; charset=utf-8");
+        echo json_encode($data);
+    
+      } else if(isset($_REQUEST['list'])){
         // L I S T 
         try{
           include("funcionesSelect.php");
@@ -312,7 +371,7 @@ if(isset($_GET['key'])){
           if(password_verify($oldPass,$hash)){
             $data[0]["verify"] = true;
             $newPass = password_hash($newPass,PASSWORD_DEFAULT);
-            mysqli_query($c1,"UPDATE USUARIOS SET PassUsu = '".$newPass."' WHERE Email LIKE '".$email."'");
+            mysqli_query($c1,"UPDATE usuarios SET PassUsu = '".$newPass."' WHERE Email LIKE '".$email."'");
           } 
         } else $data[0]["coincidence"] = false;
         mysqli_close($c1);
@@ -335,14 +394,14 @@ if(isset($_GET['key'])){
           sendNewPass($hostEmail, $email, $password, $usuario);
           //Update de la Password
           $password = password_hash($password,PASSWORD_DEFAULT);
-          mysqli_query($c1,"UPDATE USUARIOS SET passusu = '".$password."' WHERE Email LIKE '".$email."'");
+          mysqli_query($c1,"UPDATE usuarios SET PassUsu = '".$password."' WHERE Email LIKE '".$email."'");
         } else $data[0]["coincidence"] = false;
         mysqli_close($c1);
         header("Content-type: application/json; charset=utf-8");
         echo json_encode($data);
       } else if(isset($_REQUEST['sendAdminMessage'])){
         // S E N D  A D M I N  M E S S A G E
-        $asunto = "From: ".$_REQUEST['nombre']."<".$_REQUEST['email'].">: ".$_REQUEST['asunto'];
+        $asunto = $_REQUEST['asunto'];
         $cabecera = "From: ".$_REQUEST['nombre']."<".$_REQUEST['email'].">\r\nContent-Type: text/html; charset=UTF-8";
         try {
           mail($hostEmail, $asunto, $_REQUEST['mensaje'], $cabecera);
@@ -471,6 +530,19 @@ if(isset($_GET['key'])){
         $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
         try {
           mysqli_query($c1,"DROP DATABASE IF EXISTS $dbname");
+        } catch (\Throwable $th) {
+          $data[0]['status'] = 500;
+          $data[0]['error'] = $th;
+        }
+        mysqli_close($c1);
+        header("Content-type: application/json; charset=utf-8");
+        echo json_encode($data);
+      } else if(isset($_REQUEST['createViews'])){
+        // C R E A T E  V I E W S
+        $data = [array("status"=>200)];
+        $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
+        try {
+          include 'createViews.php';
         } catch (\Throwable $th) {
           $data[0]['status'] = 500;
           $data[0]['error'] = $th;

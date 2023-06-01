@@ -1,4 +1,4 @@
-var path = `http://localhost/MetaList`;
+var path = `https://metalist.es`;
 
 //CODIFICADOR DE API_KEY
 function key(){ //Genera la key de uso único para peticiones realizadas por los scripts de la aplicación
@@ -17,8 +17,15 @@ function key(){ //Genera la key de uso único para peticiones realizadas por los
   return clave;
 }
 
+function encodeParams(params){
+  let results = [];
+  for(let p of params) results.push([p[0],encodeURIComponent(p[1])]);
+  return results;
+}
+
 // GET: FUNCIÓN OBTENER INFORMACIÓN DE LA API
 async function get(elm, ...params){
+  params = encodeParams(params);
   //Se seleccionan los filtros y sus valores:
   let elements = [], values = [];
   for(let e of params){
@@ -39,9 +46,11 @@ async function get(elm, ...params){
 
 // LIST: FUNCIÓN OBTENER LISTAS DE LA API
 async function list(elm, awt, ...params){
+  params = encodeParams(params);
   let url = `${path}/php/api.php?key=${key()}&list=${elm}`;
   //Se seleccionan los filtros y sus valores:
-  for(let e of params) url += `&${e[0]}=${(typeof(e[1])=='string')?e[1].replaceAll("&","%26"):e[1]}`;
+  //if(params) for(let e of params) url += `&${e[0]}=${(typeof(e[1])=='string')?e[1].replaceAll("&","%26"):e[1]}`;
+  if(params) for(let e of params) url += `&${e[0]}=${e[1]}`;
   //Se obtiene el JSON de resultados:
   console.log(url)
   let response = await fetch(url,{
@@ -98,7 +107,7 @@ async function remove(elm, awt, body){
 
 // SET_FORM_DATA: FUNCIÓN INSERTAR FOTOS A TRAVÉS DE LA API
 async function setFormData(elm, awt, body, name, id=""){
-  let response = await fetch(`${path}/php/api.php?key=${key()}&setFormData=${elm}&name=${name}&id=${id}`,{
+  let response = await fetch(`${path}/php/api.php?key=${key()}&setFormData=${elm}&name=${name}&id=${encodeURIComponent(id)}`,{
     method: 'POST',
     body: body
   });
@@ -111,7 +120,7 @@ async function setFormData(elm, awt, body, name, id=""){
 // REPLACE_FORM_DATA: FUNCIÓN INTERCAMBIAR FOTOS A TRAVÉS DE LA API
 async function replaceFormData(elm, awt, body, name, id=""){
   //Se obtiene el JSON de resultados:
-  let response = await fetch(`${path}/php/api.php?key=${key()}&replaceFormData=${elm}&name=${name}&id=${id}`,{
+  let response = await fetch(`${path}/php/api.php?key=${key()}&replaceFormData=${elm}&name=${name}&id=${encodeURIComponent(id)}`,{
     method: 'POST',
     body: body
   });
@@ -124,7 +133,7 @@ async function replaceFormData(elm, awt, body, name, id=""){
 // DELETE_FORM_DATA: FUNCIÓN ELIMINAR FOTOS A TRAVÉS DE LA API
 async function deleteFormData(elm, awt, id=""){
   //Se obtiene el JSON de resultados:
-  let response = await fetch(`${path}/php/api.php?key=${key()}&deleteFormData=${elm}&id=${id}`,{
+  let response = await fetch(`${path}/php/api.php?key=${key()}&deleteFormData=${elm}&id=${encodeURIComponent(id)}`,{
     method: 'POST'
   });
   response = await response.json();
@@ -135,9 +144,9 @@ async function deleteFormData(elm, awt, id=""){
 
 // SEND_VERIFY_EMAIL: FUNCIÓN ENVIAR CORREO DE VERIFICACIÓN A TRAVÉS DE LA API
 async function sendVerifyEmail(email, code, awt){
-  console.log(`${path}/php/api.php?key=${key()}&sendVerifyEmail=${email}&code=${code}`);
+  console.log(`${path}/php/api.php?key=${key()}&sendVerifyEmail=${encodeURIComponent(email)}&code=${code}`);
   //Se obtiene el JSON de resultados:
-  let response = await fetch(`${path}/php/api.php?key=${key()}&sendVerifyEmail=${email}&code=${code}`,{
+  let response = await fetch(`${path}/php/api.php?key=${key()}&sendVerifyEmail=${encodeURIComponent(email)}&code=${code}`,{
     method: 'GET',
     headers: {'Content-Type': 'application/json'}
   });
@@ -150,9 +159,9 @@ async function sendVerifyEmail(email, code, awt){
 // CHECK_PASSWORD: FUNCIÓN VERIFICAR CONTRASEÑAS A TRAVÉS DE LA API
 async function checkPassword(email, pass, awt){
   pass = encodeURI(pass);
-  console.log(`${path}/php/api.php?key=${key()}&checkPassword=${encodeURIComponent(pass)}&email=${email}`);
+  console.log(`${path}/php/api.php?key=${key()}&checkPassword=${encodeURIComponent(pass)}&email=${encodeURIComponent(email)}`);
   //Se obtiene el JSON de resultados:
-  let response = await fetch(`${path}/php/api.php?key=${key()}&checkPassword=${encodeURIComponent(pass)}&email=${email}`,{
+  let response = await fetch(`${path}/php/api.php?key=${key()}&checkPassword=${encodeURIComponent(pass)}&email=${encodeURIComponent(email)}`,{
     method: 'GET',
     headers: {'Content-Type': 'application/json'}
   });
@@ -166,9 +175,9 @@ async function checkPassword(email, pass, awt){
 async function changePassword(email, oldPass, newPass, awt){
   oldPass = encodeURI(oldPass);
   newPass = encodeURI(newPass);
-  console.log(`${path}/php/api.php?key=${key()}&changePassword=${email}&oldPass=${encodeURIComponent(oldPass)}&newPass=${encodeURIComponent(newPass)}`);
+  console.log(`${path}/php/api.php?key=${key()}&changePassword=${encodeURIComponent(email)}&oldPass=${encodeURIComponent(oldPass)}&newPass=${encodeURIComponent(newPass)}`);
   //Se obtiene el JSON de resultados:
-  let response = await fetch(`${path}/php/api.php?key=${key()}&changePassword=${email}&oldPass=${encodeURIComponent(oldPass)}&newPass=${encodeURIComponent(newPass)}`,{
+  let response = await fetch(`${path}/php/api.php?key=${key()}&changePassword=${encodeURIComponent(email)}&oldPass=${encodeURIComponent(oldPass)}&newPass=${encodeURIComponent(newPass)}`,{
     method: 'GET',
     headers: {'Content-Type': 'application/json'}
   });
@@ -180,9 +189,9 @@ async function changePassword(email, oldPass, newPass, awt){
 
 // SEND_NEW_PASS: FUNCIÓN ENVIAR NUEVA CONTRASEÑA A TRAVÉS DE LA API
 async function sendNewPass(email, awt){
-  console.log(`${path}/php/api.php?key=${key()}&sendNewPass=${email}`);
+  console.log(`${path}/php/api.php?key=${key()}&sendNewPass=${encodeURIComponent(email)}`);
   //Se obtiene el JSON de resultados:
-  let response = await fetch(`${path}/php/api.php?key=${key()}&sendNewPass=${email}`,{
+  let response = await fetch(`${path}/php/api.php?key=${key()}&sendNewPass=${encodeURIComponent(email)}`,{
     method: 'GET',
     headers: {'Content-Type': 'application/json'}
   });
@@ -208,9 +217,9 @@ async function getStats(awt){
 
 // SEND_ADMIN_MESSAGE: FUNCIÓN ENVIAR CORREOS AL ADMINISTRADOR A TRAVÉS DE LA API
 async function sendAdminMessage(awt,email,asunto,mensaje,nombre="Anónimo"){
-  console.log(`${path}/php/api.php?key=${key()}&email=${email}&asunto=${asunto}&mensaje=${mensaje}&nombre=${nombre}`);
+  console.log(`${path}/php/api.php?key=${key()}&sendAdminMessage=1&email=${encodeURIComponent(email)}&asunto=${encodeURIComponent(asunto)}&mensaje=${encodeURIComponent(mensaje)}&nombre=${encodeURIComponent(nombre)}`);
   //Se obtiene el JSON de resultados:
-  let response = await fetch(`${path}/php/api.php?key=${key()}&sendAdminMessage=1&email=${email}&asunto=${asunto}&mensaje=${mensaje}&nombre=${nombre}`,{
+  let response = await fetch(`${path}/php/api.php?key=${key()}&sendAdminMessage=1&email=${encodeURIComponent(email)}&asunto=${encodeURIComponent(asunto)}&mensaje=${encodeURIComponent(mensaje)}&nombre=${encodeURIComponent(nombre)}`,{
     method: 'GET',
     headers: {'Content-Type': 'application/json'}
   });
@@ -222,9 +231,12 @@ async function sendAdminMessage(awt,email,asunto,mensaje,nombre="Anónimo"){
 
 // DBACTIONS: REALIZAR ACCIONES GENERALES SOBRE LA BASE DE DATOS A TRAVÉS DE LA API
 async function dbAction(elm,awt,...params){
+  params = encodeParams(params);
+
   let url = `${path}/php/api.php?key=${key()}&${elm}=1`;
   //Se seleccionan los filtros y sus valores:
-  if(params) for(let e of params) url += `&${e[0]}=${(typeof(e[1])=='string')?e[1].replaceAll("&","%26"):e[1]}`;
+  //if(params) for(let e of params) url += `&${e[0]}=${(typeof(e[1])=='string')?e[1].replaceAll("&","%26"):e[1]}`;
+  if(params) for(let e of params) url += `&${e[0]}=${e[1]}`;
   //Se obtiene el JSON de resultados:
   console.log(url)
   let response = await fetch(url,{

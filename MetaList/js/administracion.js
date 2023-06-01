@@ -146,6 +146,7 @@ mdlRestoreNext.addEventListener("click", async ()=>{
       let fecha = chkElement.children[1].textContent, hora = chkElement.children[2].textContent;
       mdlRestoreClose.dispatchEvent(new Event("click"));
       await dbAction('restore',true,['fecha',fecha],['hora',hora]);
+      await dbAction('createViews',true);
       showAlert('SUCCESS','La restauración de la copia de seguridad se ha efectuado con éxito');
     } catch (error) {
       showAlert('ERROR','Ha habido un error al restaurar la copia de seguridad');

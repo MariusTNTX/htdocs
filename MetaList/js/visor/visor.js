@@ -1,6 +1,7 @@
 /* ELEMENTOS DOM */
 let pageTitle = document.getElementById("pageTitle");
 let pageBreadcrumb = document.getElementById("pageBreadcrumb");
+let advancedSearchLink = document.getElementById("advancedSearchLink");
 let image1Elm = document.getElementById("image1");
 let topGenresElm = document.getElementById("topGenres");
 let topSongsElm = document.getElementById("topSongs");
@@ -12,6 +13,7 @@ let heartElm1 = document.getElementById("heart1");
 let heartElm2 = document.getElementById("heart2");
 let image2Elm = document.getElementById("image2");
 let mainInfoElm = document.getElementById("mainInfo");
+let mainArticleElm = document.getElementById("mainArticle");
 let recordingElm = document.getElementById("recording");
 let topMusiciansElm = document.getElementById("topMusicians");
 let description2Elm = document.getElementById("description2");
@@ -19,6 +21,13 @@ let topAlbumsElm = document.getElementById("topAlbums");
 let topBandsElm = document.getElementById("topBands");
 
 let params = getURLParameters();
+console.log("Pre Params: ",params);
+if(params.band) params.band = decodeURIComponent(params.band);
+if(params.album) params.album = decodeURIComponent(params.album);
+if(params.label) params.label = decodeURIComponent(params.label);
+if(params.musician) params.musician = decodeURIComponent(params.musician);
+if(params.article) params.article = decodeURIComponent(params.article);
+console.log("Post Params: ",params);
 let element = params.element;
 
 let metadata = {
@@ -64,16 +73,21 @@ let metadata = {
       {element: ['musicos_bandas'], params: [['nombreMusicoEtapa','params.musician'],['order','anioInicioEtapaMusico']]},
       {element: ['roles_musicos_albumes'], params: [['nombreMusicoRol','params.musician']]},
       {element: ['albumes'], params: [['nombreMusicoRol','params.musician'],['order','anioAlbum']]},
-      {element: ['bandas'], params: [['nombreMusicoRol','params.musician']]}, /* antes: nombreMusicoEtapa */
+      {element: ['bandas'], params: [['nombreMusicoRol','params.musician']]},
       {element: ['canciones_albumes'], params: [['nombreMusicoRol','params.musician'],['order','estrellasCancion_Desc'],['page','1'],['limit','10']]},
     ],
     cards: [head, image, mainInfo, recording, topSongs, topAlbums, topBands, links]
+  },
+  article: {
+    requests: [
+      {element: ['articulos'], params: [['nombreArticulo','params.article']]},
+      {element: ['etiquetas_articulos'], params: [['nombreArticulo','params.article']]},
+    ],
+    cards: [head, image, mainArticle, description]
   }
 };
 
 setFullData();
-
-
 
 async function setFullData(){
   //OBTENCIÓN DE TODOS LOS DATOS NECESARIOS DE LA API (array 1)
@@ -98,20 +112,24 @@ function head(elm, data){
   if(elm=='album'){
     pageTitle.textContent = "Álbum";
     pageBreadcrumb.textContent = "Álbum";
-    headElm.innerHTML = `<h1>${data.albumes[0].album} - <a href="visor.html?element=band&band=${data.albumes[0].banda}">${data.albumes[0].banda}</a></h1>`;
+    advancedSearchLink.href = 'buscadorAvanzado.html?list=albums';
+    headElm.innerHTML = `<h1>${data.albumes[0].album} - <a href="visor.html?element=band&band=${encodeURIComponent(data.albumes[0].banda)}">${data.albumes[0].banda}</a></h1>`;
     heartElm.classList.remove("d-none");
   } else if(elm=='band'){
     pageTitle.textContent = "Banda";
     pageBreadcrumb.textContent = "Banda";
+    advancedSearchLink.href = 'buscadorAvanzado.html?list=bands';
     headElm.innerHTML = `<h1>${data.bandas[0].banda}</h1>`;
     heartElm.classList.remove("d-none");
   } else if(elm=='label'){
     pageTitle.textContent = "Discográfica";
     pageBreadcrumb.textContent = "Discográfica";
+    advancedSearchLink.href = 'buscadorAvanzado.html?list=labels';
     headElm.innerHTML = `<h1>${data.discograficas[0].discografica}</h1>`;
   } else if(elm=='musician'){
     pageTitle.textContent = "Músico";
     pageBreadcrumb.textContent = "Músico";
+    advancedSearchLink.href = 'buscadorAvanzado.html?list=musicians';
     if(!data.musicos[0].anioDefuncion) headElm.innerHTML = `<h1>${data.musicos[0].musico}</h1>`;
     else headElm.innerHTML = `
       <h1>
@@ -120,6 +138,11 @@ function head(elm, data){
           <span class="position-absolute start-100 top-0"><img class="mb-4" style="height:22px" src="./imagenes/basico/deathCross.png" alt="Símbolo de la cruz"></span>
         </span>
       </h1>`;
+  } else if(elm=='article'){
+    pageTitle.textContent = "Noticia";
+    pageBreadcrumb.textContent = "Noticia";
+    advancedSearchLink.parentElement.parentElement.removeChild(advancedSearchLink.parentElement);
+    headElm.innerHTML = `<h1>${data.articulos[0].articulo}</h1>`;
   }
   //Corazón de Favoritos
   addHeartEvent();
@@ -127,6 +150,9 @@ function head(elm, data){
   //Visitas
   if(elm=='album') put('albumes',false,[{id:{nombreBanda: data.albumes[0].banda, nombreAlbum: data.albumes[0].album},visitasAlbum: parseInt(data.albumes[0].visitas)+1}]);
   else if(elm=='band') put('bandas',false,[{id:{nombreBanda: data.bandas[0].banda},visitasBanda: parseInt(data.bandas[0].visitas)+1}]);
+  else if(elm=='label') put('discograficas',false,[{id:{nombreDiscografica: data.discograficas[0].discografica},visitasDiscografica: parseInt(data.discograficas[0].visitas)+1}]);
+  else if(elm=='musician') put('musicos',false,[{id:{nombreMusico: data.musicos[0].musico},visitasMusico: parseInt(data.musicos[0].visitas)+1}]);
+  else if(elm=='article') put('articulos',false,[{id:{nombreArticulo: data.articulos[0].articulo},visitasArticulo: parseInt(data.articulos[0].visitas)+1}]);
 }
 
 function image(elm, data){
@@ -143,6 +169,9 @@ function image(elm, data){
   } else if(elm=='musician'){
     image1Elm.src=(data.musicos[0].imagen)?data.musicos[0].imagen:"imagenes/basico/user_MetaList.png";
     image2Elm.src=(data.musicos[0].imagen)?data.musicos[0].imagen:"imagenes/basico/user_MetaList.png";
+  } else if(elm=='article'){
+    image1Elm.src=(data.articulos[0].imagen)?data.articulos[0].imagen:"imagenes/basico/user_MetaList.png";
+    image2Elm.src=(data.articulos[0].imagen)?data.articulos[0].imagen:"imagenes/basico/user_MetaList.png";
   }
 }
 
@@ -154,7 +183,7 @@ function mainInfo(elm, data){
   if(elm=='album'){
     let album = data.albumes[0];
     txt= `<li><strong>Tipo de Álbum</strong>: ${(album.tipo)?tipoEsp[album.tipo.replaceAll(" ","_")]:"Tipo Desconocido"}</li>
-          <li><strong>Fecha</strong>: ${(album.dia)?album.dia+" de ":""}${(album.mes)?mesEsp[parseInt(album.mes)]+" de ":""}${(album.anio)?album.anio:"Fecha Desconocida"}</li>
+          <li><strong>Fecha</strong>: ${(album.dia)?album.dia+" de ":""}${(album.mes)?mesEsp[parseInt(album.mes)-1]+" de ":""}${(album.anio)?album.anio:"Fecha Desconocida"}</li>
           <li><strong>Escuchas Spotify</strong>: ${addPoints(album.escuchas)}</li>
           <li><strong>Etapa Histórica</strong>: ${getHistoryStage(album.anio)}</li>
           <li><strong>Duración</strong>: ${secToTime(album.duracion)}</li>`;
@@ -183,13 +212,51 @@ function mainInfo(elm, data){
   mainInfoElm.parentElement.parentElement.classList.remove("d-none");
 }
 
+async function mainArticle(elm, data){
+  console.log("mainArticle",elm,data);
+  let mesEsp = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+  let article = data.articulos[0], tags = data.etiquetas_articulos;
+  txt= `<li><strong>Fecha</strong>: ${(article.dia)?article.dia+" de ":""}${(article.mes)?mesEsp[parseInt(article.mes)-1]+" de ":""}${(article.anio)?article.anio:"Fecha Desconocida"}</li>
+        <li><strong>Categoría</strong>: ${article.categoria}</li>
+        <li><strong>Visitas</strong>: ${article.visitas}</li>
+        <li><strong>Relacionados</strong>: `;
+  tags.forEach((t, i)=>{
+    let tag = (t.etiqueta.split(';;').length>1) ? t.etiqueta.split(';;')[1].split('::')[1] : t.etiqueta.split('::')[1];
+    txt+=`${i>0 ? ' | ' : ''}<span class="tagSpan">${tag}</span>`;
+  }) 
+  txt+='</li>';
+  mainArticleElm.innerHTML=txt;
+  mainArticleElm.parentElement.parentElement.parentElement.classList.remove("d-none");
+  tags.forEach(async (t,i)=>{
+    let tag = t.etiqueta, enlace="";
+    if(tag.includes('NomBan::')){
+      enlace = await list('bandas',true,['nombreBanda',tag.split('::')[1]],['estatusBanda_Like','e']);
+      viewerParams = `element=band&band=${encodeURIComponent(tag.split('::')[1])}`;
+    } else if(tag.includes('NomAlb::')){
+      enlace = await list('albumes',true,['nombreBanda',tag.split(';;')[0].split('::')[1]],['nombreAlbum',tag.split(';;')[1].split('::')[1]],['escuchasAlbum_Min',1]);
+      viewerParams = `element=album&band=${encodeURIComponent(tag.split(';;')[0].split('::')[1])}&album=${encodeURIComponent(tag.split(';;')[1].split('::')[1])}`;
+    } else if(tag.includes('NomMus::')){
+      enlace = await list('musicos',true,['nombreMusico',tag.split('::')[1]]);
+      viewerParams = `element=musician&musician=${encodeURIComponent(tag.split('::')[1])}`;
+    } else if(tag.includes('NomDisc::')){
+      enlace = await list('discograficas',true,['nombreDiscografica',tag.split('::')[1]]);
+      viewerParams = `element=label&label=${encodeURIComponent(tag.split('::')[1])}`;
+    }
+    enlace = enlace.response;
+    if(enlace.length>0){
+      let tagSpan = document.querySelectorAll(".tagSpan")[i];
+      tagSpan.innerHTML=`<a href='visor.html?${viewerParams}'>${tagSpan.innerHTML}</a>`;
+    }
+  });
+}
+
 async function recording(elm, data){
   console.log("recording",elm,data);
   let labels = data.discograficas, studios = data.estudios_grabacion, txt="";
   if(elm=='album' || elm=='band'){
     txt=`<ul class="mb-0"><li><strong>Discográficas</strong>: <ul>`;
     for(let label of labels){
-      txt+=`<li><i class="bx bx-chevron-right"></i><a href="visor.html?element=label&label=${label.discografica}">${label.discografica}</a> - ${(label.direccion)?label.direccion+", ":""}${(label.pais)?label.pais:"Origen Desconocido"}</li>`;
+      txt+=`<li><i class="bx bx-chevron-right"></i><a href="visor.html?element=label&label=${encodeURIComponent(label.discografica)}">${label.discografica}</a> - ${(label.direccion)?label.direccion+", ":""}${(label.pais)?label.pais:"Origen Desconocido"}</li>`;
     }
     txt+= `</ul></li><li><strong>Estudios de Grabación</strong>: <ul>`;
     for(let studio of studios){
@@ -211,7 +278,7 @@ async function recording(elm, data){
     recordingElm.innerHTML=txt;
     recordingElm.parentElement.parentElement.classList.remove("d-none");
   } else if(elm=='label'){
-    let studios = await list('estudios_grabacion',true,['nombreAlbum',data.albumes.map(a=>a.album).join('|')]);
+    let studios = await list('estudios_grabacion',true,['nombreAlbumEstudio',data.albumes.map(a=>a.album).join('|')]);
     studios = studios.response.filter((s,i,list)=>i==list.findIndex(s2=>s2.estudio==s.estudio));
     txt=`<ul class="mb-0"><li><strong>Estudios de Grabación</strong>: <ul>`;
     for(let studio of studios){
@@ -233,6 +300,15 @@ function description(elm, data){
   } else if(elm=='band'){
     description1Elm.innerHTML=data.bandas[0].descripcion;
     description2Elm.innerHTML=data.bandas[0].descripcion;
+    description1Elm.parentElement.parentElement.classList.remove("d-none");
+    description2Elm.parentElement.parentElement.classList.remove("d-none");
+  } else if(elm=='article'){
+    description1Elm.parentElement.removeChild(description1Elm.previousElementSibling);
+    description2Elm.parentElement.removeChild(description2Elm.previousElementSibling);
+    description1Elm.innerHTML=`<h4 class="text-center mb-4">${data.articulos[0].resumen}</h4>`;
+    description2Elm.innerHTML=`<h4 class="text-center mb-4">${data.articulos[0].resumen}</h4>`;
+    description1Elm.innerHTML+=`<p>${data.articulos[0].descripcion}</p>`;
+    description2Elm.innerHTML+=`<p>${data.articulos[0].descripcion}</p>`;
     description1Elm.parentElement.parentElement.classList.remove("d-none");
     description2Elm.parentElement.parentElement.classList.remove("d-none");
   }
@@ -271,7 +347,7 @@ function topAlbums(elm, data){
         <div class="row">
           <div class="col-auto pe-0"><img src="${(album.imagen)?album.imagen:"imagenes/basico/user_MetaList.png"}" class="rounded-1 shadow" alt="Imagen del álbum ${album.album}"></div>
           <div class="col-auto ps-2 elmCardText">
-            <p class="mb-0 fs-6"><a href="visor.html?element=album&band=${album.banda}&album=${album.album}">${album.album}</a></p>
+            <p class="mb-0 fs-6"><a href="visor.html?element=album&band=${encodeURIComponent(album.banda)}&album=${encodeURIComponent(album.album)}">${album.album}</a></p>
             <hr class="mt-1 mb-2">
             <p class="mb-0">${(album.dia)?album.dia+" de ":""}${(album.mes)?mesEsp[parseInt(album.mes)]+" de ":""}${(album.anio)?album.anio:""}</p>
           </div>
@@ -287,7 +363,7 @@ function topAlbums(elm, data){
         <div class="row">
           <div class="col-auto pe-0"><img src="${(album.imagen)?album.imagen:"imagenes/basico/user_MetaList.png"}" class="rounded-1 shadow" alt="Imagen del álbum ${album.album}"></div>
           <div class="col-auto ps-2 elmCardText">
-            <p class="mb-0 fs-6"><a href="visor.html?element=album&band=${album.banda}&album=${album.album}">${(data.bandas.length>1)?album.banda+' - ':''}${album.album}</a></p>
+            <p class="mb-0 fs-6"><a href="visor.html?element=album&band=${encodeURIComponent(album.banda)}&album=${encodeURIComponent(album.album)}">${(data.bandas.length>1)?album.banda+' - ':''}${album.album}</a></p>
             <hr class="mt-1 mb-2">
             <p class="mb-0">${(album.dia)?album.dia+" de ":""}${(album.mes)?mesEsp[parseInt(album.mes)]+" de ":""}${(album.anio)?album.anio:""}</p>
           </div>
@@ -309,7 +385,7 @@ function topBands(elm, data){
         <div class="row">
           <div class="col-auto pe-0"><img src="${(band.imagen)?band.imagen:"imagenes/basico/user_MetaList.png"}" class="rounded-1 shadow" alt="Imagen de la banda ${band.banda}"></div>
           <div class="col-auto ps-2 elmCardText">
-            <p class="mb-0 fs-6"><a href="visor.html?element=band&band=${band.banda}">${band.banda}</a></p>
+            <p class="mb-0 fs-6"><a href="visor.html?element=band&band=${encodeURIComponent(band.banda)}">${band.banda}</a></p>
             <hr class="mt-1 mb-2">
             <p class="mb-0">${(band.origen)?band.origen+', ':''}${(band.pais)?band.pais:''}</p>
           </div>
@@ -325,7 +401,7 @@ function topBands(elm, data){
         <div class="row">
           <div class="col-auto pe-0"><img src="${(band.imagen)?band.imagen:"imagenes/basico/user_MetaList.png"}" class="rounded-1 shadow" alt="Imagen de la banda ${band.banda}"></div>
           <div class="col-auto ps-2 elmCardText">
-            <p class="mb-0 fs-6"><a href="visor.html?element=band&band=${band.banda}">${band.banda}</a></p>
+            <p class="mb-0 fs-6"><a href="visor.html?element=band&band=${encodeURIComponent(band.banda)}">${band.banda}</a></p>
             <hr class="mt-1 mb-2">
             <p class="mb-0">${(data.musicos_bandas.filter(m=>m.musico==data.musicos[0].musico).length>0)?getStages(data.musicos_bandas.filter(m=>m.musico==data.musicos[0].musico)):data.bandas.filter(b=>b.banda==band.banda)[0].pais}</p>
           </div>
@@ -360,7 +436,7 @@ function topMusicians(elm, data){
           <div class="col-auto pe-0"><img src="${(musician.imagen)?musician.imagen:"imagenes/basico/user_MetaList.png"}" class="rounded-1 shadow" alt="Imagen del músico ${musician.musico}"></div>
           <div class="col-auto ps-2 elmCardText">
             <p class="mb-0 fs-6">
-              <a href="visor.html?element=musician&musician=${musician.musico}" class="position-relative">
+              <a href="visor.html?element=musician&musician=${encodeURIComponent(musician.musico)}" class="position-relative">
                 ${musician.musico}
                 ${(musician.anioDefuncion)?'<span class="position-absolute start-100 top-0"><img class="mb-2" style="height:13px" src="./imagenes/basico/deathCross.png" alt="Símbolo de la cruz"></span>':''}
               </a>
@@ -383,7 +459,7 @@ function topMusicians(elm, data){
           <div class="col-auto pe-0"><img src="${(musician.imagen)?musician.imagen:"imagenes/basico/user_MetaList.png"}" class="rounded-1 shadow" alt="Imagen del músico ${musician.musico}"></div>
           <div class="col-auto ps-2 elmCardText">
             <p class="mb-0 fs-6">
-              <a href="visor.html?element=musician&musician=${musician.musico}" class="position-relative">
+              <a href="visor.html?element=musician&musician=${encodeURIComponent(musician.musico)}" class="position-relative">
                 ${musician.musico}
                 ${(musician.anioDefuncion)?'<span class="position-absolute start-100 top-0"><img class="mb-2" style="height:13px" src="./imagenes/basico/deathCross.png" alt="Símbolo de la cruz"></span>':''}
               </a>

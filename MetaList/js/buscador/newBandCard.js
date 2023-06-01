@@ -18,7 +18,7 @@ async function getBandCard(band){
           <img src="${(band.imagen)?band.imagen:"./imagenes/basico/user_MetaList.png"}" class="card-img-top" alt="Imagen de la banda '${band.banda}'">
         </div>
         <div class="card-body text-center">
-          <h5 class="card-title"><a href="visor.html?element=band&band=${band.banda}">${band.banda}</a></h5>
+          <h5 class="card-title"><a href="visor.html?element=band&band=${encodeURIComponent(band.banda)}">${band.banda}</a></h5>
           <hr>
           <h6 class="card-title">${(band.origen)?band.origen+", ":""}${(band.pais)?band.pais:"Origen Desconocido"}</h6>
           <h6 class="card-title"><i class="bi bi-circle-fill ${statusColor}"></i> ${(band.estatus)?band.estatus:"Estatus Desconocido"}</h6>

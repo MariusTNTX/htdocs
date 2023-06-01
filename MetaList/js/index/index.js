@@ -7,6 +7,7 @@ let noticesLastMonths = document.getElementById("noticesLastMonths");
 let noticesCurYear = document.getElementById("noticesCurYear");
 let noticesFull = document.getElementById("noticesFull");
 let todayList = document.getElementById("todayList");
+let carouselContainer = document.getElementById("carouselContainer");
 let carouselButtons = document.getElementById("carouselButtons");
 let carouselContent = document.getElementById("carouselContent");
 let bandStats = document.getElementById("bandStats");
@@ -52,10 +53,13 @@ function printData(){
   }, 2000);
   //Imprimir Aniversarios
   todayList.innerHTML="";
-  dataList.anniversaries.map((a,i)=>setAnniversarie(carouselContent,a,i));
   if(dataList.anniversaries.length>0){
-    document.getElementById("carouselButtons").firstElementChild.dispatchEvent(new Event("click"));
-  }
+    dataList.anniversaries.map((a,i)=>setAnniversarie(carouselContent,a,i));
+    if(dataList.anniversaries.length>0){
+      document.getElementById("carouselButtons").firstElementChild.dispatchEvent(new Event("click"));
+    }
+  } else carouselContainer.innerHTML=`<h1 class="text-white text-center mt-5 pt-5">No hay entradas para la fecha de hoy</h1>`;
+  
   //Imprimir Incorporaciones
   dataList.incorporations.map((b,i)=>setIncorporation(b,i));
   //Imprimir estadísticas
@@ -72,12 +76,12 @@ function setNotice(container, notice, i){
   for(let cl of notice.timeCategory.split(" ")) elm.classList.add(cl);
   elm.innerHTML=`
     <div class="portfolio-wrap">
-      <img src="${(notice.imagen)?notice.imagen:"imagenes/basico/user_MetaList.png"}" class="img-fluid" alt="${notice.nombre}">
+      <img src="${(notice.imagen)?notice.imagen:"imagenes/basico/user_MetaList.png"}" class="img-fluid" alt="${notice.articulo}">
       <div class="portfolio-info">
-        <h4><a href="#" class="inv-a">${notice.nombre}</a></h4>
+        <h4><a href="#" class="inv-a">${notice.articulo}</a></h4>
         <p>${(notice.dia)?notice.dia:"??"}/${(notice.mes)?notice.mes:"??"}/${(notice.anio)?notice.anio:"????"}</p>
         <div class="portfolio-links">
-          <a href="${(notice.imagen)?notice.imagen:"imagenes/basico/user_MetaList.png"}" data-gallery="portfolioGallery" class="portfolio-lightbox" title='${notice.nombre}'><i class='bx bx-expand'></i></a>
+          <a href="${(notice.imagen)?notice.imagen:"imagenes/basico/user_MetaList.png"}" data-gallery="portfolioGallery" class="portfolio-lightbox" title='${notice.articulo}'><i class='bx bx-expand'></i></a>
         </div>
       </div>
     </div>`;
@@ -86,12 +90,13 @@ function setNotice(container, notice, i){
   for(let cl of notice.timeCategory.split(" ")) elm.classList.add(cl);
   let img = elm.querySelector("img");
   img.src = (notice.imagen)?notice.imagen:"imagenes/basico/user_MetaList.png";
-  img.alt = notice.nombre;
+  img.alt = notice.articulo;
   let mainA = elm.querySelector(".inv-a");
-  mainA.textContent = notice.nombre;
-  let subA = elm.querySelector(".portfolio-lightbox");
+  mainA.textContent = notice.articulo;
+  mainA.href=`visor.html?element=article&article=${encodeURIComponent(notice.articulo)}`;
+  /* let subA = elm.querySelector(".portfolio-lightbox");
   subA.href = (notice.imagen)?notice.imagen:"imagenes/basico/user_MetaList.png";
-  subA.title = notice.nombre;
+  subA.title = notice.articulo; */
   let p = elm.querySelector("p");
   p.textContent = `${(notice.dia)?notice.dia:"??"}/${(notice.mes)?notice.mes:"??"}/${(notice.anio)?notice.anio:"????"}`;
   elm.classList.remove("d-none");
@@ -116,21 +121,21 @@ async function setAnniversarie(contanier, anniversarie, i){
   let links = ``;
   if(anniversarie.annCategory=='album'){
     title = `${anniversarie.diffYears}º Aniversario del álbum "${anniversarie.album}"`;
-    mainLink = `visor.html?element=album&band=${anniversarie.banda}&album=${anniversarie.album}`;
-    links = `<a href="visor.html?element=band&band=${anniversarie.banda}" class="inv-a">${anniversarie.banda}</a>`;
+    mainLink = `visor.html?element=album&band=${encodeURIComponent(anniversarie.banda)}&album=${encodeURIComponent(anniversarie.album)}`;
+    links = `<a href="visor.html?element=band&band=${encodeURIComponent(anniversarie.banda)}" class="inv-a">${anniversarie.banda}</a>`;
   } else if(anniversarie.annCategory=='birthday'){
     title = `${anniversarie.musico} cumple ${anniversarie.diffYears} años`;
-    mainLink = `visor.html?element=musician&musician=${anniversarie.musico}`;
+    mainLink = `visor.html?element=musician&musician=${encodeURIComponent(anniversarie.musico)}`;
     let bands = await list('bandas',true,['nombreMusicoRol',anniversarie.musico]);
     bands.response.forEach((b,i)=>{
-      links+=`${(i>0)?" | ":""}<a href="visor.html?element=band&band=${b.banda}" class="inv-a">${b.banda}</a>`;
+      links+=`${(i>0)?" | ":""}<a href="visor.html?element=band&band=${encodeURIComponent(b.banda)}" class="inv-a">${b.banda}</a>`;
     });
   } else if(anniversarie.annCategory=='deathday'){
     title = `${anniversarie.diffYears}º aniversario del fallecimiento de ${anniversarie.musico} (${anniversarie.anioNacimiento}-${anniversarie.anioDefuncion})`;
-    mainLink = `visor.html?element=musician&musician=${anniversarie.musico}`;
+    mainLink = `visor.html?element=musician&musician=${encodeURIComponent(anniversarie.musico)}`;
     let bands = await list('bandas',true,['nombreMusicoRol',anniversarie.musico]);
     bands.response.forEach((b,i)=>{
-      links+=`${(i>0)?" | ":""}<a href="visor.html?element=band&band=${b.banda}" class="inv-a">${b.banda}</a>`;
+      links+=`${(i>0)?" | ":""}<a href="visor.html?element=band&band=${encodeURIComponent(b.banda)}" class="inv-a">${b.banda}</a>`;
     });
   }
   let elm = document.createElement("div");
@@ -154,7 +159,7 @@ function setIncorporation(band, index){
   etiq.querySelector(".incorporationImage").alt = "Imágen de la banda "+band.banda;
   etiq.querySelector(".incorporationSpotify").href = band.linkSpotify;
   etiq.querySelector(".incorporationBand").textContent = band.banda;
-  etiq.querySelector(".incorporationBand").href = `visor.html?element=band&band=${band.banda}`;
+  etiq.querySelector(".incorporationBand").href = `visor.html?element=band&band=${encodeURIComponent(band.banda)}`;
   etiq.querySelector(".incorporationOrigin").textContent = `${(band.origen)?band.origen+", ":""}${(band.pais)?band.pais:"Origen Desconocido"}`;
   etiq.querySelector(".incorporationDescrip").textContent = (band.descripcion.length<=250)?band.descripcion:band.descripcion.substring(0,250)+"...";
 }

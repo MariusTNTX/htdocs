@@ -227,7 +227,7 @@ document.getElementById("btnEstExtr").addEventListener("click",(e)=>{
     estudio.value="";
     pais.value="";
     direc.value="";
-  } else alert("Debes incluir el nombre de un estudio");
+  } else showAlert("ERROR","Debes incluir el nombre de un estudio");
 });
 
 function addMusicosAlb(musicos, id){
@@ -348,10 +348,10 @@ function traducirRolesAlbum(roles, id){
           document.querySelectorAll(".rolesMusAlb.a"+id)[i].value = txt[i].replaceAll("(plomo)","(lider)");
         }
       } else {
-        alert("Se ha superado el límite de traducciones diario, inténtalo de nuevo dentro de 24 horas");
+        showAlert("ERROR","Se ha superado el límite de traducciones diario, inténtalo de nuevo dentro de 24 horas");
         tradAllowed = false;
       } 
-    }).catch(error => alert("Error en la tradución de roles de músicos del álbum"));
+    }).catch(error => showAlert("ERROR","Error en la tradución de roles de músicos del álbum"));
   }
 }
 
@@ -375,9 +375,9 @@ btnAlbProp.addEventListener("click",(e)=>{
     fetch(`http://ws.audioscrobbler.com/2.0/?method=album.getinfo&artist=${banda.info.nombre}&album=${albumes[id].nombre}&api_key=5a29d744e8273ab4a877e9b59555b81e&format=json`)
       .then(data=>data.json())
       .then(data=>traducirDescrip(data.album.wiki.content, document.querySelector(".descripAlb.a"+id)))
-      .catch(error=>alert("Error en la traducción de la descripción de la banda"));
+      .catch(error=>showAlert("ERROR","Error en la traducción de la descripción de la banda"));
     console.log(banda);
     console.log(albumes);
-  } else alert("Debes incluir contenido HTML");
+  } else showAlert("ERROR","Debes incluir contenido HTML");
   albPropText.value = "";
 });

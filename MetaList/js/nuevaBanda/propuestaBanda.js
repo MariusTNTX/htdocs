@@ -274,10 +274,10 @@ function traducirInfoBanda(pais, origen, temas){
         }
         console.log("origen inroducido")
       } else {
-        alert("Se ha superado el límite de traducciones diario, inténtalo de nuevo dentro de 24 horas");
+        showAlert('ERROR',"Se ha superado el límite de traducciones diario, inténtalo de nuevo dentro de 24 horas");
         tradAllowed = false;
       } 
-    }).catch(error => alert("Error en la tradución de información básica de la banda"));
+    }).catch(error => showAlert("ERROR","Error en la tradución de información básica de la banda"));
   }
 }
 
@@ -310,7 +310,7 @@ async function traducirDescrip(txt, target){
     console.log(descripcion)
     descripcion = descripcion.join(" ");
     if(descripcion.includes("MYMEMORY WARNING")){
-      alert("Se ha superado el límite de traducciones diario, inténtalo de nuevo dentro de 24 horas");
+      showAlert("ERROR","Se ha superado el límite de traducciones diario, inténtalo de nuevo dentro de 24 horas");
       tradAllowed = false;
     } else target.innerHTML = descripcion;
   }
@@ -333,7 +333,7 @@ async function traducirPaisOrigen(tipo, id, pais, origen, target1, target2){
         origen = data.split("; ")[1];
         target2.setAttribute("value",origen);
       } else {
-        alert("Se ha superado el límite de traducciones diario, inténtalo de nuevo dentro de 24 horas");
+        showAlert("ERROR","Se ha superado el límite de traducciones diario, inténtalo de nuevo dentro de 24 horas");
         tradAllowed=false;
       }
     });
@@ -356,8 +356,8 @@ buscarBan.addEventListener("click",(e)=>{
       //addGeneros(data.generos);
       addAlbumes(data.albumes);
       console.log(albumes);
-    }).catch(error => alert("Error al recuperar información de la banda"));
-  } else alert("Debes introducir una banda");
+    }).catch(error => showAlert("ERROR","Error al recuperar información de la banda"));
+  } else showAlert("ERROR","Debes introducir una banda");
 });
 
 //BOTÓN PRE-MODAL GENERAR PROPUESTA BANDA
@@ -374,7 +374,7 @@ btnBanProp.addEventListener("click",(e)=>{
     if(getWebBanMA(txt)=="<html xmlns=" && getSpotifyBanMA(txt)=="<html xmlns="){
       document.getElementById("webBan").value="";
       document.getElementById("spotifyBan").value="";
-      alert("Debes hacer clic en \"Related Links\" para poder obtener los links");
+      showAlert("ERROR","Debes hacer clic en \"Related Links\" para poder obtener los links");
     } else {
       banda.info.nombre = nombreBan.value;
       banda.info.imagen = getImagenBanMA(txt);
@@ -390,10 +390,10 @@ btnBanProp.addEventListener("click",(e)=>{
       fetch(`http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=${banda.info.nombre}&api_key=5a29d744e8273ab4a877e9b59555b81e&format=json`)
         .then(data=>data.json())
         .then(data=>traducirDescrip(data.artist.bio.content, document.getElementById("descripcBan")))
-        .catch(error=>alert("Error en la traducción de la descripción de la banda"));
+        .catch(error=>showAlert("ERROR","Error en la traducción de la descripción de la banda"));
       console.log(banda);
     }
-  } else alert("Debes incluir contenido HTML");
+  } else showAlert("ERROR","Debes incluir contenido HTML");
   banPropText.value="";
 });
 
@@ -412,7 +412,7 @@ btnMusProp.addEventListener("click",(e)=>{
     traducirPaisOrigen("mus", nomMus, getPaisMusMA(txt, id), getOrigenMusMA(txt, id), document.querySelector(".paisMus.a"+id), document.querySelector(".origenMus.a"+id));
     console.log(banda);
     console.log(albumes);
-  } else alert("Debes incluir contenido HTML");
+  } else showAlert("ERROR","Debes incluir contenido HTML");
   musPropText.value = "";
 });
 
@@ -429,6 +429,6 @@ btnDiscProp.addEventListener("click",(e)=>{
     traducirPaisOrigen("disc", id, getPaisDiscMA(txt, id), getOrigenDiscMA(txt, id), document.querySelector(".paisDisc.a"+id), document.querySelector(".direcDisc.a"+id));
     console.log(banda);
     console.log(albumes);
-  } else alert("Debes incluir contenido HTML");
+  } else showAlert("ERROR","Debes incluir contenido HTML");
   discPropText.value = "";
 });

@@ -31,8 +31,8 @@ async function getNotices(){
   result.push(...res.full.response.map(r=>{r.timeCategory="filter-full"; return r}));
   let fulldata = [];
   result.reduce((res,n)=>{
-    if(fulldata.filter(r=>r.nombre==n.nombre).length==0) fulldata.push(n);
-    else fulldata[fulldata.findIndex(r=>r.nombre==n.nombre)].timeCategory+=" "+n.timeCategory; 
+    if(fulldata.filter(r=>r.articulo==n.articulo).length==0) fulldata.push(n);
+    else fulldata[fulldata.findIndex(r=>r.articulo==n.articulo)].timeCategory+=" "+n.timeCategory; 
   });
   return fulldata.sort((a,b)=>b.visitas-a.visitas);
 }

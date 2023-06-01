@@ -15,7 +15,7 @@ async function getMusicianCard(musician){
           <img src="${(musician.imagen)?musician.imagen:"./imagenes/basico/user_MetaList.png"}" class="card-img-top" alt="Imagen del músico '${musician.musico}'">
         </div>
         <div class="card-body text-center">
-          <h5 class="card-title"><span class="${(musician.anioDefuncion)?"position-relative":""}"><a href="visor.html?element=musician&musician=${musician.musico}">${musician.musico}</a>${cross}<span></h5>
+          <h5 class="card-title"><span class="${(musician.anioDefuncion)?"position-relative":""}"><a href="visor.html?element=musician&musician=${encodeURIComponent(musician.musico)}">${musician.musico}</a>${cross}<span></h5>
           <hr>
           <h6 class="card-title">${(musician.sexo)?musician.sexo:"Género No Especificado"}</h6>
           <h6 class="card-title">${(musician.origen)?musician.origen+", ":""}${(musician.pais)?musician.pais:"Origen Desconocido"}</h6>

@@ -245,19 +245,19 @@ async function loadRandomElement(element){
   if(element=='Band'){
     let banda = await list("bandas",true,['escuchasBanda_Min',1],['order','RAND()'],['limit',1]);
     banda = banda.response;
-    location.href = `visor.html?element=band&band=${banda[0].banda}`;
+    location.href = `visor.html?element=band&band=${encodeURIComponent(banda[0].banda)}`;
   } else if(element=='Album'){
     let album = await list("albumes",true,['escuchasAlbum_Min',1],['order','RAND()'],['limit',1]);
     album = album.response;
-    location.href = `visor.html?element=album&band=${album[0].banda}&album=${album[0].album}`;
+    location.href = `visor.html?element=album&band=${encodeURIComponent(album[0].banda)}&album=${encodeURIComponent(album[0].album)}`;
   } else if(element=='Label'){
     let label = await list("discograficas",true,['estatusDiscografica_Like','a'],['order','RAND()'],['limit',1]);
     label = label.response;
-    location.href = `visor.html?element=label&label=${label[0].discografica}`;
+    location.href = `visor.html?element=label&label=${encodeURIComponent(label[0].discografica)}`;
   } else if(element=='Musician'){
     let musician = await list("musicos",true,['sexoMusico_Like','e'],['order','RAND()'],['limit',1]);
     musician = musician.response;
-    location.href = `visor.html?element=musician&musician=${musician[0].musico}`;
+    location.href = `visor.html?element=musician&musician=${encodeURIComponent(musician[0].musico)}`;
   }
 }
 

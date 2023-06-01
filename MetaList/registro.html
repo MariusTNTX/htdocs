@@ -135,10 +135,10 @@
 
     <section class="inner-page">
       <div class="container" data-aos="fade-up">
-        <div class="reg-container row justify-content-center">
+        <div class="reg-container row justify-content-center" data-aos="fade-up" data-aos-delay="100">
 
           <!-- CONTENEDOR -->
-          <form action="forms/contact.php" method="post" enctype="multipart/form-data" role="form" id="regForm" class="php-email-form col-10 col-md-8 col-lg-6 col-xl-5 px-4 py-5 rounded-3 shadow-lg" data-aos="fade-up" data-aos-delay="100">
+          <form action="" method="post" enctype="multipart/form-data" id="regForm" class="php-email-form col-10 col-md-8 col-lg-6 col-xl-5 px-4 py-5 rounded-3 shadow-lg">
 
             <!-- Imagen -->
             <!-- <div class="row mb-5 mt-4">
@@ -241,16 +241,6 @@
               </div>
             </div>
 
-            <!-- Checks -->
-            <div class="row ms-2 my-2">
-              <!-- Check Acepto recibir notificaciones -->
-              <div class="col-12 form-check">
-                <input class="form-check-input" type="checkbox" id="check1" name="check1" value="">
-                <label class="form-check-label" for="check1">
-                  Acepto recibir notificaciones a mi dirección de correo electrónico
-                </label>
-              </div>
-            </div>
             <!-- Check Acepto las políticas de privacidad y cookies (enlace) -->
             <div class="row ms-2 mb-2">
               <div class="col-12 form-check">
@@ -313,7 +303,7 @@
                 Calle de la Fuensanta, 3 <br>
                 16002, Cuenca, España<br><br>
                 <strong>Teléfono:</strong> +32 969 304 288<br>
-                <strong>Email:</strong> <a href="mailto:molinamario.msc@gmail.com" class="inv-a">molinamario.msc@gmail.com</a><br>
+                <strong>Email:</strong> <a href="mailto:admin@metalist.es" class="inv-a">admin@metalist.es</a><br>
               </p> <br>
               <p>
                 <a href="privacidad.html" class="inv-a fw-bold">Políticas de Privacidad y Cookies</a><br>
@@ -376,7 +366,7 @@
           <div class="col-10 py-3">
             <p>En breves momentos recibirás un mensaje en tu cuenta de correo con un código que deberás insertar a continuación. Por favor, no cierres esta pestaña.</p>
             <p class="text-center mb-4 fs-1" id="contador">00:00</p>
-            <form>
+            <form action="" method="post">
               <div class="mb-3 text-center">
                 <label for="codigoVerificacion" class="form-label fw-bold">Código de Verificación</label>
                 <input type="email" class="form-control fs-1 mx-auto text-center" id="codigoVerificacion" placeholder="000000" maxlength="6" minlength="6">

@@ -15,7 +15,7 @@ async function getLabelCard(label){
         <img src="${(label.imagen)?label.imagen:"./imagenes/basico/user_MetaList.png"}" class="card-img-top" alt="Logotipo de la discográfica '${label.discografica}'">
       </div>
       <div class="card-body text-center">
-        <h5 class="card-title"><a href="visor.html?element=label&label=${label.discografica}">${label.discografica}</a></h5>
+        <h5 class="card-title"><a href="visor.html?element=label&label=${encodeURIComponent(label.discografica)}">${label.discografica}</a></h5>
         <hr>
         <h6 class="card-title">${(label.direccion)?label.direccion+", ":""}${(label.pais)?label.pais:"Origen Desconocido"}</h6>
         <h6 class="card-title"><i class="bi bi-circle-fill ${statusColor}"></i> ${(label.estatus)?label.estatus:"Estatus Desconocido"}</h6>

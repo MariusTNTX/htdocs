@@ -47,7 +47,7 @@ function delEtiqueta(elm){
   if(tipo.includes("Álbum")) tbody = document.getElementById("tbodyAlbumes");
   else if(tipo.includes("Músico")) tbody = document.getElementById("tbodyMusicos");
   else if(tipo.includes("Discográfica")) tbody = document.getElementById("tbodyDiscograficas");
-  else alert("Error al identificar la etiqueta a eliminar");
+  else showAlert("ERROR","Error al identificar la etiqueta a eliminar");
   tbody.removeChild(tbody.querySelector(".etiqueta.a"+id));
 }
 
@@ -100,7 +100,7 @@ function cargarPropuesta(e){
     else if(tipo=="Disc") cargarPropuestaDiscografica(txt, id);
     console.log(banda);
     console.log(albumes);
-  } else alert("Debes incluir contenido HTML");
+  } else showAlert("ERROR","Debes incluir contenido HTML");
   propText.value = "";
 }
 
@@ -119,7 +119,7 @@ function cargarPropuestaAlbum(txt, id){
   fetch(`http://ws.audioscrobbler.com/2.0/?method=album.getinfo&artist=${banda.info.nombre}&album=${albumes[id].nombre}&api_key=5a29d744e8273ab4a877e9b59555b81e&format=json`)
     .then(data=>data.json())
     .then(data=>traducirDescrip(data.album.wiki.content, document.querySelector(".descripAlb.a"+id)))
-    .catch(error=>alert("Error en la traducción de la descripción de la banda"));
+    .catch(error=>showAlert("ERROR","Error en la traducción de la descripción de la banda"));
 }
 
 function cargarPropuestaMusico(txt, id){
@@ -324,5 +324,5 @@ document.getElementById("btnGuardar").addEventListener("click",()=>{
   };
   console.log("BODY:")
   console.log(body)
-  post("fullBand",true,body).then(data=>console.log(data)).catch(error=>alert("Error al procesar la transacción"));
+  post("fullBand",true,body).then(data=>console.log(data)).catch(error=>showAlert("ERROR","Error al procesar la transacción"));
 });

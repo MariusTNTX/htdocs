@@ -236,5 +236,10 @@ function addNewMusico(band, musico, id){
     generarEnlaceMus(nombreMus.value, band);
   });
 
+  //EVENTOS DE BOTONES
+  for(let btn of elm.querySelectorAll(".eliminar-fila")) btn.addEventListener("click",(e)=>delFila(e.target));
+  for(let btn of elm.querySelectorAll(".anadir-fila")) btn.addEventListener("click",(e)=>addFila(e.target));
+  elm.querySelector(".eliminar-etiqueta").addEventListener("click",(e)=>delEtiqueta(e.target));
+
   tbodyMusicos.appendChild(elm);
 }
