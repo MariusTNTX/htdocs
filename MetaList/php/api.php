@@ -95,7 +95,7 @@ if(isset($_GET['key'])){
       } else if(isset($_REQUEST['list'])){
         // L I S T 
         try{
-          include("funcionesSelect.php");
+          include("metadata.php");
           parse_str($_SERVER['QUERY_STRING'], $params);
           $query = selectToArray($metadata,$conversion,$params);
           //Se establece conexión con la BD
@@ -202,7 +202,7 @@ if(isset($_GET['key'])){
         // I N S E R T  G E N É R I C O
           $data = array("request"=>[], "response"=>500);
           try{
-            include("funcionesSelect.php");
+            include("metadata.php");
             $inserts = insertToArray($metadata,$conversion,$insert,$body);
             //Se establece conexión con la BD
             $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
@@ -229,7 +229,7 @@ if(isset($_GET['key'])){
         $body = json_decode($body, true);
         $data = array("request"=>[], "response"=>500);
         try{
-          include("funcionesSelect.php");
+          include("metadata.php");
           $updates = updateToArray($metadata,$conversion,$update,$body);
           //Se establece conexión con la BD
           $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
@@ -254,7 +254,7 @@ if(isset($_GET['key'])){
         $body = json_decode($body, true);
         $data = array("request"=>[], "response"=>500);
         try{
-          include("funcionesSelect.php");
+          include("metadata.php");
           $deletes = deleteToArray($metadata,$conversion,$delete,$body);
           //Se establece conexión con la BD
           $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
@@ -337,7 +337,7 @@ if(isset($_GET['key'])){
         echo json_encode($data);
       } else if(isset($_REQUEST['sendVerifyEmail'])){
         // S E N D  V E R I F Y  E M A I L
-        include("sendVerifyEmail.php");
+        include("email.php");
         $email = $_REQUEST['sendVerifyEmail'];
         $code = $_REQUEST['code'];
         $data = [array("codigo"=>$code, "email"=>$email)];
@@ -381,7 +381,7 @@ if(isset($_GET['key'])){
         echo json_encode($data);
       } else if(isset($_REQUEST['sendNewPass'])){
         // S E N D  N E W  P A S S
-        include("sendVerifyEmail.php");
+        include("email.php");
         $email = $_REQUEST['sendNewPass'];
         $data = [array("email"=>$email, "coincidence"=>true)];
         $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
@@ -544,7 +544,7 @@ if(isset($_GET['key'])){
         $data = [array("status"=>200)];
         $c1 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die ('Error de conexion a mysql: ' . mysqli_error($c1).'<br>');
         try {
-          include 'createViews.php';
+          include 'crearVistas.php';
         } catch (\Throwable $th) {
           $data[0]['status'] = 500;
           $data[0]['error'] = $th;
